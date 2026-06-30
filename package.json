@@ -43,7 +43,8 @@
     "lint": "eslint client server",
     "format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
     "vscode:prepublish": "npm run lint",
-    "package": "vsce package"
+    "package": "vsce package",
+    "render-icon": "node scripts/render-icon.js"
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1",

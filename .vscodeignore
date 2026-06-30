@@ -8,5 +8,7 @@
 cspell.json
 CLAUDE.md
 cisco-ios-lsp-plan.md
+scripts/**
 images/icon.svg
+images/README.md
 **/.DS_Store
