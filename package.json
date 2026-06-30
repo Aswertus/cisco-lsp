@@ -1,0 +1,42 @@
+{
+  "name": "cisco-ios-lsp",
+  "displayName": "Cisco IOS/IOS-XE IntelliSense",
+  "description": "Context-aware completions, hover docs, and diagnostics for Cisco IOS/IOS-XE config files.",
+  "version": "0.1.0",
+  "publisher": "local-dev",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "extensionDependencies": [
+    "Y-Ysss.cisco-config-highlight"
+  ],
+  "activationEvents": [
+    "onLanguage:cisco"
+  ],
+  "main": "./client/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "cisco",
+        "extensions": [".cfg", ".ios"]
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint client server",
+    "format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-languageserver-textdocument": "^1.0.12"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.0.0"
+  }
+}

@@ -1,0 +1,177 @@
+# cisco-ios-lsp
+
+VS Code extension — Cisco IOS/IOS-XE IntelliSense via Language Server Protocol.
+
+Adds **context-aware completions**, **hover documentation**, and **real-time diagnostics**
+to Cisco config files. Works alongside
+[`Y-Ysss.cisco-config-highlight`](https://marketplace.visualstudio.com/items?itemName=Y-Ysss.cisco-config-highlight),
+which provides syntax highlighting and the `cisco` language ID. That extension is declared
+as a required dependency and is loaded automatically.
+
+---
+
+## Features
+
+| Capability | Detail |
+|------------|--------|
+| **Completions** | Auto-triggered, block-aware: completions change depending on whether the cursor is inside an `interface`, `router bgp`, `class-map`, `policy-map`, `line vty`, or at global level |
+| **Hover docs** | Syntax reminders for known keywords — e.g. hover `dot1x` → `dot1x pae { authenticator \| supplicant \| both }` |
+| **Diagnostics** | Squiggly errors on unknown top-level commands, invalid interface names, VLAN numbers outside 1–4094, and malformed IP addresses |
+
+---
+
+## Architecture
+
+```
+VS Code (UI)
+  └─ LSP client  (client/extension.js)
+       └─ spawns server/server.js as a child process
+            ↕ JSON-RPC over stdio
+```
+
+VS Code starts `server.js` when a `cisco`-language file opens and kills it on exit.
+No daemon, no network, no always-on process.
+
+---
+
+## File associations
+
+`Y-Ysss.cisco-config-highlight` registers `.cisco` and `.config`.
+This extension additionally registers:
+
+| Extension | Language |
+|-----------|----------|
+| `.cfg` | `cisco` |
+| `.ios` | `cisco` |
+
+To add further extensions (e.g. `.conf`) add a `files.associations` entry to your
+VS Code workspace `settings.json`:
+
+```json
+"files.associations": {
+  "*.conf": "cisco"
+}
+```
+
+---
+
+## Install (development)
+
+```bash
+cd /home/matthias/cisco-lsp
+npm install
+ln -sf /home/matthias/cisco-lsp ~/.vscode-server/extensions/cisco-ios-lsp
+```
+
+Then in VS Code: `Ctrl+Shift+P` → **Developer: Reload Window**.
+
+The symlink points VS Code Server at the live repo — edits to `server.js` take effect
+after a window reload (no compile step; plain Node.js).
+
+---
+
+## Command coverage
+
+### Interface — physical
+
+| Keyword | Aliases |
+|---------|---------|
+| `GigabitEthernet` | `gi` |
+| `FastEthernet` | `fa` |
+| `TenGigabitEthernet` | `te` |
+| `TwentyFiveGigE` | `twe` |
+| `FortyGigabitEthernet` | `fo` |
+| `HundredGigE` | `hu` |
+
+### Interface — logical
+
+`Port-channel` (`po`), `Tunnel` (`tu`), `Loopback` (`lo`), `Vlan` (SVI)
+
+### Interface config block
+
+`ip address`, `shutdown`, `no shutdown`, `description`, `duplex`, `speed`, `mtu`,
+`carrier-delay`, `ip helper-address`
+
+### Switchport
+
+`switchport mode access/trunk`, `switchport access vlan`,
+`switchport trunk allowed vlan`, `switchport nonegotiate`,
+`spanning-tree portfast`, `spanning-tree bpduguard enable`
+
+### 802.1X / MAB
+
+`dot1x pae authenticator`, `mab`, `access-session`,
+`authentication event/order/priority/host-mode/open/timer`
+
+### QoS — Policy
+
+`class-map match-any/all`, `policy-map`, `class`,
+`service-policy input/output`, `bandwidth`, `police`, `set`, `priority`
+
+### Parameter maps & templates
+
+`parameter-map type`, `template`, `source template`
+
+### VLANs
+
+`vlan` block, `name`, `switchport trunk native vlan`
+
+### Routing
+
+`router bgp`, `router ospf`, `router eigrp`, `ip route`,
+`network`, `neighbor`, `redistribute`
+
+### BGP-EVPN / VXLAN
+
+`l2vpn evpn`, `replication-mode`, `route-target`, `vni`,
+`address-family l2vpn evpn`, `advertise-pip`
+
+### VPN / Crypto
+
+`crypto isakmp policy`, `crypto ipsec transform-set`, `crypto map`,
+`tunnel source/destination/mode`
+
+### Management
+
+`hostname`, `enable secret`, `username`, `line vty`, `login local`,
+`transport input ssh`, `ip ssh version 2`, `logging`, `ntp server`,
+`ip domain-name`, `service timestamps`
+
+### ACL / Security
+
+`ip access-list standard/extended`, `permit`, `deny`,
+`ip inspect`, `zone security`, `zone-pair security`
+
+### TACACS+ / AAA
+
+`aaa new-model`, `aaa authentication login`, `aaa authorization`,
+`tacacs server`, `address ipv4`, `key`
+
+### Syslog
+
+`logging host`, `logging trap`, `logging facility`
+
+---
+
+## Verification
+
+After installing:
+
+1. Create `test.cfg` in any workspace → language bar shows **Cisco Config**.
+2. Type `interface ` (with space) at the top → dropdown lists all interface types.
+3. Type `gi` → `GigabitEthernet` appears; select it and type a slot/port.
+4. Inside `interface GigabitEthernet0/1`, type `sw` → switchport completions; `ro` absent.
+5. At global level: `class-map` → class-map completion; `tu` → `Tunnel` interface.
+6. Hover over `dot1x` → syntax reminder popup.
+7. Type `interfacs ` (deliberate typo) → red squiggle diagnostic.
+8. Type `vlan 5000` → out-of-range VLAN diagnostic.
+9. Delete `test.cfg` when done.
+
+---
+
+## Development
+
+```bash
+npm run lint      # ESLint (eslint:recommended, Node env)
+npm run format    # Prettier (printWidth 100, single quotes)
+```

@@ -1,0 +1,16 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": ["node_modules", "*.vsix", "package-lock.json"],
+  "words": [
+    // Cisco IOS / networking
+    "cisco", "iosxe", "eigrp", "ospf", "evpn", "lldp", "dhcp",
+    "switchport", "portfast", "loopback", "encap", "ipsec", "isakmp",
+    "tacacs", "syslog", "vlan", "vlans", "pae", "mab", "bpduguard",
+    "nonegotiate",
+    // LSP / VS Code extension tooling
+    "languageclient", "languageserver", "vsix", "vsce",
+    // VS Code extension names
+    "errorlens", "gitlens"
+  ]
+}

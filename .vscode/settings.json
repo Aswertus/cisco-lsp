@@ -1,0 +1,35 @@
+{
+  // Workspace settings for cisco-ios-lsp extension development.
+  // Pairs with extensions.json — assumes those extensions are installed.
+
+  // Theme & icons — matches ansible-test monorepo.
+  "workbench.colorTheme": "Daybreak",
+  "workbench.iconTheme": "material-icon-theme",
+
+  // Ruler at 100 cols — matches .prettierrc.yml printWidth.
+  "editor.rulers": [100],
+
+  // Format on save.
+  "editor.formatOnSave": true,
+
+  // Trailing whitespace and final newline — matches .editorconfig.
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  // Hide noise from the file explorer and global search.
+  "files.exclude": {
+    "node_modules": true,
+    "*.vsix": true
+  },
+  "search.exclude": {
+    "node_modules": true
+  },
+
+  // cSpell word list lives in cspell.json at the repo root.
+
+  // All source languages → Prettier.
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]":        { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[jsonc]":       { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[markdown]":    { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+}
