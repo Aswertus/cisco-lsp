@@ -30,8 +30,24 @@ jobs:
       - name: Package extension
         run: npm run package # runs lint via vscode:prepublish, then `vsce package`
 
+      - name: Extract release notes from CHANGELOG.md
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v ver="$VERSION" '
+            $0 ~ "^## \\[" ver "\\]" { flag=1; next }
+            /^## \[/ { flag=0 }
+            flag { print }
+          ' CHANGELOG.md > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "::error::No CHANGELOG.md section found for version $VERSION — add a '## [$VERSION]' entry before tagging."
+            exit 1
+          fi
+          echo "----- release notes -----"
+          cat release-notes.md
+
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          body_path: release-notes.md # your CHANGELOG section …
+          generate_release_notes: true # … with GitHub's auto compare link appended
           files: "*.vsix"
-          generate_release_notes: true
