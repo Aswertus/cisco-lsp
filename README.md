@@ -55,7 +55,41 @@ VS Code workspace `settings.json`:
 
 ---
 
+## Install (coworkers)
+
+You only need the prebuilt `.vsix` file — no Node.js, no cloning.
+
+1. Get `cisco-ios-lsp-<version>.vsix` from Aswertus.
+2. Install it, either:
+   - **GUI:** VS Code → Extensions panel → `⋯` menu (top-right) → **Install from VSIX…** →
+     pick the file, or
+   - **CLI:** `code --install-extension cisco-ios-lsp-0.1.0.vsix`
+3. **Dependency:** this extension builds on `Y-Ysss.cisco-config-highlight`. VS Code installs
+   it automatically from the Marketplace when you install the `.vsix`. On a restricted /
+   air-gapped network without Marketplace access, install that extension manually first.
+4. Reload the window (`Ctrl+Shift+P` → **Developer: Reload Window**).
+
+---
+
+## Build the .vsix
+
+To produce the shareable file (requires Node.js + npm):
+
+```bash
+cd /home/matthias/cisco-lsp
+npm install
+npm run package        # → cisco-ios-lsp-<version>.vsix in the repo root
+```
+
+The production dependencies are bundled into the `.vsix`, so it runs on any machine with
+VS Code — no separate `npm install` on the coworker's side.
+
+---
+
 ## Install (development)
+
+For working on the extension itself, symlink the repo into VS Code Server so edits take
+effect on reload (no rebuild needed):
 
 ```bash
 cd /home/matthias/cisco-lsp

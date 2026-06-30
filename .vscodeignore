@@ -1,0 +1,11 @@
+.vscode/**
+.git/**
+.claude/**
+.gitignore
+.editorconfig
+.eslintrc.json
+.prettierrc.yml
+cspell.json
+CLAUDE.md
+cisco-ios-lsp-plan.md
+**/.DS_Store

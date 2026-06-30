@@ -3,13 +3,25 @@
   "displayName": "Cisco IOS/IOS-XE IntelliSense",
   "description": "Context-aware completions, hover docs, and diagnostics for Cisco IOS/IOS-XE config files.",
   "version": "0.1.0",
-  "publisher": "local-dev",
+  "publisher": "Aswertus",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aswertus/cisco-ios-lsp"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
   "categories": [
     "Programming Languages"
+  ],
+  "keywords": [
+    "cisco",
+    "ios",
+    "ios-xe",
+    "network",
+    "lsp",
+    "intellisense"
   ],
   "extensionDependencies": [
     "Y-Ysss.cisco-config-highlight"
@@ -28,7 +40,9 @@
   },
   "scripts": {
     "lint": "eslint client server",
-    "format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore"
+    "format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
+    "vscode:prepublish": "npm run lint",
+    "package": "vsce package"
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1",
@@ -36,6 +50,7 @@
     "vscode-languageserver-textdocument": "^1.0.12"
   },
   "devDependencies": {
+    "@vscode/vsce": "^3.0.0",
     "eslint": "^8.57.0",
     "prettier": "^3.0.0"
   }

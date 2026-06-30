@@ -44,6 +44,25 @@ npm run format    # Prettier
 Reload VS Code window (`Ctrl+Shift+P` → **Developer: Reload Window**) after editing
 `server.js` or `client/extension.js`.
 
+## Packaging / Release
+
+The extension is distributed as a sideloaded `.vsix` file (no Marketplace).
+
+```bash
+npm install
+npm run package        # vsce package → cisco-ios-lsp-<version>.vsix
+```
+
+- Bump `version` in `package.json` before packaging a new release.
+- Production `dependencies` (the `vscode-languageserver*` packages) are bundled into the
+  `.vsix` by vsce — **no esbuild / no compile step**.
+- `.vscodeignore` keeps dev-only files (`.vscode/`, `CLAUDE.md`, `cspell.json`, `.claude/`,
+  lint/format configs) out of the package. `README.md` and `LICENSE` are included.
+- `extensionDependencies` pulls in `Y-Ysss.cisco-config-highlight` on the user's machine
+  automatically (from the Marketplace) at install time.
+
+Share the resulting `.vsix`; coworkers install via **Extensions → ⋯ → Install from VSIX…**.
+
 ## Branch Policy
 
 - Active development happens on `claude_dev`.
