@@ -76,6 +76,25 @@ You only need the prebuilt `.vsix` file — no Node.js, no cloning.
 
 ---
 
+## Updating
+
+Sideloaded extensions (installed from a `.vsix`) **do not auto-update** — only Marketplace
+extensions do. To move to a newer version:
+
+1. Download the newer `cisco-ios-lsp-<version>.vsix` from the
+   [Releases page](https://github.com/Aswertus/cisco-lsp/releases).
+2. **Install from VSIX…** again — VS Code replaces the old version in place; your settings
+   are kept.
+3. Reload the window.
+
+**Update notifications:** the extension checks the Releases API on startup and shows a
+notification when a newer version is available. It is **inactive while the repo is private**
+(the API call is unauthorized, so it silently does nothing) and **activates automatically if
+the repo is made public** — no token needed on anyone's machine. Disable it with the
+`cisco-ios-lsp.checkForUpdates` setting.
+
+---
+
 ## Build the .vsix
 
 To produce the shareable file (requires Node.js + npm):

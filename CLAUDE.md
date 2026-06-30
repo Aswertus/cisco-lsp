@@ -78,6 +78,10 @@ The tag version must match `version` in `package.json`. The repo (`Aswertus/cisc
 **private**, so coworkers need collaborator access to download release assets. The local
 `npm run package` above remains the offline/manual fallback.
 
+The client's startup **update check** (`client/extension.js`) calls the public Releases API:
+it no-ops (404) while the repo is private and starts working once the repo is public — no
+token required on user machines.
+
 ## Branch Policy
 
 - Active development happens on `claude_dev`.

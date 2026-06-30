@@ -37,7 +37,17 @@
         "id": "cisco",
         "extensions": [".cfg", ".ios"]
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Cisco IOS IntelliSense",
+      "properties": {
+        "cisco-ios-lsp.checkForUpdates": {
+          "type": "boolean",
+          "default": true,
+          "description": "On startup, check GitHub Releases for a newer version and notify if one is available. Inactive while the repository is private."
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint client server",
