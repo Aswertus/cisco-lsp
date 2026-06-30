@@ -209,3 +209,15 @@ After installing:
 npm run lint      # ESLint (eslint:recommended, Node env)
 npm run format    # Prettier (printWidth 100, single quotes)
 ```
+
+---
+
+## AI-assisted development
+
+This project was developed with the assistance of **AI — currently Anthropic's Claude**.
+AI tooling was used to scaffold the extension, write and refine the language-server logic,
+and produce documentation.
+
+If you fork, reuse, or build on this code, please be aware of that origin. The code is
+provided under the MIT [LICENSE](LICENSE) "as is", without warranty — review it before using
+it in production network environments.
