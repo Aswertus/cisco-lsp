@@ -1,0 +1,3960 @@
+[
+  {
+    "name": "cache",
+    "context": null,
+    "detail": "Configure a flow cache parameter for a flow monitor.",
+    "syntax": "cache {timeout {active | inactive | update} seconds | type normal}",
+    "noForm": "no cache {timeout {active | inactive | update} | type}",
+    "params": [
+      {
+        "name": "timeout",
+        "description": "Specifies the flow timeout."
+      },
+      {
+        "name": "active",
+        "description": "Specifies the active flow timeout."
+      },
+      {
+        "name": "inactive",
+        "description": "Specifies the inactive flow timeout."
+      },
+      {
+        "name": "update",
+        "description": "Specifies the update timeout for a permanent flow cache."
+      },
+      {
+        "name": "seconds",
+        "description": "The timeout value in seconds. The range is 30 to 604800 (7 days) for a normal flow cache. For a permanent flow cache the range is 1 to 604800 (7 days)."
+      },
+      {
+        "name": "type",
+        "description": "Specifies the type of the flow cache."
+      },
+      {
+        "name": "normal",
+        "description": "Configures a normal cache type. The entries in the flow cache will be aged out according to the timeout active seconds and timeout inactive seconds settings. This is the default cache type."
+      }
+    ],
+    "modes": ["Flow monitor configuration"],
+    "usageSummary": "Each flow monitor has a cache that it uses to store all the flows it monitors.  Each cache has various configurable elements, such as the time that a flow is allowed to remain in it.  When a flow times out, it is removed from the cache and sent to any exporters that are configured for the corresponding flow monitor.",
+    "sourcePage": 1199,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear flow exporter",
+    "context": null,
+    "detail": "Clear the statistics for a Flexible Netflow flow exporter.",
+    "syntax": "clear flow exporter [[name] exporter-name] statistics",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow exporter."
+      },
+      {
+        "name": "exporter-name",
+        "description": "(Optional) Name of a flow exporter that was previously configured."
+      },
+      {
+        "name": "statistics",
+        "description": "Clears the flow exporter statistics."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The clear flow exporter command removes all statistics from the flow exporter.  These statistics will not be exported and the data gathered in the cache will be lost.  You can view the flow exporter statistics by using the show flow exporter statistics privileged EXEC command.",
+    "sourcePage": 1201,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear flow monitor",
+    "context": null,
+    "detail": "Clear a flow monitor cache or flow monitor statistics and to force the export of the data in the flow monitor cache.",
+    "syntax": "clear flow monitor [name] monitor-name [[cache] force-export | statistics]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "Specifies the name of a flow monitor."
+      },
+      {
+        "name": "monitor-name",
+        "description": "Name of a flow monitor that was previously configured."
+      },
+      {
+        "name": "cache",
+        "description": "(Optional) Clears the flow monitor cache information."
+      },
+      {
+        "name": "force-export",
+        "description": "(Optional) Forces the export of the flow monitor cache statistics."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Clears the flow monitor statistics."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The clear flow monitor cache command removes all entries from the flow monitor cache.  These entries will not be exported and the data gathered in the cache will be lost.",
+    "sourcePage": 1202,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear snmp stats hosts",
+    "context": null,
+    "detail": "Clear the NMS IP address, the number of times an NMS polls the agent, and the timestamp of polling.",
+    "syntax": "clear snmp stats hosts",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the clear snmp stats hosts command to delete all the entries polled to the SNMP agent.  The following is sample output of the clear snmp stats hosts command.  Device# clear snmp stats hosts Request Count Last Timestamp Address Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 1204,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect",
+    "context": null,
+    "detail": "Configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.",
+    "syntax": "collect {counter | interface | timestamp | transport}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "counter",
+        "description": "Configures the number of bytes or packets in a flow as a non-key field for a flow record. For more information, see collect counter."
+      },
+      {
+        "name": "interface",
+        "description": "Configures the input and output interface name as a non-key field for a flow record. For more information, see collect interface. timestamp Configures the absolute time of the first seen or last seen packet in a flow as a non-key field for a flow record. For more information, see collect timestamp absolute."
+      },
+      {
+        "name": "transport",
+        "description": "Enables the collecting of transport TCP flags from a flow record. For more information, see collect transport tcp flags."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.  In most cases, the values for non-key fields are taken from only the first packet in the flow.",
+    "sourcePage": 1205,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect counter",
+    "context": null,
+    "detail": "Configure the number of bytes or packets in a flow as a non-key field for a flow record.",
+    "syntax": null,
+    "noForm": null,
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "To return this command to its default settings, use the no collect counter or default collect counter flow record configuration command.  The following example configures the total number of bytes in the flows as a non-key field: Device(config)# flow record FLOW-RECORD-1 Device(config-flow-record)#collect counter bytes long The following example configures the total number of packets from the flows as a non-key field: Device(config)# flow record FLOW-RECORD-1 Device(config-flow-record)# collect counter packets long Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 1206,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect flow sampler",
+    "context": null,
+    "detail": "Configure a flow sampler ID as a non-key field for the record.",
+    "syntax": "collect flow sampler",
+    "noForm": "no collect flow sampler",
+    "params": [],
+    "modes": ["Flow record configuration (config-flow-record)"],
+    "usageSummary": "The collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
+    "sourcePage": 1207,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect interface",
+    "context": null,
+    "detail": "Configure the input interface name as a non-key field for a flow record.",
+    "syntax": "collect interface input",
+    "noForm": "no collect interface input",
+    "params": [
+      {
+        "name": "input",
+        "description": "Configures the input interface name as a non-key field and enables collecting the input interface from the flows."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "The Flexible NetFlow collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
+    "sourcePage": 1208,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect ipv4 destination",
+    "context": null,
+    "detail": "Configure the IPv4 destination as a non-key field for a flow record.",
+    "syntax": "collect ipv4 destination {mask | prefix} [minimum-mask mask]",
+    "noForm": "no collect ipv4 destination {mask | prefix} [minimum-mask mask]",
+    "params": [
+      {
+        "name": "mask",
+        "description": "Configures the IPv4 destination mask as a non-key field and enables collecting the value of the IPv4 destination mask from the flows."
+      },
+      {
+        "name": "prefix",
+        "description": "Configures the prefix for the IPv4 destination as a non-key field and enables collecting the value of the IPv4 destination prefix from the flows."
+      },
+      {
+        "name": "minimum-mask mask",
+        "description": "(Optional) Specifies the size, in bits, of the minimum mask. Range: 1 to 32."
+      }
+    ],
+    "modes": ["Flow record configuration (config-flow-record)"],
+    "usageSummary": "The Flexible NetFlow collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
+    "sourcePage": 1209,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect ipv6 destination",
+    "context": null,
+    "detail": "Configure the IPv6 destination as a non-key field for a flow record.",
+    "syntax": "collect ipv6 destination { mask | prefix } [ minimum-mask mask ]",
+    "noForm": "no collect ipv6 destination { mask | prefix } [ minimum-mask mask ]",
+    "params": [
+      {
+        "name": "mask",
+        "description": "Configures the IPv6 destination mask as a non-key field and enables collecting the value of the IPv6 destination mask from the flows."
+      },
+      {
+        "name": "prefix",
+        "description": "Configures the prefix for the IPv6 destination as a non-key field and enables collecting the value of the IPv6 destination prefix from the flows."
+      },
+      {
+        "name": "minimum-mask mask",
+        "description": "(Optional) Specifies the size, in bits, of the minimum mask. Range: 1 to 32."
+      }
+    ],
+    "modes": ["Flow record configuration (config-flow-record)"],
+    "usageSummary": "The Flexible NetFlow collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
+    "sourcePage": 1210,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect ipv4 source",
+    "context": null,
+    "detail": "Configure the IPv4 source as a non-key field for a flow record.",
+    "syntax": "collect ipv4 source {mask | prefix} [minimum-mask mask]",
+    "noForm": "no collect ipv4 source {mask | prefix} [minimum-mask mask]",
+    "params": [
+      {
+        "name": "mask",
+        "description": "Configures the mask for the IPv4 source as a non-key field and enables collecting the value of the IPv4 source mask from the flows."
+      },
+      {
+        "name": "prefix",
+        "description": "Configures the prefix for the IPv4 source as a non-key field and enables collecting the value of the IPv4 source prefix from the flows."
+      },
+      {
+        "name": "minimum-mask mask",
+        "description": "(Optional) Specifies the size, in bits, of the minimum mask. Range: 1 to 32."
+      }
+    ],
+    "modes": ["Flow record configuration (config-flow-record)"],
+    "usageSummary": "The collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
+    "sourcePage": 1211,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect ipv6 source",
+    "context": null,
+    "detail": "Configure the IPv6 source as a non-key field for a flow record.",
+    "syntax": "collect ipv6 source { mask | prefix } [ minimum-mask mask ]",
+    "noForm": "no collect ipv6 source { mask | prefix } [ minimum-mask mask ]",
+    "params": [
+      {
+        "name": "mask",
+        "description": "Configures the mask for the IPv6 source as a non-key field and enables collecting the value of the IPv6 source mask from the flows."
+      },
+      {
+        "name": "prefix",
+        "description": "Configures the prefix for the IPv6 source as a non-key field and enables collecting the value of the IPv6 source prefix from the flows."
+      },
+      {
+        "name": "minimum-mask mask",
+        "description": "(Optional) Specifies the size, in bits, of the minimum mask. Range: 1 to 32."
+      }
+    ],
+    "modes": [
+      "Flow record configuration (config-flow-record)",
+      "Release Modification",
+      "Cisco IOS XE Amsterdam 17.3.1 This command was introduced.",
+      "Usage Guidelines The collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record. The values in non-key fields are added to flows to provide additional information about the traffic in the flows. A change in the value of a non-key field does not create a new flow. In most cases the values for non-key fields are taken from only the first packet in the flow. collect ipv6 source prefix minimum-mask The source prefix is the network part of an IPv6 source. The optional minimum mask allows more information to be gathered about large networks. collect ipv6 source mask minimum-mask The source mask is the number of bits that make up the network part of the source. The optional minimum mask allows a minimum value to be configured. This command is useful when there is a minimum mask configured for the source prefix field and the mask is to be used with the prefix. In this case, the values configured for the minimum mask should be the same for the prefix and mask fields. Alternatively, if the collector is aware of the minimum mask configuration of the prefix field, the mask field can be configured without a minimum mask so that the true mask and prefix can be calculated.",
+      "Examples The following example shows how to configure the IPv6 source prefix from flows that have a prefix of 16 bits as a non-key field: Device> enable Device# conigure terminal Device(config)# flow record FLOW-RECORD-1",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1213 Network Management collect ipv6 source",
+      "Device(config-flow-record)# collect ipv6 source prefix minimum-mask 16",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1214 Network Management collect policy firewall event"
+    ],
+    "usageSummary": "The collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
+    "sourcePage": 1213,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect policy firewall event",
+    "context": null,
+    "detail": null,
+    "syntax": "Note This command is not supported on the Cisco Catalyst 9500X Series Switches. To configure the collect policy firewall event as a non-key field for a flow record, use the collect policy firewallevent command in flow record configuration mode. To disable the use of firewall event field as a non-key field for a flow record, use the no form of this command. collect policy firewall event",
+    "noForm": "no collect policy firewall event",
+    "params": [],
+    "modes": ["Flow record configuration (config-flow-record)"],
+    "usageSummary": "The Flexible NetFlow collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  Although collect policy firewall event is configured like a collect field, it is internally implemented as a match field.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.",
+    "sourcePage": 1215,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect timestamp absolute",
+    "context": null,
+    "detail": "Configure the absolute time of the first seen or last seen packet in a flow as a non-key field for a flow record.",
+    "syntax": "collect timestamp absolute {first | last}",
+    "noForm": "no collect timestamp absolute {first | last}",
+    "params": [
+      {
+        "name": "first",
+        "description": "Configures the absolute time of the first seen packet in a flow as a non-key field and enables collecting time stamps from the flows."
+      },
+      {
+        "name": "last",
+        "description": "Configures the absolute time of the last seen packet in a flow as a non-key field and enables collecting time stamps from the flows."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "The collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
+    "sourcePage": 1217,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect transport tcp flags",
+    "context": null,
+    "detail": "Enable the collecting of transport TCP flags from a flow.",
+    "syntax": "collect transport tcp flags",
+    "noForm": "no collect transport tcp flags",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "The values of the transport layer fields are taken from all packets in the flow.  You cannot specify which TCP flag to collect.  You can only specify to collect transport TCP flags.",
+    "sourcePage": 1218,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "collect routing next-hop address",
+    "context": null,
+    "detail": "Configure the next-hop address value as a non-key field and enable collecting information regarding the next hop from the flows.",
+    "syntax": "collect routing next-hop address { ipv4 | ipv6 }",
+    "noForm": "no collect routing next-hop address { ipv4 | ipv6 }",
+    "params": [
+      {
+        "name": "ipv4",
+        "description": "Specifies that the next-hop address value is an IPv4 address."
+      },
+      {
+        "name": "ipv6",
+        "description": "Specifies that the next-hop address value is an IPv6 address."
+      }
+    ],
+    "modes": ["Flow record configuration (config-flow-record)"],
+    "usageSummary": "The collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
+    "sourcePage": 1219,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "datalink flow monitor",
+    "context": null,
+    "detail": "Apply a Flexible NetFlow flow monitor to an interface.",
+    "syntax": "datalink flow monitor monitor-name sampler sampler-name input",
+    "noForm": "no datalink flow monitor monitor-name sampler sampler-name input",
+    "params": [
+      {
+        "name": "monitor-name",
+        "description": "Name of the flow monitor to apply to the interface."
+      },
+      {
+        "name": "sampler sampler-name",
+        "description": "Enables the specified flow sampler for the flow monitor."
+      },
+      {
+        "name": "input",
+        "description": "Monitors traffic that the switch receives on the interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Before you apply a flow monitor to an interface with the datalink flow monitor command, you must have already created the flow monitor using the flow monitor global configuration command and the flow sampler using the sampler global configuration command.  To enable a flow sampler for the flow monitor, you must have already created the sampler.",
+    "sourcePage": 1220,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug flow exporter",
+    "context": null,
+    "detail": "Enable debugging output for Flexible Netflow flow exporters.",
+    "syntax": "debug flow exporter [[name] exporter-name] [error | event | packets number]",
+    "noForm": "no debug flow exporter [[name] exporter-name] [error | event | packets number]",
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow exporter."
+      },
+      {
+        "name": "exporter-name",
+        "description": "(Optional) The name of a flow exporter that was previously configured."
+      },
+      {
+        "name": "error",
+        "description": "(Optional) Enables debugging for flow exporter errors."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Enables debugging for flow exporter events."
+      },
+      {
+        "name": "packets",
+        "description": "(Optional) Enables packet-level debugging for flow exporters."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) The number of packets to debug for packet-level debugging of flow exporters. The range is 1 to 65535."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1221,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug flow monitor",
+    "context": null,
+    "detail": "Enable debugging output for Flexible NetFlow flow monitors.",
+    "syntax": "debug flow monitor [error | [name] monitor-name [cache [error] | error | packets packets]]",
+    "noForm": "no debug flow monitor [error | [name] monitor-name [cache [error] | error | packets packets]]",
+    "params": [
+      {
+        "name": "error",
+        "description": "(Optional) Enables debugging for flow monitor errors for all flow monitors or for the specified flow monitor."
+      },
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow monitor."
+      },
+      {
+        "name": "monitor-name",
+        "description": "(Optional) Name of a flow monitor that was previously configured."
+      },
+      {
+        "name": "cache",
+        "description": "(Optional) Enables debugging for the flow monitor cache."
+      },
+      {
+        "name": "cache error",
+        "description": "(Optional) Enables debugging for flow monitor cache errors."
+      },
+      {
+        "name": "packets",
+        "description": "(Optional) Enables packet-level debugging for flow monitors."
+      },
+      {
+        "name": "packets",
+        "description": "(Optional) Number of packets to debug for packet-level debugging of flow monitors. The range is 1 to 65535."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1222,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug flow record",
+    "context": null,
+    "detail": "Enable debugging output for Flexible NetFlow flow records.",
+    "syntax": "debug flow record [[name] record-name | options {sampler-table} | [detailed | error]]",
+    "noForm": "no debug flow record [[name] record-name | options {sampler-table} | [detailed | error]]",
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow record."
+      },
+      {
+        "name": "record-name",
+        "description": "(Optional) Name of a user-defined flow record that was previously configured."
+      },
+      {
+        "name": "options",
+        "description": "(Optional) Includes information on other flow record options."
+      },
+      {
+        "name": "sampler-table",
+        "description": "(Optional) Includes information on the sampler tables."
+      },
+      {
+        "name": "detailed",
+        "description": "(Optional) Displays detailed information."
+      },
+      {
+        "name": "error",
+        "description": "(Optional) Displays errors only."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1223,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform software fed active drop-capture",
+    "context": null,
+    "detail": "Enable the capture of dropped packets.",
+    "syntax": "debug platform software fed active drop-capture { start | stop | buffer | clear-filter | clear-statistics | clear-trap | set-filter | set-trap }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "start",
+        "description": "Starts drop packet capturing."
+      },
+      {
+        "name": "stop",
+        "description": "Stops drop packet capturing."
+      },
+      {
+        "name": "buffer",
+        "description": "Configures drop capture buffer."
+      },
+      {
+        "name": "clear-filter",
+        "description": "Clears punt PCAP filter. clear-statistics Clears statistics."
+      },
+      {
+        "name": "clear-trap",
+        "description": "Clears trap of punt dropped packets."
+      },
+      {
+        "name": "set-filter",
+        "description": "Specifies a Wireshark like filter."
+      },
+      {
+        "name": "set-trap",
+        "description": "Sets a trap to punt dropped packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1224,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug sampler",
+    "context": null,
+    "detail": "Enable debugging output for Flexible NetFlow samplers.",
+    "syntax": "debug sampler [detailed | error | [name] sampler-name [detailed | error | sampling samples]]",
+    "noForm": "no debug sampler [detailed | error | [name] sampler-name [detailed | error | sampling]]",
+    "params": [
+      {
+        "name": "detailed",
+        "description": "(Optional) Enables detailed debugging for sampler elements."
+      },
+      {
+        "name": "error",
+        "description": "(Optional) Enables debugging for sampler errors."
+      },
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a sampler."
+      },
+      {
+        "name": "sampler-name",
+        "description": "(Optional) Name of a sampler that was previously configured."
+      },
+      {
+        "name": "sampling samples",
+        "description": "(Optional) Enables debugging for sampling and specifies the number of samples to debug."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1225,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "description",
+    "context": null,
+    "detail": "Configure a description for a flow monitor, flow exporter, or flow record.",
+    "syntax": "description description",
+    "noForm": "no description description",
+    "params": [
+      {
+        "name": "description",
+        "description": "Text string that describes the flow monitor, flow exporter, or flow record."
+      }
+    ],
+    "modes": [
+      "The following command modes are supported:",
+      "Flow exporter configuration",
+      "Flow monitor configuration",
+      "Flow record configuration"
+    ],
+    "usageSummary": "To return this command to its default setting, use the no description or default description command in the appropriate configuration mode.  The following example configures a description for a flow monitor: Device(config)# flow monitor FLOW-MONITOR-1 Device(config-flow-monitor)# description Monitors traffic to 172. 16.",
+    "sourcePage": 1226,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "description",
+    "context": "ERSPAN",
+    "detail": "Describe an Encapsulated Remote Switched Port Analyzer (ERSPAN) source session.",
+    "syntax": "description description",
+    "noForm": "no description",
+    "params": [
+      {
+        "name": "description",
+        "description": "Describes the properties for this session."
+      }
+    ],
+    "modes": ["ERSPAN monitor source session configuration mode (config-mon-erspan-src)"],
+    "usageSummary": "The description argument can be up to 240 characters.",
+    "sourcePage": 1227,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "destination",
+    "context": "ERSPAN",
+    "detail": "Configure an Encapsulated Remote Switched Port Analyzer (ERSPAN) source session destination and specify destination properties.",
+    "syntax": "destination",
+    "noForm": "no destination",
+    "params": [],
+    "modes": ["ERSPAN monitor source session configuration mode (config-mon-erspan-src)"],
+    "usageSummary": "ERSPAN traffic is GRE-encapsulated SPAN traffic that can only be processed by an ERSPAN destination session.  After you enter destination command, the command mode changes from monitor source session configuration mode (config-mon-erspan-src) to source session destination configuration mode (config-mon-erspan-src-dst).  In this mode, enter a question mark (?) at the system prompt to see the list of commands that are available: erspan-id erspan-ID Configures the ID used by the destination session to identify the ERSPAN traffic.",
+    "sourcePage": 1228,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "destination",
+    "context": null,
+    "detail": "Configure an export destination for a flow exporter.",
+    "syntax": "destination {hostnameip-address}",
+    "noForm": "no destination {hostnameip-address}",
+    "params": [
+      {
+        "name": "hostname",
+        "description": "Hostname of the device to which you want to send the NetFlow information."
+      },
+      {
+        "name": "ip-address",
+        "description": "IPv4 address of the workstation to which you want to send the NetFlow information."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "Each flow exporter can have only one destination address or hostname.  When you configure a hostname instead of the IP address for the device, the hostname is resolved immediately and the IPv4 address is stored in the running configuration.  If the hostname-to-IP-address mapping that was used for the original Domain Name System (DNS) name resolution changes dynamically on the DNS server, the device does not detect this, and the exported data continues to be sent to the original IP address, resulting in a loss of data.",
+    "sourcePage": 1233,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dscp",
+    "context": null,
+    "detail": "Configure a differentiated services code point (DSCP) value for flow exporter datagrams.",
+    "syntax": "dscp dscp",
+    "noForm": "no dscp dscp",
+    "params": [
+      {
+        "name": "dscp",
+        "description": "DSCP to be used in the DSCP field in exported datagrams. The range is 0 to 63. The default is 0."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "To return this command to its default setting, use the no dscp or default dscp flow exporter configuration command.  The following example sets 22 as the value of the DSCP field in exported datagrams: Device(config)# flow exporter FLOW-EXPORTER-1 Device(config-flow-exporter)# dscp 22 Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 1234,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "event manager applet",
+    "context": null,
+    "detail": "Register an applet with the Embedded Event Manager (EEM) and to enter applet configuration mode.",
+    "syntax": "event manager applet applet-name [authorization bypass] [class class-options] [trap]",
+    "noForm": "no event manager applet applet-name [authorization bypass] [class class-options] [trap]",
+    "params": [
+      {
+        "name": "applet-name",
+        "description": "Name of the applet file."
+      },
+      {
+        "name": "authorization",
+        "description": "(Optional) Specifies AAA authorization type for applet."
+      },
+      {
+        "name": "bypass",
+        "description": "(Optional) Specifies EEM AAA authorization type bypass."
+      },
+      {
+        "name": "class",
+        "description": "(Optional) Specifies the EEM policy class."
+      },
+      {
+        "name": "class-options",
+        "description": "(Optional) The EEM policy class. You can specify either one of the following: • class-letter-- Letter from A to Z that identifies each policy class. You can specify any one class-letter. • default --Specifies the policies registered with the default class."
+      },
+      {
+        "name": "trap",
+        "description": "(Optional) Generates a Simple Network Management Protocol (SNMP) trap when the policy is triggered."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "An EEM applet is a concise method for defining event screening criteria and the actions to be taken when that event occurs.  Only one event configuration command is allowed within an applet configuration.  When applet configuration submode is exited and no event command is present, a warning is displayed stating that no event is associated with this applet.",
+    "sourcePage": 1235,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "export-protocol netflow-v9",
+    "context": null,
+    "detail": "Configure NetFlow Version 9 export as the export protocol for a Flexible NetFlow exporter.",
+    "syntax": "export-protocol netflow-v9",
+    "noForm": null,
+    "params": [],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "The device does not support NetFlow v5 export format, only NetFlow v9 export format is supported.  The following example configures NetFlow Version 9 export as the export protocol for a NetFlow exporter: Device(config)# flow exporter FLOW-EXPORTER-1 Device(config-flow-exporter)# export-protocol netflow-v9 Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 1238,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "export-protocol netflow-v5",
+    "context": null,
+    "detail": "Configure NetFlow Version 5 export as the export protocol for a Flexible NetFlow exporter.",
+    "syntax": "export-protocol netflow-v5",
+    "noForm": null,
+    "params": [],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": null,
+    "sourcePage": 1239,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "exporter",
+    "context": null,
+    "detail": "Add a flow exporter for a flow monitor.",
+    "syntax": "exporter exporter-name",
+    "noForm": "no exporter exporter-name",
+    "params": [
+      {
+        "name": "exporter-name",
+        "description": "Name of a flow exporter that was previously configured."
+      }
+    ],
+    "modes": ["Flow monitor configuration"],
+    "usageSummary": "You must have already created a flow exporter by using the flow exporter command before you can apply the flow exporter to a flow monitor with the exporter command.  To return this command to its default settings, use the no exporter or default exporter flow monitor configuration command.",
+    "sourcePage": 1240,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "fconfigure",
+    "context": null,
+    "detail": "To specify the options in a channel use the fconfigure command in the TCL configuration mode.",
+    "syntax": "fconfigure channel-name remote[host port]broadcast boolean vrf vrf-table-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "remote",
+        "description": "Configures a remote session. It supports both IPv4 and IPv6 addresses."
+      },
+      {
+        "name": "broadcast",
+        "description": "Enables or disables broadcasting. The value of the option must be a proper boolean value."
+      },
+      {
+        "name": "vrf",
+        "description": "Returns the local VRF table name for the specified socket. If no VRF Table has been configured for the given socket, TCL_ERROR will be returned and “No VRF table configured” will be appended to the interpreter result."
+      }
+    ],
+    "modes": ["TCL configuration mode"],
+    "usageSummary": null,
+    "sourcePage": 1241,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "filter",
+    "context": "ERSPAN",
+    "detail": "Configure the Encapsulated Remote Switched Port Analyzer (ERSPAN) source VLAN filtering when the ERSPAN source is a trunk port.",
+    "syntax": "filter {ip access-group {standard-access-list extended-access-list acl-name} | ipv6 access-group acl-name | mac access-group acl-name | sgt sgt-id [,] [-] | vlan vlan-id [,] [-]} | mac [access-group] | sgt sgt-id [,] [-] | vlan vlan-id [,] [-]}",
+    "noForm": "no filter {ip [access-group | [ standard-access-list extended-access-list acl-name]] | ipv6 [access-group]",
+    "params": [
+      {
+        "name": "ip",
+        "description": "Specifies the IP access control rules."
+      },
+      {
+        "name": "access-group",
+        "description": "Specifies an access control group. standard-access-list Standard IP access list. extended-access-list Extended IP access list."
+      },
+      {
+        "name": "acl-name",
+        "description": "Access list name."
+      },
+      {
+        "name": "ipv6",
+        "description": "Specifies the IPv6 access control rules."
+      },
+      {
+        "name": "mac",
+        "description": "Specifies the media access control (MAC) rules."
+      },
+      {
+        "name": "sgt sgt-ID",
+        "description": "Specifies the Security Group Tag (SGT). Valid values are from 1 to 65535."
+      },
+      {
+        "name": "vlan vlan-ID",
+        "description": "Specifies the ERSPAN source VLAN. Valid values are from 1 to 4094."
+      },
+      {
+        "name": ",",
+        "description": "(Optional) Specifies another VLAN."
+      },
+      {
+        "name": "-",
+        "description": "(Optional) Specifies a range of VLANs."
+      }
+    ],
+    "modes": ["ERSPAN monitor source session configuration mode (config-mon-erspan-src)"],
+    "usageSummary": "You cannot include source VLANs and filter VLANs in the same session.  Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 1242,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "flow exporter",
+    "context": null,
+    "detail": "Create a Flexible NetFlow flow exporter, or to modify an existing Flexible NetFlow flow exporter, and enter Flexible NetFlow flow exporter configuration mode.",
+    "syntax": "flow exporter exporter-name",
+    "noForm": "no flow exporter exporter-name",
+    "params": [
+      {
+        "name": "exporter-name",
+        "description": "Name of the flow exporter that is being created or modified."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Flow exporters export the data in the flow monitor cache to a remote system, such as a server running NetFlow collector, for analysis and storage.  Flow exporters are created as separate entities in the configuration.  Flow exporters are assigned to flow monitors to provide data export capability for the flow monitors.",
+    "sourcePage": 1244,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "flow monitor",
+    "context": null,
+    "detail": "Create a flow monitor, or to modify an existing flow monitor, and enter flow monitor configuration mode.",
+    "syntax": "flow monitor monitor-name",
+    "noForm": "no flow monitor monitor-name",
+    "params": [
+      {
+        "name": "monitor-name",
+        "description": "Name of the flow monitor that is being created or modified."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Flow monitors are the Flexible NetFlow component that is applied to interfaces to perform network traffic monitoring.  Flow monitors consist of a flow record and a cache.  You add the record to the flow monitor after you create the flow monitor.",
+    "sourcePage": 1245,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "flow record",
+    "context": null,
+    "detail": "Create a Flexible NetFlow flow record, or to modify an existing Flexible NetFlow flow record, and enter Flexible NetFlow flow record configuration mode.",
+    "syntax": "flow record record-name",
+    "noForm": "no flow record record-name",
+    "params": [
+      {
+        "name": "record-name",
+        "description": "Name of the flow record that is being created or modified."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "A flow record defines the keys that Flexible NetFlow uses to identify packets in the flow, as well as other fields of interest that Flexible NetFlow gathers for the flow.  You can define a flow record with any combination of keys and fields of interest.  The device supports a rich set of keys.",
+    "sourcePage": 1246,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "header-type",
+    "context": null,
+    "detail": "Configure the ERSPAN header type for encapsulation.",
+    "syntax": "header-type header-type",
+    "noForm": "no header-type header-type",
+    "params": [
+      {
+        "name": "header-type",
+        "description": "ERSPAN header type. Valid header types are 2 and 3."
+      }
+    ],
+    "modes": ["ERSPAN monitor source session configuration mode (config-mon-erspan-src)"],
+    "usageSummary": null,
+    "sourcePage": 1247,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip wccp",
+    "context": null,
+    "detail": "Enable the web cache service, and specify the service number that corresponds to a dynamic service that is defined by the application engine.",
+    "syntax": "ip wccp {web-cache | service-number} [group-address groupaddress] [group-list access-list] [redirect-list access-list] [password encryption-number password] [redirect-list access-list] [password encryption-number password]",
+    "noForm": "no ip wccp {web-cache | service-number} [group-address groupaddress] [group-list access-list]",
+    "params": [
+      {
+        "name": "web-cache",
+        "description": "Specifies the web-cache service (WCCP Version 1 and Version 2)."
+      },
+      {
+        "name": "service-number",
+        "description": "Dynamic service identifier, which means the service definition is dictated by the cache. The dynamic service number can be from 0 to 254. The maximum number of services is 256, which includes the web-cache service specified with the web-cache keyword."
+      },
+      {
+        "name": "group-address groupaddress",
+        "description": "(Optional) Specifies the multicast group address used by the device and the application engines to participate in the service group."
+      },
+      {
+        "name": "group-list access-list",
+        "description": "(Optional) If a multicast group address is not used, specifies a list of valid IP addresses that correspond to the application engines that are participating in the service group."
+      },
+      {
+        "name": "redirect-list access-list",
+        "description": "(Optional) Specifies the redirect service for specific hosts or specific packets from hosts."
+      },
+      {
+        "name": "password encryption-number",
+        "description": "(Optional) Specifies an encryption number. The range is 0 to 7. Use"
+      },
+      {
+        "name": "password",
+        "description": "0 for not encrypted, and use 7 for proprietary. Also, specifies a password name up to seven characters in length. The device combines the password with the MD5 authentication value to create security for the connection between the device and the application engine. By default, no password is configured, and no authentication is performed."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "WCCP transparent caching bypasses Network Address Translation (NAT) when Cisco Express Forwarding switching is enabled.  To work around this situation, configure WCCP transparent caching in the outgoing direction, enable Cisco Express Forwarding switching on the content engine interface, and specify the ip wccp web-cache redirect out command.  Configure WCCP in the incoming direction on the inside interface by Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 1248,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip flow monitor",
+    "context": null,
+    "detail": "Enable a Flexible NetFlow flow monitor for IPv4 traffic that the device is receiving.",
+    "syntax": "ip flow monitor monitor-name [sampler sampler-name] input",
+    "noForm": "no ip flow monitor monitor-name [sampler sampler-name] input",
+    "params": [
+      {
+        "name": "monitor-name",
+        "description": "Name of the flow monitor to apply to the interface. sampler sampler-name (Optional) Enables the specified flow sampler for the flow monitor."
+      },
+      {
+        "name": "input",
+        "description": "Monitors IPv4 traffic that the device receives on the interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Before you can apply a flow monitor to an interface with the ip flow monitor command, you must have already created the flow monitor using the flow monitor global configuration command.  When you add a sampler to a flow monitor, only packets that are selected by the named sampler will be entered into the cache to form flows.  Each use of a sampler causes separate statistics to be stored for that usage.",
+    "sourcePage": 1250,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 flow monitor",
+    "context": null,
+    "detail": "Enable a flow monitor for IPv6 traffic that the device is receiving.",
+    "syntax": "ipv6 flow monitor monitor-name [sampler sampler-name] input",
+    "noForm": "no ipv6 flow monitor monitor-name [sampler sampler-name] input",
+    "params": [
+      {
+        "name": "monitor-name",
+        "description": "Name of the flow monitor to apply to the interface. sampler sampler-name (Optional) Enables the specified flow sampler for the flow monitor."
+      },
+      {
+        "name": "input",
+        "description": "Monitors IPv6 traffic that the device receives on the interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Before you can apply a flow monitor to the interface with the ipv6 flow monitor command, you must have already created the flow monitor using the flow monitor global configuration command.  When you add a sampler to a flow monitor, only packets that are selected by the named sampler will be entered into the cache to form flows.  Each use of a sampler causes separate statistics to be stored for that usage.",
+    "sourcePage": 1252,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 deny echo reply",
+    "context": null,
+    "detail": "Disable the generation of ICMP IPv6 echo reply message to an IPv6 multicast address or anycast address.",
+    "syntax": "ipv6 deny-echo-reply",
+    "noForm": "no ipv6 deny-echo-reply",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The ipv6 deny-echo-reply command works only for an IPv6 multicast or anycast address.  It does not suppress an echo reply message for an IPv6 unicast address.  The following example shows how to configure a device to stop sending a response to an ICMPv6 echo message: Device# configure terminal Device(config)#ipv6 deny-echo-reply Router(config)#end The following example shows how to remove the ipv6 deny-echo-reply configuration: Device# configure terminal Device(config)#no ipv6 deny-echo-reply Router(config)#end Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 1254,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match datalink ethertype",
+    "context": null,
+    "detail": "Configure the EtherType of the packet as a key field for a flow record.",
+    "syntax": "match datalink ethertype",
+    "noForm": "no match datalink ethertype",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1255,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match datalink mac",
+    "context": null,
+    "detail": "Configure the use of MAC addresses as a key field for a flow record.",
+    "syntax": "match datalink mac {destination address input | source address input}",
+    "noForm": "no match datalink mac {destination address input | source address input}",
+    "params": [
+      {
+        "name": "destination address",
+        "description": "Configures the use of the destination MAC address as a key field."
+      },
+      {
+        "name": "input",
+        "description": "Specifies the MAC address of input packets."
+      },
+      {
+        "name": "source address",
+        "description": "Configures the use of the source MAC address as a key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1256,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match datalink vlan",
+    "context": null,
+    "detail": "Configure the VLAN ID as a key field for a flow record.",
+    "syntax": "match datalink vlan input",
+    "noForm": "no match datalink vlan input",
+    "params": [
+      {
+        "name": "input",
+        "description": "Configures the VLAN ID of traffic being received by the device as a key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1257,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match device-type",
+    "context": null,
+    "detail": "Evaluate control classes based on the device type.",
+    "syntax": "match device-type { device-name | regex regular-expression }",
+    "noForm": "no match device-type",
+    "params": [
+      {
+        "name": "device-name",
+        "description": "Device name for the class map attribute filter criteria. regex regular-expression Regular expression to specify the filter type."
+      }
+    ],
+    "modes": ["Control class-map filter (config-filter-control-classmap)"],
+    "usageSummary": null,
+    "sourcePage": 1258,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match flow cts",
+    "context": null,
+    "detail": "Configure CTS source group tag and destination group tag for a flow record, use thematch flow cts command in flow record configuration mode. To disable the group tag as key field for a flow record.",
+    "syntax": "match flow cts {source | destination} group-tag",
+    "noForm": "no match flow cts {source | destination} group-tag",
+    "params": [
+      {
+        "name": "cts destination group-tag",
+        "description": "Configures the CTS destination field group as a key field."
+      },
+      {
+        "name": "cts source group-tag",
+        "description": "Configures the CTS source field group as a key field."
+      }
+    ],
+    "modes": [
+      "Flexible NetFlow flow record configuration (config-flow-record) Policy inline configuration (config-if-policy-inline)"
+    ],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1259,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match flow direction",
+    "context": null,
+    "detail": "Configure the flow direction as key fields for a flow record.",
+    "syntax": "match flow direction",
+    "noForm": "no match flow direction",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1260,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match interface",
+    "context": null,
+    "detail": "Configure the input and output interfaces as key fields for a flow record.",
+    "syntax": "match interface {input | output}",
+    "noForm": "no match interface {input | output}",
+    "params": [
+      {
+        "name": "input",
+        "description": "Configures the input interface as a key field. output Configures the output interface as a key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1261,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv4",
+    "context": null,
+    "detail": "Configure one or more of the IPv4 fields as a key field for a flow record.",
+    "syntax": "match ipv4 {destination address | protocol | source address | tos | version}",
+    "noForm": "no match ipv4 {destination address | protocol | source address | tos | version}",
+    "params": [
+      {
+        "name": "destination address",
+        "description": "Configures the IPv4 destination address as a key field. For more information see match ipv4 destination address."
+      },
+      {
+        "name": "protocol",
+        "description": "Configures the IPv4 protocol as a key field."
+      },
+      {
+        "name": "source address",
+        "description": "Configures the IPv4 destination address as a key field. For more information see match ipv4 source address."
+      },
+      {
+        "name": "tos",
+        "description": "Configures the IPv4 ToS as a key field."
+      },
+      {
+        "name": "version",
+        "description": "Configures the IP version from IPv4 header as a key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1262,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv4 destination address",
+    "context": null,
+    "detail": "Configure the IPv4 destination address as a key field for a flow record.",
+    "syntax": "match ipv4 destination address",
+    "noForm": "no match ipv4 destination address",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1263,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv4 source address",
+    "context": null,
+    "detail": "Configure the IPv4 source address as a key field for a flow record.",
+    "syntax": "match ipv4 source address",
+    "noForm": "no match ipv4 source address",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1264,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv4 ttl",
+    "context": null,
+    "detail": "Configure the IPv4 time-to-live (TTL) field as a key field for a flow record.",
+    "syntax": "match ipv4 ttl",
+    "noForm": "no match ipv4 ttl",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match ipv4 ttl command.",
+    "sourcePage": 1265,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv6",
+    "context": null,
+    "detail": "Configure one or more of the IPv6 fields as a key field for a flow record.",
+    "syntax": "match ipv6 {destination address | protocol | source address | traffic-class | version}",
+    "noForm": "no match ipv6 {destination address | protocol | source address | traffic-class | version}",
+    "params": [
+      {
+        "name": "destination address",
+        "description": "Configures the IPv4 destination address as a key field. For more information see match ipv6 destination address."
+      },
+      {
+        "name": "protocol",
+        "description": "Configures the IPv6 protocol as a key field."
+      },
+      {
+        "name": "source address",
+        "description": "Configures the IPv4 destination address as a key field. For more information see match ipv6 source address."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1266,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv6 destination address",
+    "context": null,
+    "detail": "Configure the IPv6 destination address as a key field for a flow record.",
+    "syntax": "match ipv6 destination address",
+    "noForm": "no match ipv6 destination address",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1267,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv6 hop-limit",
+    "context": null,
+    "detail": "Configure the IPv6 hop limit as a key field for a flow record.",
+    "syntax": "match ipv6 hop-limit",
+    "noForm": "no match ipv6 hop-limit",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1268,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv6 source address",
+    "context": null,
+    "detail": "Configure the IPv6 source address as a key field for a flow record.",
+    "syntax": "match ipv6 source address",
+    "noForm": "no match ipv6 source address",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1269,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "map platform-type",
+    "context": null,
+    "detail": "Set the parameter map attribute filter criteria to platform type.",
+    "syntax": "map-number map platform-type { {eq | not-eq | regex} platform-type}",
+    "noForm": "no map-number map platform-type { {eq | not-eq | regex} platform-type}",
+    "params": [
+      {
+        "name": "map-number",
+        "description": "Parameter map number."
+      },
+      {
+        "name": "eq",
+        "description": "Specifies that the filter type name is equal to the platform type name."
+      },
+      {
+        "name": "not-eq",
+        "description": "Specifies that the filter type name is not equal to the platform type name."
+      },
+      {
+        "name": "regex",
+        "description": "Specifies that the filter type name is a regular expression."
+      },
+      {
+        "name": "platform-type",
+        "description": "Platform type for the parameter map attribute filter criteria."
+      }
+    ],
+    "modes": ["Parameter-map filter (config-parameter-map-filter)"],
+    "usageSummary": null,
+    "sourcePage": 1270,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match transport",
+    "context": null,
+    "detail": "Configure one or more of the transport fields as a key field for a flow record.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "source-port",
+        "description": "Configures the transport source port as a key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1271,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match transport icmp ipv4",
+    "context": null,
+    "detail": "Configure the ICMP IPv4 type field and the code field as key fields for a flow record.",
+    "syntax": "match transport icmp ipv4 {code | type}",
+    "noForm": "no match transport icmp ipv4 {code | type}",
+    "params": [
+      {
+        "name": "code",
+        "description": "Configures the IPv4 ICMP code as a key field."
+      },
+      {
+        "name": "type",
+        "description": "Configures the IPv4 ICMP type as a key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1272,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match transport icmp ipv6",
+    "context": null,
+    "detail": "Configure the ICMP IPv6 type field and the code field as key fields for a flow record.",
+    "syntax": "match transport icmp ipv6 {code | type}",
+    "noForm": "no match transport icmp ipv6 {code | type}",
+    "params": [
+      {
+        "name": "code",
+        "description": "Configures the IPv6 ICMP code as a key field."
+      },
+      {
+        "name": "type",
+        "description": "Configures the IPv6 ICMP type as a key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 1273,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match platform-type",
+    "context": null,
+    "detail": "Evaluate control classes based on the platform type.",
+    "syntax": "match platform-type platform-name",
+    "noForm": "no match platform-type platform-name",
+    "params": [
+      {
+        "name": "platform-name",
+        "description": "Name of the platform."
+      }
+    ],
+    "modes": ["Control class-map filter (config-filter-control-classmap)"],
+    "usageSummary": null,
+    "sourcePage": 1274,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mode random 1 out-of",
+    "context": null,
+    "detail": "Enable random sampling and to specify the packet interval for a Flexible NetFlow sampler.",
+    "syntax": "mode random 1 out-of window-size",
+    "noForm": "no mode",
+    "params": [
+      {
+        "name": "window-size",
+        "description": "Specifies the window size from which to select packets. The range is 2 to 1024."
+      }
+    ],
+    "modes": ["Sampler configuration"],
+    "usageSummary": "A total of four unique samplers are supported on the device.  Packets are chosen in a manner that should eliminate any bias from traffic patterns and counter any attempt by users to avoid monitoring.",
+    "sourcePage": 1275,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor capture",
+    "context": "interface/control plane",
+    "detail": "Configure monitor capture points specifying an attachment point and the packet flow direction or add more attachment points to a capture point.",
+    "syntax": "monitor capture {capture-name}{interface interface-type interface-id | control-plane}{in | out | both} out | both}",
+    "noForm": "no monitor capture {capture-name}{interface interface-type interface-id | control-plane}{in |",
+    "params": [
+      {
+        "name": "capture-name",
+        "description": "The name of the capture to be defined."
+      },
+      {
+        "name": "interface interface-type",
+        "description": "Specifies an interface with interface-type and interface-id as an attachment"
+      },
+      {
+        "name": "interface-id",
+        "description": "point. The arguments have these meanings: • GigabitEthernet interface-id—A Gigabit Ethernet IEEE 802.3z interface. • vlan vlan-id—A VLAN. The range for vlan-id is 1 to 4095."
+      },
+      {
+        "name": "control-plane",
+        "description": "Specifies the control plane as an attachment point. in | out | both Specifies the traffic direction to be captured."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Once an attachment point has been associated with a capture point using this command, the only way to change its direction is to remove the attachment point using the no form of the command and reattach the attachment point with the new direction.  An attachment point's direction cannot be overridden.  If an attachment point is removed from a capture point and only one attachment point is associated with it, the capture point is effectively deleted.",
+    "sourcePage": 1276,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor capture buffer",
+    "context": null,
+    "detail": "Configure the buffer for monitor capture (WireShark).",
+    "syntax": "monitor capture {capture-name} buffer {circular [size buffer-size ] | size buffer-size}",
+    "noForm": "no monitor capture {capture-name} buffer [circular ]",
+    "params": [
+      {
+        "name": "capture-name",
+        "description": "The name of the capture whose buffer is to be configured."
+      },
+      {
+        "name": "circular",
+        "description": "Specifies that the buffer is of a circular type. The circular type of buffer continues to capture data, even after the buffer is consumed, by overwriting the data captured previously."
+      },
+      {
+        "name": "size buffer-size",
+        "description": "(Optional) Specifies the size of the buffer. The range is from 1 MB to 100 MB."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "When you first configure a WireShark capture, a circular buffer of a small size is suggested.",
+    "sourcePage": 1278,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor capture clear",
+    "context": null,
+    "detail": "Clears the monitor capture (WireShark) buffer.",
+    "syntax": "monitor capture {capture-name} clear",
+    "noForm": null,
+    "params": [
+      {
+        "name": "capture-name",
+        "description": "The name of the capture whose buffer is to be cleared."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the monitor capture clear command either during capture or after the capture has stopped either because one or more end conditions has been met, or you entered the monitor capture stop command.  If you enter the monitor capture clear command after the capture has stopped, the monitor capture export command that is used to store the contents of the captured packets in a file will have no impact because the buffer has no captured packets.  If you have more than one capture that is storing packets in a buffer, clear the buffer before starting a new capture to avoid memory loss.",
+    "sourcePage": 1279,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor capture export",
+    "context": null,
+    "detail": "Export a monitor capture (WireShark) to a file.",
+    "syntax": "monitor capture {capture-name} export file-location : file-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "capture-name",
+        "description": "The name of the capture to be exported. file-location : file-name (Optional) Specifies the location and file name of the capture storage file. Acceptable values for file-location : • flash—On-board flash storage • — USB drive"
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the monitor capture export command only when the storage destination is a capture buffer.  The file may be stored either remotely or locally.  Use this command either during capture or after the packet capture has stopped.",
+    "sourcePage": 1280,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor capture file",
+    "context": null,
+    "detail": "Configure monitor capture (WireShark) storage file attributes.",
+    "syntax": "monitor capture {capture-name} file{[ buffer-size temp-buffer-size ][ location file-location : file-name ][ ring number-of-ring-files ][ size total-size ]}",
+    "noForm": "no monitor capture {capture-name} file{[ buffer-size ][ location ][ ring ][ size ]}",
+    "params": [
+      {
+        "name": "capture-name",
+        "description": "The name of the capture to be modified."
+      },
+      {
+        "name": "buffer-size temp-buffer-size",
+        "description": "(Optional) Specifies the size of the temporary buffer. The range for temp-buffer-size is 1 to 100 MB. This is specified to reduce packet loss."
+      },
+      {
+        "name": "location file-location : file-name",
+        "description": "(Optional) Specifies the location and file name of the capture storage file. Acceptable values for file-location : • flash—On-board flash storage • — USB drive"
+      },
+      {
+        "name": "ring number-of-ring-files",
+        "description": "(Optional) Specifies that the capture is to be stored in a circular file chain and the number of files in the file ring."
+      },
+      {
+        "name": "size total-size",
+        "description": "(Optional) Specifies the total size of the capture files."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the monitor capture file command only when the storage destination is a file.  The file may be stored either remotely or locally.  Use this command after the packet capture has stopped.",
+    "sourcePage": 1281,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor capture limit",
+    "context": null,
+    "detail": "Configure capture limits.",
+    "syntax": "monitor capture {capture-name} limit {[duration seconds][packet-length size][packets num]}",
+    "noForm": "no monitor capture {capture-name} limit [duration][packet-length][packets]",
+    "params": [
+      {
+        "name": "capture-name",
+        "description": "The name of the capture to be assigned capture limits."
+      },
+      {
+        "name": "duration seconds",
+        "description": "(Optional) Specifies the duration of the capture, in seconds. The range is from 1 to 1000000. packet-length size (Optional) Specifies the packet length, in bytes. If the actual packet is longer than the specified length, only the first set of bytes whose number is denoted by the bytes argument is stored."
+      },
+      {
+        "name": "packets num",
+        "description": "(Optional) Specifies the number of packets to be processed for capture."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1283,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor capture match",
+    "context": null,
+    "detail": "Define an explicit inline core filter for a monitor (Wireshark) capture.",
+    "syntax": "monitor capture {capture-name} match {any | mac mac-match-string | ipv4 {any | host | protocol}{any | host} | ipv6 {any | host | protocol}{any | host}}",
+    "noForm": "no monitor capture {capture-name} match",
+    "params": [
+      {
+        "name": "capture-name",
+        "description": "The name of the capture to be assigned a core filter."
+      },
+      {
+        "name": "any",
+        "description": "Specifies all packets. mac mac-match-string Specifies a Layer 2 packet."
+      },
+      {
+        "name": "ipv4",
+        "description": "Specifies IPv4 packets."
+      },
+      {
+        "name": "host",
+        "description": "Specifies the host."
+      },
+      {
+        "name": "protocol",
+        "description": "Specifies the protocol."
+      },
+      {
+        "name": "ipv6",
+        "description": "Specifies IPv6 packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1284,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor capture pktlen-range",
+    "context": null,
+    "detail": "Specify a range of packet lengths for packet capture.",
+    "syntax": "monitor capture capture-name interface interface-id {in |out|both}match pktlen-range [max packet-length-in bytes ][min packet-length-in bytes ] packet-length-in bytes ][min packet-length-in bytes ]",
+    "noForm": "no monitor capture capture-name interface interface-id {in |out|both}match pktlen-range [max",
+    "params": [
+      {
+        "name": "packet-length-in bytes",
+        "description": "Defines the length of the packet to be captured.The range is from 1-9216."
+      }
+    ],
+    "modes": ["Global configuration mode."],
+    "usageSummary": null,
+    "sourcePage": 1285,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor capture start",
+    "context": null,
+    "detail": "Start the capture of packet data at a traffic trace point into a buffer.",
+    "syntax": "monitor capture {capture-name} start",
+    "noForm": null,
+    "params": [
+      {
+        "name": "capture-name",
+        "description": "The name of the capture to be started."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the monitor capture clear command to enable the packet data capture after the capture point is defined.  To stop the capture of packet data, use the monitor capture stop command.  Ensure that system resources such as CPU and memory are available before starting a capture.",
+    "sourcePage": 1286,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor capture stop",
+    "context": null,
+    "detail": "Stop the capture of packet data at a traffic trace point.",
+    "syntax": "monitor capture {capture-name} stop",
+    "noForm": null,
+    "params": [
+      {
+        "name": "capture-name",
+        "description": "The name of the capture to be stopped."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the monitor capture stop command to stop the capture of packet data that you started using the monitor capture start command.  You can configure two types of capture buffers: linear and circular.  When the linear buffer is full, data capture stops automatically.",
+    "sourcePage": 1287,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor session",
+    "context": null,
+    "detail": "Create a new Ethernet Switched Port Analyzer (SPAN) or a Remote Switched Port Analyzer (RSPAN) or Encapsulated Remote Switched Port Analyzer (ERSPAN) session configuration for analyzing traffic between ports or add to an existing session configuration.",
+    "syntax": "monitor session session-number {destination | filter | source | type {erspan-destination | erspan-source}} | erspan-source}] | all | local | range session-range | remote}",
+    "noForm": "no monitor session {session-number [destination | filter | source | type {erspan-destination",
+    "params": [
+      {
+        "name": "session-number",
+        "description": "The session number identified with the sessio"
+      },
+      {
+        "name": "all",
+        "description": "Clears all monitor sessions."
+      },
+      {
+        "name": "local",
+        "description": "Clears all local monitor sessions."
+      },
+      {
+        "name": "range session-range",
+        "description": "Clears monitor sessions in the specified range"
+      },
+      {
+        "name": "remote",
+        "description": "Clears all remote monitor sessions."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can set a combined maximum of two local SPAN sessions and RSPAN source sessions.  You can have a total of 66 SPAN, RSPAN, and ERSPAN sessions on a switch or switch stack.  You can verify your settings by entering the show monitor privileged EXEC command.",
+    "sourcePage": 1288,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor session destination",
+    "context": null,
+    "detail": "Start a new Switched Port Analyzer (SPAN) session or Remote SPAN (RSPAN) destination session, to enable ingress traffic on the destination port for a network security device (such as a Cisco IDS Sensor Appliance), and to add or delete interfaces or VLANs to or from an existing SPAN or RSPAN session.",
+    "syntax": "monitor session session-number destination {interface interface-id [, | -] [encapsulation {replicate | dot1q} ] {ingress [dot1q | untagged] } | {remote} vlan vlan-id {replicate | dot1q} ] {ingress [dot1q | untagged] } | {remote} vlan vlan-id",
+    "noForm": "no monitor session session-number destination {interface interface-id [, | -] [encapsulation",
+    "params": [
+      {
+        "name": "session-number",
+        "description": "The session number identified with the SPAN"
+      },
+      {
+        "name": "interface interface-id",
+        "description": "Specifies the destination or source interface fo physical ports (including type, stack member, channel is also a valid interface type, and the"
+      },
+      {
+        "name": ",",
+        "description": "(Optional) Specifies a series of interfaces or V from a previous range. Enter a space before a"
+      },
+      {
+        "name": "-",
+        "description": "(Optional) Specifies a range of interfaces or V"
+      },
+      {
+        "name": "encapsulation replicate",
+        "description": "(Optional) Specifies that the destination interfa If not selected, the default is to send packets i These keywords are valid only for local SPAN original VLAN ID; therefore, packets are alw ignored with the no form of the command."
+      },
+      {
+        "name": "encapsulation dot1q",
+        "description": "(Optional) Specifies that the destination interf IEEE 802.1Q encapsulation. These keywords are valid only for local SPAN original VLAN ID; therefore, packets are alw ignored with the no form of the command."
+      },
+      {
+        "name": "ingress",
+        "description": "Enables ingress traffic forwarding."
+      },
+      {
+        "name": "dot1q",
+        "description": "(Optional) Accepts incoming packets with IE the default VLAN."
+      },
+      {
+        "name": "untagged",
+        "description": "(Optional) Accepts incoming packets with un default VLAN."
+      },
+      {
+        "name": "isl",
+        "description": "Specifies ingress forwarding using ISL encap"
+      },
+      {
+        "name": "remote",
+        "description": "Specifies the remote VLAN for an RSPAN so 1006 to 4094. The RSPAN VLAN cannot be VLAN 1 (the d for Token Ring and FDDI VLANs). Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1290 Network Management monitor session destination"
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "Sets the default VLAN for ingress traffic w"
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can set a combined maximum of 8 local SPAN sessions and RSPAN source sessions.  You can have a total of 66 SPAN and RSPAN sessions on a switch or switch stack.  A SPAN or RSPAN destination must be a physical port.",
+    "sourcePage": 1290,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor session filter",
+    "context": null,
+    "detail": "Start a new flow-based SPAN (FSPAN) session or flow-based RSPAN (FRSPAN) source or destination session, or to limit (filter) SPAN source traffic to specific VLANs.",
+    "syntax": "monitor session session-number filter {vlan vlan-id [, | -] }",
+    "noForm": "no monitor session session-number filter {vlan vlan-id [, | -] }",
+    "params": [
+      {
+        "name": "session-number",
+        "description": "The session number identified with the SPAN or RSPAN ses"
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "Specifies a list of VLANs as filters on trunk source ports to lim VLANs. The vlan-id range is 1 to 4094."
+      },
+      {
+        "name": ",",
+        "description": "(Optional) Specifies a series of VLANs, or separates a range Enter a space before and after the comma."
+      },
+      {
+        "name": "-",
+        "description": "(Optional) Specifies a range of VLANs. Enter a space before"
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can set a combined maximum of two local SPAN sessions and RSPAN source sessions.  You can have a total of 66 SPAN and RSPAN sessions on a switch or switch stack.  You can monitor traffic on a single VLAN or on a series or range of ports or VLANs.",
+    "sourcePage": 1294,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor session source",
+    "context": null,
+    "detail": "Start a new Switched Port Analyzer (SPAN) session or Remote SPAN (RSPAN) source session, or to add or delete interfaces or VLANs to or from an existing SPAN or RSPAN session.",
+    "syntax": "monitor session session_number source {interface interface-id [, | -] [both | rx | tx] | [remote] vlan vlan-id [, | -] [both | rx | tx]} [remote] vlan vlan-id [, | -] [both | rx | tx]}",
+    "noForm": "no monitor session session_number source {interface interface-id [, | -] [both | rx | tx] |",
+    "params": [
+      {
+        "name": "session_number",
+        "description": "The session number identified with the SPAN or RSPAN session. The range is 1 to 66."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "Specifies the source interface for a SPAN or RSPAN session. Valid interfaces are physical ports (including type, stack member, module, and port number). For source interface, port channel is also a valid interface type, and the valid range is 1 to 48."
+      },
+      {
+        "name": ",",
+        "description": "(Optional) Specifies a series of interfaces or VLANs, or separates a range of interfaces or VLANs from a previous range. Enter a space before and after the comma."
+      },
+      {
+        "name": "-",
+        "description": "(Optional) Specifies a range of interfaces or VLANs. Enter a space before and after the hyphen. both | rx | tx (Optional) Specifies the traffic direction to monitor. If you do not specify a traffic direction, the source interface sends both transmitted and received traffic."
+      },
+      {
+        "name": "remote",
+        "description": "(Optional) Specifies the remote VLAN for an RSPAN source or destination session. The range is 2 to 1001 and 1006 to 4094. The RSPAN VLAN cannot be VLAN 1 (the default VLAN) or VLAN IDs 1002 to 1005 (reserved for Token Ring and FDDI VLANs)."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "When used with only the ingress keyword, sets default VLAN for ingress traffic."
+      }
+    ],
+    "modes": [
+      "Global configuration",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1296 Network Management monitor session source"
+    ],
+    "usageSummary": "Traffic that enters or leaves source ports or source VLANs can be monitored by using SPAN or RSPAN.  Traffic routed to source ports or source VLANs cannot be monitored.  You can set a combined maximum of two local SPAN sessions and RSPAN source sessions.",
+    "sourcePage": 1296,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor session type",
+    "context": null,
+    "detail": "Configure a local Encapsulated Remote Switched Port Analyzer (ERSPAN) session.",
+    "syntax": "monitor session span-session-number type {erspan-destination | erspan-source}",
+    "noForm": "no monitor session span-session-number type {erspan-destination | erspan-source}",
+    "params": [
+      {
+        "name": "span-session-number",
+        "description": "Number of the local ERSPAN session. Valid values are from 1 to 66."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The span-session-number and the session type cannot be changed once configured.  Use the no form of this command to remove the session and then re-create the session with a new session ID or a new session type.  The ERSPAN source session destination IP address, which must be configured on an interface on the destination switch, is the source of traffic that an ERSPAN destination session sends to the destination ports.",
+    "sourcePage": 1298,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "option",
+    "context": null,
+    "detail": "Configure optional data parameters for a flow exporter for Flexible NetFlow.",
+    "syntax": "option {exporter-stats | interface-table | sampler-table} [timeout seconds]",
+    "noForm": "no option {exporter-stats | interface-table | sampler-table}",
+    "params": [
+      {
+        "name": "exporter-stats",
+        "description": "Configures the exporter statistics option for flow exporters."
+      },
+      {
+        "name": "interface-table",
+        "description": "Configures the interface table option for flow exporters."
+      },
+      {
+        "name": "sampler-table",
+        "description": "Configures the export sampler table option for flow exporters."
+      },
+      {
+        "name": "timeout seconds",
+        "description": "(Optional) Configures the option resend time in seconds for flow exporters. The range is 1 to 86400. The default is 600."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "The option exporter-stats command causes the periodic sending of the exporter statistics, including the number of records, bytes, and packets sent.  This command allows the collector to estimate packet loss for the export records it receives.  The optional timeout alters the frequency at which the reports are sent.",
+    "sourcePage": 1300,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "pnpa service reset",
+    "context": null,
+    "detail": "Perform factory reset on the device and reload using Cisco Plug and Play (PnP) agent.",
+    "syntax": "pnpa service reset [ no-prompt | no-reload ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "no-prompt",
+        "description": "(Optional) Resets the device without any prompt."
+      },
+      {
+        "name": "no-reload",
+        "description": "(Optional) Resets the device without reloading it."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The pnpa service reset command does a clean up of the nvram, clears the vlan. dat and crashinfo files in the flash, and reloads the device.  The subsequent reload triggers PnP as the startup configuration is erased due to factory reset.",
+    "sourcePage": 1302,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "record",
+    "context": null,
+    "detail": "Add a flow record for a Flexible NetFlow flow monitor.",
+    "syntax": "record record-name",
+    "noForm": "no record",
+    "params": [
+      {
+        "name": "record-name",
+        "description": "Name of a user-defined flow record that was previously configured."
+      }
+    ],
+    "modes": ["Flow monitor configuration"],
+    "usageSummary": "Each flow monitor requires a record to define the contents and layout of its cache entries.  The flow monitor can use one of the wide range of predefined record formats, or advanced users may create their own record formats.",
+    "sourcePage": 1303,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "sampler",
+    "context": null,
+    "detail": "Create a Flexible Netflow flow sampler, or to modify an existing Flexible Netflow flow sampler, and to enter Flexible Netflow sampler configuration mode.",
+    "syntax": "sampler sampler-name",
+    "noForm": "no sampler sampler-name",
+    "params": [
+      {
+        "name": "sampler-name",
+        "description": "Name of the flow sampler that is being created or modified."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Flow samplers are used to reduce the load placed by Flexible Netflow on the networking device to monitor traffic by limiting the number of packets that are analyzed.  You configure a rate of sampling that is 1 out of a range of packets.  Flow samplers are applied to interfaces in conjunction with a flow monitor to implement sampled Flexible Netflow.",
+    "sourcePage": 1304,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show capability feature monitor",
+    "context": null,
+    "detail": "Display information about monitor features.",
+    "syntax": "show capability feature monitor {erspan-destination | erspan-source}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "erspan-destination",
+        "description": "Displays information about the configured Encapsulated Remote Switched Port Analyzer (ERSPAN) source sessions."
+      },
+      {
+        "name": "erspan-source",
+        "description": "Displays all the configured global built-in templates."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1305,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show class-map type control subscriber",
+    "context": null,
+    "detail": "Display the class map statistics for the configured control policies.",
+    "syntax": "show class-map type control subscriber {all|name control-class-name}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays class map statistics for all control policies."
+      },
+      {
+        "name": "name control-class-name",
+        "description": "Displays class map statistics for the specified control policy."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1306,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show flow exporter",
+    "context": null,
+    "detail": "Display flow exporter status and statistics.",
+    "syntax": "show flow exporter [export-ids netflow-v9 | [name] exporter-name [statistics | templates] | statistics | templates]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow exporter."
+      },
+      {
+        "name": "exporter-name",
+        "description": "(Optional) Name of a flow exporter that was previously configured."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays statistics for all flow exporters or for the specified flow exporter."
+      },
+      {
+        "name": "templates",
+        "description": "(Optional) Displays template information for all flow exporters or for the specified flow exporter."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1307,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show flow interface",
+    "context": null,
+    "detail": "Display the Flexible Netflow configuration and status for an interface.",
+    "syntax": "show flow interface [type number]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "type",
+        "description": "(Optional) The type of interface on which you want to display Flexible Netflow accounting configuration information."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) The number of the interface on which you want to display Flexible Netflow accounting configuration information."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1309,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show flow monitor",
+    "context": null,
+    "detail": "Display the status and statistics for a Flexible NetFlow flow monitor.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow monitor."
+      },
+      {
+        "name": "monitor-name",
+        "description": "(Optional) Name of a flow monitor that was previously configured."
+      },
+      {
+        "name": "cache",
+        "description": "(Optional) Displays the contents of the cache for the flow monitor."
+      },
+      {
+        "name": "format",
+        "description": "(Optional) Specifies the use of one of the format options for formatting the display output."
+      },
+      {
+        "name": "csv",
+        "description": "(Optional) Displays the flow monitor cache contents in comma-separated variables (CSV) format."
+      },
+      {
+        "name": "record",
+        "description": "(Optional) Displays the flow monitor cache contents in record format."
+      },
+      {
+        "name": "table",
+        "description": "(Optional) Displays the flow monitor cache contents in table format."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays the statistics for the flow monitor."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The cache keyword uses the record format by default.  The uppercase field names in the display output of the show flowmonitor monitor-name cache command are key fields that Flexible netFlow uses to differentiate flows.  The lowercase field names in the display output of the show flow monitor monitor-name cache command are nonkey fields from which Flexible NetFlow collects values as additional data for the cache.",
+    "sourcePage": 1311,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show flow record",
+    "context": null,
+    "detail": "Display the status and statistics for a Flexible Netflow flow record.",
+    "syntax": "show flow record [[name] record-name]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow record. record-name (Optional) Name of a user-defined flow record that was previously configured."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1313,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip sla statistics",
+    "context": null,
+    "detail": "Display current or aggregated operational status and statistics of all Cisco IOS IP Service Level Agreement (SLA) operations or a specified operation.",
+    "syntax": "show ip sla statistics [ operation-number [details] | aggregated [ operation-number | details] | details]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "operation-number",
+        "description": "(Optional) Number of the operation for which operational status and statistics are displayed. Accepted values are from 1 to 2147483647."
+      },
+      {
+        "name": "details",
+        "description": "(Optional) Specifies detailed output."
+      },
+      {
+        "name": "aggregated",
+        "description": "(Optional) Specifies the IP SLA aggregated statistics."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Use the show ip sla statistics to display the current state of IP SLA operations, including how much life the operation has left, whether the operation is active, and the completion time.  The output also includes the monitoring data returned for the last (most recently completed) operation.  This generated operation ID is displayed when you use the show ip sla configuration command for the base multicast operation, and as part of the summary statistics for the entire operation.",
+    "sourcePage": 1314,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show monitor",
+    "context": null,
+    "detail": "Display information about all Switched Port Analyzer (SPAN) and Remote SPAN (RSPAN) sessions.",
+    "syntax": "show monitor [session {session_number | all | local | range list | remote} [detail]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "session",
+        "description": "(Optional) Displays information about specified SPAN sessions."
+      },
+      {
+        "name": "session_number",
+        "description": "The session number identified with the SPAN or RSPAN session. The range is 1 to 66."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Displays all SPAN sessions."
+      },
+      {
+        "name": "local",
+        "description": "(Optional) Displays only local SPAN sessions."
+      },
+      {
+        "name": "range list",
+        "description": "(Optional) Displays a range of SPAN sessions, where list is the range of valid sessions. The range is either a single session or a range of sessions described by two numbers, the lower one first, separated by a hyphen. Do not enter any spaces between comma-separated parameters or in hyphen-specified ranges. Note This keyword is available only in privileged EXEC mode."
+      },
+      {
+        "name": "remote",
+        "description": "(Optional) Displays only remote SPAN sessions."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information about the specified sessions."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "The output is the same for the show monitor command and the show monitor session all command.",
+    "sourcePage": 1316,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show monitor capture",
+    "context": null,
+    "detail": "Display monitor capture (WireShark) content.",
+    "syntax": "show monitor capture [capture-name [ buffer ] | file file-location : file-name ][ brief | detailed | display-filter display-filter-string ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "capture-name",
+        "description": "(Optional) Specifies the name of the capture to be displayed."
+      },
+      {
+        "name": "buffer",
+        "description": "(Optional) Specifies that a buffer associated with the named capture is to be displayed."
+      },
+      {
+        "name": "file file-location : file-name",
+        "description": "(Optional) Specifies the file location and name of the capture storage file to be displayed."
+      },
+      {
+        "name": "brief",
+        "description": "(Optional) Specifies the display content in brief."
+      },
+      {
+        "name": "detailed",
+        "description": "(Optional) Specifies detailed display content."
+      },
+      {
+        "name": "display-filter display-filter-string",
+        "description": "Filters the display content according to the display-filter-string."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The output of the show monitor capture name buffer command differs on whether the DNA add-on license is installed.  If it is installed, the output displays a brief view of the content of the buffer, and if it is not installed, the output displays only the statistics of the buffer.",
+    "sourcePage": 1318,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show monitor session",
+    "context": null,
+    "detail": "Display information about Switched Port Analyzer (SPAN), Remote SPAN (RSPAN), and Encapsulated Remote Switched Port Analyzer (ERSPAN) sessions.",
+    "syntax": "show monitor session {session_number | all | erspan-destination | erspan-source | local | range list | remote} [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "session_number",
+        "description": "The session number identified with th"
+      },
+      {
+        "name": "all",
+        "description": "Displays all SPAN sessions."
+      },
+      {
+        "name": "erspan-source",
+        "description": "Displays only source ERSPAN session"
+      },
+      {
+        "name": "erspan-destination",
+        "description": "Displays only destination ERSPAN se"
+      },
+      {
+        "name": "local",
+        "description": "Displays only local SPAN sessions."
+      },
+      {
+        "name": "range list",
+        "description": "Displays a range of SPAN sessions, w of sessions described by two numbers comma-separated parameters or in hyp Note This keyword is available only in priv"
+      },
+      {
+        "name": "remote",
+        "description": "Displays only remote SPAN sessions."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed informati"
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC(#)"],
+    "usageSummary": "The maximum local ERSPAN source session limit is 8.  Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 1320,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show parameter-map type subscriber attribute-to-service",
+    "context": null,
+    "detail": "Display parameter map statistics.",
+    "syntax": "show parameter-map type subscriber attribute-to-service {all|name parameter-map-name}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays statistics for all parameter maps."
+      },
+      {
+        "name": "name parameter-map-name",
+        "description": "Displays statistics for the specified parameter map."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1323,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed active fwd-asic counters",
+    "context": null,
+    "detail": "Display all the packet counters in an ASIC.",
+    "syntax": "show platform hardware fed active fwd-asic counters { all | block | counters_all | global | oq_debug | slice }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all counters."
+      },
+      {
+        "name": "block",
+        "description": "Displays counters by block name. counters_all Displays exception counters for an ASIC."
+      },
+      {
+        "name": "global",
+        "description": "Displays global counters."
+      },
+      {
+        "name": "oq_debug",
+        "description": "Displays OQ debug exception counters for an ASIC."
+      },
+      {
+        "name": "slice",
+        "description": "Display the counters in a slice."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1324,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed active fwd-asic drops",
+    "context": null,
+    "detail": "Display packets dropped by a particular ASIC.",
+    "syntax": "show platform hardware fed active fwd-asic drops { asic [ ifg | npu | tm ] }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "asic",
+        "description": "Displays dropped packets for a particular ASIC instance."
+      },
+      {
+        "name": "ifg",
+        "description": "Displays Interface group dropped packets. npu Displays Network Processing Unit dropped packets."
+      },
+      {
+        "name": "tm",
+        "description": "Displays Traffic Manager dropped packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1325,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed active fwd-asic traps",
+    "context": null,
+    "detail": "Display all the traps in an ASIC.",
+    "syntax": "show platform hardware fed active fwd-asic traps [ npu traps | tm traps ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "npu traps",
+        "description": "Displays all Network Processing Unit traps."
+      },
+      {
+        "name": "tm traps",
+        "description": "Displays all Traffic Manager traps."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1326,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed active drop packet-capture",
+    "context": null,
+    "detail": "Display details about dropped packets.",
+    "syntax": "show platform software fed active drop packet-capture { brief | detailed | buffer-top-talker | display-filter | display-filter-help | interface-stats | statistics | stats-per-intf | status }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "brief",
+        "description": "Displays the captured packets with a brief description."
+      },
+      {
+        "name": "detailed",
+        "description": "Displays the captured packets in a detailed format. buffer-top-talker Displays number of occurences of different types of packets."
+      },
+      {
+        "name": "display-filter",
+        "description": "Specifies a Wireshark like display filter. display-filter-help Lists all the supported filters."
+      },
+      {
+        "name": "interface-stats",
+        "description": "Displays the statistics of the interfaces in the packet capture."
+      },
+      {
+        "name": "statistics",
+        "description": "Displays statistics of the dropped packets."
+      },
+      {
+        "name": "stats-per-intf",
+        "description": "Displays statistics for every interface in the packet capture."
+      },
+      {
+        "name": "status",
+        "description": "Displays packet capturing status."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1327,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch ip wccp",
+    "context": null,
+    "detail": "Display platform-dependent Web Cache Communication Protocol (WCCP) information.",
+    "syntax": "show platform software fed switch {switch-number | active | standby}ip wccp {cache-engines | interfaces | service-groups}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "cache-engines",
+        "description": "Displays WCCP cache engines."
+      },
+      {
+        "name": "interfaces",
+        "description": "Displays WCCP interfaces."
+      },
+      {
+        "name": "service-groups",
+        "description": "Displays WCCP service groups."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  Do not use this command unless a technical support representative asks you to do so.  This command is available only if your device is running the IP Services feature set.",
+    "sourcePage": 1328,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software swspan",
+    "context": null,
+    "detail": "Display switched port analyzer (SPAN) information.",
+    "syntax": "show platform software swspan {switch} { { {F0 | FP active} counters} | R0 | RP active} {destination sess-id session-ID | source sess-id session-ID}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch",
+        "description": "Displays information about the switch."
+      },
+      {
+        "name": "F0",
+        "description": "Displays information about the Embedded Service Processor (ESP) slot 0."
+      },
+      {
+        "name": "FP",
+        "description": "Displays information about the ESP."
+      },
+      {
+        "name": "active",
+        "description": "Displays information about the active instance of the ESP or the Route Processor (RP)."
+      },
+      {
+        "name": "counters",
+        "description": "Displays the SWSPAN message counters."
+      },
+      {
+        "name": "R0",
+        "description": "Displays information about the RP slot 0."
+      },
+      {
+        "name": "RP",
+        "description": "Displays information the RP. destination sess-id session-ID Displays information about the specified destination session."
+      },
+      {
+        "name": "source sess-id session-ID",
+        "description": "Displays information about the specified source session."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "If the session number does not exist or if the SPAN session is a remote destination session, the command output will display the following message \"% Error: No Information Available.",
+    "sourcePage": 1330,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show sampler",
+    "context": null,
+    "detail": "Display the status and statistics for a Flexible NetFlow sampler.",
+    "syntax": "show sampler [[name] sampler-name]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a sampler. sampler-name (Optional) Name of a sampler that was previously configured."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1332,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show snmp stats",
+    "context": null,
+    "detail": "Display the SNMP statistics.",
+    "syntax": "show snmp stats { hosts | oid}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "oid",
+        "description": "Displays recently requested object identifiers (OIDs)."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the show snmp stats hosts command to list the NMS IP address, the number of times an NMS polls the agent, and the timestamp of polling.  To delete the entries polled to the SNMP agent, use the clear snmp stats hosts command.  Before running the show snmp stats oid command, connect the device to the NMS.",
+    "sourcePage": 1334,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "shutdown",
+    "context": "monitor session",
+    "detail": "Disable a configured ERSPAN session.",
+    "syntax": "shutdown",
+    "noForm": "no shutdown",
+    "params": [],
+    "modes": ["ERSPAN monitor source session configuration mode (config-mon-erspan-src)"],
+    "usageSummary": "The ERSPAN session remains inactive until the no shutdown command is configured.",
+    "sourcePage": 1336,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp ifmib ifindex persist",
+    "context": null,
+    "detail": "Globally enable ifIndex values to persist , which will remain constant across reboots, for use by the Simple Network Management Protocol (SNMP).",
+    "syntax": "snmp ifmib ifindex persist",
+    "noForm": "no snmp ifmib ifindex persist",
+    "params": [],
+    "modes": [
+      "Global configuration (config)",
+      "Usage Guidelines The snmp ifmib ifindex persist command does not override an interface-specific configuration. The interface-specific configuration of ifIndex persistence is configured with the snmp ifindex persist and snmp ifindex clear commands in interface configuration mode. The snmp ifmib ifindex persist command enables ifIndex persistence for all interfaces on a routing device by using the ifDescr and ifIndex entries in the ifIndex table of interface MIB (IF-MIB). ifIndex persistence means that the ifIndex values in the IF-MIB persist across reboots, allowing for the consistent identification of specific interfaces that use SNMP. If ifIndex persistence was previously disabled for a specific interface by using the no snmp ifindex persist command, ifIndex persistence will remain disabled for that interface.",
+      "Examples The following example shows how to enable ifIndex persistence for all interfaces:",
+      "Device(config)# snmp ifmib ifindex persist",
+      "Related Commands Command Description",
+      "snmp ifindex clear Clears any previously configured snmp ifIndex commands issued in interface configuration mode for a specific interface.",
+      "snmp ifindex persist Enables ifIndex values that persist across reboots (ifIndex persistence) in the IF-MIB.",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1337 Network Management"
+    ],
+    "usageSummary": "The snmp ifmib ifindex persist command does not override an interface-specific configuration.  The interface-specific configuration of ifIndex persistence is configured with the snmp ifindex persist and snmp ifindex clear commands in interface configuration mode.  The snmp ifmib ifindex persist command enables ifIndex persistence for all interfaces on a routing device by using the ifDescr and ifIndex entries in the ifIndex table of interface MIB (IF-MIB).",
+    "sourcePage": 1337,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server community",
+    "context": null,
+    "detail": "Configure the community access string to permit access to the Simple Network Management Protocol (SNMP).",
+    "syntax": "snmp-server community[clear|encrypted]community-string[view view-name][RO|RW][SDROwner|SystemOwner][access-list-name]",
+    "noForm": "no snmp-server community community-string",
+    "params": [
+      {
+        "name": "clear",
+        "description": "(Optional) Specifies that the entered community-string is clear text and should be encrypted when displayed by the show running command."
+      },
+      {
+        "name": "encrypted",
+        "description": "(Optional) Specifies that the entered community-string is encrypted text and should be displayed as such by the show running command. community-string Community string that acts like a password and permits access to the SNMP protocol. The maximum length of the community-string argument is 32 alphabetic characters. If the clear keyword was used, community-string is assumed to be clear text. If the encrypted keyword was used, community-string is assumed to be encrypted. If neither was used, community-string is assumed to be clear text. viewview-name (Optional) Specifies the name of a previously defined view. The view defines the objects available to the community."
+      },
+      {
+        "name": "RO",
+        "description": "(Optional) Specifies read-only access. Authorized management stations are able only to retrieve MIB objects."
+      },
+      {
+        "name": "RW",
+        "description": "(Optional) Specifies read-write access. Authorized management stations are able both to retrieve and to modify MIB objects."
+      },
+      {
+        "name": "SDROwner",
+        "description": "(Optional) Limits access to the owner service domain router (SDR)."
+      },
+      {
+        "name": "SystemOwner",
+        "description": "(Optional) Provides system-wide access including access to all non-owner SDRs. access-list-name (Optional) Name of an access list of IP addresses allowed to use the community string to gain access to the SNMP agent."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "To use this command, you must be in a user group associated with a task group that includes appropriate task IDs.  If the user group assignment is preventing you from using a command, contact your AAA administrator for assistance.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 1338,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps",
+    "context": null,
+    "detail": "Enable the device to send Simple Network Management Protocol (SNMP) notifications for various traps or inform requests to the network management system (NMS).",
+    "syntax": "snmp-server enable traps [ auth-framework [ sec-violation ] | bridge | call-home | config | config-copy | config-ctid | copy-config | cpu | dot1x | energywise | entity | envmon | errdisable | event-manager | flash | fru-ctrl | mac-notification | port-security | power-ethernet | rep | snmp | stackwise | storm-control | stpx | syslog | transceiver | tty | vlan-membership | vlancreate | vlandelete | vstack | vtp ] | config | config-copy | config-ctid | copy-config | cpu | dot1x | energywise | entity | envmon | errdisable | event-manager | flash | fru-ctrl | mac-notification | port-security | power-ethernet | rep | snmp | stackwise | storm-control | stpx | syslog | transceiver | tty | vlan-membership | vlancreate | vlandelete | vstack | vtp ]",
+    "noForm": "no snmp-server enable traps [ auth-framework [ sec-violation ] | bridge | call-home",
+    "params": [
+      {
+        "name": "auth-framework",
+        "description": "(Optional) Enables SNMP CISCO-AUTH-FRAMEWORK-MIB traps."
+      },
+      {
+        "name": "sec-violation",
+        "description": "(Optional) Enables SNMP camSecurityViolationNotif notifications."
+      },
+      {
+        "name": "bridge",
+        "description": "(Optional) Enables SNMP STP Bridge MIB traps.*"
+      },
+      {
+        "name": "call-home",
+        "description": "(Optional) Enables SNMP CISCO-CALLHOME-MIB traps.*"
+      },
+      {
+        "name": "config",
+        "description": "(Optional) Enables SNMP configuration traps."
+      },
+      {
+        "name": "config-copy",
+        "description": "(Optional) Enables SNMP configuration copy traps."
+      },
+      {
+        "name": "config-ctid",
+        "description": "(Optional) Enables SNMP configuration CTID traps."
+      },
+      {
+        "name": "copy-config",
+        "description": "(Optional) Enables SNMP copy-configuration traps."
+      },
+      {
+        "name": "cpu",
+        "description": "(Optional) Enables CPU notification traps.*"
+      },
+      {
+        "name": "dot1x",
+        "description": "(Optional) Enables SNMP dot1x traps.*"
+      },
+      {
+        "name": "energywise",
+        "description": "(Optional) Enables SNMP energywise traps.*"
+      },
+      {
+        "name": "entity",
+        "description": "(Optional) Enables SNMP entity traps."
+      },
+      {
+        "name": "envmon",
+        "description": "(Optional) Enables SNMP environmental monitor traps.*"
+      },
+      {
+        "name": "errdisable",
+        "description": "(Optional) Enables SNMP errdisable notification traps.*"
+      },
+      {
+        "name": "event-manager",
+        "description": "(Optional) Enables SNMP Embedded Event Manager traps."
+      },
+      {
+        "name": "flash",
+        "description": "(Optional) Enables SNMP FLASH notification traps.* Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1340 Network Management snmp-server enable traps"
+      },
+      {
+        "name": "fru-ctrl",
+        "description": "(Optional) Generates entity field-replaceable unit (FRU) control traps. In a device stack, this trap refers to the insertion or removal of a device in the stack."
+      },
+      {
+        "name": "mac-notification",
+        "description": "(Optional) Enables SNMP MAC Notification traps.*"
+      },
+      {
+        "name": "port-security",
+        "description": "(Optional) Enables SNMP port security traps.*"
+      },
+      {
+        "name": "power-ethernet",
+        "description": "(Optional) Enables SNMP power Ethernet traps.*"
+      },
+      {
+        "name": "rep",
+        "description": "(Optional) Enables SNMP Resilient Ethernet Protocol traps."
+      },
+      {
+        "name": "snmp",
+        "description": "(Optional) Enables SNMP traps.*"
+      },
+      {
+        "name": "stackwise",
+        "description": "(Optional) Enables SNMP stackwise traps.*"
+      },
+      {
+        "name": "storm-control",
+        "description": "(Optional) Enables SNMP storm-control trap parameters.*"
+      },
+      {
+        "name": "stpx",
+        "description": "(Optional) Enables SNMP STPX MIB traps.*"
+      },
+      {
+        "name": "syslog",
+        "description": "(Optional) Enables SNMP syslog traps."
+      },
+      {
+        "name": "transceiver",
+        "description": "(Optional) Enables SNMP transceiver traps.*"
+      },
+      {
+        "name": "tty",
+        "description": "(Optional) Sends TCP connection traps. This is enabled by default."
+      },
+      {
+        "name": "vlan-membership",
+        "description": "(Optional) Enables SNMP VLAN membership traps."
+      },
+      {
+        "name": "vlancreate",
+        "description": "(Optional) Enables SNMP VLAN-created traps."
+      },
+      {
+        "name": "vlandelete",
+        "description": "(Optional) Enables SNMP VLAN-deleted traps."
+      },
+      {
+        "name": "vstack",
+        "description": "(Optional) Enables SNMP Smart Install traps.*"
+      },
+      {
+        "name": "vtp",
+        "description": "(Optional) Enables VLAN Trunking Protocol (VTP) traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The command options marked with an asterisk in the table above have subcommands.  For more information on these subcommands, see the Related Commands section below.  Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.",
+    "sourcePage": 1340,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps bridge",
+    "context": null,
+    "detail": "Generate STP bridge MIB traps.",
+    "syntax": "snmp-server enable traps bridge [newroot] [topologychange]",
+    "noForm": "no snmp-server enable traps bridge [newroot] [topologychange]",
+    "params": [
+      {
+        "name": "newroot",
+        "description": "(Optional) Enables SNMP STP bridge MIB new root traps. topologychange (Optional) Enables SNMP STP bridge MIB topology change traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1343,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps bulkstat",
+    "context": null,
+    "detail": "Enable data-collection-MIB traps.",
+    "syntax": "snmp-server enable traps bulkstat [collection | transfer]",
+    "noForm": "no snmp-server enable traps bulkstat [collection | transfer]",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1344,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps call-home",
+    "context": null,
+    "detail": "Enable SNMP CISCO-CALLHOME-MIB traps.",
+    "syntax": "snmp-server enable traps call-home [message-send-fail | server-fail]",
+    "noForm": "no snmp-server enable traps call-home [message-send-fail | server-fail]",
+    "params": [
+      {
+        "name": "server-fail",
+        "description": "(Optional) Enables SNMP server-fail traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1345,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps cef",
+    "context": null,
+    "detail": "Enable SNMP Cisco Express Forwarding (CEF) traps.",
+    "syntax": "snmp-server enable traps cef [inconsistency | peer-fib-state-change | peer-state-change | resource-failure] resource-failure]",
+    "noForm": "no snmp-server enable traps cef [inconsistency | peer-fib-state-change | peer-state-change |",
+    "params": [
+      {
+        "name": "inconsistency",
+        "description": "(Optional) Enables SNMP CEF Inconsistency traps. peer-fib-state-change (Optional) Enables SNMP CEF Peer FIB State change traps."
+      },
+      {
+        "name": "peer-state-change",
+        "description": "(Optional) Enables SNMP CEF Peer state change traps."
+      },
+      {
+        "name": "resource-failure",
+        "description": "(Optional) Enables SNMP CEF Resource Failure traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1346,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps cpu",
+    "context": null,
+    "detail": "Enable CPU notifications.",
+    "syntax": "snmp-server enable traps cpu [threshold]",
+    "noForm": "no snmp-server enable traps cpu [threshold]",
+    "params": [
+      {
+        "name": "threshold",
+        "description": "(Optional) Enables CPU threshold notification."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1347,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps envmon",
+    "context": null,
+    "detail": "Enable SNMP environmental traps.",
+    "syntax": "snmp-server enable traps envmon [ fan ] [ shutdown ] [ status ] [ supply ] [ temperature ] temperature ]",
+    "noForm": "no snmp-server enable traps envmon [ fan ] [ shutdown ] [ status ] [ supply ] [",
+    "params": [
+      {
+        "name": "fan",
+        "description": "(Optional) Enables fan traps."
+      },
+      {
+        "name": "shutdown",
+        "description": "(Optional) Enables environmental monitor shutdown traps."
+      },
+      {
+        "name": "status",
+        "description": "(Optional) Enables SNMP environmental status-change traps."
+      },
+      {
+        "name": "supply",
+        "description": "(Optional) Enables environmental monitor power-supply traps. temperature (Optional) Enables environmental monitor temperature traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1348,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps errdisable",
+    "context": null,
+    "detail": "Enable SNMP notifications of error-disabling.",
+    "syntax": "snmp-server enable traps errdisable [notification-rate number-of-notifications]",
+    "noForm": "no snmp-server enable traps errdisable [notification-rate number-of-notifications]",
+    "params": [
+      {
+        "name": "notification-rate",
+        "description": "(Optional) Specifies number of notifications per minute as the"
+      },
+      {
+        "name": "number-of-notifications",
+        "description": "notification rate. Accepted values are from 0 to 10000."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1349,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps flash",
+    "context": null,
+    "detail": "Enable SNMP flash notifications.",
+    "syntax": "snmp-server enable traps flash [insertion][removal]",
+    "noForm": "no snmp-server enable traps flash [insertion][removal]",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1350,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps isis",
+    "context": null,
+    "detail": "Enable intermediate system-to-intermediate system (IS-IS) link-state routing protocol traps.",
+    "syntax": "snmp-server enable traps isis [errors | state-change]",
+    "noForm": "no snmp-server enable traps isis [errors | state-change]",
+    "params": [
+      {
+        "name": "errors",
+        "description": "(Optional) Enables IS-IS error traps. state-change (Optional) Enables IS-IS state change traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1351,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps mac-notification",
+    "context": null,
+    "detail": "Enable SNMP MAC notification traps.",
+    "syntax": "snmp-server enable traps mac-notification [change][move][threshold]",
+    "noForm": "no snmp-server enable traps mac-notification [change][move][threshold]",
+    "params": [
+      {
+        "name": "change",
+        "description": "(Optional) Enables SNMP MAC change traps."
+      },
+      {
+        "name": "move",
+        "description": "(Optional) Enables SNMP MAC move traps. threshold (Optional) Enables SNMP MAC threshold traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1352,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps ospf",
+    "context": null,
+    "detail": "Enable SNMP Open Shortest Path First (OSPF) traps.",
+    "syntax": "snmp-server enable traps ospf [cisco-specific | errors | lsa | rate-limit rate-limit-time max-number-of-traps | retransmit | state-change] max-number-of-traps | retransmit | state-change]",
+    "noForm": "no snmp-server enable traps ospf [cisco-specific | errors | lsa | rate-limit rate-limit-time",
+    "params": [
+      {
+        "name": "cisco-specific",
+        "description": "(Optional) Enables Cisco-specific traps."
+      },
+      {
+        "name": "errors",
+        "description": "(Optional) Enables error traps."
+      },
+      {
+        "name": "lsa",
+        "description": "(Optional) Enables link-state advertisement (LSA) traps."
+      },
+      {
+        "name": "rate-limit",
+        "description": "(Optional) Enables rate-limit traps."
+      },
+      {
+        "name": "rate-limit-time",
+        "description": "(Optional) Specifies window of time in seconds for rate-limit traps. Accepted values are 2 to 60. max-number-of-traps (Optional) Specifies maximum number of rate-limit traps to be sent in window time."
+      },
+      {
+        "name": "retransmit",
+        "description": "(Optional) Enables packet-retransmit traps."
+      },
+      {
+        "name": "state-change",
+        "description": "(Optional) Enables state-change traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1353,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps pim",
+    "context": null,
+    "detail": "Enable SNMP Protocol-Independent Multicast (PIM) traps.",
+    "syntax": "snmp-server enable traps pim [invalid-pim-message][neighbor-change][rp-mapping-change]",
+    "noForm": "no snmp-server enable traps pim [invalid-pim-message][neighbor-change][rp-mapping-change]",
+    "params": [
+      {
+        "name": "neighbor-change",
+        "description": "(Optional) Enables PIM neighbor-change traps. rp-mapping-change (Optional) Enables rendezvous point (RP)-mapping change traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1354,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps port-security",
+    "context": null,
+    "detail": "Enable SNMP port security traps.",
+    "syntax": "snmp-server enable traps port-security [trap-rate value]",
+    "noForm": "no snmp-server enable traps port-security [trap-rate value]",
+    "params": [
+      {
+        "name": "trap-rate",
+        "description": "(Optional) Sets the maximum number of port-security traps sent per second. The range is"
+      },
+      {
+        "name": "value",
+        "description": "from 0 to 1000; the default is 0 (no limit imposed; a trap is sent at every occurrence)."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1355,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps power-ethernet",
+    "context": null,
+    "detail": "Enable SNMP power-over-Ethernet (PoE) traps.",
+    "syntax": "snmp-server enable traps power-ethernet {group number | police}",
+    "noForm": "no snmp-server enable traps power-ethernet {group number | police}",
+    "params": [
+      {
+        "name": "group",
+        "description": "Enables inline power group-based traps for the specified group number. Accepted values are"
+      },
+      {
+        "name": "number",
+        "description": "from 1 to 9."
+      },
+      {
+        "name": "police",
+        "description": "Enables inline power policing traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1356,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps snmp",
+    "context": null,
+    "detail": "Enable SNMP traps.",
+    "syntax": "snmp-server enable traps snmp [authentication ][coldstart ][linkdown ] [linkup ][warmstart] ][warmstart]",
+    "noForm": "no snmp-server enable traps snmp [authentication ][coldstart ][linkdown ] [linkup",
+    "params": [
+      {
+        "name": "coldstart",
+        "description": "(Optional) Enables cold start traps."
+      },
+      {
+        "name": "linkdown",
+        "description": "(Optional) Enables linkdown traps."
+      },
+      {
+        "name": "linkup",
+        "description": "(Optional) Enables linkup traps."
+      },
+      {
+        "name": "warmstart",
+        "description": "(Optional) Enables warmstart traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1357,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps storm-control",
+    "context": null,
+    "detail": "Enable SNMP storm-control trap parameters.",
+    "syntax": "snmp-server enable traps storm-control { trap-rate number-of-minutes }",
+    "noForm": "no snmp-server enable traps storm-control { trap-rate }",
+    "params": [
+      {
+        "name": "trap-rate",
+        "description": "(Optional) Specifies the SNMP storm-control trap rate in minutes. Accepted values"
+      },
+      {
+        "name": "number-of-minutes",
+        "description": "are from 0 to 1000. The default is 0. Value 0 indicates that no limit is imposed and a trap is sent at every occurrence. When configured, show run all command output displays no snmp-server enable traps storm-control."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1358,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps stpx",
+    "context": null,
+    "detail": "Enable SNMP STPX MIB traps.",
+    "syntax": "snmp-server enable traps stpx [inconsistency][loop-inconsistency][root-inconsistency]",
+    "noForm": "no snmp-server enable traps stpx [inconsistency][loop-inconsistency][root-inconsistency]",
+    "params": [
+      {
+        "name": "inconsistency",
+        "description": "(Optional) Enables SNMP STPX MIB inconsistency update traps. loop-inconsistency (Optional) Enables SNMP STPX MIB loop inconsistency update traps. root-inconsistency (Optional) Enables SNMP STPX MIB root inconsistency update traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1359,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps transceiver",
+    "context": null,
+    "detail": "Enable SNMP transceiver traps.",
+    "syntax": "snmp-server enable traps transceiver {all}",
+    "noForm": "no snmp-server enable traps transceiver {all}",
+    "params": [
+      {
+        "name": "al",
+        "description": "(Optional) Enables all SNMP transceiver traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1360,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps vrfmib",
+    "context": null,
+    "detail": "Allow SNMP vrfmib traps.",
+    "syntax": "snmp-server enable traps vrfmib [vnet-trunk-down | vnet-trunk-up | vrf-down | vrf-up]",
+    "noForm": "no snmp-server enable traps vrfmib [vnet-trunk-down | vnet-trunk-up | vrf-down | vrf-up]",
+    "params": [
+      {
+        "name": "vnet-trunk-up",
+        "description": "(Optional) Enables vrfmib trunk up traps."
+      },
+      {
+        "name": "vrf-down",
+        "description": "(Optional) Enables vrfmib vrf down traps."
+      },
+      {
+        "name": "vrf-up",
+        "description": "(Optional) Enables vrfmib vrf up traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1361,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps vstack",
+    "context": null,
+    "detail": "Enable SNMP smart install traps.",
+    "syntax": "snmp-server enable traps vstack [addition][failure][lost][operation]",
+    "noForm": "no snmp-server enable traps vstack [addition][failure][lost][operation]",
+    "params": [
+      {
+        "name": "failure",
+        "description": "(Optional) Enables file upload and download failure traps."
+      },
+      {
+        "name": "lost",
+        "description": "(Optional) Enables client lost trap. operation (Optional) Enables operation mode change traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 1362,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server engineID",
+    "context": null,
+    "detail": "Configure a name for either the local or remote copy of SNMP.",
+    "syntax": "snmp-server engineID {local engineid-string | remote ip-address [udp-port port-number] engineid-string}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "local engineid-string",
+        "description": "Specifies a 24-character ID string with the name of the copy of SNMP. You need not specify the entire 24-character engine ID if it has trailing zeros. Specify only the portion of the engine ID up to the point where only zeros remain in the value."
+      },
+      {
+        "name": "remote ip-address",
+        "description": "Specifies the remote SNMP copy. Specify the ip-address of the device that contains the remote copy of SNMP."
+      },
+      {
+        "name": "udp-port port-number",
+        "description": "(Optional) Specifies the User Datagram Protocol (UDP) port on the remote device. The default is 162."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "None",
+    "sourcePage": 1363,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server group",
+    "context": null,
+    "detail": "Configure a new Simple Network Management Protocol (SNMP) group.",
+    "syntax": "snmp-server group group-name {v1 | v2c | v3 {auth | noauth | priv}} [context context-name] [match {exact | prefix}] [read read-view] [write write-view] [notify notify-view] [access [ipv6 named-access-list] [acl-numberacl-name]]",
+    "noForm": "no snmp-server group group-name {v1 | v2c | v3 {auth | noauth | priv}} [context context-name]",
+    "params": [
+      {
+        "name": "group-name",
+        "description": "Name of the group."
+      },
+      {
+        "name": "v1",
+        "description": "Specifies that the group is using the SNMPv1 security model. SNMPv1 is the least secure of the possible SNMP security models."
+      },
+      {
+        "name": "v2c",
+        "description": "Specifies that the group is using the SNMPv2c security model. The SNMPv2c security model allows informs to be transmitted and supports 64-character strings."
+      },
+      {
+        "name": "v3",
+        "description": "Specifies that the group is using the SNMPv3 security model. SMNPv3 is the most secure of the supported security models. It allows you to explicitly configure authentication characteristics."
+      },
+      {
+        "name": "auth",
+        "description": "Specifies authentication of a packet without encrypting it."
+      },
+      {
+        "name": "noauth",
+        "description": "Specifies no authentication of a packet."
+      },
+      {
+        "name": "priv",
+        "description": "Specifies authentication of a packet with encryption."
+      },
+      {
+        "name": "context",
+        "description": "(Optional) Specifies the SNMP context to associate with this SNMP group and its views."
+      },
+      {
+        "name": "context-name",
+        "description": "(Optional) Context name."
+      },
+      {
+        "name": "match",
+        "description": "(Optional) Specifies an exact context match or matches only the context prefix."
+      },
+      {
+        "name": "exact",
+        "description": "(Optional) Matches the exact context."
+      },
+      {
+        "name": "prefix",
+        "description": "(Optional) Matches only the context prefix."
+      },
+      {
+        "name": "read",
+        "description": "(Optional) Specifies a read view for the SNMP group. This view enables you to view only the contents of the agent."
+      },
+      {
+        "name": "read-view",
+        "description": "(Optional) String of a maximum of 64 characters that is the name of the view. The default is that the read-view is assumed to be every object belonging to the Internet object identifier (OID) space (1.3.6.1), unless the read option is used to override this state."
+      },
+      {
+        "name": "write",
+        "description": "(Optional) Specifies a write view for the SNMP group. This view enables you to enter data and configure the contents of the agent. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1364 Network Management snmp-server group"
+      },
+      {
+        "name": "write-view",
+        "description": "(Optional) String of a maximum of 64 characters that is the name of the view. The default is that nothing is defined for the write view (that is, the null OID). You must configure write access."
+      },
+      {
+        "name": "notify",
+        "description": "(Optional) Specifies a notify view for the SNMP group. This view enables you to specify a notify, inform, or trap."
+      },
+      {
+        "name": "notify-view",
+        "description": "(Optional) String of a maximum of 64 characters that is the name of the view. By default, nothing is defined for the notify view (that is, the null OID) until the snmp-server host command is configured. If a view is specified in the snmp-server group command, any notifications in that view that are generated will be sent to all users associated with the group (provided a SNMP server host configuration exists for the user). Cisco recommends that you let the software autogenerate the notify view. See the “Configuring Notify Views” section in this document."
+      },
+      {
+        "name": "access",
+        "description": "(Optional) Specifies a standard access control list (ACL) to associate with the group."
+      },
+      {
+        "name": "ipv6",
+        "description": "(Optional) Specifies an IPv6 named access list. If both IPv6 and IPv4 access lists are indicated, the IPv6 named access list must appear first in the list."
+      },
+      {
+        "name": "named-access-list",
+        "description": "(Optional) Name of the IPv6 access list."
+      },
+      {
+        "name": "acl-number",
+        "description": "(Optional) The acl-numberargument is an integer from 1 to 99 that identifies a previously configured standard access list."
+      },
+      {
+        "name": "acl-name",
+        "description": "(Optional) The acl-name argument is a string of a maximum of 64 characters that is the name of a previously configured standard access list."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "When a community string is configured internally, two groups with the name public are autogenerated, one for the v1 security model and the other for the v2c security model.  Similarly, deleting a community string will delete a v1 group with the name public and a v2c group with the name public.  No default values exist for authentication or privacy algorithms when you configure the snmp-server group command.",
+    "sourcePage": 1364,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server host",
+    "context": null,
+    "detail": "Specify the recipient (host) of a Simple Network Management Protocol (SNMP) notification operation.",
+    "syntax": "snmp-server host {host-addr } [vrf vrf-instance ] [informs | traps] [version {1 | 2c | 3 {auth | noauth | priv} } ] {community-string [notification-type] } 3 {auth | noauth | priv} } ] {community-string [notification-type] }",
+    "noForm": "no snmp-server host {host-addr } [vrf vrf-instance ] [informs | traps] [version {1 | 2c |",
+    "params": [
+      {
+        "name": "host-addr",
+        "description": "Name or Internet address of the host (the targeted recipient). vrf vrf-instance (Optional) Specifies the virtual private network (VPN) routing instance and name for this host. informs | traps (Optional) Sends SNMP traps or informs to this host. version 1 | 2c | (Optional) Specifies the version of the SNMP used to send the traps. 3 1—SNMPv1. This option is not available with informs. 2c—SNMPv2C. 3—SNMPv3. One of the authorization keywords (see next table row) must follow the Version 3 keyword. auth | noauth auth (Optional)—Enables Message Digest 5 (MD5) and Secure Hash Algorithm (SHA)"
+      },
+      {
+        "name": "| priv",
+        "description": "packet authentication. noauth (Default)—The noAuthNoPriv security level. This is the default if the auth | noauth | priv keyword choice is not specified. priv (Optional)—Enables Data Encryption Standard (DES) packet encryption (also called privacy). community-string Password-like community string sent with the notification operation. Though you can set this string by using the snmp-server host command, we recommend that you define this string by using the snmp-server community global configuration command before using the snmp-server host command. Note The @ symbol is used for delimiting the context information. Avoid using the @ symbol as part of the SNMP community string when configuring this command. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1368 Network Management snmp-server host notification-type (Optional) Type of notification to be sent to the host. If no type is specified, all notifications are sent. The notification type can be one or more of the these keywords: • auth-framework—Sends SNMP CISCO-AUTH-FRAMEWORK-MIB traps. • bridge—Sends SNMP Spanning Tree Protocol (STP) bridge MIB traps. • bulkstat—Sends Data-Collection-MIB Collection notification traps. • call-home—Sends SNMP CISCO-CALLHOME-MIB traps. • cef—Sends SNMP CEF traps. • config—Sends SNMP configuration traps. • config-copy—Sends SNMP config-copy traps. • config-ctid—Sends SNMP config-ctid traps. • copy-config—Sends SNMP copy configuration traps. • cpu—Sends CPU notification traps. • cpu threshold—Sends CPU threshold notification traps. • eigrp—Sends SNMP EIGRP traps. • entity—Sends SNMP entity traps. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1369 Network Management snmp-server host • envmon—Sends environmental monitor traps. • errdisable—Sends SNMP errdisable notification traps. • event-manager—Sends SNMP Embedded Event Manager traps. • flash—Sends SNMP FLASH notifications. • flowmon—Sends SNMP flowmon notification traps. • ipmulticast—Sends SNMP IP multicast routing traps. • ipsla—Sends SNMP IP SLA traps. • isis—Sends IS-IS traps. • license—Sends license traps. • local-auth—Sends SNMP local auth traps. • mac-notification—Sends SNMP MAC notification traps. • ospf—Sends Open Shortest Path First (OSPF) traps. • pim—Sends SNMP Protocol-Independent Multicast (PIM) traps. • port-security—Sends SNMP port-security traps. • power-ethernet—Sends SNMP power Ethernet traps. • snmp—Sends SNMP-type traps. • storm-control—Sends SNMP storm-control traps. • stpx—Sends SNMP STP extended MIB traps. • syslog—Sends SNMP syslog traps. • transceiver—Sends SNMP transceiver traps. • tty—Sends TCP connection traps. • vlan-membership— Sends SNMP VLAN membership traps. • vlancreate—Sends SNMP VLAN-created traps. • vlandelete—Sends SNMP VLAN-deleted traps. • vrfmib—Sends SNMP vrfmib traps. • vstack—Sends SNMP Smart Install traps. • vtp—Sends SNMP VLAN Trunking Protocol (VTP) traps. • wireless—Sends wireless traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "SNMP notifications can be sent as traps or inform requests.  Traps are unreliable because the receiver does not send acknowledgments when it receives traps.  The sender cannot determine if the traps were received.",
+    "sourcePage": 1368,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server manager",
+    "context": null,
+    "detail": "Start the Simple Network Management Protocol (SNMP) manager process.",
+    "syntax": "snmp-server manager",
+    "noForm": "no snmp-server manager",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The SNMP manager process sends SNMP requests to agents and receives SNMP responses and notifications from agents.  When the SNMP manager process is enabled, the router can query other SNMP agents and process incoming SNMP traps.  Most network security policies assume that routers will be accepting SNMP requests, sending SNMP responses, and sending SNMP notifications.",
+    "sourcePage": 1373,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server user",
+    "context": null,
+    "detail": "Configure a new user to a Simple Network Management Protocol (SNMP) group.",
+    "syntax": "snmp-server user username group-name [remote host [udp-port port] [vrf vrf-name]] {v1 | v2c | v3 [encrypted] [auth {md5 | sha} auth-password]} [access [ipv6 nacl] [priv {des | 3des | aes {128 | 192 | 256}} privpassword] {acl-numberacl-name}] v2c | v3 [encrypted] [auth {md5 | sha} auth-password]} [access [ipv6 nacl] [priv {des | 3des | aes {128 | 192 | 256}} privpassword] {acl-numberacl-name}]",
+    "noForm": "no snmp-server user username group-name [remote host [udp-port port] [vrf vrf-name]] {v1 |",
+    "params": [
+      {
+        "name": "username",
+        "description": "Name of the user on the host that connects to the agent."
+      },
+      {
+        "name": "group-name",
+        "description": "Name of the group to which the user belongs."
+      },
+      {
+        "name": "remote",
+        "description": "(Optional) Specifies a remote SNMP entity to which the user belongs, and the hostname or IPv6 address or IPv4 IP address of that entity. If both an IPv6 address and IPv4 IP address are being specified, the IPv6 host must be listed first."
+      },
+      {
+        "name": "host",
+        "description": "(Optional) Name or IP address of the remote SNMP host."
+      },
+      {
+        "name": "udp-port",
+        "description": "(Optional) Specifies the User Datagram Protocol (UDP) port number of the remote host."
+      },
+      {
+        "name": "port",
+        "description": "(Optional) Integer value that identifies the UDP port. The default is 162."
+      },
+      {
+        "name": "vrf",
+        "description": "(Optional) Specifies an instance of a routing table."
+      },
+      {
+        "name": "vrf-name",
+        "description": "(Optional) Name of the Virtual Private Network (VPN) routing and forwarding (VRF) table to use for storing data."
+      },
+      {
+        "name": "v1",
+        "description": "Specifies that SNMPv1 should be used."
+      },
+      {
+        "name": "v2c",
+        "description": "Specifies that SNMPv2c should be used."
+      },
+      {
+        "name": "v3",
+        "description": "Specifies that the SNMPv3 security model should be used. Allows the use of the encrypted keyword or auth keyword or both."
+      },
+      {
+        "name": "encrypted",
+        "description": "(Optional) Specifies whether the password appears in encrypted format."
+      },
+      {
+        "name": "auth",
+        "description": "(Optional) Specifies which authentication level should be used."
+      },
+      {
+        "name": "md5",
+        "description": "(Optional) Specifies the HMAC-MD5-96 authentication level."
+      },
+      {
+        "name": "sha",
+        "description": "(Optional) Specifies the HMAC-SHA-96 authentication level."
+      },
+      {
+        "name": "auth-password",
+        "description": "(Optional) String (not to exceed 64 characters) that enables the agent to receive packets from the host."
+      },
+      {
+        "name": "access",
+        "description": "(Optional) Specifies an Access Control List (ACL) to be associated with this SNMP user."
+      },
+      {
+        "name": "ipv6",
+        "description": "(Optional) Specifies an IPv6 named access list to be associated with this SNMP user. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1374 Network Management snmp-server user"
+      },
+      {
+        "name": "nacl",
+        "description": "(Optional) Name of the ACL. IPv4, IPv6, or both IPv4 and IPv6 access lists may be specified. If both are specified, the IPv6 named access list must appear first in the statement."
+      },
+      {
+        "name": "priv",
+        "description": "(Optional) Specifies the use of the User-based Security Model (USM) for SNMP version 3 for SNMP message level security."
+      },
+      {
+        "name": "des",
+        "description": "(Optional) Specifies the use of the 56-bit Digital Encryption Standard (DES) algorithm for encryption."
+      },
+      {
+        "name": "3des",
+        "description": "(Optional) Specifies the use of the 168-bit 3DES algorithm for encryption."
+      },
+      {
+        "name": "aes",
+        "description": "(Optional) Specifies the use of the Advanced Encryption Standard (AES) algorithm for encryption."
+      },
+      {
+        "name": "128",
+        "description": "(Optional) Specifies the use of a 128-bit AES algorithm for encryption."
+      },
+      {
+        "name": "192",
+        "description": "(Optional) Specifies the use of a 192-bit AES algorithm for encryption."
+      },
+      {
+        "name": "256",
+        "description": "(Optional) Specifies the use of a 256-bit AES algorithm for encryption."
+      },
+      {
+        "name": "privpassword",
+        "description": "(Optional) String (not to exceed 64 characters) that specifies the privacy user password."
+      },
+      {
+        "name": "acl-number",
+        "description": "(Optional) Integer in the range from 1 to 99 that specifies a standard access list of IP addresses."
+      },
+      {
+        "name": "acl-name",
+        "description": "(Optional) String (not to exceed 64 characters) that is the name of a standard access list of IP addresses."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "To configure a remote user, specify the IP address or port number for the remote SNMP agent of the device where the user resides.  Also, before you configure remote users for a particular agent, configure the SNMP engine ID, using the snmp-server engineID command with the remote keyword.  The remote agent’s SNMP engine ID is needed when computing the authentication and privacy digests from the password.",
+    "sourcePage": 1374,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server view",
+    "context": null,
+    "detail": "Create or update a view entry.",
+    "syntax": "snmp-server view view-name oid-tree {included | excluded}",
+    "noForm": "no snmp-server view view-name",
+    "params": [
+      {
+        "name": "view-name",
+        "description": "Label for the view record that you are updating or creating. The name is used to reference the record."
+      },
+      {
+        "name": "oid-tree",
+        "description": "Object identifier of the ASN.1 subtree to be included or excluded from the view. To identify the subtree, specify a text string consisting of numbers, such as 1.3.6.2.4, or a word, such as system. Replace a single subidentifier with the asterisk (*) wildcard to specify a subtree family; for example 1.3.*.4."
+      },
+      {
+        "name": "included",
+        "description": "Configures the OID (and subtree OIDs) specified in oid-tree argument to be included in the SNMP view."
+      },
+      {
+        "name": "excluded",
+        "description": "Configures the OID (and subtree OIDs) specified in oid-tree argument to be explicitly excluded from the SNMP view."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Other SNMP commands require an SMP view as an argument.  You use this command to create a view to be used as arguments for other commands.  Two standard predefined views can be used when a view is required, instead of defining a view.",
+    "sourcePage": 1378,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "source",
+    "context": null,
+    "detail": "Configure the source IP address interface for all of the packets sent by a Flexible Netflow flow exporter.",
+    "syntax": "source interface-type interface-number",
+    "noForm": "no source",
+    "params": [
+      {
+        "name": "interface-type",
+        "description": "Type of interface whose IP address you want to use for the source IP address of the packets sent by a Flexible Netflow flow exporter."
+      },
+      {
+        "name": "interface-number",
+        "description": "Interface number whose IP address you want to use for the source IP address of the packets sent by a Flexible Netflow flow exporter."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "The benefits of using a consistent IP source address for the datagrams that Flexible Netflow sends include the following: • The source IP address of the datagrams exported by Flexible Netflow is used by the destination system to determine from which device the Flexible Netflow data is arriving.  If your network has two or more paths that can be used to send Flexible Netflow datagrams from the device to the destination system and you do not specify the source interface from which the source IP address is to be obtained, the device uses the IP address of the interface over which the datagram is transmitted as the source IP address of the datagram.  In this situation the destination system might receive Flexible Netflow datagrams from the same device , but with different source IP addresses.",
+    "sourcePage": 1380,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "source",
+    "context": "ERSPAN",
+    "detail": "Configure the Encapsulated Remote Switched Port Analyzer (ERSPAN) source interface or VLAN, and the traffic direction to be monitored.",
+    "syntax": "source {interface type number | vlan vlan-ID}[, | - | both | rx | tx]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface type number",
+        "description": "Specifies an interface type and number."
+      },
+      {
+        "name": "vlan vlan-ID",
+        "description": "Associates the ERSPAN source session number with VLANs. Valid values are from 1 to 4094."
+      },
+      {
+        "name": ",",
+        "description": "(Optional) Specifies another interface."
+      },
+      {
+        "name": "-",
+        "description": "(Optional) Specifies a range of interfaces."
+      },
+      {
+        "name": "both",
+        "description": "(Optional) Monitors both received and transmitted ERSPAN traffic."
+      },
+      {
+        "name": "rx",
+        "description": "(Optional) Monitors only received traffic."
+      },
+      {
+        "name": "tx",
+        "description": "(Optional) Monitors only transmitted traffic."
+      }
+    ],
+    "modes": ["ERSPAN monitor source session configuration mode (config-mon-erspan-src)"],
+    "usageSummary": "You cannot include source VLANs and filter VLANs in the same session.",
+    "sourcePage": 1382,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "socket",
+    "context": null,
+    "detail": "To specify the client socket and allow a TCL interpreter to connect via TCP over IPv4/IPv6 and open a TCP network connection use the socket comand in the TCL configuration mode.",
+    "syntax": "socket myaddr address myport port myvrf vrf-table-name host port",
+    "noForm": null,
+    "params": [
+      {
+        "name": "myaddr",
+        "description": "Specifies domain name or numerical IP address of the client-side network interface required for the connection. Use this option especially if the client machine has multiple network interfaces."
+      },
+      {
+        "name": "myport",
+        "description": "Specifies port number that is required for the client's connection."
+      },
+      {
+        "name": "myvrf",
+        "description": "Specifies the vrf table name. If the vrf table is not configured, then the command will return a TCL_ERROR."
+      }
+    ],
+    "modes": ["TCL configuration mode"],
+    "usageSummary": null,
+    "sourcePage": 1383,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport mode access",
+    "context": null,
+    "detail": "Sets the interface as a nontrunking nontagged single-VLAN Ethernet interface.",
+    "syntax": "switchport mode access",
+    "noForm": "no switchport mode access",
+    "params": [
+      {
+        "name": "switchport",
+        "description": "mode access Sets the interface as a nontrunking nontagged single-VLAN Ethernet interface."
+      }
+    ],
+    "modes": ["Template configuration"],
+    "usageSummary": null,
+    "sourcePage": 1384,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport voice vlan",
+    "context": null,
+    "detail": "Specify to forward all voice traffic through the specified VLAN.",
+    "syntax": "switchport voice vlanvlan_id",
+    "noForm": "no switchport voice vlan",
+    "params": [
+      {
+        "name": "switchport",
+        "description": "voice vlanvlan_id Specifies to forward all voice traffic through the specified VLAN."
+      }
+    ],
+    "modes": ["Template configuration"],
+    "usageSummary": null,
+    "sourcePage": 1385,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ttl",
+    "context": null,
+    "detail": "Configure the time-to-live (TTL) value.",
+    "syntax": "ttl ttl",
+    "noForm": "no ttl ttl",
+    "params": [
+      {
+        "name": "ttl",
+        "description": "Time-to-live (TTL) value for exported datagrams. The range is 1 to 255. The default is 255."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "To return this command to its default settings, use the no ttl or default ttl flow exporter configuration command.  The following example specifies a TTL of 15: Device(config)# flow exporter FLOW-EXPORTER-1 Device(config-flow-exporter)# ttl 15 Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 1386,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "transport",
+    "context": null,
+    "detail": "Configure the transport protocol for a flow exporter for Flexible Netflow.",
+    "syntax": "transport udp udp-port",
+    "noForm": "no transport udp udp-port",
+    "params": [
+      {
+        "name": "udp udp-port",
+        "description": "Specifies User Datagram Protocol (UDP) as the transport protocol and the UDP port number."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "To return this command to its default settings, use the no transport or default transport flow exporter configuration command.  The following example configures UDP as the transport protocol and a UDP port number of 250: Device(config)# flow exporter FLOW-EXPORTER-1 Device(config-flow-exporter)# transport udp 250 Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 1387,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "template data timeout",
+    "context": null,
+    "detail": "Specify a timeout period for resending flow exporter template data.",
+    "syntax": "template data timeout seconds",
+    "noForm": "no template data timeout seconds",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Timeout value in seconds. The range is 1 to 86400. The default is 600."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "Flow exporter template data describes the exported data records.  Data records cannot be decoded without the corresponding template.  The template data timeout command controls how often those templates are exported.",
+    "sourcePage": 1388,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "udp peek",
+    "context": null,
+    "detail": "To enable peeking into a UDP socket use the udp_peek command in the TCL configuration mode.",
+    "syntax": "udp_peek socket buffersize buffer-size",
+    "noForm": null,
+    "params": [
+      {
+        "name": "buffersize",
+        "description": "Specifies the buffer size."
+      }
+    ],
+    "modes": ["TCL configuration mode"],
+    "usageSummary": null,
+    "sourcePage": 1389,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  }
+]

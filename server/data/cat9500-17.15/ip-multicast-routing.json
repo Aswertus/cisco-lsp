@@ -1,0 +1,1574 @@
+[
+  {
+    "name": "clear ip mfib counters",
+    "context": null,
+    "detail": "Clear all the active IPv4 Multicast Forwarding Information Base (MFIB) traffic counters.",
+    "syntax": "clear ip mfib [global | vrf *] counters [group-address] [hostname | source-address]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "global",
+        "description": "(Optional) Resets the IP MFIB cache to the global default configuration."
+      },
+      {
+        "name": "vrf *",
+        "description": "(Optional) Clears the IP MFIB cache for all VPN routing and forwarding instances."
+      },
+      {
+        "name": "group-address",
+        "description": "(Optional) Limits the active MFIB traffic counters to the indicated group address."
+      },
+      {
+        "name": "hostname",
+        "description": "(Optional) Limits the active MFIB traffic counters to the indicated host name. source-address (Optional) Limits the active MFIB traffic counters to the indicated source address."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 835,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear ip mroute",
+    "context": null,
+    "detail": "To delete the entries in the IP multicast routing table, use the clear ip mroutecommand in privileged EXEC mode.",
+    "syntax": "clear ip mroute [vrf vrf-name]{* | ip-address | group-address}[hostname | source-address]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies the name that is assigned to the multicast VPN routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "*",
+        "description": "Specifies all Multicast routes."
+      },
+      {
+        "name": "ip-address",
+        "description": "Multicast routes for the IP address."
+      },
+      {
+        "name": "group-address",
+        "description": "Multicast routes for the group address."
+      },
+      {
+        "name": "hostname",
+        "description": "(Optional) Multicast routes for the host name."
+      },
+      {
+        "name": "source-address",
+        "description": "(Optional) Multicast routes for the source address."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The group-address variable specifies one of the following: • Name of the multicast group as defined in the DNS hosts table or with the ip host command.  • IP address of the multicast group in four-part, dotted notation.  If you specify a group name or address, you can also enter the source argument to specify a name or address of a multicast source that is sending to the group.",
+    "sourcePage": 836,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear ip pim snooping vlan",
+    "context": null,
+    "detail": null,
+    "syntax": "Note This command is not applicable on C9500X-28C8D model of Cisco Catalyst 9500 Series Switches To delete the Protocol Independent Multicast (PIM) snooping entries on a specific VLAN, use the clear ip pim snooping vlan command in user EXEC or privileged EXEC mode. clear ip pim snooping vlan vlan-id [neighbor | statistics | mroute [source-ipgroup-ip]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "VLAN ID. Valid values are from 1―4094."
+      },
+      {
+        "name": "neighbor",
+        "description": "Deletes all the neighbors."
+      },
+      {
+        "name": "statistics",
+        "description": "Deletes information about the VLAN statistics."
+      },
+      {
+        "name": "mroute group-addr src-addr",
+        "description": "Deletes the mroute entries in the specified group and the source IP address."
+      }
+    ],
+    "modes": ["User EXEC Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 837,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug condition vrf",
+    "context": null,
+    "detail": "Limit debug output to a specific virtual routing and forwarding (VRF) instance.",
+    "syntax": "debug condition vrf {default | global | green | name {vrf-name | green}}",
+    "noForm": "no debug condition vrf {default | global | green | name {vrf-name | green}}",
+    "params": [
+      {
+        "name": "Syntax",
+        "description": "Description"
+      },
+      {
+        "name": "default",
+        "description": "Specifies the default routing table."
+      },
+      {
+        "name": "global",
+        "description": "Specifies the global routing table."
+      },
+      {
+        "name": "green",
+        "description": "Specifies the VRF name."
+      },
+      {
+        "name": "name vrf-name",
+        "description": "Specifies the name of the routing table."
+      }
+    ],
+    "modes": ["Privileged EXEC mode (#)"],
+    "usageSummary": "Use this command to limit debug output to a single VRF.  Caution Because debugging output is assigned high priority in the CPU process, it can render the system unusable.  For this reason, use the debug commands only to troubleshoot specific problems or during troubleshooting sessions with Cisco technical support staff.",
+    "sourcePage": 838,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug ip pim",
+    "context": null,
+    "detail": "Display PIM packets received and transmitted, as well as PIM related events.",
+    "syntax": "debug ip pim [vrf vrf-name][ip-address | atm | auto-rp | bfd | bsr | crimson | df rp-address | drlb | hello | timers] | hello | timers]",
+    "noForm": "no debug ip pim [vrf vrf-name][ip-address | atm | auto-rp | bfd | bsr | crimson | df rp-address | drlb",
+    "params": [
+      {
+        "name": "Syntax",
+        "description": "Description"
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies the VPN Routing and Forwarding instance. This keyword overrides debugging of any VRFs specified in the debug condition vrf vrf-name command."
+      },
+      {
+        "name": "ip-address",
+        "description": "(Optional) Specifies the IP group address."
+      },
+      {
+        "name": "atm",
+        "description": "(Optional) Displays debugging information about PIM ATM signalling activity."
+      },
+      {
+        "name": "auto-rp",
+        "description": "(Optional) Displays debugging information about Auto-RP information."
+      },
+      {
+        "name": "bfd",
+        "description": "(Optional) Displays debugging information about BFD configuration."
+      },
+      {
+        "name": "bsr",
+        "description": "(Optional) Displays debugging information about PIM Candidate-RP and BSR activity."
+      },
+      {
+        "name": "crimson",
+        "description": "(Optional) Displays debugging information about Crimson database activity."
+      },
+      {
+        "name": "df rp-address",
+        "description": "(Optional) Displays debugging information about PIM RP designated forwarder election activity."
+      },
+      {
+        "name": "drlb",
+        "description": "(Optional) Displays debugging information about PIM designated router load-balancing activity."
+      },
+      {
+        "name": "hello",
+        "description": "(Optional) Displays debugging information about PIM Hello packets received and sent."
+      },
+      {
+        "name": "timers",
+        "description": "(Optional) Displays debugging information about PIM timer events."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC mode (#)",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 839 IP Multicast Routing debug ip pim"
+    ],
+    "usageSummary": "Caution Because debugging output is assigned high priority in the CPU process, it can render the system unusable.  For this reason, use the debug commands only to troubleshoot specific problems or during troubleshooting sessions with Cisco technical support staff.  It is best to use the debug commands during periods of lower network traffic and fewer users.",
+    "sourcePage": 839,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug ipv6 pim",
+    "context": null,
+    "detail": "Enable debugging on Protocol Independent Multicast (PIM) protocol activity.",
+    "syntax": "debug ipv6 pim [vrf vrf-name ] [bfd interface-type interface-number | bsr | crimson | df-election [interface interface-type interface-number | rp rp-address] | drlb | group group-address | interface interface-type interface-number | limit [group-address ] | neighbor interface-type interface-number ] [vrf vrf-name ] [bfd interface-type interface-number | bsr | crimson | df-election [interface interface-type interface-number | rp rp-address] | drlb | group group-address | interface interface-type interface-number | limit [group-address ] | neighbor interface-type interface-number ]",
+    "noForm": "no debug ipv6 pim",
+    "params": [
+      {
+        "name": "Syntax",
+        "description": "Description"
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies the VPN Routing and Forwarding instance. This keyword overrides debugging of any VRFs specified in the debug condition vrf vrf-name command."
+      },
+      {
+        "name": "bfd",
+        "description": "(Optional) Displays debugging information about BFD configuration."
+      },
+      {
+        "name": "bsr",
+        "description": "(Optional) Displays debugging information about PIM Candidate-RP and BSR sent and received."
+      },
+      {
+        "name": "crimson",
+        "description": "(Optional) Displays debugging information about Crimson database activity."
+      },
+      {
+        "name": "df-election",
+        "description": "(Optional) Displays debugging information about PIM designated forwarder election activity."
+      },
+      {
+        "name": "drlb",
+        "description": "(Optional) Displays debugging information about PIM designated router load-balancing activity."
+      },
+      {
+        "name": "group group-address",
+        "description": "(Optional) Displays debugging information about group-related activity."
+      },
+      {
+        "name": "interface",
+        "description": "(Optional) Displays debugging information about protocol activity of the specified interface."
+      },
+      {
+        "name": "limit",
+        "description": "(Optional) Displays debugging information about interface limits. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 841 IP Multicast Routing debug ipv6 pim"
+      },
+      {
+        "name": "Syntax",
+        "description": "Description"
+      },
+      {
+        "name": "neighbor",
+        "description": "(Optional) Displays debugging information about PIM Hello messages received and sent."
+      },
+      {
+        "name": "interface-type interface-number",
+        "description": "(Optional) Displays debugging information about the specified interface."
+      },
+      {
+        "name": "rp rp-address",
+        "description": "(Optional) Displays debugging information about the specified RP."
+      }
+    ],
+    "modes": ["Privileged EXEC mode (#)"],
+    "usageSummary": "Caution Because debugging output is assigned high priority in the CPU process, it can render the system unusable.  For this reason, use the debug commands only to troubleshoot specific problems or during troubleshooting sessions with Cisco technical support staff.  It is best to use the debug commands during periods of lower network traffic and fewer users.",
+    "sourcePage": 841,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "device tracking export oper data",
+    "context": null,
+    "detail": "Export the IP and MAC databases for Switch Integrated Security Features to the Crimson database.",
+    "syntax": "device-tracking export oper-data [ enable | disable ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "enable",
+        "description": "Enables operational data export to the Crimson database. disable Disables operational data export to the Crimson database."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "When the device-tracking export oper-data enable command is used: • The IP and MAC address tables are not immediately repopulated with the current state of the SISF database.  No events will be generated for the current database entries.  • Subsequent changes to MAC and IP address entries will be published in the IP and MAC address tables and event-queues.",
+    "sourcePage": 843,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip igmp filter",
+    "context": null,
+    "detail": "Control whether or not all the hosts on a Layer 2 interface can join one or more IP multicast groups by applying an Internet Group Management Protocol (IGMP) profile to the interface.",
+    "syntax": "ip igmp filter profile number",
+    "noForm": "no ip igmp filter",
+    "params": [
+      {
+        "name": "profile number",
+        "description": "IGMP profile number to be applied. The range is 1—4294967295."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You can apply IGMP filters only to Layer 2 physical interfaces; you cannot apply IGMP filters to routed ports, switch virtual interfaces (SVIs), or ports that belong to an EtherChannel group.  An IGMP profile can be applied to one or more device port interfaces, but one port can have only one profile applied to it.",
+    "sourcePage": 844,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip igmp max-groups",
+    "context": null,
+    "detail": "Set the maximum number of Internet Group Management Protocol (IGMP) groups that a Layer 2 interface can join or to configure the IGMP throttling action when the maximum number of entries is in the forwarding table.",
+    "syntax": "ip igmp max-groups {max number | action { deny | replace}}",
+    "noForm": "no ip igmp max-groups {max number | action}",
+    "params": [
+      {
+        "name": "max number",
+        "description": "Maximum number of IGMP groups that an interface can join. The range is 0—4294967294. The default is no limit."
+      },
+      {
+        "name": "action deny",
+        "description": "Drops the next IGMP join report when the maximum number of entries is in the IGMP snooping forwarding table. This is the default action."
+      },
+      {
+        "name": "action replace",
+        "description": "Replaces the existing group with the new group for which the IGMP report was received when the maximum number of entries is in the IGMP snooping forwarding table."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You can use this command only on Layer 2 physical interfaces and on logical EtherChannel interfaces.  You cannot set IGMP maximum groups for routed ports, switch virtual interfaces (SVIs), or ports that belong to an EtherChannel group.  Follow these guidelines when configuring the IGMP throttling action: • If you configure the throttling action as deny, and set the maximum group limit, the entries that were previously in the forwarding table are not removed, but are aged out.",
+    "sourcePage": 845,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip igmp profile",
+    "context": null,
+    "detail": "Create an Internet Group Management Protocol (IGMP) profile and enter IGMP profile configuration mode.",
+    "syntax": "ip igmp profile profile number",
+    "noForm": "no ip igmp profile profile number",
+    "params": [
+      {
+        "name": "profile number",
+        "description": "The IGMP profile number being configured. The range is from 1—4294967295."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "When you are in IGMP profile configuration mode, you can create a profile by using these commands: • deny—Specifies that matching addresses are denied; this is the default condition.  • exit—Exits from igmp-profile configuration mode.  • no—Negates a command or resets to its defaults.",
+    "sourcePage": 847,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip igmp snooping",
+    "context": null,
+    "detail": "Globally enable Internet Group Management Protocol (IGMP) snooping on the device or to enable it on a per-VLAN basis.",
+    "syntax": "ip igmp snooping [vlan vlan-id]",
+    "noForm": "no ip igmp snooping [vlan vlan-id]",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "When IGMP snooping is enabled globally, it is enabled in all of the existing VLAN interfaces.  When IGMP snooping is globally disabled, it is disabled on all of the existing VLAN interfaces.  VLAN IDs 1002 to 1005 are reserved for Token Ring and FDDI VLANs, and cannot be used in IGMP snooping.",
+    "sourcePage": 848,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip igmp snooping last-member-query-count",
+    "context": null,
+    "detail": "Configure how often Internet Group Management Protocol (IGMP) snooping will send query messages in response to receiving an IGMP leave message.",
+    "syntax": "ip igmp snooping [vlan vlan-id] last-member-query-count count",
+    "noForm": "no ip igmp snooping [vlan vlan-id] last-member-query-count count",
+    "params": [
+      {
+        "name": "count",
+        "description": "Interval at which query messages are sent, in milliseconds. The range is from 1―7. The default is 2."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "When a multicast host leaves a group, the host sends an IGMP leave message.  To check if this host is the last to leave the group, IGMP query messages are sent when the leave message is seen until the last-member-query-interval timeout period expires.  If no response is received to the last-member queries before the timeout period expires, the group record is deleted.",
+    "sourcePage": 849,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip igmp snooping querier",
+    "context": null,
+    "detail": "Globally enable the Internet Group Management Protocol (IGMP) querier function in Layer 2 networks.",
+    "syntax": "ip igmp snooping [vlan vlan-id] querier [address ip-address | max-response-time response-time | query-interval interval-count | tcn query {count count | interval interval} | timer expiry expiry-time | version version] tcn query {count | interval} | timer expiry | version]",
+    "noForm": "no ip igmp snooping [vlan vlan-id] querier [address | max-response-time | query-interval |",
+    "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Enables IGMP snooping and the IGMP querier function on the specified VLAN. Ranges are 1—1001 and 1006—4094."
+      },
+      {
+        "name": "address ip-address",
+        "description": "(Optional) Specifies a source IP address. If you do not specify an IP address, the querier tries to use the global IP address configured for the IGMP querier."
+      },
+      {
+        "name": "max-response-time",
+        "description": "(Optional) Sets the maximum time to wait for an IGMP querier report."
+      },
+      {
+        "name": "response-time",
+        "description": "The range is 1—25 seconds."
+      },
+      {
+        "name": "query-interval interval-count",
+        "description": "(Optional) Sets the interval between IGMP queriers. The range is 1—18000 seconds."
+      },
+      {
+        "name": "tcn query",
+        "description": "(Optional) Sets parameters related to Topology Change Notifications (TCNs)."
+      },
+      {
+        "name": "count count",
+        "description": "Sets the number of TCN queries to be executed during the TCN interval time. The range is 1—10."
+      },
+      {
+        "name": "interval interval",
+        "description": "Sets the TCN query interval time. The range is 1—255."
+      },
+      {
+        "name": "timer expiry expiry-time",
+        "description": "(Optional) Sets the length of time until the IGMP querier expires. The range is 60—300 seconds."
+      },
+      {
+        "name": "version version",
+        "description": "(Optional) Selects the IGMP version number that the querier feature uses. Select either 1 or 2."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use this command to enable IGMP snooping to detect the IGMP version and IP address of a device that sends IGMP query messages, which is also called a querier.  By default, the IGMP snooping querier is configured to detect devices that use IGMP Version 2 (IGMPv2), but does not detect clients that are using IGMP Version 1 (IGMPv1).  You can manually configure the max-response-time value when devices use IGMPv2.",
+    "sourcePage": 851,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip igmp snooping report-suppression",
+    "context": null,
+    "detail": "Enable Internet Group Management Protocol (IGMP) report suppression.",
+    "syntax": "ip igmp snooping report-suppression",
+    "noForm": "no ip igmp snooping report-suppression",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "IGMP report suppression is supported only when the multicast query has IGMPv1 and IGMPv2 reports.  This feature is not supported when the query includes IGMPv3 reports.  The device uses IGMP report suppression to forward only one IGMP report per multicast router query to multicast devices.",
+    "sourcePage": 853,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip igmp snooping tcn flood",
+    "context": null,
+    "detail": "Enable flooding of multicast traffic during a spanning-tree Topology Change Notification (TCN) event for an interface after TCN flooding is explicitly disabled on the interface.",
+    "syntax": "ip igmp snooping tcn flood",
+    "noForm": "no ip igmp snooping tcn flood",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use this command to disable or enable TCN flooding on an interface.  TCN flooding is enabled on all interfaces by default.  The Spanning Tree Protocol (STP) operates on the virtual port level.",
+    "sourcePage": 854,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip igmp snooping vlan mrouter",
+    "context": null,
+    "detail": "Add a multicast router port.",
+    "syntax": null,
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "VLAN IDs 1002―1005 are reserved for Token Ring and FDDI VLANs, and cannot be used in IGMP snooping.  The configuration is saved in NVRAM.",
+    "sourcePage": 856,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip igmp snooping vlan static",
+    "context": null,
+    "detail": "Enable Internet Group Management Protocol (IGMP) snooping and to statically add a Layer 2 port as a member of a multicast group.",
+    "syntax": "ip igmp snooping vlan vlan-id static ip-address interface interface-id",
+    "noForm": "no ip igmp snooping vlan vlan-id static ip-address interface interface-id",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "Enables IGMP snooping on the specified VLAN. Ranges are 1—1001 and 1006—4094."
+      },
+      {
+        "name": "ip-address",
+        "description": "Adds a Layer 2 port as a member of a multicast group with the specified group IP address. interface interface-id Specifies the interface of the member port. The interface-id has these options: • fastethernet interface number—A Fast Ethernet IEEE 802.3 interface. • gigabitethernet interface number—A Gigabit Ethernet IEEE 802.3z interface. • tengigabitethernet interface number—A 10-Gigabit Ethernet IEEE 802.3z interface. • port-channel interface number—A channel interface. The range is 0—128."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "VLAN IDs 1002 to 1005 are reserved for Token Ring and FDDI VLANs, and cannot be used in IGMP snooping.  The configuration is saved in NVRAM.",
+    "sourcePage": 857,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip mroute extend-timer",
+    "context": null,
+    "detail": "This command introduces a mechanism to extend the expiry timer for newly created (S,G) mroutes if traffic stops within the first 2 minutes, preventing premature deletion and ensuring stability for infrequent or bursty traffic flows, while only applying to IPv4 ASM routes and not affecting SSM routes. To return to the default mode, use the no form of this command.",
+    "syntax": "ip mroute extend-timer",
+    "noForm": "no ip mroute extend-timer",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Enabling this command automatically applies it to user VRFs, eliminating the need to enable it separately for each VRF.  No explicit commands are required for VRF.",
+    "sourcePage": 858,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip multicast auto-enable",
+    "context": null,
+    "detail": "Support authentication, authorization, and accounting (AAA) enabling of IP multicast.",
+    "syntax": "ip multicast auto-enable",
+    "noForm": "no ip multicast auto-enable",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "None",
+    "sourcePage": 859,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip multicast-routing",
+    "context": null,
+    "detail": "Enable IP multicast routing.",
+    "syntax": "ip multicast-routing [vrf vrf-name]",
+    "noForm": "no ip multicast-routing [vrf vrf-name]",
+    "params": [
+      {
+        "name": "vrf",
+        "description": "(Optional) Enables IP multicast routing for the Multicast VPN routing and forwarding (MVRF)"
+      },
+      {
+        "name": "vrf-name",
+        "description": "instance specified for the vrf-name argument."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "When IP multicast routing is disabled, the Cisco IOS XE software does not forward any multicast packets.",
+    "sourcePage": 860,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim accept-register",
+    "context": null,
+    "detail": "Configure a candidate rendezvous point (RP) switch to filter Protocol Independent Multicast (PIM) register messages.",
+    "syntax": "ip pim [vrf vrf-name ] accept-register {list access-list}",
+    "noForm": "no ip pim [vrf vrf-name ] accept-register",
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Configures a PIM register filter on candidate RPs for (S, G) traffic associated with the multicast Virtual Private Network (VPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      },
+      {
+        "name": "list access-list",
+        "description": "Specifies the access-list argument as a number or name that defines the (S, G) traffic in PIM register messages to be permitted or denied. The range is 100—199 and the expanded range is 2000—2699. An IP-named access list can also be used."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use this command to prevent unauthorized sources from registering with the RP.  If an unauthorized source sends a register message to the RP, the RP will immediately send back a register-stop message.  The access list provided for the ip pim accept-register command should only filters IP source addresses and IP destination addresses.",
+    "sourcePage": 861,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim bidir-enable",
+    "context": null,
+    "detail": "Enable bidirectional Protocol Independent Multicast (bidirectional PIM).",
+    "syntax": "ip pim bidir-enable",
+    "noForm": "no ip pim bidir-enable",
+    "params": [],
+    "modes": [
+      "Global configuration (config)",
+      "Usage Guidelines When bidirectional PIM is disabled, the router will behave similarly to a router without bidirectional PIM support. The following conditions will apply: • PIM hello messages sent by the router will not contain the bidirectional mode option. • The router will not send designated forwarder (DF) election messages and will ignore DF election messages it receives. • The ip pim rp-address, ip pim send-rp-announce, and ip pim rp-candidate global configuration commands will be treated as follows: • If these commands are configured when bidirectional PIM is disabled, bidirectional mode will not be a configuration option. • If these commands are configured with the bidirectional mode option when bidirectional PIM is enabled and then bidirectional PIM is disabled, these commands will be removed from the command-line interface (CLI). In this situation, these commands must be configured again with the bidirectional mode option when bidirectional PIM is reenabled.",
+      "• The df keyword for the show ip pim interface user EXEC or privileged EXEC command and debug ip pim privileged EXEC command is not supported.",
+      "The following example shows how to enable bidirectional PIM: Device# enable Device# configure terminal Device(config)# ip pim bidir-enable",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 862 IP Multicast Routing ip pim bsr-candidate"
+    ],
+    "usageSummary": "When bidirectional PIM is disabled, the router will behave similarly to a router without bidirectional PIM support.  The following conditions will apply: • PIM hello messages sent by the router will not contain the bidirectional mode option.  • The router will not send designated forwarder (DF) election messages and will ignore DF election messages it receives.",
+    "sourcePage": 862,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim bsr-candidate",
+    "context": null,
+    "detail": "Configure the Device to be a candidate BSR.",
+    "syntax": "ip pim [vrf vrf-name] bsr-candidate interface-id [hash-mask-length] [priority]",
+    "noForm": "no ip pim [vrf vrf-name] bsr-candidate",
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Configures the Device to be a candidate BSR for the Multicast Virtual Private Network (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      },
+      {
+        "name": "interface-id",
+        "description": "ID of the interface on the Device from which the BSR address is derived to make it a candidate. This interface must be enabled for Protocol Independent Multicast (PIM) using the ip pim command. Valid interfaces include physical ports, port channels, and VLANs."
+      },
+      {
+        "name": "hash-mask-length",
+        "description": "(Optional) Length of a mask (32 bits maximum) that is to be ANDed with the group address before the PIMv2 hash function is called. All groups with the same seed hash correspond to the same rendezvous point ( RP). For example, if this value is 24, only the first 24 bits of the group addresses matter. The hash mask length allows one RP to be used for multiple groups. The default hash mask length is 0."
+      },
+      {
+        "name": "priority",
+        "description": "(Optional) Priority of the candidate BSR (C-BSR). The range is from 0 to 255. The default priority is 0. The C-BSR with the highest priority value is preferred."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The interface specified for this command must be enabled for Protocol Independent Multicast (PIM) using the ip pim command.  This command configures the Device to send BSR messages to all of its PIM neighbors, with the address of the designated interface as the BSR address.  This command should be configured on backbone Devices that have good connectivity to all parts of the PIM domain.",
+    "sourcePage": 863,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim query-interval",
+    "context": null,
+    "detail": "Configure the frequency of Protocol Independent Multicast (PIM) query (hello) messages.",
+    "syntax": "ip pim query-interval period [msec]",
+    "noForm": "no ip pim query-interval",
+    "params": [
+      {
+        "name": "period",
+        "description": "The number of seconds or milliseconds (ms) that can be configured for the PIM hello (query) interval. The range is from 1 to 65535."
+      },
+      {
+        "name": "msec",
+        "description": "(Optional) Specifies that the interval configured for the period argument be interpreted in milliseconds. If the msec keyword is not used along with the period argument, the interval range is assumed to be in seconds. Command Default"
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": "Use this command to configure the frequency of PIM neighbor discovery messages.  By default these messages are sent once every 30 seconds.  In PIM Version 1 (PIMv1), these messages are referred to as PIM query messages; in PIM Version 2 (PIMv2), these messages are referred to as PIM hello messages.",
+    "sourcePage": 865,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim rp-address",
+    "context": null,
+    "detail": "Statically configure the address of a Protocol Independent Multicast (PIM) rendezvous point (RP) for multicast groups.",
+    "syntax": "ip pim [vrf vrf-name]rp-address rp-address [access-list] [override ] [bidir]",
+    "noForm": "no ip pim [vrf vrf-name]rp-address rp-address [access-list] [override ] [bidir]",
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies that the static group-to-RP mapping be associated with the Multicast Virtual Private Network (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      },
+      {
+        "name": "rp-address rp-address",
+        "description": "IP address of the RP to be used for the static group-to-RP mapping. This is a unicast IP address in four-part dotted-decimal notation."
+      },
+      {
+        "name": "access-list",
+        "description": "(Optional) Number or name of a standard access list that defines the multicast groups to be statically mapped to the RP. Note If no access list is defined, the RP will map to all multicast groups"
+      },
+      {
+        "name": "override",
+        "description": "(Optional) Specifies that if dynamic and static group-to-RP mappings are used together and there is an RP address conflict, the RP address configured for a static group-to-RP mapping will take precedence. Note If the override keyword is not specified and there is RP address conflict, dynamic group-to-RP mappings will take precedence over static group-to-RP mappings."
+      },
+      {
+        "name": "bidir",
+        "description": "(Optional) Specifies that the static group-to-RP mapping be applied to a bidirectional PIM RP. If the command is configured without the bidir keyword, the groups will operate in sparse mode. Note The bidir keyword is available as an optional keyword only if bidirectional PIM has been enabled using the ip pim bidir-enable command. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 866 IP Multicast Routing ip pim rp-address"
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS XE Gibraltar 16.12.1 This command was introduced."
+      }
+    ],
+    "modes": [
+      "Global configuration (config)",
+      "Usage Guidelines Under PIM, multicast groups in sparse mode (PIM-SM) or bidirectional mode (bidirectional PIM) use RPs to connect sources and receivers. All routers in a PIM domain need to have a consistent configuration for the mode and RP addresses of the multicast groups. The Cisco IOS software learns the mode and RP addresses of multicast groups through the following three mechanisms: static group-to-RP mapping configurations, Auto-RP, and bootstrap router (BSR). Use the ip pim rp-address command to statically define the RP address for PIM-SM or bidirectional PIM groups (an ip pim rp-address command configuration is referred to as a static group-to-RP mapping). You can configure a single RP for more than one group using an access list. If no access list is specified, the static RP will map to all multicast groups. You can configure multiple RPs, but only one RP per group range. If multiple ip pim rp-address commands are configured, the following rules apply: • Highest RP IP address selected regardless of reachability: If a multicast group is matched by the access list of more than one configured ip pim rp-address command, then the RP for the group is determined by the RP with the highest RP address configured. • One RP address per command: If multiple ip pim rp-address commands are configured, each static group-to-RP mapping must be configured with a unique RP address (if not, it will be overwritten).This restriction also means that only one RP address can be used to provide RP functions for either sparse mode or bidirectional mode groups. If you want to configure static group-to-RP mappings for both bidirectional and sparse mode, the RP addresses must be unique for each mode. • One access list per command: If multiple ip pim rp-address commands are configured, only one access list can be configured per static group-to-RP mapping. An access list cannot be reused with other static group-to-RP mappings configured on a router.",
+      "If dynamic and static group-to-RP mappings are used together, the following rule applies to a multicast group: Dynamic group-to-RP mappings take precedence over static group-to-RP mappings--unless the override keyword is used.",
+      "The following example shows how to set the bidirectional PIM RP address to 172.16.0.2 for the multicast range 239/8: Device(config)# access list 10 239.0.0.0 0.255.255.255 Device(config)# ip pim rp-address 172.16.0.2 10 bidir",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 867 IP Multicast Routing"
+    ],
+    "usageSummary": "Under PIM, multicast groups in sparse mode (PIM-SM) or bidirectional mode (bidirectional PIM) use RPs to connect sources and receivers.  All routers in a PIM domain need to have a consistent configuration for the mode and RP addresses of the multicast groups.  The Cisco IOS software learns the mode and RP addresses of multicast groups through the following three mechanisms: static group-to-RP mapping configurations, Auto-RP, and bootstrap router (BSR).",
+    "sourcePage": 866,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim rp-candidate",
+    "context": null,
+    "detail": "Configure the Device to advertise itself to the BSR as a Protocol Independent Multicast (PIM) Version 2 (PIMv2) candidate rendezvous point (C-RP).",
+    "syntax": "ip pim [vrf vrf-name] rp-candidate interface-id [group-list access-list-number]",
+    "noForm": "no ip pim [vrf vrf-name] rp-candidate interface-id [group-list access-list-number]",
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Configures the switch to advertise itself to the BSR as PIMv2 C-RP for the Multicast Virtual Private Network (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      },
+      {
+        "name": "interface-id",
+        "description": "ID of the interface whose associated IP address is advertised as a candidate RP address. Valid interfaces include physical ports, port channels, and VLANs."
+      },
+      {
+        "name": "group-list",
+        "description": "(Optional) Specifies the standard IP access list number that defines the group"
+      },
+      {
+        "name": "access-list-number",
+        "description": "prefixes that are advertised in association with the RP address."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use this command to configure the Device to send PIMv2 messages so that it advertises itself as a candidate RP to the BSR.  This command should be configured on backbone Devices that have good connectivity to all parts of the PIM domain.  The IP address associated with the interface specified by interface-id will be advertised as the C-RP address.",
+    "sourcePage": 868,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim send-rp-announce",
+    "context": null,
+    "detail": "Use Auto-RP to configure groups for which the device will act as a rendezvous point (RP).",
+    "syntax": "ip pim [vrf vrf-name] send-rp-announce interface-id scope ttl-value [group-list access-list-number] [interval seconds][bidir]",
+    "noForm": "no ip pim [vrf vrf-name] send-rp-announce interface-id",
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Uses Auto-RP to configure groups for which the device will act as a rendezvous point (RP) for the vrf-name argument."
+      },
+      {
+        "name": "interface-id",
+        "description": "Enter the interface ID of the interface that identifies the RP address. Valid interfaces include physical ports, port channels, and VLANs."
+      },
+      {
+        "name": "scope ttl-value",
+        "description": "Specifies the time-to-live (TTL) value in hops that limits the number of Auto-RP announcements. Enter a hop count that is high enough to ensure that the RP-announce messages reach all the mapping agents in the network. There is no default setting. The range is 1—255."
+      },
+      {
+        "name": "group-list",
+        "description": "(Optional) Specifies the standard IP access list number that defines the group prefixes"
+      },
+      {
+        "name": "access-list-number",
+        "description": "that are advertised in association with the RP address. Enter an IP standard access list number from 1—99. If no access list is configured, the RP is used for all groups."
+      },
+      {
+        "name": "interval seconds",
+        "description": "(Optional) Specifies the interval between RP announcements, in seconds. The total hold time of the RP announcements is automatically set to three times the value of the interval. The default interval is 60 seconds. The range is 1—16383."
+      },
+      {
+        "name": "bidir",
+        "description": "(Optional) Indicates that the multicast groups specified by the access-listargument are to operate in bidirectional mode. If the command is configured without this keyword, the groups specified will operate in Protocol Independent Multicast sparse mode (PIM-SM)."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Enter this command on the device that you want to be an RP.  When you are using Auto-RP to distribute group-to-RP mappings, this command causes the router to send an Auto-RP announcement message to the well-known group CISCO-RP-ANNOUNCE (224. 0.",
+    "sourcePage": 869,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim snooping",
+    "context": null,
+    "detail": null,
+    "syntax": "Note This command is not applicable on C9500X-28C8D model of Cisco Catalyst 9500 Series Switches To enable Protocol Independent Multicast (PIM) snooping globally, use the ip pim snooping command in global configuration mode. To disable PIM snooping globally, use the no form of this command. ip pim snooping",
+    "noForm": "no ip pim snooping",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "PIM snooping is not supported on groups that use the reserved MAC address range, for example, 0100. 5e00. 00xx, as an alias.",
+    "sourcePage": 871,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim snooping dr-flood",
+    "context": null,
+    "detail": null,
+    "syntax": "Note This command is not applicable on C9500X-28C8D model of Cisco Catalyst 9500 Series Switches To enable flooding of packets to the designated router, use the ip pim snooping dr-flood command in global configuration mode. To disable the flooding of packets to the designated router, use the no form of this command. ip pim snooping dr-flood",
+    "noForm": "no ip pim snooping dr-flood",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "PIM snooping is not supported on groups that use the reserved MAC address range, for example, 0100. 5e00. 00xx, as an alias.",
+    "sourcePage": 872,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim snooping vlan",
+    "context": null,
+    "detail": null,
+    "syntax": "Note This command is not applicable on C9500X-28C8D model of Cisco Catalyst 9500 Series Switches To enable Protocol Independent Multicast (PIM) snooping on an interface, use the ip pim snoopingvlan command in global configuration mode. To disable PIM snooping on an interface, use the no form of this command. ip pim snooping vlan vlan-id",
+    "noForm": "no ip pim snooping vlan vlan-id",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "VLAN ID value. The range is 1—1001. Do not enter leading zeroes."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "PIM snooping is not supported on groups that use the reserved MAC address range, for example, 0100. 5e00. 00xx, as an alias.",
+    "sourcePage": 873,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim spt-threshold",
+    "context": null,
+    "detail": "Specify the threshold that must be reached before moving to shortest-path tree (spt).",
+    "syntax": "ip pim {kbps | infinity} [group-list access-list]",
+    "noForm": "no ip pim {kbps | infinity} [group-list access-list]",
+    "params": [
+      {
+        "name": "kbps",
+        "description": "Threshold that must be reached before moving to shortest-path tree (spt). 0 is the only valid entry even though the range is 0 to 4294967. A 0 entry always switches to the source-tree."
+      },
+      {
+        "name": "infinity",
+        "description": "Specifies that all the sources for the specified group use the shared tree, never switching to the source tree."
+      },
+      {
+        "name": "group-list access-list",
+        "description": "(Optional) Specifies an access list number or a specific access list that you have created by name. If the value is 0 or if the group-list access-list option is not used, the threshold applies to all the groups."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 874,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match message-type",
+    "context": null,
+    "detail": "Set a message type to match a service list.",
+    "syntax": "match message-type {announcement | any | query}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "any",
+        "description": "Allows any match type."
+      },
+      {
+        "name": "query",
+        "description": "Allows only a query from the client for a certain Device in the network."
+      }
+    ],
+    "modes": ["Service list configuration."],
+    "usageSummary": "Multiple service maps of the same name with different sequence numbers can be created, and the evaluation of the filters will be ordered on the sequence number.  Service lists are an ordered sequence of individual statements, with each one having a permit or deny result.  The evaluation of a service list consists of a list scan in a predetermined order, and an evaluation of the criteria of each statement that matches.",
+    "sourcePage": 875,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match service-type",
+    "context": null,
+    "detail": "Set the value of the mDNS service type string to match.",
+    "syntax": "match service-type line",
+    "noForm": null,
+    "params": [
+      {
+        "name": "line",
+        "description": "Regular expression to match the service type in packets."
+      }
+    ],
+    "modes": ["Service list configuration"],
+    "usageSummary": "It is not possible to use the match command if you have used the service-list mdns-sd service-list-name query command.  The match command can be used only for the permit or deny option.",
+    "sourcePage": 876,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match service-instance",
+    "context": null,
+    "detail": "Set a service instance to match a service list.",
+    "syntax": "match service-instance line",
+    "noForm": null,
+    "params": [
+      {
+        "name": "line",
+        "description": "Regular expression to match the service instance in packets."
+      }
+    ],
+    "modes": ["Service list configuration"],
+    "usageSummary": "It is not possible to use the match command if you have used the service-list mdns-sd service-list-name query command.  The match command can be used only for the permit or deny option.",
+    "sourcePage": 877,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mrinfo",
+    "context": null,
+    "detail": "Query which neighboring multicast routers or multilayer switches are acting as peers.",
+    "syntax": "mrinfo [vrf route-name] [hostname | address][interface-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf route-name",
+        "description": "(Optional) Specifies the VPN routing or forwarding instance."
+      },
+      {
+        "name": "hostname | address",
+        "description": "(Optional) Domain Name System (DNS) name or IP address of the multicast router or multilayer switch to query. If omitted, the switch queries itself."
+      },
+      {
+        "name": "interface-id",
+        "description": "(Optional) Interface ID."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "The mrinfo command is the original tool of the multicast backbone (MBONE) to determine which neighboring multicast routers or switches are peering with multicast routers or switches.  Cisco routers supports mrinfo requests from Cisco IOS Release 10. 2.",
+    "sourcePage": 878,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "service-policy-query",
+    "context": null,
+    "detail": "Configure the service-list query periodicity.",
+    "syntax": "service-policy-query [service-list-query-name service-list-query-periodicity]",
+    "noForm": "no service-policy-query",
+    "params": [
+      {
+        "name": "service-list-query-name service-list-query-periodicity",
+        "description": "(Optional) Service-list query periodicity."
+      }
+    ],
+    "modes": ["mDNS configuration"],
+    "usageSummary": "Since there are devices that do not send unsolicited announcements and to force such devices the learning of services and to keep them refreshed in the cache, this command contains an active query feature that ensures that the services listed in the active query list are queried.",
+    "sourcePage": 880,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "service-policy",
+    "context": null,
+    "detail": "Apply a filter on incoming or outgoing service-discovery information on a service list.",
+    "syntax": "service-policy service-policy-name {IN | OUT}",
+    "noForm": "no service-policy service-policy-name {IN | OUT}",
+    "params": [
+      {
+        "name": "IN",
+        "description": "Applies a filter on incoming service-discovery information. OUT Applies a filter on outgoing service-discovery information."
+      }
+    ],
+    "modes": ["mDNS configuration"],
+    "usageSummary": null,
+    "sourcePage": 881,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip igmp filter",
+    "context": null,
+    "detail": "Display Internet Group Management Protocol (IGMP) filter information.",
+    "syntax": "show ip igmp [vrf vrf-name] filter",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf",
+        "description": "vrf-name (Optional) Supports the multicast VPN routing and forwarding (VRF) instance."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The show ip igmp filter command displays information about all filters defined on the device.",
+    "sourcePage": 882,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip igmp profile",
+    "context": null,
+    "detail": "Display all the configured Internet Group Management Protocol (IGMP) profiles or a specified IGMP profile.",
+    "syntax": "show ip igmp [vrf vrf-name] profile [profile number]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Supports the multicast VPN routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "profile number",
+        "description": "(Optional) IGMP profile number to be displayed. The range is 1 to 4294967295. If no profile number is entered, all the IGMP profiles are displayed."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "None",
+    "sourcePage": 883,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip igmp snooping",
+    "context": null,
+    "detail": "Display the Internet Group Management Protocol (IGMP) snooping configuration of the device or the VLAN.",
+    "syntax": "show ip igmp snooping [groups | mrouter | querier] [vlan vlan-id] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "groups",
+        "description": "(Optional) Displays the IGMP snooping multicast table."
+      },
+      {
+        "name": "mrouter",
+        "description": "(Optional) Displays the IGMP snooping multicast router ports."
+      },
+      {
+        "name": "querier",
+        "description": "(Optional) Displays the configuration and operation information for the IGMP querier. vlan vlan-id (Optional) Specifies a VLAN; the range is 1 to 1001 and 1006 to 4094."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays operational state information."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "VLAN IDs 1002―1005 are reserved for Token Ring and FDDI VLANs, and cannot be used in IGMP snooping.  Expressions are case sensitive.  For example, if you enter | exclude output, the lines that contain \"output\" do not appear, but the lines that contain \"Output\" appear.",
+    "sourcePage": 884,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip igmp snooping groups",
+    "context": null,
+    "detail": "Display the Internet Group Management Protocol (IGMP) snooping multicast table for the device or the multicast information.",
+    "syntax": "show ip igmp snooping groups [vlan vlan-id ] [[count] | ip_address]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "count",
+        "description": "(Optional) Displays the total number of entries for the specified command options instead of the actual entries."
+      },
+      {
+        "name": "ip_address",
+        "description": "(Optional) Characteristics of the multicast group with the specified group IP address."
+      }
+    ],
+    "modes": ["Privileged EXEC", "User EXEC"],
+    "usageSummary": "Expressions are case sensitive.  For example, if you enter | exclude output, the lines that contain \"output\" do not appear, but the lines that contain \"Output\" appear.",
+    "sourcePage": 886,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip igmp snooping mrouter",
+    "context": null,
+    "detail": "Display the Internet Group Management Protocol (IGMP) snooping dynamically learned and manually configured multicast router ports for the device or for the specified multicast VLAN.",
+    "syntax": "show ip igmp snooping mrouter [vlan vlan-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan",
+        "description": "vlan-id (Optional) Specifies a VLAN; Ranges are from 1―1001 and 1006―4094."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "VLAN IDs 1002―1005 are reserved for Token Ring and FDDI VLANs, and cannot be used in IGMP snooping.  When multicast VLAN registration (MVR) is enabled, the show ip igmp snooping mrouter command displays MVR multicast router information and IGMP snooping information.  Expressions are case sensitive, for example, if you enter | exclude output, the lines that contain \"output\" do not appear, but the lines that contain \"Output\" appear.",
+    "sourcePage": 888,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip igmp snooping querier",
+    "context": null,
+    "detail": "To display the configuration and operation information for the IGMP querier that is configured on a device, use the show ip igmp snooping queriercommand in user EXEC mode.",
+    "syntax": "show ip igmp snooping querier [vlan vlan-id] [detail ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed IGMP querier information."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Use the show ip igmp snooping querier command to display the IGMP version and the IP address of a detected device, also called a querier, that sends IGMP query messages.  A subnet can have multiple multicast routers but only one IGMP querier.  In a subnet running IGMPv2, one of the multicast routers is elected as the querier.",
+    "sourcePage": 889,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip mroute",
+    "context": null,
+    "detail": "Display the contents of the multicast routing (mroute) table.",
+    "syntax": "show ip mroute [ vrf { vrf-name | * } ] [ [ active [kbps] [ interface type number ] | bidirectional | count [terse] | dense | interface type number | proxy | pruned | sparse | ssm | static | summary ] | [ group-address [source-address] ] [ count [terse] | interface type number | proxy | pruned | summary ] | [ source-address group-address ] [ count [terse] | interface type number | proxy | pruned | summary ] | [group-address] active [kbps] [ interface type number | verbose ] ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Filters the output to display only the contents of the mroute table that pertain to the Multicast Virtual Private Network (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      },
+      {
+        "name": "vrf *",
+        "description": "(Optional) Specifies all VRF instances."
+      },
+      {
+        "name": "active kbps",
+        "description": "(Optional) Displays the rate that active sources are sending to multicast groups, in kilobits per second (kbps). Active sources are those sending at the kbps value or higher. The range is from 1 to 4294967295. The kbps default is 4 kbps. interface type number (Optional) Filters the output to display only mroute table information related to the interface specified for the type number arguments."
+      },
+      {
+        "name": "bidirectional",
+        "description": "(Optional) Filters the output to display only information about bidirectional routes in the mroute table."
+      },
+      {
+        "name": "count",
+        "description": "(Optional) Displays statistics about the group and source, including number of packets, packets per second, average packet size, and bytes per second."
+      },
+      {
+        "name": "terse",
+        "description": "(Optional) Filters the output to display a subset of mroute statistics, excluding source and group statistics for each mroute entry in the mroute table."
+      },
+      {
+        "name": "dense",
+        "description": "(Optional) Filters the output to display only information about dense mode routes in the mroute table."
+      },
+      {
+        "name": "proxy",
+        "description": "(Optional) Displays information about Reverse Path Forwarding (RPF) vector proxies received on a multicast device."
+      },
+      {
+        "name": "pruned",
+        "description": "(Optional) Filters the output to display only information about pruned routes in the mroute table."
+      },
+      {
+        "name": "sparse",
+        "description": "(Optional) Filters the output to display only information about sparse mode routes in the mroute table."
+      },
+      {
+        "name": "ssm",
+        "description": "(Optional) Filters the output to display only the Source Specific Multicast (SSM) routes in the mroute table."
+      },
+      {
+        "name": "static",
+        "description": "(Optional) Filters the output to display only the static routes in the mroute table. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 891 IP Multicast Routing show ip mroute"
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Filters the output to display a one-line, abbreviated summary of each entry in the mroute table."
+      },
+      {
+        "name": "group-address",
+        "description": "(Optional) IP address or Domain Name System (DNS) name of a multicast group."
+      },
+      {
+        "name": "source-address",
+        "description": "(Optional) IP address or DNS name of a multicast source."
+      },
+      {
+        "name": "verbose",
+        "description": "(Optional) Displays additional information."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "Use the show ip mroute command to display information about mroute entries in the mroute table.  The asterisk (*) refers to all source addresses.  In this case, using asterisk will display the information of all the VRFs related to multicast routing tables.",
+    "sourcePage": 891,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim autorp",
+    "context": null,
+    "detail": "Display global information about auto-rp.",
+    "syntax": "show ip pim [ vrf { vrf-name | * }] autorp vrf vrf-name (Optional) Specifies the multicast VPN routing and forwarding (VRF) instance. vrf * (Optional) Specifies all the VRFs instances.",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "This command displays whether auto-rp is enabled or disabled.  The asterisk (*) refers to all VRFs.  In this case, using asterisk will display the autorp information, for all applicable VRFs.",
+    "sourcePage": 899,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim bsr-router",
+    "context": null,
+    "detail": "Display information related to Protocol Independent Multicast (PIM) bootstrap router (BSR) protocol processing.",
+    "syntax": "show ip pim [ vrf { vrf-name | * }] bsr-router vrf vrf-name (Optional) Specifies the multicast VPN routing and forwarding (VRF) instance. vrf * (Optional) Specifies all the VRFs instances.",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "In addition to Auto RP, the BSR RP method can be configured.  After the BSR RP method is configured, this command displays the BSR router information.  The asterisk (*) refers to all VRFs.",
+    "sourcePage": 901,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim bsr",
+    "context": null,
+    "detail": "Display information related to Protocol Independent Multicast (PIM) bootstrap router (BSR) protocol processing.",
+    "syntax": "show ip pim [ vrf { vrf-name | * }] bsr vrf vrf-name (Optional) Specifies the multicast VPN routing and forwarding (VRF) instance. vrf * (Optional) Specifies all the VRFs instances.",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "In addition to Auto RP, the BSR RP method can be configured.  After the BSR RP method is configured, this command displays the BSR router information.  The asterisk (*) refers to all VRFs.",
+    "sourcePage": 902,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim interface df",
+    "context": null,
+    "detail": "Display information about the elected designated forwarder (DF) for each rendezvous point (RP) on an interface configured for Bidirectional Protocol Independent Multicast (PIM).",
+    "syntax": "show ip pim [ vrf { vrf-name | * } ] interface [ interface-type | interface-name ] df [ rp-address ] vrf vrf-name (Optional) Specifies the multicast VPN routing and forwarding (VRF) instance. vrf * (Optional) Specifies all the VRFs instances. interface [interface-type| interface-name] Specifies the interface type or the interface number. rp-address (Optional) Specifies the RP IP address.",
+    "noForm": null,
+    "params": [],
+    "modes": [
+      "User EXEC (>) Privileged EXEC (#)",
+      "The following is sample output from the show ip pim interface df command:",
+      "Device# show ip pim interface df Interface RP DF Winner Metric Uptime Ethernet3/3 10.10.0.2 10.4.0.2 0 00:03:49 10.10.0.3 10.4.0.3 0 00:01:49 10.10.0.5 10.4.0.4 409600 00:01:49 Ethernet3/4 10.10.0.2 10.5.0.2 0 00:03:49 10.10.0.3 10.5.0.2 409600 00:02:32 10.10.0.5 10.5.0.2 435200 00:02:16 Loopback0 10.10.0.2 10.10.0.2 0 00:03:49 10.10.0.3 10.10.0.2 409600 00:02:32 10.10.0.5 10.10.0.2 435200 00:02:16",
+      "The following is sample output from the show ip pim interface df command when an interface is specified: Device# show ip pim interface Ethernet3/3 df 10.10.0.3 Designated Forwarder election for Ethernet3/3, 10.4.0.2, RP 10.10.0.3 State Non-DF",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 903 IP Multicast Routing show ip pim interface df",
+      "Offer count is 0 Current DF ip address 10.4.0.3 DF winner up time 00:02:33 Last winner metric preference 0 Last winner metric 0",
+      "The following table gives the output field descriptions for the show ip pim interface df command:",
+      "Field Description",
+      "RP IP address of the RP.",
+      "DF Winner IP address of the elected DF.",
+      "Metric Unicast routing metric to the RP announced by the DF.",
+      "Uptime Length of time the RP has been up, in days and hours. If less than 1 day, time is shown in hours:minutes:seconds.",
+      "State Indicates whether the specified interface is an elected DF.",
+      "Offer count is Number of PIM DF election offer messages that the router has sent out the interface during the current election interval.",
+      "Current DF IP address IP address of the current DF.",
+      "DF winner uptime Length of time the current DF has been up, in days and hours. If less than 1 day, time is shown in hours:minutes:seconds.",
+      "Last winner metric preference The preference value used for selecting the unicast routing metric to the RP announced by the DF.",
+      "Last winner metric Unicast routing metric to the RP announced by the DF.",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 904 IP Multicast Routing show ip pim rp"
+    ],
+    "usageSummary": null,
+    "sourcePage": 903,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim rp",
+    "context": null,
+    "detail": "Display active rendezvous points ( RPs) that are cached with associated multicast routing entries.",
+    "syntax": "show ip pim [ vrf { vrf-name | * } ] rp [ mapping [ elected | in-use ] | metric ] [ rp-address ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies the multicast VPN routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "vrf *",
+        "description": "(Optional) Specifies all the VRFs instances."
+      },
+      {
+        "name": "mapping[ elected|in-use ]",
+        "description": "(Optional) Displays all group-to-RP mappings of which the router is aware. (either configured or learned from Auto-RP) • elected- Displays elected Auto RPs. • in-use- Displays learned RPs in-use."
+      },
+      {
+        "name": "metric",
+        "description": "(Optional) Displays the unicast routing metric to the RPs configured statically or learned via Auto-RP or the bootstrap router (BSR)."
+      },
+      {
+        "name": "rp-address",
+        "description": "(Optional) Specifies the RP IP address."
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS XE Gibraltar 16.12.1 This command was introduced. Cisco IOS XE Cupertino 17.7.1 The asterisk (*) was introduced to display information related to all VRF instances."
+      }
+    ],
+    "modes": [
+      "User EXEC (>) Privileged EXEC (#)",
+      "Usage Guidelines The Protocol Independent Multicast (PIM) version known for an RP influences the type of PIM register messages (Version 1 or Version 2) that the router sends when acting as the designated router (DR) for an active source. If an RP is statically configured, the PIM version of the RP is not set and the router, if required to send register packets, tries to send PIM Version 2 register packets. If sending PIM Version 2 packets fails, the router sends PIM Version 1 register packets. The version of the RP displayed in the show ip pim rp command output can change according to the operations of the router. When the group is created, the version shown is for the RP in the RP mapping cache. Later, the version displayed by this command may change. If this router is acting as a DR for an active source, the router sends PIM register messages. The PIM register messages are answered by the RP with PIM register stop messages. The router learns from these PIM register stop messages the actual PIM version of the RP. Once the actual PIM version of the RP is learned, this command displays only this version. If the router is not acting",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 905 IP Multicast Routing show ip pim rp",
+      "as a DR for active sources on this group, then the version shown for the RP of the group does not change. In this case, the PIM version of the RP is irrelevant to the router because the version of the RP influences only the PIM register messages that this router must send. When you enter the show ip pim rp mapping command, the version of the RP displayed in the output is determined only by the method through which an RP is learned. If the RP is learned from Auto-RP then the RP displayed is either “v1” or “v2, v1.” If the RP is learned from a static RP definition, the RP version is undetermined and no RP version is displayed in the output. If the RP is learned from the BSR, the RP version displayed is “v2.” The asterisk (*) refers to all VRFs. In this case, using asterisk will display information related to active RPs that are cached with associated multicast routing entries, for all applicable VRFs.",
+      "The following is sample output from the show ip pim rp command: Device# show ip pim rp Group:227.7.7.7, RP:10.10.0.2, v2, v1, next RP-reachable in 00:00:48",
+      "The following is sample output from the show ip pim rp command when the mapping keyword is specified: Device# show ip pim rp mapping PIM Group-to-RP Mappings This system is an RP (Auto-RP) This system is an RP-mapping agent Group(s) 227.0.0.0/8 RP 10.10.0.2 (?), v2v1, bidir Info source:10.10.0.2 (?), via Auto-RP Uptime:00:01:42, expires:00:00:32 Group(s) 228.0.0.0/8 RP 10.10.0.3 (?), v2v1, bidir Info source:10.10.0.3 (?), via Auto-RP Uptime:00:01:26, expires:00:00:34 Group(s) 229.0.0.0/8 RP 10.10.0.5 (mcast1.cisco.com), v2v1, bidir Info source:10.10.0.5 (mcast1.cisco.com), via Auto-RP Uptime:00:00:52, expires:00:00:37 Group(s) (-)230.0.0.0/8 RP 10.10.0.5 (mcast1.cisco.com), v2v1, bidir Info source:10.10.0.5 (mcast1.cisco.com), via Auto-RP Uptime:00:00:52, expires:00:00:37",
+      "The following is sample output from the show ip pim rp command when the metric keyword is specified: Device# show ip pim rp metric RP Address Metric Pref Metric Flags RPF Type Interface 10.10.0.2 0 0 L unicast Loopback0 10.10.0.3 90 409600 L unicast Ethernet3/3 10.10.0.5 90 435200 L unicast Ethernet3/3",
+      "The following is sample output from the show ip pim vrf * rp mapping command: Device# show ip pim vrf * rp mapping VRF IPv4 default PIM Group-to-RP Mappings This system is an RP (Auto-RP)",
+      "Group(s) 224.0.0.0/4 RP 3.3.3.3 (?), v2v1",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 906 IP Multicast Routing show ip pim rp",
+      "Info source: 2.2.2.2 (?), elected via Auto-RP Uptime: 4w3d, expires: 00:02:27 Group(s): 224.0.0.0/4, Static RP: 1.2.3.4 (?) Acl: abc, Static RP: 1.1.1.1 (?)",
+      "VRF ENG PIM Group-to-RP Mappings This system is an RP-mapping agent",
+      "Group(s) 224.0.0.0/4 RP 8.8.8.8 (?), v2v1 Info source: 8.8.8.8 (?), elected via Auto-RP Uptime: 4w3d, expires: 00:02:07",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 907 IP Multicast Routing"
+    ],
+    "usageSummary": "The Protocol Independent Multicast (PIM) version known for an RP influences the type of PIM register messages (Version 1 or Version 2) that the router sends when acting as the designated router (DR) for an active source.  If an RP is statically configured, the PIM version of the RP is not set and the router, if required to send register packets, tries to send PIM Version 2 register packets.  If sending PIM Version 2 packets fails, the router sends PIM Version 1 register packets.",
+    "sourcePage": 905,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim snooping",
+    "context": null,
+    "detail": "Display the information about IP PIM snooping.",
+    "syntax": "Global Status show ip pim snooping VLAN Status show ip pim snooping vlan vlan-id [neighbor | statistics | mroute [source-ipgroup-ip]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "Displays information for a specific VLAN; Valid values are from 1―4094."
+      },
+      {
+        "name": "neighbor",
+        "description": "(Optional) Displays information about the neighbor database."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays information about the VLAN statistics."
+      },
+      {
+        "name": "mroute",
+        "description": "(Optional) Displays information about the mroute database."
+      },
+      {
+        "name": "source-ip",
+        "description": "(Optional) Source IP address."
+      },
+      {
+        "name": "group-ip",
+        "description": "(Optional) Group IP address."
+      }
+    ],
+    "modes": ["User EXEC Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 908,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim tunnel",
+    "context": null,
+    "detail": "Display information about the Protocol Independent Multicast (PIM) register encapsulation and decapsulation tunnels on an interface.",
+    "syntax": "show ip pim [ vrf { vrf-name | * }] tunnel [ Tunnel interface-number | verbose ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies a virtual routing and forwarding (VRF) configuration."
+      },
+      {
+        "name": "vrf *",
+        "description": "(Optional) Specifies all the VRFs instances."
+      },
+      {
+        "name": "Tunnel interface-number",
+        "description": "(Optional) Specifies the tunnel interface number."
+      },
+      {
+        "name": "verbose",
+        "description": "(Optional) Provides additional information, such as the MAC encapsulation header and platform-specific information."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the show ip pim tunnel to display information about PIM tunnel interfaces.  PIM tunnel interfaces are used by the IPv4 Multicast Forwarding Information Base (MFIB) for the PIM sparse mode (PIM-SM) registration process.  Two types of PIM tunnel interfaces are used by the the IPv4 MFIB: • A PIM encapsulation tunnel (PIM Encap Tunnel) • A PIM decapsulation tunnel (PIM Decap Tunnel) The PIM Encap Tunnel is dynamically created whenever a group-to-rendezvous point (RP) mapping is learned (through auto-RP, bootstrap router (BSR), or static RP configuration).",
+    "sourcePage": 911,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mvpn vrfri",
+    "context": null,
+    "detail": "To display information about the VRF route import used for setting up the Multiprotocol Label Switching (MPLS) Multicast Label Distribution Protocol (MLDP), use the show mvpn vrfricommand in user EXEC mode.",
+    "syntax": "show mvpn vrfi",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC Privileged EXEC"],
+    "usageSummary": "The command displays information about the VRF route import attribute used for setting up the MPLS MLDP environment for the specific RPF neighbor and source.",
+    "sourcePage": 913,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch ip multicast groups",
+    "context": null,
+    "detail": "Display platform-dependent IP multicast groups information.",
+    "syntax": "show platform software fed switch {switch-number |active |standby }ip multicast groups [vrf-id vrf-id |vrf-name vrf-name ][group-address [source source-address][detail] | count | summary ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-id",
+        "description": "(Optional) Specifies the multicast Virtual Routing and Forwarding (VRF) ID."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies the multicast Virtual Routing and Forwarding (VRF) name."
+      },
+      {
+        "name": "group-address",
+        "description": "(Optional) Specifies the IP Multicast Group Address."
+      },
+      {
+        "name": "source source-address",
+        "description": "(Optional) Specifies the IP Multicast Source Address"
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Specifies the IP Multicast group detail."
+      },
+      {
+        "name": "count",
+        "description": "(Optional) Specifies the IP Multicast group count."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Specifies the Multicast group summary."
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS XE Everest 16.5.1a This command was introduced"
+      }
+    ],
+    "modes": [
+      "Privileged EXEC (#)",
+      "Usage Guidelines Use this command only when you are working directly with a technical support representative while troubleshooting a problem. Do not use this command unless a technical support representative asks you to do so.",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 914 IP Multicast Routing show platform software fed switch ip multicast"
+    ],
+    "usageSummary": "Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  Do not use this command unless a technical support representative asks you to do so.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 914,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch ip multicast",
+    "context": null,
+    "detail": "Display platform-dependent IP multicast tables and other information.",
+    "syntax": "show platform software fed switch {switch-number | active | standby} ip multicast {groups | hardware[detail] | interfaces | retry}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch_num |",
+        "description": "The device for which you want to display information. active | standby } • switch_num—Enter the switch ID. Displays information for the specified switch. • active—Displays information for the active switch. • standby—Displays information for the standby switch, if available."
+      },
+      {
+        "name": "groups",
+        "description": "Displays the IP multicast routes per group."
+      },
+      {
+        "name": "hardware [detail]",
+        "description": "Displays the IP multicast routes loaded into hardware. The optional detail keyword is used to show the port members in the destination index and route index."
+      },
+      {
+        "name": "interfaces",
+        "description": "Displays the IP multicast interfaces."
+      },
+      {
+        "name": "retry",
+        "description": "Displays the IP multicast routes in the retry queue."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  Do not use this command unless a technical support representative asks you to do so.",
+    "sourcePage": 915,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch ip multicast df",
+    "context": null,
+    "detail": "Display information about platform-dependent IP multicast designated forwarders (DF).",
+    "syntax": "show platform software fed switch {switch-number | active | standby} ip multicast df[vrf-id vrf-id | vrf-name vrf-name][df-index]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf-id vrf-id",
+        "description": "(Optional) Specifies the multicast Virtual Routing and Forwarding (VRF) ID."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies the multicast Virtual Routing and Forwarding (VRF) name."
+      },
+      {
+        "name": "df-index",
+        "description": "(Optional) Specifies the DF index."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  Do not use this command unless a technical support representative asks you to do so.  The following is sample output from the show platform software fed switch ip multicast df command: Device# show platform software fed switch active ip multicast df VRF-ID DF-Index Ref-Count DF Set ================================================ 2 1 1 Vlan254 Vlan186 Vlan305 Vlan135 Tunnel4 Null0 Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 918,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  }
+]

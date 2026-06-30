@@ -57,7 +57,8 @@
     "format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
     "vscode:prepublish": "npm run lint",
     "package": "vsce package",
-    "render-icon": "node scripts/render-icon.js"
+    "render-icon": "node scripts/render-icon.js",
+    "extract-commands": "node scripts/extract-commands.js"
   },
   "dependencies": {
     "vscode-languageclient": "^9.0.1",
