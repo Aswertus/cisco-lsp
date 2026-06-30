@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1E3566"/>
+      <stop offset="0.55" stop-color="#506595"/>
+      <stop offset="1" stop-color="#F4B36A"/>
+    </linearGradient>
+    <clipPath id="round">
+      <rect x="0" y="0" width="128" height="128" rx="24" ry="24"/>
+    </clipPath>
+  </defs>
+
+  <!-- Dawn ("daybreak") sky background -->
+  <g clip-path="url(#round)">
+    <rect x="0" y="0" width="128" height="128" fill="url(#sky)"/>
+    <!-- sunrise glow -->
+    <circle cx="64" cy="104" r="26" fill="#FBD49A" opacity="0.55"/>
+    <!-- the bay -->
+    <rect x="0" y="100" width="128" height="28" fill="#14274A"/>
+    <rect x="0" y="100" width="128" height="3" fill="#24406B" opacity="0.8"/>
+
+    <!-- Golden Gate Bridge, International-Orange silhouette -->
+    <g fill="none" stroke="#D8472B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <!-- main suspension cable (mid span) -->
+      <path d="M40,23 Q64,94 88,23"/>
+      <!-- side-span cables down to the anchorages -->
+      <path d="M8,80 Q22,44 40,23"/>
+      <path d="M88,23 Q106,44 120,80"/>
+    </g>
+
+    <!-- suspender cables: vertical bars (the Cisco-style "signal" lines) -->
+    <g stroke="#E8633F" stroke-width="2.2" stroke-linecap="round">
+      <line x1="50" y1="47" x2="50" y2="82"/>
+      <line x1="54.5" y1="54" x2="54.5" y2="82"/>
+      <line x1="59" y1="58.5" x2="59" y2="82"/>
+      <line x1="64" y1="60" x2="64" y2="82"/>
+      <line x1="69" y1="58.5" x2="69" y2="82"/>
+      <line x1="73.5" y1="54" x2="73.5" y2="82"/>
+      <line x1="78" y1="47" x2="78" y2="82"/>
+    </g>
+
+    <!-- towers -->
+    <g fill="#D8472B">
+      <rect x="36.5" y="20" width="7" height="82" rx="1.5"/>
+      <rect x="84.5" y="20" width="7" height="82" rx="1.5"/>
+      <!-- tower cross-beams -->
+      <rect x="34" y="38" width="12" height="3.4" rx="1.2"/>
+      <rect x="34" y="56" width="12" height="3.4" rx="1.2"/>
+      <rect x="82" y="38" width="12" height="3.4" rx="1.2"/>
+      <rect x="82" y="56" width="12" height="3.4" rx="1.2"/>
+    </g>
+
+    <!-- roadway / deck -->
+    <rect x="6" y="82" width="116" height="5" rx="1.5" fill="#E8633F"/>
+  </g>
+</svg>
