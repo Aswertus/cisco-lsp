@@ -59,7 +59,12 @@ VS Code workspace `settings.json`:
 
 You only need the prebuilt `.vsix` file — no Node.js, no cloning.
 
-1. Get `cisco-ios-lsp-<version>.vsix` from Aswertus.
+1. Get the `cisco-ios-lsp-<version>.vsix`:
+   - **From a GitHub Release (preferred):** open the
+     [Releases page](https://github.com/Aswertus/cisco-lsp/releases), and download the
+     `.vsix` asset from the latest release. The repo is **private**, so you must be added as
+     a collaborator and signed in to GitHub to see it — ask Aswertus for access.
+   - **Or** get the file directly from Aswertus (Teams / email / share drive).
 2. Install it, either:
    - **GUI:** VS Code → Extensions panel → `⋯` menu (top-right) → **Install from VSIX…** →
      pick the file, or
@@ -83,6 +88,28 @@ npm run package        # → cisco-ios-lsp-<version>.vsix in the repo root
 
 The production dependencies are bundled into the `.vsix`, so it runs on any machine with
 VS Code — no separate `npm install` on the coworker's side.
+
+---
+
+## Cutting a release
+
+Releases are automated. A push of a version tag triggers
+[`.github/workflows/release.yml`](.github/workflows/release.yml), which builds the `.vsix` and
+publishes a GitHub Release with it attached — no local build needed.
+
+```bash
+# 1. bump "version" in package.json (e.g. 0.1.0 → 0.1.1)
+# 2. add a matching section to CHANGELOG.md
+# 3. commit the bump
+git commit -am "release: v0.1.1"
+# 4. tag and push — this is what kicks off the release
+git tag v0.1.1
+git push origin v0.1.1
+```
+
+GitHub Actions then creates the **v0.1.1** release with `cisco-ios-lsp-0.1.1.vsix` attached.
+Coworkers download it from the [Releases page](https://github.com/Aswertus/cisco-lsp/releases).
+The tag version should match `version` in `package.json`.
 
 ---
 

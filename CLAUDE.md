@@ -63,6 +63,21 @@ npm run package        # vsce package → cisco-ios-lsp-<version>.vsix
 
 Share the resulting `.vsix`; coworkers install via **Extensions → ⋯ → Install from VSIX…**.
 
+### Automated releases (preferred)
+
+Pushing a `vX.Y.Z` tag triggers `.github/workflows/release.yml`, which runs `npm ci` +
+`npm run package` and publishes a GitHub Release with the `.vsix` attached. To release:
+
+```bash
+# bump version in package.json + update CHANGELOG.md, then:
+git commit -am "release: vX.Y.Z"
+git tag vX.Y.Z && git push origin vX.Y.Z
+```
+
+The tag version must match `version` in `package.json`. The repo (`Aswertus/cisco-lsp`) is
+**private**, so coworkers need collaborator access to download release assets. The local
+`npm run package` above remains the offline/manual fallback.
+
 ## Branch Policy
 
 - Active development happens on `claude_dev`.
