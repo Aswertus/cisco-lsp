@@ -24,6 +24,7 @@ const { detectBlock } = require('./lib/blocks');
 const { computeDiagnostics } = require('./lib/diagnostics');
 const { computeFormattingEdits } = require('./lib/indentation');
 const { buildDocMarkdown, findHoverRecords } = require('./lib/docs');
+const { buildXrefIndex, findAtPosition, computeXrefDiagnostics } = require('./lib/xref');
 
 const connection = createConnection(ProposedFeatures.all);
 const documents = new TextDocuments(TextDocument);
@@ -88,6 +89,17 @@ function getLines(doc) {
   return lines;
 }
 
+// Cross-reference index (named-object defs/refs), cached the same way.
+const xrefCache = new Map();
+
+function getXref(doc) {
+  const cached = xrefCache.get(doc.uri);
+  if (cached && cached.version === doc.version) return cached.index;
+  const index = buildXrefIndex(getLines(doc));
+  xrefCache.set(doc.uri, { version: doc.version, index });
+  return index;
+}
+
 // ---------------------------------------------------------------------------
 // LSP lifecycle
 // ---------------------------------------------------------------------------
@@ -102,6 +114,8 @@ connection.onInitialize(() => ({
     },
     hoverProvider: true,
     documentFormattingProvider: true,
+    definitionProvider: true,
+    referencesProvider: true,
   },
 }));
 
@@ -172,11 +186,51 @@ connection.onHover((params) => {
 });
 
 // ---------------------------------------------------------------------------
+// Definition / References (named objects: class-map, policy-map, ACL,
+// route-map, prefix-list, VRF)
+// ---------------------------------------------------------------------------
+
+function spanToLocation(uri, span) {
+  return {
+    uri,
+    range: {
+      start: { line: span.line, character: span.startChar },
+      end: { line: span.line, character: span.endChar },
+    },
+  };
+}
+
+function objectAt(params) {
+  const doc = documents.get(params.textDocument.uri);
+  if (!doc) return null;
+  const index = getXref(doc);
+  const occurrence = findAtPosition(index, params.position.line, params.position.character);
+  if (!occurrence) return null;
+  return index.objects.get(`${occurrence.kind} ${occurrence.name}`);
+}
+
+connection.onDefinition((params) => {
+  const obj = objectAt(params);
+  if (!obj) return null;
+  return obj.defs.map((d) => spanToLocation(params.textDocument.uri, d));
+});
+
+connection.onReferences((params) => {
+  const obj = objectAt(params);
+  if (!obj) return null;
+  const spans = params.context?.includeDeclaration ? [...obj.defs, ...obj.refs] : obj.refs;
+  return spans.map((s) => spanToLocation(params.textDocument.uri, s));
+});
+
+// ---------------------------------------------------------------------------
 // Diagnostics
 // ---------------------------------------------------------------------------
 
 function validate(doc) {
-  const diagnostics = computeDiagnostics(getLines(doc), getData().knownTopLevel);
+  const diagnostics = [
+    ...computeDiagnostics(getLines(doc), getData().knownTopLevel),
+    ...computeXrefDiagnostics(getXref(doc)),
+  ];
   connection.sendDiagnostics({ uri: doc.uri, diagnostics });
 }
 
@@ -211,6 +265,7 @@ documents.onDidClose((e) => {
   if (t) clearTimeout(t);
   debounceTimers.delete(e.document.uri);
   lineCache.delete(e.document.uri);
+  xrefCache.delete(e.document.uri);
   connection.sendDiagnostics({ uri: e.document.uri, diagnostics: [] });
 });
 
