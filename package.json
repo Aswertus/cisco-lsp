@@ -57,11 +57,6 @@
           "default": true,
           "description": "On startup, check GitHub Releases for a newer version and notify if one is available. Inactive while the repository is private."
         },
-        "cisco-ios-lsp.format.onSave": {
-          "type": "boolean",
-          "default": true,
-          "description": "Automatically fix inconsistent indentation and mixed tabs/spaces when saving a .cisco file."
-        },
         "cisco-ios-lsp.outline.showSymbolsInOutlinePanel": {
           "type": "boolean",
           "default": false,
@@ -125,6 +120,11 @@
           "description": "Per-category toggle for which symbols appear in the outline."
         }
       }
+    },
+    "configurationDefaults": {
+      "[cisco]": {
+        "editor.formatOnSave": true
+      }
     }
   },
   "scripts": {
@@ -139,9 +139,11 @@
     "extract-commands": "node scripts/extract-commands.js"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@vscode/vsce": "^3.0.0",
     "esbuild": "^0.28.1",
-    "eslint": "^8.57.0",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
     "prettier": "^3.0.0",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",

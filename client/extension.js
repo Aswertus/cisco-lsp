@@ -27,18 +27,9 @@ function activate(context) {
 
   client.start();
 
-  context.subscriptions.push(
-    vscode.workspace.onWillSaveTextDocument((event) => {
-      if (event.document.languageId !== 'cisco') return;
-      const config = vscode.workspace.getConfiguration('cisco-ios-lsp');
-      if (!config.get('format.onSave', true)) return;
-      event.waitUntil(
-        vscode.commands
-          .executeCommand('vscode.executeFormatDocumentProvider', event.document.uri, {})
-          .then((edits) => edits || []),
-      );
-    }),
-  );
+  // Format-on-save comes from the `configurationDefaults` contribution in
+  // package.json ("[cisco]": { "editor.formatOnSave": true }) — VS Code runs
+  // our documentFormattingProvider itself; no save hook needed here.
 
   // Fire-and-forget: never let an update check disrupt activation.
   checkForUpdates(context).catch(() => {});
@@ -65,6 +56,9 @@ async function checkForUpdates(context) {
 
   const last = context.globalState.get('lastUpdateCheck', 0);
   if (Date.now() - last < CHECK_INTERVAL_MS) return;
+  // Recorded before the request on purpose: a failed check (offline, repo
+  // private) also waits out the interval instead of retrying the network on
+  // every window reload.
   await context.globalState.update('lastUpdateCheck', Date.now());
 
   const pkg = context.extension.packageJSON;
