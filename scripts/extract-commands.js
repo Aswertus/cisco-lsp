@@ -519,6 +519,400 @@ function chapterIdFromTitle(title) {
 }
 
 // ---------------------------------------------------------------------------
+// Cross-cutting artifacts kept in sync with server/data/**: the coverage
+// doc, the spell-check word list, and the syntax-highlighting grammar's
+// known-command-root list. All three are re-derived from whatever is
+// currently on disk under server/data/ (every pack plus curated.json), not
+// just the pack this run just wrote, so they stay accurate as packs are
+// added or curated.json is hand-edited between runs.
+// ---------------------------------------------------------------------------
+
+function readAllCommandRecords() {
+  const records = [];
+  for (const entry of fs.readdirSync(DATA_DIR, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const packPath = path.join(DATA_DIR, entry.name);
+    for (const file of fs.readdirSync(packPath)) {
+      if (!file.endsWith('.json')) continue;
+      records.push(...JSON.parse(fs.readFileSync(path.join(packPath, file), 'utf8')));
+    }
+  }
+  return records;
+}
+
+function updateCommandCoverage(chapterSummary, packId, platform, release, grandTotal) {
+  const coveragePath = path.join(ROOT, 'COMMAND_COVERAGE.md');
+  const startMarker = `<!-- AUTO-GENERATED:${packId}:START -->`;
+  const endMarker = `<!-- AUTO-GENERATED:${packId}:END -->`;
+
+  const rows = chapterSummary
+    .filter((row) => row.chapterId) // skip the "SKIPPED" conceptual chapter
+    .map((row) => {
+      const examples = row.examples.map((n) => `\`${n}\``).join(', ');
+      return `| ${row.title} | ${row.count} | ${examples} |`;
+    });
+
+  const heading = [platform, release].filter(Boolean).join(' ') || packId;
+  const section = [
+    startMarker,
+    `## ${heading}`,
+    '',
+    `**${grandTotal.toLocaleString()} commands** across ${rows.length} chapters (pack \`${packId}\`):`,
+    '',
+    '| Chapter | Count | Examples |',
+    '| --- | --- | --- |',
+    ...rows,
+    endMarker,
+  ].join('\n');
+
+  const introAndOutro = `# Command coverage
+
+This summarizes the Cisco IOS/IOS-XE commands this extension recognizes for completions,
+hover docs, and diagnostics. Each section below is generated from a Cisco command-reference
+manual dropped into \`_manuals/\` and extracted with \`npm run extract-commands -- <pdf>
+--pack <packId> --platform <name> --release <ver>\` (see \`scripts/extract-commands.js\` /
+\`scripts/EXTRACTION_NOTES.md\`) -- do not hand-edit the text between an
+\`AUTO-GENERATED:<packId>\` marker pair, it is overwritten on every re-run of that pack.
+
+${section}
+
+## Curated additions
+
+A further set of commands lives in \`server/data/curated/curated.json\`, hand-maintained
+rather than generated, because they fall into one of two cases found while reconciling this
+extension's original hand-picked completions against the generated data:
+
+- **Absent from every loaded platform reference.** For \`cat9500-17.15\` this includes the
+  crypto/VPN family (\`crypto isakmp policy\`, \`crypto ipsec transform-set\`, \`crypto map\`),
+  line/VTY configuration (\`login local\`, \`line vty\`, \`exec-timeout\`, \`access-class\`),
+  basic syslog (\`logging\`, \`logging host\`, \`logging trap\`, \`logging facility\`), \`ip route\`,
+  and a handful of others -- these commands exist on real IOS-XE devices but aren't documented
+  in this platform-specific reference (they live in separate Security/Network-Management
+  configuration guides).
+- **"False friends"**: a bare name that collides with a *different, unrelated* command
+  documented under the same name in the loaded reference. For example, this PDF's only
+  \`shutdown\` entry is for ERSPAN sessions, its \`neighbor\` entry is an L2TPv3 pseudowire
+  command, and \`transport\`/\`service\`/\`authentication\` (bare) are all different commands from
+  the interface \`shutdown\`, BGP \`neighbor\`, line \`transport input\`, and 802.1X
+  \`authentication order/event/...\` this extension curates completions for. Both the curated
+  entry and the PDF's unrelated entry are shown on hover, labeled, rather than picking one.
+`;
+
+  let existing;
+  try {
+    existing = fs.readFileSync(coveragePath, 'utf8');
+  } catch {
+    existing = null;
+  }
+
+  if (existing && existing.includes(startMarker) && existing.includes(endMarker)) {
+    const markerRe = new RegExp(
+      `<!-- AUTO-GENERATED:${packId}:START -->[\\s\\S]*?<!-- AUTO-GENERATED:${packId}:END -->`,
+    );
+    fs.writeFileSync(coveragePath, existing.replace(markerRe, section));
+  } else if (existing && existing.includes('<!-- AUTO-GENERATED:')) {
+    // Other packs' sections already exist -- insert this pack's section
+    // before the "## Curated additions" heading, leave everything else be.
+    const curatedIdx = existing.indexOf('## Curated additions');
+    const insertAt = curatedIdx === -1 ? existing.length : curatedIdx;
+    fs.writeFileSync(
+      coveragePath,
+      existing.slice(0, insertAt) + section + '\n\n' + existing.slice(insertAt),
+    );
+  } else {
+    // First run: no managed sections yet (or the file predates this
+    // pack-based format entirely) -- bootstrap the whole file.
+    fs.writeFileSync(coveragePath, introAndOutro);
+  }
+}
+
+// A modest stoplist of common English/computing words that would otherwise
+// show up constantly in command syntax and names -- skipping these keeps
+// cspell.json additions focused on genuine Cisco/networking jargon instead
+// of every ordinary word a command happens to contain. Over-inclusion here
+// is harmless (an extra plain-English word in the list just means cspell
+// never flags it, which isn't a real loss) so this doesn't need to be
+// exhaustive.
+const COMMON_WORD_STOPLIST = new Set([
+  'show',
+  'clear',
+  'debug',
+  'enable',
+  'disable',
+  'configure',
+  'config',
+  'set',
+  'get',
+  'add',
+  'remove',
+  'delete',
+  'create',
+  'update',
+  'start',
+  'stop',
+  'enter',
+  'exit',
+  'allow',
+  'deny',
+  'permit',
+  'block',
+  'filter',
+  'match',
+  'apply',
+  'attach',
+  'detach',
+  'bind',
+  'unbind',
+  'map',
+  'register',
+  'reset',
+  'restart',
+  'reload',
+  'save',
+  'load',
+  'import',
+  'export',
+  'backup',
+  'restore',
+  'copy',
+  'move',
+  'rename',
+  'list',
+  'display',
+  'print',
+  'view',
+  'monitor',
+  'track',
+  'log',
+  'report',
+  'summary',
+  'detail',
+  'brief',
+  'verbose',
+  'status',
+  'state',
+  'mode',
+  'type',
+  'name',
+  'number',
+  'value',
+  'level',
+  'priority',
+  'weight',
+  'size',
+  'length',
+  'width',
+  'height',
+  'count',
+  'total',
+  'average',
+  'minimum',
+  'maximum',
+  'default',
+  'custom',
+  'auto',
+  'manual',
+  'static',
+  'dynamic',
+  'active',
+  'inactive',
+  'enabled',
+  'disabled',
+  'input',
+  'output',
+  'source',
+  'destination',
+  'local',
+  'remote',
+  'internal',
+  'external',
+  'primary',
+  'secondary',
+  'master',
+  'parent',
+  'child',
+  'root',
+  'node',
+  'link',
+  'path',
+  'route',
+  'routing',
+  'router',
+  'switch',
+  'switching',
+  'bridge',
+  'bridging',
+  'interface',
+  'port',
+  'channel',
+  'group',
+  'pool',
+  'zone',
+  'area',
+  'domain',
+  'region',
+  'cluster',
+  'instance',
+  'session',
+  'connection',
+  'tunnel',
+  'virtual',
+  'physical',
+  'logical',
+  'global',
+  'private',
+  'public',
+  'shared',
+  'common',
+  'specific',
+  'general',
+  'basic',
+  'advanced',
+  'standard',
+  'extended',
+  'normal',
+  'special',
+  'additional',
+  'optional',
+  'required',
+  'address',
+  'table',
+  'entry',
+  'entries',
+  'record',
+  'file',
+  'system',
+  'device',
+  'server',
+  'client',
+  'user',
+  'users',
+  'password',
+  'secret',
+  'account',
+  'access',
+  'security',
+  'policy',
+  'profile',
+  'template',
+  'rule',
+  'rules',
+  'action',
+  'event',
+  'events',
+  'time',
+  'timer',
+  'timeout',
+  'interval',
+  'schedule',
+  'history',
+  'version',
+  'information',
+  'description',
+  'comment',
+  'label',
+  'reference',
+  'format',
+  'method',
+  'process',
+  'service',
+  'services',
+  'management',
+  'network',
+  'traffic',
+  'packet',
+  'packets',
+  'frame',
+  'protocol',
+  'application',
+  'command',
+  'commands',
+  'parameter',
+  'parameters',
+  'argument',
+  'arguments',
+  'option',
+  'options',
+  'feature',
+  'features',
+  'function',
+  'operation',
+  'sample',
+  'example',
+  'usage',
+  'note',
+  'notes',
+  'warning',
+  'error',
+  'errors',
+  'message',
+  'messages',
+]);
+
+function updateCspell() {
+  const cspellPath = path.join(ROOT, 'cspell.json');
+  const text = fs.readFileSync(cspellPath, 'utf8');
+
+  const existingWords = new Set();
+  for (const m of text.matchAll(/"([a-z0-9-]+)"/gi)) existingWords.add(m[1].toLowerCase());
+
+  const candidates = new Set();
+  for (const record of readAllCommandRecords()) {
+    for (const token of record.name.split(/[^a-z0-9]+/i)) {
+      const t = token.toLowerCase();
+      if (t.length < 4) continue; // short acronyms don't need listing
+      if (existingWords.has(t) || COMMON_WORD_STOPLIST.has(t)) continue;
+      if (/^\d+$/.test(t)) continue;
+      candidates.add(t);
+    }
+  }
+
+  if (candidates.size === 0) return;
+
+  const newWords = Array.from(candidates).sort();
+  const sectionHeader =
+    '    // PDF-derived command vocabulary (auto-generated by extract-commands.js)';
+  const newWordsBlock = newWords.map((w) => `    "${w}"`).join(',\n');
+
+  // Append a new section right before the closing `]` of the "words" array,
+  // rather than re-serializing the whole file, so hand-written comments and
+  // section grouping elsewhere in the file are left untouched.
+  const wordsArrayRe = /("words"\s*:\s*\[)([\s\S]*?)(\n\s*\])/;
+  const updated = text.replace(wordsArrayRe, (full, open, body, close) => {
+    const trimmedBody = body.replace(/,\s*$/, '');
+    return `${open}${trimmedBody},\n${sectionHeader}\n${newWordsBlock}${close}`;
+  });
+
+  fs.writeFileSync(cspellPath, updated);
+  console.log(`cspell.json: added ${newWords.length} new word(s).`);
+}
+
+function updateGrammar() {
+  const grammarPath = path.join(ROOT, 'syntaxes', 'cisco.tmLanguage.json');
+  const grammar = JSON.parse(fs.readFileSync(grammarPath, 'utf8'));
+
+  const roots = new Set();
+  for (const record of readAllCommandRecords()) {
+    roots.add(record.name.split(/\s+/)[0].toLowerCase());
+  }
+  const sortedRoots = Array.from(roots).sort();
+  const escaped = sortedRoots.map((r) => r.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+  const matchPattern = `(?<=^\\s*(?:no\\s+|default\\s+)?)(?:${escaped.join('|')})(?=[^-\\w]|$)`;
+
+  grammar.repository.command_root = {
+    patterns: [{ name: 'keyword.control.command.cisco', match: matchPattern }],
+  };
+
+  if (!grammar.patterns.some((p) => p.include === '#command_root')) {
+    const keywordIdx = grammar.patterns.findIndex((p) => p.include === '#keyword');
+    const insertAt = keywordIdx === -1 ? grammar.patterns.length : keywordIdx;
+    grammar.patterns.splice(insertAt, 0, { include: '#command_root' });
+  }
+
+  fs.writeFileSync(grammarPath, JSON.stringify(grammar, null, 2) + '\n');
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -621,7 +1015,12 @@ function main() {
     const chapterId = chapterIdFromTitle(ch.title);
     const outPath = path.join(DATA_DIR, packId, `${chapterId}.json`);
     fs.writeFileSync(outPath, JSON.stringify(validRecords, null, 2) + '\n');
-    summary.push({ title: ch.title, count: validRecords.length, chapterId });
+    summary.push({
+      title: ch.title,
+      count: validRecords.length,
+      chapterId,
+      examples: validRecords.slice(0, 4).map((r) => r.name),
+    });
     grandTotal += validRecords.length;
   });
 
@@ -653,6 +1052,11 @@ function main() {
   }
 
   console.log('\nExtraction validation passed.');
+
+  updateCommandCoverage(summary, packId, platform, release, grandTotal);
+  updateCspell();
+  updateGrammar();
+  console.log('Updated COMMAND_COVERAGE.md, cspell.json, and syntaxes/cisco.tmLanguage.json.');
 }
 
 main();
