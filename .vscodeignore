@@ -1,5 +1,6 @@
 .vscode/**
 .git/**
+.github/**
 .claude/**
 .gitignore
 .editorconfig
@@ -10,6 +11,14 @@ CLAUDE.md
 cisco-ios-lsp-plan.md
 scripts/**
 _manuals/**
+_testing/**
 images/icon.svg
 images/README.md
 **/.DS_Store
+# Sources are bundled into dist/** by scripts/build.js — only dist ships.
+client/**
+server/**
+test/**
+node_modules/**
+package-lock.json
+*.vsix

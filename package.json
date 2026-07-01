@@ -24,7 +24,7 @@
     "lsp",
     "intellisense"
   ],
-  "main": "./client/extension.js",
+  "main": "./dist/client.js",
   "contributes": {
     "languages": [
       {
@@ -128,21 +128,22 @@
     }
   },
   "scripts": {
+    "build": "node scripts/build.js",
+    "watch": "node scripts/build.js --watch",
     "lint": "eslint client server",
     "format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
-    "vscode:prepublish": "npm run lint",
+    "vscode:prepublish": "npm run lint && npm run build",
     "package": "vsce package",
     "render-icon": "node scripts/render-icon.js",
     "extract-commands": "node scripts/extract-commands.js"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.28.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.0.0",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.12"
-  },
-  "devDependencies": {
-    "@vscode/vsce": "^3.0.0",
-    "eslint": "^8.57.0",
-    "prettier": "^3.0.0"
   }
 }

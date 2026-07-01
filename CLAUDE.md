@@ -22,14 +22,18 @@ VS Code (UI)
   │         └─ client/symbolsInfo.js      — regex/SymbolKind data for outline categories
 ```
 
-No compile step — plain Node.js. VS Code spawns `server.js` on `cisco`-language file open
-and kills it on exit. The grammar and outline provider are adapted from
-`Y-Ysss.cisco-config-highlight` (MIT licensed; see `THIRD_PARTY_NOTICES.md`). `server.js`
-itself holds no command data inline — at startup it globs every
-`server/data/<packId>/*.json` file (one directory per ingested Cisco command-reference
-manual, plus `server/data/curated/curated.json` for hand-maintained entries) into memory,
-then classifies each command into a completion bucket from its documented command mode and
-builds a name-indexed lookup for hover.
+Plain Node.js sources, bundled with esbuild: `scripts/build.js` produces `dist/client.js`
+and `dist/server.js` (single minified files — no unbundled `node_modules` at runtime) and
+merges every data pack into `dist/data/commands.json`. `package.json`'s `main` points at
+`dist/client.js`, so **run `npm run build` (or keep `npm run watch` running) after editing
+`client/` or `server/`**, then reload the VS Code window. VS Code spawns the server on
+`cisco`-language file open and kills it on exit. The grammar and outline provider are
+adapted from `Y-Ysss.cisco-config-highlight` (MIT licensed; see `THIRD_PARTY_NOTICES.md`).
+`server.js` holds no command data inline — on first use (warmed just after the LSP
+handshake, off the initialize path) it loads the merged `data/commands.json` next to it
+(falling back to the per-pack `server/data/<packId>/*.json` layout), classifies each
+command into a completion bucket from its documented command mode, and builds a
+name-indexed lookup for hover.
 
 ## Key Files
 
@@ -58,12 +62,14 @@ npm install
 # Symlink repo into VS Code Server extensions so edits take effect on reload:
 ln -sf /home/matthias/cisco-lsp ~/.vscode-server/extensions/cisco-ios-lsp
 
+npm run build     # bundle client+server into dist/ (what VS Code actually loads)
+npm run watch     # …or rebuild automatically on every source change
 npm run lint      # ESLint
 npm run format    # Prettier
 ```
 
-Reload VS Code window (`Ctrl+Shift+P` → **Developer: Reload Window**) after editing
-`server.js` or `client/extension.js`.
+After editing `server/` or `client/` sources: rebuild (`npm run build`, unless `watch` is
+running), then reload the VS Code window (`Ctrl+Shift+P` → **Developer: Reload Window**).
 
 ## Regenerating Command Data
 
@@ -110,15 +116,17 @@ npm run package        # vsce package → cisco-ios-lsp-<version>.vsix
 ```
 
 - Bump `version` in `package.json` before packaging a new release.
-- Production `dependencies` (the `vscode-languageserver*` packages) are bundled into the
-  `.vsix` by vsce — **no esbuild / no compile step**.
+- `vscode:prepublish` runs `npm run lint && npm run build`, so the `.vsix` always contains a
+  fresh `dist/`. All `vscode-languageserver*`/`vscode-languageclient` packages are
+  `devDependencies` — they're compiled into `dist/*.js` by esbuild, so no `node_modules`
+  ships in the package.
 - `.vscodeignore` keeps dev-only files (`.vscode/`, `CLAUDE.md`, `cspell.json`, `.claude/`,
-  lint/format configs, `scripts/**`, `_manuals/**`) out of the package. `README.md`,
-  `COMMAND_COVERAGE.md`, `LICENSE`, `THIRD_PARTY_NOTICES.md`, `syntaxes/`, and
-  `language-configuration.json` are included, and so is `server/data/**/*.json` — the
-  generated command data is a runtime dependency of `server.js`, not a dev-only file. The
-  source PDFs under `_manuals/` are excluded (multi-MB each; only the generated JSON needs
-  to ship).
+  lint/format configs, `scripts/**`, `_manuals/**`, `_testing/**`) **and the unbundled
+  sources** (`client/**`, `server/**`, `test/**`, `node_modules/**`) out of the package.
+  `README.md`, `COMMAND_COVERAGE.md`, `LICENSE`, `THIRD_PARTY_NOTICES.md`, `syntaxes/`,
+  `language-configuration.json`, and `dist/**` are included — `dist/data/commands.json` is
+  the merged command data the server loads at runtime. The source PDFs under `_manuals/`
+  are excluded (multi-MB each; only the generated JSON needs to ship).
 - No `extensionDependencies` — the grammar and outline provider are bundled, so the `.vsix`
   is fully self-contained.
 

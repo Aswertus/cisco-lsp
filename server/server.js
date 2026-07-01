@@ -82,6 +82,21 @@ const VALID_INTERFACE_TYPES = new Set([
 const DATA_DIR = path.join(__dirname, 'data');
 
 function loadAllCommands() {
+  // Packaged layout: the build step (scripts/build.js) merges every pack
+  // into one dist/data/commands.json so startup does a single open+parse
+  // instead of a directory walk over 17+ files.
+  const merged = path.join(DATA_DIR, 'commands.json');
+  if (fs.existsSync(merged)) {
+    try {
+      return JSON.parse(fs.readFileSync(merged, 'utf8'));
+    } catch (err) {
+      connection.console.error(
+        `Merged command data unreadable (${err.message}) — falling back to pack files.`,
+      );
+    }
+  }
+
+  // Dev/source layout: one directory per pack under server/data/.
   const commands = [];
   for (const entry of fs.readdirSync(DATA_DIR, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
@@ -103,8 +118,6 @@ function loadAllCommands() {
   return commands;
 }
 
-const ALL_COMMANDS = loadAllCommands();
-
 // Which contextual completion bucket a command belongs to, derived from its
 // `modes` text (the PDF's "Command Modes" field, or a hand-assigned
 // equivalent for curated entries). EXEC-mode commands (show/clear/debug) are
@@ -124,52 +137,16 @@ function classifyModesToBlock(modes) {
   return 'global';
 }
 
-const COMMANDS_BY_BLOCK = new Map();
-for (const command of ALL_COMMANDS) {
-  const block = classifyModesToBlock(command.modes);
-  if (!COMMANDS_BY_BLOCK.has(block)) COMMANDS_BY_BLOCK.set(block, []);
-  COMMANDS_BY_BLOCK.get(block).push(command);
-}
-
-// Longest-prefix hover/lookup index. Array-valued because command names can
-// repeat (documented under two different syntaxes/modes in the source, or —
-// once more than one pack is loaded — the same name on two platforms).
-const COMMANDS_BY_NAME = new Map();
-for (const command of ALL_COMMANDS) {
-  const key = command.name.toLowerCase();
-  if (!COMMANDS_BY_NAME.has(key)) COMMANDS_BY_NAME.set(key, []);
-  COMMANDS_BY_NAME.get(key).push(command);
-}
-
-const MAX_COMMAND_WORDS = Math.max(1, ...ALL_COMMANDS.map((c) => c.name.split(/\s+/).length));
-
-// Completion-item arrays are static after startup — build each block's list
-// (plus the merged top-level list and the interface-type list) once, instead
-// of re-mapping and re-deduping hundreds of records on every keystroke.
-// 'top-level' merges `global` and `exec` (see the comment in onCompletion).
-const COMPLETION_ITEMS_BY_BLOCK = new Map();
-for (const [block, commands] of COMMANDS_BY_BLOCK) {
-  COMPLETION_ITEMS_BY_BLOCK.set(block, toCommandCompletionItems(commands));
-}
-COMPLETION_ITEMS_BY_BLOCK.set(
-  'top-level',
-  toCommandCompletionItems([
-    ...(COMMANDS_BY_BLOCK.get('global') || []),
-    ...(COMMANDS_BY_BLOCK.get('exec') || []),
-  ]),
-);
-const INTERFACE_TYPE_ITEMS = toInterfaceTypeItems(INTERFACE_TYPES);
-
 // ---------------------------------------------------------------------------
 // Known top-level command roots — for typo diagnostics.
 // ---------------------------------------------------------------------------
 //
 // Base set covers keywords that aren't "commands" in the data's sense (no,
 // end, exit, ...) plus everything already known to be valid before command
-// data existed; the loop below adds every loaded command's first token on
-// top. Purely additive, so it can only grow as more commands/packs load.
+// data existed; getData() adds every loaded command's first token on top.
+// Purely additive, so it can only grow as more commands/packs load.
 
-const KNOWN_TOP_LEVEL = new Set([
+const KNOWN_TOP_LEVEL_BASE = new Set([
   'interface',
   'router',
   'ip',
@@ -240,9 +217,74 @@ const KNOWN_TOP_LEVEL = new Set([
   'cts',
   'pki',
 ]);
-for (const command of ALL_COMMANDS) {
-  KNOWN_TOP_LEVEL.add(command.name.split(/\s+/)[0].toLowerCase());
+
+// ---------------------------------------------------------------------------
+// Lazily-built command indexes
+// ---------------------------------------------------------------------------
+//
+// Loading + indexing ~1,400 records (1.9 MB of JSON) takes tens of
+// milliseconds — enough to keep it off the initialize handshake so the
+// client isn't blocked waiting on capabilities. getData() memoizes; the
+// onInitialized hook warms it right after the handshake, and every feature
+// handler calls it so correctness never depends on the warm-up having run.
+
+let dataCache = null;
+
+function getData() {
+  if (dataCache) return dataCache;
+  const started = Date.now();
+
+  const allCommands = loadAllCommands();
+
+  const commandsByBlock = new Map();
+  for (const command of allCommands) {
+    const block = classifyModesToBlock(command.modes);
+    if (!commandsByBlock.has(block)) commandsByBlock.set(block, []);
+    commandsByBlock.get(block).push(command);
+  }
+
+  // Longest-prefix hover/lookup index. Array-valued because command names
+  // can repeat (documented under two different syntaxes/modes in the source,
+  // or — once more than one pack is loaded — the same name on two
+  // platforms).
+  const commandsByName = new Map();
+  for (const command of allCommands) {
+    const key = command.name.toLowerCase();
+    if (!commandsByName.has(key)) commandsByName.set(key, []);
+    commandsByName.get(key).push(command);
+  }
+
+  const maxCommandWords = Math.max(1, ...allCommands.map((c) => c.name.split(/\s+/).length));
+
+  // Completion-item arrays are static once built — build each block's list
+  // (plus the merged top-level list) once, instead of re-mapping and
+  // re-deduping hundreds of records on every keystroke. 'top-level' merges
+  // `global` and `exec` (see the comment in onCompletion).
+  const completionItemsByBlock = new Map();
+  for (const [block, commands] of commandsByBlock) {
+    completionItemsByBlock.set(block, toCommandCompletionItems(commands));
+  }
+  completionItemsByBlock.set(
+    'top-level',
+    toCommandCompletionItems([
+      ...(commandsByBlock.get('global') || []),
+      ...(commandsByBlock.get('exec') || []),
+    ]),
+  );
+
+  const knownTopLevel = new Set(KNOWN_TOP_LEVEL_BASE);
+  for (const command of allCommands) {
+    knownTopLevel.add(command.name.split(/\s+/)[0].toLowerCase());
+  }
+
+  dataCache = { commandsByName, maxCommandWords, completionItemsByBlock, knownTopLevel };
+  connection.console.log(
+    `Command data ready: ${allCommands.length} records indexed in ${Date.now() - started}ms.`,
+  );
+  return dataCache;
 }
+
+const INTERFACE_TYPE_ITEMS = toInterfaceTypeItems(INTERFACE_TYPES);
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -361,9 +403,9 @@ function buildDocMarkdown(records) {
   return blocks.join('\n\n---\n\n');
 }
 
-function findHoverRecords(tokens) {
-  for (let n = Math.min(tokens.length, MAX_COMMAND_WORDS); n >= 1; n--) {
-    const records = COMMANDS_BY_NAME.get(tokens.slice(0, n).join(' '));
+function findHoverRecords(tokens, { commandsByName, maxCommandWords }) {
+  for (let n = Math.min(tokens.length, maxCommandWords); n >= 1; n--) {
+    const records = commandsByName.get(tokens.slice(0, n).join(' '));
     if (records) return records;
   }
   return null;
@@ -396,6 +438,12 @@ connection.onInitialize(() => ({
   },
 }));
 
+// Warm the command indexes right after the handshake instead of during it —
+// setImmediate so the `initialized` notification itself isn't blocked either.
+connection.onInitialized(() => {
+  setImmediate(getData);
+});
+
 // ---------------------------------------------------------------------------
 // Completion
 // ---------------------------------------------------------------------------
@@ -422,13 +470,14 @@ connection.onCompletion((params) => {
   // transcript, so it doesn't itself distinguish an EXEC prompt from a
   // config prompt the way `detectBlock` distinguishes interface/router/etc.
   // sub-modes from their headers.
-  if (block === 'global') return COMPLETION_ITEMS_BY_BLOCK.get('top-level');
-  return COMPLETION_ITEMS_BY_BLOCK.get(block) || [];
+  const { completionItemsByBlock } = getData();
+  if (block === 'global') return completionItemsByBlock.get('top-level');
+  return completionItemsByBlock.get(block) || [];
 });
 
 connection.onCompletionResolve((item) => {
   if (!item.data) return item;
-  const records = COMMANDS_BY_NAME.get(item.data);
+  const records = getData().commandsByName.get(item.data);
   if (!records) return item;
   item.documentation = { kind: MarkupKind.Markdown, value: buildDocMarkdown(records) };
   return item;
@@ -447,7 +496,7 @@ connection.onHover((params) => {
   if (tokens.length === 0) return null;
   if (tokens[0] === 'no' && tokens.length > 1) tokens = tokens.slice(1);
 
-  const records = findHoverRecords(tokens);
+  const records = findHoverRecords(tokens, getData());
   if (!records) return null;
 
   return {
@@ -527,6 +576,7 @@ function scanIndentation(lines, onSiblingMismatch, onMixedTabsSpaces, onLine) {
 function validate(doc) {
   const lines = getLines(doc);
   const diagnostics = [];
+  const { knownTopLevel } = getData();
 
   // One traversal covers all checks: indentation callbacks plus the per-line
   // command/VLAN/IP checks via onLine.
@@ -557,7 +607,7 @@ function validate(doc) {
       const first = tokens[0].toLowerCase();
 
       // (1) Unknown top-level command (only flag column-0 commands).
-      if (indent === 0 && !KNOWN_TOP_LEVEL.has(first)) {
+      if (indent === 0 && !knownTopLevel.has(first)) {
         addDiag(
           diagnostics,
           i,

@@ -9,7 +9,9 @@ const { registerOutlineSymbolProvider } = require('./registerOutlineSymbol');
 let client;
 
 function activate(context) {
-  const serverModule = context.asAbsolutePath(path.join('server', 'server.js'));
+  // Both dev and packaged runs load the built output — `main` points at
+  // dist/client.js, so the sibling dist/server.js is always present.
+  const serverModule = context.asAbsolutePath(path.join('dist', 'server.js'));
 
   client = new LanguageClient(
     'cisco-ios-lsp',
