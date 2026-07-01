@@ -26,6 +26,19 @@ function activate(context) {
   client.start();
   registerOutlineSymbolProvider(context);
 
+  context.subscriptions.push(
+    vscode.workspace.onWillSaveTextDocument((event) => {
+      if (event.document.languageId !== 'cisco') return;
+      const config = vscode.workspace.getConfiguration('cisco-ios-lsp');
+      if (!config.get('format.onSave', true)) return;
+      event.waitUntil(
+        vscode.commands
+          .executeCommand('vscode.executeFormatDocumentProvider', event.document.uri, {})
+          .then((edits) => edits || []),
+      );
+    }),
+  );
+
   // Fire-and-forget: never let an update check disrupt activation.
   checkForUpdates(context).catch(() => {});
 }

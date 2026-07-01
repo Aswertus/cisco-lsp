@@ -354,6 +354,7 @@ connection.onInitialize(() => ({
       resolveProvider: true,
     },
     hoverProvider: true,
+    documentFormattingProvider: true,
   },
 }));
 
@@ -426,10 +427,103 @@ connection.onHover((params) => {
 // Diagnostics
 // ---------------------------------------------------------------------------
 
+// Shared traversal behind both the indentation diagnostics (validate()) and
+// the documentFormatting handler, so the linter and the formatter can never
+// disagree about what's wrong with a file's indentation.
+//
+// onSiblingMismatch(lineIndex, indent, expectedIndent) — a non-blank/!/#
+// line's indent disagrees with the indent its prior siblings under the same
+// parent line already established, using indentation depth alone (not a
+// keyword whitelist like `classifyHeader`) so it works for any IOS
+// block-opening command, not just the interface/router/class-map/policy-map/
+// line subset `classifyHeader` recognizes. A line that is *deeper* than the
+// line before it is always accepted as the start of a new nested level
+// (mirrors how Python's INDENT token works) — this only catches a later
+// sibling disagreeing with the level its prior siblings already established.
+//
+// onMixedTabsSpaces(lineIndex, leadingLength) — leading whitespace mixing
+// tabs and spaces, regardless of structural position. Cisco IOS config
+// output never intentionally uses tabs for indentation, so any mix is a
+// reliable signal of accidental/corrupted formatting. Runs on every line,
+// including blank/comment ones, since it doesn't depend on block structure.
+//
+// A line flagged mixed-tabs is excluded from the sibling-mismatch check:
+// its indentation can't be trusted to reflect deliberate depth (that's
+// exactly why depth-comparison alone misses tab corruption in the first
+// place — a tab always reads as "one char deeper," so it's silently
+// accepted as valid new nesting rather than compared to siblings), and
+// letting both fire would hand the formatter two conflicting edits over the
+// same range.
+function scanIndentation(lines, onSiblingMismatch, onMixedTabsSpaces) {
+  const stack = [{ indent: -1, childIndent: null }]; // sentinel: true column-0 scope
+
+  lines.forEach((raw, i) => {
+    const line = raw.replace(/\r$/, '');
+    const leading = line.match(/^[ \t]*/)[0];
+    const isMixed = leading.includes(' ') && leading.includes('\t');
+    if (isMixed) {
+      onMixedTabsSpaces(i, leading.length);
+    }
+
+    const trimmed = line.trim();
+    if (trimmed === '' || trimmed.startsWith('!') || trimmed.startsWith('#')) return;
+
+    const indent = leadingSpaces(line);
+
+    while (stack.length > 1 && indent <= stack[stack.length - 1].indent) {
+      stack.pop();
+    }
+
+    const parent = stack[stack.length - 1];
+
+    if (indent > parent.indent) {
+      if (parent.childIndent === null) {
+        parent.childIndent = indent;
+      } else if (indent !== parent.childIndent && !isMixed) {
+        onSiblingMismatch(i, indent, parent.childIndent);
+      }
+      stack.push({ indent, childIndent: null });
+    }
+  });
+}
+
+function checkIndentation(lines, diagnostics) {
+  scanIndentation(
+    lines,
+    (i, indent, expected) => {
+      addDiag(
+        diagnostics,
+        i,
+        0,
+        indent,
+        `Inconsistent indentation: this line uses ${indent} space(s), but sibling lines in this block use ${expected}.`,
+        DiagnosticSeverity.Warning,
+      );
+    },
+    () => {},
+  );
+}
+
+function checkMixedIndentation(lines, diagnostics) {
+  scanIndentation(lines, () => {}, (i, leadingLength) => {
+    addDiag(
+      diagnostics,
+      i,
+      0,
+      leadingLength,
+      'Indentation mixes tabs and spaces.',
+      DiagnosticSeverity.Warning,
+    );
+  });
+}
+
 function validate(doc) {
   const text = doc.getText();
   const lines = text.split(/\r?\n/);
   const diagnostics = [];
+
+  checkIndentation(lines, diagnostics);
+  checkMixedIndentation(lines, diagnostics);
 
   lines.forEach((raw, i) => {
     const line = raw.replace(/\r$/, '');
@@ -518,6 +612,40 @@ function addDiag(list, line, character, length, message, severity) {
     source: 'cisco-ios-lsp',
   });
 }
+
+// ---------------------------------------------------------------------------
+// Formatting
+// ---------------------------------------------------------------------------
+
+// Fixes exactly what checkIndentation/checkMixedIndentation flag — nothing
+// more. A file that's already internally consistent produces no edits, even
+// if it uses a different indent width than IOS's native 1-space-per-level
+// convention.
+connection.onDocumentFormatting((params) => {
+  const doc = documents.get(params.textDocument.uri);
+  if (!doc) return [];
+
+  const lines = doc.getText().split(/\r?\n/);
+  const edits = [];
+
+  scanIndentation(
+    lines,
+    (i, indent, expected) => {
+      edits.push({
+        range: { start: { line: i, character: 0 }, end: { line: i, character: indent } },
+        newText: ' '.repeat(expected),
+      });
+    },
+    (i, leadingLength) => {
+      edits.push({
+        range: { start: { line: i, character: 0 }, end: { line: i, character: leadingLength } },
+        newText: ' '.repeat(leadingLength),
+      });
+    },
+  );
+
+  return edits;
+});
 
 // Debounce validation per-document on change.
 const debounceTimers = new Map();

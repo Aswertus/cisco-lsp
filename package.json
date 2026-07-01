@@ -24,9 +24,6 @@
     "lsp",
     "intellisense"
   ],
-  "activationEvents": [
-    "onLanguage:cisco"
-  ],
   "main": "./client/extension.js",
   "contributes": {
     "languages": [
@@ -59,6 +56,11 @@
           "type": "boolean",
           "default": true,
           "description": "On startup, check GitHub Releases for a newer version and notify if one is available. Inactive while the repository is private."
+        },
+        "cisco-ios-lsp.format.onSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically fix inconsistent indentation and mixed tabs/spaces when saving a .cisco file."
         },
         "cisco-ios-lsp.outline.showSymbolsInOutlinePanel": {
           "type": "boolean",

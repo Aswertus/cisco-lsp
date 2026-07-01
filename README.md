@@ -3,8 +3,8 @@
 VS Code extension — Cisco IOS/IOS-XE IntelliSense via Language Server Protocol.
 
 Adds **context-aware completions**, **hover documentation**, **real-time diagnostics**,
-**syntax highlighting**, and an **outline panel** to Cisco config files — all bundled, no
-other extension required.
+**format on save**, **syntax highlighting**, and an **outline panel** to Cisco config files —
+all bundled, no other extension required.
 
 Syntax highlighting and the outline feature are adapted from
 [`Y-Ysss.cisco-config-highlight`](https://marketplace.visualstudio.com/items?itemName=Y-Ysss.cisco-config-highlight)
@@ -21,7 +21,8 @@ compatible with that extension, its themes, and token-color customizations. See 
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Completions** | Auto-triggered, block-aware: completions change depending on whether the cursor is inside an `interface`, `router bgp`, `class-map`, `policy-map`, `line vty`, or at global level |
 | **Hover docs**  | Syntax reminders for known keywords — e.g. hover `dot1x` → `dot1x pae { authenticator \| supplicant \| both }`                                                                    |
-| **Diagnostics** | Squiggly errors on unknown top-level commands, invalid interface names, VLAN numbers outside 1–4094, and malformed IP addresses                                                   |
+| **Diagnostics** | Squiggly errors on unknown top-level commands, invalid interface names, VLAN numbers outside 1–4094, malformed IP addresses, inconsistent indentation, and mixed tabs/spaces       |
+| **Format on save** | Fixes exactly what the indentation diagnostics flag — a sub-command whose indent disagrees with its siblings, or a line with tabs mixed into its indentation — when the file is saved. Also available manually via **Format Document** (Shift+Alt+F). Toggle with `cisco-ios-lsp.format.onSave`. |
 
 ---
 
@@ -232,11 +233,18 @@ After installing:
 6. Hover over `dot1x` → syntax reminder popup.
 7. Type `interfacs ` (deliberate typo) → red squiggle diagnostic.
 8. Type `vlan 5000` → out-of-range VLAN diagnostic.
-9. Confirm syntax highlighting (keywords, addresses, comments) appears without any other
-   extension installed.
-10. Enable `cisco-ios-lsp.outline.showSymbolsInOutlinePanel`, add a `router bgp 65000` and an
+9. Inside an `interface` block, indent one sub-command differently from its siblings (e.g. 1
+   space vs. 2) → inconsistent-indentation diagnostic. Mix a tab into a line's leading
+   whitespace → mixed tabs/spaces diagnostic.
+10. Type three lines — `interface GigabitEthernet0/1`, `  description X` (2 spaces), then
+    ` ip address 1.2.3.4 255.255.255.0` (1 space) — save → the `ip address` line snaps to 2
+    spaces to match its sibling. Save again → no further change (idempotent). Save a file with
+    no indentation issues → byte-identical after save.
+11. Confirm syntax highlighting (keywords, addresses, comments) appears without any other
+    extension installed.
+12. Enable `cisco-ios-lsp.outline.showSymbolsInOutlinePanel`, add a `router bgp 65000` and an
     `interface GigabitEthernet0/1` block → Outline panel shows both as nested entries.
-11. Delete `test.cfg` when done.
+13. Delete `test.cfg` when done.
 
 ---
 

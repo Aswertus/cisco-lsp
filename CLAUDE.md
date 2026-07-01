@@ -5,9 +5,9 @@ This file provides guidance to Claude Code when working with this repository.
 ## Project Overview
 
 `cisco-ios-lsp` is a VS Code extension that adds **completions**, **hover docs**,
-**diagnostics**, **syntax highlighting**, and an **outline panel** for Cisco IOS/IOS-XE config
-files. It owns the `cisco` language ID, registering a bundled TextMate grammar
-(`syntaxes/cisco.tmLanguage.json`) adapted from `Y-Ysss.cisco-config-highlight` (MIT licensed,
+**diagnostics**, **format on save**, **syntax highlighting**, and an **outline panel** for
+Cisco IOS/IOS-XE config files. It owns the `cisco` language ID, registering a bundled TextMate
+grammar (`syntaxes/cisco.tmLanguage.json`) adapted from `Y-Ysss.cisco-config-highlight` (MIT licensed,
 see `THIRD_PARTY_NOTICES.md`) — no other extension is required, though that one can still be
 installed alongside it (see README "Coexisting with `Y-Ysss.cisco-config-highlight`").
 
