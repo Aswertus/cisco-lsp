@@ -14,21 +14,30 @@ This file provides guidance to Claude Code when working with this repository.
 VS Code (UI)
   └─ client/extension.js      — LSP client, spawns the server
        └─ server/server.js    — LSP server, JSON-RPC over stdio
+            └─ server/data/**/*.json — command data loaded at startup (see below)
 ```
 
 No compile step — plain Node.js. VS Code spawns `server.js` on `cisco`-language file open
-and kills it on exit.
+and kills it on exit. `server.js` itself holds no command data inline — at startup it globs
+every `server/data/<packId>/*.json` file (one directory per ingested Cisco command-reference
+manual, plus `server/data/curated/curated.json` for hand-maintained entries) into memory, then
+classifies each command into a completion bucket from its documented command mode and builds
+a name-indexed lookup for hover.
 
 ## Key Files
 
-| File | Purpose |
-|------|---------|
-| `package.json` | Extension manifest, `npm` scripts (`lint`, `format`) |
-| `client/extension.js` | LSP client — starts/stops the server |
-| `server/server.js` | LSP server — completions, hover, diagnostics logic |
-| `.vscode/extensions.json` | Recommended extensions |
-| `.vscode/settings.json` | Workspace settings (theme, formatter, rulers) |
-| `cspell.json` | Custom word list for Code Spell Checker |
+| File                               | Purpose                                                                                     |
+| ---------------------------------- | ------------------------------------------------------------------------------------------- |
+| `package.json`                     | Extension manifest, `npm` scripts (`lint`, `format`, `extract-commands`)                    |
+| `client/extension.js`              | LSP client — starts/stops the server                                                        |
+| `server/server.js`                 | LSP server — completions, hover, diagnostics logic                                          |
+| `server/data/<packId>/*.json`      | Generated command data, one directory per ingested manual (see "Regenerating Command Data") |
+| `server/data/curated/curated.json` | Hand-maintained command entries — same schema as generated data, `source: "curated"`        |
+| `scripts/extract-commands.js`      | PDF → JSON extractor; re-run whenever a manual is added or updated                          |
+| `scripts/EXTRACTION_NOTES.md`      | How the PDF structure was reverse-engineered — read before touching the extractor           |
+| `.vscode/extensions.json`          | Recommended extensions                                                                      |
+| `.vscode/settings.json`            | Workspace settings (theme, formatter, rulers)                                               |
+| `cspell.json`                      | Custom word list for Code Spell Checker (partly auto-generated, see below)                  |
 
 ## Development Workflow
 
@@ -44,6 +53,41 @@ npm run format    # Prettier
 Reload VS Code window (`Ctrl+Shift+P` → **Developer: Reload Window**) after editing
 `server.js` or `client/extension.js`.
 
+## Regenerating Command Data
+
+Command completions/hover/diagnostics data is generated from official Cisco IOS/IOS-XE
+**Command Reference** PDFs, not hand-typed. To ingest a manual (the first time, or after
+Cisco publishes an update):
+
+```bash
+# Requires poppler-utils (pdftotext/pdfinfo) — a system package, not an npm dependency:
+#   apt-get install poppler-utils   /   dnf install poppler-utils
+
+# Drop the PDF into _manuals/ (gitignored — only the generated JSON is committed), then:
+npm run extract-commands -- _manuals/<file>.pdf --pack <packId> \
+  --platform "<Platform name>" --release "<IOS-XE release>"
+npm run format   # re-format the generated JSON/docs
+```
+
+- `packId` is a short slug (e.g. `cat9500-17.15`) — pick a new one per platform/release; the
+  script fully regenerates only that pack's `server/data/<packId>/` directory and never
+  touches other packs, so multiple manuals coexist without conflicts.
+- The script also re-derives `COMMAND_COVERAGE.md`'s per-pack section, adds any new
+  Cisco/networking terms to `cspell.json`, and updates the TextMate grammar's
+  `command_root` highlighting rule — all from whatever is currently under `server/data/**`,
+  so these three stay in sync automatically.
+- It self-validates (per-chapter extracted-vs-TOC counts) and exits non-zero on a genuine
+  parsing problem rather than silently shipping incomplete data — read the printed report if
+  it fails. **Read `scripts/EXTRACTION_NOTES.md` first** if extending or debugging the
+  extractor; it documents the PDF's structural quirks (running headers, wrapped TOC lines,
+  duplicate-name entries, indented vs. flush section labels) discovered while building it.
+- Not every real IOS-XE command is in a given platform's Command Reference (e.g. this
+  Catalyst 9500 manual has no crypto/VPN or line/VTY commands — see `curated.json`'s "not in
+  the PDF" entries), and a bare name can mean something unrelated to what you'd expect (a
+  "false friend" — e.g. this PDF's only `shutdown` entry is ERSPAN-specific). Check
+  `server/data/curated/curated.json` before assuming a missing/surprising command is a bug in
+  the extractor.
+
 ## Packaging / Release
 
 The extension is distributed as a sideloaded `.vsix` file (no Marketplace).
@@ -57,7 +101,10 @@ npm run package        # vsce package → cisco-ios-lsp-<version>.vsix
 - Production `dependencies` (the `vscode-languageserver*` packages) are bundled into the
   `.vsix` by vsce — **no esbuild / no compile step**.
 - `.vscodeignore` keeps dev-only files (`.vscode/`, `CLAUDE.md`, `cspell.json`, `.claude/`,
-  lint/format configs) out of the package. `README.md` and `LICENSE` are included.
+  lint/format configs, `scripts/**`, `_manuals/**`) out of the package. `README.md` and
+  `LICENSE` are included, and so is `server/data/**/*.json` — the generated command data is
+  a runtime dependency of `server.js`, not a dev-only file. The source PDFs under
+  `_manuals/` are excluded (multi-MB each; only the generated JSON needs to ship).
 - `extensionDependencies` pulls in `Y-Ysss.cisco-config-highlight` on the user's machine
   automatically (from the Marketplace) at install time.
 
@@ -90,6 +137,8 @@ token required on user machines.
 
 ## cSpell Word List Maintenance
 
-Custom technical terms live in `cspell.json` (`words` array). Add new terms there when
-introducing new Cisco commands, LSP/tooling names, or extension identifiers that aren't
-plain English. Short acronyms (≤3 chars) don't need listing.
+Custom technical terms live in `cspell.json` (`words` array). Most Cisco/networking terms are
+now added automatically by `npm run extract-commands` (see "Regenerating Command Data")
+whenever a manual is ingested. Add terms by hand only for non-command vocabulary: LSP/tooling
+names, extension identifiers, or Cisco terms that don't come from a command name. Short
+acronyms (≤3 chars) don't need listing.
