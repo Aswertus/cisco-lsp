@@ -5,21 +5,29 @@ This file provides guidance to Claude Code when working with this repository.
 ## Project Overview
 
 `cisco-ios-lsp` is a VS Code extension that adds **completions**, **hover docs**,
-**diagnostics**, **format on save**, **syntax highlighting**, and an **outline panel** for
-Cisco IOS/IOS-XE config files. It owns the `cisco` language ID, registering a bundled TextMate
-grammar (`syntaxes/cisco.tmLanguage.json`) adapted from `Y-Ysss.cisco-config-highlight` (MIT licensed,
-see `THIRD_PARTY_NOTICES.md`) — no other extension is required, though that one can still be
-installed alongside it (see README "Coexisting with `Y-Ysss.cisco-config-highlight`").
+**diagnostics** (incl. cross-reference checks), **go-to-definition/references/rename** for
+named objects, **format on save**, **folding**, **syntax highlighting**, and an **outline
+panel** for Cisco IOS/IOS-XE config files. It owns the `cisco` language ID, registering a
+bundled TextMate grammar (`syntaxes/cisco.tmLanguage.json`) adapted from
+`Y-Ysss.cisco-config-highlight` (MIT licensed, see `THIRD_PARTY_NOTICES.md`) — no other
+extension is required, though that one can still be installed alongside it (see README
+"Coexisting with `Y-Ysss.cisco-config-highlight`").
 
 ## Architecture
 
 ```
 VS Code (UI)
-  ├─ contributes.grammars     — syntaxes/cisco.tmLanguage.json (TextMate, scope source.cisco)
-  ├─ client/extension.js      — LSP client, spawns the server, registers the outline provider
-  │    ├─ server/server.js    — LSP server, JSON-RPC over stdio
-  │    └─ client/registerOutlineSymbol.js — VS Code DocumentSymbolProvider (outline panel)
-  │         └─ client/symbolsInfo.js      — regex/SymbolKind data for outline categories
+  ├─ contributes.grammars — syntaxes/cisco.tmLanguage.json (TextMate, scope source.cisco)
+  ├─ dist/client.js       — LSP client (bundled from client/extension.js + client/version.js)
+  │    └─ dist/server.js  — LSP server (bundled from server/server.js), JSON-RPC over stdio
+  │         └─ server/lib/ — the actual logic, unit-tested via test/*.test.js:
+  │              data.js         command data loading + derived indexes
+  │              blocks.js       config-block detection for completions
+  │              indentation.js  shared indent scan → diagnostics/formatting/folding
+  │              diagnostics.js  per-file checks (typos, VLAN, IPv4, indentation)
+  │              xref.js         named-object defs/refs → definition/references/rename +
+  │                              undefined/unused diagnostics
+  │              symbols.js      outline (LSP documentSymbol) with full block ranges
 ```
 
 Plain Node.js sources, bundled with esbuild: `scripts/build.js` produces `dist/client.js`
@@ -39,11 +47,14 @@ name-indexed lookup for hover.
 
 | File                               | Purpose                                                                                     |
 | ---------------------------------- | ------------------------------------------------------------------------------------------- |
-| `package.json`                     | Extension manifest, `npm` scripts (`lint`, `format`, `extract-commands`)                    |
-| `client/extension.js`              | LSP client — starts/stops the server, registers outline provider                            |
-| `client/registerOutlineSymbol.js`  | Outline panel `DocumentSymbolProvider`                                                      |
-| `client/symbolsInfo.js`            | Regex/`SymbolKind` data the outline provider matches against                                |
-| `server/server.js`                 | LSP server — completions, hover, diagnostics logic                                          |
+| `package.json`                     | Extension manifest, `npm` scripts (`build`, `watch`, `test`, `lint`, `format`, `extract-commands`) |
+| `client/extension.js`              | LSP client — starts/stops the server, update check                                          |
+| `client/version.js`                | Pure update-check helpers (`parseRepo`, `isNewer`) — unit-testable, no vscode dependency    |
+| `server/server.js`                 | LSP wiring only — handlers delegate to `server/lib/`                                        |
+| `server/lib/*.js`                  | Testable logic: data, blocks, indentation, diagnostics, docs, xref, symbols (see Architecture) |
+| `test/*.test.js`                   | node:test unit suites (`npm test`) — run by prepublish and the release workflow             |
+| `scripts/build.js`                 | esbuild bundling → `dist/` + merges data packs into `dist/data/commands.json`               |
+| `eslint.config.js`                 | ESLint flat config (v10)                                                                    |
 | `server/data/<packId>/*.json`      | Generated command data, one directory per ingested manual (see "Regenerating Command Data") |
 | `server/data/curated/curated.json` | Hand-maintained command entries — same schema as generated data, `source: "curated"`        |
 | `scripts/extract-commands.js`      | PDF → JSON extractor; re-run whenever a manual is added or updated                          |
@@ -64,6 +75,7 @@ ln -sf /home/matthias/cisco-lsp ~/.vscode-server/extensions/cisco-ios-lsp
 
 npm run build     # bundle client+server into dist/ (what VS Code actually loads)
 npm run watch     # …or rebuild automatically on every source change
+npm test          # node:test unit suites in test/
 npm run lint      # ESLint
 npm run format    # Prettier
 ```

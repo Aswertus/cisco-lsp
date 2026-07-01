@@ -32,6 +32,9 @@
     "vsix",
     "vsce",
     "submatch",
+    "esbuild",
+    "prepublish",
+    "multiword",
     // VS Code extension names
     "errorlens",
     "gitlens",

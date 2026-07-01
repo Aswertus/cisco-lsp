@@ -4,6 +4,45 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **Go to definition / find references / rename** (F12 / Shift+F12 / F2) for named objects:
+  class-maps, policy-maps, named + numbered ACLs, route-maps, prefix-lists, and VRFs, linking
+  each definition to the places it is applied (`service-policy`, `access-group`,
+  `access-class`, `match ...`, `vrf forwarding`, `address-family ... vrf`, ...).
+- **Cross-reference diagnostics**: referencing an object that is never defined in the file
+  warns; defining one that is never referenced shows a hint.
+- **Folding ranges** for every indented config block, spanning `!` separators.
+- **Format on save** for the indentation fixes, now driven by VS Code's own
+  `editor.formatOnSave` (contributed as a `[cisco]` language default).
+- Completions now work after a leading `no `, and accepting a multiword command replaces the
+  full typed prefix (no more `ip ip address` after typing `ip addr`).
+- Unit tests (`npm test`, node:test) covering the indentation scanner/formatter round-trip,
+  block detection, diagnostic positions, data loading, xref index, and document symbols; run
+  in CI and on packaging.
+
+### Changed
+
+- **Faster startup and typing**: client and server are bundled with esbuild into single
+  `dist/` files, the command data ships as one merged JSON parsed lazily right after the LSP
+  handshake, per-block completion lists are precomputed once, and the document's split lines
+  are cached per version instead of re-split on every keystroke/hover.
+- The outline is now served by the language server (`textDocument/documentSymbol`); symbols
+  span their whole block, so breadcrumbs and sticky scroll track the enclosing block.
+  Existing `cisco-ios-lsp.outline.*` settings keep working; same-category blocks now merge
+  into one outline group, and class-map labels drop the `match-any`/`match-all` prefix.
+- Diagnostics precision: every out-of-range VLAN / malformed IPv4 on a line is flagged at its
+  own position (previously only the first, sometimes at the wrong column); a corrupt command
+  data file is skipped with a logged error instead of crashing the server.
+- `server.js` split into testable `server/lib/` modules; ESLint upgraded to v10 flat config.
+
+### Removed
+
+- The `cisco-ios-lsp.format.onSave` setting — use the standard per-language
+  `editor.formatOnSave` (enabled for `cisco` files by default) instead.
+
 ## [0.5.0] - 2026-07-01
 
 ### Added
