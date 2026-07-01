@@ -1,8 +1,8 @@
 # Extension icon
 
-| File | Role |
-|------|------|
-| `icon.svg` | Editable vector source — the single source of truth. |
+| File       | Role                                                                                        |
+| ---------- | ------------------------------------------------------------------------------------------- |
+| `icon.svg` | Editable vector source — the single source of truth.                                        |
 | `icon.png` | 256×256 raster generated from `icon.svg`; this is what ships (VS Code requires a PNG icon). |
 
 ## Design

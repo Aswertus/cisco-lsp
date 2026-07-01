@@ -2,7 +2,7 @@
   "name": "cisco-ios-lsp",
   "displayName": "Cisco IOS/IOS-XE IntelliSense",
   "description": "Context-aware completions, hover docs, and diagnostics for Cisco IOS/IOS-XE config files.",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "publisher": "Aswertus",
   "license": "MIT",
   "icon": "images/icon.png",
@@ -24,9 +24,6 @@
     "lsp",
     "intellisense"
   ],
-  "extensionDependencies": [
-    "Y-Ysss.cisco-config-highlight"
-  ],
   "activationEvents": [
     "onLanguage:cisco"
   ],
@@ -35,10 +32,24 @@
     "languages": [
       {
         "id": "cisco",
+        "aliases": [
+          "Cisco Config",
+          "cisco"
+        ],
         "extensions": [
+          ".cisco",
+          ".config",
           ".cfg",
           ".ios"
-        ]
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cisco",
+        "scopeName": "source.cisco",
+        "path": "./syntaxes/cisco.tmLanguage.json"
       }
     ],
     "configuration": {
@@ -48,6 +59,68 @@
           "type": "boolean",
           "default": true,
           "description": "On startup, check GitHub Releases for a newer version and notify if one is available. Inactive while the repository is private."
+        },
+        "cisco-ios-lsp.outline.showSymbolsInOutlinePanel": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show command/interface/BGP/class-map/policy-map structure in the Outline panel and breadcrumbs."
+        },
+        "cisco-ios-lsp.outline.symbolsList": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "boolean",
+              "default": true,
+              "description": "Show prompt commands (hostname# / hostname>) in the outline."
+            },
+            "ip_vrf": {
+              "type": "boolean",
+              "default": true,
+              "description": "Show 'ip vrf' declarations in the outline."
+            },
+            "router_bgp": {
+              "type": "boolean",
+              "default": true,
+              "description": "Show 'router bgp' blocks in the outline."
+            },
+            "address_family": {
+              "type": "boolean",
+              "default": true,
+              "description": "Show 'address-family' blocks in the outline."
+            },
+            "class_map": {
+              "type": "boolean",
+              "default": true,
+              "description": "Show 'class-map' blocks in the outline."
+            },
+            "policy_map": {
+              "type": "boolean",
+              "default": true,
+              "description": "Show 'policy-map' blocks in the outline."
+            },
+            "interface": {
+              "type": "boolean",
+              "default": true,
+              "description": "Show 'interface' blocks in the outline."
+            },
+            "sub_interface": {
+              "type": "boolean",
+              "default": true,
+              "description": "Show sub-interfaces (e.g. GigabitEthernet0/1.10) in the outline."
+            }
+          },
+          "additionalProperties": false,
+          "default": {
+            "command": true,
+            "ip_vrf": true,
+            "router_bgp": true,
+            "address_family": true,
+            "class_map": true,
+            "policy_map": true,
+            "interface": true,
+            "sub_interface": true
+          },
+          "description": "Per-category toggle for which symbols appear in the outline."
         }
       }
     }

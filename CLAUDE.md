@@ -4,37 +4,49 @@ This file provides guidance to Claude Code when working with this repository.
 
 ## Project Overview
 
-`cisco-ios-lsp` is a VS Code extension that adds **completions**, **hover docs**, and
-**diagnostics** for Cisco IOS/IOS-XE config files. It depends on
-`Y-Ysss.cisco-config-highlight` for the `cisco` language ID and syntax highlighting.
+`cisco-ios-lsp` is a VS Code extension that adds **completions**, **hover docs**,
+**diagnostics**, **syntax highlighting**, and an **outline panel** for Cisco IOS/IOS-XE config
+files. It owns the `cisco` language ID, registering a bundled TextMate grammar
+(`syntaxes/cisco.tmLanguage.json`) adapted from `Y-Ysss.cisco-config-highlight` (MIT licensed,
+see `THIRD_PARTY_NOTICES.md`) — no other extension is required, though that one can still be
+installed alongside it (see README "Coexisting with `Y-Ysss.cisco-config-highlight`").
 
 ## Architecture
 
 ```
 VS Code (UI)
-  └─ client/extension.js      — LSP client, spawns the server
-       └─ server/server.js    — LSP server, JSON-RPC over stdio
-            └─ server/data/**/*.json — command data loaded at startup (see below)
+  ├─ contributes.grammars     — syntaxes/cisco.tmLanguage.json (TextMate, scope source.cisco)
+  ├─ client/extension.js      — LSP client, spawns the server, registers the outline provider
+  │    ├─ server/server.js    — LSP server, JSON-RPC over stdio
+  │    └─ client/registerOutlineSymbol.js — VS Code DocumentSymbolProvider (outline panel)
+  │         └─ client/symbolsInfo.js      — regex/SymbolKind data for outline categories
 ```
 
 No compile step — plain Node.js. VS Code spawns `server.js` on `cisco`-language file open
-and kills it on exit. `server.js` itself holds no command data inline — at startup it globs
-every `server/data/<packId>/*.json` file (one directory per ingested Cisco command-reference
-manual, plus `server/data/curated/curated.json` for hand-maintained entries) into memory, then
-classifies each command into a completion bucket from its documented command mode and builds
-a name-indexed lookup for hover.
+and kills it on exit. The grammar and outline provider are adapted from
+`Y-Ysss.cisco-config-highlight` (MIT licensed; see `THIRD_PARTY_NOTICES.md`). `server.js`
+itself holds no command data inline — at startup it globs every
+`server/data/<packId>/*.json` file (one directory per ingested Cisco command-reference
+manual, plus `server/data/curated/curated.json` for hand-maintained entries) into memory,
+then classifies each command into a completion bucket from its documented command mode and
+builds a name-indexed lookup for hover.
 
 ## Key Files
 
 | File                               | Purpose                                                                                     |
 | ---------------------------------- | ------------------------------------------------------------------------------------------- |
 | `package.json`                     | Extension manifest, `npm` scripts (`lint`, `format`, `extract-commands`)                    |
-| `client/extension.js`              | LSP client — starts/stops the server                                                        |
+| `client/extension.js`              | LSP client — starts/stops the server, registers outline provider                            |
+| `client/registerOutlineSymbol.js`  | Outline panel `DocumentSymbolProvider`                                                      |
+| `client/symbolsInfo.js`            | Regex/`SymbolKind` data the outline provider matches against                                |
 | `server/server.js`                 | LSP server — completions, hover, diagnostics logic                                          |
 | `server/data/<packId>/*.json`      | Generated command data, one directory per ingested manual (see "Regenerating Command Data") |
 | `server/data/curated/curated.json` | Hand-maintained command entries — same schema as generated data, `source: "curated"`        |
 | `scripts/extract-commands.js`      | PDF → JSON extractor; re-run whenever a manual is added or updated                          |
 | `scripts/EXTRACTION_NOTES.md`      | How the PDF structure was reverse-engineered — read before touching the extractor           |
+| `syntaxes/cisco.tmLanguage.json`   | TextMate grammar for syntax highlighting                                                    |
+| `language-configuration.json`      | Comments/brackets for the `cisco` language                                                  |
+| `THIRD_PARTY_NOTICES.md`           | Attribution for code adapted from `Y-Ysss.cisco-config-highlight`                           |
 | `.vscode/extensions.json`          | Recommended extensions                                                                      |
 | `.vscode/settings.json`            | Workspace settings (theme, formatter, rulers)                                               |
 | `cspell.json`                      | Custom word list for Code Spell Checker (partly auto-generated, see below)                  |
@@ -101,12 +113,14 @@ npm run package        # vsce package → cisco-ios-lsp-<version>.vsix
 - Production `dependencies` (the `vscode-languageserver*` packages) are bundled into the
   `.vsix` by vsce — **no esbuild / no compile step**.
 - `.vscodeignore` keeps dev-only files (`.vscode/`, `CLAUDE.md`, `cspell.json`, `.claude/`,
-  lint/format configs, `scripts/**`, `_manuals/**`) out of the package. `README.md` and
-  `LICENSE` are included, and so is `server/data/**/*.json` — the generated command data is
-  a runtime dependency of `server.js`, not a dev-only file. The source PDFs under
-  `_manuals/` are excluded (multi-MB each; only the generated JSON needs to ship).
-- `extensionDependencies` pulls in `Y-Ysss.cisco-config-highlight` on the user's machine
-  automatically (from the Marketplace) at install time.
+  lint/format configs, `scripts/**`, `_manuals/**`) out of the package. `README.md`,
+  `COMMAND_COVERAGE.md`, `LICENSE`, `THIRD_PARTY_NOTICES.md`, `syntaxes/`, and
+  `language-configuration.json` are included, and so is `server/data/**/*.json` — the
+  generated command data is a runtime dependency of `server.js`, not a dev-only file. The
+  source PDFs under `_manuals/` are excluded (multi-MB each; only the generated JSON needs
+  to ship).
+- No `extensionDependencies` — the grammar and outline provider are bundled, so the `.vsix`
+  is fully self-contained.
 
 Share the resulting `.vsix`; coworkers install via **Extensions → ⋯ → Install from VSIX…**.
 

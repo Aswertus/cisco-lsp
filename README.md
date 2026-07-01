@@ -2,21 +2,26 @@
 
 VS Code extension — Cisco IOS/IOS-XE IntelliSense via Language Server Protocol.
 
-Adds **context-aware completions**, **hover documentation**, and **real-time diagnostics**
-to Cisco config files. Works alongside
-[`Y-Ysss.cisco-config-highlight`](https://marketplace.visualstudio.com/items?itemName=Y-Ysss.cisco-config-highlight),
-which provides syntax highlighting and the `cisco` language ID. That extension is declared
-as a required dependency and is loaded automatically.
+Adds **context-aware completions**, **hover documentation**, **real-time diagnostics**,
+**syntax highlighting**, and an **outline panel** to Cisco config files — all bundled, no
+other extension required.
+
+Syntax highlighting and the outline feature are adapted from
+[`Y-Ysss.cisco-config-highlight`](https://marketplace.visualstudio.com/items?itemName=Y-Ysss.cisco-config-highlight)
+(MIT licensed — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)). This extension uses the
+same `cisco` language ID and the same `source.cisco` grammar scope hierarchy, so it stays
+compatible with that extension, its themes, and token-color customizations. See the
+"Coexisting with `Y-Ysss.cisco-config-highlight`" section below if you have both installed.
 
 ---
 
 ## Features
 
-| Capability | Detail |
-|------------|--------|
+| Capability      | Detail                                                                                                                                                                            |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Completions** | Auto-triggered, block-aware: completions change depending on whether the cursor is inside an `interface`, `router bgp`, `class-map`, `policy-map`, `line vty`, or at global level |
-| **Hover docs** | Syntax reminders for known keywords — e.g. hover `dot1x` → `dot1x pae { authenticator \| supplicant \| both }` |
-| **Diagnostics** | Squiggly errors on unknown top-level commands, invalid interface names, VLAN numbers outside 1–4094, and malformed IP addresses |
+| **Hover docs**  | Syntax reminders for known keywords — e.g. hover `dot1x` → `dot1x pae { authenticator \| supplicant \| both }`                                                                    |
+| **Diagnostics** | Squiggly errors on unknown top-level commands, invalid interface names, VLAN numbers outside 1–4094, and malformed IP addresses                                                   |
 
 ---
 
@@ -36,13 +41,17 @@ No daemon, no network, no always-on process.
 
 ## File associations
 
-`Y-Ysss.cisco-config-highlight` registers `.cisco` and `.config`.
-This extension additionally registers:
+This extension registers the `cisco` language for:
 
 | Extension | Language |
-|-----------|----------|
-| `.cfg` | `cisco` |
-| `.ios` | `cisco` |
+| --------- | -------- |
+| `.cisco`  | `cisco`  |
+| `.config` | `cisco`  |
+| `.cfg`    | `cisco`  |
+| `.ios`    | `cisco`  |
+
+(`.cisco` / `.config` match `Y-Ysss.cisco-config-highlight`'s associations; `.cfg` / `.ios` are
+additions from this extension.)
 
 To add further extensions (e.g. `.conf`) add a `files.associations` entry to your
 VS Code workspace `settings.json`:
@@ -50,6 +59,59 @@ VS Code workspace `settings.json`:
 ```json
 "files.associations": {
   "*.conf": "cisco"
+}
+```
+
+---
+
+## Coexisting with `Y-Ysss.cisco-config-highlight`
+
+It's safe to have both extensions installed. Both declare a TextMate grammar for the same
+`cisco` language id under the same `source.cisco` scope hierarchy, so any theme or
+`editor.tokenColorCustomizations` you've configured renders identically no matter which
+grammar VS Code ends up using to tokenize a file — VS Code doesn't expose a setting to choose
+between two grammars contributed for the same language id (this is
+[undocumented/non-configurable upstream behavior](https://github.com/microsoft/vscode/issues/127917)).
+
+If you want to deterministically pick one:
+
+- **Disable `Y-Ysss.cisco-config-highlight`** to use only this extension's bundled grammar,
+  completions, hover, diagnostics, and outline panel.
+- **Disable `cisco-ios-lsp`** to fall back to the original extension's highlighting and
+  outline only, losing this extension's LSP features.
+
+There's no supported way to mix "grammar from one, everything else from the other" — disabling
+one of the two extensions is the only deterministic switch.
+
+---
+
+## Outline panel
+
+Enable `cisco-ios-lsp.outline.showSymbolsInOutlinePanel` (default off) to show config structure
+in the Outline view and breadcrumbs:
+
+- Prompt commands (`hostname#`, `hostname>`)
+- VRF declarations (`ip vrf <name>`)
+- BGP (`router bgp <asn>`, `address-family ...`)
+- `class-map` / `policy-map` blocks
+- `interface` blocks and sub-interfaces (e.g. `GigabitEthernet0/1.10`)
+
+Use `cisco-ios-lsp.outline.symbolsList` to toggle individual categories.
+
+---
+
+## Icon theme (Material Icon Theme)
+
+[`PKief.material-icon-theme`](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
+already assigns its "settings" icon to `.config` files by default. Add this to your workspace
+or user `settings.json` to get the same icon for the other extensions this extension
+registers:
+
+```json
+"material-icon-theme.files.associations": {
+  "*.cisco": "settings",
+  "*.cfg": "settings",
+  "*.ios": "settings"
 }
 ```
 
@@ -69,10 +131,11 @@ You only need the prebuilt `.vsix` file — no Node.js, no cloning.
    - **GUI:** VS Code → Extensions panel → `⋯` menu (top-right) → **Install from VSIX…** →
      pick the file, or
    - **CLI:** `code --install-extension cisco-ios-lsp-0.1.0.vsix`
-3. **Dependency:** this extension builds on `Y-Ysss.cisco-config-highlight`. VS Code installs
-   it automatically from the Marketplace when you install the `.vsix`. On a restricted /
-   air-gapped network without Marketplace access, install that extension manually first.
-4. Reload the window (`Ctrl+Shift+P` → **Developer: Reload Window**).
+3. Reload the window (`Ctrl+Shift+P` → **Developer: Reload Window**).
+
+No other extension is required — highlighting and the outline panel are bundled. See
+"Coexisting with `Y-Ysss.cisco-config-highlight`" above if you also have that extension
+installed.
 
 ---
 
@@ -152,84 +215,8 @@ after a window reload (no compile step; plain Node.js).
 
 ## Command coverage
 
-### Interface — physical
-
-| Keyword | Aliases |
-|---------|---------|
-| `GigabitEthernet` | `gi` |
-| `FastEthernet` | `fa` |
-| `TenGigabitEthernet` | `te` |
-| `TwentyFiveGigE` | `twe` |
-| `FortyGigabitEthernet` | `fo` |
-| `HundredGigE` | `hu` |
-
-### Interface — logical
-
-`Port-channel` (`po`), `Tunnel` (`tu`), `Loopback` (`lo`), `Vlan` (SVI)
-
-### Interface config block
-
-`ip address`, `shutdown`, `no shutdown`, `description`, `duplex`, `speed`, `mtu`,
-`carrier-delay`, `ip helper-address`
-
-### Switchport
-
-`switchport mode access/trunk`, `switchport access vlan`,
-`switchport trunk allowed vlan`, `switchport nonegotiate`,
-`spanning-tree portfast`, `spanning-tree bpduguard enable`
-
-### 802.1X / MAB
-
-`dot1x pae authenticator`, `mab`, `access-session`,
-`authentication event/order/priority/host-mode/open/timer`
-
-### QoS — Policy
-
-`class-map match-any/all`, `policy-map`, `class`,
-`service-policy input/output`, `bandwidth`, `police`, `set`, `priority`
-
-### Parameter maps & templates
-
-`parameter-map type`, `template`, `source template`
-
-### VLANs
-
-`vlan` block, `name`, `switchport trunk native vlan`
-
-### Routing
-
-`router bgp`, `router ospf`, `router eigrp`, `ip route`,
-`network`, `neighbor`, `redistribute`
-
-### BGP-EVPN / VXLAN
-
-`l2vpn evpn`, `replication-mode`, `route-target`, `vni`,
-`address-family l2vpn evpn`, `advertise-pip`
-
-### VPN / Crypto
-
-`crypto isakmp policy`, `crypto ipsec transform-set`, `crypto map`,
-`tunnel source/destination/mode`
-
-### Management
-
-`hostname`, `enable secret`, `username`, `line vty`, `login local`,
-`transport input ssh`, `ip ssh version 2`, `logging`, `ntp server`,
-`ip domain-name`, `service timestamps`
-
-### ACL / Security
-
-`ip access-list standard/extended`, `permit`, `deny`,
-`ip inspect`, `zone security`, `zone-pair security`
-
-### TACACS+ / AAA
-
-`aaa new-model`, `aaa authentication login`, `aaa authorization`,
-`tacacs server`, `address ipv4`, `key`
-
-### Syslog
-
-`logging host`, `logging trap`, `logging facility`
+See [COMMAND_COVERAGE.md](COMMAND_COVERAGE.md) for the full list of interface types,
+keywords, and config blocks covered by completions, hover, and diagnostics.
 
 ---
 
@@ -245,7 +232,11 @@ After installing:
 6. Hover over `dot1x` → syntax reminder popup.
 7. Type `interfacs ` (deliberate typo) → red squiggle diagnostic.
 8. Type `vlan 5000` → out-of-range VLAN diagnostic.
-9. Delete `test.cfg` when done.
+9. Confirm syntax highlighting (keywords, addresses, comments) appears without any other
+   extension installed.
+10. Enable `cisco-ios-lsp.outline.showSymbolsInOutlinePanel`, add a `router bgp 65000` and an
+    `interface GigabitEthernet0/1` block → Outline panel shows both as nested entries.
+11. Delete `test.cfg` when done.
 
 ---
 

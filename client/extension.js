@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const https = require('https');
 const path = require('path');
 const { LanguageClient, TransportKind } = require('vscode-languageclient/node');
+const { registerOutlineSymbolProvider } = require('./registerOutlineSymbol');
 
 let client;
 
@@ -23,6 +24,7 @@ function activate(context) {
   );
 
   client.start();
+  registerOutlineSymbolProvider(context);
 
   // Fire-and-forget: never let an update check disrupt activation.
   checkForUpdates(context).catch(() => {});

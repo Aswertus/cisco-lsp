@@ -6,6 +6,14 @@
   "workbench.colorTheme": "Daybreak",
   "workbench.iconTheme": "material-icon-theme",
 
+  // Material Icon Theme maps *.config to its "settings" icon by default; mirror that for the
+  // other Cisco file extensions this extension contributes so they all look consistent.
+  "material-icon-theme.files.associations": {
+    "*.cisco": "settings",
+    "*.cfg": "settings",
+    "*.ios": "settings"
+  },
+
   // Ruler at 100 cols — matches .prettierrc.yml printWidth.
   "editor.rulers": [100],
 
@@ -29,7 +37,7 @@
 
   // All source languages → Prettier.
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[json]":        { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[jsonc]":       { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[markdown]":    { "editor.defaultFormatter": "esbenp.prettier-vscode" }
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[markdown]": { "editor.defaultFormatter": "esbenp.prettier-vscode" }
 }

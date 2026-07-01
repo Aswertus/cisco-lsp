@@ -2,7 +2,9 @@
   // Recommended extensions for developing cisco-ios-lsp.
   // VS Code offers to install these on first open: "Install recommended extensions".
   "recommendations": [
-    // Required dependency — provides the "cisco" language ID this extension builds on.
+    // Optional — alternate grammar for the "cisco" language ID. cisco-lsp bundles its own
+    // grammar now, so this is no longer required; safe to keep installed alongside it (see
+    // README "Coexisting with Y-Ysss.cisco-config-highlight").
     "Y-Ysss.cisco-config-highlight",
     // Formatting & linting (matches .prettierrc.yml / .eslintrc.json)
     "esbenp.prettier-vscode",

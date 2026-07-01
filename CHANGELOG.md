@@ -4,10 +4,21 @@ All notable changes to this project are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.4.0] - 2026-07-01
+## [0.5.0] - 2026-07-01
 
 ### Added
 
+- Bundled TextMate grammar (`syntaxes/cisco.tmLanguage.json`) and `language-configuration.json`
+  for the `cisco` language, adapted from `Y-Ysss.cisco-config-highlight` (MIT licensed; see
+  `THIRD_PARTY_NOTICES.md`). The extension now provides its own syntax highlighting, including
+  data-driven command-root highlighting (`keyword.control.command.cisco`) derived from the
+  same generated command list described below.
+- Outline panel / breadcrumbs support (`client/registerOutlineSymbol.js`,
+  `client/symbolsInfo.js`), also adapted from `Y-Ysss.cisco-config-highlight`. Off by default;
+  enable with `cisco-ios-lsp.outline.showSymbolsInOutlinePanel`, configure categories with
+  `cisco-ios-lsp.outline.symbolsList`.
+- README sections on coexisting with `Y-Ysss.cisco-config-highlight` and on Material Icon
+  Theme file-icon associations.
 - Command data is now generated from official Cisco Command Reference PDFs instead of
   hand-typed: completions, hover docs, and diagnostics cover **1,315 commands** across 16
   chapters of the Catalyst 9500 IOS XE 17.15.x reference (up from ~150 hand-picked entries),
@@ -20,13 +31,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   documented variant when a name is ambiguous (e.g. a command meaning different things in
   different modes), instead of a small fixed lookup table.
 - `COMMAND_COVERAGE.md` and `cspell.json` are now regenerated from the same command data.
-- TextMate grammar: known command roots are now syntax-highlighted distinctly
-  (`keyword.control.command.cisco`), derived from the same generated command list.
 
 ### Changed
 
 - Completions now resolve their documentation lazily (`resolveProvider`) instead of
   eagerly, since completion lists can now be much larger.
+
+### Removed
+
+- `extensionDependencies` on `Y-Ysss.cisco-config-highlight` — no longer required since
+  highlighting is bundled. That extension can still be installed alongside this one.
 
 ## [0.2.0] - 2026-06-30
 
@@ -55,6 +69,6 @@ Initial release.
 - Automated releases: pushing a `vX.Y.Z` tag builds and publishes the `.vsix` via GitHub
   Actions.
 
-[0.4.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.4.0
+[0.5.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.5.0
 [0.2.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.2.0
 [0.1.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.1.0
