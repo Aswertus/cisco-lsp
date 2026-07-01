@@ -3,7 +3,11 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 
-const { scanIndentation, computeFormattingEdits } = require('../server/lib/indentation');
+const {
+  scanIndentation,
+  computeFormattingEdits,
+  computeFoldingRanges,
+} = require('../server/lib/indentation');
 
 function scan(lines) {
   const mismatches = [];
@@ -100,4 +104,24 @@ test('formatter round-trip: applying the edits yields a clean, stable file', () 
   const { mismatches, mixed } = scan(fixed);
   assert.deepEqual(mismatches, []);
   assert.deepEqual(mixed, []);
+});
+
+test('folding ranges follow indentation blocks, spanning ! separators but not ending on them', () => {
+  const ranges = computeFoldingRanges([
+    /* 0 */ 'interface GigabitEthernet1/0/1',
+    /* 1 */ ' description uplink',
+    /* 2 */ ' !',
+    /* 3 */ ' switchport access vlan 10',
+    /* 4 */ '!',
+    /* 5 */ 'hostname SW1',
+    /* 6 */ 'policy-map PM',
+    /* 7 */ ' class CM',
+    /* 8 */ '  priority percent 30',
+  ]);
+  ranges.sort((a, b) => a.startLine - b.startLine);
+  assert.deepEqual(ranges, [
+    { startLine: 0, endLine: 3 }, // folds across the indented `!`, ends before line 4
+    { startLine: 6, endLine: 8 },
+    { startLine: 7, endLine: 8 }, // nested class block folds independently
+  ]);
 });

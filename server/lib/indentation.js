@@ -95,4 +95,33 @@ function computeFormattingEdits(lines) {
   return edits;
 }
 
-module.exports = { leadingSpaces, scanIndentation, computeFormattingEdits };
+// Folding ranges from indentation: every line followed by deeper-indented
+// content opens a foldable block ending at its last such line. Blank and
+// !/# comment lines neither open nor close blocks (IOS uses `!` between
+// blocks), so a block folds across them but never ends on one.
+function computeFoldingRanges(lines) {
+  const ranges = [];
+  const stack = []; // open blocks: { indent, startLine, lastContentLine }
+
+  const close = (block) => {
+    if (block.lastContentLine > block.startLine) {
+      ranges.push({ startLine: block.startLine, endLine: block.lastContentLine });
+    }
+  };
+
+  lines.forEach((raw, i) => {
+    const trimmed = raw.trim();
+    if (trimmed === '' || trimmed.startsWith('!') || trimmed.startsWith('#')) return;
+    const indent = leadingSpaces(raw);
+    while (stack.length && indent <= stack[stack.length - 1].indent) {
+      close(stack.pop());
+    }
+    for (const open of stack) open.lastContentLine = i;
+    stack.push({ indent, startLine: i, lastContentLine: i });
+  });
+  while (stack.length) close(stack.pop());
+
+  return ranges;
+}
+
+module.exports = { leadingSpaces, scanIndentation, computeFormattingEdits, computeFoldingRanges };

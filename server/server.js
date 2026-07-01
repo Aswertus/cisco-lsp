@@ -22,7 +22,7 @@ const path = require('path');
 const { buildData } = require('./lib/data');
 const { detectBlock } = require('./lib/blocks');
 const { computeDiagnostics } = require('./lib/diagnostics');
-const { computeFormattingEdits } = require('./lib/indentation');
+const { computeFormattingEdits, computeFoldingRanges } = require('./lib/indentation');
 const { buildDocMarkdown, findHoverRecords } = require('./lib/docs');
 const { buildXrefIndex, findAtPosition, computeXrefDiagnostics } = require('./lib/xref');
 const { buildDocumentSymbols } = require('./lib/symbols');
@@ -131,6 +131,8 @@ connection.onInitialize((params) => {
       definitionProvider: true,
       referencesProvider: true,
       documentSymbolProvider: true,
+      renameProvider: { prepareProvider: true },
+      foldingRangeProvider: true,
     },
   };
 });
@@ -267,6 +269,49 @@ connection.onReferences((params) => {
   if (!obj) return null;
   const spans = params.context?.includeDeclaration ? [...obj.defs, ...obj.refs] : obj.refs;
   return spans.map((s) => spanToLocation(params.textDocument.uri, s));
+});
+
+// ---------------------------------------------------------------------------
+// Rename (same named objects as definition/references)
+// ---------------------------------------------------------------------------
+
+connection.onPrepareRename((params) => {
+  const doc = documents.get(params.textDocument.uri);
+  if (!doc) return null;
+  const occurrence = findAtPosition(getXref(doc), params.position.line, params.position.character);
+  if (!occurrence) return null;
+  return {
+    range: {
+      start: { line: occurrence.line, character: occurrence.startChar },
+      end: { line: occurrence.line, character: occurrence.endChar },
+    },
+    placeholder: occurrence.name,
+  };
+});
+
+connection.onRenameRequest((params) => {
+  // Object names are single tokens — reject anything with whitespace.
+  if (!/^\S+$/.test(params.newName)) return null;
+  const obj = objectAt(params);
+  if (!obj) return null;
+  const edits = [...obj.defs, ...obj.refs].map((s) => ({
+    range: {
+      start: { line: s.line, character: s.startChar },
+      end: { line: s.line, character: s.endChar },
+    },
+    newText: params.newName,
+  }));
+  return { changes: { [params.textDocument.uri]: edits } };
+});
+
+// ---------------------------------------------------------------------------
+// Folding ranges (indentation blocks)
+// ---------------------------------------------------------------------------
+
+connection.onFoldingRanges((params) => {
+  const doc = documents.get(params.textDocument.uri);
+  if (!doc) return [];
+  return computeFoldingRanges(getLines(doc));
 });
 
 // ---------------------------------------------------------------------------
