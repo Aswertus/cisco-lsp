@@ -8,8 +8,9 @@ Files adapted from that project:
 
 - `syntaxes/cisco.tmLanguage.json`
 - `language-configuration.json`
-- `client/symbolsInfo.js` (ported from `src/symbolsInfo.ts`)
-- `client/registerOutlineSymbol.js` (ported from `src/registerOutlineSymbol.ts`)
+- `server/lib/symbols.js` (outline categories/SymbolKinds derived from `src/symbolsInfo.ts` and
+  `src/registerOutlineSymbol.ts`; originally ported client-side, later reimplemented as an LSP
+  document-symbol provider)
 
 ## License
 

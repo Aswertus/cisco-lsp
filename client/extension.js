@@ -4,7 +4,6 @@ const vscode = require('vscode');
 const https = require('https');
 const path = require('path');
 const { LanguageClient, TransportKind } = require('vscode-languageclient/node');
-const { registerOutlineSymbolProvider } = require('./registerOutlineSymbol');
 const { parseRepo, isNewer } = require('./version');
 
 let client;
@@ -27,7 +26,6 @@ function activate(context) {
   );
 
   client.start();
-  registerOutlineSymbolProvider(context);
 
   context.subscriptions.push(
     vscode.workspace.onWillSaveTextDocument((event) => {

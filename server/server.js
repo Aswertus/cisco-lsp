@@ -25,6 +25,7 @@ const { computeDiagnostics } = require('./lib/diagnostics');
 const { computeFormattingEdits } = require('./lib/indentation');
 const { buildDocMarkdown, findHoverRecords } = require('./lib/docs');
 const { buildXrefIndex, findAtPosition, computeXrefDiagnostics } = require('./lib/xref');
+const { buildDocumentSymbols } = require('./lib/symbols');
 
 const connection = createConnection(ProposedFeatures.all);
 const documents = new TextDocuments(TextDocument);
@@ -104,20 +105,28 @@ function getXref(doc) {
 // LSP lifecycle
 // ---------------------------------------------------------------------------
 
-connection.onInitialize(() => ({
-  capabilities: {
-    textDocumentSync: TextDocumentSyncKind.Incremental,
-    completionProvider: {
-      // Auto-trigger after a space (next-token) and on '.' is not relevant here.
-      triggerCharacters: [' '],
-      resolveProvider: true,
+// Whether the client supports workspace/configuration requests (VS Code
+// does) — needed to read the outline settings from the server.
+let hasConfigurationCapability = false;
+
+connection.onInitialize((params) => {
+  hasConfigurationCapability = !!params.capabilities.workspace?.configuration;
+  return {
+    capabilities: {
+      textDocumentSync: TextDocumentSyncKind.Incremental,
+      completionProvider: {
+        // Auto-trigger after a space (next-token) and on '.' is not relevant here.
+        triggerCharacters: [' '],
+        resolveProvider: true,
+      },
+      hoverProvider: true,
+      documentFormattingProvider: true,
+      definitionProvider: true,
+      referencesProvider: true,
+      documentSymbolProvider: true,
     },
-    hoverProvider: true,
-    documentFormattingProvider: true,
-    definitionProvider: true,
-    referencesProvider: true,
-  },
-}));
+  };
+});
 
 // Warm the command indexes right after the handshake instead of during it —
 // setImmediate so the `initialized` notification itself isn't blocked either.
@@ -220,6 +229,22 @@ connection.onReferences((params) => {
   if (!obj) return null;
   const spans = params.context?.includeDeclaration ? [...obj.defs, ...obj.refs] : obj.refs;
   return spans.map((s) => spanToLocation(params.textDocument.uri, s));
+});
+
+// ---------------------------------------------------------------------------
+// Document symbols (outline panel / breadcrumbs)
+// ---------------------------------------------------------------------------
+
+connection.onDocumentSymbol(async (params) => {
+  const doc = documents.get(params.textDocument.uri);
+  if (!doc) return [];
+  // Settings are fetched per request so toggling them applies on the next
+  // outline refresh without a server restart.
+  const cfg = hasConfigurationCapability
+    ? await connection.workspace.getConfiguration('cisco-ios-lsp.outline')
+    : null;
+  if (!cfg?.showSymbolsInOutlinePanel) return [];
+  return buildDocumentSymbols(getLines(doc), cfg.symbolsList || {});
 });
 
 // ---------------------------------------------------------------------------
