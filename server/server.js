@@ -108,9 +108,16 @@ function getXref(doc) {
 // Whether the client supports workspace/configuration requests (VS Code
 // does) — needed to read the outline settings from the server.
 let hasConfigurationCapability = false;
+// Whether the client understands completionList.itemDefaults.editRange —
+// lets us return the cached item arrays untouched and still control the
+// replaced range once per response instead of per item.
+let supportsEditRange = false;
 
 connection.onInitialize((params) => {
   hasConfigurationCapability = !!params.capabilities.workspace?.configuration;
+  supportsEditRange = !!(
+    params.capabilities.textDocument?.completion?.completionList?.itemDefaults || []
+  ).includes('editRange');
   return {
     capabilities: {
       textDocumentSync: TextDocumentSyncKind.Incremental,
@@ -138,6 +145,25 @@ connection.onInitialized(() => {
 // Completion
 // ---------------------------------------------------------------------------
 
+// Wraps a cached item array in a CompletionList whose itemDefaults.editRange
+// replaces [startChar, cursor] with the chosen item's full label — without
+// it, VS Code's word-based default replaces only the token under the cursor,
+// so accepting the multiword "ip address" after typing "ip addr" would leave
+// "ip ip address" behind.
+function completionList(items, line, startChar, endChar) {
+  if (!supportsEditRange) return items;
+  return {
+    isIncomplete: false,
+    itemDefaults: {
+      editRange: {
+        start: { line, character: startChar },
+        end: { line, character: endChar },
+      },
+    },
+    items,
+  };
+}
+
 connection.onCompletion((params) => {
   const doc = documents.get(params.textDocument.uri);
   if (!doc) return [];
@@ -146,11 +172,20 @@ connection.onCompletion((params) => {
   const lineIndex = params.position.line;
   const currentLine = lines[lineIndex] ?? '';
   const prefix = currentLine.slice(0, params.position.character);
-  const trimmed = prefix.trim().toLowerCase();
 
-  // Special case: right after `interface ` → offer interface types.
-  if (/^interface\s+\S*$/.test(trimmed) || /^interface\s+$/.test(prefix.toLowerCase())) {
-    return INTERFACE_TYPE_ITEMS;
+  // The command being typed starts after the indentation and after a leading
+  // `no ` (negation takes the same command vocabulary as the positive form).
+  let commandStart = prefix.length - prefix.trimStart().length;
+  const noForm = /^no\s+/i.exec(prefix.slice(commandStart));
+  if (noForm) commandStart += noForm[0].length;
+  const typed = prefix.slice(commandStart);
+  const cursor = params.position.character;
+
+  // Special case: right after `interface ` → offer interface types, replacing
+  // only the partial type token, not the whole line.
+  if (/^interface\s+\S*$/i.test(typed)) {
+    const tokenStart = cursor - typed.match(/\S*$/)[0].length;
+    return completionList(INTERFACE_TYPE_ITEMS, lineIndex, tokenStart, cursor);
   }
 
   const block = detectBlock(lines, lineIndex);
@@ -161,8 +196,11 @@ connection.onCompletion((params) => {
   // config prompt the way `detectBlock` distinguishes interface/router/etc.
   // sub-modes from their headers.
   const { completionItemsByBlock } = getData();
-  if (block === 'global') return completionItemsByBlock.get('top-level');
-  return completionItemsByBlock.get(block) || [];
+  const items =
+    block === 'global'
+      ? completionItemsByBlock.get('top-level')
+      : completionItemsByBlock.get(block) || [];
+  return completionList(items, lineIndex, commandStart, cursor);
 });
 
 connection.onCompletionResolve((item) => {
