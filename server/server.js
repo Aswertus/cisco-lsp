@@ -33,7 +33,7 @@ const INTERFACE_TYPES = [
 ];
 
 // Valid IOS-XE interface type names (lower-cased), incl. common abbreviations.
-const VALID_INTERFACE_TYPES = [
+const VALID_INTERFACE_TYPES = new Set([
   'gigabitethernet',
   'gi',
   'gig',
@@ -70,7 +70,7 @@ const VALID_INTERFACE_TYPES = [
   'pseudowire',
   'nve',
   'appgigabitethernet',
-];
+]);
 
 // ---------------------------------------------------------------------------
 // Command data — loaded from server/data/<packId>/*.json (PDF-derived, see
@@ -88,8 +88,16 @@ function loadAllCommands() {
     const packDir = path.join(DATA_DIR, entry.name);
     for (const file of fs.readdirSync(packDir)) {
       if (!file.endsWith('.json')) continue;
-      const records = JSON.parse(fs.readFileSync(path.join(packDir, file), 'utf8'));
-      commands.push(...records);
+      // One corrupt pack file must not take down the whole server — skip it
+      // and log to the client's output channel.
+      try {
+        const records = JSON.parse(fs.readFileSync(path.join(packDir, file), 'utf8'));
+        commands.push(...records);
+      } catch (err) {
+        connection.console.error(
+          `Skipping unreadable data file ${entry.name}/${file}: ${err.message}`,
+        );
+      }
     }
   }
   return commands;
@@ -134,6 +142,23 @@ for (const command of ALL_COMMANDS) {
 }
 
 const MAX_COMMAND_WORDS = Math.max(1, ...ALL_COMMANDS.map((c) => c.name.split(/\s+/).length));
+
+// Completion-item arrays are static after startup — build each block's list
+// (plus the merged top-level list and the interface-type list) once, instead
+// of re-mapping and re-deduping hundreds of records on every keystroke.
+// 'top-level' merges `global` and `exec` (see the comment in onCompletion).
+const COMPLETION_ITEMS_BY_BLOCK = new Map();
+for (const [block, commands] of COMMANDS_BY_BLOCK) {
+  COMPLETION_ITEMS_BY_BLOCK.set(block, toCommandCompletionItems(commands));
+}
+COMPLETION_ITEMS_BY_BLOCK.set(
+  'top-level',
+  toCommandCompletionItems([
+    ...(COMMANDS_BY_BLOCK.get('global') || []),
+    ...(COMMANDS_BY_BLOCK.get('exec') || []),
+  ]),
+);
+const INTERFACE_TYPE_ITEMS = toInterfaceTypeItems(INTERFACE_TYPES);
 
 // ---------------------------------------------------------------------------
 // Known top-level command roots — for typo diagnostics.
@@ -222,6 +247,19 @@ for (const command of ALL_COMMANDS) {
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
+
+// Split-lines cache, keyed by document URI and invalidated by version, so
+// completion/hover/validate don't each re-split the whole document text on
+// every keystroke. Entries are dropped in onDidClose.
+const lineCache = new Map();
+
+function getLines(doc) {
+  const cached = lineCache.get(doc.uri);
+  if (cached && cached.version === doc.version) return cached.lines;
+  const lines = doc.getText().split(/\r?\n/);
+  lineCache.set(doc.uri, { version: doc.version, lines });
+  return lines;
+}
 
 /**
  * Determine the current configuration block by walking backwards from `line`
@@ -366,8 +404,7 @@ connection.onCompletion((params) => {
   const doc = documents.get(params.textDocument.uri);
   if (!doc) return [];
 
-  const text = doc.getText();
-  const lines = text.split(/\r?\n/);
+  const lines = getLines(doc);
   const lineIndex = params.position.line;
   const currentLine = lines[lineIndex] ?? '';
   const prefix = currentLine.slice(0, params.position.character);
@@ -375,7 +412,7 @@ connection.onCompletion((params) => {
 
   // Special case: right after `interface ` → offer interface types.
   if (/^interface\s+\S*$/.test(trimmed) || /^interface\s+$/.test(prefix.toLowerCase())) {
-    return toInterfaceTypeItems(INTERFACE_TYPES);
+    return INTERFACE_TYPE_ITEMS;
   }
 
   const block = detectBlock(lines, lineIndex);
@@ -385,13 +422,8 @@ connection.onCompletion((params) => {
   // transcript, so it doesn't itself distinguish an EXEC prompt from a
   // config prompt the way `detectBlock` distinguishes interface/router/etc.
   // sub-modes from their headers.
-  if (block === 'global') {
-    return toCommandCompletionItems([
-      ...(COMMANDS_BY_BLOCK.get('global') || []),
-      ...(COMMANDS_BY_BLOCK.get('exec') || []),
-    ]);
-  }
-  return toCommandCompletionItems(COMMANDS_BY_BLOCK.get(block) || []);
+  if (block === 'global') return COMPLETION_ITEMS_BY_BLOCK.get('top-level');
+  return COMPLETION_ITEMS_BY_BLOCK.get(block) || [];
 });
 
 connection.onCompletionResolve((item) => {
@@ -410,7 +442,7 @@ connection.onHover((params) => {
   const doc = documents.get(params.textDocument.uri);
   if (!doc) return null;
 
-  const line = doc.getText().split(/\r?\n/)[params.position.line] ?? '';
+  const line = getLines(doc)[params.position.line] ?? '';
   let tokens = line.trim().toLowerCase().split(/\s+/).filter(Boolean);
   if (tokens.length === 0) return null;
   if (tokens[0] === 'no' && tokens.length > 1) tokens = tokens.slice(1);
@@ -454,7 +486,11 @@ connection.onHover((params) => {
 // accepted as valid new nesting rather than compared to siblings), and
 // letting both fire would hand the formatter two conflicting edits over the
 // same range.
-function scanIndentation(lines, onSiblingMismatch, onMixedTabsSpaces) {
+// onLine(lineIndex, line, trimmed, indent) — optional extra callback invoked
+// for every non-blank/!/# line, so callers with additional per-line checks
+// (validate()'s command/VLAN/IP checks) can share this single traversal
+// instead of re-splitting and re-scanning the same lines again.
+function scanIndentation(lines, onSiblingMismatch, onMixedTabsSpaces, onLine) {
   const stack = [{ indent: -1, childIndent: null }]; // sentinel: true column-0 scope
 
   lines.forEach((raw, i) => {
@@ -469,6 +505,7 @@ function scanIndentation(lines, onSiblingMismatch, onMixedTabsSpaces) {
     if (trimmed === '' || trimmed.startsWith('!') || trimmed.startsWith('#')) return;
 
     const indent = leadingSpaces(line);
+    if (onLine) onLine(i, line, trimmed, indent);
 
     while (stack.length > 1 && indent <= stack[stack.length - 1].indent) {
       stack.pop();
@@ -487,7 +524,12 @@ function scanIndentation(lines, onSiblingMismatch, onMixedTabsSpaces) {
   });
 }
 
-function checkIndentation(lines, diagnostics) {
+function validate(doc) {
+  const lines = getLines(doc);
+  const diagnostics = [];
+
+  // One traversal covers all checks: indentation callbacks plus the per-line
+  // command/VLAN/IP checks via onLine.
   scanIndentation(
     lines,
     (i, indent, expected) => {
@@ -500,102 +542,82 @@ function checkIndentation(lines, diagnostics) {
         DiagnosticSeverity.Warning,
       );
     },
-    () => {},
-  );
-}
-
-function checkMixedIndentation(lines, diagnostics) {
-  scanIndentation(lines, () => {}, (i, leadingLength) => {
-    addDiag(
-      diagnostics,
-      i,
-      0,
-      leadingLength,
-      'Indentation mixes tabs and spaces.',
-      DiagnosticSeverity.Warning,
-    );
-  });
-}
-
-function validate(doc) {
-  const text = doc.getText();
-  const lines = text.split(/\r?\n/);
-  const diagnostics = [];
-
-  checkIndentation(lines, diagnostics);
-  checkMixedIndentation(lines, diagnostics);
-
-  lines.forEach((raw, i) => {
-    const line = raw.replace(/\r$/, '');
-    const trimmed = line.trim();
-    if (trimmed === '' || trimmed.startsWith('!') || trimmed.startsWith('#')) return;
-
-    const indent = leadingSpaces(line);
-    const tokens = trimmed.split(/\s+/);
-    const first = tokens[0].toLowerCase();
-
-    // (1) Unknown top-level command (only flag column-0 commands).
-    if (indent === 0 && !KNOWN_TOP_LEVEL.has(first)) {
+    (i, leadingLength) => {
       addDiag(
         diagnostics,
         i,
-        line.indexOf(tokens[0]),
-        tokens[0].length,
-        `Unknown command "${tokens[0]}" — possible typo.`,
+        0,
+        leadingLength,
+        'Indentation mixes tabs and spaces.',
         DiagnosticSeverity.Warning,
       );
-    }
+    },
+    (i, line, trimmed, indent) => {
+      const tokens = trimmed.split(/\s+/);
+      const first = tokens[0].toLowerCase();
 
-    // (2) Invalid interface type name.
-    if (first === 'interface' && tokens[1]) {
-      const typeName = tokens[1].toLowerCase().match(/^[a-z-]+/)?.[0] || '';
-      if (typeName && !VALID_INTERFACE_TYPES.includes(typeName)) {
-        const col = line.indexOf(tokens[1]);
+      // (1) Unknown top-level command (only flag column-0 commands).
+      if (indent === 0 && !KNOWN_TOP_LEVEL.has(first)) {
         addDiag(
           diagnostics,
           i,
-          col,
-          tokens[1].length,
-          `"${tokens[1]}" is not a recognised IOS-XE interface type.`,
+          0,
+          tokens[0].length,
+          `Unknown command "${tokens[0]}" — possible typo.`,
           DiagnosticSeverity.Warning,
         );
       }
-    }
 
-    // (3) VLAN number out of range (1–4094). Matches "vlan <n>" and
-    //     "switchport access vlan <n>".
-    const vlanMatch = trimmed.match(/\bvlan\s+(\d+)\b/i);
-    if (vlanMatch) {
-      const n = Number(vlanMatch[1]);
-      if (n < 1 || n > 4094) {
-        const col = line.indexOf(vlanMatch[1], line.toLowerCase().indexOf('vlan'));
-        addDiag(
-          diagnostics,
-          i,
-          col,
-          vlanMatch[1].length,
-          `VLAN ${n} is out of range (must be 1–4094).`,
-          DiagnosticSeverity.Error,
-        );
+      // (2) Invalid interface type name.
+      if (first === 'interface' && tokens[1]) {
+        const typeName = tokens[1].toLowerCase().match(/^[a-z-]+/)?.[0] || '';
+        if (typeName && !VALID_INTERFACE_TYPES.has(typeName)) {
+          // Search after the "interface" keyword so a type token that also
+          // occurs earlier in the line can't shift the squiggle.
+          const col = line.indexOf(tokens[1], indent + tokens[0].length);
+          addDiag(
+            diagnostics,
+            i,
+            col,
+            tokens[1].length,
+            `"${tokens[1]}" is not a recognised IOS-XE interface type.`,
+            DiagnosticSeverity.Warning,
+          );
+        }
       }
-    }
 
-    // (4) Malformed IPv4 address (basic dotted-quad shape but bad octet).
-    const ipCandidates = trimmed.match(/\b\d{1,3}(?:\.\d{1,3}){3}\b/g) || [];
-    ipCandidates.forEach((cand) => {
-      if (!isValidIpv4(cand)) {
-        const col = line.indexOf(cand);
-        addDiag(
-          diagnostics,
-          i,
-          col,
-          cand.length,
-          `"${cand}" is not a valid IPv4 address (octets must be 0–255).`,
-          DiagnosticSeverity.Error,
-        );
+      // (3) VLAN numbers out of range (1–4094). Matches every "vlan <n>" on
+      //     the line (e.g. "switchport access vlan <n>"), positioned by the
+      //     match itself rather than a first-occurrence string search.
+      for (const m of line.matchAll(/\bvlan\s+(\d+)\b/gi)) {
+        const n = Number(m[1]);
+        if (n < 1 || n > 4094) {
+          addDiag(
+            diagnostics,
+            i,
+            m.index + m[0].length - m[1].length,
+            m[1].length,
+            `VLAN ${n} is out of range (must be 1–4094).`,
+            DiagnosticSeverity.Error,
+          );
+        }
       }
-    });
-  });
+
+      // (4) Malformed IPv4 addresses (basic dotted-quad shape but bad octet).
+      for (const m of line.matchAll(/\b\d{1,3}(?:\.\d{1,3}){3}\b/g)) {
+        if (!isValidIpv4(m[0])) {
+          addDiag(
+            diagnostics,
+            i,
+            m.index,
+            m[0].length,
+            `"${m[0]}" is not a valid IPv4 address (octets must be 0–255).`,
+            DiagnosticSeverity.Error,
+          );
+        }
+      }
+    },
+  );
 
   connection.sendDiagnostics({ uri: doc.uri, diagnostics });
 }
@@ -625,7 +647,7 @@ connection.onDocumentFormatting((params) => {
   const doc = documents.get(params.textDocument.uri);
   if (!doc) return [];
 
-  const lines = doc.getText().split(/\r?\n/);
+  const lines = getLines(doc);
   const edits = [];
 
   scanIndentation(
@@ -667,6 +689,7 @@ documents.onDidClose((e) => {
   const t = debounceTimers.get(e.document.uri);
   if (t) clearTimeout(t);
   debounceTimers.delete(e.document.uri);
+  lineCache.delete(e.document.uri);
   connection.sendDiagnostics({ uri: e.document.uri, diagnostics: [] });
 });
 
