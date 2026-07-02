@@ -8,6 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Flush-left block recovery**: a block typed without indentation (e.g. `interface X`
+  followed by `spanning-tree bpdufilter` at column 0) is now detected by the linter and fixed
+  by the formatter — each un-indented child gets a warning and is indented to the file's own
+  indent width (falling back to IOS-native 1 space). A line is only treated as a child when
+  the command is documented for that block's mode in the loaded command data; unknown or
+  global commands end the block and are left alone, so back-to-back blocks without `!`
+  separators are never mis-indented. Covers a broadened opener set: `interface`, `router`,
+  `line`, `class-map`, `policy-map`, `vrf definition`, `vlan <n>`,
+  `flow record/exporter/monitor`, `service-template`, `template`, `route-map`,
+  `ip/ipv6 access-list`, `aaa group server`, `key chain`, `radius/tacacs server`,
+  `device-tracking policy`, `crypto map`.
+- **Auto-indent on Enter** after any of the block openers above (`indentationRules` in the
+  language configuration), with 1-space indentation contributed as the `[cisco]` editor
+  default (`editor.insertSpaces` / `editor.tabSize`).
+- Completions: the new block openers are recognised as contexts too (e.g. commands documented
+  for VRF or VLAN configuration mode are offered inside `vrf definition` / `vlan` blocks); a
+  recognised block whose bucket holds no commands falls back to the top-level list.
+
 - **Go to definition / find references / rename** (F12 / Shift+F12 / F2) for named objects:
   class-maps, policy-maps, named + numbered ACLs, route-maps, prefix-lists, and VRFs, linking
   each definition to the places it is applied (`service-policy`, `access-group`,

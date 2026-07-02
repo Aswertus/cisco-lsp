@@ -24,5 +24,13 @@
     ["(", ")"],
     ["\"", "\""],
     ["'", "'"]
-  ]
+  ],
+  // Auto-indent after block-opening commands (Enter after `interface X`
+  // starts the next line indented). KEEP IN SYNC with the BLOCK_OPENERS
+  // table in server/lib/blocks.js — this file is static, it cannot require
+  // that module. Indent width comes from the [cisco] editor defaults in
+  // package.json (1 space, IOS's native style).
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*(?:interface |router |line |class-map|policy-map|vrf definition |vlan \\d|flow (?:record|exporter|monitor) |service-template |template |route-map |ip access-list (?:standard|extended) |ipv6 access-list |aaa group server |key chain |radius server |tacacs server |device-tracking policy |crypto map ).*$"
+  }
 }
