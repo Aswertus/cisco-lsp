@@ -20,7 +20,7 @@ const { TextDocument } = require('vscode-languageserver-textdocument');
 const path = require('path');
 
 const { buildData } = require('./lib/data');
-const { detectBlock } = require('./lib/blocks');
+const { detectBlock, openerBlockType } = require('./lib/blocks');
 const { computeDiagnostics } = require('./lib/diagnostics');
 const { computeFormattingEdits, computeFoldingRanges } = require('./lib/indentation');
 const { buildDocMarkdown, findHoverRecords } = require('./lib/docs');
@@ -196,12 +196,12 @@ connection.onCompletion((params) => {
   // `exec` commands: a .cisco file is a config file, not a session
   // transcript, so it doesn't itself distinguish an EXEC prompt from a
   // config prompt the way `detectBlock` distinguishes interface/router/etc.
-  // sub-modes from their headers.
+  // sub-modes from their headers. A recognised block whose bucket holds no
+  // commands in the loaded packs (possible for the rarer sub-modes) also
+  // falls back to top-level — an empty popup helps nobody.
   const { completionItemsByBlock } = getData();
-  const items =
-    block === 'global'
-      ? completionItemsByBlock.get('top-level')
-      : completionItemsByBlock.get(block) || [];
+  const bucketItems = block === 'global' ? null : completionItemsByBlock.get(block);
+  const items = bucketItems?.length ? bucketItems : completionItemsByBlock.get('top-level');
   return completionList(items, lineIndex, commandStart, cursor);
 });
 
@@ -335,8 +335,12 @@ connection.onDocumentSymbol(async (params) => {
 // ---------------------------------------------------------------------------
 
 function validate(doc) {
+  const data = getData();
   const diagnostics = [
-    ...computeDiagnostics(getLines(doc), getData().knownTopLevel),
+    ...computeDiagnostics(getLines(doc), data.knownTopLevel, {
+      openerBlockType,
+      isChildCommand: data.isChildCommand,
+    }),
     ...computeXrefDiagnostics(getXref(doc)),
   ];
   connection.sendDiagnostics({ uri: doc.uri, diagnostics });
@@ -349,7 +353,10 @@ function validate(doc) {
 connection.onDocumentFormatting((params) => {
   const doc = documents.get(params.textDocument.uri);
   if (!doc) return [];
-  return computeFormattingEdits(getLines(doc));
+  return computeFormattingEdits(getLines(doc), {
+    openerBlockType,
+    isChildCommand: getData().isChildCommand,
+  });
 });
 
 // Debounce validation per-document on change.

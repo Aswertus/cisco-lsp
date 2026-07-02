@@ -2,13 +2,54 @@
 
 const { leadingSpaces } = require('./indentation');
 
-function classifyHeader(header) {
-  if (header.startsWith('interface ')) return 'interface';
-  if (header.startsWith('router ')) return 'router';
-  if (header.startsWith('class-map')) return 'class-map';
-  if (header.startsWith('policy-map')) return 'policy-map';
-  if (header.startsWith('line ')) return 'line';
+// Block-opening commands: a line matching one of these enters an IOS
+// sub-mode whose children are indented under it. One entry per opener,
+// `block` naming the bucket produced by classifyModesToBlocks() in
+// lib/data.js (that pairing is what lets the flush-left indentation recovery
+// ask "is this command valid inside this opener's block?").
+//
+// KEEP IN SYNC (by hand — static JSON can't require this module) with
+// `indentationRules.increaseIndentPattern` in language-configuration.json.
+const BLOCK_OPENERS = [
+  { prefix: 'interface ', block: 'interface' },
+  { prefix: 'router ', block: 'router' },
+  { prefix: 'class-map', block: 'class-map' },
+  { prefix: 'policy-map', block: 'policy-map' },
+  { prefix: 'line ', block: 'line' },
+  { prefix: 'vrf definition ', block: 'vrf' },
+  // Requires a digit: `vlan internal allocation policy ...`, `vlan dot1q ...`
+  // are one-liners, not config-vlan mode.
+  { regex: /^vlan \d/, block: 'vlan' },
+  { prefix: 'flow record ', block: 'flow-record' },
+  { prefix: 'flow exporter ', block: 'flow-exporter' },
+  { prefix: 'flow monitor ', block: 'flow-monitor' },
+  { prefix: 'service-template ', block: 'service-template' },
+  { prefix: 'template ', block: 'template' },
+  { prefix: 'route-map ', block: 'route-map' },
+  { regex: /^ip access-list (standard|extended) /, block: 'access-list' },
+  { prefix: 'ipv6 access-list ', block: 'access-list' },
+  { prefix: 'aaa group server ', block: 'aaa-group' },
+  { prefix: 'key chain ', block: 'key-chain' },
+  { prefix: 'radius server ', block: 'radius-server' },
+  { prefix: 'tacacs server ', block: 'tacacs-server' },
+  { prefix: 'device-tracking policy ', block: 'device-tracking' },
+  { prefix: 'crypto map ', block: 'crypto-map' },
+];
+
+// The block bucket a line opens, or null if it opens none. Accepts any
+// casing; expects the line already trimmed.
+function openerBlockType(line) {
+  const header = line.toLowerCase();
+  for (const opener of BLOCK_OPENERS) {
+    if (opener.prefix ? header.startsWith(opener.prefix) : opener.regex.test(header)) {
+      return opener.block;
+    }
+  }
   return null;
+}
+
+function classifyHeader(header) {
+  return openerBlockType(header);
 }
 
 /**
@@ -44,4 +85,4 @@ function detectBlock(lines, lineIndex) {
   return 'global';
 }
 
-module.exports = { classifyHeader, detectBlock };
+module.exports = { classifyHeader, openerBlockType, detectBlock };

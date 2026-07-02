@@ -6,7 +6,12 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const { loadCommands, classifyModesToBlock, buildData } = require('../server/lib/data');
+const {
+  loadCommands,
+  classifyModesToBlock,
+  classifyModesToBlocks,
+  buildData,
+} = require('../server/lib/data');
 const { isNewer, parseRepo } = require('../client/version');
 
 const silentLog = { log() {}, error() {} };
@@ -55,6 +60,50 @@ test('classifyModesToBlock buckets by documented command mode', () => {
   assert.equal(classifyModesToBlock(['Privileged EXEC (#)']), 'exec');
   assert.equal(classifyModesToBlock(['Global configuration (config)']), 'global');
   assert.equal(classifyModesToBlock(undefined), 'global');
+});
+
+test('classifyModesToBlocks: new buckets, multi-mode commands land in every match', () => {
+  assert.deepEqual(classifyModesToBlocks(['VRF configuration (config-vrf)']), ['vrf']);
+  assert.deepEqual(classifyModesToBlocks(['VLAN configuration (config-vlan)']), ['vlan']);
+  assert.deepEqual(classifyModesToBlocks(['Flow exporter configuration']), ['flow-exporter']);
+  // "service template configuration" contains the substring "template
+  // configuration" but must land only in the service-template bucket.
+  assert.deepEqual(
+    classifyModesToBlocks(['Service template configuration (config-service-template)']),
+    ['service-template'],
+  );
+  assert.deepEqual(
+    classifyModesToBlocks([
+      'Interface configuration (config-if)',
+      'Template configuration (config-template)',
+    ]),
+    ['interface', 'template'],
+  );
+  // The single-bucket variant keeps the first (completion) bucket.
+  assert.equal(
+    classifyModesToBlock([
+      'Interface configuration (config-if)',
+      'Template configuration (config-template)',
+    ]),
+    'interface',
+  );
+});
+
+test('buildData: blockCommandNames feeds the isChildCommand evidence check', () => {
+  const dir = makeDataDir({
+    'pack/cmds.json': JSON.stringify([
+      ...RECORDS,
+      { name: 'rd', modes: ['VRF configuration (config-vrf)'] },
+    ]),
+  });
+  const data = buildData(dir, silentLog);
+
+  assert.ok(data.isChildCommand('interface', 'switchport mode access'));
+  assert.ok(data.isChildCommand('interface', 'switchport mode')); // exact match
+  assert.ok(data.isChildCommand('vrf', 'rd 1:4103'));
+  assert.ok(!data.isChildCommand('interface', 'switchport modeX')); // token boundary
+  assert.ok(!data.isChildCommand('interface', 'hostname SW1')); // global command
+  assert.ok(!data.isChildCommand('vlan', 'rd 1:4103')); // wrong block
 });
 
 test('buildData derives indexes, merged top-level bucket and knownTopLevel', () => {

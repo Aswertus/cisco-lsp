@@ -67,10 +67,12 @@ function addDiag(list, line, character, length, message, severity) {
 }
 
 // All per-file checks in one scanIndentation traversal: indentation
-// consistency, mixed tabs/spaces, unknown top-level commands, interface type
-// names, VLAN ranges, IPv4 shape. `knownTopLevel` comes from the loaded
-// command data (see lib/data.js).
-function computeDiagnostics(lines, knownTopLevel) {
+// consistency, mixed tabs/spaces, flush-left block children (when
+// `blockContext` provides the {openerBlockType, isChildCommand} predicates —
+// see scanIndentation in lib/indentation.js), unknown top-level commands,
+// interface type names, VLAN ranges, IPv4 shape. `knownTopLevel` comes from
+// the loaded command data (see lib/data.js).
+function computeDiagnostics(lines, knownTopLevel, blockContext = {}) {
   const diagnostics = [];
 
   scanIndentation(
@@ -95,12 +97,14 @@ function computeDiagnostics(lines, knownTopLevel) {
         DiagnosticSeverity.Warning,
       );
     },
-    (i, line, trimmed, indent) => {
+    (i, line, trimmed, indent, isFlushChild) => {
       const tokens = trimmed.split(/\s+/);
       const first = tokens[0].toLowerCase();
 
-      // (1) Unknown top-level command (only flag column-0 commands).
-      if (indent === 0 && !knownTopLevel.has(first)) {
+      // (1) Unknown top-level command (only flag column-0 commands —
+      //     flush-left block children are sub-mode commands, not top-level,
+      //     even though they physically sit at column 0).
+      if (indent === 0 && !isFlushChild && !knownTopLevel.has(first)) {
         addDiag(
           diagnostics,
           i,
@@ -159,6 +163,20 @@ function computeDiagnostics(lines, knownTopLevel) {
           );
         }
       }
+    },
+    {
+      openerBlockType: blockContext.openerBlockType,
+      isChildCommand: blockContext.isChildCommand,
+      onMissingIndent: (i, indentLen, expectedIndent, header) => {
+        addDiag(
+          diagnostics,
+          i,
+          0,
+          lines[i].replace(/\r$/, '').length,
+          `Line belongs to the "${header}" block above but is not indented; expected ${expectedIndent} space(s).`,
+          DiagnosticSeverity.Warning,
+        );
+      },
     },
   );
 

@@ -46,23 +46,61 @@ function loadCommands(dataDir, log) {
   return commands;
 }
 
-// Which contextual completion bucket a command belongs to, derived from its
+// Which contextual block bucket(s) a command belongs to, derived from its
 // `modes` text (the PDF's "Command Modes" field, or a hand-assigned
 // equivalent for curated entries). EXEC-mode commands (show/clear/debug) are
 // ~40% of the PDF corpus -- too large to fold into `global` without mixing
 // two mutually-exclusive contexts (you're either at a `#` EXEC prompt or a
-// `(config)#` prompt, never both) -- so they get their own bucket. VRF and
-// route-map modes were checked too and are vanishingly rare (well under 1%
-// of commands), not worth dedicated buckets; they fall through to `global`.
-function classifyModesToBlock(modes) {
+// `(config)#` prompt, never both) -- so they get their own bucket.
+//
+// Bucket names must match the `block` values in lib/blocks.js's
+// BLOCK_OPENERS table: the flush-left indentation recovery (see
+// lib/indentation.js) uses an opener's block name to look up which commands
+// count as evidence of being that block's child. Rule order matters only for
+// classifyModesToBlock()'s single-bucket result (completions): the original
+// five buckets stay first so a command matching both an old and a new bucket
+// keeps its completion bucket.
+const MODE_BUCKET_RULES = [
+  ['interface', /config-if\b|interface configuration/],
+  ['router', /config-router\b|router (configuration|address family)/],
+  ['class-map', /config-cmap\b|class-map/],
+  ['policy-map', /config-pmap\b|policy-map/],
+  ['line', /config-line\b|^line /],
+  ['vrf', /config-vrf\b|vrf configuration/],
+  ['vlan', /config-vlan\b|vlan configuration/],
+  ['flow-record', /config-flow-record\b|flow record configuration/],
+  ['flow-exporter', /config-flow-exporter\b|flow exporter configuration/],
+  ['flow-monitor', /config-flow-monitor\b|flow monitor configuration/],
+  ['service-template', /config-service-template\b|service template configuration/],
+  // Negative lookbehind: "service template configuration" contains the
+  // substring "template configuration" and must not land here too.
+  ['template', /config-template\b|(?<!service[- ])template configuration/],
+  ['route-map', /config-route-map\b|route-map configuration/],
+  ['access-list', /config-(std|ext)-nacl\b|named access list configuration/],
+  ['aaa-group', /config-sg-|server group configuration/],
+  ['key-chain', /config-keychain\b|key-?chain configuration/],
+  ['radius-server', /config-radius-server\b|radius server configuration/],
+  ['tacacs-server', /config-server-tacacs\b|tacacs server configuration/],
+  ['device-tracking', /config-device-tracking\b|device-tracking configuration/],
+  ['crypto-map', /config-crypto-map\b|crypto map configuration/],
+];
+
+// All matching buckets — a command valid in several modes lands in every one
+// (needed by the flush-child evidence check). `exec`/`global` are fallbacks,
+// never combined with a real block bucket.
+function classifyModesToBlocks(modes) {
   const joined = (modes || []).join(' | ').toLowerCase();
-  if (/config-if\b|interface configuration/.test(joined)) return 'interface';
-  if (/config-router\b|router (configuration|address family)/.test(joined)) return 'router';
-  if (/config-cmap\b|class-map/.test(joined)) return 'class-map';
-  if (/config-pmap\b|policy-map/.test(joined)) return 'policy-map';
-  if (/config-line\b|^line /.test(joined)) return 'line';
-  if (/\bexec\b/.test(joined)) return 'exec';
-  return 'global';
+  const blocks = [];
+  for (const [block, re] of MODE_BUCKET_RULES) {
+    if (re.test(joined)) blocks.push(block);
+  }
+  if (blocks.length === 0) blocks.push(/\bexec\b/.test(joined) ? 'exec' : 'global');
+  return blocks;
+}
+
+// Single-bucket variant used for completions (one command, one list).
+function classifyModesToBlock(modes) {
+  return classifyModesToBlocks(modes)[0];
 }
 
 // Known top-level command roots — for typo diagnostics. Base set covers
@@ -210,13 +248,46 @@ function buildData(dataDir, log) {
     knownTopLevel.add(command.name.split(/\s+/)[0].toLowerCase());
   }
 
+  // Per-block command-name sets, feeding the flush-left indentation
+  // recovery's evidence check (lib/indentation.js): a column-0 line right
+  // after a block opener is only treated as that block's child if its
+  // command is known to exist in that block's mode. `global`/`exec` buckets
+  // are skipped — they can never be child evidence.
+  const blockCommandNames = new Map();
+  for (const command of allCommands) {
+    for (const block of classifyModesToBlocks(command.modes)) {
+      if (block === 'global' || block === 'exec') continue;
+      if (!blockCommandNames.has(block)) blockCommandNames.set(block, new Set());
+      blockCommandNames.get(block).add(command.name.toLowerCase());
+    }
+  }
+
+  const isChildCommand = (block, text) => {
+    const names = blockCommandNames.get(block);
+    if (!names) return false;
+    const t = text.toLowerCase();
+    if (names.has(t)) return true;
+    for (const name of names) {
+      if (t.startsWith(name + ' ')) return true;
+    }
+    return false;
+  };
+
   return {
     commandCount: allCommands.length,
     commandsByName,
     maxCommandWords,
     completionItemsByBlock,
     knownTopLevel,
+    blockCommandNames,
+    isChildCommand,
   };
 }
 
-module.exports = { loadCommands, classifyModesToBlock, KNOWN_TOP_LEVEL_BASE, buildData };
+module.exports = {
+  loadCommands,
+  classifyModesToBlock,
+  classifyModesToBlocks,
+  KNOWN_TOP_LEVEL_BASE,
+  buildData,
+};
