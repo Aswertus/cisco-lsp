@@ -60,7 +60,7 @@ name-indexed lookup for hover.
 | `scripts/extract-commands.js`      | PDF → JSON extractor; re-run whenever a manual is added or updated                          |
 | `scripts/EXTRACTION_NOTES.md`      | How the PDF structure was reverse-engineered — read before touching the extractor           |
 | `syntaxes/cisco.tmLanguage.json`   | TextMate grammar for syntax highlighting                                                    |
-| `language-configuration.json`      | Comments/brackets for the `cisco` language                                                  |
+| `language-configuration.json`      | Comments/brackets + auto-indent rules for the `cisco` language (see "Adding a New Block Type") |
 | `THIRD_PARTY_NOTICES.md`           | Attribution for code adapted from `Y-Ysss.cisco-config-highlight`                           |
 | `.vscode/extensions.json`          | Recommended extensions                                                                      |
 | `.vscode/settings.json`            | Workspace settings (theme, formatter, rulers)                                               |
@@ -117,6 +117,36 @@ npm run format   # re-format the generated JSON/docs
   "false friend" — e.g. this PDF's only `shutdown` entry is ERSPAN-specific). Check
   `server/data/curated/curated.json` before assuming a missing/surprising command is a bug in
   the extractor.
+
+## Adding a New Block Type
+
+Block-aware features (context completions, flush-left indent recovery, auto-indent on
+Enter) key on named block buckets (`interface`, `vrf`, `vlan`, `flow-exporter`, ...).
+Adding a new IOS sub-mode means updating **four places that must stay in sync**:
+
+1. `server/lib/blocks.js` — add a `BLOCK_OPENERS` entry (opener prefix or regex → bucket
+   name), e.g. `{ prefix: 'vrf definition ', block: 'vrf' }`.
+2. `server/lib/data.js` — add a `MODE_BUCKET_RULES` entry mapping the PDF's "Command
+   Modes" text / prompt token to the **same** bucket name, e.g.
+   `['vrf', /config-vrf\b|vrf configuration/]`. Keep the original five buckets
+   (interface/router/class-map/policy-map/line) first — rule order decides a multi-mode
+   command's single completion bucket.
+3. `language-configuration.json` — extend `indentationRules.increaseIndentPattern` with
+   the opener prefix (manual sync — static JSON can't require `blocks.js`).
+4. Tests — `test/blocks.test.js` (`openerBlockType` positive + look-alike negative) and
+   `test/data.test.js` (`classifyModesToBlocks`) when a new mode mapping is added.
+
+Design rules (deliberate — don't "fix" them):
+
+- **Flush-left child recovery requires positive evidence**: a column-0 line right after an
+  opener is only treated as that block's child if its command exists in the bucket per the
+  loaded packs' `modes` field (`isChildCommand`). A purely structural "everything after an
+  opener is a child" rule was rejected because real configs (`_testing/test.cisco:359-373`)
+  put global commands directly after blocks with no `!`/blank separator. Consequently a
+  block type with no commands in the loaded packs gets opener recognition (completion
+  context, on-Enter indent) but **no** flush recovery — intentional, not a bug.
+- Watch for one-liner look-alikes when writing opener patterns (e.g. `vlan \d` must not
+  match `vlan internal allocation policy ascending`).
 
 ## Packaging / Release
 
