@@ -1,0 +1,596 @@
+[
+  {
+    "name": "monitor session",
+    "context": null,
+    "detail": "Create a new Ethernet Switched Port Analyzer (SPAN) or a Remote Switched Port Analyzer (RSPAN) session configuration for analyzing traffic between ports or add to an existing session configuration.",
+    "syntax": "monitor session session-number {destination | filter | source} session-range | remote}",
+    "noForm": "no monitor session {session-number [destination | filter | source] | all | local | range",
+    "params": [
+      {
+        "name": "session-number",
+        "description": "The session number identified with the SPAN or RSPAN session. The range is 1 to 68. However if this switch is stacked with Catalyst 2960-S switches, the range is 1 to 66."
+      },
+      {
+        "name": "all",
+        "description": "Clears all monitor sessions."
+      },
+      {
+        "name": "local",
+        "description": "Clears all local monitor sessions."
+      },
+      {
+        "name": "range session-range",
+        "description": "Clears monitor sessions in the specified range."
+      },
+      {
+        "name": "remote",
+        "description": "Clears all remote monitor sessions."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can set a combined maximum of four local SPAN sessions and RSPAN source sessions.  You can have a total of 68 SPAN and RSPAN sessions on a switch or switch stack.  However if this switch is stacked with Catalyst 2960-S switches, you are limited to a combined maximum of two local SPAN sessions and RSPAN source sessions, and the range is 1 to 66.",
+    "sourcePage": 302,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor session destination",
+    "context": null,
+    "detail": "Start a new Switched Port Analyzer (SPAN) session or Remote SPAN (RSPAN) destination session, to enable ingress traffic on the destination port for a network security device (such as a Cisco IDS Sensor Appliance), and to add or delete interfaces or VLANs to or from an existing SPAN or RSPAN session.",
+    "syntax": "monitor session session-number destination {interface interface-id [, | -] [encapsulation {replicate | dot1q} ] {ingress [dot1q | untagged] } | {remote} vlan vlan-id {replicate | dot1q} ] {ingress [dot1q | untagged] } | {remote} vlan vlan-id",
+    "noForm": "no monitor session session-number destination {interface interface-id [, | -] [encapsulation",
+    "params": [
+      {
+        "name": "session-number",
+        "description": "The session number identified with the SPAN or RSPAN session. The range is 1 to 68. However if this switch is stacked with Catalyst 2960-S switches, the range is 1 to 66."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "Specifies the destination or source interface for a SPAN or RSPAN session. Valid interfaces are physical ports (including type, stack member, module, and port number). For source interface, port channel is also a valid interface type, and the valid range is 1 to 128."
+      },
+      {
+        "name": ",",
+        "description": "(Optional) Specifies a series of interfaces or VLANs, or separates a range of interfaces or VLANs from a previous range. Enter a space before and after the comma."
+      },
+      {
+        "name": "-",
+        "description": "(Optional) Specifies a range of interfaces or VLANs. Enter a space before and after the hyphen."
+      },
+      {
+        "name": "encapsulation replicate",
+        "description": "(Optional) Specifies that the destination interface replicates the source interface encapsulation method. If not selected, the default is to send packets in native form (untagged). These keywords are valid only for local SPAN. For RSPAN, the RSPAN VLAN ID overwrites the original VLAN ID; therefore, packets are always sent untagged. The encapsulation options are ignored with the no form of the command. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 304 Network Management monitor session destination"
+      },
+      {
+        "name": "encapsulation dot1q",
+        "description": "(Optional) Specifies that the destination interface accepts the source interface incoming packets with IEEE 802.1Q encapsulation. These keywords are valid only for local SPAN. For RSPAN, the RSPAN VLAN ID overwrites the original VLAN ID; therefore, packets are always sent untagged. The encapsulation options are ignored with the no form of the command."
+      },
+      {
+        "name": "ingress",
+        "description": "Enables ingress traffic forwarding."
+      },
+      {
+        "name": "dot1q",
+        "description": "(Optional) Accepts incoming packets with IEEE 802.1Q encapsulation with the specified VLAN as the default VLAN."
+      },
+      {
+        "name": "untagged",
+        "description": "(Optional) Accepts incoming packets with untagged encapsulation with the specified VLAN as the default VLAN."
+      },
+      {
+        "name": "isl",
+        "description": "Specifies ingress forwarding using ISL encapsulation."
+      },
+      {
+        "name": "remote",
+        "description": "Specifies the remote VLAN for an RSPAN source or destination session. The range is 2 to 1001 and 1006 to 4094. The RSPAN VLAN cannot be VLAN 1 (the default VLAN) or VLAN IDs 1002 to 1005 (reserved for Token Ring and FDDI VLANs)."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "Sets the default VLAN for ingress traffic when used with only the ingress keyword."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can set a combined maximum of four local SPAN sessions and RSPAN source sessions.  You can have a total of 68 SPAN and RSPAN sessions on a switch or switch stack.  However if this switch is stacked with Catalyst 2960-S switches, you are limited to a combined maximum of two local SPAN sessions and RSPAN source sessions, and the range is 1 to 66.",
+    "sourcePage": 304,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor session filter",
+    "context": null,
+    "detail": "Start a new flow-based SPAN (FSPAN) session or flow-based RSPAN (FRSPAN) source or destination session, or to limit (filter) SPAN source traffic to specific VLANs.",
+    "syntax": "monitor session session-number filter {vlan vlan-id [, | -] }",
+    "noForm": "no monitor session session-number filter {vlan vlan-id [, | -] }",
+    "params": [
+      {
+        "name": "session-number",
+        "description": "The session number identified with the SPAN or RSPAN session. The range is 1 to 68. However if this switch is stacked with Catalyst 2960-S switches, the range is 1 to 66."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "Specifies a list of VLANs as filters on trunk source ports to limit SPAN source traffic to specific VLANs. The vlan-id range is 1 to 4094."
+      },
+      {
+        "name": ",",
+        "description": "(Optional) Specifies a series of VLANs, or separates a range of VLANs from a previous range. Enter a space before and after the comma."
+      },
+      {
+        "name": "-",
+        "description": "(Optional) Specifies a range of VLANs. Enter a space before and after the hyphen."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can set a combined maximum of four local SPAN sessions and RSPAN source sessions.  You can have a total of 68 SPAN and RSPAN sessions on a switch or switch stack.  However if this switch is stacked with Catalyst 2960-S switches, you are limited to a combined maximum of two local SPAN sessions and RSPAN source sessions, and the range is 1 to 66.",
+    "sourcePage": 308,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor session source",
+    "context": null,
+    "detail": "Start a new Switched Port Analyzer (SPAN) session or Remote SPAN (RSPAN) source session, or to add or delete interfaces or VLANs to or from an existing SPAN or RSPAN session.",
+    "syntax": "monitor session session_number source {interface interface-id [, | -] [both | rx | tx] | [remote] vlan vlan-id [, | -] [both | rx | tx]} [remote] vlan vlan-id [, | -] [both | rx | tx]}",
+    "noForm": "no monitor session session_number source {interface interface-id [, | -] [both | rx | tx] |",
+    "params": [
+      {
+        "name": "session_number",
+        "description": "The session number identified with the SPAN or RSPAN session. The range is 1 to 68. However if this switch is stacked with Catalyst 2960-S switches, the range is 1 to 66."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "Specifies the source interface for a SPAN or RSPAN session. Valid interfaces are physical ports (including type, stack member, module, and port number). For source interface, port channel is also a valid interface type, and the valid range is 1 to 48."
+      },
+      {
+        "name": ",",
+        "description": "(Optional) Specifies a series of interfaces or VLANs, or separates a range of interfaces or VLANs from a previous range. Enter a space before and after the comma."
+      },
+      {
+        "name": "-",
+        "description": "(Optional) Specifies a range of interfaces or VLANs. Enter a space before and after the hyphen. both | rx | tx (Optional) Specifies the traffic direction to monitor. If you do not specify a traffic direction, the source interface sends both transmitted and received traffic."
+      },
+      {
+        "name": "remote",
+        "description": "(Optional) Specifies the remote VLAN for an RSPAN source or destination session. The range is 2 to 1001 and 1006 to 4094. The RSPAN VLAN cannot be VLAN 1 (the default VLAN) or VLAN IDs 1002 to 1005 (reserved for Token Ring and FDDI VLANs)."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "When used with only the ingress keyword, sets default VLAN for ingress traffic."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Traffic that enters or leaves source ports or source VLANs can be monitored by using SPAN or RSPAN.  Traffic routed to source ports or source VLANs cannot be monitored.  You can set a combined maximum of four local SPAN sessions and RSPAN source sessions.",
+    "sourcePage": 310,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show monitor",
+    "context": null,
+    "detail": "Display information about all Switched Port Analyzer (SPAN) and Remote SPAN (RSPAN) sessions.",
+    "syntax": "show monitor [session {session_number | all | local | range list | remote} [detail]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "session",
+        "description": "(Optional) Displays information about specified SPAN sessions."
+      },
+      {
+        "name": "session_number",
+        "description": "The session number identified with the SPAN or RSPAN session. The range is 1 to 68. However if this switch is stacked with Catalyst 2960-S switches, you are limited to a combined maximum of two local SPAN sessions and RSPAN source sessions, and the range is 1 to 66."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Displays all SPAN sessions."
+      },
+      {
+        "name": "local",
+        "description": "(Optional) Displays only local SPAN sessions."
+      },
+      {
+        "name": "range list",
+        "description": "(Optional) Displays a range of SPAN sessions, where list is the range of valid sessions. The range is either a single session or a range of sessions described by two numbers, the lower one first, separated by a hyphen. Do not enter any spaces between comma-separated parameters or in hyphen-specified ranges."
+      },
+      {
+        "name": "Note",
+        "description": "This keyword is available only in privileged EXEC mode."
+      },
+      {
+        "name": "remote",
+        "description": "(Optional) Displays only remote SPAN sessions."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information about the specified sessions."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "The output is the same for the show monitor command and the show monitor session all command.  Consolidated Platform Command Reference, Cisco IOS Release 15. 2(6)E (Catalyst 2960-X Switches) 313 Network Management show monitor Maximum number of SPAN source sessions: 4 (applies to source and local sessions) However if this switch is stacked with Catalyst 2960-S switches, you are limited to a combined maximum of two local SPAN sessions and RSPAN source sessions.",
+    "sourcePage": 313,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps",
+    "context": null,
+    "detail": "Enable the device to send Simple Network Management Protocol (SNMP) notifications for various traps or inform requests to the network management system (NMS).",
+    "syntax": "snmp-server enable traps [bridge | cluster | config | copy-config | cpu threshold | entity | envmon | errdisable | flash | fru-ctrl | hsrp | ipmulticast | mac-notification | msdp | ospf | pim | port-security | rtr | snmp | storm-control | stpx | syslog | tty | vlan-membership | vlancreate | vlandelete | vtp ] entity | envmon | errdisable | flash | fru-ctrl | hsrp | ipmulticast | mac-notification | msdp | ospf | pim | port-security | rtr | snmp | storm-control | stpx | syslog | tty | vlan-membership | vlancreate | vlandelete | vtp ]",
+    "noForm": "no snmp-server enable traps [bridge | cluster | config | copy-config | cpu threshold |",
+    "params": [
+      {
+        "name": "bridge",
+        "description": "(Optional) Enables SNMP STP Bridge MIB traps.*"
+      },
+      {
+        "name": "cluster",
+        "description": "(Optional) Enables SNMP cluster traps."
+      },
+      {
+        "name": "config",
+        "description": "(Optional) Enables SNMP configuration traps."
+      },
+      {
+        "name": "copy-config",
+        "description": "(Optional) Enables SNMP copy-configuration traps."
+      },
+      {
+        "name": "cpu threshold",
+        "description": "(Optional) Enables CPU related traps.*"
+      },
+      {
+        "name": "entity",
+        "description": "(Optional) Enables SNMP entity traps."
+      },
+      {
+        "name": "envmon",
+        "description": "(Optional) Enables SNMP environmental monitor traps.*"
+      },
+      {
+        "name": "errdisable",
+        "description": "(Optional) Enables SNMP errdisable notification traps.*"
+      },
+      {
+        "name": "flash",
+        "description": "(Optional) Enables SNMP FLASH notification traps.*"
+      },
+      {
+        "name": "fru-ctrl",
+        "description": "(Optional) Generates entity field-replaceable unit (FRU) control traps. In a device stack, this trap refers to the insertion or removal of a device in the stack."
+      },
+      {
+        "name": "hsrp",
+        "description": "(Optional) Enables Hot Standby Router Protocol (HSRP) traps."
+      },
+      {
+        "name": "ipmulticast",
+        "description": "(Optional) Enables IP multicast routing traps."
+      },
+      {
+        "name": "mac-notification",
+        "description": "(Optional) Enables SNMP MAC Notification traps.*"
+      },
+      {
+        "name": "msdp",
+        "description": "(Optional) Enables Multicast Source Discovery Protocol (MSDP) traps."
+      },
+      {
+        "name": "ospf",
+        "description": "(Optional) Enables Open Shortest Path First (OSPF) traps."
+      },
+      {
+        "name": "pim",
+        "description": "(Optional) Enables Protocol-Independent Multicast (PIM) traps."
+      },
+      {
+        "name": "port-security",
+        "description": "(Optional) Enables SNMP port security traps.*"
+      },
+      {
+        "name": "rtr",
+        "description": "(Optional) Enables SNMP Response Time Reporter (RTR) traps. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 316 Network Management snmp-server enable traps"
+      },
+      {
+        "name": "snmp",
+        "description": "(Optional) Enables SNMP traps.*"
+      },
+      {
+        "name": "storm-control",
+        "description": "(Optional) Enables SNMP storm-control trap parameters.*"
+      },
+      {
+        "name": "stpx",
+        "description": "(Optional) Enables SNMP STPX MIB traps.*"
+      },
+      {
+        "name": "syslog",
+        "description": "(Optional) Enables SNMP syslog traps."
+      },
+      {
+        "name": "tty",
+        "description": "(Optional) Sends TCP connection traps. This is enabled by default."
+      },
+      {
+        "name": "vlan-membership",
+        "description": "(Optional) Enables SNMP VLAN membership traps."
+      },
+      {
+        "name": "vlancreate",
+        "description": "(Optional) Enables SNMP VLAN-created traps."
+      },
+      {
+        "name": "vlandelete",
+        "description": "(Optional) Enables SNMP VLAN-deleted traps."
+      },
+      {
+        "name": "vtp",
+        "description": "(Optional) Enables VLAN Trunking Protocol (VTP) traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The command options marked with an asterisk in the table above have subcommands.  For more information on these subcommands, see the Related Commands section below.  Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.",
+    "sourcePage": 316,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps bridge",
+    "context": null,
+    "detail": "Generate STP bridge MIB traps.",
+    "syntax": "snmp-server enable traps bridge [newroot] [topologychange]",
+    "noForm": "no snmp-server enable traps bridge [newroot] [topologychange]",
+    "params": [
+      {
+        "name": "newroot",
+        "description": "(Optional) Enables SNMP STP bridge MIB new root traps. topologychange (Optional) Enables SNMP STP bridge MIB topology change traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 319,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps cpu",
+    "context": null,
+    "detail": "Enable CPU notifications.",
+    "syntax": "snmp-server enable traps cpu [threshold]",
+    "noForm": "no snmp-server enable traps cpu [threshold]",
+    "params": [
+      {
+        "name": "threshold",
+        "description": "(Optional) Enables CPU threshold notification."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 320,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps envmon",
+    "context": null,
+    "detail": "Enable SNMP environmental traps.",
+    "syntax": "snmp-server enable traps envmon [fan][shutdown][status] [supply][temperature]",
+    "noForm": "no snmp-server enable traps envmon [fan][shutdown][status] [supply][temperature]",
+    "params": [
+      {
+        "name": "fan",
+        "description": "(Optional) Enables fan traps."
+      },
+      {
+        "name": "shutdown",
+        "description": "(Optional) Enables environmental monitor shutdown traps."
+      },
+      {
+        "name": "status",
+        "description": "(Optional) Enables SNMP environmental status-change traps."
+      },
+      {
+        "name": "supply",
+        "description": "(Optional) Enables environmental monitor power-supply traps. temperature (Optional) Enables environmental monitor temperature traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 321,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps errdisable",
+    "context": null,
+    "detail": "Enable SNMP notifications of error-disabling.",
+    "syntax": "snmp-server enable traps errdisable [notification-rate number-of-notifications]",
+    "noForm": "no snmp-server enable traps errdisable [notification-rate number-of-notifications]",
+    "params": [
+      {
+        "name": "notification-rate",
+        "description": "(Optional) Specifies number of notifications per minute as the"
+      },
+      {
+        "name": "number-of-notifications",
+        "description": "notification rate. Accepted values are from 0 to 10000."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 322,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps flash",
+    "context": null,
+    "detail": "Enable SNMP flash notifications.",
+    "syntax": "snmp-server enable traps flash [insertion][removal]",
+    "noForm": "no snmp-server enable traps flash [insertion][removal]",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 323,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps mac-notification",
+    "context": null,
+    "detail": "Enable SNMP MAC notification traps.",
+    "syntax": "snmp-server enable traps mac-notification [change][move][threshold]",
+    "noForm": "no snmp-server enable traps mac-notification [change][move][threshold]",
+    "params": [
+      {
+        "name": "change",
+        "description": "(Optional) Enables SNMP MAC change traps."
+      },
+      {
+        "name": "move",
+        "description": "(Optional) Enables SNMP MAC move traps. threshold (Optional) Enables SNMP MAC threshold traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 324,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps port-security",
+    "context": null,
+    "detail": "Enable SNMP port security traps.",
+    "syntax": "snmp-server enable traps port-security [trap-rate value]",
+    "noForm": "no snmp-server enable traps port-security [trap-rate value]",
+    "params": [
+      {
+        "name": "trap-rate",
+        "description": "(Optional) Sets the maximum number of port-security traps sent per second. The range is"
+      },
+      {
+        "name": "value",
+        "description": "from 0 to 1000; the default is 0 (no limit imposed; a trap is sent at every occurrence)."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 325,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps rtr",
+    "context": null,
+    "detail": "Enable the sending of Cisco IOS IP Service Level Agreements (SLAs) Simple Network Management Protocol (SNMP) trap notifications.",
+    "syntax": "snmp-server enable traps rtr",
+    "noForm": "no snmp-server enable traps rtr",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command controls (enables or disables) Cisco IOS IP SLAs notifications, as defined in the Response Time Monitor MIB (CISCO-RTTMON-MIB).  The snmp-server enable traps rtrcommand is used in conjunction with the snmp-server hostcommand.  Use the snmp-server host command to specify which host or hosts receive SNMP notifications.",
+    "sourcePage": 326,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps snmp",
+    "context": null,
+    "detail": "Enable SNMP traps.",
+    "syntax": "snmp-server enable traps snmp [authentication ][coldstart ][linkdown ] [linkup ][warmstart] ][warmstart]",
+    "noForm": "no snmp-server enable traps snmp [authentication ][coldstart ][linkdown ] [linkup",
+    "params": [
+      {
+        "name": "coldstart",
+        "description": "(Optional) Enables cold start traps."
+      },
+      {
+        "name": "linkdown",
+        "description": "(Optional) Enables linkdown traps."
+      },
+      {
+        "name": "linkup",
+        "description": "(Optional) Enables linkup traps."
+      },
+      {
+        "name": "warmstart",
+        "description": "(Optional) Enables warmstart traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 328,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps storm-control",
+    "context": null,
+    "detail": "Enable SNMP storm-control trap parameters.",
+    "syntax": "snmp-server enable traps storm-control {trap-rate number-of-minutes}",
+    "noForm": "no snmp-server enable traps storm-control {trap-rate}",
+    "params": [
+      {
+        "name": "trap-rate",
+        "description": "(Optional) Specifies the SNMP storm-control trap rate in minutes. Accepted"
+      },
+      {
+        "name": "number-of-minutes",
+        "description": "values are from 0 to 1000."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 329,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "snmp-server enable traps stpx",
+    "context": null,
+    "detail": "Enable SNMP STPX MIB traps.",
+    "syntax": "snmp-server enable traps stpx [inconsistency][loop-inconsistency][root-inconsistency]",
+    "noForm": "no snmp-server enable traps stpx [inconsistency][loop-inconsistency][root-inconsistency]",
+    "params": [
+      {
+        "name": "inconsistency",
+        "description": "(Optional) Enables SNMP STPX MIB inconsistency update traps. loop-inconsistency (Optional) Enables SNMP STPX MIB loop inconsistency update traps. root-inconsistency (Optional) Enables SNMP STPX MIB root inconsistency update traps."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
+    "sourcePage": 330,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  }
+]

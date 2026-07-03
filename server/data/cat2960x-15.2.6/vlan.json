@@ -1,0 +1,725 @@
+[
+  {
+    "name": "client vlan",
+    "context": null,
+    "detail": "Configure a WLAN interface or an interface group.",
+    "syntax": "client vlan interface-id-name-or-group-name",
+    "noForm": "no client vlan",
+    "params": [
+      {
+        "name": "interface-id-name-or-group-name",
+        "description": "Interface ID, name, or VLAN group name. The interface ID can also be in digits too."
+      }
+    ],
+    "modes": ["WLAN configuration"],
+    "usageSummary": "You must disable the WLAN before using this command.  See Related Commands section for more information on how to disable a WLAN.  This example shows how to enable a client VLAN on a WLAN: Device# configure terminal Enter configuration commands, one per line.",
+    "sourcePage": 706,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear vmps statistics",
+    "context": null,
+    "detail": "Clear the VLAN Membership Policy Server (VMPS) statistics maintained by the VLAN Query Protocol (VQP) client.",
+    "syntax": "clear vmps statistics",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 707,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear vtp counters",
+    "context": null,
+    "detail": "Clear the VLAN Trunking Protocol (VTP) and pruning counters.",
+    "syntax": "clear vtp counters",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 708,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform vlan",
+    "context": null,
+    "detail": "Enable debugging of the VLAN manager software.",
+    "syntax": "debug platform vlan {error | mvid | rpc}",
+    "noForm": "no debug platform vlan {error | mvid | rpc}",
+    "params": [
+      {
+        "name": "rpc",
+        "description": "Displays remote procedure call (RPC) debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug platform vlan command is the same as the no debug platform vlan command.  When you enable debugging on a switch stack, it is enabled only on the stack's active switch.  To enable debugging on a stack member, start a session from the stack's active switch using the session switch-number EXEC command, and then enter the debug command at the command-line prompt of the stack member.",
+    "sourcePage": 709,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug sw-vlan",
+    "context": null,
+    "detail": "Enable debugging of VLAN manager activities.",
+    "syntax": "debug sw-vlan {badpmcookies | cfg-vlan {bootup | cli} | events | ifs | mapping | notification | packets | redundancy | registries | vtp} | redundancy | registries | vtp}",
+    "noForm": "no debug sw-vlan {badpmcookies | cfg-vlan {bootup | cli} | events | ifs | mapping | notification | packets",
+    "params": [
+      {
+        "name": "cfg-vlan",
+        "description": "Displays VLAN configuration debug messages."
+      },
+      {
+        "name": "bootup",
+        "description": "Displays messages when the switch is booting up."
+      },
+      {
+        "name": "cli",
+        "description": "Displays messages when the command-line interface (CLI) is in VLAN configuration mode."
+      },
+      {
+        "name": "events",
+        "description": "Displays debug messages for VLAN manager events."
+      },
+      {
+        "name": "ifs",
+        "description": "Displays debug messages for the VLAN manager IOS file system (IFS). See debug sw-vlan ifs, on page 712 for more information."
+      },
+      {
+        "name": "mapping",
+        "description": "Displays debug messages for VLAN mapping."
+      },
+      {
+        "name": "notification",
+        "description": "Displays debug messages for VLAN manager notifications. See debug sw-vlan notification, on page 713 for more information."
+      },
+      {
+        "name": "packets",
+        "description": "Displays debug messages for packet handling and encapsulation processes."
+      },
+      {
+        "name": "redundancy",
+        "description": "Displays debug messages for VTP VLAN redundancy."
+      },
+      {
+        "name": "registries",
+        "description": "Displays debug messages for VLAN manager registries."
+      },
+      {
+        "name": "vtp",
+        "description": "Displays debug messages for the VLAN Trunking Protocol (VTP) code. See debug sw-vlan vtp, on page 715 for more information."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug sw-vlan command is the same as the no debug sw-vlan command.  When you enable debugging on a switch stack, it is enabled only on the stack's active switch.  To debug a specific stack member, you can start a CLI session from the stack's active switch by using the session switch-number privileged EXEC command.",
+    "sourcePage": 710,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug sw-vlan ifs",
+    "context": null,
+    "detail": "Enable debugging of the VLAN manager IOS file system (IFS) error tests.",
+    "syntax": "debug sw-vlan ifs {open {read | write} | read {1 | 2 | 3 | 4} | write}",
+    "noForm": "no debug sw-vlan ifs {open {read | write} | read {1 | 2 | 3 | 4} | write}",
+    "params": [
+      {
+        "name": "open",
+        "description": "Displays VLAN manager IFS file-read operation debug messages. read"
+      },
+      {
+        "name": "open",
+        "description": "Displays VLAN manager IFS file-write operation debug messages. write"
+      },
+      {
+        "name": "read",
+        "description": "Displays file-read operation debug messages for the specified error test (1, 2, 3, or 4)."
+      },
+      {
+        "name": "write",
+        "description": "Displays file-write operation debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug sw-vlan ifs command is the same as the no debug sw-vlan ifs command.  When selecting the file read operation, Operation 1 reads the file header, which contains the header verification word and the file version number.  Operation 2 reads the main body of the file, which contains most of the domain and VLAN information.",
+    "sourcePage": 712,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug sw-vlan notification",
+    "context": null,
+    "detail": "Enable debugging of VLAN manager notifications.",
+    "syntax": "debug sw-vlan notification {accfwdchange | allowedvlancfgchange | fwdchange | linkchange | modechange | pruningcfgchange | statechange} modechange | pruningcfgchange | statechange}",
+    "noForm": "no debug sw-vlan notification {accfwdchange | allowedvlancfgchange | fwdchange | linkchange |",
+    "params": [
+      {
+        "name": "accfwdchange",
+        "description": "Displays debug messages for VLAN manager notification of aggregated access interface spanning-tree forward changes. allowedvlancfgchange Displays debug messages for VLAN manager notification of changes to the allowed VLAN configuration."
+      },
+      {
+        "name": "fwdchange",
+        "description": "Displays debug messages for VLAN manager notification of spanning-tree forwarding changes."
+      },
+      {
+        "name": "linkchange",
+        "description": "Displays debug messages for VLAN manager notification of interface link-state changes."
+      },
+      {
+        "name": "modechange",
+        "description": "Displays debug messages for VLAN manager notification of interface mode changes."
+      },
+      {
+        "name": "pruningcfgchange",
+        "description": "Displays debug messages for VLAN manager notification of changes to the pruning configuration."
+      },
+      {
+        "name": "statechange",
+        "description": "Displays debug messages for VLAN manager notification of interface state changes."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug sw-vlan notification command is the same as the no debug sw-vlan notification command.  When you enable debugging on a switch stack, it is enabled only on the stack's active switch.  To debug a specific stack member, you can start a CLI session from the stack's active switch by using the session switch-number privileged EXEC command.",
+    "sourcePage": 713,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug sw-vlan vtp",
+    "context": null,
+    "detail": "Enable debugging of the VLAN Trunking Protocol (VTP) code.",
+    "syntax": "debug sw-vlan vtp {events | packets | pruning [{packets | xmit}] | redundancy | xmit}",
+    "noForm": "no debug sw-vlan vtp {events | packets | pruning | redundancy | xmit}",
+    "params": [
+      {
+        "name": "events",
+        "description": "Displays debug messages for general-purpose logic flow and detailed VTP messages generated by the VTP_LOG_RUNTIME macro in the VTP code."
+      },
+      {
+        "name": "packets",
+        "description": "Displays debug messages for the contents of all incoming VTP packets that have been passed into the VTP code from the Cisco IOS VTP platform-dependent layer, except for pruning packets."
+      },
+      {
+        "name": "pruning",
+        "description": "Displays debug messages generated by the pruning segment of the VTP code."
+      },
+      {
+        "name": "packets",
+        "description": "(Optional) Displays debug messages for the contents of all incoming VTP pruning packets that have been passed into the VTP code from the Cisco IOS VTP platform-dependent layer."
+      },
+      {
+        "name": "xmit",
+        "description": "(Optional) Displays debug messages for the contents of all outgoing VTP packets that the VTP code requests the Cisco IOS VTP platform-dependent layer to send."
+      },
+      {
+        "name": "redundancy",
+        "description": "Displays debug messages for VTP redundancy."
+      },
+      {
+        "name": "xmit",
+        "description": "Displays debug messages for the contents of all outgoing VTP packets that the VTP code requests the Cisco IOS VTP platform-dependent layer to send, except for pruning packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug sw-vlan vtp command is the same as the no debug sw-vlan vtp command.  If no additional parameters are entered after the pruning keyword, VTP pruning debugging messages appear.  They are generated by the VTP_PRUNING_LOG_NOTICE, VTP_PRUNING_LOG_INFO, VTP_PRUNING_LOG_DEBUG, VTP_PRUNING_LOG_ALERT, and VTP_PRUNING_LOG_WARNING macros in the VTP pruning code.",
+    "sourcePage": 715,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "interface vlan",
+    "context": null,
+    "detail": "Create or access a dynamic switch virtual interface (SVI) and to enter interface configuration mode.",
+    "syntax": "interface vlan vlan-id",
+    "noForm": "no interface vlan vlan-id",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "VLAN number. The range is 1 to 4094."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "SVIs are created the first time you enter the interface vlan vlan-id command for a particular VLAN.  The vlan-id corresponds to the VLAN-tag associated with data frames on an IEEE 802. 1Q encapsulated trunk or the VLAN ID configured for an access port.",
+    "sourcePage": 717,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform vlan",
+    "context": null,
+    "detail": "Display platform-dependent VLAN information.",
+    "syntax": "show platform vlan {misc | mvid | prune | refcount | rpc {receive | transmit}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "misc",
+        "description": "Displays miscellaneous VLAN module information."
+      },
+      {
+        "name": "mvid",
+        "description": "Displays the mapped VLAN ID (MVID) allocation information."
+      },
+      {
+        "name": "prune",
+        "description": "Displays the stack or platform-maintained pruning database. refcount Displays the VLAN lock module-wise reference counts."
+      },
+      {
+        "name": "rpc",
+        "description": "Displays remote procedure call (RPC) messages. receive Displays received information. transmit Displays sent information."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with your technical support representative while troubleshooting a problem.  Do not use this command unless your technical support representative asks you to do so.  This example shows how to display remote procedure call (RPC) messages: Device# show platform vlan rpc Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 719,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show vlan",
+    "context": null,
+    "detail": "Display the parameters for all configured VLANs or one VLAN (if the VLAN ID or name is specified) on the switch.",
+    "syntax": "show vlan [{brief | group | id vlan-id | mtu | name vlan-name | remote-span | summary}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "brief",
+        "description": "(Optional) Displays one line for each VLAN with the VLAN name, status, and its ports."
+      },
+      {
+        "name": "group",
+        "description": "(Optional) Displays information about VLAN groups."
+      },
+      {
+        "name": "id vlan-id",
+        "description": "(Optional) Displays information about a single VLAN identified by the VLAN ID number. For vlan-id, the range is 1 to 4094."
+      },
+      {
+        "name": "mtu",
+        "description": "(Optional) Displays a list of VLANs and the minimum and maximum transmission unit (MTU) sizes configured on ports in the VLAN."
+      },
+      {
+        "name": "name vlan-name",
+        "description": "(Optional) Displays information about a single VLAN identified by the VLAN name. The VLAN name is an ASCII string from 1 to 32 characters."
+      },
+      {
+        "name": "remote-span",
+        "description": "(Optional) Displays information about Remote SPAN (RSPAN) VLANs."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays VLAN summary information."
+      },
+      {
+        "name": "Note",
+        "description": "The ifindex keyword is not supported, even though it is visible in the command-line help string."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "In the show vlan mtu command output, the MTU_Mismatch column shows whether all the ports in the VLAN have the same MTU.  When yes appears in the column, it means that the VLAN has ports with different MTUs, and packets that are switched from a port with a larger MTU to a port with a smaller MTU might be dropped.  If the VLAN does not have an SVI, the hyphen (-) symbol appears in the SVI_MTU column.",
+    "sourcePage": 720,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show vmps",
+    "context": null,
+    "detail": "Display the VLAN Query Protocol (VQP) version, reconfirmation interval, retry count, VLAN Membership Policy Server (VMPS) IP addresses, and the current and primary servers.",
+    "syntax": "show vmps [statistics]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays VQP client-side statistics and counters."
+      }
+    ],
+    "modes": ["User EXEC Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 723,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show vtp",
+    "context": null,
+    "detail": "Display general information about the VLAN Trunking Protocol (VTP) management domain, status, and counters.",
+    "syntax": "show vtp {counters | devices [conflicts] | interface [interface-id] | password | status}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "counters",
+        "description": "Displays the VTP statistics for the device."
+      },
+      {
+        "name": "devices",
+        "description": "Displays information about all VTP version 3 devices in the domain. This keyword applies only if the device is not running VTP version 3."
+      },
+      {
+        "name": "conflicts",
+        "description": "(Optional) Displays information about VTP version 3 devices that have conflicting primary servers. This command is ignored when the device is in VTP transparent or VTP off mode."
+      },
+      {
+        "name": "interface",
+        "description": "Displays VTP status and configuration for all interfaces or the specified interface."
+      },
+      {
+        "name": "interface-id",
+        "description": "(Optional) Interface for which to display VTP status and configuration. This can be a physical interface or a port channel."
+      },
+      {
+        "name": "password",
+        "description": "Displays the configured VTP password (available in privileged EXEC mode only)."
+      },
+      {
+        "name": "status",
+        "description": "Displays general information about the VTP management domain status."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "When you enter the show vtp password command when the device is running VTP version 3, the display follows these rules: • If the password password global configuration command did not specify the hidden keyword and encryption is not enabled on the device, the password appears in clear text.  • If the password password command did not specify the hidden keyword and encryption is enabled on the device, the encrypted password appears.  • If the password password command is included the hidden keyword, the hexadecimal secret key is displayed.",
+    "sourcePage": 725,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport priority extend",
+    "context": null,
+    "detail": "Set a port priority for the incoming untagged frames or the priority of frames received by the IP phone connected to the specified port.",
+    "syntax": "switchport priority extend {cos value | trust}",
+    "noForm": "no switchport priority extend",
+    "params": [
+      {
+        "name": "cos",
+        "description": "Sets the IP phone port to override the IEEE 802.1p priority received from the PC or the attached"
+      },
+      {
+        "name": "value",
+        "description": "device with the specified class of service (CoS) value. The range is 0 to 7. Seven is the highest priority. The default is 0."
+      },
+      {
+        "name": "trust",
+        "description": "Sets the IP phone port to trust the IEEE 802.1p priority received from the PC or the attached device."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "When voice VLAN is enabled, you can configure the device to send the Cisco Discovery Protocol (CDP) packets to instruct the IP phone how to send data packets from the device attached to the access port on the Cisco IP Phone.  You must enable CDP on the device port connected to the Cisco IP Phone to send the configuration to the Cisco IP Phone.  (CDP is enabled by default globally and on all device interfaces.",
+    "sourcePage": 731,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport trunk",
+    "context": null,
+    "detail": "Set the trunk characteristics when the interface is in trunking mode.",
+    "syntax": "switchport trunk {allowed vlan vlan-list | native vlan vlan-id | pruning vlan vlan-list}",
+    "noForm": "no switchport trunk {allowed vlan | native vlan | pruning vlan}",
+    "params": [
+      {
+        "name": "native vlan vlan-id",
+        "description": "Sets the native VLAN for sending and receiving untagged traffic when the interface is in IEEE 802.1Q trunking mode. The range is 1 to 4094. pruning vlan vlan-list Sets the list of VLANs that are eligible for VTP pruning when in trunking mode. See the Usage Guidelines for the vlan-list choices."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The vlan-list format is all | none | [add | remove | except] vlan-atom [,vlan-atom... ]: • all specifies all VLANs from 1 to 4094.  This is the default.",
+    "sourcePage": 732,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport voice vlan",
+    "context": null,
+    "detail": "Configure voice VLAN on the port.",
+    "syntax": "switchport voice vlan {vlan-id | dot1p | none | untagged | name vlan_name}",
+    "noForm": "no switchport voice vlan",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "The VLAN to be used for voice traffic. The range is 1 to 4094. By default, the IP phone forwards the voice traffic with an IEEE 802.1Q priority of 5."
+      },
+      {
+        "name": "dot1p",
+        "description": "Configures the telephone to use IEEE 802.1p priority tagging and uses VLAN 0 (the native VLAN). By default, the Cisco IP phone forwards the voice traffic with an IEEE 802.1p priority of 5."
+      },
+      {
+        "name": "none",
+        "description": "Does not instruct the IP telephone about the voice VLAN. The telephone uses the configuration from the telephone key pad."
+      },
+      {
+        "name": "untagged",
+        "description": "Configures the telephone to send untagged voice traffic. This is the default for the telephone. name vlan_name (Optional) Specifies the VLAN name to be used for voice traffic. You can enter up to 128 characters."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You should configure voice VLAN on Layer 2 access ports.  You must enable Cisco Discovery Protocol (CDP) on the switch port connected to the Cisco IP phone for the device to send configuration information to the phone.  CDP is enabled by default globally and on the interface.",
+    "sourcePage": 735,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vlan",
+    "context": null,
+    "detail": "Add a VLAN and to enter the VLAN configuration mode.",
+    "syntax": "vlan vlan-id",
+    "noForm": "no vlan vlan-id",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "ID of the VLAN to be added and configured. The range is 1 to 4094. You can enter a single VLAN ID, a series of VLAN IDs separated by commas, or a range of VLAN IDs separated by hyphens."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Up to 1000 VLANs are supported when the is running the LAN Base image with the LAN Base default template, and up to 64 VLANs are supported when the is running the LAN Lite image.  You can use the vlan vlan-id global configuration command to add normal-range VLANs (VLAN IDs 1 to 1005) or extended-range VLANs (VLAN IDs 1006 to 4094).  Configuration information for normal-range VLANs is always saved in the VLAN database, and you can display this information by entering the show vlan privileged EXEC command.",
+    "sourcePage": 738,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vmps reconfirm",
+    "context": "global configuration",
+    "detail": "Change the reconfirmation interval for the VLAN Query Protocol (VQP) client.",
+    "syntax": "vmps reconfirm interval",
+    "noForm": "no vmps reconfirm",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can verify your setting by entering the show vmps privileged EXEC command and examining information in the Reconfirm Interval row.",
+    "sourcePage": 744,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vmps reconfirm",
+    "context": "privileged EXEC",
+    "detail": "Immediately send VLAN Query Protocol (VQP) queries to reconfirm all dynamic VLAN assignments with the VLAN Membership Policy Server (VMPS).",
+    "syntax": "vmps reconfirm",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can verify your setting by entering the show vmps privileged EXEC command and examining the VMPS Action row of the Reconfirmation Status section.  The show vmps command shows the result of the last time the assignments were reconfirmed either because the reconfirmation timer expired or because the vmps reconfirm command was entered.",
+    "sourcePage": 745,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vmps retry",
+    "context": null,
+    "detail": "Configure the per-server retry count for the VLAN Query Protocol (VQP) client.",
+    "syntax": "vmps retry count",
+    "noForm": "no vmps retry",
+    "params": [
+      {
+        "name": "count",
+        "description": "Number of attempts to contact the VLAN Membership Policy Server (VMPS) by the client before querying the next server in the list. The range is 1 to 10."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 746,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vmps server",
+    "context": null,
+    "detail": "Configure the primary VLAN Membership Policy Server (VMPS) and up to three secondary servers.",
+    "syntax": "vmps server {hostnameip address} [primary]",
+    "noForm": "no vmps server {hostnameip address} [primary]",
+    "params": [
+      {
+        "name": "hostname",
+        "description": "Hostname of the primary or secondary VMPS servers. If you specify a hostname, the Domain Name System (DNS) server must be configured."
+      },
+      {
+        "name": "ip address",
+        "description": "IP address of the primary or secondary VMPS servers."
+      },
+      {
+        "name": "primary",
+        "description": "(Optional) Decides whether primary or secondary VMPS servers are being configured."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The first server entered is automatically selected as the primary server whether or not primary is entered.  The first server address can be overridden by using primary in a subsequent command.  If a member device in a cluster configuration does not have an IP address, the cluster does not use the VMPS server configured for that member device.",
+    "sourcePage": 747,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vtp",
+    "context": "global configuration",
+    "detail": "Set or modify the VLAN Trunking Protocol (VTP) configuration characteristics.",
+    "syntax": "vtp {domain domain-name | file filename | interface interface-name [only] | mode {client | off | server | transparent} [{mst | unknown | vlan}] | password password [{hidden | secret}] | pruning | version number} | pruning | version}",
+    "noForm": "no vtp {file | interface | mode [{client | off | server | transparent}] [{mst | unknown | vlan}] | password",
+    "params": [
+      {
+        "name": "domain",
+        "description": "Specifies the VTP domain name, an ASCII string from 1 to 32 characters that identifies"
+      },
+      {
+        "name": "domain-name",
+        "description": "the VTP administrative domain for the device. The domain name is case sensitive."
+      },
+      {
+        "name": "file filename",
+        "description": "Specifies the Cisco IOS file system file where the VTP VLAN configuration is stored."
+      },
+      {
+        "name": "interface",
+        "description": "Specifies the name of the interface providing the VTP ID updated for this device. interface-name"
+      },
+      {
+        "name": "only",
+        "description": "(Optional) Uses only the IP address of this interface as the VTP IP updater."
+      },
+      {
+        "name": "mode",
+        "description": "Specifies the VTP device mode as client, server, or transparent."
+      },
+      {
+        "name": "client",
+        "description": "Places the device in VTP client mode. A device in VTP client mode is enabled for VTP, and can send advertisements, but does not have enough nonvolatile storage to store VLAN configurations. You cannot configure VLANs on a VTP client. VLANs are configured on another device in the domain that is in server mode. When a VTP client starts up, it does not send VTP advertisements until it receives advertisements to initialize its VLAN database."
+      },
+      {
+        "name": "off",
+        "description": "Places the device in VTP off mode. A device in VTP off mode functions the same as a VTP transparent device except that it does not forward VTP advertisements on trunk ports."
+      },
+      {
+        "name": "server",
+        "description": "Places the device in VTP server mode. A device in VTP server mode is enabled for VTP and sends advertisements. You can configure VLANs on the device. The device can recover all the VLAN information in the current VTP database from nonvolatile storage after reboot."
+      },
+      {
+        "name": "transparent",
+        "description": "Places the device in VTP transparent mode. A device in VTP transparent mode is disabled for VTP, does not send advertisements or learn from advertisements sent by other devices, and cannot affect VLAN configurations on other devices in the network. The device receives VTP advertisements and forwards them on all trunk ports except the one on which the advertisement was received. When VTP mode is transparent, the mode and domain name are saved in the device running configuration file, and you can save them in the device startup configuration file by entering the copy running-config startup config privileged EXEC command."
+      },
+      {
+        "name": "mst",
+        "description": "(Optional) Sets the mode for the multiple spanning tree (MST) VTP database (only VTP Version 3). Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 749 VLANs vtp (global configuration)"
+      },
+      {
+        "name": "unknown",
+        "description": "(Optional) Sets the mode for unknown VTP databases (only VTP Version 3)."
+      },
+      {
+        "name": "vlan",
+        "description": "(Optional) Sets the mode for VLAN VTP databases. This is the default (only VTP Version 3)."
+      },
+      {
+        "name": "password",
+        "description": "Sets the administrative domain password for the generation of the 16-byte secret value"
+      },
+      {
+        "name": "password",
+        "description": "used in MD5 digest calculation to be sent in VTP advertisements and to validate received VTP advertisements. The password can be an ASCII string from 1 to 32 characters. The password is case sensitive."
+      },
+      {
+        "name": "hidden",
+        "description": "(Optional) Specifies that the key generated from the password string is saved in the VLAN database file. When the hidden keyword is not specified, the password string is saved in clear text. When the hidden password is entered, you need to reenter the password to issue a command in the domain. This keyword is supported only in VTP Version 3."
+      },
+      {
+        "name": "secret",
+        "description": "(Optional) Allows the user to directly configure the password secret key (only VTP Version 3)."
+      },
+      {
+        "name": "pruning",
+        "description": "Enables VTP pruning on the device."
+      },
+      {
+        "name": "version number",
+        "description": "Sets the VTP Version to Version 1, Version 2, or Version 3."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "VTP Version 3 is supported only when the switch is running the LAN Base image.  When you save VTP mode, domain name, and VLAN configurations in the device startup configuration file and reboot the device, the VTP and VLAN configurations are selected by these conditions: • If the VTP mode is transparent in the startup configuration and the VLAN database and the VTP domain name from the VLAN database matches that in the startup configuration file, the VLAN database is ignored (cleared), and the VTP and VLAN configurations in the startup configuration file are used.  The VLAN database revision number remains unchanged in the VLAN database.",
+    "sourcePage": 749,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vtp",
+    "context": "interface configuration",
+    "detail": "Enable the VLAN Trunking Protocol (VTP) on a per-port basis.",
+    "syntax": "vtp",
+    "noForm": "no vtp",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Enter this command only on interfaces that are in trunking mode.  This command is supported only when the device is running the LAN Base image and VTP Version 3.  This example shows how to enable VTP on an interface: Device(config-if)# vtp This example shows how to disable VTP on an interface: Device(config-if)# no vtp Related Topics switchport trunk, on page 732 vtp (global configuration), on page 749 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 754,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vtp primary",
+    "context": null,
+    "detail": "Configure a device as the VLAN Trunking Protocol (VTP) primary server.",
+    "syntax": "vtp primary [{mst | vlan}] [force]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "mst",
+        "description": "(Optional) Configures the device as the primary VTP server for the multiple spanning tree (MST) feature."
+      },
+      {
+        "name": "vlan",
+        "description": "(Optional) Configures the device as the primary VTP server for VLANs."
+      },
+      {
+        "name": "force",
+        "description": "(Optional) Configures the device to not check for conflicting devices when configuring the primary server."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "A VTP primary server updates the database information and sends updates that are honored by all devices in the system.  A VTP secondary server can only back up the updated VTP configurations received from the primary server to NVRAM.  By default, all devices come up as secondary servers.",
+    "sourcePage": 755,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  }
+]

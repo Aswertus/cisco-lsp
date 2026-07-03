@@ -1,0 +1,832 @@
+[
+  {
+    "name": "auto qos classify",
+    "context": null,
+    "detail": "Automatically configure quality of service (QoS) classification for untrusted devices within a QoS domain.",
+    "syntax": "auto qos classify [police]",
+    "noForm": "no auto qos classify [police]",
+    "params": [
+      {
+        "name": "police",
+        "description": "(Optional) Configure QoS policing for untrusted devices."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use this command to configure the QoS for trusted interfaces within the QoS domain.  The QoS domain includes the device, the network interior, and edge devices that can classify incoming traffic for QoS.  When auto-QoS is enabled, it uses the ingress packet label to categorize traffic, to assign packet labels, and to configure the ingress and egress queues.",
+    "sourcePage": 1394,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "auto qos trust",
+    "context": null,
+    "detail": "Automatically configure quality of service (QoS) for trusted interfaces within a QoS domain.",
+    "syntax": "auto qos trust {cos | dscp}",
+    "noForm": "no auto qos trust {cos | dscp}",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use this command to configure the QoS for trusted interfaces within the QoS domain.  The QoS domain includes the device, the network interior, and edge devices that can classify incoming traffic for QoS.  When auto-QoS is enabled, it uses the ingress packet label to categorize traffic, to assign packet labels, and to configure the ingress and egress queues.",
+    "sourcePage": 1396,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "auto qos video",
+    "context": null,
+    "detail": "Automatically configure quality of service (QoS) for video within a QoS domain.",
+    "syntax": "auto qos video { cts | ip-camera | media-player}",
+    "noForm": "no auto qos video {cts | ip-camera | media-player}",
+    "params": [
+      {
+        "name": "cts",
+        "description": "Specifies a port connected to a Cisco TelePresence System and automatically configures QoS for video."
+      },
+      {
+        "name": "ip-camera",
+        "description": "Specifies a port connected to a Cisco IP camera and automatically configures QoS for video. media-player Specifies a port connected to a CDP-capable Cisco digital media player and automatically configures QoS for video."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use this command to configure the QoS appropriate for video traffic within the QoS domain.  The QoS domain includes the device, the network interior, and edge devices that can classify incoming traffic for QoS.  When auto-QoS is enabled, it uses the ingress packet label to categorize traffic, to assign packet labels, and to configure the ingress and egress queues.",
+    "sourcePage": 1403,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "auto qos voip",
+    "context": null,
+    "detail": "Automatically configure quality of service (QoS) for voice over IP (VoIP) within a QoS domain.",
+    "syntax": "auto qos voip {cisco-phone | cisco-softphone | trust}",
+    "noForm": "no auto qos voip {cisco-phone | cisco-softphone | trust}",
+    "params": [
+      {
+        "name": "cisco-phone",
+        "description": "Specifies a port connected to a Cisco IP phone, and automatically configures QoS for VoIP. The QoS labels of incoming packets are trusted only when the telephone is detected. cisco-softphone Specifies a port connected to a device running the Cisco SoftPhone, and automatically configures QoS for VoIP."
+      },
+      {
+        "name": "trust",
+        "description": "Specifies a port connected to a trusted device, and automatically configures QoS for VoIP. The QoS labels of incoming packets are trusted. For nonrouted ports, the CoS value of the incoming packet is trusted. For routed ports, the DSCP value of the incoming packet is trusted."
+      }
+    ],
+    "modes": [],
+    "usageSummary": "Use this command to configure the QoS appropriate for VoIP traffic within the QoS domain.  The QoS domain includes the device, the network interior, and edge devices that can classify incoming traffic for QoS.  Auto-QoS configures the device for VoIP with Cisco IP phones on device and routed ports and for devices running the Cisco SoftPhone application.",
+    "sourcePage": 1413,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "class",
+    "context": null,
+    "detail": "Define a traffic classification match criteria for the specified class-map name.",
+    "syntax": "class {class-map-name | class-default}",
+    "noForm": "no class {class-map-name | class-default}",
+    "params": [
+      {
+        "name": "class-default",
+        "description": "Refers to a system default class that matches unclassified packets."
+      }
+    ],
+    "modes": ["Policy-map configuration"],
+    "usageSummary": "Before using the class command, you must use the policy-map global configuration command to identify the policy map and enter policy-map configuration mode.  After specifying a policy map, you can configure a policy for new classes or modify a policy for any existing classes in that policy map.  You attach the policy map to a port by using the service-policy interface configuration command.",
+    "sourcePage": 1427,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "class-map",
+    "context": null,
+    "detail": "Create a class map to be used for matching packets to the class whose name you specify and to enter class-map configuration mode.",
+    "syntax": "class-map class-map name {match-any | match-all}",
+    "noForm": "no class-map class-map name {match-any | match-all}",
+    "params": [
+      {
+        "name": "match-any",
+        "description": "(Optional) Perform a logical-OR of the matching statements under this class map. One or more criteria must be matched."
+      },
+      {
+        "name": "match-all",
+        "description": "(Optional) Performs a logical-AND of the matching statements under this class map. All criterias must match. class-map-name The class map name."
+      }
+    ],
+    "modes": ["Global configuration", "Policy map configuration"],
+    "usageSummary": "Use this command to specify the name of the class for which you want to create or modify class-map match criteria and to enter class-map configuration mode.  The class-map command and its subcommands are used to define packet classification, marking, and aggregate policing as part of a globally named service policy applied on a per-port basis.  After you are in quality of service (QoS) class-map configuration mode, these configuration commands are available: • description—Describes the class map (up to 200 characters).",
+    "sourcePage": 1429,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug auto qos",
+    "context": null,
+    "detail": "Enable debugging of the automatic quality of service (auto-QoS) feature.",
+    "syntax": "debug auto qos",
+    "noForm": "no debug auto qos",
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "To display the QoS configuration that is automatically generated when auto-QoS is enabled, enable debugging before you enable auto-QoS.  You enable debugging by entering the debug auto qos privileged EXEC command.  The undebug auto qos command is the same as the no debug auto qos command.",
+    "sourcePage": 1431,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match",
+    "context": "class-map configuration",
+    "detail": "Define the match criteria to classify traffic.",
+    "syntax": "Cisco IOS XE Everest 16.5.x and Earlier Releases match {access-group {nameacl-name acl-index} | class-map class-map-name | cos cos-value | dscp dscp-value | [ ip ] dscp dscp-list | [ip] precedence ip-precedence-list | precedence precedence-value1...value4 | qos-group qos-group-value | vlan vlan-id} dscp-value | [ ip ] dscp dscp-list | [ip] precedence ip-precedence-list | precedence precedence-value1...value4 | qos-group qos-group-value | vlan vlan-id} Cisco IOS XE Everest 16.6.x and Later Releases match {access-group {name acl-name acl-index} | cos cos-value | dscp dscp-value | [ ip ] dscp dscp-list | [ ip ] precedence ip-precedence-list | mpls experimental-value | non-client-nrt | precedence precedence-value1...value4 | protocol protocol-name | qos-group qos-group-value | vlan vlan-id | wlan wlan-id} dscp-list | [ ip ] precedence ip-precedence-list | mpls experimental-value | non-client-nrt | precedence precedence-value1...value4 | protocol protocol-name | qos-group qos-group-value | vlan vlan-id | wlan wlan-id}",
+    "noForm": "no match {access-group {nameacl-name acl-index} | class-map class-map-name | cos cos-value | dscp no match {access-group {name acl-name acl-index} | cos cos-value | dscp dscp-value | [ ip ] dscp",
+    "params": [
+      {
+        "name": "access-group",
+        "description": "Specifies an access group."
+      },
+      {
+        "name": "name acl-name",
+        "description": "Specifies the name of an IP standard or extended access control list (ACL) or MAC ACL."
+      },
+      {
+        "name": "acl-index",
+        "description": "Specifies the number of an IP standard or extended access control list (ACL) or MAC ACL. For an IP standard ACL, the ACL index range is 1 to 99 and 1300 to 1999. For an IP extended ACL, the ACL index range is 100 to 199 and 2000 to 2699."
+      },
+      {
+        "name": "class-map class-map-name",
+        "description": "Uses a traffic class as a classification policy and specifies a traffic class name to use as the match criterion."
+      },
+      {
+        "name": "cos cos-value",
+        "description": "Matches a packet on the basis of a Layer 2 class of service (CoS)/Inter-Switch Link (ISL) marking. The cos-value is from 0 to 7. You can specify up to four CoS values in one match cos statement, separated by a space."
+      },
+      {
+        "name": "dscp dscp-value",
+        "description": "Specifies the parameters for each DSCP value. You can specify a value in the range 0 to 63 specifying the differentiated services code point value. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 1432 QoS match (class-map configuration)"
+      },
+      {
+        "name": "ip dscp dscp-list",
+        "description": "Specifies a list of up to eight IP Differentiated Services Code Point (DSCP) values to match against incoming packets. Separate each value with a space. The range is 0 to 63. You also can enter a mnemonic name for a commonly used value."
+      },
+      {
+        "name": "ip precedence ip-precedence-list",
+        "description": "Specifies a list of up to eight IP-precedence values to match against incoming packets. Separate each value with a space. The range is 0 to 7. You also can enter a mnemonic name for a commonly used value."
+      },
+      {
+        "name": "precedence precedence-value1...value4",
+        "description": "Assigns an IP precedence value to the classified traffic. The range is 0 to 7. You also can enter a mnemonic name for a commonly used value."
+      },
+      {
+        "name": "qos-group qos-group-value",
+        "description": "Identifies a specific QoS group value as a match criterion. The range is 0 to 31."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "Identifies a specific VLAN as a match criterion. The range is 1 to 4094."
+      },
+      {
+        "name": "mpls experimental-value",
+        "description": "Specifies Multi Protocol Label Switching specific values."
+      },
+      {
+        "name": "non-client-nrt",
+        "description": "Matches a non-client NRT (non-real-time)."
+      },
+      {
+        "name": "protocol protocol-name",
+        "description": "Specifies the type of protocol."
+      },
+      {
+        "name": "wlan wlan-id",
+        "description": "Identifies 802.11 specific values."
+      }
+    ],
+    "modes": ["Class-map configuration"],
+    "usageSummary": "The match command is used to specify which fields in the incoming packets are examined to classify the packets.  Only the IP access group or the MAC access group matching to the Ether Type/Len are supported.  If you enter the class-map match-anyclass-map-name global configuration command, you can enter the following match commands: • match access-group name acl-name Command Reference, Cisco IOS XE 26.",
+    "sourcePage": 1432,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "policy-map",
+    "context": null,
+    "detail": "Create or modify a policy map that can be attached to multiple physical ports or switch virtual interfaces (SVIs) and to enter policy-map configuration mode.",
+    "syntax": "policy-map policy-map-name",
+    "noForm": "no policy-map policy-map-name",
+    "params": [
+      {
+        "name": "policy-map-name",
+        "description": "Name of the policy map."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "After entering the policy-map command, you enter policy-map configuration mode, and these configuration commands are available: • class—Defines the classification match criteria for the specified class map.  • description—Describes the policy map (up to 200 characters).  • exit—Exits policy-map configuration mode and returns you to global configuration mode.",
+    "sourcePage": 1436,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "priority",
+    "context": null,
+    "detail": "Assign priority to a class of traffic belonging to a policy map.",
+    "syntax": "priority [Kbps [burst -in-bytes] | level level-value [Kbps [burst -in-bytes] ] | percent percentage [Kb/s [burst -in-bytes] ] ] percentage [Kb/s [burst -in-bytes] ] ]",
+    "noForm": "no priority [Kb/s [burst -in-bytes] | level level value [Kb/s [burst -in-bytes] ] | percent",
+    "params": [
+      {
+        "name": "Kb/s",
+        "description": "(Optional) Guaranteed allowed bandwidth, in kilobits per second (kbps), for the priority traffic. The amount of guaranteed bandwidth varies according to the interface and platform in use. Beyond the guaranteed bandwidth, the priority traffic will be dropped in the event of congestion to ensure that the nonpriority traffic is not starved. The value must be between 1 and 2,000,000 kbps."
+      },
+      {
+        "name": "burst -in-bytes",
+        "description": "(Optional) Burst size in bytes. The burst size configures the network to accommodate temporary bursts of traffic. The default burst value, which is computed as 200 milliseconds of traffic at the configured bandwidth rate, is used when the burst argument is not specified. The range of the burst is from 32 to 2000000 bytes."
+      },
+      {
+        "name": "level level-value",
+        "description": "(Optional) Assigns priority level. Available values for level-value are 1 and 2. Level 1 is a higher priority than Level 2. Level 1 reserves bandwidth and goes first, so latency is very low."
+      },
+      {
+        "name": "percent percentage",
+        "description": "(Optional) Specifies the amount of guaranteed bandwidth to be specified by the percent of available bandwidth."
+      }
+    ],
+    "modes": ["Policy-map class configuration (config-pmap-c)"],
+    "usageSummary": "The bandwidth and priority commands cannot be used in the same class, within the same policy map.  However, these commands can be used together in the same policy map.  When the policy map containing class policy configurations is attached to the interface to stipulate the service policy for that interface, available bandwidth is assessed.",
+    "sourcePage": 1438,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "qos share-buffer",
+    "context": null,
+    "detail": "Enable a unified buffer and facilitate the sharing of the buffer across two cores within the same ASIC.",
+    "syntax": "qos share-buffer",
+    "noForm": "no qos share-buffer",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "This command is supported only on C9500-32C, C9500-32QC, C9500-48Y4C, and C9500-24Y4C models of the Cisco Catalyst 9500 Series Switches.",
+    "sourcePage": 1440,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "qos queue-softmax-multiplier",
+    "context": null,
+    "detail": "Increase the value of the soft buffers used by an interface.",
+    "syntax": "qos queue-softmax-multiplier range-of-multiplier",
+    "noForm": "no qos queue-softmax-multiplier range-of-multiplier",
+    "params": [
+      {
+        "name": "range-of-multiplier",
+        "description": "You can specify a value in the range of 100 to 4800. The default value is 100."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The range that can be configured depends on the type of switch.  To activate a value above 1200, ensure that qos share-buffer is enabled for C9500-32C, C9500-32QC, C9500-48Y4C, and C9500-24Y4C.",
+    "sourcePage": 1441,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "queue-buffers ratio",
+    "context": null,
+    "detail": "Configure the queue buffer for the class.",
+    "syntax": "queue-buffers ratio ratio limit",
+    "noForm": "no queue-buffers ratio ratio limit",
+    "params": [
+      {
+        "name": "ratio limit",
+        "description": "(Optional) Configures the queue buffer for the class. Enter the queue buffers ratio limit (0-100)."
+      }
+    ],
+    "modes": ["Policy-map class configuration (config-pmap-c)"],
+    "usageSummary": "Either the bandwidth, shape, or priority command must be used before using this command.  For more information about these commands, see Cisco IOS Quality of Service Solutions Command Reference available on Cisco. com The device allows you to allocate buffers to queues.",
+    "sourcePage": 1442,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "queue-limit",
+    "context": null,
+    "detail": "Specify or modify the maximum number of packets the queue can hold for a class policy configured in a policy map.",
+    "syntax": "queue-limit {queue-limit-size [packets] | cos cos-value | dscp dscp-value | exp {exp-value {maximum threshold [packets] | percent percentage -value} | values {exp-value percent percentage -value | percent percentage -value}} | percent percentage-of-packets | precedence {IP precedence value {maximum threshold [packets] | percent percentage -value} | values {precedence values percent percentage-value | percent percentage -value}}} threshold [packets] | percent percentage -value} | values {exp-value percent percentage -value | percent percentage -value}} | percent percentage-of-packets | precedence {IP precedence value {maximum threshold [packets] | percent percentage -value} | values {precedence values percent percentage-value | percent percentage -value}}}",
+    "noForm": "no queue-limit {queue-limit-size [packets] | cos cos-value | dscp dscp-value | exp {exp-value {maximum",
+    "params": [
+      {
+        "name": "queue-limit-size",
+        "description": "The maximum size of the queue. The maximum varies according to the optional unit of measure keyword specified ( bytes, ms, us, or packets)."
+      },
+      {
+        "name": "cos cos-value",
+        "description": "Specifies the parameters for each cos value. CoS values are from 0 to 7."
+      },
+      {
+        "name": "dscp dscp-value",
+        "description": "Specifies parameters for each DSCP value. You can specify a value in the range 0 to 63 specifying the differentiated services code point value for the type of queue limit ."
+      },
+      {
+        "name": "exp{exp-value{maximum threshold[",
+        "description": "Specifies the parameters for each exp value. packets]|percent percentage -value}|values • exp-value:The values range from 0 to 7. {exp value percentpercentage -value"
+      },
+      {
+        "name": "|percentpercentage -value",
+        "description": "• maximum threshold: The maximum threshold (in packet by default) ranges from 1 to 8192000. • percentpercentage -value: The percentage values range from 1 to 100. Note This keyword is only supported on Cisco Cataylst 9500 High Performance Series Switches."
+      },
+      {
+        "name": "percent percentage-of-packets",
+        "description": "A percentage in the range 1 to 100 specifying the maximum percentage of packets that the queue for this class can accumulate. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 1443 QoS queue-limit"
+      },
+      {
+        "name": "precedence{IP precedence-value{maximum",
+        "description": "Specifies the parameters for each precedence value. threshold[ packets]|percent percentage • IP precedence-value:The values range from 0 to 7. -value}|values {IP precedence value"
+      },
+      {
+        "name": "percentpercentage -value |percentpercentage",
+        "description": "• maximum threshold: The maximum threshold (in"
+      },
+      {
+        "name": "-value",
+        "description": "packet by default) ranges from 1 to 8192000. • percentpercentage -value: The percentage values range from 1 to 100. Note This keyword is only supported on Cisco Cataylst 9500 High Performance Series Switches."
+      }
+    ],
+    "modes": ["Policy-map class configuration (policy-map-c)"],
+    "usageSummary": "Although visible in the command line help-strings, the packets unit of measure is not supported; use the percent unit of measure.",
+    "sourcePage": 1443,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "queuing mode sub-interface priority-propagation",
+    "context": null,
+    "detail": "Enable subinterface priority propagation mode.",
+    "syntax": "queuing mode sub-interface priority-propagation",
+    "noForm": "no queuing mode sub-interface priority-propagation",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "This mode can be enabled only when no policy is applied on the main interface.",
+    "sourcePage": 1446,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "random-detect cos",
+    "context": null,
+    "detail": "Change the minimum and maximum packet thresholds for the Class of service (CoS) value.",
+    "syntax": "random-detect cos cos-value percent min-threshold max-threshold",
+    "noForm": "no random-detect cos cos-value percentmin-threshold max-threshold",
+    "params": [
+      {
+        "name": "cos-value",
+        "description": "The CoS value, which is IEEE 802.1Q/ISL class of service/user priority value. The CoS value can be a number from 0 to 7."
+      },
+      {
+        "name": "percent",
+        "description": "Specifies that the minimum and threshold values are in percentage."
+      },
+      {
+        "name": "min-threshold",
+        "description": "Minimum threshold in number of packets. The value range of this argument is from 1 to 512000000. When the average queue length reaches the minimum threshold, Weighted Random Early Detection (WRED) randomly drop some packets with the specified CoS value."
+      },
+      {
+        "name": "max-threshold",
+        "description": "Maximum threshold in number of packets. The value range of this argument is from the value of the min-threshold argument to 512000000. When the average queue length exceeds the maximum threshold, WRED or dWRED drop all packets with the specified CoS value."
+      }
+    ],
+    "modes": ["QoS policy-map class configuration (config-pmap-c)"],
+    "usageSummary": "Use the random-detect cos command in conjunction with the random-detect command in QoS policy-map class configuration mode.  The random-detect cos command is available only if you have specified the cos-based argument when using the random-detect command in interface configuration mode.",
+    "sourcePage": 1447,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "random-detect cos-based",
+    "context": null,
+    "detail": "Enable weighted random early detection (WRED) on the basis of the class of service (CoS) value of a packet.",
+    "syntax": "random-detect cos-based",
+    "noForm": "no random-detect cos-based",
+    "params": [],
+    "modes": ["Policy-map class configuration (config-pmap-c)"],
+    "usageSummary": null,
+    "sourcePage": 1448,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "random-detect dscp",
+    "context": null,
+    "detail": "Change the minimum and maximum packet thresholds for the differentiated services code point (DSCP) value.",
+    "syntax": "random-detect dscp dscp-value percent min-threshold max-threshold",
+    "noForm": "no random-detect dscp dscp-value percentmin-threshold max-threshold",
+    "params": [
+      {
+        "name": "dscp-value",
+        "description": "The DSCP value. The DSCP value can be a number from 0 to 63, or it can be one of the following keywords: af11, af12, af13, af21, af22, af23, af31, af32, af33, af41, af42, af43, cs1, cs2, cs3, cs4, cs5, cs7, ef, or rsvp."
+      },
+      {
+        "name": "percent",
+        "description": "Specifies that the minimum and threshold values are in percentage."
+      },
+      {
+        "name": "min-threshold",
+        "description": "Minimum threshold in number of packets. The value range of this argument is from 1 to 512000000. When the average queue length reaches the minimum threshold, Weighted Random Early Detection (WRED) randomly drop some packets with the specified DSCP value."
+      },
+      {
+        "name": "max-threshold",
+        "description": "Maximum threshold in number of packets. The value range of this argument is from the value of the min-threshold argument to 512000000. When the average queue length exceeds the maximum threshold, WRED or dWRED drop all packets with the specified DSCP value."
+      }
+    ],
+    "modes": ["QoS policy-map class configuration (config-pmap-c)"],
+    "usageSummary": "Use the random-detect dscp command in conjunction with the random-detect command in QoS policy-map class configuration mode.  The random-detect dscp command is available only if you specified the dscp-based argument when using the random-detect command in interface configuration mode.  Specifying the DSCP Value The random-detect dscp command allows you to specify the DSCP value per traffic class.",
+    "sourcePage": 1449,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "random-detect dscp-based",
+    "context": null,
+    "detail": "Base weighted random early detection (WRED) on the Differnciated Services Code Point (dscp) value of a packet.",
+    "syntax": "random-detect dscp-based",
+    "noForm": "no random-detect dscp-based",
+    "params": [],
+    "modes": ["Policy-map class configuration (config-pmap-c)"],
+    "usageSummary": "With the random-detectdscp-based command, WRED is based on the dscp value of the packet.  Use the random-detectdscp-based command before configuring the random-detectdscp command.",
+    "sourcePage": 1451,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "random-detect precedence",
+    "context": null,
+    "detail": "Configure Weighted Random Early Detection (WRED) parameters for a particular IP precedence for a class policy in a policy map.",
+    "syntax": "random-detect precedence precedence percent min-threshold max-threshold",
+    "noForm": "no random-detect precedence",
+    "params": [
+      {
+        "name": "precedence",
+        "description": "IP precedence number. The value range is from 0 to 7; see Table 1 in the “Usage Guidelines” section."
+      },
+      {
+        "name": "percent",
+        "description": "Indicates that the threshold values are in percentage."
+      },
+      {
+        "name": "min-threshold",
+        "description": "Minimum threshold in number of packets. The value range of this argument is from 1 to 512000000. When the average queue length reaches the minimum threshold, WRED randomly drops some packets with the specified IP precedence."
+      },
+      {
+        "name": "max-threshold",
+        "description": "Maximum threshold in number of packets. The value range of this argument is from the value of the min-threshold argument to 512000000. When the average queue length exceeds the maximum threshold, WRED or dWRED drop all packets with the specified IP precedence."
+      }
+    ],
+    "modes": [
+      "Interface configuration (config-if) QoS policy-map class configuration (config-pmap-c)"
+    ],
+    "usageSummary": "WRED is a congestion avoidance mechanism that slows traffic by randomly dropping packets when congestion exists.  When you configure the random-detect command on an interface, packets are given preferential treatment based on the IP precedence of the packet.  Use the random-detect precedence command to adjust the treatment for different precedences.",
+    "sourcePage": 1452,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "random-detect precedence-based",
+    "context": null,
+    "detail": "Base weighted random early detection (WRED) on the precedence value of a packet.",
+    "syntax": "random-detect precedence-based",
+    "noForm": "no random-detect precedence-based",
+    "params": [],
+    "modes": ["Policy-map class configuration (config-pmap-c)"],
+    "usageSummary": "With the random-detect precedence-based command, WRED is based on the IP precedence value of the packet.  Use the random-detect precedence-based command before configuring the random-detect precedence-based command.",
+    "sourcePage": 1454,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "service-policy",
+    "context": "Wired",
+    "detail": "Apply a policy map to a physical port or a switch virtual interface (SVI).",
+    "syntax": "service-policy {input | output} policy-map-name",
+    "noForm": "no service-policy {input | output} policy-map-name",
+    "params": [],
+    "modes": ["WLAN interface configuration"],
+    "usageSummary": "A policy map is defined by the policy map command.  Only one policy map is supported per port, per direction.  In other words, only one input policy and one output policy is allowed on any one port.",
+    "sourcePage": 1455,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set",
+    "context": null,
+    "detail": "Classify IP traffic by setting a Differentiated Services Code Point (DSCP) or an IP-precedence value in the packet.",
+    "syntax": "set cos | dscp | precedence | ip | qos-group set cos {cos-value } | {cos | dscp | precedence | qos-group} [table table-map-name] set dscp {dscp-value } | {cos | dscp | precedence | qos-group} [table table-map-name] set ip {dscp | precedence} set precedence {precedence-value } | {cos | dscp | precedence | qos-group} [table table-map-name] set qos-group {qos-group-value | dscp [table table-map-name] | precedence [table table-map-name]} Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 1457 QoS set",
+    "noForm": null,
+    "params": [
+      {
+        "name": "cos",
+        "description": "Sets the Layer 2 class of service (CoS) value or user priority of an outgoing packet. You can specify these values: • cos-value—CoS value from 0 to 7. You also can enter a mnemonic name for a commonly used value. • Specify a packet-marking category to set the CoS value of the packet. If you also configure a table map for mapping and converting packet-marking values, this establishes the \"map from\" packet-marking category. Packet-marking category keywords: • cos—Sets a value from the CoS value or user priority. • dscp—Sets a value from packet differentiated services code point (DSCP). • precedence—Sets a value from packet precedence. • qos-group—Sets a value from the QoS group. • (Optional)table table-map-name—Indicates that the values set in a specified table map are used to set the CoS value. Enter the name of the table map used to specify the CoS value. The table map name can be a maximum of 64 alphanumeric characters. If you specify a packet-marking category but do not specify the table map, the default action is to copy the value associated with the packet-marking category as the CoS value. For example, if you enter the set cos precedence command, the precedence (packet-marking category) value is copied and used as the CoS value. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 1458 QoS set"
+      },
+      {
+        "name": "dscp",
+        "description": "Sets the differentiated services code point (DSCP) value to mark IP(v4) and IPv6 packets. You can specify these values: • cos-value—Number that sets the DSCP value. The range is from 0 to 63. You also can enter a mnemonic name for a commonly used value. • Specify a packet-marking category to set the DSCP value of the packet. If you also configure a table map for mapping and converting packet-marking values, this establishes the \"map from\" packet-marking category. Packet-marking category keywords: • cos—Sets a value from the CoS value or user priority. • dscp—Sets a value from packet differentiated services code point (DSCP). • precedence—Sets a value from packet precedence. • qos-group—Sets a value from the QoS group. • (Optional)table table-map-name—Indicates that the values set in a specified table map will be used to set the DSCP value. Enter the name of the table map used to specify the DSCP value. The table map name can be a maximum of 64 alphanumeric characters. If you specify a packet-marking category but do not specify the table map, the default action is to copy the value associated with the packet-marking category as the DSCP value. For example, if you enter the set dscp cos command, the CoS value (packet-marking category) is copied and used as the DSCP value."
+      },
+      {
+        "name": "ip",
+        "description": "Sets IP values to the classified traffic. You can specify these values: • dscp—Specify an IP DSCP value from 0 to 63 or a packet marking category. • precedence—Specify a precedence-bit value in the IP header; valid values are from 0 to 7 or specify a packet marking category. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 1459 QoS set"
+      },
+      {
+        "name": "precedence",
+        "description": "Sets the precedence value in the packet header. You can specify these values: • precedence-value— Sets the precedence bit in the packet header; valid values are from 0 to 7. You also can enter a mnemonic name for a commonly used value. • Specify a packet marking category to set the precedence value of the packet. • cos—Sets a value from the CoS or user priority. • dscp—Sets a value from packet differentiated services code point (DSCP). • precedence—Sets a value from packet precedence. • qos-group—Sets a value from the QoS group. • (Optional)table table-map-name—Indicates that the values set in a specified table map will be used to set the precedence value. Enter the name of the table map used to specify the precedence value. The table map name can be a maximum of 64 alphanumeric characters. If you specify a packet-marking category but do not specify the table map, the default action is to copy the value associated with the packet-marking category as the precedence value. For example, if you enter the set precedence cos command, the CoS value (packet-marking category) is copied and used as the precedence value. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 1460 QoS set"
+      },
+      {
+        "name": "qos-group",
+        "description": "Assigns a QoS group identifier that can be used later to classify packets. • qos-group-value—Sets a QoS value to the classified traffic. The range is 0 to 31. You also can enter a mnemonic name for a commonly used value. • dscp—Sets the original DSCP field value of the packet as the QoS group value. • precedence—Sets the original precedence field value of the packet as the QoS group value. • (Optional)table table-map-name—Indicates that the values set in a specified table map will be used to set the DSCP or precedence value. Enter the name of the table map used to specify the value. The table map name can be a maximum of 64 alphanumeric characters. If you specify a packet-marking category (dscp or precedence) but do not specify the table map, the default action is to copy the value associated with the packet-marking category as the QoS group value. For example, if you enter the set qos-group precedence command, the precedence value (packet-marking category) is copied and used as the QoS group value."
+      }
+    ],
+    "modes": ["Policy-map class configuration"],
+    "usageSummary": "For the set dscp dscp-value command, the set cos cos-value command, and the set ip precedence precedence-value command, you can enter a mnemonic name for a commonly used value.  For example, you can enter the set dscp af11 command, which is the same as entering the set dscp 10 command.  You can enter the set ip precedence critical command, which is the same as entering the set ip precedence 5 command.",
+    "sourcePage": 1457,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show auto qos",
+    "context": null,
+    "detail": "Display the quality of service (QoS) commands entered on the interfaces on which automatic QoS (auto-QoS) is enabled.",
+    "syntax": "show auto qos [interface [interface-id]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface",
+        "description": "(Optional) Displays auto-QoS information for the specified port or for all ports. Valid"
+      },
+      {
+        "name": "[interface-id]",
+        "description": "interfaces include physical ports."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "The show auto qos command output shows only the auto qos command entered on each interface.  The show auto qos interface interface-id command output shows the auto qos command entered on a specific interface.  Use the show running-config privileged EXEC command to display the auto-QoS configuration and the user modifications.",
+    "sourcePage": 1463,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show class-map",
+    "context": null,
+    "detail": "Display quality of service (QoS) class maps, which define the match criteria to classify traffic.",
+    "syntax": "show class-map [class-map-name | type control subscriber {all | class-map-name}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "class-map-name",
+        "description": "(Optional) Class map name. type control subscriber (Optional) Displays information about control class maps."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Displays information about all control class maps."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1465,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed switch",
+    "context": null,
+    "detail": "Display device-specific hardware information.",
+    "syntax": "show platform hardware fed switch {switch_num | active | standby} qos {afd | {config type type | [asic asic_num] | stats clients {all | bssid id | wlanid id }} | dscp-cos counters {iifd_id id | interfacetype number} | le-info | {iifd_id id | interface type number} | policer config {iifd_id id | interface type number} | queue | {config | {iifd_id id | interface type number | internal port-type type {asic number [port_num]}} | label2qmap | [aqmrepqostbl | iqslabeltable | sqslabeltable] | {asicnumber} | stats | {iifd_id id | interface type number | internal {cpu policer | port-type type asic number} {asicnumber [port_num]}}} | resource}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch_num",
+        "description": "Switch for which you want to display information. You have the following options: | active | standby • switch_num—ID of the switch. } • active—Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note The switch keyword is now optional on the C9500-32C, C9500-32QC, C9500-48Y4C, and C9500-24Y4C models of the Cisco Catalyst 9500 Series Switches"
+      },
+      {
+        "name": "qos",
+        "description": "Displays QoS hardware information. You must choose from the following options: • afd —Displays Approximate Fair Drop (AFD) information in hardware. • dscp-cos—Displays information dscp-cos counters for each port. • leinfo—Displays logical entity information. • policer—Displays QoS policer information in hardware. • queue—Displays queue information in hardware. • resource—Displays hardware resource information. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 1466 QoS show platform hardware fed switch"
+      },
+      {
+        "name": "afd {config type |",
+        "description": "You must choose from the options under config type or stats client : stats client } config type: • client—Displays wireless client information • port—Displays port-specific information • radio—Displays wireless radio information • ssid—Displays wireless SSID information stats client : • all—Displays statistics of all client. • bssid—Valid range is from 1 to 4294967295. • wlanid—Valid range is from to 1 4294967295"
+      },
+      {
+        "name": "asicasic_num",
+        "description": "(Optional) ASIC number. Valid range is from 0 to 255."
+      },
+      {
+        "name": "dscp-cos counters {",
+        "description": "Displays per port dscp-cos counters. You must choose from the following options"
+      },
+      {
+        "name": "iifd_id id |",
+        "description": "under dscp-cos counters: interface type number • iif_id id—The target interface ID. Valid range is from 1 to 4294967295. } • interface type number—Target interface type and ID."
+      },
+      {
+        "name": "leinfo",
+        "description": "You must choose from the following options under dscp-cos counters: • iif_id id—The target interface ID. Valid range is from 1 to 4294967295. • interface type number—Target interface type and ID."
+      },
+      {
+        "name": "policer config",
+        "description": "Displays configuration information related to policers in hardware. You must choose from the following options: • iif_id id—The target interface ID. Valid range is from 1 to 4294967295. • interface type number—Target interface type and ID. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 1467 QoS show platform hardware fed switch queue {config {iif_id Displays queue information in hardware. You must choose from the following"
+      },
+      {
+        "name": "id | interface type",
+        "description": "options: number | internal} • config—Configuration information. You must choose from the following | label2qmap | options: stats} • iif_id id—The target interface ID. Valid range is from 1 to 4294967295. • interface type number—Target interface type and ID. • internal—Displays internal queue related information. • label2qmap—Displays hardware label to queue mapping information. You can choose from the following options: • (Optional) aqmrepqostbl— AQM REP QoS label table lookup. • (Optional) iqslabeltable—IQS QoS label table lookup. • (Optional) sqslabeltable—SQS and local QoS label table lookup. • stats—Displays queue statistics. You must choose from the following options: • iif_id id—The target interface ID. Valid range is from 1 to 4294967295. • interface type number—Target interface type and ID. • internal {cpu policer | port_type port_type asic asic_num [ port_num port_num ] }—Displays internal queue related information."
+      },
+      {
+        "name": "resource",
+        "description": "Displays hardware resource usage information. You must enter the following keyword: usage"
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1466,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch qos",
+    "context": null,
+    "detail": "Display device-specific software information.",
+    "syntax": "show platform software fed switch {switch number | active | standby }qos {avc | internal | label2qmap | nflqos | policer | policy | qsb | tablemap}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "qos",
+        "description": "Displays QoS software information. Choose one the following options: • avc : Displays Application Visibility and Control (AVC) QoS information. • internal: Displays internal queue-related information. • label2qmap: Displays label to queue map table information. • nflqos: Displays NetFlow QoS information. • policer: Displays QoS policer information in hardware. • policy: Displays QoS policy information. • qsb: Displays QoS sub-block information. • tablemap: Displays table mapping information for QoS egress and ingress queues."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1470,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch qos qsb",
+    "context": null,
+    "detail": "Display QoS sub-block information.",
+    "syntax": "Note This command is not supported on the C9500-32C, C9500-32QC, C9500-48Y4C, and C9500-24Y4C models of the Cisco Catalyst 9500 Series Switches. show platform software fed switch {switch number | active | standby}qosqsb {brief | [all | type | {clientclient_id | port port_number | radioradio_type | ssidssid}] | iif_idid | interface | {Auto-Templateinterface_number | BDIinterface_number | Capwapinterface_number | GigabitEthernetinterface_number | InternalInterfaceinterface_number | Loopbackinterface_number | Nullinterface_number | Port-channelinterface_number | TenGigabitEthernetinterface_number | Tunnelinterface_number | Vlaninterface_number}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch",
+        "description": "The switch for which you want to display information. {switch_num | • switch_num—Enter the ID of the switch. Displays information for the specified active | standby switch. } • active—Displays information for the active switch. • standby—Displays information for the standby switch, if available."
+      },
+      {
+        "name": "qos qsb",
+        "description": "Displays QoS sub-block software information. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 1471 QoS show platform software fed switch qos qsb qsb {brief | iif_id | brief interface} • all—Displays information for all client. • type—Displays qsb information for the specified target type: • client—Displays QoS qsb information for wireless clients • port—Displays port-specific information • radio—Displays QoS qsb information for wireless radios • ssid—Displays QoS qsb information for wireless networks iif_id—Displays information for the iif_ID interface—Displays QoS qsb information for the specified interface: • Auto-Template—Auto-template interface between 1 and 999. • BDI—Bridge-domain interface between 1 and 16000. • Capwap—CAPWAP interface between 0 and 2147483647. • GigabitEthernet—GigabitEthernet interface between 0 and 9. • InternalInterface—Internal interface between 0 and 9. • Loopback—Loopback interface between 0 and 2147483647. • Null—Null interface 0-0 • Port-Channel—Port-channel interface between 1 and 128. • TenGigabitEthernet—TenGigabitEthernet interface between 0 and 9. • Tunnel—Tunnel interface between 0 and 2147483647. • Vlan—VLAN interface between 1 and 4094."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1471,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show policy-map",
+    "context": null,
+    "detail": "Display quality of service (QoS) policy maps, which define classification criteria for incoming traffic.",
+    "syntax": "show policy-map [policy-map-name | interface interface-id] show policy-map interface {Auto-template | Capwap | GigabitEthernet | GroupVI | InternalInterface | Loopback | Lspvif | Null | Port-channel | TenGigabitEthernet | Tunnel | Vlan | brief | class | input | output}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "policy-map-name",
+        "description": "(Optional) Name of the policy-map. interface interface-id (Optional) Displays the statistics and the configurations of the input and output policies that are attached to the interface."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Policy maps can include policers that specify the bandwidth limitations and the action to take if the limits are exceeded.",
+    "sourcePage": 1474,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support qos",
+    "context": null,
+    "detail": "Display quality of service (QoS)-related information for use by technical support.",
+    "syntax": "show tech-support qos [switch {switch-number | active | all | standby} | [control-plane | interface {interface-name | all}]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "(Optional) Displays QoS-related information for a specific switch."
+      },
+      {
+        "name": "active",
+        "description": "(Optional) Displays QoS-related information for the active instance of the switch."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Displays QoS-related information for all instances of the switch."
+      },
+      {
+        "name": "standby",
+        "description": "(Optional) Displays QoS-related information for the standby instance of the switch."
+      },
+      {
+        "name": "control-plane",
+        "description": "(Optional) Displays QoS-related information for the control-plane."
+      },
+      {
+        "name": "interface interface-name",
+        "description": "(Optional) Displays QoS-related information for a specified interface."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Displays QoS-related information for all interfaces."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support qos | redirect flash: filename) in the local writable storage file system or remote file system.  The output of the show tech-support qos command displays a list of commands and their output.",
+    "sourcePage": 1476,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  },
+  {
+    "name": "trust device",
+    "context": null,
+    "detail": "Configure trust for supported devices connected to an interface.",
+    "syntax": "trust device {cisco-phone | cts | ip-camera | media-player}",
+    "noForm": "no trust device {cisco-phone | cts | ip-camera | media-player}",
+    "params": [
+      {
+        "name": "cisco-phone",
+        "description": "Configures a Cisco IP phone"
+      },
+      {
+        "name": "cts",
+        "description": "Configures a Cisco TelePresence System"
+      },
+      {
+        "name": "ip-camera",
+        "description": "Configures an IP Video Surveillance Camera (IPVSC)"
+      },
+      {
+        "name": "media-player",
+        "description": "Configures a Cisco Digital Media Player (DMP)"
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the trust device command on the following types of interfaces: • Auto— auto-template interface • Capwap—CAPWAP tunnel interface • GigabitEthernet—Gigabit Ethernet IEEE 802 • GroupVI—Group virtual interface • Internal Interface—Internal interface • Loopback—Loopback interface • Null—Null interface • Port-channel—Ethernet Channel interface • TenGigabitEthernet--10-Gigabit Ethernet • Tunnel—Tunnel interface • Vlan—Catalyst VLANs • range—interface range command Command Reference, Cisco IOS XE 26. x.",
+    "sourcePage": 1478,
+    "pack": "cat9500-26.x",
+    "platform": "Catalyst 9500 Switches",
+    "release": "26.x.x",
+    "source": "pdf"
+  }
+]

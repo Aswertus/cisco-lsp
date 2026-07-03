@@ -1,0 +1,2201 @@
+[
+  {
+    "name": "archive download-sw",
+    "context": null,
+    "detail": "Download a new image from a TFTP server to the switch or switch stack and to overwrite or keep the existing image.",
+    "syntax": "archive download-sw {/directory | /force-reload | /imageonly | /leave-old-sw | /no-set-boot | /no-version-check | /overwrite | /reload | /safe} source-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/directory",
+        "description": "Specifies a directory for the images."
+      },
+      {
+        "name": "/force-reload",
+        "description": "Unconditionally forces a system reload after successfully downloading the software image."
+      },
+      {
+        "name": "/imageonly",
+        "description": "Downloads only the software image but not the HTML files associated with embedded Device Manager. The HTML files for the existing version are deleted only if the existing version is being overwritten or removed."
+      },
+      {
+        "name": "/leave-old-sw",
+        "description": "Keeps the old software version after a successful download."
+      },
+      {
+        "name": "/no-set-boot",
+        "description": "Stops the setting of the BOOT environment variable from being altered to point to the new software image after it is successfully downloaded. /no-version-check Downloads the software image without verifying its version compatibility with the image that is running on the switch. On a switch stack, downloads the software image without checking the compatibility of the stack protocol version on the image and on the stack. This feature is supported only on the LAN Base image."
+      },
+      {
+        "name": "/overwrite",
+        "description": "Overwrites the software image in flash memory with the downloaded image."
+      },
+      {
+        "name": "/reload",
+        "description": "Reloads the system after successfully downloading the image, unless the configuration has been changed and has not saved."
+      },
+      {
+        "name": "/safe",
+        "description": "Keeps the current software image. Does not delete it to make room for the new software image before the new image is downloaded. The current image is deleted after the download. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 574 System Management archive download-sw"
+      },
+      {
+        "name": "source-url",
+        "description": "Specifies the source URL alias for a local or network file system. These options are supported: • The secondary boot loader (BS1): bsl: • The local flash: file system on the standalone switch or the active switch: flash: • The local flash: file system on a member: flash member number: • FTP: ftp: [[//username[:password]@location]/directory]/image-name.tar • An HTTP server: http: //[[username:password]@]{hostname | host-ip}[/directory]/image-name.tar • A secure HTTP server: https: //[[username:password]@]{hostname | host-ip}[/directory]/image-name.tar • Remote Copy Protocol (RCP): rcp: [[//username@location]/directory]/image-name.tar • TFTP: tftp: [[//location]/directory]/image-name.tar image-name.tar is the software image to download and install on the switch."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The /imageonly option removes the HTML files for the existing image if the existing image is being removed or replaced.  Only the Cisco IOS image (without the HTML files) is downloaded.  Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 574,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "archive tar",
+    "context": null,
+    "detail": "Create a TAR file, list files in a TAR file, or extract the files from a TAR file.",
+    "syntax": "archive tar {/create destination-url flash:/file-url} | /table source-url | {/xtract source-url flash:/file-url [dir/file...]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/create",
+        "description": "Creates a new TAR file on the local or network file system. destination-url destination-url—Specifies the destination URL alias for the local or network file system flash:/file-url and the name of the tar file to create. These options are supported: • The local flash file system: flash: • FTP: ftp: [[//username[:password]@location]/directory]/itar-filename.tar • An HTTP server: http: //[[username:password]@]{hostname | host-ip}[/directory]/image-name.tar • A secure HTTP server: https: //[[username:password]@]{hostname | host-ip}[/directory]/image-name.tar • Remote Copy Protocol (RCP): rcp: [[//username@location]/directory]/tar-filename.tar • TFTP: tftp: [[//location]/directory]/image-name.tar tar-filename.tar is the TAR file to be created. flash:/file-url—Specifies the location on the local flash: file system from which the new tar file is created. Optionally, you can specify the list of files list of files or directories within the source directory that you want to be written to the new TAR file. If none are specified, all files and directories at this level are written to the newly created TAR file. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 578 System Management archive tar table source-url Displays the contents of an existing TAR file to the screen. source-url—Specifies the source URL alias for the local or network file system. These options are supported: • The local flash: file system: flash: • FTP: ftp: [[//username[:password]@location]/directory]/itar-filename.tar • An HTTP server: http: //[[username:password]@]{hostname | host-ip}[/directory]/image-name.tar • A secure HTTP server: https: //[[username:password]@]{hostname | host-ip}[/directory]/image-name.tar • Remote Copy Protocol (RCP): rcp: [[//username@location]/directory]/tar-filename.tar • TFTP: tftp: [[//location]/directory]/image-name.tar tar-filename.tar is the TAR file to be displayed. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 579 System Management archive tar"
+      },
+      {
+        "name": "/xtract",
+        "description": "Extracts files from a TAR file to the local file system. source-url source-url—Specifies the source URL alias for the local file system. These options are flash:/file-url supported: [ dir/file...] • The local flash: file system: flash: • FTP: ftp: [[//username[:password]@location]/directory]/itar-filename.tar • An HTTP server: http: //[[username:password]@]{hostname | host-ip}[/directory]/image-name.tar • A secure HTTP server: https: //[[username:password]@]{hostname | host-ip}[/directory]/image-name.tar • Remote Copy Protocol (RCP): rcp: [[//username@location]/directory]/tar-filename.tar • TFTP: tftp: [[//location]/directory]/image-name.tar tar-filename.tar is the TAR file from which to extract. flash:/file-url [ dir/file...]—Specifies the location on the local flash: file system from which the new TAR file is extracted. Use the dir/file... option to specify an optional list of files or directories within the TAR file to be extracted. If none are specified, all files and directories are extracted."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Filenames and directory names are case sensitive.  Image names are case sensitive.",
+    "sourcePage": 578,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "archive upload-sw",
+    "context": null,
+    "detail": "Upload an existing image to the server.",
+    "syntax": "archive upload-sw [/version version_string ]destination-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/version",
+        "description": "(Optional) Specifies the specific version string of the image to be uploaded. version_string"
+      },
+      {
+        "name": "destination-url",
+        "description": "The destination URL alias for a local or network file system. These options are supported: • The local flash: file system on the standalone switch or the active switch: flash: • The local flash: file system on a member: flash member number: • FTP: ftp: [[//username[:password]@location]/directory]/image-name.tar • An HTTP server: http: //[[username:password]@]{hostname | host-ip}[/directory]/image-name.tar • A secure HTTP server: https: //[[username:password]@]{hostname | host-ip}[/directory]/image-name.tar • Secure Copy Protocol (SCP): scp: [[//username@location]/directory]/image-name.tar • Remote Copy Protocol (RCP): rcp: [[//username@location]/directory]/image-name.tar • TFTP: tftp: [[//location]/directory]/image-name.tar image-name.tar is the name of the software image to be stored on the server."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the upload feature only if the HTML files associated with embedded Device Manager have been installed with the existing image.  The files are uploaded in this sequence: the Cisco IOS image, the HTML files, and info.  After these files are uploaded, the software creates the TAR file.",
+    "sourcePage": 582,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "avc dns-as client",
+    "context": null,
+    "detail": "To enable Application Visibility Control (AVC) with Domain Name System as an Authoritative Source (DNS-AS) feature (AVC with DNS-AS) on the switch (DNS-AS client) and maintain a list of trusted domains, enter the avc dns-as client in global configuration mode",
+    "syntax": "avc dns-as client [enable|trusted-domains[domaindomain-name] ]",
+    "noForm": "no avc dns-as client [enable|trusted-domains[domaindomain-name] ] ]",
+    "params": [
+      {
+        "name": "enable",
+        "description": "Enables AVC with DNS-AS on the DNS-AS client. trusted-domains[domaindomain-name] Enter the domain name you would like to add to the list of trusted domains for the DNS-AS client. All remaining domains are ignored and will follow default forwarding behavior. You can enter up to 50 domains. You can use regular expressions to match the domain name."
+      }
+    ],
+    "modes": ["Global configuration mode", "Trusted domain configuration mode"],
+    "usageSummary": "When you use regular expressions to match a domain name, for example, to represent all the domains for an organization, if you enter: Device(config-trusted-domains)# domain *. example. * The DNS-AS client matches www.",
+    "sourcePage": 584,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging smartlog",
+    "context": null,
+    "detail": "Display smart logging information.",
+    "syntax": "show logging smartlog [event-ids | events | statistics {interface interface-id | summary}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "event-ids",
+        "description": "(Optional) Displays the IDs and names of smart log events. The NetFlow collector uses the event IDs to identify each event."
+      },
+      {
+        "name": "events",
+        "description": "(Optional) Displays descriptions of smart log events. The display shows the last 10 smart logging events."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays smart log statistics."
+      },
+      {
+        "name": "interface",
+        "description": "(Optional) Displays smart log statistics for the specified interface. interface-id"
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays a summary of the smart log event statistics."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can configure smart logging of packets dropped because of DHCP snooping violations, Dynamic ARP inspection violations, IP source guard denied traffic, or ACL permitted or denied traffic.  The packet contents are sent to the identified Cisco IOS NetFlow collector.  The statistics counters reflect the number of packets that have been sent to the collector by smart logging.",
+    "sourcePage": 586,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "boot",
+    "context": null,
+    "detail": "Load and boot an executable image and display the command-line interface (CLI).",
+    "syntax": "boot [-post | -n | -p | flag] filesystem:/file-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "-post",
+        "description": "(Optional) Run the loaded image with an extended or comprehensive power-on self-test (POST). Using this keyword causes POST to take longer to complete."
+      },
+      {
+        "name": "-n",
+        "description": "(Optional) Pause for the Cisco IOS Debugger immediately after launching."
+      },
+      {
+        "name": "-p",
+        "description": "(Optional) Pause for the JTAG Debugger right after loading the image."
+      },
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use flash: for the system board flash device; use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/file-url",
+        "description": "Path (directory) and name of a bootable image. Separate image names with a semicolon."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "When you enter the boot command without any arguments, the device attempts to automatically boot the system by using the information in the BOOT environment variable, if any.  If you supply an image name for the file-url variable, the boot command attempts to boot the specified image.  When you specify boot loader boot command options, they are executed immediately and apply only to the current boot loader session.",
+    "sourcePage": 588,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "boot buffersize",
+    "context": null,
+    "detail": "Configure the NVRAM buffer size.",
+    "syntax": "boot buffersize size",
+    "noForm": null,
+    "params": [
+      {
+        "name": "size",
+        "description": "The NVRAM buffer size in KB. The valid range is from 4096 to 1048576."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "After you configure the NVRAM buffer size, reload the switch or switch stack.  When you add a switch to a stack and the NVRAM size differs, the new switch synchronizes with the stack and reloads automatically.",
+    "sourcePage": 589,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "boot enable-break",
+    "context": null,
+    "detail": "Enable the interruption of the automatic boot process on a standalone switch.",
+    "syntax": "boot enable-break",
+    "noForm": "no boot enable-break",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command works properly only from a standalone switch.  When you enter this command, you can interrupt the automatic boot process by pressing the Break key on the console after the flash: file system is initialized.",
+    "sourcePage": 590,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "boot host dhcp",
+    "context": null,
+    "detail": "Configure the switch to download files from a DHCP server.",
+    "syntax": "boot host dhcp",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 591,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "boot host retry timeout",
+    "context": null,
+    "detail": "Set the amount of time for which the system tries to download a configuration file.",
+    "syntax": "boot host retry timeout timeout-value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "timeout-value",
+        "description": "The length of time before the system times out, after trying to download a configuration file."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 592,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "boot manual",
+    "context": null,
+    "detail": "Enable the ability to manually boot a standalone switch during the next boot cycle.",
+    "syntax": "boot manual",
+    "noForm": "no boot manual",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command works properly only from a standalone switch.  The next time you reboot the system, the switch is in boot loader mode, which is shown by the switch: prompt.  To boot up the system, use the boot boot loader command, and specify the name of the bootable image.",
+    "sourcePage": 593,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "boot system",
+    "context": null,
+    "detail": "Specify the name of the configuration file that is used as a boot image.",
+    "syntax": "boot system filename [switch {switch number | all}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filename",
+        "description": "The name of the boot image configuration file."
+      },
+      {
+        "name": "switch",
+        "description": "(Optional) Sets the system image for switches in the stack."
+      },
+      {
+        "name": "switch",
+        "description": "The switch number. number"
+      },
+      {
+        "name": "all",
+        "description": "Sets the system image for all switches in the stack."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 594,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "cat",
+    "context": null,
+    "detail": "Display the contents of one or more files.",
+    "syntax": "cat filesystem:/file-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/file-url",
+        "description": "Specifies the path (directory) and name of the files to display. Separate each filename with a space."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appears sequentially.",
+    "sourcePage": 595,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear logging onboard",
+    "context": null,
+    "detail": "Clear all of the on-board failure logging (OBFL) data.",
+    "syntax": "clear logging onboard [ module {switch-number | all}] Note This command is supported only on the LAN Base image.",
+    "noForm": null,
+    "params": [
+      {
+        "name": "module",
+        "description": "(Optional) Clears OBFL data on specified switches in the stack."
+      },
+      {
+        "name": "switch-number",
+        "description": "The identity of the specified switch. The range is from 1 to 4."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Clears OBFL data on all switches in the stack."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "We recommend that you keep OBFL enabled and do not erase the data stored in the flash memory.",
+    "sourcePage": 596,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear mac address-table",
+    "context": null,
+    "detail": "Delete a specific dynamic address, all dynamic addresses on a particular interface, all dynamic addresses on stack members, or all dynamic addresses on a particular VLAN from the MAC address table.",
+    "syntax": "clear mac address-table {dynamic [address mac-addr | interface interface-id | vlan vlan-id ] | notification} Note This command is supported only on the LAN Base image.",
+    "noForm": null,
+    "params": [
+      {
+        "name": "dynamic",
+        "description": "Deletes all dynamic MAC addresses."
+      },
+      {
+        "name": "address mac-addr",
+        "description": "(Optional) Deletes the specified dynamic MAC address. interface interface-id (Optional) Deletes all dynamic MAC addresses on the specified physical port or port channel."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Deletes all dynamic MAC addresses for the specified VLAN. The range is 1 to 4094."
+      },
+      {
+        "name": "notification",
+        "description": "Clears the notifications in the history table and reset the counters."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 597,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear mac address-table move update",
+    "context": null,
+    "detail": "Clear the mac address-table-move update-related counters.",
+    "syntax": "clear mac address-table move update",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 598,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear nmsp statistics",
+    "context": null,
+    "detail": "Clear the Network Mobility Services Protocol (NMSP) statistics.",
+    "syntax": "clear nmsp statistics",
+    "noForm": null,
+    "params": [],
+    "modes": ["User Exec", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 599,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "cluster commander-address",
+    "context": null,
+    "detail": "Specify the cluster command MAC address on a cluster member switch when the member has lost communication with the cluster command switch.",
+    "syntax": "cluster commander-address mac-address [member number | name name]",
+    "noForm": "no cluster commander-address",
+    "params": [
+      {
+        "name": "mac-address",
+        "description": "The MAC address of the cluster command switch. member number (Optional) Specifies the number of a configured cluster member switch. The range is 0 to 15."
+      },
+      {
+        "name": "name name",
+        "description": "(Optional) Specifies the name of the configured cluster up to 31 characters."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command is available only on the cluster command switch.  The cluster command switch automatically provides its MAC address to cluster member switches when these switches join the cluster.  The cluster member switch adds this information and other cluster information to its running configuration file.",
+    "sourcePage": 600,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "cluster discovery hop-count",
+    "context": null,
+    "detail": "Set the hop-count limit for extended discovery of candidate switches.",
+    "syntax": "cluster discovery hop-count number",
+    "noForm": "no cluster discovery hop-count",
+    "params": [
+      {
+        "name": "number",
+        "description": "The number of hops from the cluster edge that the cluster command switch limits the discovery of candidates. The range is 1 to 7."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command is available only on the cluster command switch.  This command does not operate on cluster member switches.  If the hop count is set to 1, extended discovery is disabled.",
+    "sourcePage": 602,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "cluster enable",
+    "context": null,
+    "detail": "Enable a command-capable switch as the cluster command switch, assign a cluster name, and optionally assign a member number to it.",
+    "syntax": "cluster enable name [command-switch-member-number]",
+    "noForm": "no cluster enable",
+    "params": [
+      {
+        "name": "name",
+        "description": "The name of the cluster up to 31 characters. Valid characters include only alphanumerics, dashes, and underscores. command-switch-member-number (Optional) A member number that is assigned to the cluster command switch of the cluster. The range is 0 to 15."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Enter this command on any command-capable switch that is not part of any cluster.  This command fails if a device is already configured as a member of the cluster.  You must name the cluster when you enable the cluster command switch.",
+    "sourcePage": 603,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "cluster holdtime",
+    "context": null,
+    "detail": "Set the duration in seconds before a switch (either the command or cluster member switch) declares the other switch down after not receiving heartbeat messages.",
+    "syntax": "cluster holdtime holdtime-in-secs",
+    "noForm": "no cluster holdtime",
+    "params": [
+      {
+        "name": "holdtime-in-secs",
+        "description": "Duration in seconds before a switch (either a command or cluster member switch) declares the other switch down. The range is 1 to 300 seconds."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Enter this command with the cluster timer global configuration command only on the cluster command switch.  The cluster command switch propagates the values to all its cluster members so that the setting is consistent among all switches in the cluster.  The holdtime is typically set as a multiple of the interval timer (cluster timer).",
+    "sourcePage": 604,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "cluster member",
+    "context": null,
+    "detail": "Add candidates to a cluster.",
+    "syntax": "cluster member [n] mac-address H.H.H [password enable-password] [vlan vlan-id]",
+    "noForm": "no cluster member n",
+    "params": [
+      {
+        "name": "n",
+        "description": "(Optional) The number that identifies a cluster member. The range is 0 to 15."
+      },
+      {
+        "name": "mac-address H.H.H",
+        "description": "Specifies the MAC address of the cluster member switch in hexadecimal format."
+      },
+      {
+        "name": "password enable-password",
+        "description": "(Optional) Enables the password of the candidate switch. The password is not required if there is no password on the candidate switch."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies the ID of the VLAN through which the candidate is added to the cluster by the cluster command switch. The range is 1 to 4094."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Enter this command only on the cluster command switch to add a candidate to or remove a member from the cluster.  If you enter this command on a switch other than the cluster command switch, the switch rejects the command and displays an error message.  You must enter a member number to remove a switch from the cluster.",
+    "sourcePage": 605,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "cluster outside-interface",
+    "context": null,
+    "detail": "Configure the outside interface for cluster Network Address Translation (NAT).",
+    "syntax": "cluster outside-interface interface-id",
+    "noForm": "no cluster outside-interface",
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "Interface to serve as the outside interface. Valid interfaces include physical interfaces, port channels, or VLANs. The port channel range is 1 to 6. The VLAN range is 1 to 4094."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Enter this command only on the cluster command switch.  If you enter this command on a cluster member switch, an error message appears.",
+    "sourcePage": 607,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "cluster run",
+    "context": null,
+    "detail": "Enable clustering on a switch.",
+    "syntax": "cluster run",
+    "noForm": "no cluster run",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "When you enter the no cluster run command on a cluster command switch, the cluster command switch is disabled.  Clustering is disabled, and the switch cannot become a candidate switch.  When you enter the no cluster run command on a cluster member switch, it is removed from the cluster.",
+    "sourcePage": 608,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "cluster timer",
+    "context": null,
+    "detail": "Set the number of seconds between heartbeat messages.",
+    "syntax": "cluster timer interval-in-secs",
+    "noForm": "no cluster timer",
+    "params": [
+      {
+        "name": "interval-in-secs",
+        "description": "Interval in seconds between heartbeat messages. The range is 1 to 300 seconds."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Enter this command with the cluster holdtime global configuration command only on the cluster command switch.  The cluster command switch propagates the values to all its cluster members so that the setting is consistent among all switches in the cluster.  The holdtime is typically set as a multiple of the heartbeat interval timer (cluster timer).",
+    "sourcePage": 609,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "copy",
+    "context": null,
+    "detail": "Copy a file from a source to a destination.",
+    "syntax": "copy filesystem:/source-file-url filesystem:/destination-file-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/source-file-url",
+        "description": "Path (directory) and filename (source) to be copied. /destination-file-url Path (directory) and filename of the destination."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  Directory names are limited to 127 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.  Filenames are limited to 127 characters; the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.",
+    "sourcePage": 610,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug cluster",
+    "context": null,
+    "detail": "Use the debug cluster privileged EXEC command to enable debugging of cluster-specific events. Use the no form of this command to disable debugging.",
+    "syntax": "debug cluster {discovery | events | extended | hrsp | http | ip [packet] | members | nat | neighbors | platform | snmp | vqpxy} | nat | neighbors | platform | snmp | vqpxy}",
+    "noForm": "no debug cluster {discovery | events | extended | hrsp | http | ip [packet] | members",
+    "params": [
+      {
+        "name": "discovery",
+        "description": "Displays cluster discovery debug messages."
+      },
+      {
+        "name": "events",
+        "description": "Displays cluster event debug messages."
+      },
+      {
+        "name": "extended",
+        "description": "Displays extended discovery debug messages."
+      },
+      {
+        "name": "hrsp",
+        "description": "Displays the Hot Standby Router Protocol (HSRP) debug messages."
+      },
+      {
+        "name": "http",
+        "description": "Displays Hypertext Transfer Protocol (HTTP) debug messages."
+      },
+      {
+        "name": "ip [packet]",
+        "description": "Displays IP or transport packet debug messages."
+      },
+      {
+        "name": "members",
+        "description": "Displays cluster member debug messages."
+      },
+      {
+        "name": "nat",
+        "description": "Displays Network Address Translation (NAT) debug messages."
+      },
+      {
+        "name": "neighbors",
+        "description": "Displays cluster neighbor debug messages."
+      },
+      {
+        "name": "platform",
+        "description": "Displays platform-specific cluster debug messages."
+      },
+      {
+        "name": "snmp",
+        "description": "Displays Simple Network Management Protocol (SNMP) debug messages."
+      },
+      {
+        "name": "vqpxy",
+        "description": "Displays VLAN Query Protocol (VQP) proxy debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "This command is available only on the cluster command switch stack or cluster command switch.  The undebug cluster command works the same as the no debug cluster command.  When you enable debugging, it is enabled only on the active switch.",
+    "sourcePage": 611,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug matm move update",
+    "context": null,
+    "detail": "Enable debugging of MAC address-table move update message processing.",
+    "syntax": "debug matm move update",
+    "noForm": "no debug matm move update",
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug matm move update command works the same as the no debug matm move update command.",
+    "sourcePage": 612,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "delete",
+    "context": null,
+    "detail": "Delete one or more files from the specified file system.",
+    "syntax": "delete filesystem:/file-url...",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  The device prompts you for confirmation before deleting each file.",
+    "sourcePage": 613,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "dir",
+    "context": null,
+    "detail": "Display the list of files and directories on the specified file system.",
+    "syntax": "dir filesystem:/file-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/file-url",
+        "description": "(Optional) Path (directory) and directory name that contain the contents you want to display. Separate each directory name with a space."
+      }
+    ],
+    "modes": ["Boot Loader", "Privileged EXEC"],
+    "usageSummary": "Directory names are case sensitive.",
+    "sourcePage": 614,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "help",
+    "context": null,
+    "detail": "Display the available commands.",
+    "syntax": "help",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": null,
+    "sourcePage": 616,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "hw-module",
+    "context": null,
+    "detail": "Enable on-board failure logging (OBFL).",
+    "syntax": "hw-module module [ switch-number] logging onboard [message level level] Note This command is supported only on the LAN Base image.",
+    "noForm": "no hw-module module [ switch-number] logging onboard [message level level]",
+    "params": [
+      {
+        "name": "module",
+        "description": "Specifies the module number."
+      },
+      {
+        "name": "switch-number",
+        "description": "(Optional) The switch number, which is the member switch number. If the switch is a standalone switch, the switch number is 1. If the switch is in a stack, the range is 1 to 4, depending on the switch member numbers in the stack."
+      },
+      {
+        "name": "logging-onboard",
+        "description": "Specifies on-board failure logging."
+      },
+      {
+        "name": "message level level",
+        "description": "(Optional) Specifies the severity of the hardware-related messages that are stored in the flash memory. The range is from 1 to 7."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "We recommend that you keep OBFL enabled and do not erase the data stored in the flash memory.  To ensure that the time stamps in the OBFL data logs are accurate, you should manually set the system clock or configure it by using Network Time Protocol (NTP).  If you do not enter the message level level parameter, all the hardware-related messages generated by the switch are stored in the flash memory.",
+    "sourcePage": 617,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip name-server",
+    "context": null,
+    "detail": "Configure the IP address of the domain name server (DNS).",
+    "syntax": "ip name-server [ip-server-address|ipv6-server-address|vrf]",
+    "noForm": "no ip name-server [ip-server-address|ipv6-server-address|vrf]",
+    "params": [
+      {
+        "name": "ip-server-address",
+        "description": "IPv4 addresses of a name server to use for name and address resolution."
+      },
+      {
+        "name": "ipv6-server-address",
+        "description": "IPv4 addresses of a name server to use for name and address resolution."
+      },
+      {
+        "name": "vrf",
+        "description": "VRF name"
+      }
+    ],
+    "modes": ["Global configuration mode"],
+    "usageSummary": "You can configure up to six name servers (including IPv4 and IPv6 name servers).  Separate each server address with a space.  The first server specified is the primary server.",
+    "sourcePage": 619,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "license boot level",
+    "context": null,
+    "detail": "Boot a new software license on the device.",
+    "syntax": "license {accept end user agreement force |boot level addon addon-license-level {dna-essentials |dna-advantage}} |dna-advantage}}",
+    "noForm": "no license {accept end user agreement force |boot level addon addon-license-level {dna-essentials",
+    "params": [
+      {
+        "name": "boot level addon addon-license-level",
+        "description": "Enter the add-on license level you want to enable on the switch. • dna-essentials • dna-advantage"
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "You do not have to reboot the switch for the configure (add-on license) to take effect.",
+    "sourcePage": 621,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "logging",
+    "context": null,
+    "detail": "Log messages to a UNIX syslog server host.",
+    "syntax": "logging host",
+    "noForm": null,
+    "params": [
+      {
+        "name": "host",
+        "description": "The name or IP address of the host to be used as the syslog server."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "To build a list of syslog servers that receive logging messages, enter this command more than once.",
+    "sourcePage": 622,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "logging buffered",
+    "context": null,
+    "detail": "Log messages to an internal buffer.",
+    "syntax": "logging buffered [size]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "size",
+        "description": "(Optional) The size of the buffer created, in bytes. The range is 4096 to 2147483647 bytes. The default buffer size is 4096 bytes."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "If a standalone switch or the active switch fails, the log file is lost unless you previously saved it to flash memory using the logging file flash global configuration command.  Do not make the buffer size too large because the switch could run out of memory for other tasks.  Use the show memory privileged EXEC command to view the free processor memory on the switch.",
+    "sourcePage": 623,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "logging console",
+    "context": null,
+    "detail": "Limit messages logged to the console according to severity.",
+    "syntax": "logging console level",
+    "noForm": "no logging console",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 624,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "logging file flash",
+    "context": null,
+    "detail": "Store log messages in a file in flash memory.",
+    "syntax": "logging file flash:filename [max-file-size [min-file-size]] [severity-level-number | type]",
+    "noForm": null,
+    "params": [
+      {
+        "name": ":filename",
+        "description": "The log message filename."
+      },
+      {
+        "name": "max-file-size",
+        "description": "(Optional) The maximum logging file size. The range is 4096 to 2147483647. The default is 4096 bytes."
+      },
+      {
+        "name": "min-file-size",
+        "description": "(Optional) The minimum logging file size. The range is 1024 to 2147483647. The default is 2048 bytes. max-file-size | type (Optional) Either the logging severity level or the logging type. The severity range is 0 to 7."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 625,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "logging history",
+    "context": null,
+    "detail": "Change the default level of syslog messages stored in the history file and sent to the SNMP server.",
+    "syntax": "logging history level",
+    "noForm": null,
+    "params": [
+      {
+        "name": "level",
+        "description": "Level of syslog messages stored in the history file and sent to the SNMP server."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 626,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "logging history size",
+    "context": null,
+    "detail": "Specify the number of syslog messages that can be stored in the history table.",
+    "syntax": "Note When the history table contains the maximum number of message entries specified, the oldest message entry is deleted from the table to allow the new message entry to be stored. logging history size number",
+    "noForm": null,
+    "params": [
+      {
+        "name": "number",
+        "description": "The number of syslog messages that can be stored in the history table."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 627,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "logging monitor",
+    "context": null,
+    "detail": "Limit messages logged to the terminal lines according to severity.",
+    "syntax": "logging monitor level",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 628,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "logging trap",
+    "context": null,
+    "detail": "Limit messages logged to the syslog servers according to severity.",
+    "syntax": "logging trap level",
+    "noForm": null,
+    "params": [
+      {
+        "name": "level",
+        "description": "The severity level of messages logged to the syslog servers. The severity levels are: • Emergencies—System is unusable (severity=0) • Alerts—Immediate action needed (severity=1) • Critical—Critical conditions (severity=2) • Errors—Error conditions (severity=3) • Warnings—Warning conditions (severity=4) • Notifications—Normal but significant conditions (severity=5) • Informational—Informational messages (severity=6) • Debugging—Debugging messages (severity=7)"
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 629,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mac address-table aging-time",
+    "context": null,
+    "detail": "Set the length of time that a dynamic entry remains in the MAC address table after the entry is used or updated.",
+    "syntax": "mac address-table aging-time {0 | 10 -1000000} [vlan vlan-id]",
+    "noForm": "no mac address-table aging-time {0 | 10 -1000000} [vlan vlan-id]",
+    "params": [
+      {
+        "name": "0",
+        "description": "This value disables aging. Static address entries are never aged or removed from the table."
+      },
+      {
+        "name": "10-1000000",
+        "description": "Aging time in seconds. The range is 10 to 1000000 seconds."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies the VLAN ID to which to apply the aging time. The range is 1 to 4094."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The aging time applies to all VLANs or a specified VLAN.  If you do not specify a specific VLAN, this command sets the aging time for all VLANs.  Enter 0 seconds to disable aging.",
+    "sourcePage": 630,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mac address-table learning vlan",
+    "context": null,
+    "detail": "Enable MAC address learning on a VLAN.",
+    "syntax": "mac address-table learning vlan vlan-id Note This command is supported only on the LAN Base image.",
+    "noForm": "no mac address-table learning vlan vlan-id",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "The VLAN ID or a range of VLAN IDs separated by a hyphen or comma. Valid VLAN IDs are 1 to 4094."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "When you control MAC address learning on a VLAN, you can manage the available MAC address table space by controlling which VLANs, and therefore which ports, can learn MAC addresses.  You can disable MAC address learning on a single VLAN ID (for example, no mac address-table learning vlan 223) or on a range of VLAN IDs (for example, no mac address-table learning vlan 1-20, 15).  Before you disable MAC address learning, be sure that you are familiar with the network topology and the switch system configuration.",
+    "sourcePage": 631,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "logging smartlog",
+    "context": null,
+    "detail": "Enable smart logging.",
+    "syntax": "logging smartlog [exporter name | packet capture size bytes]",
+    "noForm": "no logging smartlog [exporter name | packet capture size bytes]",
+    "params": [
+      {
+        "name": "exporter name",
+        "description": "(Optional) Identifies the Cisco IOS NetFlow exporter (collector) to which contents of dropped packets are sent. You must have already configured the exporter using the Flexible NetFlow CLI. If the exporter name does not exist, you receive an error message. By default, the device sends data to the collector every 60 seconds."
+      },
+      {
+        "name": "packet capture size bytes",
+        "description": "(Optional) Specifies the size of the smart log packet sent to the collector in the number of bytes. The range is from 64 to 1024 bytes in 4-byte increments. The default size is 64 bytes. Increasing the packet capture size reduces the number of flow records per packet."
+      }
+    ],
+    "modes": ["Global configuration."],
+    "usageSummary": "You must configure a NetFlow collector before you enable smart logging.  For information on configuring Cisco Flexible NetFlow, see the Cisco IOS Flexible NetFlow Configuration Guide.  You can configure smart logging of packets dropped due to DHCP snooping violations, Dynamic ARP inspection violations, IP source guard denied traffic, or ACL permitted or denied traffic.",
+    "sourcePage": 633,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mac address-table notification",
+    "context": null,
+    "detail": "Enable the MAC address notification feature on the switch stack.",
+    "syntax": "mac address-table notification [mac-move | threshold [ [limit percentage] interval time]",
+    "noForm": "no mac address-table notification [mac-move | threshold [ [limit percentage] interval time]",
+    "params": [
+      {
+        "name": "mac-move",
+        "description": "(Optional) Enables MAC move notification."
+      },
+      {
+        "name": "threshold",
+        "description": "(Optional) Enables MAC threshold notification."
+      },
+      {
+        "name": "limit",
+        "description": "(Optional) Sets the MAC utilization threshold percentage. The range is 1 to 100 percent."
+      },
+      {
+        "name": "percentage",
+        "description": "The default is 50 percent."
+      },
+      {
+        "name": "interval time",
+        "description": "(Optional) Sets the time between MAC threshold notifications. The range is 120 to 1000000 seconds. The default is 120 seconds."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can enable traps whenever a MAC address is moved from one port to another in the same VLAN by entering the mac address-table notification mac-move command and the snmp-server enable traps mac-notification move global configuration command.  To generate traps whenever the MAC address table threshold limit is reached or exceeded, enter the mac address-table notification threshold [limit percentage] | [interval time] command and the snmp-server enable traps mac-notification threshold global configuration command.",
+    "sourcePage": 634,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mac address-table static",
+    "context": null,
+    "detail": "Add static addresses to the MAC address table.",
+    "syntax": "mac address-table static mac-addr vlan vlan-id interface interface-id",
+    "noForm": "no mac address-table static mac-addr vlan vlan-id interface interface-id",
+    "params": [
+      {
+        "name": "mac-addr",
+        "description": "Destination MAC address (unicast or multicast) to add to the address table. Packets with this destination address received in the specified VLAN are forwarded to the specified interface."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "Specifies the VLAN for which the packet with the specified MAC address is received. The range is 1 to 4094."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "Specifies the interface to which the received packet is forwarded. Valid interfaces include physical ports and port channels."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 635,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mkdir",
+    "context": null,
+    "detail": "Create one or more directories on the specified file system.",
+    "syntax": "mkdir filesystem:/directory-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks. /directory-url... Name of the directories to create. Separate each directory name with a space."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Directory names are case sensitive.  Directory names are limited to 127 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.",
+    "sourcePage": 636,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "more",
+    "context": null,
+    "detail": "Display the contents of one or more files.",
+    "syntax": "more filesystem:/file-url...",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appears sequentially.",
+    "sourcePage": 637,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "nmsp notification interval",
+    "context": null,
+    "detail": "Modify the Network Mobility Services Protocol (NMSP) notification interval value on the controller to address latency in the network.",
+    "syntax": "nmsp notification interval { attachment | location | rssi {clients | rfid | rogues {ap | client } } }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "attachment",
+        "description": "Specifies the time used to aggregate attachment information."
+      },
+      {
+        "name": "location",
+        "description": "Specifies the time used to aggregate location information."
+      },
+      {
+        "name": "rssi",
+        "description": "Specifies the time used to aggregate RSSI information."
+      },
+      {
+        "name": "clients",
+        "description": "Specifies the time interval for clients."
+      },
+      {
+        "name": "rfid",
+        "description": "Specifies the time interval for rfid tags."
+      },
+      {
+        "name": "rogues",
+        "description": "Specifies the time interval for rogue APs and rogue clients ."
+      },
+      {
+        "name": "ap",
+        "description": "Specifies the time used to aggregate rogue APs ."
+      },
+      {
+        "name": "client",
+        "description": "Specifies the time used to aggregate rogue clients."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 638,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "rcommand",
+    "context": null,
+    "detail": "Start a Telnet session and to execute commands.",
+    "syntax": "rcommand {n | commander | mac-address hw-addr}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "n",
+        "description": "The number that identifies a cluster member. The range is 0 to 15."
+      },
+      {
+        "name": "commander",
+        "description": "Provides access to the cluster command switch from a cluster member switch."
+      },
+      {
+        "name": "mac-address hw-addr",
+        "description": "Specifies the MAC address of the cluster member switch."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "This command is available only on the cluster command switch stack or cluster command switch.  If the switch is the cluster command switch, but the cluster member switch n does not exist, an error message appears.  To get the switch number, enter the show cluster members privileged EXEC command on the cluster command switch.",
+    "sourcePage": 640,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "rename",
+    "context": null,
+    "detail": "Rename a file.",
+    "syntax": "rename filesystem:/source-file-url filesystem:/destination-file-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/source-file-url",
+        "description": "Original path (directory) and filename. /destination-file-url New path (directory) and filename."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  Directory names are limited to 127 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.  Filenames are limited to 127 characters; the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.",
+    "sourcePage": 642,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "reset",
+    "context": null,
+    "detail": "Perform a hard reset on the system.",
+    "syntax": "reset",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": null,
+    "sourcePage": 643,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "rmdir",
+    "context": null,
+    "detail": "Remove one or more empty directories from the specified file system.",
+    "syntax": "rmdir filesystem:/directory-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks. /directory-url... Path (directory) and name of the empty directories to remove. Separate each directory name with a space."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Directory names are case sensitive and limited to 45 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.  Before removing a directory, you must first delete all of the files in the directory.  The device prompts you for confirmation before deleting each directory.",
+    "sourcePage": 644,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "service sequence-numbers",
+    "context": null,
+    "detail": "Display messages with sequence numbers when there is more than one log message with the same time stamp.",
+    "syntax": "service sequence-numbers",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 645,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "set",
+    "context": null,
+    "detail": "Set or display environment variables.",
+    "syntax": "set variable value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "variable",
+        "description": "Use one of the following keywords for variable and the appropriate value for value: value MANUAL_BOOT—Decides whether the device automatically or manually boots. Valid values are 1/Yes and 0/No. If it is set to 0 or No, the boot loader attempts to automatically boot the system. If it is set to anything else, you must manually boot the device from the boot loader mode. BOOT filesystem:/file-url—Identifies a semicolon-separated list of executable files to try to load and execute when automatically booting. If the BOOT environment variable is not set, the system attempts to load and execute the first executable image it can find by using a recursive, depth-first search through the flash: file system. If the BOOT variable is set but the specified images cannot be loaded, the system attempts to boot the first bootable file that it can find in the flash: file system. ENABLE_BREAK—Allows the automatic boot process to be interrupted when the user presses the Break key on the console. Valid values are 1, Yes, On, 0, No, and Off. If set to 1, Yes, or On, you can interrupt the automatic boot process by pressing the Break key on the console after the flash: file system has initialized. HELPER filesystem:/file-url—Identifies a semicolon-separated list of loadable files to dynamically load during the boot loader initialization. Helper files extend or patch the functionality of the boot loader. PS1 prompt—Specifies a string that is used as the command-line prompt in boot loader mode. CONFIG_FILE flash: /file-url—Specifies the filename that Cisco IOS uses to read and write a nonvolatile copy of the system configuration. BAUD rate—Specifies the number of bits per second (b/s) that is used for the baud rate for the console. The Cisco IOS software inherits the baud rate setting from the boot loader and continues to use this value unless the configuration file specifies another setting. The range is from 0 to 128000 b/s. Valid values are 50, 75, 110, 150, 300, 600, 1200, 1800, 2000, 2400, 3600, 4800, 7200, 9600, 14400, 19200, 28800, 38400, 56000, 57600, 115200, and 128000. The most commonly used values are 300, 1200, 2400, 9600, 19200, 57600, and 115200. SWITCH_NUMBER stack-member-number—Changes the member number of a stack member. SWITCH_PRIORITY priority-number—Changes the priority value of a stack member."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Environment variables are case sensitive and must be entered as documented.  Environment variables that have values are stored in flash memory outside of the flash: file system.  Under typical circumstances, it is not necessary to alter the setting of the environment variables.",
+    "sourcePage": 646,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show avc dns-as client",
+    "context": null,
+    "detail": "To display the various AVC with DNS-AS settings you have configured, enter the show avc dns-as client command in Privileged EXEC mode",
+    "syntax": "show avc dns-as client[{binding-table[ | detail] | | name-server brief | | rate-limiter-table | | statistics | status | trusted domains}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name-server brief",
+        "description": "Displays information about the DNS server to which the metadata request was sent."
+      },
+      {
+        "name": "rate-limiter-table",
+        "description": "—"
+      },
+      {
+        "name": "statistics",
+        "description": "Displays packet logging information—the number of DNS queries sent and the number of responses received."
+      },
+      {
+        "name": "status",
+        "description": "Displays current status of the DNS-AS client. Use this command to know whether AVC with DNS-AS is enabled or not."
+      },
+      {
+        "name": "trusted-domains",
+        "description": "Displays list of trusted domains maintined in the binding table."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 649,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show boot",
+    "context": null,
+    "detail": "Display the settings of the boot environment variables.",
+    "syntax": "show boot",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 652,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show cable-diagnostics prbs",
+    "context": null,
+    "detail": "Display the pseudo-random binary sequence (PRBS) test results.",
+    "syntax": "show cable-diagnostics prbs interface interface-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "The interface on which PRBS is run."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "PRBS is only supported on 10-Gigabit Ethernet ports.  It is not supported on 10/100/100 copper Ethernet ports and small form-factor pluggable (SFP) module ports.  This example shows the output from the show cable-diagnostics prbs interface interface-id command on a device: Switch# show cable-diagnostics prbs interface gigabitethernet1/0/23 prbs test last run on: March 01 00:04:08 Interface Speed Local pair Pair length Remote pair Pair status --------- ----- ---------- ------------------ ----------- -------------------- Gi1/0/23 1000M Pair A 1 +/- 1 meters Pair A Normal Pair B 1 +/- 1 meters Pair B Normal Pair C 1 +/- 1 meters Pair C Normal Pair D 1 +/- 1 meters Pair D Normal Table 38: Field Descriptions for the show cable-diagnostics prbs Command Output Field Description Interface Interface on which PRBS is run.",
+    "sourcePage": 654,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show cable-diagnostics tdr",
+    "context": null,
+    "detail": "Display the Time Domain Reflector (TDR) results.",
+    "syntax": "show cable-diagnostics tdr interface interface-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "Specifies the interface on which TDR is run."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "TDR is supported only on 10/100/100 copper Ethernet ports.  It is not supported on 10-Gigabit Ethernet ports and small form-factor pluggable (SFP) module ports.",
+    "sourcePage": 656,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show cluster",
+    "context": null,
+    "detail": "Display the cluster status and a summary of the cluster to which the switch belongs.",
+    "syntax": "show cluster",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "If you enter this command on a switch that is not a cluster member, the following error message appears: Not a management cluster member.  On a cluster member switch, this command displays the identity of the cluster command switch, the switch member number, and the state of its connectivity with the cluster command switch.  On a cluster command switch stack or cluster command switch, this command displays the cluster name and the total number of members.",
+    "sourcePage": 658,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show cluster candidates",
+    "context": null,
+    "detail": "Display a list of candidate switches.",
+    "syntax": "show cluster candidates [detail | mac-address H.H.H]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information for all candidates."
+      },
+      {
+        "name": "mac-address H.H.H",
+        "description": "(Optional) Specifies the MAC address of the cluster candidate."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "This command is available only on the cluster command switch stack or cluster command switch.",
+    "sourcePage": 660,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show cluster members",
+    "context": null,
+    "detail": "Display information about cluster members.",
+    "syntax": "show cluster members [n | detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "n",
+        "description": "(Optional) Number that identifies a cluster member. The range is 0 to 15."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information for all cluster members."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "This command is available only on the cluster command switch stack or cluster command switch.",
+    "sourcePage": 662,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip name-server",
+    "context": null,
+    "detail": "To display all the name server IP addresses that have been maintained, enter theshow ip name-server command.",
+    "syntax": "show ip name-server",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 664,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show license right-to-use",
+    "context": null,
+    "detail": "Display information related to the right-to-use licenses on the device.",
+    "syntax": "show license right-to-use [default |detail|eula |summary |usage]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "default",
+        "description": "Displays the default license information."
+      },
+      {
+        "name": "detail",
+        "description": "Displays detailed information of all the licenses in the switch stack."
+      },
+      {
+        "name": "eula",
+        "description": "Displays the end user license agreement."
+      },
+      {
+        "name": "summary",
+        "description": "Displays a summary of the license information on the entire switch stack."
+      },
+      {
+        "name": "usage",
+        "description": "Displays detailed information about usage for all licenses in the switch stack."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 665,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging onboard",
+    "context": null,
+    "detail": "Display the on-board failure logging (OBFL) information using the show logging onboard privileged EXEC command.",
+    "syntax": "show logging onboard [module [switch number]] {{clilog | environment | message | poe | temperature | uptime | voltage} [continuous | detail | summary] [start hh:mm:ss day month year] [end hh:mm:ss day month year] }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "clilog",
+        "description": "Displays the OBFL CLI commands that were entered on the standalone switch or specified stack members."
+      },
+      {
+        "name": "environment",
+        "description": "Displays the unique device identifier (UDI) information for the standalone switch or specified stack members. For all the connected FRU devices, it displays the product identification (PID), the version identification (VID), and the serial number."
+      },
+      {
+        "name": "message",
+        "description": "Displays the hardware-related system messages generated by the standalone switch or specified stack members."
+      },
+      {
+        "name": "poe",
+        "description": "Displays the power consumption of PoE ports on the standalone switch or specified stack members."
+      },
+      {
+        "name": "temperature",
+        "description": "Displays the temperature of the standalone switch or specified stack members."
+      },
+      {
+        "name": "uptime",
+        "description": "Displays the time when the standalone switch or specified stack members start, the reason the standalone switch or specified members restart, and the length of time the standalone switch or specified stack members have been running since they last restarted."
+      },
+      {
+        "name": "voltage",
+        "description": "Displays the system voltages of the standalone switch or the specified switch stack members."
+      },
+      {
+        "name": "continuous",
+        "description": "(Optional) Displays the data in the continuous file."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays both the continuous and summary data."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays the data in the summary file."
+      },
+      {
+        "name": "start hh:mm:ss day",
+        "description": "(Optional) Displays the data from the specified time and date. For more information,"
+      },
+      {
+        "name": "month year",
+        "description": "see the “Usage Guidelines” section. end hh:mm:ss day month (Optional) Displays the data from the specified time and date. For more information,"
+      },
+      {
+        "name": "year",
+        "description": "see the “Usage Guidelines” section. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 668 System Management show logging onboard"
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "When OBFL is enabled, the switch records OBFL data in a continuous file that contains all of the data.  The continuous file is circular.  When the continuous file is full, the switch combines the data into a summary file, which is also known as a historical file.",
+    "sourcePage": 668,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table",
+    "context": null,
+    "detail": "Display a specific MAC address table entry.",
+    "syntax": "show mac-address-table",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Note This feature is supported only on the LAN Base image.  This command can display static and dynamic entries or the MAC address table static and dynamic entries on a specific interface or VLAN.",
+    "sourcePage": 673,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table address",
+    "context": null,
+    "detail": "Display MAC address table information for a specified MAC address.",
+    "syntax": "show mac address-table address mac-address [interface interface-id] [vlan vlan-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "mac-address",
+        "description": "The 48-bit MAC address; valid format is H.H.H."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Displays information for a specific interface. Valid interfaces include physical ports and port channels."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Displays entries for the specific VLAN only. The range is 1 to 4094."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 674,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table aging-time",
+    "context": null,
+    "detail": "Display the aging time of address table entries.",
+    "syntax": "show mac address-table aging-time [vlan vlan-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan",
+        "description": "(Optional) Displays aging time information for a specific VLAN. The range is 1 to 4094. vlan-id"
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "If no VLAN number is specified, the aging time for all VLANs appears.  This command displays the aging time of a specific address table instance, all address table instances on a specified VLAN, or, if a specific VLAN is not specified, on all VLANs.",
+    "sourcePage": 675,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table count",
+    "context": null,
+    "detail": "Display the number of addresses present in all VLANs or the specified VLAN.",
+    "syntax": "show mac address-table count [vlan vlan-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan",
+        "description": "(Optional) Displays the number of addresses for a specific VLAN. The range is 1 to 4094. vlan-id"
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "If no VLAN number is specified, the address count for all VLANs appears.",
+    "sourcePage": 676,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table dynamic",
+    "context": null,
+    "detail": "Display only dynamic MAC address table entries.",
+    "syntax": "show mac address-table dynamic [address mac-address] [interface interface-id] [vlan vlan-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "address mac-address",
+        "description": "(Optional) Specifies a 48-bit MAC address; the valid format is H.H.H (available in privileged EXEC mode only)."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Specifies an interface to match; valid interfaces include physical ports and port channels."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Displays entries for a specific VLAN; the range is 1 to 4094."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 677,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table interface",
+    "context": null,
+    "detail": "Display the MAC address table information for a specified interface on a specified VLAN.",
+    "syntax": "show mac address-table interface interface-id [vlan vlan-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan",
+        "description": "(Optional) Displays entries for a specific VLAN; the range is 1 to 4094. vlan-id"
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 678,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table learning",
+    "context": null,
+    "detail": "Display the status of MAC address learning for all VLANs or a specified VLAN.",
+    "syntax": "show mac address-table learning [vlan vlan-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan",
+        "description": "(Optional) Displays information for a specific VLAN. The range is 1 to 4094. vlan-id"
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Use the show mac address-table learning command without any keywords to display configured VLANs and whether MAC address learning is enabled or disabled on them.  The default is that MAC address learning is enabled on all VLANs.  Use the command with a specific VLAN ID to display the learning status on an individual VLAN.",
+    "sourcePage": 679,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table move update",
+    "context": null,
+    "detail": "Display the MAC address-table move update information on the device.",
+    "syntax": "show mac address-table move update",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 680,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table multicast",
+    "context": null,
+    "detail": "Display information about the multicast MAC address table.",
+    "syntax": "show mac-address-table multicast [count | {igmp-snooping [count]} | {user [count]} | {vlan vlan_num}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "count",
+        "description": "(Optional) Displays the number of multicast entries."
+      },
+      {
+        "name": "igmp-snooping",
+        "description": "(Optional) Displays only the addresses learned by IGMP snooping."
+      },
+      {
+        "name": "user",
+        "description": "(Optional) Displays only the user-entered static addresses. vlan vlan_num (Optional) Displays information for a specific VLAN only; valid values are from 1 to 4094."
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS Release 15.0(2)EXCisco IOS Release 15.2(5)E This command was introduced."
+      },
+      {
+        "name": "Usage Guidelines",
+        "description": "For the MAC address table entries that are used by the routed ports, the routed port name is displayed in the \"vlan\" column, not the internal VLAN number. Example This example shows how to display multicast MAC address table information for a specific VLAN: Switch# show mac-address-table multicast vlan 1 Multicast Entries"
+      },
+      {
+        "name": "vlan",
+        "description": "mac address type ports -------+---------------+-------+-------------------------------------------"
+      },
+      {
+        "name": "1",
+        "description": "ffff.ffff.ffff system Switch,Fa6/15 Switch# This example shows how to display the number of multicast MAC entries for all VLANs: Switch# show mac-address-table multicast count MAC Entries for all vlans:"
+      },
+      {
+        "name": "Multicast MAC Address Count:",
+        "description": "141 Total Multicast MAC Addresses Available: 16384 Switch# Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 681 System Management"
+      }
+    ],
+    "modes": [],
+    "usageSummary": "For the MAC address table entries that are used by the routed ports, the routed port name is displayed in the \"vlan\" column, not the internal VLAN number.",
+    "sourcePage": 681,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table notification",
+    "context": null,
+    "detail": "Display the MAC address notification settings for all interfaces or the specified interface.",
+    "syntax": "show mac address-table notification {change [interface[interface-id]] | mac-move | threshold}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "change",
+        "description": "The MAC change notification feature parameters and history table."
+      },
+      {
+        "name": "interface",
+        "description": "(Optional) Displays information for all interfaces. Valid interfaces include physical ports and port channels."
+      },
+      {
+        "name": "interface-id",
+        "description": "(Optional) The specified interface. Valid interfaces include physical ports and port channels."
+      },
+      {
+        "name": "mac-move",
+        "description": "Displays status for MAC address move notifications."
+      },
+      {
+        "name": "threshold",
+        "description": "Displays status for MAC address-table threshold monitoring."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Use the show mac address-table notification change command without keywords to see if the MAC address change notification feature is enabled or disabled, the number of seconds in the MAC notification interval, the maximum number of entries allowed in the history table, and the history table contents.  Use the interface keyword to display the notifications for all interfaces.  If the interface ID is included, only the flags for that interface appear.",
+    "sourcePage": 682,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table secure",
+    "context": null,
+    "detail": "Display only secure MAC address table entries.",
+    "syntax": "show mac address-table secure [address mac-address] [interface interface-id] [vlan vlan-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "address mac-address",
+        "description": "(Optional) Specifies a 48-bit MAC address; the valid format is H.H.H (available in privileged EXEC mode only)."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Specifies an interface to match; valid interfaces include physical ports and port channels."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Displays entries for a specific VLAN; the range is 1 to 4094."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 684,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table static",
+    "context": null,
+    "detail": "Display only static MAC address table entries.",
+    "syntax": "show mac address-table static [address mac-address] [interface interface-id] [vlan vlan-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "address",
+        "description": "(Optional) Specifies a 48-bit MAC address; the valid format is H.H.H (available in"
+      },
+      {
+        "name": "mac-address",
+        "description": "privileged EXEC mode only)."
+      },
+      {
+        "name": "interface",
+        "description": "(Optional) Specifies an interface to match; valid interfaces include physical ports and"
+      },
+      {
+        "name": "interface-id",
+        "description": "port channels."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies the address for a specific VLAN. The range is from 1 to 4094."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 685,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table vlan",
+    "context": null,
+    "detail": "Display the MAC address table information for a specified VLAN.",
+    "syntax": "show mac address-table vlan vlan-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "The address for a specific VLAN. The range is 1 to 4094."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 686,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show nmsp",
+    "context": null,
+    "detail": "Display the Network Mobility Services Protocol (NMSP) configuration settings.",
+    "syntax": "show nmsp {attachment | {suppress interfaces} | capability | notification interval | statistics {connection | summary} | status | subscription detail [ip-addr ] | summary}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "attachment suppress interfaces",
+        "description": "Displays attachment suppress interfaces."
+      },
+      {
+        "name": "capability",
+        "description": "Displays NMSP capabilities."
+      },
+      {
+        "name": "notification interval",
+        "description": "Displays the NMSP notification interval."
+      },
+      {
+        "name": "statistics connection",
+        "description": "Displays all connection-specific counters."
+      },
+      {
+        "name": "statistics summary",
+        "description": "Displays the NMSP counters."
+      },
+      {
+        "name": "status",
+        "description": "Displays status of active NMSP connections."
+      },
+      {
+        "name": "subscription detail ip-addr",
+        "description": "The details are only for the NMSP services subscribed to by a specific IP address."
+      },
+      {
+        "name": "subscription summary",
+        "description": "Displays details for all of the NMSP services to which the controller is subscribed. The details are only for the NMSP services subscribed to by a specific IP address."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 687,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show onboard switch",
+    "context": null,
+    "detail": "To display OBFL information use the show onboard switch privileged EXEC command.",
+    "syntax": "show onboard switch switch-number{clilog | environment | message | counter | temperature | uptime | voltage | status}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch-number",
+        "description": "Specifies the switch or stack member numbers."
+      },
+      {
+        "name": "clilog",
+        "description": "Displays the OBFL CLI commands that were entered on a standalone switch or the specified stack members."
+      },
+      {
+        "name": "environment",
+        "description": "Displays the UDI information for a standalone switch or the specified stack members. For all the connected FRU devices, it displays the PID, the VID, and the serial number."
+      },
+      {
+        "name": "message",
+        "description": "Displays the hardware-related messages generated by a standalone switch or the specified stack members."
+      },
+      {
+        "name": "counter",
+        "description": "Displays the counter information on a standalone switch or the specified stack members."
+      },
+      {
+        "name": "temperature",
+        "description": "Displays the temperature of a standalone switch or the specified switch stack members."
+      },
+      {
+        "name": "uptime",
+        "description": "Displays the time when a standalone switch or the specified stack members start, the reason the standalone switch or specified stack members restart, and the length of time that the standalone switch or specified stack members have been running since they last restarted."
+      },
+      {
+        "name": "voltage",
+        "description": "Displays the system voltages of a standalone switch or the specified stack members."
+      },
+      {
+        "name": "status",
+        "description": "Displays the status of a standalone switch or the specified stack members."
+      }
+    ],
+    "modes": ["Priviledged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 688,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "shutdown",
+    "context": null,
+    "detail": "Shut down VLAN switching.",
+    "syntax": "shutdown [ vlan vlan-id ]",
+    "noForm": "no shutdown",
+    "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "VLAN ID of VLAN to shutdown."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 690,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "test cable-diagnostics prbs",
+    "context": null,
+    "detail": "Run the pseudo-random binary sequence (PRBS) feature on an interface.",
+    "syntax": "test cable-diagnostics prbs interface interface-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "The interface on which to run PRBS."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "PRBS is supported only on 10-Gigabit Ethernet ports.  It is not supported on 10/100/100 copper Ethernet ports and small form-factor pluggable (SFP) module ports.  After you run PRBS by using the test cable-diagnostics prbs interface interface-id command, use the show cable-diagnostics prbs interface interface-id privileged EXEC command to display the results.",
+    "sourcePage": 691,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "test cable-diagnostics tdr",
+    "context": null,
+    "detail": "Run the Time Domain Reflector (TDR) feature on an interface.",
+    "syntax": "test cable-diagnostics tdr interface interface-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "The interface on which to run TDR."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "TDR is supported only on 10/100/100 copper Ethernet ports.  It is not supported on 10-Gigabit Ethernet ports or small form-factor pluggable (SFP) module ports.  After you run TDR by using the test cable-diagnostics tdr interface interface-id command, use the show cable-diagnostics tdr interface interface-id privileged EXEC command to display the results.",
+    "sourcePage": 692,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "traceroute mac",
+    "context": null,
+    "detail": "Display the Layer 2 path taken by the packets from the specified source MAC address to the specified destination MAC address.",
+    "syntax": "traceroute mac [interface interface-id] source-mac-address [interface interface-id] destination-mac-address [vlan vlan-id] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Specifies an interface on the source or destination device."
+      },
+      {
+        "name": "source-mac-address",
+        "description": "The MAC address of the source device in hexadecimal format. destination-mac-address The MAC address of the destination device in hexadecimal format."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies the VLAN on which to trace the Layer 2 path that the packets take from the source device to the destination device. Valid VLAN IDs are 1 to 4094."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Specifies that detailed information appears."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "For Layer 2 traceroute to function properly, Cisco Discovery Protocol (CDP) must be enabled on all of the devicees in the network.  Do not disable CDP.  When the device detects a device in the Layer 2 path that does not support Layer 2 traceroute, the device continues to send Layer 2 trace queries and lets them time out.",
+    "sourcePage": 693,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "traceroute mac ip",
+    "context": null,
+    "detail": "Display the Layer 2 path taken by the packets from the specified source IP address or hostname to the specified destination IP address or hostname.",
+    "syntax": "traceroute mac ip {source-ip-address source-hostname} {destination-ip-address destination-hostname} [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "source-ip-address",
+        "description": "The IP address of the source device as a 32-bit quantity in dotted-decimal format."
+      },
+      {
+        "name": "source-hostname",
+        "description": "The IP hostname of the source device. destination-ip-address The IP address of the destination device as a 32-bit quantity in dotted-decimal format. destination-hostname The IP hostname of the destination device."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Specifies that detailed information appears."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "For Layer 2 traceroute to function properly, Cisco Discovery Protocol (CDP) must be enabled on each device in the network.  Do not disable CDP.  When the device detects a device in the Layer 2 path that does not support Layer 2 traceroute, the device continues to send Layer 2 trace queries and lets them time out.",
+    "sourcePage": 696,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "type",
+    "context": null,
+    "detail": "Display the contents of one or more files.",
+    "syntax": "type filesystem:/file-url...",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appear sequentially.",
+    "sourcePage": 698,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "unset",
+    "context": null,
+    "detail": "Reset one or more environment variables.",
+    "syntax": "unset variable...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "variable",
+        "description": "Use one of these keywords for variable: MANUAL_BOOT—Specifies whether the device automatically or manually boots. BOOT—Resets the list of executable files to try to load and execute when automatically booting. If the BOOT environment variable is not set, the system attempts to load and execute the first executable image it can find by using a recursive, depth-first search through the flash: file system. If the BOOT variable is set but the specified images cannot be loaded, the system attempts to boot the first bootable file that it can find in the flash: file system. ENABLE_BREAK—Specifies whether the automatic boot process can be interrupted by using the Break key on the console after the flash: file system has been initialized. HELPER—Identifies the semicolon-separated list of loadable files to dynamically load during the boot loader initialization. Helper files extend or patch the functionality of the boot loader. PS1—Specifies the string that is used as the command-line prompt in boot loader mode. CONFIG_FILE—Resets the filename that Cisco IOS uses to read and write a nonvolatile copy of the system configuration. BAUD—Resets the rate in bits per second (b/s) used for the console. The Cisco IOS software inherits the baud rate setting from the boot loader and continues to use this value unless the configuration file specifies another setting."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Under typical circumstances, it is not necessary to alter the setting of the environment variables.  The MANUAL_BOOT environment variable can also be reset by using the no boot manual global configuration command.  The BOOT environment variable can also be reset by using the no boot system global configuration command.",
+    "sourcePage": 699,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "version",
+    "context": null,
+    "detail": "Display the boot loader version.",
+    "syntax": "version",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": null,
+    "sourcePage": 701,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  }
+]

@@ -1,0 +1,1240 @@
+[
+  {
+    "name": "debug fastethernet",
+    "context": null,
+    "detail": "Enable debugging of the Ethernet management port.",
+    "syntax": "debug fastethernet {af | events | packets}",
+    "noForm": "no debug fastethernet {af | events | packets}",
+    "params": [
+      {
+        "name": "af",
+        "description": "Displays Ethernet management port software-address-filter debug messages. events Displays Ethernet management port event debug messages. packets Displays Ethernet management port packet debug messages."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "The undebug fastethernet { af | events | packets} command is the same as the no debug fastethernet{af| events | packets} command.  When you enable debugging on a switch stack, it is enabled only on the active switch.  To enable debugging on a member switch, you can start a session from the active switch by using the session switch-number EXEC command.",
+    "sourcePage": 51,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug ilpower",
+    "context": null,
+    "detail": "Enable debugging of the power controller and Power over Ethernet (PoE) system.",
+    "syntax": "debug ilpower {cdp | controller | event | ha | port | powerman | registries | scp | sense}",
+    "noForm": "no debug ilpower {cdp | controller | event | ha | port | powerman | registries | scp | sense}",
+    "params": [
+      {
+        "name": "cdp",
+        "description": "Displays PoE Cisco Discovery Protocol (CDP) debug messages. controller Displays PoE controller debug messages."
+      },
+      {
+        "name": "event",
+        "description": "Displays PoE event debug messages."
+      },
+      {
+        "name": "ha",
+        "description": "Displays PoE high-availability messages."
+      },
+      {
+        "name": "port",
+        "description": "Displays PoE port manager debug messages. powerman Displays PoE power management debug messages. registries Displays PoE registries debug messages."
+      },
+      {
+        "name": "scp",
+        "description": "Displays PoE SCP debug messages."
+      },
+      {
+        "name": "sense",
+        "description": "Displays PoE sense debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "This command is supported only on PoE-capable switches.  When you enable debugging on a switch stack, it is enabled only on the active switch.  To enable debugging on a member switch, you can start a session from the active switch by using the session switch-number EXEC command.",
+    "sourcePage": 52,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug interface",
+    "context": null,
+    "detail": "Enable debugging of interface-related activities.",
+    "syntax": "debug interface {interface-id | counters {exceptions | protocol memory} | null interface-number | port-channel port-channel-number | states|vlan vlan-id} | port-channel port-channel-number | states|vlan vlan-id}",
+    "noForm": "no debug interface {interface-id | counters {exceptions | protocol memory} | null interface-number",
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "ID of the physical interface. Displays debug messages for the specified physical port, identified by type switch number/module number/port, for example, gigabitethernet 1/0/2."
+      },
+      {
+        "name": "null interface-number",
+        "description": "Displays debug messages for null interfaces. The interface number is always 0."
+      },
+      {
+        "name": "port-channel",
+        "description": "Displays debug messages for the specified EtherChannel port-channel"
+      },
+      {
+        "name": "port-channel-number",
+        "description": "interface. The port-channel-number range is 1 to 48."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "Displays debug messages for the specified VLAN. The vlan range is 1 to 4094."
+      },
+      {
+        "name": "counters",
+        "description": "Displays counters debugging information."
+      },
+      {
+        "name": "exceptions",
+        "description": "Displays debug messages when a recoverable exceptional condition occurs during the computation of the interface packet and data rate statistics."
+      },
+      {
+        "name": "protocol memory",
+        "description": "Displays debug messages for memory operations of protocol counters."
+      },
+      {
+        "name": "states",
+        "description": "Displays intermediary debug messages when an interface's state transitions."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If you do not specify a keyword, all debug messages appear.  The undebug interface command is the same as the no debug interface command.  When you enable debugging on a switch stack, it is enabled only on the active switch.",
+    "sourcePage": 53,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug lldp packets",
+    "context": null,
+    "detail": "Enable debugging of Link Layer Discovery Protocol (LLDP) packets.",
+    "syntax": "debug lldp packets",
+    "noForm": "no debug lldp packets",
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug lldp packets command is the same as the no debug lldp packets command.  When you enable debugging on a switch stack, it is enabled only on the .  To enable debugging on a member switch, you can start a session from the by using the session switch-number EXEC command.",
+    "sourcePage": 54,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug nmsp",
+    "context": null,
+    "detail": "Enable debugging of the Network Mobility Services Protocol (NMSP) on the switch.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all NMSP debug messages."
+      },
+      {
+        "name": "connection",
+        "description": "Displays debug messages for NMSP connection events."
+      },
+      {
+        "name": "error",
+        "description": "Displays debugging information for NMSP error messages."
+      },
+      {
+        "name": "event",
+        "description": "Displays debug messages for NMSP events."
+      },
+      {
+        "name": "rx",
+        "description": "Displays debugging information for NMSP receive messages."
+      },
+      {
+        "name": "tx",
+        "description": "Displays debugging information for NMSP transmit messages."
+      },
+      {
+        "name": "packet",
+        "description": "Displays debug messages for NMSP packet events."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Note Attachment information is not supported in Cisco IOS XE Denali 16. 1. 1 and later releases.",
+    "sourcePage": 55,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "duplex",
+    "context": null,
+    "detail": "Specify the duplex mode of operation for a port.",
+    "syntax": "duplex {auto | full | half}",
+    "noForm": "no duplex {auto | full | half}",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "For Fast Ethernet ports, setting the port to auto has the same effect as specifying half if the attached device does not autonegotiate the duplex parameter.  For Gigabit Ethernet ports, setting the port to auto has the same effect as specifying full if the attached device does not autonegotiate the duplex parameter.",
+    "sourcePage": 56,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "errdisable detect cause",
+    "context": null,
+    "detail": "Enable error-disable detection for a specific cause or for all causes.",
+    "syntax": "errdisable detect cause {all | arp-inspection | bpduguard shutdown vlan | dhcp-rate-limit | dtp-flap | gbic-invalid | inline-power | link-flap | loopback | pagp-flap | pppoe-ia-rate-limit | psp shutdown vlan | security-violation shutdown vlan | sfp-config-mismatch} | gbic-invalid | inline-power | link-flap | loopback | pagp-flap | pppoe-ia-rate-limit | psp shutdown vlan | security-violation shutdown vlan | sfp-config-mismatch}",
+    "noForm": "no errdisable detect cause {all | arp-inspection | bpduguard shutdown vlan | dhcp-rate-limit | dtp-flap",
+    "params": [
+      {
+        "name": "all",
+        "description": "Enables error detection for all error-disabled causes."
+      },
+      {
+        "name": "arp-inspection",
+        "description": "Enables error detection for dynamic Address Resolution Protocol (ARP) inspection."
+      },
+      {
+        "name": "bpduguard shutdown vlan",
+        "description": "Enables per-VLAN error-disable for BPDU guard."
+      },
+      {
+        "name": "dhcp-rate-limit",
+        "description": "Enables error detection for DHCP snooping."
+      },
+      {
+        "name": "dtp-flap",
+        "description": "Enables error detection for the Dynamic Trunking Protocol (DTP) flapping."
+      },
+      {
+        "name": "gbic-invalid",
+        "description": "Enables error detection for an invalid Gigabit Interface Converter (GBIC) module."
+      },
+      {
+        "name": "Note",
+        "description": "This error refers to an invalid small form-factor pluggable (SFP) module."
+      },
+      {
+        "name": "inline-power",
+        "description": "Enables error detection for the Power over Ethernet (PoE) error-disabled cause."
+      },
+      {
+        "name": "Note",
+        "description": "This keyword is supported only on switches with PoE ports."
+      },
+      {
+        "name": "link-flap",
+        "description": "Enables error detection for link-state flapping."
+      },
+      {
+        "name": "loopback",
+        "description": "Enables error detection for detected loopbacks."
+      },
+      {
+        "name": "pagp-flap",
+        "description": "Enables error detection for the Port Aggregation Protocol (PAgP) flap error-disabled cause."
+      },
+      {
+        "name": "pppoe-ia-rate-limit",
+        "description": "Enables error detection for the PPPoE Intermediate Agent rate-limit error-disabled cause."
+      },
+      {
+        "name": "psp shutdown vlan",
+        "description": "Enables error detection for protocol storm protection (PSP)."
+      },
+      {
+        "name": "security-violation shutdown",
+        "description": "Enables voice aware 802.1x security. vlan"
+      },
+      {
+        "name": "sfp-config-mismatch",
+        "description": "Enables error detection on an SFP configuration mismatch. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 58 Interface and Hardware errdisable detect cause"
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "A cause (such as a link-flap or dhcp-rate-limit) is the reason for the error-disabled state.  When a cause is detected on an interface, the interface is placed in an error-disabled state, an operational state that is similar to a link-down state.  When a port is error-disabled, it is effectively shut down, and no traffic is sent or received on the port.",
+    "sourcePage": 58,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "errdisable detect cause small-frame",
+    "context": null,
+    "detail": "Allow any switch port to be error disabled if incoming VLAN-tagged packets are small frames (67 bytes or less) and arrive at the minimum configured rate (the threshold).",
+    "syntax": "errdisable detect cause small-frame",
+    "noForm": "no errdisable detect cause small-frame",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command globally enables the small-frame arrival feature.  Use the small violation-rate interface configuration command to set the threshold for each port.  You can configure the port to be automatically re-enabled by using the errdisable recovery cause small-frame global configuration command.",
+    "sourcePage": 60,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "errdisable recovery cause",
+    "context": null,
+    "detail": "Enable the error-disabled mechanism to recover from a specific cause.",
+    "syntax": "errdisable recovery cause {all | arp-inspection | bpduguard | channel-misconfig | dhcp-rate-limit | dtp-flap | gbic-invalid | inline-power | link-flap | loopback | mac-limit | pagp-flap | port-mode-failure | pppoe-ia-rate-limit | psecure-violation | psp | security-violation | sfp-config-mismatch | storm-control | udld | vmps} | dtp-flap | gbic-invalid | inline-power | link-flap | loopback | mac-limit | pagp-flap | port-mode-failure | pppoe-ia-rate-limit | psecure-violation | psp | security-violation | sfp-config-mismatch | storm-control | udld | vmps}",
+    "noForm": "no errdisable recovery cause {all | arp-inspection | bpduguard | channel-misconfig | dhcp-rate-limit",
+    "params": [
+      {
+        "name": "all",
+        "description": "Enables the timer to recover from all error-disabled causes."
+      },
+      {
+        "name": "arp-inspection",
+        "description": "Enables the timer to recover from the Address Resolution Protocol (ARP) inspection error-disabled state."
+      },
+      {
+        "name": "bpduguard",
+        "description": "Enables the timer to recover from the bridge protocol data unit (BPDU) guard error-disabled state."
+      },
+      {
+        "name": "channel-misconfig",
+        "description": "Enables the timer to recover from the EtherChannel misconfiguration error-disabled state."
+      },
+      {
+        "name": "dhcp-rate-limit",
+        "description": "Enables the timer to recover from the DHCP snooping error-disabled state."
+      },
+      {
+        "name": "dtp-flap",
+        "description": "Enables the timer to recover from the Dynamic Trunking Protocol (DTP) flap error-disabled state."
+      },
+      {
+        "name": "gbic-invalid",
+        "description": "Enables the timer to recover from an invalid Gigabit Interface Converter (GBIC) module error-disabled state."
+      },
+      {
+        "name": "Note",
+        "description": "This error refers to an invalid small form-factor pluggable (SFP) error-disabled state."
+      },
+      {
+        "name": "inline-power",
+        "description": "Enables the timer to recover from the Power over Ethernet (PoE) error-disabled state. This keyword is supported only on switches with PoE ports."
+      },
+      {
+        "name": "link-flap",
+        "description": "Enables the timer to recover from the link-flap error-disabled state."
+      },
+      {
+        "name": "loopback",
+        "description": "Enables the timer to recover from a loopback error-disabled state."
+      },
+      {
+        "name": "mac-limit",
+        "description": "Enables the timer to recover from the mac limit error-disabled state."
+      },
+      {
+        "name": "pagp-flap",
+        "description": "Enables the timer to recover from the Port Aggregation Protocol (PAgP)-flap error-disabled state. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 61 Interface and Hardware errdisable recovery cause"
+      },
+      {
+        "name": "port-mode-failure",
+        "description": "Enables the timer to recover from the port mode change failure error-disabled state."
+      },
+      {
+        "name": "pppoe-ia-rate-limit",
+        "description": "Enables the timer to recover from the PPPoE IA rate limit error-disabled state."
+      },
+      {
+        "name": "psecure-violation",
+        "description": "Enables the timer to recover from a port security violation disable state."
+      },
+      {
+        "name": "psp",
+        "description": "Enables the timer to recover from the protocol storm protection (PSP) error-disabled state."
+      },
+      {
+        "name": "security-violation",
+        "description": "Enables the timer to recover from an IEEE 802.1x-violation disabled state."
+      },
+      {
+        "name": "sfp-config-mismatch",
+        "description": "Enables error detection on an SFP configuration mismatch."
+      },
+      {
+        "name": "storm-control",
+        "description": "Enables the timer to recover from a storm control error."
+      },
+      {
+        "name": "udld",
+        "description": "Enables the timer to recover from the UniDirectional Link Detection (UDLD) error-disabled state."
+      },
+      {
+        "name": "vmps",
+        "description": "Enables the timer to recover from the VLAN Membership Policy Server (VMPS) error-disabled state."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "A cause (such as all or BDPU guard) is defined as the reason that the error-disabled state occurred.  When a cause is detected on an interface, the interface is placed in the error-disabled state, an operational state similar to link-down state.  When a port is error-disabled, it is effectively shut down, and no traffic is sent or received on the port.",
+    "sourcePage": 61,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "errdisable recovery cause small-frame",
+    "context": null,
+    "detail": "Use the errdisable recovery cause small-frame global configuration command on the switch to enable the recovery timer for ports to be automatically re-enabled after they are error disabled by the arrival of small frames. Use the no form of this command to return to the default setting.",
+    "syntax": "errdisable recovery cause small-frame",
+    "noForm": "no errdisable recovery cause small-frame",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command enables the recovery timer for error-disabled ports.  You configure the recovery time by using the errdisable recovery interval interface configuration command.  This example shows how to set the recovery timer: Device(config)# errdisable recovery cause small-frame Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 64,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "errdisable recovery interval",
+    "context": null,
+    "detail": "Specify the time to recover from an error-disabled state.",
+    "syntax": "errdisable recovery interval timer-interval",
+    "noForm": "no errdisable recovery interval timer-interval",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "The error-disabled recovery timer is initialized at a random differential from the configured interval value.  The difference between the actual timeout value and the configured value can be up to 15 percent of the configured interval.  You can verify your settings by entering the show errdisable recovery privileged EXEC command.",
+    "sourcePage": 65,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "lldp",
+    "context": "interface configuration",
+    "detail": "Enable Link Layer Discovery Protocol (LLDP) on an interface.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "med-tlv-select",
+        "description": "Selects an LLDP Media Endpoint Discovery (MED) time-length-value (TLV) element to send."
+      },
+      {
+        "name": "tlv",
+        "description": "String that identifies the TLV element. Valid values are the following: • inventory-management— LLDP MED Inventory Management TLV. • location— LLDP MED Location TLV. • network-policy— LLDP MED Network Policy TLV."
+      },
+      {
+        "name": "receive",
+        "description": "Enables the interface to receive LLDP transmissions."
+      },
+      {
+        "name": "tlv-select",
+        "description": "Selects the LLDP TLVs to send."
+      },
+      {
+        "name": "power-management",
+        "description": "Sends the LLDP Power Management TLV."
+      },
+      {
+        "name": "transmit",
+        "description": "Enables LLDP transmission on the interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "This command is supported on 802. 1 media types.  If the interface is configured as a tunnel port, LLDP is automatically disabled.",
+    "sourcePage": 66,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mdix auto",
+    "context": null,
+    "detail": "Enable the automatic medium-dependent interface crossover (auto-MDIX) feature on the interface.",
+    "syntax": "mdix auto",
+    "noForm": "no mdix auto",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "When auto-MDIX is enabled, the interface automatically detects the required cable connection type (straight-through or crossover) and configures the connection appropriately.  When you enable auto-MDIX on an interface, you must also set the interface speed and duplex to auto so that the feature operates correctly.  When auto-MDIX (and autonegotiation of speed and duplex) is enabled on one or both of the connected interfaces, link up occurs, even if the cable type (straight-through or crossover) is incorrect.",
+    "sourcePage": 67,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "network-policy",
+    "context": null,
+    "detail": "Apply a network-policy profile to an interface.",
+    "syntax": "network-policy profile-number",
+    "noForm": "no network-policy",
+    "params": [
+      {
+        "name": "profile-number",
+        "description": "The network-policy profile number to apply to the interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the network-policy profile number interface configuration command to apply a profile to an interface.  You cannot apply the switchport voice vlan command on an interface if you first configure a network-policy profile on it.  However, if switchport voice vlan vlan-id is already configured on the interface, you can apply a network-policy profile on the interface.",
+    "sourcePage": 68,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "network-policy profile",
+    "context": "global configuration",
+    "detail": "Create a network-policy profile and to enter network-policy configuration mode.",
+    "syntax": "network-policy profile profile-number",
+    "noForm": "no network-policy profile profile-number",
+    "params": [
+      {
+        "name": "profile-number",
+        "description": "Network-policy profile number. The range is 1 to 4294967295."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use the network-policy profile global configuration command to create a profile and to enter network-policy profile configuration mode.  To return to privileged EXEC mode from the network-policy profile configuration mode, enter the exit command.  When you are in network-policy profile configuration mode, you can create the profile for voice and voice signaling by specifying the values for VLAN, class of service (CoS), differentiated services code point (DSCP), and tagging mode.",
+    "sourcePage": 69,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "nmsp attachment suppress",
+    "context": null,
+    "detail": "Suppress the reporting of attachment information from a specified interface.",
+    "syntax": "nmsp attachment suppress",
+    "noForm": "no nmsp attachment suppress",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Use the nmsp attachment suppress interface configuration command to configure an interface to not send location and attachment notifications to a Cisco Mobility Services Engine (MSE).",
+    "sourcePage": 70,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "power efficient-ethernet auto",
+    "context": null,
+    "detail": "Enable Energy Efficient Ethernet (EEE) for an interface.",
+    "syntax": "power efficient-ethernet auto",
+    "noForm": "no power efficient-ethernet auto",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You can enable EEE on devices that support low power idle (LPI) mode.  Such devices can save power by entering LPI mode during periods of low utilization.  In LPI mode, systems on both ends of the link can save power by shutting down certain services.",
+    "sourcePage": 71,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "power inline",
+    "context": null,
+    "detail": "Configure the power management mode on Power over Ethernet (PoE) ports.",
+    "syntax": "power inline {auto [max max-wattage] | never | port priority {high | low} | static [max max-wattage]}",
+    "noForm": "no power inline {auto | never | port priority {high | low} | static [max max-wattage]}",
+    "params": [
+      {
+        "name": "auto",
+        "description": "Enables powered-device detection. If enough power is available, automatically allocates power to the PoE port after device detection. Allocation is first-come, first-serve."
+      },
+      {
+        "name": "max max-wattage",
+        "description": "(Optional) Limits the power allowed on the port. The range is 4000 to 30000 mW. If no value is specified, the maximum is allowed."
+      },
+      {
+        "name": "never",
+        "description": "Disables device detection, and disables power to the port."
+      },
+      {
+        "name": "port",
+        "description": "Configures the power priority of the port. The default priority is low."
+      },
+      {
+        "name": "priority {high|low}",
+        "description": "Sets the power priority of the port. In case of a power supply failure, ports configured as low priority are turned off first and ports configured as high priority are turned off last. The default priority is low."
+      },
+      {
+        "name": "static",
+        "description": "Enables powered-device detection. Pre-allocates (reserves) power for a port before the switch discovers the powered device. This action guarantees that the device connected to the interface receives enough power."
+      }
+    ],
+    "modes": [],
+    "usageSummary": "This command is supported only on PoE-capable ports.  If you enter this command on a port that does not support PoE, this error message appears: Device(config)# interface gigabitethernet1/0/1 Device(config-if)# power inline auto ^ % Invalid input detected at '^' marker.  In a switch stack, this command is supported on all ports in the stack that support PoE.",
+    "sourcePage": 72,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "power inline consumption",
+    "context": null,
+    "detail": "Override the amount of power specified by the IEEE classification for a powered device.",
+    "syntax": "power inline consumption [default] wattage",
+    "noForm": "no power inline consumption [default]",
+    "params": [],
+    "modes": ["Global configuration", "Interface configuration"],
+    "usageSummary": "This command is supported only on the LAN Base image.  When Cisco powered devices are connected to PoE ports, the switch uses Cisco Discovery Protocol (CDP) to determine the CDP-specific power consumption of the devices, which is the amount of power to allocate based on the CDP messages.  The switch adjusts the power budget accordingly.",
+    "sourcePage": 75,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "power inline police",
+    "context": null,
+    "detail": "Enable policing of real-time power consumption on a powered device.",
+    "syntax": "power inline police [action {errdisable | log}]",
+    "noForm": "no power inline police",
+    "params": [
+      {
+        "name": "action",
+        "description": "(Optional) Configures the device to turn off power to the port if the real-time power"
+      },
+      {
+        "name": "errdisable",
+        "description": "consumption exceeds the maximum power allocation on the port. This is the default action."
+      },
+      {
+        "name": "action log",
+        "description": "(Optional) Configures the device to generate a syslog message while still providing power to a connected device if the real-time power consumption exceeds the maximum power allocation on the port."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "This command is supported only on the LAN Base image.  This command is supported only on Power over Ethernet (PoE)-capable ports.  If you enter this command on a device or port that does not support PoE, an error message appears.",
+    "sourcePage": 78,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show eee",
+    "context": null,
+    "detail": "Display Energy Efficient Ethernet (EEE) information for an interface.",
+    "syntax": "show eee{counters | capabilities interface interface-id | status interface interface-id}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "counters",
+        "description": "Displays EEE counters."
+      },
+      {
+        "name": "capabilities",
+        "description": "Displays EEE capabilities for the specified interface."
+      },
+      {
+        "name": "status",
+        "description": "Displays EEE status information for the specified interface."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "Specifies the interface for which to display EEE capabilities or status information."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "You can enable EEE on devices that support low power idle (LPI) mode.  Such devices can save power by entering LPI mode during periods of low power utilization.  In LPI mode, systems on both ends of the link can save power by shutting down certain services.",
+    "sourcePage": 80,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show env",
+    "context": null,
+    "detail": "Display fan, temperature, redundant power system (RPS) availability, and power information.",
+    "syntax": "show env {all | fan | power [{all | switch [stack-member-number]}] | rps | stack [stack-member-number] | temperature [status]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays the fan and temperature environmental status and the status of the internal power supplies and the RPS."
+      },
+      {
+        "name": "fan",
+        "description": "Displays the switch fan status."
+      },
+      {
+        "name": "power",
+        "description": "Displays the internal power status of the active switch."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Displays the status of all the internal power supplies in a standalone switch when the command is entered on the switch, or in all the member switches when the command is entered on the active switch."
+      },
+      {
+        "name": "switch",
+        "description": "(Optional) Displays the status of the internal power supplies for each switch in the stack or for the specified switch. This keyword is available only on stacking-capable switches."
+      },
+      {
+        "name": "stack-member-number",
+        "description": "(Optional) Number of the member switch for which to display the status of the internal power supplies or the environmental status. The range is 1 to 8."
+      },
+      {
+        "name": "rps",
+        "description": "Displays the RPS status."
+      },
+      {
+        "name": "stack",
+        "description": "Displays all environmental status for each switch in the stack or for the specified switch. This keyword is available only on stacking-capable switches."
+      },
+      {
+        "name": "temperature",
+        "description": "Displays the switch temperature status."
+      },
+      {
+        "name": "status",
+        "description": "(Optional) Displays the switch internal temperature (not the external temperature) and the threshold values."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Use the show env EXEC command to display the information for the switch being accessed—a standalone switch or the active switch.  Use this command with the stack and switch keywords to display all information for the stack or for the specified member switch.  If you enter the show env temperature status command, the command output shows the switch temperature state and the threshold level.",
+    "sourcePage": 83,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show errdisable detect",
+    "context": null,
+    "detail": "Display error-disabled detection status.",
+    "syntax": "show errdisable detect",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "A gbic-invalid error reason refers to an invalid small form-factor pluggable (SFP) module.  The error-disable reasons in the command output are listed in alphabetical order.  The mode column shows how error-disable is configured for each feature.",
+    "sourcePage": 85,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show errdisable recovery",
+    "context": null,
+    "detail": "Display the error-disabled recovery timer information.",
+    "syntax": "show errdisable recovery",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "A gbic-invalid error-disable reason refers to an invalid small form-factor pluggable (SFP) module interface.",
+    "sourcePage": 86,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces",
+    "context": null,
+    "detail": "Display the administrative and operational status of all interfaces or for a specified interface.",
+    "syntax": "show interfaces [{interface-id | vlan vlan-id}] [{accounting | capabilities [module number] | debounce | description | etherchannel | flowcontrol | pruning | stats | status [{err-disabled}] | trunk}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the interface. Valid interfaces include physical ports (including type, stack member for stacking-capable switches, module, and port number) and port channels. The port channel range is 1 to 48."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) VLAN identification. The range is 1 to 4094."
+      },
+      {
+        "name": "accounting",
+        "description": "(Optional) Displays accounting information on the interface, including active protocols and input and output packets and octets."
+      },
+      {
+        "name": "Note",
+        "description": "The display shows only packets processed in software; hardware-switched packets do not appear."
+      },
+      {
+        "name": "capabilities",
+        "description": "(Optional) Displays the capabilities of all interfaces or the specified interface, including the features and options that you can configure on the interface. Though visible in the command line help, this option is not available for VLAN IDs."
+      },
+      {
+        "name": "module number",
+        "description": "(Optional) Displays capabilities of all interfaces on the switch or specified stack member. The range is 1 to 8. This option is not available if you entered a specific interface ID."
+      },
+      {
+        "name": "debounce",
+        "description": "(Optional) Displays port debounce timer information for an interface."
+      },
+      {
+        "name": "description",
+        "description": "(Optional) Displays the administrative status and description set for an interface."
+      },
+      {
+        "name": "etherchannel",
+        "description": "(Optional) Displays interface EtherChannel information."
+      },
+      {
+        "name": "flowcontrol",
+        "description": "(Optional) Displays interface flow control information."
+      },
+      {
+        "name": "mtu",
+        "description": "(Optional) Displays the MTU for each interface or for the specified interface."
+      },
+      {
+        "name": "pruning",
+        "description": "(Optional) Displays trunk VTP pruning information for the interface."
+      },
+      {
+        "name": "stats",
+        "description": "(Optional) Displays the input and output packets by switching the path for the interface. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 87 Interface and Hardware show interfaces"
+      },
+      {
+        "name": "status",
+        "description": "(Optional) Displays the status of the interface. A status of unsupported in the Type field means that a non-Cisco small form-factor pluggable (SFP) module is inserted in the module slot."
+      },
+      {
+        "name": "err-disabled",
+        "description": "(Optional) Displays interfaces in an error-disabled state."
+      },
+      {
+        "name": "trunk",
+        "description": "(Optional) Displays interface trunk information. If you do not specify an interface, only information for active trunking ports appears."
+      },
+      {
+        "name": "Note",
+        "description": "Though visible in the command-line help strings, the crb, fair-queue, irb, mac-accounting, precedence, random-detect, and rate-limit keywords are not supported."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The show interfaces capabilities command with different keywords has these results: • Use the show interface capabilities module number command to display the capabilities of all interfaces on that switch in the stack.  If there is no switch with that module number in the stack, there is no output.  • Use the show interfaces interface-id capabilities to display the capabilities of the specified interface.",
+    "sourcePage": 87,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces counters",
+    "context": null,
+    "detail": "Display various counters for the switch or for a specific interface.",
+    "syntax": "show interfaces [interface-id] counters [{errors | etherchannel | module stack-member-number | protocol status | trunk}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the physical interface, including type, stack member (stacking-capable switches only) module, and port number."
+      },
+      {
+        "name": "errors",
+        "description": "(Optional) Displays error counters."
+      },
+      {
+        "name": "etherchannel",
+        "description": "(Optional) Displays EtherChannel counters, including octets, broadcast packets, multicast packets, and unicast packets received and sent."
+      },
+      {
+        "name": "module",
+        "description": "(Optional) Displays counters for the specified stack member. stack-member-number The range is 1 to 8."
+      },
+      {
+        "name": "Note",
+        "description": "In this command, the module keyword refers to the stack member number. The module number that is part of the interface ID is always zero."
+      },
+      {
+        "name": "protocol status",
+        "description": "(Optional) Displays the status of protocols enabled on interfaces."
+      },
+      {
+        "name": "trunk",
+        "description": "(Optional) Displays trunk counters."
+      },
+      {
+        "name": "Note",
+        "description": "Though visible in the command-line help string, the vlan vlan-id keyword is not supported."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If you do not enter any keywords, all counters for all interfaces are included.  This is an example of partial output from the show interfaces counters command.  It displays all counters for the switch.",
+    "sourcePage": 92,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces switchport",
+    "context": null,
+    "detail": "Display the administrative and operational status of a switching (nonrouting) port, including port blocking and port protection settings.",
+    "syntax": "show interfaces [interface-id] switchport [{backup [detail] | module number}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the interface. Valid interfaces include physical ports (including type, stack member for stacking-capable switches, module, and port number) and port channels. The port channel range is 1 to 48."
+      },
+      {
+        "name": "backup",
+        "description": "(Optional) Displays Flex Link backup interface configuration for the specified interface or all interfaces."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed backup information for the specified interface or all interfaces on the switch or the stack. module number (Optional) Displays switchport configuration of all interfaces on the switch or specified stack member. The range is 1 to 8. This option is not available if you entered a specific interface ID."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the show interface switchport module number command to display the switch port characteristics of all interfaces on that switch in the stack.  If there is no switch with that module number in the stack, there is no output.  This is an example of output from the show interfaces switchport command for a port.",
+    "sourcePage": 94,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces transceiver",
+    "context": null,
+    "detail": "Display the physical properties of a small form-factor pluggable (SFP) module interface.",
+    "syntax": "show interfaces [interface-id] transceiver [{detail | module number | properties | supported-list | threshold-table}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the physical interface, including type, stack member (stacking-capable switches only) module, and port number."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays calibration properties, including high and low numbers and any alarm information for any Digital Optical Monitoring (DoM)-capable transceiver if one is installed in the switch."
+      },
+      {
+        "name": "module number",
+        "description": "(Optional) Limits display to interfaces on module on the switch. The range is 1 to 8. This option is not available if you entered a specific interface ID."
+      },
+      {
+        "name": "properties",
+        "description": "(Optional) Displays speed, duplex, and inline power settings on an interface."
+      },
+      {
+        "name": "supported-list",
+        "description": "(Optional) Lists all supported transceivers. threshold-table (Optional) Displays alarm and warning threshold table."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 98,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip ports all",
+    "context": null,
+    "detail": "Display all the open ports on the device.",
+    "syntax": "show ip ports all",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC, Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 101,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show network-policy profile",
+    "context": null,
+    "detail": "Display the network-policy profiles.",
+    "syntax": "show network-policy profile [profile-number]",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 102,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show power inline",
+    "context": null,
+    "detail": "Display the Power over Ethernet (PoE) status for the specified PoE port, the specified stack member, or for all PoE ports in the switch stack.",
+    "syntax": "show power inline [{police | priority}] [{interface-id | module stack-member-number}] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "police",
+        "description": "(Optional) Displays the power policing information about real-time power consumption."
+      },
+      {
+        "name": "priority",
+        "description": "(Optional) Displays the power inline port priority for each port."
+      },
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the physical interface."
+      },
+      {
+        "name": "module stack-member-number",
+        "description": "(Optional) Limits the display to ports on the specified stack member. The range is 1 to 8. This keyword is supported only on stacking-capable switches."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed output of the interface or module."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 103,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show system mtu",
+    "context": null,
+    "detail": "Display the global maximum transmission unit (MTU) or maximum packet size set for the switch.",
+    "syntax": "show system mtu",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "For information about the MTU values and the stack configurations that affect the MTU values, see the system mtu command.",
+    "sourcePage": 108,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "speed",
+    "context": null,
+    "detail": "Specify the speed of a 10/100/1000/2500/5000 Mbps port.",
+    "syntax": "speed {10 | 100 | 1000 | 2500 | 5000 | auto [{10 | 100 | 1000 | 2500 | 5000}] | nonegotiate}",
+    "noForm": "no speed",
+    "params": [
+      {
+        "name": "10",
+        "description": "Specifies that the port runs at 10 Mbps."
+      },
+      {
+        "name": "100",
+        "description": "Specifies that the port runs at 100 Mbps."
+      },
+      {
+        "name": "1000",
+        "description": "Specifies that the port runs at 1000 Mbps. This option is valid and visible only on 10/100/1000 Mb/s ports."
+      },
+      {
+        "name": "2500",
+        "description": "Specifies that the port runs at 2500 Mbps. This option is valid and visible only on multi-Gigabit-supported Ethernet ports."
+      },
+      {
+        "name": "5000",
+        "description": "Specifies that the port runs at 5000 Mbps. This option is valid and visible only on multi-Gigabit-supported Ethernet ports."
+      },
+      {
+        "name": "auto",
+        "description": "Detects the speed at which the port should run, automatically, based on the port at the other end of the link. If you use the 10, 100, 1000, 1000, 2500, or 5000 keyword with the auto keyword, the port autonegotiates only at the specified speeds. nonegotiate Disables autonegotiation, and the port runs at 1000 Mbps."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You cannot configure speed on 10-Gigabit Ethernet ports.  Except for the 1000BASE-T small form-factor pluggable (SFP) modules, you can configure the speed to not negotiate (nonegotiate) when an SFP module port is connected to a device that does not support autonegotiation.  The new keywords, 2500 and 5000 are visible only on multi-Gigabit (m-Gig) Ethernet supporting devices.",
+    "sourcePage": 109,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport backup interface",
+    "context": null,
+    "detail": "Configure Flex Links.",
+    "syntax": "switchport backup interface interface-id [{mmu primary vlan vlan-id | multicast fast-convergence | preemption {delay seconds | mode {bandwidth | forced | off}} | prefer vlan vlan-id}] preemption {delay | mode} | prefer vlan}]",
+    "noForm": "no switchport backup interface interface-id [{mmu primary vlan | multicast fast-convergence |",
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "ID of the physical interface."
+      },
+      {
+        "name": "mmu",
+        "description": "(Optional) Configures the MAC move update (MMU) for a backup interface pair."
+      },
+      {
+        "name": "primary vlan vlan-id",
+        "description": "(Optional) VLAN ID of the primary VLAN. The range is 1 to 4094. multicast fast-convergence (Optional) Configures multicast fast convergence on the backup interface."
+      },
+      {
+        "name": "preemption",
+        "description": "(Optional) Configures a preemption scheme for a backup interface pair."
+      },
+      {
+        "name": "delay seconds",
+        "description": "Specifies a preemption delay. The range is 1 to 300 seconds. The default is 35 seconds."
+      },
+      {
+        "name": "mode",
+        "description": "Specifies the preemption mode."
+      },
+      {
+        "name": "bandwidth",
+        "description": "Specifies that a higher bandwidth interface is preferred."
+      },
+      {
+        "name": "forced",
+        "description": "Specifies that an active interface is preferred."
+      },
+      {
+        "name": "off",
+        "description": "Specifies that no preemption occurs from backup to active."
+      },
+      {
+        "name": "prefer vlan vlan-id",
+        "description": "(Optional) Specifies that VLANs are carried on the backup interfaces of a Flex Link pair. VLAN ID range is 1 to 4094."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Flex Links are a pair of interfaces that provide backup to each other.  With Flex Links configured, one link acts as the primary interface and forwards traffic, while the other interface is in standby mode, ready to begin forwarding traffic if the primary link shuts down.  The interface being configured is referred to as the active link; the specified interface is identified as the backup link.",
+    "sourcePage": 111,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport block",
+    "context": null,
+    "detail": "Prevent unknown multicast or unicast packets from being forwarded.",
+    "syntax": "switchport block {multicast | unicast}",
+    "noForm": "no switchport block {multicast | unicast}",
+    "params": [
+      {
+        "name": "Note",
+        "description": "Only pure Layer 2 multicast traffic is blocked. Multicast packets that contain IPv4 or IPv6 information in the header are not blocked."
+      },
+      {
+        "name": "unicast",
+        "description": "Specifies that unknown unicast traffic should be blocked."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "By default, all traffic with unknown MAC addresses is sent to all ports.  You can block unknown multicast or unicast traffic on protected or nonprotected ports.  If unknown multicast or unicast traffic is not blocked on a protected port, there could be security issues.",
+    "sourcePage": 113,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "system mtu",
+    "context": null,
+    "detail": "system mtu {bytes | jumbo bytes} no system mtu",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "bytes",
+        "description": "Set the system MTU for ports that are set to 10 or 100 Mb/s. The range is 1500 to 1998 bytes. This is the maximum MTU received at 10/100-Mb/s Ethernet switch ports."
+      },
+      {
+        "name": "jumbo",
+        "description": "Set the system jumbo MTU for Gigabit Ethernet ports operating at 1000 Mb/s or greater. The"
+      },
+      {
+        "name": "bytes",
+        "description": "range is 1500 to 9000 bytes. This is the maximum MTU received at the physical port for Gigabit Ethernet ports."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The switch does not support the MTU on a per-interface basis.  When you use this command to change the system MTU or jumbo MTU size, you must reset the switch before the new configuration takes effect.  The system MTU setting is saved in the switch environmental variable in NVRAM and becomes effective when the switch reloads.",
+    "sourcePage": 114,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "voice-signaling vlan",
+    "context": "network-policy configuration",
+    "detail": "Create a network-policy profile for the voice-signaling application type.",
+    "syntax": "voice-signaling vlan {vlan-id [{cos cos-value | dscp dscp-value}] | dot1p [{cos l2-priority | dscp dscp}] | none | untagged}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "(Optional) The VLAN for voice traffic. The range is 1 to 4094."
+      },
+      {
+        "name": "cos cos-value",
+        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5. dscp dscp-value (Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
+      },
+      {
+        "name": "dot1p",
+        "description": "(Optional) Configures the phone to use IEEE 802.1p priority tagging and to use VLAN 0 (the native VLAN)."
+      },
+      {
+        "name": "none",
+        "description": "(Optional) Does not instruct the Cisco IP phone about the voice VLAN. The phone uses the configuration from the phone key pad."
+      },
+      {
+        "name": "untagged",
+        "description": "(Optional) Configures the phone to send untagged voice traffic. This is the default for the phone."
+      }
+    ],
+    "modes": ["Network-policy profile configuration"],
+    "usageSummary": "Use the network-policy profile global configuration command to create a profile and to enter network-policy profile configuration mode.  The voice-signaling application type is for network topologies that require a different policy for voice signaling than for voice media.  This application type should not be advertised if all of the same network policies apply as those advertised in the voice policy TLV.",
+    "sourcePage": 115,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "voice vlan",
+    "context": "network-policy configuration",
+    "detail": "Create a network-policy profile for the voice application type.",
+    "syntax": "voice vlan {vlan-id [{cos cos-value | dscp dscp-value}] | dot1p [{cos l2-priority | dscp dscp}] | none | untagged}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "(Optional) The VLAN for voice traffic. The range is 1 to 4094."
+      },
+      {
+        "name": "cos cos-value",
+        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5. dscp dscp-value (Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
+      },
+      {
+        "name": "dot1p",
+        "description": "(Optional) Configures the phone to use IEEE 802.1p priority tagging and to use VLAN 0 (the native VLAN)."
+      },
+      {
+        "name": "none",
+        "description": "(Optional) Does not instruct the Cisco IP phone about the voice VLAN. The phone uses the configuration from the phone key pad."
+      },
+      {
+        "name": "untagged",
+        "description": "(Optional) Configures the phone to send untagged voice traffic. This is the default for the phone."
+      }
+    ],
+    "modes": ["Network-policy profile configuration"],
+    "usageSummary": "Use the network-policy profile global configuration command to create a profile and to enter network-policy profile configuration mode.  The voice application type is for dedicated IP telephones and similar devices that support interactive voice services.  These devices are typically deployed on a separate VLAN for ease of deployment and enhanced security through isolation from data applications.",
+    "sourcePage": 117,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  }
+]
