@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-07-03
+
 ### Added
 
 - **Flush-left block recovery**: a block typed without indentation (e.g. `interface X`
@@ -41,6 +43,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Unit tests (`npm test`, node:test) covering the indentation scanner/formatter round-trip,
   block detection, diagnostic positions, data loading, xref index, and document symbols; run
   in CI and on packaging.
+- **Three new command-reference packs**: `cat9500-17.18` (1,312 commands, IOS XE 17.18.x),
+  `cat9500-26.x` (1,227 commands, IOS XE 26.x.x), and `cat2960x-15.2.6` (435 commands,
+  Catalyst 2960-X, classic IOS 15.2(6)E) — extracted from Cisco Command Reference PDFs via
+  `npm run extract-commands`.
 
 ### Changed
 
@@ -56,6 +62,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   own position (previously only the first, sometimes at the wrong column); a corrupt command
   data file is skipped with a logged error instead of crashing the server.
 - `server.js` split into testable `server/lib/` modules; ESLint upgraded to v10 flat config.
+- `_testing/` (real production config backups used as diagnostic ground truth) is no longer
+  git-versioned — gitignored and untracked, including its existing history.
 
 ### Removed
 
@@ -86,6 +94,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Cross-reference fixes: a LISP `prefix-list NAME` block opener counts as the
     prefix-list's definition, and in `ntp access-group peer ACL` the keyword `peer` is no
     longer mistaken for the ACL name (the ACL itself is now the reference).
+- `scripts/extract-commands.js`: the TOC running-header noise filter only matched the IOS-XE
+  `Command Reference, Cisco IOS XE` wording. Classic-IOS "Consolidated Platform Command
+  Reference" manuals (e.g. the new 2960-X pack) repeat `Command Reference, Cisco IOS
+  Release` instead, so those header lines leaked through and corrupted 13 TOC entries by
+  gluing onto the next command name. Broadened `NOISE_RE` to match the shared prefix.
 
 ## [0.5.0] - 2026-07-01
 

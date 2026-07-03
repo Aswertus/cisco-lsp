@@ -2,7 +2,7 @@
   "name": "cisco-ios-lsp",
   "displayName": "Cisco IOS/IOS-XE IntelliSense",
   "description": "Context-aware completions, hover docs, and diagnostics for Cisco IOS/IOS-XE config files.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "publisher": "Aswertus",
   "license": "MIT",
   "icon": "images/icon.png",
