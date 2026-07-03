@@ -145,6 +145,10 @@
     "format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
     "vscode:prepublish": "npm run lint && npm test && npm run build",
     "package": "vsce package",
+    "publish:vsce": "vsce publish --packagePath ./*.vsix",
+    "publish:vsce:pre-release": "vsce publish --packagePath ./*.vsix --pre-release",
+    "publish:ovsx": "ovsx publish ./*.vsix",
+    "publish:ovsx:pre-release": "ovsx publish ./*.vsix --pre-release",
     "render-icon": "node scripts/render-icon.js",
     "extract-commands": "node scripts/extract-commands.js"
   },
@@ -154,6 +158,7 @@
     "esbuild": "^0.28.1",
     "eslint": "^10.6.0",
     "globals": "^17.7.0",
+    "ovsx": "^0.10.12",
     "prettier": "^3.0.0",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",
