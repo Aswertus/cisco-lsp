@@ -52,10 +52,21 @@ indented, but some appear flush-left at column 0 in the same chapter as indented
 (e.g. `ip nhrp map  546`, `nat64 enable  641`). Requiring `^\s{2,}` silently drops these.
 
 Filter out, before applying the command-line regex: the repeated running header (containing
-`Command Reference, Cisco IOS XE`), lines that are exactly `Contents`, bare lowercase
+`Command Reference, Cisco IOS`), lines that are exactly `Contents`, bare lowercase
 roman-numeral footers (`xi`, `xii`, ...), `PART <roman>` lines, and lines starting with `•`
 (stray cross-reference bullets -- one was found leaking into the VLAN chapter's TOC region
 verbatim as `• Using the Command-Line Interface, on page`, which is not a real command).
+
+**Running-header wording varies by manual family.** IOS-XE "Command Reference" manuals
+(e.g. `cat9500-*`) repeat `Command Reference, Cisco IOS XE <release> (<platform>)`, but
+classic-IOS "Consolidated Platform Command Reference" manuals (e.g. `cat2960x-15.2.6`)
+repeat `Consolidated Platform Command Reference, Cisco IOS Release <release>
+(<platform>)` instead -- no `XE` token. The original filter regex only matched the `XE`
+form, so on the 2960-X manual these header lines fell through to the wrapped-name-fragment
+buffer (§ above) and got glued as a bogus prefix onto the next real TOC entry, corrupting
+its name so its body anchor was never found (13 commands silently lost this way on first
+extraction, until the ratio-validated re-run below caught it). `NOISE_RE` now matches the
+shared prefix `Command Reference, Cisco IOS\b`, covering both wordings.
 
 `chapterId` is derived **mechanically** from the chapter title (strip a trailing "Commands",
 lowercase, slugify) rather than a hardcoded lookup table, so a future manual's chapters

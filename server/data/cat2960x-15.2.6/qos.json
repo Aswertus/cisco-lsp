@@ -1,0 +1,794 @@
+[
+  {
+    "name": "class",
+    "context": null,
+    "detail": "Define a traffic classification match criteria for the specified class-map name.",
+    "syntax": "class {class-map-name | class-default}",
+    "noForm": "no class {class-map-name | class-default}",
+    "params": [
+      {
+        "name": "class-default",
+        "description": "Refers to a system default class that matches unclassified packets."
+      }
+    ],
+    "modes": ["Policy-map configuration"],
+    "usageSummary": "Before using the class command, you must use the policy-map global configuration command to identify the policy map and enter policy-map configuration mode.  After specifying a policy map, you can configure a policy for new classes or modify a policy for any existing classes in that policy map.  You attach the policy map to a port by using the service-policy interface configuration command.",
+    "sourcePage": 360,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "class-map",
+    "context": null,
+    "detail": "Create a class map to be used for matching packets to the class whose name you specify and to enter class-map configuration mode.",
+    "syntax": "class-map [match-any | type] class-map-name",
+    "noForm": "no class-map [match-any | type] class-map-name",
+    "params": [
+      {
+        "name": "match-any",
+        "description": "(Optional) Performs a logical-OR of the matching statements under this class map. One or more criteria must be matched."
+      },
+      {
+        "name": "type",
+        "description": "(Optional) Configures the CPL class map. class-map-name Name of the class for the class map. The class name is used for both the class map and to configure a policy for the class in the policy map."
+      }
+    ],
+    "modes": ["Global configuration", "Policy map configuration"],
+    "usageSummary": "The class-map command and its subcommands are used to define packet classification, marking, and aggregate policing as part of a globally named service policy applied on a per-port basis.  After you are in quality of service (QoS) class-map configuration mode, these configuration commands are available: • description—Describes the class map (up to 200 characters).  The show class-map privileged EXEC command displays the description and the name of the class map.",
+    "sourcePage": 362,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug qos",
+    "context": null,
+    "detail": "Enable debugging of the quality of service (QoS) software.",
+    "syntax": "debug qos {capability | command-installation-time | events | index | pre-classify | provision | service-policy | set | snmp | tunnel_marking} service-policy | set | snmp | tunnel_marking}",
+    "noForm": "no debug qos {capability | command-installation-time | events | index | pre-classify | provision |",
+    "params": [
+      {
+        "name": "capability",
+        "description": "Displays all QoS capability debug messages. command-installation-time Displays the amount of time the QoS command takes to become effective."
+      },
+      {
+        "name": "events",
+        "description": "Displays QoS MQC events."
+      },
+      {
+        "name": "index",
+        "description": "Displays class-based QoS MIB index persistency."
+      },
+      {
+        "name": "pre-classify",
+        "description": "Displays QoS pre-classify events for VPN."
+      },
+      {
+        "name": "provision",
+        "description": "Displays QoS provisions."
+      },
+      {
+        "name": "service-policy",
+        "description": "Displays QoS service policies."
+      },
+      {
+        "name": "set",
+        "description": "Displays QoS packet marking."
+      },
+      {
+        "name": "snmp",
+        "description": "Displays class-based QoS configuration and statistics information."
+      },
+      {
+        "name": "tunnel_marking",
+        "description": "Displays QoS packet tunnel marking."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug qos command is the same as the no debug qos command.  When you enable debugging on a switch stack, it is enabled only on the primary stack.  To enable debugging on a stack member, you can start a session from the primary stack by using the session switch-number privileged EXEC command, then enter the debug command at the command-line prompt of the stack member.",
+    "sourcePage": 364,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match",
+    "context": "class-map configuration",
+    "detail": "Define the match criteria to classify traffic.",
+    "syntax": "match {access-group acl-index-or-name | ip {dscp dscp-list | precedence ip-precedence-list} | protocol {arp | cdp | http | ip | ipv6}} protocol {arp | cdp | http | ip | ipv6}}",
+    "noForm": "no match {access-group acl-index-or-name | ip {dscp dscp-list | precedence ip-precedence-list} |",
+    "params": [
+      {
+        "name": "access-group",
+        "description": "Specifies the number or name of an access control list (ACL). acl-index-or-name The range is from 1 to 2799."
+      },
+      {
+        "name": "ip",
+        "description": "Sets IP specific values. • dscp dscp-list—Lists up to eight IP Differentiated Services Code Point (DSCP) values to match against incoming packets. Separate each value with a space. The range is 0 to 63. You also can enter a mnemonic name for a commonly used value. • precedence ip-precedence-list—Lists up to eight IP-precedence values to match against incoming packets. Separate each value with a space. The range is 0 to 7. You also can enter a mnemonic name for a commonly used value."
+      },
+      {
+        "name": "protocol",
+        "description": "Specifies the name of a protocol to be used as the match criteria against which packets are checked to determine if they belong to the class specified by the class map. The following protocols are supported: arp,cdp, http, ip, and ipv6."
+      }
+    ],
+    "modes": ["Class-map configuration"],
+    "usageSummary": "The match command is used to specify which fields in the incoming packets are examined to classify the packets.  Only the IP access group or the MAC access group matching to the Ether Type/Len are supported.  If you enter the class-map match-any class-map-name global configuration command, you can enter the following match commands: • match access-group name acl-name • match ip dscp dscp-list • match ip precedence ip-precedence-list You cannot enter the match access-group acl-index command.",
+    "sourcePage": 366,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos",
+    "context": null,
+    "detail": "Enable quality of service (QoS) for the entire switch.",
+    "syntax": "mls qos",
+    "noForm": "no mls qos",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "When the mls qos command is entered, QoS is enabled with the default parameters on all ports in the system.  QoS must be globally enabled to use QoS classification, policing, marking or dropping, queueing, and traffic shaping features.  You can create a policy map and attach it to a port before entering the mls qos command.",
+    "sourcePage": 368,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos aggregate-policer",
+    "context": null,
+    "detail": "Define policer parameters that can be shared by multiple classes within the same policy map.",
+    "syntax": "mls qos aggregate-policer aggregate-policer-name rate-bps burst-byte exceed-action {drop | policed-dscp-transmit}",
+    "noForm": "no mls qos aggregate-policer aggregate-policer-name rate-bps burst-byte {drop | policed-dscp-transmit}",
+    "params": [
+      {
+        "name": "aggregate-policer-name",
+        "description": "The name of the aggregate policer as referenced by the police aggregate policy-map class configuration command."
+      },
+      {
+        "name": "rate-bps",
+        "description": "The average traffic rate in bits per second (b/s). The range is 8000 to 10000000000."
+      },
+      {
+        "name": "burst-byte",
+        "description": "The normal burst size in bytes. The range is 8000 to 1000000."
+      },
+      {
+        "name": "exceed-action drop",
+        "description": "Sets the traffic rate. If the rate is exceeded, the switch drops the packet."
+      },
+      {
+        "name": "exceed-action",
+        "description": "Sets the traffic rate. If the rate is exceeded, the switch changes the"
+      },
+      {
+        "name": "policed-dscp-transmit",
+        "description": "Differentiated Services Code Point (DSCP) of the packet to that specified in the policed-DSCP map and then sends the packet."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "A policer defines a maximum permissible rate of transmission, a maximum burst size for transmissions, and an action to take if either maximum is exceeded.  Define an aggregate policer if the policer is shared with multiple classes.  Policers for a port cannot be shared with other policers for another port; traffic from two different ports cannot be aggregated for policing purposes.",
+    "sourcePage": 370,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos cos",
+    "context": null,
+    "detail": "Define the default class of service (CoS) value of a port or to assign the default CoS to all incoming packets on the port.",
+    "syntax": "mls qos cos {default-cos | override}",
+    "noForm": "no qos mls cos {default-cos | override}",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You can use the default value to assign a CoS and Differentiated Services Code Point (DSCP) value to all incoming packets that are untagged (if the incoming packet does not have a CoS value).  You also can assign a default CoS and DSCP value to all incoming packets by using the override keyword.  Use the override keyword when all incoming packets on certain ports deserve higher or lower priority than packets entering from other ports.",
+    "sourcePage": 372,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos dscp-mutation",
+    "context": null,
+    "detail": "Apply a Differentiated Services Code Point (DSCP)-to-DSCP-mutation map to a DSCP-trusted port.",
+    "syntax": "mls qos dscp-mutation dscp-mutation-name",
+    "noForm": "no mls qos dscp-mutation dscp-mutation-name",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "If two quality of service (QoS) domains have different DSCP definitions, use the DSCP-to-DSCP-mutation map to translate one set of DSCP values to match the definition of another domain.  You apply the DSCP-to-DSCP-mutation map to the receiving port (ingress mutation) at the boundary of a QoS administrative domain.  With ingress mutation, the new DSCP value overwrites the one in the packet, and QoS handles the packet with this new value.",
+    "sourcePage": 374,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos map",
+    "context": null,
+    "detail": "Define the DSCP-to-DSCP-mutation map.",
+    "syntax": "mls qos map {dscp-mutation dscp-mutation-name in-dscp to out-dscp}",
+    "noForm": "no mls qos map {dscp-mutation dscp-mutation-name in-dscp to out-dscp}",
+    "params": [
+      {
+        "name": "dscp-mutation",
+        "description": "Defines the DSCP-to-DSCP-mutation map. dscp-mutation-name in-dscp to For dscp-mutation-name, enter the mutation map name. out-dscp For in-dscp, enter up to eight DSCP values, with each value separated by a space, then enter the to keyword. For out-dscp, enter a single DSCP value. The range is 0 to 63."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "All the maps are globally defined.  The DSCP-to-DSCP-mutation map is applied to a specific port.  This example shows how to define the DSCP-to-DSCP-mutation map.",
+    "sourcePage": 376,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos queue-set output buffers",
+    "context": null,
+    "detail": "Allocate buffers to a queue set of four egress queues per port.",
+    "syntax": "mls qos queue-set output qset-id buffers allocation1 ... allocation4",
+    "noForm": "no mls qos queue-set output qset-id buffers",
+    "params": [
+      {
+        "name": "qset-id",
+        "description": "Queue set ID. Each port belongs to a queue set, which defines all the characteristics of the four egress queues per port. The range is 1 to 2."
+      },
+      {
+        "name": "allocation1 ...",
+        "description": "Buffer space allocation (percentage) for each queue (four values for queues 1 to"
+      },
+      {
+        "name": "allocation4",
+        "description": "4). For allocation1, allocation3, and allocation4, the range is 0 to 99. For allocation2, the range is 1 to 100 (including the CPU buffer). Separate each value with a space."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Specify the allocation values, and separate each with a space.  Allocate buffers according to the importance of the traffic.  For example, give a large percentage of the buffer to the queue with the highest-priority traffic.",
+    "sourcePage": 377,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos queue-set output threshold",
+    "context": null,
+    "detail": "Configure the weighted tail-drop (WTD) thresholds, to guarantee the availability of buffers, and to configure the maximum memory allocation to a queue set (four egress queues per port).",
+    "syntax": "mls qos queue-set output qset-id threshold [queue-id ] drop-threshold1 drop-threshold2 reserved-threshold maximum-threshold",
+    "noForm": "no mls qos queue-set output qset-id threshold [queue-id ]",
+    "params": [
+      {
+        "name": "qset-id",
+        "description": "Queue set ID. Each port belongs to a queue set, which defines all the characteristics of the four egress queues per port. The range is 1 to 2."
+      },
+      {
+        "name": "queue-id",
+        "description": "(Optional) The queue in the queue set on which the command is performed. The range is 1 to 4."
+      },
+      {
+        "name": "drop-threshold1",
+        "description": "Two WTD thresholds expressed as a percentage of the allocated memory of"
+      },
+      {
+        "name": "drop-threshold2",
+        "description": "the queue. The range is 1 to 3200 percent."
+      },
+      {
+        "name": "reserved-threshold",
+        "description": "The amount of memory to be guaranteed (reserved) for the queue and expressed as a percentage of the allocated memory. The range is 1 to 100 percent."
+      },
+      {
+        "name": "maximum-threshold",
+        "description": "Queue in the full condition that is enabled to get more buffers than are reserved for it. This is the maximum memory the queue can have before the packets are dropped. The range is 1 to 3200 percent."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use the mls qos queue-set output qset-id buffers global configuration command to allocate a fixed number of buffers to the four queues in a queue set.  Table 25: Default Egress Queue WTD Threshold Settings Feature Queue 1 Queue 2 Queue 3 Queue 4 WTD drop threshold 100 200 100 100 1 percent percent percent percent Consolidated Platform Command Reference, Cisco IOS Release 15. 2(6)E (Catalyst 2960-X Switches) 379 QoS mls qos queue-set output threshold Feature Queue 1 Queue 2 Queue 3 Queue 4 WTD drop threshold 100 200 100 100 2 percent percent percent percent Reserved threshold 50 percent 100 50 percent 50 percent percent Maximum threshold 400 400 400 400 percent percent percent percent The drop-threshold percentages can exceed 100 percent and can be up to the maximum (if the maximum threshold exceeds 100 percent).",
+    "sourcePage": 379,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos rewrite ip dscp",
+    "context": null,
+    "detail": "Configure the switch to change or rewrite the Differentiated Services Code Point (DSCP) field of an incoming IP packet.",
+    "syntax": "mls qos rewrite ip dscp",
+    "noForm": "no mls qos rewrite ip dscp",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "DSCP transparency affects only the DSCP field of a packet at the egress.  If DSCP transparency is enabled by using the no mls qos rewrite ip dscp command, the switch does not modify the DSCP field in the incoming packet, and the DSCP field in the outgoing packet is the same as that in the incoming packet.",
+    "sourcePage": 382,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos srr-queue output cos-map",
+    "context": null,
+    "detail": "Map class of service (CoS) values to an egress queue or to map CoS values to a queue and to a threshold ID.",
+    "syntax": "mls qos srr-queue output cos-map queue queue-id {cos1 ... cos8 | threshold threshold-id cos1 ... cos8 }",
+    "noForm": "no mls qos srr-queue output cos-map",
+    "params": [
+      {
+        "name": "queue queue-id",
+        "description": "Specifies a queue number. For queue-id, the range is 1 to 4."
+      },
+      {
+        "name": "cos1 ... cos8",
+        "description": "CoS values that are mapped to an egress queue. For cos1...cos8, enter up to eight values, and separate each value with a space. The range is 0 to 7."
+      },
+      {
+        "name": "threshold threshold-id",
+        "description": "Maps CoS values to a queue threshold ID. cos1...cos8 For threshold-id, the range is 1 to 3. For cos1...cos8, enter up to eight values, and separate each value with a space. The range is 0 to 7."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The drop-threshold percentage for threshold 3 is predefined.  It is set to the queue-full state.",
+    "sourcePage": 384,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos srr-queue output dscp-map",
+    "context": null,
+    "detail": "Map Differentiated Services Code Point (DSCP) values to an egress queue or to map DSCP values to a queue and to a threshold ID.",
+    "syntax": "mls qos srr-queue output dscp-map queue queue-id { dscp1 ... dscp8 | threshold threshold-id dscp1 ... dscp8 }",
+    "noForm": "no mls qos srr-queue output dscp-map",
+    "params": [
+      {
+        "name": "queue queue-id",
+        "description": "Specifies a queue number. For queue-id, the range is 1 to 4."
+      },
+      {
+        "name": "dscp1 ... dscp8",
+        "description": "DSCP values that are mapped to an egress queue. For dscp1...dscp8, enter up to eight values, and separate each value with a space. The range is 0 to 63."
+      },
+      {
+        "name": "threshold threshold-id",
+        "description": "Maps DSCP values to a queue threshold ID. dscp1...dscp8 For threshold-id, the range is 1 to 3. For dscp1...dscp8, enter up to eight values, and separate each value with a space. The range is 0 to 63."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The drop-threshold percentage for threshold 3 is predefined.  It is set to the queue-full state.  For default DSCP output queue-threshold map values, see Table 27: Default DSCP Output Queue Threshold Map, on page 387.",
+    "sourcePage": 386,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos trust",
+    "context": null,
+    "detail": "Configure the port trust state.",
+    "syntax": "mls qos trust [{cos | device {cisco-phone | cts | ip-camera | media-player} | dscp | ip-precedence}]",
+    "noForm": "no mls qos trust [{cos | device {cisco-phone | cts | ip-camera | media-player} | dscp | ip-precedence}]",
+    "params": [
+      {
+        "name": "cos",
+        "description": "(Optional) Classifies an ingress packet by using the packet CoS value. For an untagged packet, use the port default CoS value."
+      },
+      {
+        "name": "device cisco-phone",
+        "description": "(Optional) Classifies an ingress packet by trusting the CoS or DSCP value sent from the Cisco IP Phone (trusted boundary), depending on the trust setting. device {cts | ip-camera (Optional) Classifies an ingress packet by trusting the CoS or DSCP value for these"
+      },
+      {
+        "name": "| media-player}",
+        "description": "video devices: • cts—Cisco TelePresence System • ip-camera—Cisco IP camera • media-player—Cisco digital media player For an untagged packet, use the port default CoS value."
+      },
+      {
+        "name": "dscp",
+        "description": "(Optional) Classifies an ingress packet by using the packet DSCP value (most significant 6 bits of 8-bit service-type field). For a non-IP packet, the packet CoS is used if the packet is tagged. For an untagged packet, the default port CoS value is used."
+      },
+      {
+        "name": "ip-precedence",
+        "description": "(Optional) Classifies an ingress packet by using the packet IP-precedence value (most significant 3 bits of 8-bit service-type field). For a non-IP packet, the packet CoS is used if the packet is tagged. For an untagged packet, the port default CoS value is used."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Packets entering a quality of service (QoS) domain are classified at the edge of the domain.  When the packets are classified at the edge, the switch port within the QoS domain can be configured to one of the trusted states because there is no need to classify the packets at every switch within the domain.  Use this command to specify whether the port is trusted and which fields of the packet to use to classify traffic.",
+    "sourcePage": 388,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "police",
+    "context": null,
+    "detail": "Define a policer for classified traffic.",
+    "syntax": "police rate-bps burst-byte [exceed-action [drop | policed-dscp-transmit ]]",
+    "noForm": "no police rate-bps burst-byte [exceed-action [drop | policed-dscp-transmit ]]",
+    "params": [
+      {
+        "name": "rate-bps",
+        "description": "Specifies the average traffic rate in bits per second (b/s). The range is 8000 to 10000000000."
+      },
+      {
+        "name": "burst-byte",
+        "description": "Specifies the normal burst size in bytes. The range is 8000 to 1000000."
+      },
+      {
+        "name": "exceed-action drop",
+        "description": "(Optional) Sets the traffic rate. If the rate is exceeded, the switch drops the packet ."
+      },
+      {
+        "name": "exceed-action",
+        "description": "(Optional) Sets the traffic rate. If the rate is exceeded, the switch changes"
+      },
+      {
+        "name": "policed-dscp-transmit",
+        "description": "the Differentiated Services Code Point (DSCP) of the packet to that specified in the policed-DSCP map and then sends the packet."
+      },
+      {
+        "name": "aggregate",
+        "description": "Chooses the aggregate policer for the current class."
+      }
+    ],
+    "modes": ["Policy-map class configuration"],
+    "usageSummary": "A policer defines a maximum permissible rate of transmission, a maximum burst size for transmissions, and an action to take if either maximum is exceeded.  The port ASIC device, which controls more than one physical port, supports 256 policers on the switch (255 user-configurable policers plus 1 policer reserved for internal use).  The maximum number of configurable policers supported per port is 63.",
+    "sourcePage": 390,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "police aggregate",
+    "context": null,
+    "detail": "Apply an aggregate policer to multiple classes in the same policy map.",
+    "syntax": "police aggregate aggregate-policer-name",
+    "noForm": "no police aggregate aggregate-policer-name",
+    "params": [
+      {
+        "name": "aggregate-policer-name",
+        "description": "The name of the aggregate policer."
+      }
+    ],
+    "modes": ["Policy-map class configuration"],
+    "usageSummary": "A policer defines a maximum permissible rate of transmission, a maximum burst size for transmissions, and an action to take if either maximum is exceeded.  The port ASIC device, which controls more than one physical port, supports 256 policers on the switch (255 user-configurable policers plus 1 policer reserved for internal use).  The maximum number of configurable policers supported per port is 63.",
+    "sourcePage": 392,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "policy map",
+    "context": null,
+    "detail": "Create or modify a policy map that can be attached to multiple physical ports and to enter policy-map configuration mode.",
+    "syntax": "policy-map policy-map-name",
+    "noForm": "no policy-map policy-map-name",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "After entering the policy-map command, you enter policy-map configuration mode, and these configuration commands are available: • class—Defines the classification match criteria for the specified class map.  • description—Describes the policy map (up to 200 characters).  • exit—Exits policy-map configuration mode and returns you to global configuration mode.",
+    "sourcePage": 394,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "queue-set",
+    "context": null,
+    "detail": "Map a port to a queue set.",
+    "syntax": "queue-set qset-id",
+    "noForm": "no queue-set qset-id",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "For information about automatic generation of the queue-set ID with the auto qos voip command, see the “Usage Guidelines” section for the auto qos voip, on page 346 command.",
+    "sourcePage": 396,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "service-policy",
+    "context": null,
+    "detail": "Apply a policy map to the input of a physical port.",
+    "syntax": "service-policy {input | output} policy-map-name",
+    "noForm": "no service-policy {input | output} policy-map-name",
+    "params": [
+      {
+        "name": "input",
+        "description": "Applies the specified policy map to the input of a physical port. policy-map-name"
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Though visible in the command-line help strings, the output keyword is not supported.  Policy maps can be configured on physical ports.  A policy map is defined by the policy map command.",
+    "sourcePage": 397,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "set",
+    "context": null,
+    "detail": "Classify IP traffic by setting a Differentiated Services Code Point (DSCP) or an IP-precedence value in the packet.",
+    "syntax": "set {dscp new-dscp | ip {dscp | precedence} | precedence precedence}",
+    "noForm": "no set {dscp new-dscp | ip {dscp | precedence} | precedence precedence}",
+    "params": [
+      {
+        "name": "dscp new-dscp",
+        "description": "Sets the DSCP value in IPv4 and IPv6 packets. The range is 0 to 63. ip {dscp | precedence } Sets the IP values. • dscp—Sets the IP DSCP value. • precedence—Sets the IP precedence value. precedence new-precedence Sets the precedence in IPv4 and IPv6 packets. The range is 0 to 7."
+      }
+    ],
+    "modes": ["Policy-map class configuration"],
+    "usageSummary": "If you have used the set ip dscp policy-map class configuration command, the device changes this command to set dscp in the device configuration.  If you enter the set ip dscp policy-map class configuration command, this setting appears as set dscp in the device configuration.  You can use the set ip precedence policy-map class configuration command or the set precedence policy-map class configuration command.",
+    "sourcePage": 398,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show class-map",
+    "context": null,
+    "detail": "Display quality of service (QoS) class maps, which define the match criteria to classify traffic.",
+    "syntax": "show class-map [class-map-name | type control subscriber {all | class-map-name}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "class-map-name",
+        "description": "(Optional) Class map name. type control subscriber (Optional) Displays information about control class maps."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Displays information about all control class maps."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "This command is supported only on the LAN Base image.",
+    "sourcePage": 400,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mls qos",
+    "context": null,
+    "detail": "Display global quality of service (QoS) configuration information.",
+    "syntax": "show mls qos",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 401,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mls qos aggregate-policer",
+    "context": null,
+    "detail": "Display the quality of service (QoS) aggregate policer configuration.",
+    "syntax": "show mls qos aggregate-policer [aggregate-policer-name]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "aggregate-policer-name",
+        "description": "(Optional) Displays the policer configuration for the specified name."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "A policer defines a maximum permissible rate of transmission, a maximum burst size for transmissions, and an action to take if either maximum is exceeded.  This command is supported only on the LAN Base image.",
+    "sourcePage": 402,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mls qos interface",
+    "context": null,
+    "detail": "Display quality of service (QoS) information at the port level.",
+    "syntax": "show mls qos interface [interface-id] [{buffers | queueing | statistics}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) The QoS information for the specified port. Valid interfaces include physical ports."
+      },
+      {
+        "name": "buffers",
+        "description": "(Optional) Displays the buffer allocation among the queues."
+      },
+      {
+        "name": "queueing",
+        "description": "(Optional) Displays the queueing strategy (shared or shaped) and the weights corresponding to the queues."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays statistics for sent and received Differentiated Services Code Points (DSCPs) and class of service (CoS) values, the number of packets enqueued or dropped per egress queue, and the number of in-profile and out-of-profile packets for each policer."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Though visible in the command-line help string, the policers keyword is not supported.  This command is supported only on the LAN Base image.",
+    "sourcePage": 403,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mls qos maps",
+    "context": null,
+    "detail": "Display quality of service (QoS) mapping information.",
+    "syntax": "show mls qos maps [{cos-dscp | cos-output-q | dscp-cos | dscp-mutation dscp-mutation-name | dscp-output-q | ip-prec-dscp | policed-dscp}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "cos-dscp",
+        "description": "(Optional) Displays class of service (CoS)-to-DSCP map."
+      },
+      {
+        "name": "cos-output-q",
+        "description": "(Optional) Displays the CoS output queue threshold map."
+      },
+      {
+        "name": "dscp-cos",
+        "description": "(Optional) Displays DSCP-to-CoS map. dscp-mutation dscp-mutation-name (Optional) Displays the specified DSCP-to-DSCP-mutation map."
+      },
+      {
+        "name": "dscp-output-q",
+        "description": "(Optional) Displays the DSCP output queue threshold map."
+      },
+      {
+        "name": "ip-prec-dscp",
+        "description": "(Optional) Displays the IP-precedence-to-DSCP map."
+      },
+      {
+        "name": "policed-dscp",
+        "description": "(Optional) Displays the policed-DSCP map."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "During classification, QoS uses the mapping tables to represent the priority of the traffic and to derive a corresponding class of service (CoS) or Differentiated Services Code Point (DSCP) value from the received CoS, DSCP, or IP precedence value.  The policed-DSCP, DSCP-to-CoS, and the DSCP-to-DSCP-mutation maps appear as a matrix.  The d1 column specifies the most-significant digit in the DSCP.",
+    "sourcePage": 407,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mls qos queue-set",
+    "context": null,
+    "detail": "Display quality of service (QoS) settings for the egress queues.",
+    "syntax": "show mls qos queue-set [gset-id]",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 410,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show policy-map",
+    "context": null,
+    "detail": "Display quality of service (QoS) policy maps, which define classification criteria for incoming traffic.",
+    "syntax": "show policy-map [ policy-map-name ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "policy-map-name",
+        "description": "(Optional) The policy map name."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Policy maps can include policers that specify the bandwidth limitations and the action to take if the limits are exceeded.",
+    "sourcePage": 411,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "srr-queue bandwidth limit",
+    "context": null,
+    "detail": "Limit the maximum output on a port.",
+    "syntax": "srr-queue bandwidth limit weight1",
+    "noForm": "no srr-queue bandwidth limit",
+    "params": [
+      {
+        "name": "weight1",
+        "description": "The port speed limit in percentage terms. The range is 10 to 90."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "If you configure this command to 80 percent, the port is idle 20 percent of the time.  The line rate drops to 80 percent of the connected speed.  These values are not exact because the hardware adjusts the line rate in increments of six.",
+    "sourcePage": 412,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "srr-queue bandwidth shape",
+    "context": null,
+    "detail": "Assign the shaped weights and to enable bandwidth shaping on the four egress queues mapped to a port.",
+    "syntax": "srr-queue bandwidth shape weight1 weight2 weight3 weight4",
+    "noForm": "no srr-queue bandwidth shape",
+    "params": [
+      {
+        "name": "weight1 weight2 weight3",
+        "description": "The weights that specify the percentage of the port that is shaped. The inverse"
+      },
+      {
+        "name": "weight4",
+        "description": "ratio (1/weight) specifies the shaping bandwidth for this queue. Separate each value with a space. The range is 0 to 65535."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "In shaped mode, the queues are guaranteed a percentage of the bandwidth, and they are rate-limited to that amount.  Shaped traffic does not use more than the allocated bandwidth even if the link is idle.  Use shaping to smooth bursty traffic or to provide a smoother output over time.",
+    "sourcePage": 414,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "srr-queue bandwidth share",
+    "context": null,
+    "detail": "Assign the shared weights and to enable bandwidth sharing on the four egress queues mapped to a port.",
+    "syntax": "srr-queue bandwidth share weight1 weight2 weight3 weight4",
+    "noForm": "no srr-queue bandwidth share",
+    "params": [
+      {
+        "name": "weight1 weight2 weight3",
+        "description": "The ratios of weight1, weight2, weight3, and weight4 specify the ratio of"
+      },
+      {
+        "name": "weight4",
+        "description": "the frequency in which the SRR scheduler dequeues packets. Separate each value with a space. The range is 1 to 255."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The ratio of the weights is the ratio of frequency in which the shaped round-robin (SRR) scheduler dequeues packets from each queue.  The absolute value of each weight is meaningless, and only the ratio of parameters is used.  In shared mode, the queues share the bandwidth among them according to the configured weights.",
+    "sourcePage": 416,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "trust",
+    "context": null,
+    "detail": "Define a trust state for traffic classified through the class policy-map configuration or the class-map global configuration command.",
+    "syntax": "trust [{cos | dscp | ip-precedence}]",
+    "noForm": "no trust [{cos | dscp | ip-precedence}]",
+    "params": [
+      {
+        "name": "cos",
+        "description": "(Optional) Classifies an ingress packet by using the packet class of service (CoS) value. For an untagged packet, the port default CoS value is used."
+      },
+      {
+        "name": "dscp",
+        "description": "(Optional) Classifies an ingress packet by using the packet Differentiated Services Code Point (DSCP) values (most significant 6 bits of 8-bit service-type field). For a non-IP packet, the packet CoS value is used if the packet is tagged. If the packet is untagged, the default port CoS value is used to map CoS to DSCP. ip-precedence (Optional) Classifies an ingress packet by using the packet IP-precedence value (most significant 3 bits of 8-bit service-type field). For a non-IP packet, the packet CoS value is used if the packet is tagged. If the packet is untagged, the port default CoS value is used to map CoS to DSCP."
+      }
+    ],
+    "modes": ["Policy-map class configuration"],
+    "usageSummary": "Use this command to distinguish the quality of service (QoS) trust behavior for certain traffic from other traffic.  For example, incoming traffic with certain DSCP values can be trusted.  You can configure a class map to match and trust the DSCP values in the incoming traffic.",
+    "sourcePage": 418,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  }
+]

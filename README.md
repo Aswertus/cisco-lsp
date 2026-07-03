@@ -3,8 +3,9 @@
 VS Code extension — Cisco IOS/IOS-XE IntelliSense via Language Server Protocol.
 
 Adds **context-aware completions**, **hover documentation**, **real-time diagnostics**,
-**syntax highlighting**, and an **outline panel** to Cisco config files — all bundled, no
-other extension required.
+**go-to-definition / references / rename** for named objects, **format on save**, **code
+folding**, **syntax highlighting**, and an **outline panel** to Cisco config files — all
+bundled, no other extension required.
 
 Syntax highlighting and the outline feature are adapted from
 [`Y-Ysss.cisco-config-highlight`](https://marketplace.visualstudio.com/items?itemName=Y-Ysss.cisco-config-highlight)
@@ -19,9 +20,13 @@ compatible with that extension, its themes, and token-color customizations. See 
 
 | Capability      | Detail                                                                                                                                                                            |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Completions** | Auto-triggered, block-aware: completions change depending on whether the cursor is inside an `interface`, `router bgp`, `class-map`, `policy-map`, `line vty`, or at global level |
+| **Completions** | Auto-triggered, block-aware: completions change depending on whether the cursor is inside an `interface`, `router bgp`, `class-map`, `policy-map`, `line vty`, `vrf definition`, `vlan`, or another recognised block, or at global level. Also work after a leading `no `, and accepting a multiword command replaces everything you typed of it |
 | **Hover docs**  | Syntax reminders for known keywords — e.g. hover `dot1x` → `dot1x pae { authenticator \| supplicant \| both }`                                                                    |
-| **Diagnostics** | Squiggly errors on unknown top-level commands, invalid interface names, VLAN numbers outside 1–4094, and malformed IP addresses                                                   |
+| **Diagnostics** | Squiggly errors on unknown top-level commands, invalid interface names, VLAN numbers outside 1–4094, malformed IP addresses, inconsistent indentation, mixed tabs/spaces, and un-indented block children (a sub-command typed at column 0 right under `interface X`, `vrf definition Y`, ... is flagged when the command is documented for that block's mode). Cross-reference checks: referencing an undefined class-map/policy-map/ACL/route-map/prefix-list/VRF warns; defining one that is never referenced hints. Free text — banner bodies (`banner login ^C ... ^C`) and certificate hex payloads (`certificate ... quit`) — is never flagged |
+| **Definition / References / Rename** | F12 / Shift+F12 / F2 on a class-map, policy-map, ACL, route-map, prefix-list, or VRF name jumps between its definition and every place it is applied (`service-policy`, `access-group`, `vrf forwarding`, `match ...`, ...), or renames all of them at once |
+| **Format on save** | Fixes exactly what the indentation diagnostics flag — a sub-command whose indent disagrees with its siblings, a line with tabs mixed into its indentation, or an un-indented block child (indented to the file's own indent width, IOS-native 1 space by default) — when the file is saved. Also available manually via **Format Document** (Shift+Alt+F). On by default for `cisco` files; toggle with the standard per-language `editor.formatOnSave` setting |
+| **Auto-indent** (experimental) | Pressing Enter after a block-opening command (`interface X`, `vrf definition Y`, `line vty 0 4`, ...) starts the next line indented by 1 space (the `[cisco]` editor default). Off by default — enable with `cisco-ios-lsp.experimental.autoIndent` |
+| **Folding**     | Every indented config block folds, spanning `!` separators — works with sticky scroll and the folding controls in the gutter                                                        |
 
 ---
 
@@ -29,13 +34,14 @@ compatible with that extension, its themes, and token-color customizations. See 
 
 ```
 VS Code (UI)
-  └─ LSP client  (client/extension.js)
-       └─ spawns server/server.js as a child process
+  └─ LSP client  (dist/client.js — bundled from client/)
+       └─ spawns dist/server.js (bundled from server/) as a child process
             ↕ JSON-RPC over stdio
 ```
 
-VS Code starts `server.js` when a `cisco`-language file opens and kills it on exit.
-No daemon, no network, no always-on process.
+VS Code starts the server when a `cisco`-language file opens and kills it on exit.
+No daemon, no network, no always-on process. Client and server are bundled with esbuild
+into single files, and the command data ships as one merged JSON, so activation stays fast.
 
 ---
 
@@ -88,7 +94,8 @@ one of the two extensions is the only deterministic switch.
 ## Outline panel
 
 Enable `cisco-ios-lsp.outline.showSymbolsInOutlinePanel` (default off) to show config structure
-in the Outline view and breadcrumbs:
+in the Outline view and breadcrumbs. Symbols are served by the language server and span their
+whole block, so breadcrumbs and sticky scroll track the block your cursor is in:
 
 - Prompt commands (`hostname#`, `hostname>`)
 - VRF declarations (`ip vrf <name>`)
@@ -168,8 +175,9 @@ npm install
 npm run package        # → cisco-ios-lsp-<version>.vsix in the repo root
 ```
 
-The production dependencies are bundled into the `.vsix`, so it runs on any machine with
-VS Code — no separate `npm install` on the coworker's side.
+`npm run package` lints, tests, and bundles client + server into `dist/` (esbuild) before
+packaging, so the `.vsix` is fully self-contained — no separate `npm install` on the
+coworker's side.
 
 ---
 
@@ -203,13 +211,15 @@ effect on reload (no rebuild needed):
 ```bash
 cd /home/matthias/cisco-lsp
 npm install
+npm run build          # or: npm run watch (rebuilds on every change)
 ln -sf /home/matthias/cisco-lsp ~/.vscode-server/extensions/cisco-ios-lsp
 ```
 
 Then in VS Code: `Ctrl+Shift+P` → **Developer: Reload Window**.
 
-The symlink points VS Code Server at the live repo — edits to `server.js` take effect
-after a window reload (no compile step; plain Node.js).
+The symlink points VS Code Server at the live repo. VS Code loads the bundled `dist/`
+output, so after editing `client/` or `server/` run `npm run build` (or keep `npm run
+watch` running) and reload the window.
 
 ---
 
@@ -232,18 +242,33 @@ After installing:
 6. Hover over `dot1x` → syntax reminder popup.
 7. Type `interfacs ` (deliberate typo) → red squiggle diagnostic.
 8. Type `vlan 5000` → out-of-range VLAN diagnostic.
-9. Confirm syntax highlighting (keywords, addresses, comments) appears without any other
-   extension installed.
-10. Enable `cisco-ios-lsp.outline.showSymbolsInOutlinePanel`, add a `router bgp 65000` and an
+9. Inside an `interface` block, indent one sub-command differently from its siblings (e.g. 1
+   space vs. 2) → inconsistent-indentation diagnostic. Mix a tab into a line's leading
+   whitespace → mixed tabs/spaces diagnostic.
+10. Type three lines — `interface GigabitEthernet0/1`, `  description X` (2 spaces), then
+    ` ip address 1.2.3.4 255.255.255.0` (1 space) — save → the `ip address` line snaps to 2
+    spaces to match its sibling. Save again → no further change (idempotent). Save a file with
+    no indentation issues → byte-identical after save.
+11. Confirm syntax highlighting (keywords, addresses, comments) appears without any other
+    extension installed.
+12. Enable `cisco-ios-lsp.outline.showSymbolsInOutlinePanel`, add a `router bgp 65000` and an
     `interface GigabitEthernet0/1` block → Outline panel shows both as nested entries.
-11. Delete `test.cfg` when done.
+13. Add `class-map match-any VOICE` + a `policy-map PM` containing ` class VOICE`, then
+    `service-policy output PM` on an interface → F12 on `PM` jumps to the policy-map,
+    Shift+F12 lists both places, F2 renames all of them. `service-policy output TYPO` gets an
+    undefined-reference warning.
+14. Click the folding arrow next to an `interface` header → the whole block folds.
+15. Delete `test.cfg` when done.
 
 ---
 
 ## Development
 
 ```bash
-npm run lint      # ESLint (eslint:recommended, Node env)
+npm run build     # bundle client+server into dist/ (esbuild) + merge command data
+npm run watch     # same, rebuilding on every source change
+npm test          # unit tests (node:test — no framework dependency)
+npm run lint      # ESLint (flat config, @eslint/js recommended, Node globals)
 npm run format    # Prettier (printWidth 100, single quotes)
 ```
 

@@ -2,7 +2,7 @@
   "name": "cisco-ios-lsp",
   "displayName": "Cisco IOS/IOS-XE IntelliSense",
   "description": "Context-aware completions, hover docs, and diagnostics for Cisco IOS/IOS-XE config files.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "publisher": "Aswertus",
   "license": "MIT",
   "icon": "images/icon.png",
@@ -24,10 +24,7 @@
     "lsp",
     "intellisense"
   ],
-  "activationEvents": [
-    "onLanguage:cisco"
-  ],
-  "main": "./client/extension.js",
+  "main": "./dist/client.js",
   "contributes": {
     "languages": [
       {
@@ -59,6 +56,14 @@
           "type": "boolean",
           "default": true,
           "description": "On startup, check GitHub Releases for a newer version and notify if one is available. Inactive while the repository is private."
+        },
+        "cisco-ios-lsp.experimental.autoIndent": {
+          "type": "boolean",
+          "default": false,
+          "tags": [
+            "experimental"
+          ],
+          "description": "Experimental: pressing Enter after a block-opening command (interface X, vrf definition Y, ...) starts the next line indented. Takes effect immediately when toggled."
         },
         "cisco-ios-lsp.outline.showSymbolsInOutlinePanel": {
           "type": "boolean",
@@ -123,24 +128,35 @@
           "description": "Per-category toggle for which symbols appear in the outline."
         }
       }
+    },
+    "configurationDefaults": {
+      "[cisco]": {
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 1
+      }
     }
   },
   "scripts": {
-    "lint": "eslint client server",
+    "build": "node scripts/build.js",
+    "watch": "node scripts/build.js --watch",
+    "lint": "eslint client server test",
+    "test": "node --test",
     "format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
-    "vscode:prepublish": "npm run lint",
+    "vscode:prepublish": "npm run lint && npm test && npm run build",
     "package": "vsce package",
     "render-icon": "node scripts/render-icon.js",
     "extract-commands": "node scripts/extract-commands.js"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.28.1",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
+    "prettier": "^3.0.0",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.12"
-  },
-  "devDependencies": {
-    "@vscode/vsce": "^3.0.0",
-    "eslint": "^8.57.0",
-    "prettier": "^3.0.0"
   }
 }

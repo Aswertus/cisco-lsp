@@ -4,12 +4,14 @@ const vscode = require('vscode');
 const https = require('https');
 const path = require('path');
 const { LanguageClient, TransportKind } = require('vscode-languageclient/node');
-const { registerOutlineSymbolProvider } = require('./registerOutlineSymbol');
+const { parseRepo, isNewer } = require('./version');
 
 let client;
 
 function activate(context) {
-  const serverModule = context.asAbsolutePath(path.join('server', 'server.js'));
+  // Both dev and packaged runs load the built output — `main` points at
+  // dist/client.js, so the sibling dist/server.js is always present.
+  const serverModule = context.asAbsolutePath(path.join('dist', 'server.js'));
 
   client = new LanguageClient(
     'cisco-ios-lsp',
@@ -24,7 +26,18 @@ function activate(context) {
   );
 
   client.start();
-  registerOutlineSymbolProvider(context);
+
+  // Format-on-save comes from the `configurationDefaults` contribution in
+  // package.json ("[cisco]": { "editor.formatOnSave": true }) — VS Code runs
+  // our documentFormattingProvider itself; no save hook needed here.
+
+  syncAutoIndent();
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration('cisco-ios-lsp.experimental.autoIndent')) syncAutoIndent();
+    }),
+    { dispose: () => autoIndentDisposable?.dispose() },
+  );
 
   // Fire-and-forget: never let an update check disrupt activation.
   checkForUpdates(context).catch(() => {});
@@ -32,6 +45,36 @@ function activate(context) {
 
 function deactivate() {
   return client?.stop();
+}
+
+// ---------------------------------------------------------------------------
+// Auto-indent on Enter (experimental, off by default)
+//
+// Enter after a block-opening command starts the next line indented by 1
+// space (the [cisco] editor default). Gated behind the experimental
+// cisco-ios-lsp.experimental.autoIndent setting, so the rules are applied
+// dynamically here rather than statically in language-configuration.json.
+// KEEP THE PATTERN IN SYNC with the BLOCK_OPENERS table in
+// server/lib/blocks.js (see CLAUDE.md, "Adding a New Block Type").
+// ---------------------------------------------------------------------------
+
+const INCREASE_INDENT_PATTERN =
+  /^\s*(?:interface |router |line |class-map|policy-map|vrf definition |vlan \d|flow (?:record|exporter|monitor) |service-template |template |route-map |ip access-list (?:standard|extended) |ipv6 access-list |aaa group server |key chain |radius server |tacacs server |device-tracking policy |crypto map |call-home$|control-plane|crypto pki (?:trustpoint|certificate chain) |telemetry (?:ietf subscription|receiver protocol|transform) |transceiver type |aaa server radius dynamic-author).*$/;
+
+let autoIndentDisposable;
+
+function syncAutoIndent() {
+  const enabled = vscode.workspace
+    .getConfiguration('cisco-ios-lsp')
+    .get('experimental.autoIndent', false);
+  if (enabled && !autoIndentDisposable) {
+    autoIndentDisposable = vscode.languages.setLanguageConfiguration('cisco', {
+      indentationRules: { increaseIndentPattern: INCREASE_INDENT_PATTERN },
+    });
+  } else if (!enabled && autoIndentDisposable) {
+    autoIndentDisposable.dispose();
+    autoIndentDisposable = undefined;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -51,6 +94,9 @@ async function checkForUpdates(context) {
 
   const last = context.globalState.get('lastUpdateCheck', 0);
   if (Date.now() - last < CHECK_INTERVAL_MS) return;
+  // Recorded before the request on purpose: a failed check (offline, repo
+  // private) also waits out the interval instead of retrying the network on
+  // every window reload.
   await context.globalState.update('lastUpdateCheck', Date.now());
 
   const pkg = context.extension.packageJSON;
@@ -79,11 +125,6 @@ async function checkForUpdates(context) {
   } else if (choice === mute) {
     await config.update('checkForUpdates', false, vscode.ConfigurationTarget.Global);
   }
-}
-
-function parseRepo(repoUrl) {
-  const m = /github\.com[/:]([^/]+)\/([^/.]+)/.exec(repoUrl || '');
-  return m ? { owner: m[1], repo: m[2] } : { owner: 'Aswertus', repo: 'cisco-lsp' };
 }
 
 function fetchLatestRelease(owner, repo) {
@@ -120,25 +161,6 @@ function fetchLatestRelease(owner, repo) {
       resolve(null);
     });
   });
-}
-
-// Returns true if version `a` is strictly greater than `b` (semver-lite:
-// numeric major.minor.patch, any "-prerelease" suffix ignored).
-function isNewer(a, b) {
-  const parse = (v) =>
-    String(v)
-      .split('-')[0]
-      .split('.')
-      .map((n) => parseInt(n, 10) || 0);
-  const pa = parse(a);
-  const pb = parse(b);
-  for (let i = 0; i < 3; i++) {
-    const x = pa[i] || 0;
-    const y = pb[i] || 0;
-    if (x > y) return true;
-    if (x < y) return false;
-  }
-  return false;
 }
 
 module.exports = { activate, deactivate };

@@ -93,7 +93,7 @@ console.log(`Extracted ${lines.length} lines of text.`);
 // 2. Locate and parse the master Table of Contents
 // ---------------------------------------------------------------------------
 
-const NOISE_RE = /Command Reference, Cisco IOS XE/;
+const NOISE_RE = /Command Reference, Cisco IOS\b/;
 const PART_RE = /^PART\s+[IVXLCDM]+\s+.*\s+\d+\s*$/;
 const CHAPTER_RE = /^CHAPTER\s+\d+\s+(.*?)\s+\d+\s*$/;
 const ROMAN_FOOTER_RE = /^[ivxlcdm]+$/;

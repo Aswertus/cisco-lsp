@@ -1,22 +1,34 @@
 'use strict';
 
+// LSP wiring only — the actual logic lives in server/lib/ so it can be
+// unit-tested without spinning up a connection:
+//   lib/data.js         command data loading + derived indexes
+//   lib/blocks.js       configuration-block detection for completions
+//   lib/indentation.js  shared indentation scan (diagnostics + formatter)
+//   lib/diagnostics.js  all per-file checks
+//   lib/docs.js         hover / completion-resolve Markdown
+
 const {
   createConnection,
   TextDocuments,
   ProposedFeatures,
   CompletionItemKind,
-  DiagnosticSeverity,
   TextDocumentSyncKind,
   MarkupKind,
 } = require('vscode-languageserver/node');
 const { TextDocument } = require('vscode-languageserver-textdocument');
-const fs = require('fs');
 const path = require('path');
+
+const { buildData } = require('./lib/data');
+const { detectBlock, openerBlockType } = require('./lib/blocks');
+const { computeDiagnostics } = require('./lib/diagnostics');
+const { computeFormattingEdits, computeFoldingRanges } = require('./lib/indentation');
+const { buildDocMarkdown, findHoverRecords } = require('./lib/docs');
+const { buildXrefIndex, findAtPosition, computeXrefDiagnostics } = require('./lib/xref');
+const { buildDocumentSymbols } = require('./lib/symbols');
 
 const connection = createConnection(ProposedFeatures.all);
 const documents = new TextDocuments(TextDocument);
-
-const K = CompletionItemKind;
 
 // Interface types — offered after typing `interface ` and at slot completion.
 const INTERFACE_TYPES = [
@@ -32,349 +44,150 @@ const INTERFACE_TYPES = [
   { label: 'Vlan', detail: 'logical — switched virtual interface (SVI)' },
 ];
 
-// Valid IOS-XE interface type names (lower-cased), incl. common abbreviations.
-const VALID_INTERFACE_TYPES = [
-  'gigabitethernet',
-  'gi',
-  'gig',
-  'fastethernet',
-  'fa',
-  'tengigabitethernet',
-  'te',
-  'ten',
-  'twentyfivegige',
-  'twe',
-  'fortygigabitethernet',
-  'fo',
-  'fou',
-  'hundredgige',
-  'hu',
-  'port-channel',
-  'po',
-  'tunnel',
-  'tu',
-  'loopback',
-  'lo',
-  'vlan',
-  'bdi',
-  'serial',
-  'se',
-  'ethernet',
-  'eth',
-  'e',
-  'cellular',
-  'async',
-  'dialer',
-  'virtual-template',
-  'multilink',
-  'pseudowire',
-  'nve',
-  'appgigabitethernet',
-];
+const INTERFACE_TYPE_ITEMS = INTERFACE_TYPES.map((e) => ({
+  label: e.label,
+  kind: CompletionItemKind.Class,
+  detail: e.detail,
+}));
 
 // ---------------------------------------------------------------------------
-// Command data — loaded from server/data/<packId>/*.json (PDF-derived, see
-// scripts/extract-commands.js and scripts/EXTRACTION_NOTES.md) plus
-// server/data/curated/curated.json (hand-maintained; see the reconciliation
-// notes in that Phase's commit for why each entry stays hand-written).
-// ---------------------------------------------------------------------------
-
-const DATA_DIR = path.join(__dirname, 'data');
-
-function loadAllCommands() {
-  const commands = [];
-  for (const entry of fs.readdirSync(DATA_DIR, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const packDir = path.join(DATA_DIR, entry.name);
-    for (const file of fs.readdirSync(packDir)) {
-      if (!file.endsWith('.json')) continue;
-      const records = JSON.parse(fs.readFileSync(path.join(packDir, file), 'utf8'));
-      commands.push(...records);
-    }
-  }
-  return commands;
-}
-
-const ALL_COMMANDS = loadAllCommands();
-
-// Which contextual completion bucket a command belongs to, derived from its
-// `modes` text (the PDF's "Command Modes" field, or a hand-assigned
-// equivalent for curated entries). EXEC-mode commands (show/clear/debug) are
-// ~40% of the PDF corpus -- too large to fold into `global` without mixing
-// two mutually-exclusive contexts (you're either at a `#` EXEC prompt or a
-// `(config)#` prompt, never both) -- so they get their own bucket. VRF and
-// route-map modes were checked too and are vanishingly rare (well under 1%
-// of commands), not worth dedicated buckets; they fall through to `global`.
-function classifyModesToBlock(modes) {
-  const joined = (modes || []).join(' | ').toLowerCase();
-  if (/config-if\b|interface configuration/.test(joined)) return 'interface';
-  if (/config-router\b|router (configuration|address family)/.test(joined)) return 'router';
-  if (/config-cmap\b|class-map/.test(joined)) return 'class-map';
-  if (/config-pmap\b|policy-map/.test(joined)) return 'policy-map';
-  if (/config-line\b|^line /.test(joined)) return 'line';
-  if (/\bexec\b/.test(joined)) return 'exec';
-  return 'global';
-}
-
-const COMMANDS_BY_BLOCK = new Map();
-for (const command of ALL_COMMANDS) {
-  const block = classifyModesToBlock(command.modes);
-  if (!COMMANDS_BY_BLOCK.has(block)) COMMANDS_BY_BLOCK.set(block, []);
-  COMMANDS_BY_BLOCK.get(block).push(command);
-}
-
-// Longest-prefix hover/lookup index. Array-valued because command names can
-// repeat (documented under two different syntaxes/modes in the source, or —
-// once more than one pack is loaded — the same name on two platforms).
-const COMMANDS_BY_NAME = new Map();
-for (const command of ALL_COMMANDS) {
-  const key = command.name.toLowerCase();
-  if (!COMMANDS_BY_NAME.has(key)) COMMANDS_BY_NAME.set(key, []);
-  COMMANDS_BY_NAME.get(key).push(command);
-}
-
-const MAX_COMMAND_WORDS = Math.max(1, ...ALL_COMMANDS.map((c) => c.name.split(/\s+/).length));
-
-// ---------------------------------------------------------------------------
-// Known top-level command roots — for typo diagnostics.
+// Lazily-built command indexes
 // ---------------------------------------------------------------------------
 //
-// Base set covers keywords that aren't "commands" in the data's sense (no,
-// end, exit, ...) plus everything already known to be valid before command
-// data existed; the loop below adds every loaded command's first token on
-// top. Purely additive, so it can only grow as more commands/packs load.
+// Loading + indexing ~1,400 records (1.9 MB of JSON) takes tens of
+// milliseconds — enough to keep it off the initialize handshake so the
+// client isn't blocked waiting on capabilities. getData() memoizes; the
+// onInitialized hook warms it right after the handshake, and every feature
+// handler calls it so correctness never depends on the warm-up having run.
 
-const KNOWN_TOP_LEVEL = new Set([
-  'interface',
-  'router',
-  'ip',
-  'ipv6',
-  'vlan',
-  'class-map',
-  'policy-map',
-  'parameter-map',
-  'template',
-  'l2vpn',
-  'hostname',
-  'username',
-  'enable',
-  'line',
-  'logging',
-  'ntp',
-  'service',
-  'aaa',
-  'tacacs',
-  'radius',
-  'crypto',
-  'zone',
-  'zone-pair',
-  'no',
-  'access-list',
-  'snmp-server',
-  'spanning-tree',
-  'vtp',
-  'banner',
-  'boot',
-  'clock',
-  'domain',
-  'errdisable',
-  'lldp',
-  'cdp',
-  'mac',
-  'port-channel',
-  'standby',
-  'track',
-  'route-map',
-  'key',
-  'object-group',
-  'archive',
-  'event',
-  'flow',
-  'license',
-  'platform',
-  'redundancy',
-  'vrf',
-  'controller',
-  'voice',
-  'dial-peer',
-  'end',
-  'exit',
-  'version',
-  'frame-relay',
-  'monitor',
-  'qos',
-  'mls',
-  'system',
-  'device-tracking',
-  'authentication',
-  'dot1x',
-  'epm',
-  'identity',
-  'policy',
-  'subscriber',
-  'cts',
-  'pki',
-]);
-for (const command of ALL_COMMANDS) {
-  KNOWN_TOP_LEVEL.add(command.name.split(/\s+/)[0].toLowerCase());
+const DATA_DIR = path.join(__dirname, 'data');
+let dataCache = null;
+
+function getData() {
+  if (dataCache) return dataCache;
+  const started = Date.now();
+  dataCache = buildData(DATA_DIR, connection.console);
+  connection.console.log(
+    `Command data ready: ${dataCache.commandCount} records indexed in ${Date.now() - started}ms.`,
+  );
+  return dataCache;
 }
 
 // ---------------------------------------------------------------------------
-// Helpers
+// Per-document line cache
 // ---------------------------------------------------------------------------
 
-/**
- * Determine the current configuration block by walking backwards from `line`
- * over physical lines, using leading indentation as the block boundary signal
- * (IOS sub-mode commands are indented; the block header is at column 0 / less
- * indented). Falls back to scanning for the nearest less-indented header.
- *
- * Returns one of: 'interface' | 'router' | 'class-map' | 'policy-map' |
- *                 'line' | 'global'
- */
-function detectBlock(lines, lineIndex) {
-  const current = lines[lineIndex] ?? '';
-  const currentIndent = leadingSpaces(current);
+// Split-lines cache, keyed by document URI and invalidated by version, so
+// completion/hover/validate don't each re-split the whole document text on
+// every keystroke. Entries are dropped in onDidClose.
+const lineCache = new Map();
 
-  // A header at column 0 with the cursor line indented means we're inside it.
-  // Walk up to the nearest line with strictly less indentation than the
-  // current line (its parent), or to a column-0 header.
-  for (let i = lineIndex - 1; i >= 0; i--) {
-    const raw = lines[i];
-    if (raw.trim() === '' || raw.trim().startsWith('!')) continue;
-
-    const indent = leadingSpaces(raw);
-    // The parent block header is less indented than the current line.
-    if (indent < currentIndent || (currentIndent === 0 && indent === 0)) {
-      const header = raw.trim().toLowerCase();
-      const block = classifyHeader(header);
-      if (block) return block;
-      // A column-0 non-block line means we're back at global scope.
-      if (indent === 0) return 'global';
-    }
-  }
-  return 'global';
+function getLines(doc) {
+  const cached = lineCache.get(doc.uri);
+  if (cached && cached.version === doc.version) return cached.lines;
+  const lines = doc.getText().split(/\r?\n/);
+  lineCache.set(doc.uri, { version: doc.version, lines });
+  return lines;
 }
 
-function classifyHeader(header) {
-  if (header.startsWith('interface ')) return 'interface';
-  if (header.startsWith('router ')) return 'router';
-  if (header.startsWith('class-map')) return 'class-map';
-  if (header.startsWith('policy-map')) return 'policy-map';
-  if (header.startsWith('line ')) return 'line';
-  return null;
-}
+// Cross-reference index (named-object defs/refs), cached the same way.
+const xrefCache = new Map();
 
-function leadingSpaces(s) {
-  const m = s.match(/^(\s*)/);
-  return m ? m[1].length : 0;
-}
-
-function toInterfaceTypeItems(entries) {
-  return entries.map((e) => ({
-    label: e.label,
-    kind: K.Class,
-    detail: e.detail,
-  }));
-}
-
-// Only label/kind/detail are built eagerly; the full documentation is
-// computed lazily in onCompletionResolve (see the capability flag in
-// onInitialize) so a large completion list (the `global` bucket alone can
-// hold 300+ entries) doesn't serialize a rich Markdown doc for every item on
-// every keystroke-triggered request.
-function toCommandCompletionItems(commands) {
-  const seen = new Set();
-  const items = [];
-  for (const c of commands) {
-    const key = c.name.toLowerCase();
-    if (seen.has(key)) continue; // dedupe same-named entries within one bucket
-    seen.add(key);
-    items.push({
-      label: c.name,
-      kind: K.Keyword,
-      detail: c.detail || c.syntax || undefined,
-      data: key,
-    });
-  }
-  return items;
-}
-
-// Builds the hover/completion-resolve documentation for one or more command
-// records sharing a name (duplicates are shown together, labeled by
-// platform/release when more than one is loaded, rather than picking one
-// arbitrarily and hiding the rest).
-function buildDocMarkdown(records) {
-  const blocks = records.map((r) => {
-    const parts = [];
-    const syntaxLines = [r.syntax, r.noForm].filter(Boolean).join('\n');
-    if (syntaxLines) parts.push('```\n' + syntaxLines + '\n```');
-    if (r.params && r.params.length) {
-      parts.push(r.params.map((p) => `- **${p.name}** — ${p.description}`).join('\n'));
-    }
-    if (r.usageSummary) parts.push(r.usageSummary);
-    let block = parts.join('\n\n');
-    if (records.length > 1) {
-      const label = [r.platform, r.release].filter(Boolean).join(' ') || r.context || r.source;
-      if (label) block = `**${label}**\n\n${block}`;
-    }
-    return block;
-  });
-  return blocks.join('\n\n---\n\n');
-}
-
-function findHoverRecords(tokens) {
-  for (let n = Math.min(tokens.length, MAX_COMMAND_WORDS); n >= 1; n--) {
-    const records = COMMANDS_BY_NAME.get(tokens.slice(0, n).join(' '));
-    if (records) return records;
-  }
-  return null;
-}
-
-function isValidIpv4(addr) {
-  const parts = addr.split('.');
-  if (parts.length !== 4) return false;
-  return parts.every((p) => {
-    if (!/^\d{1,3}$/.test(p)) return false;
-    const n = Number(p);
-    return n >= 0 && n <= 255;
-  });
+function getXref(doc) {
+  const cached = xrefCache.get(doc.uri);
+  if (cached && cached.version === doc.version) return cached.index;
+  const index = buildXrefIndex(getLines(doc));
+  xrefCache.set(doc.uri, { version: doc.version, index });
+  return index;
 }
 
 // ---------------------------------------------------------------------------
 // LSP lifecycle
 // ---------------------------------------------------------------------------
 
-connection.onInitialize(() => ({
-  capabilities: {
-    textDocumentSync: TextDocumentSyncKind.Incremental,
-    completionProvider: {
-      // Auto-trigger after a space (next-token) and on '.' is not relevant here.
-      triggerCharacters: [' '],
-      resolveProvider: true,
+// Whether the client supports workspace/configuration requests (VS Code
+// does) — needed to read the outline settings from the server.
+let hasConfigurationCapability = false;
+// Whether the client understands completionList.itemDefaults.editRange —
+// lets us return the cached item arrays untouched and still control the
+// replaced range once per response instead of per item.
+let supportsEditRange = false;
+
+connection.onInitialize((params) => {
+  hasConfigurationCapability = !!params.capabilities.workspace?.configuration;
+  supportsEditRange = !!(
+    params.capabilities.textDocument?.completion?.completionList?.itemDefaults || []
+  ).includes('editRange');
+  return {
+    capabilities: {
+      textDocumentSync: TextDocumentSyncKind.Incremental,
+      completionProvider: {
+        // Auto-trigger after a space (next-token) and on '.' is not relevant here.
+        triggerCharacters: [' '],
+        resolveProvider: true,
+      },
+      hoverProvider: true,
+      documentFormattingProvider: true,
+      definitionProvider: true,
+      referencesProvider: true,
+      documentSymbolProvider: true,
+      renameProvider: { prepareProvider: true },
+      foldingRangeProvider: true,
     },
-    hoverProvider: true,
-  },
-}));
+  };
+});
+
+// Warm the command indexes right after the handshake instead of during it —
+// setImmediate so the `initialized` notification itself isn't blocked either.
+connection.onInitialized(() => {
+  setImmediate(getData);
+});
 
 // ---------------------------------------------------------------------------
 // Completion
 // ---------------------------------------------------------------------------
 
+// Wraps a cached item array in a CompletionList whose itemDefaults.editRange
+// replaces [startChar, cursor] with the chosen item's full label — without
+// it, VS Code's word-based default replaces only the token under the cursor,
+// so accepting the multiword "ip address" after typing "ip addr" would leave
+// "ip ip address" behind.
+function completionList(items, line, startChar, endChar) {
+  if (!supportsEditRange) return items;
+  return {
+    isIncomplete: false,
+    itemDefaults: {
+      editRange: {
+        start: { line, character: startChar },
+        end: { line, character: endChar },
+      },
+    },
+    items,
+  };
+}
+
 connection.onCompletion((params) => {
   const doc = documents.get(params.textDocument.uri);
   if (!doc) return [];
 
-  const text = doc.getText();
-  const lines = text.split(/\r?\n/);
+  const lines = getLines(doc);
   const lineIndex = params.position.line;
   const currentLine = lines[lineIndex] ?? '';
   const prefix = currentLine.slice(0, params.position.character);
-  const trimmed = prefix.trim().toLowerCase();
 
-  // Special case: right after `interface ` → offer interface types.
-  if (/^interface\s+\S*$/.test(trimmed) || /^interface\s+$/.test(prefix.toLowerCase())) {
-    return toInterfaceTypeItems(INTERFACE_TYPES);
+  // The command being typed starts after the indentation and after a leading
+  // `no ` (negation takes the same command vocabulary as the positive form).
+  let commandStart = prefix.length - prefix.trimStart().length;
+  const noForm = /^no\s+/i.exec(prefix.slice(commandStart));
+  if (noForm) commandStart += noForm[0].length;
+  const typed = prefix.slice(commandStart);
+  const cursor = params.position.character;
+
+  // Special case: right after `interface ` → offer interface types, replacing
+  // only the partial type token, not the whole line.
+  if (/^interface\s+\S*$/i.test(typed)) {
+    const tokenStart = cursor - typed.match(/\S*$/)[0].length;
+    return completionList(INTERFACE_TYPE_ITEMS, lineIndex, tokenStart, cursor);
   }
 
   const block = detectBlock(lines, lineIndex);
@@ -383,19 +196,18 @@ connection.onCompletion((params) => {
   // `exec` commands: a .cisco file is a config file, not a session
   // transcript, so it doesn't itself distinguish an EXEC prompt from a
   // config prompt the way `detectBlock` distinguishes interface/router/etc.
-  // sub-modes from their headers.
-  if (block === 'global') {
-    return toCommandCompletionItems([
-      ...(COMMANDS_BY_BLOCK.get('global') || []),
-      ...(COMMANDS_BY_BLOCK.get('exec') || []),
-    ]);
-  }
-  return toCommandCompletionItems(COMMANDS_BY_BLOCK.get(block) || []);
+  // sub-modes from their headers. A recognised block whose bucket holds no
+  // commands in the loaded packs (possible for the rarer sub-modes) also
+  // falls back to top-level — an empty popup helps nobody.
+  const { completionItemsByBlock } = getData();
+  const bucketItems = block === 'global' ? null : completionItemsByBlock.get(block);
+  const items = bucketItems?.length ? bucketItems : completionItemsByBlock.get('top-level');
+  return completionList(items, lineIndex, commandStart, cursor);
 });
 
 connection.onCompletionResolve((item) => {
   if (!item.data) return item;
-  const records = COMMANDS_BY_NAME.get(item.data);
+  const records = getData().commandsByName.get(item.data);
   if (!records) return item;
   item.documentation = { kind: MarkupKind.Markdown, value: buildDocMarkdown(records) };
   return item;
@@ -409,12 +221,12 @@ connection.onHover((params) => {
   const doc = documents.get(params.textDocument.uri);
   if (!doc) return null;
 
-  const line = doc.getText().split(/\r?\n/)[params.position.line] ?? '';
+  const line = getLines(doc)[params.position.line] ?? '';
   let tokens = line.trim().toLowerCase().split(/\s+/).filter(Boolean);
   if (tokens.length === 0) return null;
   if (tokens[0] === 'no' && tokens.length > 1) tokens = tokens.slice(1);
 
-  const records = findHoverRecords(tokens);
+  const records = findHoverRecords(tokens, getData());
   if (!records) return null;
 
   return {
@@ -423,101 +235,129 @@ connection.onHover((params) => {
 });
 
 // ---------------------------------------------------------------------------
+// Definition / References (named objects: class-map, policy-map, ACL,
+// route-map, prefix-list, VRF)
+// ---------------------------------------------------------------------------
+
+function spanToLocation(uri, span) {
+  return {
+    uri,
+    range: {
+      start: { line: span.line, character: span.startChar },
+      end: { line: span.line, character: span.endChar },
+    },
+  };
+}
+
+function objectAt(params) {
+  const doc = documents.get(params.textDocument.uri);
+  if (!doc) return null;
+  const index = getXref(doc);
+  const occurrence = findAtPosition(index, params.position.line, params.position.character);
+  if (!occurrence) return null;
+  return index.objects.get(`${occurrence.kind} ${occurrence.name}`);
+}
+
+connection.onDefinition((params) => {
+  const obj = objectAt(params);
+  if (!obj) return null;
+  return obj.defs.map((d) => spanToLocation(params.textDocument.uri, d));
+});
+
+connection.onReferences((params) => {
+  const obj = objectAt(params);
+  if (!obj) return null;
+  const spans = params.context?.includeDeclaration ? [...obj.defs, ...obj.refs] : obj.refs;
+  return spans.map((s) => spanToLocation(params.textDocument.uri, s));
+});
+
+// ---------------------------------------------------------------------------
+// Rename (same named objects as definition/references)
+// ---------------------------------------------------------------------------
+
+connection.onPrepareRename((params) => {
+  const doc = documents.get(params.textDocument.uri);
+  if (!doc) return null;
+  const occurrence = findAtPosition(getXref(doc), params.position.line, params.position.character);
+  if (!occurrence) return null;
+  return {
+    range: {
+      start: { line: occurrence.line, character: occurrence.startChar },
+      end: { line: occurrence.line, character: occurrence.endChar },
+    },
+    placeholder: occurrence.name,
+  };
+});
+
+connection.onRenameRequest((params) => {
+  // Object names are single tokens — reject anything with whitespace.
+  if (!/^\S+$/.test(params.newName)) return null;
+  const obj = objectAt(params);
+  if (!obj) return null;
+  const edits = [...obj.defs, ...obj.refs].map((s) => ({
+    range: {
+      start: { line: s.line, character: s.startChar },
+      end: { line: s.line, character: s.endChar },
+    },
+    newText: params.newName,
+  }));
+  return { changes: { [params.textDocument.uri]: edits } };
+});
+
+// ---------------------------------------------------------------------------
+// Folding ranges (indentation blocks)
+// ---------------------------------------------------------------------------
+
+connection.onFoldingRanges((params) => {
+  const doc = documents.get(params.textDocument.uri);
+  if (!doc) return [];
+  return computeFoldingRanges(getLines(doc));
+});
+
+// ---------------------------------------------------------------------------
+// Document symbols (outline panel / breadcrumbs)
+// ---------------------------------------------------------------------------
+
+connection.onDocumentSymbol(async (params) => {
+  const doc = documents.get(params.textDocument.uri);
+  if (!doc) return [];
+  // Settings are fetched per request so toggling them applies on the next
+  // outline refresh without a server restart.
+  const cfg = hasConfigurationCapability
+    ? await connection.workspace.getConfiguration('cisco-ios-lsp.outline')
+    : null;
+  if (!cfg?.showSymbolsInOutlinePanel) return [];
+  return buildDocumentSymbols(getLines(doc), cfg.symbolsList || {});
+});
+
+// ---------------------------------------------------------------------------
 // Diagnostics
 // ---------------------------------------------------------------------------
 
 function validate(doc) {
-  const text = doc.getText();
-  const lines = text.split(/\r?\n/);
-  const diagnostics = [];
-
-  lines.forEach((raw, i) => {
-    const line = raw.replace(/\r$/, '');
-    const trimmed = line.trim();
-    if (trimmed === '' || trimmed.startsWith('!') || trimmed.startsWith('#')) return;
-
-    const indent = leadingSpaces(line);
-    const tokens = trimmed.split(/\s+/);
-    const first = tokens[0].toLowerCase();
-
-    // (1) Unknown top-level command (only flag column-0 commands).
-    if (indent === 0 && !KNOWN_TOP_LEVEL.has(first)) {
-      addDiag(
-        diagnostics,
-        i,
-        line.indexOf(tokens[0]),
-        tokens[0].length,
-        `Unknown command "${tokens[0]}" — possible typo.`,
-        DiagnosticSeverity.Warning,
-      );
-    }
-
-    // (2) Invalid interface type name.
-    if (first === 'interface' && tokens[1]) {
-      const typeName = tokens[1].toLowerCase().match(/^[a-z-]+/)?.[0] || '';
-      if (typeName && !VALID_INTERFACE_TYPES.includes(typeName)) {
-        const col = line.indexOf(tokens[1]);
-        addDiag(
-          diagnostics,
-          i,
-          col,
-          tokens[1].length,
-          `"${tokens[1]}" is not a recognised IOS-XE interface type.`,
-          DiagnosticSeverity.Warning,
-        );
-      }
-    }
-
-    // (3) VLAN number out of range (1–4094). Matches "vlan <n>" and
-    //     "switchport access vlan <n>".
-    const vlanMatch = trimmed.match(/\bvlan\s+(\d+)\b/i);
-    if (vlanMatch) {
-      const n = Number(vlanMatch[1]);
-      if (n < 1 || n > 4094) {
-        const col = line.indexOf(vlanMatch[1], line.toLowerCase().indexOf('vlan'));
-        addDiag(
-          diagnostics,
-          i,
-          col,
-          vlanMatch[1].length,
-          `VLAN ${n} is out of range (must be 1–4094).`,
-          DiagnosticSeverity.Error,
-        );
-      }
-    }
-
-    // (4) Malformed IPv4 address (basic dotted-quad shape but bad octet).
-    const ipCandidates = trimmed.match(/\b\d{1,3}(?:\.\d{1,3}){3}\b/g) || [];
-    ipCandidates.forEach((cand) => {
-      if (!isValidIpv4(cand)) {
-        const col = line.indexOf(cand);
-        addDiag(
-          diagnostics,
-          i,
-          col,
-          cand.length,
-          `"${cand}" is not a valid IPv4 address (octets must be 0–255).`,
-          DiagnosticSeverity.Error,
-        );
-      }
-    });
-  });
-
+  const data = getData();
+  const diagnostics = [
+    ...computeDiagnostics(getLines(doc), data.knownTopLevel, {
+      openerBlockType,
+      isChildCommand: data.isChildCommand,
+    }),
+    ...computeXrefDiagnostics(getXref(doc)),
+  ];
   connection.sendDiagnostics({ uri: doc.uri, diagnostics });
 }
 
-function addDiag(list, line, character, length, message, severity) {
-  if (character < 0) character = 0;
-  list.push({
-    severity,
-    range: {
-      start: { line, character },
-      end: { line, character: character + length },
-    },
-    message,
-    source: 'cisco-ios-lsp',
+// ---------------------------------------------------------------------------
+// Formatting
+// ---------------------------------------------------------------------------
+
+connection.onDocumentFormatting((params) => {
+  const doc = documents.get(params.textDocument.uri);
+  if (!doc) return [];
+  return computeFormattingEdits(getLines(doc), {
+    openerBlockType,
+    isChildCommand: getData().isChildCommand,
   });
-}
+});
 
 // Debounce validation per-document on change.
 const debounceTimers = new Map();
@@ -539,6 +379,8 @@ documents.onDidClose((e) => {
   const t = debounceTimers.get(e.document.uri);
   if (t) clearTimeout(t);
   debounceTimers.delete(e.document.uri);
+  lineCache.delete(e.document.uri);
+  xrefCache.delete(e.document.uri);
   connection.sendDiagnostics({ uri: e.document.uri, diagnostics: [] });
 });
 

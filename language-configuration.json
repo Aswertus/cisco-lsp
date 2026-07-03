@@ -25,4 +25,8 @@
     ["\"", "\""],
     ["'", "'"]
   ]
+  // Auto-indent after block-opening commands lives in client/extension.js
+  // (applied dynamically via setLanguageConfiguration), NOT here — it is
+  // gated behind the experimental cisco-ios-lsp.experimental.autoIndent
+  // setting (off by default), which a static file cannot honour.
 }
