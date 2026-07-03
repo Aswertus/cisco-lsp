@@ -4,6 +4,8 @@
 // documentFormatting handler, so the linter and the formatter can never
 // disagree about what's wrong with a file's indentation.
 
+const { createFreeTextTracker } = require('./freetext');
+
 function leadingSpaces(s) {
   const m = s.match(/^(\s*)/);
   return m ? m[1].length : 0;
@@ -73,9 +75,19 @@ function scanIndentation(lines, onSiblingMismatch, onMixedTabsSpaces, onLine, op
   // by separators (blank/!/#), a deeper real child, mixed-tab lines, another
   // opener, end/exit, or any line without child evidence.
   let flush = null;
+  const isFreeTextLine = createFreeTextTracker();
 
   lines.forEach((raw, i) => {
     const line = raw.replace(/\r$/, '');
+
+    // Banner bodies and certificate payloads are free text: no diagnostic
+    // may fire on them and the formatter must never touch their layout.
+    // Checked before everything else so even the mixed-tabs check skips them.
+    if (isFreeTextLine(line, line.trim())) {
+      flush = null;
+      return;
+    }
+
     const leading = line.match(/^[ \t]*/)[0];
     const isMixed = leading.includes(' ') && leading.includes('\t');
     if (isMixed) {
@@ -202,10 +214,13 @@ function computeFormattingEdits(lines, options = {}) {
 // Folding ranges from indentation: every line followed by deeper-indented
 // content opens a foldable block ending at its last such line. Blank and
 // !/# comment lines neither open nor close blocks (IOS uses `!` between
-// blocks), so a block folds across them but never ends on one.
+// blocks), so a block folds across them but never ends on one. Free-text
+// lines (banner bodies, certificate payloads) are treated the same way —
+// their layout is not structure.
 function computeFoldingRanges(lines) {
   const ranges = [];
   const stack = []; // open blocks: { indent, startLine, lastContentLine }
+  const isFreeTextLine = createFreeTextTracker();
 
   const close = (block) => {
     if (block.lastContentLine > block.startLine) {
@@ -214,7 +229,9 @@ function computeFoldingRanges(lines) {
   };
 
   lines.forEach((raw, i) => {
-    const trimmed = raw.trim();
+    const line = raw.replace(/\r$/, '');
+    const trimmed = line.trim();
+    if (isFreeTextLine(line, trimmed)) return;
     if (trimmed === '' || trimmed.startsWith('!') || trimmed.startsWith('#')) return;
     const indent = leadingSpaces(raw);
     while (stack.length && indent <= stack[stack.length - 1].indent) {

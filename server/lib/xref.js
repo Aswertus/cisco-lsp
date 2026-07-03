@@ -10,6 +10,7 @@
 // match, so the name's column is always m.index + m[0].length - name.length.
 
 const { DiagnosticSeverity } = require('vscode-languageserver/node');
+const { createFreeTextTracker } = require('./freetext');
 
 const KINDS = [
   {
@@ -33,7 +34,12 @@ const KINDS = [
   },
   {
     kind: 'prefix-list',
-    defs: [/^ip(?:v6)?\s+prefix-list\s+(\S+)/i],
+    defs: [
+      /^ip(?:v6)?\s+prefix-list\s+(\S+)/i,
+      // LISP prefix-list block opener inside `router lisp` — the whole
+      // (indented) line is just `prefix-list NAME`.
+      /^\s*prefix-list\s+(\S+)$/i,
+    ],
     refs: [/\bprefix-list\s+(\S+)/gi],
   },
   {
@@ -41,7 +47,10 @@ const KINDS = [
     defs: [/^ip\s+access-list\s+(?:standard|extended)\s+(\S+)/i, /^access-list\s+(\d+)/i],
     refs: [
       // Direction (in/out) follows the name in IOS: `ip access-group ACL in`.
-      /\baccess-group\s+(\S+)/gi,
+      // `ntp access-group` is excluded: its next token is a keyword
+      // (peer/serve/...), handled by the dedicated pattern below.
+      /(?<!ntp )\baccess-group\s+(\S+)/gi,
+      /\bntp\s+access-group\s+(?:ipv4\s+|ipv6\s+)?(?:peer|serve-only|serve|query-only)\s+(\S+)/gi,
       /\baccess-class\s+(\S+)/gi,
       // `match ip address NAME` names an ACL; `... prefix-list NAME` is
       // handled by the prefix-list kind above.
@@ -82,9 +91,14 @@ function buildXrefIndex(lines) {
     occurrences.push({ kind, name: span.name, isDef, ...entry });
   };
 
+  const isFreeTextLine = createFreeTextTracker();
+
   lines.forEach((raw, lineNo) => {
     const line = raw.replace(/\r$/, '');
     const trimmed = line.trim();
+    // Free text (banner bodies, certificate payloads) must not create refs
+    // (a banner mentioning "access-group X" is prose, not config).
+    if (isFreeTextLine(line, trimmed)) return;
     if (trimmed === '' || trimmed.startsWith('!') || trimmed.startsWith('#')) return;
 
     for (const { kind, defs, refs } of KINDS) {
