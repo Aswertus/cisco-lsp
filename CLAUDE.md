@@ -89,7 +89,7 @@ running), then reload the VS Code window (`Ctrl+Shift+P` → **Developer: Reload
 ## Testing Against Real Configs
 
 `_testing/_reference-config/` holds **valid** config backups from production switches
-(git-versioned). Because every line in them is real IOS-XE, any diagnostic the extension
+(gitignored — local only, not committed). Because every line in them is real IOS-XE, any diagnostic the extension
 raises on these files is a false positive by definition (with rare genuine catches like a
 typo'd object name — verify before "fixing" the checker). Use them to validate changes to
 diagnostics, the formatter, xref, or command data: run `computeDiagnostics` /

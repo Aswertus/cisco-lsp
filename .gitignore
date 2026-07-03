@@ -2,3 +2,4 @@ node_modules/
 dist/
 *.vsix
 _manuals/*.pdf
+_testing/
