@@ -83,6 +83,15 @@ const MODE_BUCKET_RULES = [
   ['tacacs-server', /config-server-tacacs\b|tacacs server configuration/],
   ['device-tracking', /config-device-tracking\b|device-tracking configuration/],
   ['crypto-map', /config-crypto-map\b|crypto map configuration/],
+  ['call-home', /cfg-call-home\b|call.home configuration/],
+  ['control-plane', /config-cp\b|control.plane configuration/],
+  ['pki-trustpoint', /ca-trustpoint\b|trustpoint configuration/],
+  ['pki-cert-chain', /config-cert-chain\b|certificate chain configuration/],
+  ['telemetry-subscription', /config-mdt-subs\b|telemetry.subscription configuration/],
+  ['telemetry-receiver', /config-mdt-rcvr\b|telemetry.receiver configuration/],
+  ['telemetry-transform', /config-mdt-xfrm\b|telemetry.transform configuration/],
+  ['transceiver', /config-xcvr-type\b|transceiver type configuration/],
+  ['radius-da', /config-locsvr-da-radius\b|dynamic authorization local server/],
 ];
 
 // All matching buckets — a command valid in several modes lands in every one

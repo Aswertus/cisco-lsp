@@ -67,6 +67,15 @@ test('openerBlockType recognises the extended block-opener set', () => {
   assert.equal(openerBlockType('ip access-list extended ACL-IN'), 'access-list');
   assert.equal(openerBlockType('aaa group server tacacs+ DNAC-GROUP'), 'aaa-group');
   assert.equal(openerBlockType('key chain KC-OSPF'), 'key-chain');
+  assert.equal(openerBlockType('call-home'), 'call-home');
+  assert.equal(openerBlockType('control-plane'), 'control-plane');
+  assert.equal(openerBlockType('crypto pki trustpoint SLA-TrustPoint'), 'pki-trustpoint');
+  assert.equal(openerBlockType('crypto pki certificate chain SLA-TrustPoint'), 'pki-cert-chain');
+  assert.equal(openerBlockType('telemetry ietf subscription 550'), 'telemetry-subscription');
+  assert.equal(openerBlockType('telemetry receiver protocol DNAC_RCVR'), 'telemetry-receiver');
+  assert.equal(openerBlockType('telemetry transform tsDelta'), 'telemetry-transform');
+  assert.equal(openerBlockType('transceiver type all'), 'transceiver');
+  assert.equal(openerBlockType('aaa server radius dynamic-author'), 'radius-da');
 });
 
 test('openerBlockType rejects look-alike one-liners and sub-commands', () => {
@@ -76,6 +85,10 @@ test('openerBlockType rejects look-alike one-liners and sub-commands', () => {
   assert.equal(openerBlockType('hostname SW1'), null);
   assert.equal(openerBlockType('ip access-group ACL-IN in'), null);
   assert.equal(openerBlockType('switchport access vlan 10'), null);
+  // `call-home` opens a block, but one-liners mentioning it do not.
+  assert.equal(openerBlockType('call-home reporting anonymous'), null);
+  assert.equal(openerBlockType('snmp-server enable traps call-home message-send-fail'), null);
+  assert.equal(openerBlockType('crypto pki certificate pool'), null);
 });
 
 test('detectBlock recognises the new block headers for completions', () => {

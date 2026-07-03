@@ -23,6 +23,8 @@ VS Code (UI)
   │         └─ server/lib/ — the actual logic, unit-tested via test/*.test.js:
   │              data.js         command data loading + derived indexes
   │              blocks.js       config-block detection for completions
+  │              freetext.js     free-text tracker (banner bodies, certificate hex
+  │                              payloads) — skipped by every line scanner
   │              indentation.js  shared indent scan → diagnostics/formatting/folding
   │              diagnostics.js  per-file checks (typos, VLAN, IPv4, indentation)
   │              xref.js         named-object defs/refs → definition/references/rename +
@@ -60,7 +62,8 @@ name-indexed lookup for hover.
 | `scripts/extract-commands.js`      | PDF → JSON extractor; re-run whenever a manual is added or updated                          |
 | `scripts/EXTRACTION_NOTES.md`      | How the PDF structure was reverse-engineered — read before touching the extractor           |
 | `syntaxes/cisco.tmLanguage.json`   | TextMate grammar for syntax highlighting                                                    |
-| `language-configuration.json`      | Comments/brackets + auto-indent rules for the `cisco` language (see "Adding a New Block Type") |
+| `_testing/_reference-config/*.cisco` | Valid production config backups — ground truth for checks (see "Testing Against Real Configs") |
+| `language-configuration.json`      | Comments/brackets for the `cisco` language (auto-indent rules live in `client/extension.js`) |
 | `THIRD_PARTY_NOTICES.md`           | Attribution for code adapted from `Y-Ysss.cisco-config-highlight`                           |
 | `.vscode/extensions.json`          | Recommended extensions                                                                      |
 | `.vscode/settings.json`            | Workspace settings (theme, formatter, rulers)                                               |
@@ -82,6 +85,16 @@ npm run format    # Prettier
 
 After editing `server/` or `client/` sources: rebuild (`npm run build`, unless `watch` is
 running), then reload the VS Code window (`Ctrl+Shift+P` → **Developer: Reload Window**).
+
+## Testing Against Real Configs
+
+`_testing/_reference-config/` holds **valid** config backups from production switches
+(git-versioned). Because every line in them is real IOS-XE, any diagnostic the extension
+raises on these files is a false positive by definition (with rare genuine catches like a
+typo'd object name — verify before "fixing" the checker). Use them to validate changes to
+diagnostics, the formatter, xref, or command data: run `computeDiagnostics` /
+`computeFormattingEdits` / `computeXrefDiagnostics` over each file and expect (near-)zero
+output before shipping.
 
 ## Regenerating Command Data
 
@@ -131,8 +144,10 @@ Adding a new IOS sub-mode means updating **four places that must stay in sync**:
    `['vrf', /config-vrf\b|vrf configuration/]`. Keep the original five buckets
    (interface/router/class-map/policy-map/line) first — rule order decides a multi-mode
    command's single completion bucket.
-3. `language-configuration.json` — extend `indentationRules.increaseIndentPattern` with
-   the opener prefix (manual sync — static JSON can't require `blocks.js`).
+3. `client/extension.js` — extend `INCREASE_INDENT_PATTERN` with the opener prefix
+   (manual sync — the client bundle doesn't require `blocks.js`). Applied dynamically
+   because auto-indent is gated behind the experimental
+   `cisco-ios-lsp.experimental.autoIndent` setting (off by default).
 4. Tests — `test/blocks.test.js` (`openerBlockType` positive + look-alike negative) and
    `test/data.test.js` (`classifyModesToBlocks`) when a new mode mapping is added.
 
@@ -141,7 +156,8 @@ Design rules (deliberate — don't "fix" them):
 - **Flush-left child recovery requires positive evidence**: a column-0 line right after an
   opener is only treated as that block's child if its command exists in the bucket per the
   loaded packs' `modes` field (`isChildCommand`). A purely structural "everything after an
-  opener is a child" rule was rejected because real configs (`_testing/test.cisco:359-373`)
+  opener is a child" rule was rejected because real configs
+  (`_testing/_reference-config/C9500-SDA.cisco:359-373`)
   put global commands directly after blocks with no `!`/blank separator. Consequently a
   block type with no commands in the loaded packs gets opener recognition (completion
   context, on-Enter indent) but **no** flush recovery — intentional, not a bug.

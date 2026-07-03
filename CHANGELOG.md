@@ -19,9 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `flow record/exporter/monitor`, `service-template`, `template`, `route-map`,
   `ip/ipv6 access-list`, `aaa group server`, `key chain`, `radius/tacacs server`,
   `device-tracking policy`, `crypto map`.
-- **Auto-indent on Enter** after any of the block openers above (`indentationRules` in the
-  language configuration), with 1-space indentation contributed as the `[cisco]` editor
-  default (`editor.insertSpaces` / `editor.tabSize`).
+- **Auto-indent on Enter** (experimental, off by default) after any of the block openers
+  above, with 1-space indentation contributed as the `[cisco]` editor default
+  (`editor.insertSpaces` / `editor.tabSize`). Enable with the
+  `cisco-ios-lsp.experimental.autoIndent` setting; takes effect immediately when toggled.
 - Completions: the new block openers are recognised as contexts too (e.g. commands documented
   for VRF or VLAN configuration mode are offered inside `vrf definition` / `vlan` blocks); a
   recognised block whose bucket holds no commands falls back to the top-level list.
@@ -60,6 +61,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - The `cisco-ios-lsp.format.onSave` setting — use the standard per-language
   `editor.formatOnSave` (enabled for `cisco` files by default) instead.
+
+### Fixed
+
+- **Banner bodies and certificate payloads are now treated as free text**: everything
+  between a banner's delimiters (`banner login ^C ... ^C`, `banner motd #...#`, including
+  one-liners) and the hex dump between `certificate ...` and `quit` in a
+  `crypto pki certificate chain` block is skipped by all line scanners — no more
+  "Unknown command" / indentation warnings on ASCII-art banner lines, the formatter never
+  re-indents that content, it can't create false cross-references, and it no longer
+  produces folding ranges.
+- Reconciled against a production Catalyst 9500 SD-Access config (`_testing/test.cisco`):
+  - `LISP0[.n]` and `Bluetooth0/4` are recognised interface types.
+  - ~140 curated command entries for families the Cat9500 Command Reference PDF doesn't
+    cover: `call-home`, `control-plane`, `netconf-yang`, model-driven `telemetry`
+    subscriptions/receivers/transforms, `transceiver type`, `crypto pki`
+    trustpoints/certificate chains, RADIUS CoA (`aaa server radius dynamic-author`),
+    `vrf definition`/`rd`, `router lisp` (locator-sets, eid-tables, sites, services),
+    IS-IS router and interface commands, con/aux line commands, and assorted globals
+    (`clock`, `ntp`, `snmp-server`, `ip ssh/http/pim/msdp`, ...).
+  - New block buckets (openers + mode classification + auto-indent + completions):
+    `call-home`, `control-plane`, `crypto pki trustpoint`, `crypto pki certificate
+    chain`, the three `telemetry` modes, `transceiver type`, and RADIUS dynamic-author.
+  - Cross-reference fixes: a LISP `prefix-list NAME` block opener counts as the
+    prefix-list's definition, and in `ntp access-group peer ACL` the keyword `peer` is no
+    longer mistaken for the ACL name (the ACL itself is now the reference).
 
 ## [0.5.0] - 2026-07-01
 

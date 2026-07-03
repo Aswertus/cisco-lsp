@@ -67,3 +67,31 @@ test('undefined references warn, unused definitions hint', () => {
     'route-map "RM" is defined but never referenced in this file.',
   ]);
 });
+
+test('LISP prefix-list block opener counts as a definition', () => {
+  const diags = computeXrefDiagnostics(
+    buildXrefIndex([
+      'router lisp',
+      ' prefix-list SITE_LOCAL_EIDS_V4',
+      '  10.1.10.0/24',
+      ' service ipv4',
+      '  itr map-resolver 10.96.4.129 prefix-list SITE_LOCAL_EIDS_V4',
+    ]),
+  );
+  assert.deepEqual(
+    diags.filter((d) => /never defined/.test(d.message)),
+    [],
+  );
+});
+
+test('ntp access-group: the type keyword is not an ACL name, the ACL is', () => {
+  const index = buildXrefIndex([
+    'ip access-list standard deny_ntp_query',
+    ' 10 permit 10.0.0.0 0.255.255.255',
+    'ntp access-group peer deny_ntp_query',
+  ]);
+  assert.equal(index.objects.has('access-list peer'), false);
+  const acl = index.objects.get('access-list deny_ntp_query');
+  assert.equal(acl.defs.length, 1);
+  assert.equal(acl.refs.length, 1);
+});

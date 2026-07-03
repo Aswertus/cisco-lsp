@@ -8,8 +8,8 @@ const { leadingSpaces } = require('./indentation');
 // lib/data.js (that pairing is what lets the flush-left indentation recovery
 // ask "is this command valid inside this opener's block?").
 //
-// KEEP IN SYNC (by hand — static JSON can't require this module) with
-// `indentationRules.increaseIndentPattern` in language-configuration.json.
+// KEEP IN SYNC (by hand — the client bundle doesn't require this module)
+// with `INCREASE_INDENT_PATTERN` in client/extension.js.
 const BLOCK_OPENERS = [
   { prefix: 'interface ', block: 'interface' },
   { prefix: 'router ', block: 'router' },
@@ -34,6 +34,16 @@ const BLOCK_OPENERS = [
   { prefix: 'tacacs server ', block: 'tacacs-server' },
   { prefix: 'device-tracking policy ', block: 'device-tracking' },
   { prefix: 'crypto map ', block: 'crypto-map' },
+  // Bare-word openers: anchored so one-liner variants can't match by prefix.
+  { regex: /^call-home$/, block: 'call-home' },
+  { regex: /^control-plane\b/, block: 'control-plane' },
+  { prefix: 'crypto pki trustpoint ', block: 'pki-trustpoint' },
+  { prefix: 'crypto pki certificate chain ', block: 'pki-cert-chain' },
+  { prefix: 'telemetry ietf subscription ', block: 'telemetry-subscription' },
+  { prefix: 'telemetry receiver protocol ', block: 'telemetry-receiver' },
+  { prefix: 'telemetry transform ', block: 'telemetry-transform' },
+  { prefix: 'transceiver type ', block: 'transceiver' },
+  { prefix: 'aaa server radius dynamic-author', block: 'radius-da' },
 ];
 
 // The block bucket a line opens, or null if it opens none. Accepts any

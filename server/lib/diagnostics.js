@@ -41,6 +41,10 @@ const VALID_INTERFACE_TYPES = new Set([
   'pseudowire',
   'nve',
   'appgigabitethernet',
+  // LISP virtual interfaces (SD-Access fabric), e.g. LISP0, LISP0.4097.
+  'lisp',
+  // Cat9k management Bluetooth port, e.g. Bluetooth0/4.
+  'bluetooth',
 ]);
 
 function isValidIpv4(addr) {

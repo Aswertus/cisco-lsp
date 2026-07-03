@@ -89,6 +89,43 @@ test('classifyModesToBlocks: new buckets, multi-mode commands land in every matc
   );
 });
 
+test('classifyModesToBlocks: telemetry/call-home/PKI/CoA buckets', () => {
+  assert.deepEqual(classifyModesToBlocks(['Call Home configuration (cfg-call-home)']), [
+    'call-home',
+  ]);
+  assert.deepEqual(classifyModesToBlocks(['Control-plane configuration (config-cp)']), [
+    'control-plane',
+  ]);
+  assert.deepEqual(classifyModesToBlocks(['Ca-trustpoint configuration (ca-trustpoint)']), [
+    'pki-trustpoint',
+  ]);
+  assert.deepEqual(classifyModesToBlocks(['Certificate chain configuration (config-cert-chain)']), [
+    'pki-cert-chain',
+  ]);
+  assert.deepEqual(
+    classifyModesToBlocks(['Telemetry subscription configuration (config-mdt-subs)']),
+    ['telemetry-subscription'],
+  );
+  assert.deepEqual(
+    classifyModesToBlocks(['Telemetry receiver configuration (config-mdt-rcvr)']),
+    ['telemetry-receiver'],
+  );
+  assert.deepEqual(
+    classifyModesToBlocks(['Telemetry transform configuration (config-mdt-xfrm)']),
+    ['telemetry-transform'],
+  );
+  assert.deepEqual(classifyModesToBlocks(['Transceiver type configuration (config-xcvr-type)']), [
+    'transceiver',
+  ]);
+  assert.deepEqual(
+    classifyModesToBlocks(['Dynamic authorization local server configuration (config-locsvr-da-radius)']),
+    ['radius-da'],
+  );
+  // LISP mode lands in the existing router bucket — `router lisp` opens via
+  // the `router ` prefix, so its children must classify as router children.
+  assert.deepEqual(classifyModesToBlocks(['LISP configuration (config-router-lisp)']), ['router']);
+});
+
 test('buildData: blockCommandNames feeds the isChildCommand evidence check', () => {
   const dir = makeDataDir({
     'pack/cmds.json': JSON.stringify([
