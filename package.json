@@ -57,6 +57,14 @@
           "default": true,
           "description": "On startup, check GitHub Releases for a newer version and notify if one is available. Inactive while the repository is private."
         },
+        "cisco-ios-lsp.experimental.autoIndent": {
+          "type": "boolean",
+          "default": false,
+          "tags": [
+            "experimental"
+          ],
+          "description": "Experimental: pressing Enter after a block-opening command (interface X, vrf definition Y, ...) starts the next line indented. Takes effect immediately when toggled."
+        },
         "cisco-ios-lsp.outline.showSymbolsInOutlinePanel": {
           "type": "boolean",
           "default": false,

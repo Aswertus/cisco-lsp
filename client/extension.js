@@ -31,12 +31,50 @@ function activate(context) {
   // package.json ("[cisco]": { "editor.formatOnSave": true }) — VS Code runs
   // our documentFormattingProvider itself; no save hook needed here.
 
+  syncAutoIndent();
+  context.subscriptions.push(
+    vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration('cisco-ios-lsp.experimental.autoIndent')) syncAutoIndent();
+    }),
+    { dispose: () => autoIndentDisposable?.dispose() },
+  );
+
   // Fire-and-forget: never let an update check disrupt activation.
   checkForUpdates(context).catch(() => {});
 }
 
 function deactivate() {
   return client?.stop();
+}
+
+// ---------------------------------------------------------------------------
+// Auto-indent on Enter (experimental, off by default)
+//
+// Enter after a block-opening command starts the next line indented by 1
+// space (the [cisco] editor default). Gated behind the experimental
+// cisco-ios-lsp.experimental.autoIndent setting, so the rules are applied
+// dynamically here rather than statically in language-configuration.json.
+// KEEP THE PATTERN IN SYNC with the BLOCK_OPENERS table in
+// server/lib/blocks.js (see CLAUDE.md, "Adding a New Block Type").
+// ---------------------------------------------------------------------------
+
+const INCREASE_INDENT_PATTERN =
+  /^\s*(?:interface |router |line |class-map|policy-map|vrf definition |vlan \d|flow (?:record|exporter|monitor) |service-template |template |route-map |ip access-list (?:standard|extended) |ipv6 access-list |aaa group server |key chain |radius server |tacacs server |device-tracking policy |crypto map |call-home$|control-plane|crypto pki (?:trustpoint|certificate chain) |telemetry (?:ietf subscription|receiver protocol|transform) |transceiver type |aaa server radius dynamic-author).*$/;
+
+let autoIndentDisposable;
+
+function syncAutoIndent() {
+  const enabled = vscode.workspace
+    .getConfiguration('cisco-ios-lsp')
+    .get('experimental.autoIndent', false);
+  if (enabled && !autoIndentDisposable) {
+    autoIndentDisposable = vscode.languages.setLanguageConfiguration('cisco', {
+      indentationRules: { increaseIndentPattern: INCREASE_INDENT_PATTERN },
+    });
+  } else if (!enabled && autoIndentDisposable) {
+    autoIndentDisposable.dispose();
+    autoIndentDisposable = undefined;
+  }
 }
 
 // ---------------------------------------------------------------------------
