@@ -3,3 +3,5 @@ dist/
 *.vsix
 _manuals/*.pdf
 _testing/
+.env
+.env.*
