@@ -214,6 +214,13 @@ token required on user machines.
 - Active development happens on `claude_dev`.
 - **Never push** without explicit user approval.
 - Commit each meaningful change so work can be rolled back.
+- **`.github/workflows/*` changes must reach `main`.** GitHub only evaluates non-`push`
+  triggers (`release: published`, `pull_request`, `schedule`, ...) using the workflow file as
+  it exists on the **default branch** (`main`), not on `claude_dev`. A workflow file added or
+  edited only on `claude_dev` looks fine and can even be exercised successfully via manual
+  `workflow_dispatch`, but its real trigger stays dead until the file is merged into `main`.
+  After touching a workflow file, verify it actually landed on `main` before considering the
+  change done.
 
 ## cSpell Word List Maintenance
 
