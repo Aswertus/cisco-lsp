@@ -1,0 +1,124 @@
+[
+  {
+    "name": "auto qos classify",
+    "context": null,
+    "detail": "Automatically configure quality of service (QoS) classification for untrusted devices within a QoS domain.",
+    "syntax": "auto qos classify [police]",
+    "noForm": "no auto qos classify [police]",
+    "params": [
+      {
+        "name": "police",
+        "description": "(Optional) Configures QoS policing for untrusted devices."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use this command to configure the QoS for trusted interfaces within the QoS domain.  The QoS domain includes the device, the network interior, and edge devices that can classify incoming traffic for QoS.  When auto-QoS is enabled, it uses the ingress packet label to categorize traffic, to assign packet labels, and to configure the ingress and egress queues.",
+    "sourcePage": 334,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "auto qos trust",
+    "context": null,
+    "detail": "Automatically configure quality of service (QoS) for trusted interfaces within a QoS domain.",
+    "syntax": "auto qos trust {cos | dscp }",
+    "noForm": "no auto qos trust {cos | dscp}",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use this command to configure the QoS for trusted interfaces within the QoS domain.  The QoS domain includes the device, the network interior, and edge devices that can classify incoming traffic for QoS.  Table 19: Traffic Types, Packet Labels, and Queues 3 4 VOIP Data VOIP Routing STP BPDU Real-Time All Other Traffic Traffic Control Protocol Traffic Video Traffic Traffic Traffic DSCP5 46 24, 26 48 56 34 – CoS6 5 3 6 7 3 – CoS-to-egress 4, 5 2, 3, 6, 7 (queue 2) 0 (queue 3) 2 (queue 0, 1 queue map (queue 1) 3) (queue 4) 3 STP = Spanning Tree Protocol 4 BPDU = bridge protocol data unit 5 DSCP = Differentiated Services Code Point 6 CoS = class of service Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 337,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "auto qos video",
+    "context": null,
+    "detail": "Automatically configure quality of service (QoS) for video within a QoS domain.",
+    "syntax": "auto qos video {cts | ip-camera | media-player}",
+    "noForm": "no auto qos video {cts | ip-camera | media-player}",
+    "params": [
+      {
+        "name": "cts",
+        "description": "Identifies this port as connected to a Cisco TelePresence System and automatically configures QoS for video."
+      },
+      {
+        "name": "ip-camera",
+        "description": "Identifies this port as connected to a Cisco IP camera and automatically configures QoS for video. media-player Identifies this port as connected to a CDP-capable Cisco digital media player and automatically configures QoS for video."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use this command to configure the QoS appropriate for video traffic within the QoS domain.  The QoS domain includes the device, the network interior, and edge devices that can classify incoming traffic for QoS.  Table 21: Traffic Types, Packet Labels, and Queues 7 8 VOIP Data VOIP Routing STP BPDU Real-Time All Other Traffic Traffic Control Protocol Traffic Video Traffic Traffic Traffic DSCP9 46 24, 26 48 56 34 – CoS10 5 3 6 7 3 – CoS-to-egress 4, 5 (queue 2, 3, 6, 7 2, 3, 6, 7 2, 3, 6, 7 (queue 0 (queue 2 (queue 0, 1 queue map 1) (queue 2) (queue 2) 2) 3) 3) (queue 4) 7 STP = Spanning Tree Protocol 8 BPDU = bridge protocol data unit 9 DSCP = Differentiated Services Code Point 10 CoS = class of service Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 341,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "auto qos voip",
+    "context": null,
+    "detail": "Automatically configure quality of service (QoS) for voice over IP (VoIP) within a QoS domain.",
+    "syntax": "auto qos voip {cisco-phone | cisco-softphone | trust}",
+    "noForm": "no auto qos voip {cisco-phone | cisco-softphone | trust}",
+    "params": [
+      {
+        "name": "cisco-phone",
+        "description": "Identifies this port as connected to a Cisco IP Phone, and automatically configures QoS for VoIP. The QoS labels of incoming packets are trusted only when the telephone is detected. cisco-softphone Identifies this port as connected to a device running the Cisco SoftPhone, and automatically configures QoS for VoIP."
+      },
+      {
+        "name": "trust",
+        "description": "Identifies this port as connected to a trusted device, and automatically configures QoS for VoIP. The QoS labels of incoming packets are trusted. For nonrouted ports, the CoS value of the incoming packet is trusted. For routed ports, the DSCP value of the incoming packet is trusted."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use this command to configure the QoS appropriate for VoIP traffic within the QoS domain.  The QoS domain includes the device, the network interior, and edge devices that can classify incoming traffic for QoS.  Auto-QoS configures the device for VoIP with Cisco IP Phones on device and routed ports and for VoIP with devices running the Cisco SoftPhone application.",
+    "sourcePage": 346,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug auto qos",
+    "context": null,
+    "detail": "Enable debugging of the automatic quality of service (auto-QoS) feature.",
+    "syntax": "debug auto qos",
+    "noForm": "no debug auto qos",
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "To display the QoS configuration that is automatically generated when auto-QoS is enabled, enable debugging before you enable auto-QoS.  You enable debugging by entering the debug auto qos privileged EXEC command.  The undebug auto qos command is the same as the no debug auto qos command.",
+    "sourcePage": 351,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show auto qos",
+    "context": null,
+    "detail": "Display the quality of service (QoS) commands entered on the interfaces on which auto-QoS is enabled.",
+    "syntax": "show auto qos [interface [interface-id]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface",
+        "description": "(Optional) Displays auto-QoS information for the specified port or for all ports. Valid"
+      },
+      {
+        "name": "[interface-id]",
+        "description": "interfaces include physical ports."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "The show auto qos command output shows only the auto qos command entered on each interface.  The show auto qos interface interface-id command output shows the auto qos command entered on a specific interface.  Use the show running-config privileged EXEC command to display the auto-QoS configuration and the user modifications.",
+    "sourcePage": 354,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  }
+]

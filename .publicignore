@@ -1,0 +1,67 @@
+# Paths that must NEVER reach the public repo (Aswertus/cisco-lsp).
+# gitignore syntax, matched case-insensitively; a pattern without a slash
+# matches at any depth. scripts/public/check.sh adds its own built-in NEVER
+# list on top (production data + AI-assistant files), so removing a line here
+# can't un-block those. Enforced in:
+#   - scripts/public/release.sh   (strips these paths when building the release commit)
+#   - scripts/git-hooks/pre-push  (blocks a push to the public remote)
+#   - .github/workflows/public-guard.yml (required check on the public repo)
+#   - .claude/hooks/public-guard.sh (Claude Code: gates every public-facing command)
+
+# Production data — the reason this file exists
+_testing/
+_manuals/
+*.cisco
+*-confg
+*running-config*
+*startup-config*
+show-run*
+*.cfg
+*.conf
+*.txt
+*.log
+*.bak
+*.pcap
+*.pcapng
+*.pdf
+
+# AI-assistant / agent instructions, memory and settings
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+AGENT.md
+GEMINI.md
+.claude/
+.agent/
+.agents/
+.kiro/
+.cursor/
+.cursorrules
+.windsurf/
+.windsurfrules
+.clinerules
+.cline/
+.roo/
+.continue/
+.codex/
+.gemini/
+.aider*
+.mcp.json
+.github/copilot-instructions.md
+.github/instructions/
+.github/prompts/
+
+# Secrets and key material
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# Build output and packages (released as assets, not committed)
+*.vsix
+dist/
+node_modules/

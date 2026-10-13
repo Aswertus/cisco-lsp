@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# Guard for every push that is NOT to the private dev repo — i.e. anything that
+# could reach the public repo (Aswertus/cisco-lsp), however its URL is spelled.
+#
+# Install per clone (an absolute path in .git, so it survives checking out old
+# commits; release.sh refuses to run if it is missing or outdated):
+#   cp scripts/git-hooks/pre-push "$(git rev-parse --git-common-dir)/hooks/pre-push"
+#
+# Such a push is refused unless every ref
+#   - is release/v*, a v* tag, or main while the remote has no main yet,
+#   - points at a commit (not a bare tree/blob),
+#   - adds at most ONE commit the remote doesn't have (none for a tag), made by
+#     scripts/public/release.sh (message "release: v*", noreply identity),
+#   - and its whole tree passes scripts/public/check.sh.
+set -euo pipefail
+
+remote=$1
+url=$2
+shopt -s nocasematch
+[[ $url =~ github\.com.*[:/]Aswertus/cisco-lsp-dev(\.git)?/?$ ]] && exit 0
+shopt -u nocasematch
+
+IDENTITY='1096961+Aswertus@users.noreply.github.com'
+check=$(git rev-parse --show-toplevel)/scripts/public/check.sh
+zero=0000000000000000000000000000000000000000
+fail() { echo "pre-push (public guard → $remote): $*" >&2; exit 1; }
+[ -x "$check" ] || fail "$check missing — check out a branch that has it"
+
+# What the remote really has (not what local remote-tracking refs claim).
+remote_refs=$(git ls-remote "$url") || fail "cannot query $url"
+known=()
+while read -r sha _; do
+  git cat-file -e "$sha" 2>/dev/null && known+=("^$sha")
+done <<<"$remote_refs"
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ "$local_sha" = "$zero" ] && continue # deleting a ref exposes nothing
+
+  case $remote_ref in
+    refs/heads/release/v*) max_new=1 ;;
+    refs/tags/v*) max_new=0 ;;
+    refs/heads/main)
+      ! grep -q $'\trefs/heads/main$' <<<"$remote_refs" ||
+        fail "never push to public main directly — open a release PR (scripts/public/release.sh)"
+      max_new=1 ;;
+    *) fail "refusing to push $remote_ref — only release/v* branches and v* tags go public" ;;
+  esac
+
+  [ "$(git cat-file -t "$local_sha^{}")" = commit ] || fail "$remote_ref does not point at a commit"
+
+  if [ "$(git cat-file -t "$local_sha")" = tag ]; then
+    git cat-file tag "$local_sha" | grep -q "^tagger .*<$IDENTITY>" ||
+      fail "$remote_ref: annotated tag not made by release.sh (tagger must be $IDENTITY)"
+  fi
+
+  new=$(git rev-list "$local_sha" "${known[@]}")
+  [ "$(grep -c . <<<"$new" || true)" -le "$max_new" ] ||
+    fail "$remote_ref would publish $(grep -c . <<<"$new") new commits (max $max_new) — private history must not go public"
+  for c in $new; do
+    [[ "$(git log -1 --format=%s "$c")" =~ ^release:\ v[0-9] ]] ||
+      fail "$remote_ref: commit $c was not made by release.sh (message must be 'release: vX.Y.Z')"
+    [ "$(git log -1 --format='%ae %ce' "$c")" = "$IDENTITY $IDENTITY" ] ||
+      fail "$remote_ref: commit $c has a non-noreply author/committer"
+  done
+
+  "$check" "$local_sha" >&2 || fail "$remote_ref contains forbidden paths"
+done

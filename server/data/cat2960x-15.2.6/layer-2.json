@@ -1,0 +1,2019 @@
+[
+  {
+    "name": "channel-group",
+    "context": null,
+    "detail": "Assign an Ethernet port to an EtherChannel group, or to enable an EtherChannel mode, or both.",
+    "syntax": "channel-group { auto | channel-group-number mode {active | auto [non-silent] | desirable [non-silent] | on | passive}}",
+    "noForm": "no channel-group",
+    "params": [
+      {
+        "name": "auto",
+        "description": "Enables auto-LAG feature on individual port interface. By default, the auto-LAG feature is enabled on the port."
+      },
+      {
+        "name": "channel-group-number",
+        "description": "Channel group number. The range is 1 to 24."
+      },
+      {
+        "name": "mode",
+        "description": "Specifies the EtherChannel mode."
+      },
+      {
+        "name": "active",
+        "description": "Unconditionally enables Link Aggregation Control Protocol (LACP)."
+      },
+      {
+        "name": "auto",
+        "description": "Enables the Port Aggregation Protocol (PAgP) only if a PAgP device is detected."
+      },
+      {
+        "name": "non-silent",
+        "description": "(Optional) Configures the interface for nonsilent operation when connected to a partner that is PAgP-capable. Use in PAgP mode with the auto or desirable keyword when traffic is expected from the other device."
+      },
+      {
+        "name": "desirable",
+        "description": "Unconditionally enables PAgP."
+      },
+      {
+        "name": "on",
+        "description": "Enables the on mode."
+      },
+      {
+        "name": "passive",
+        "description": "Enables LACP only if a LACP device is detected."
+      }
+    ],
+    "modes": [
+      "Interface configuration",
+      "Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 123 Layer 2 channel-group"
+    ],
+    "usageSummary": "The LAN Lite feature set supports up to six EtherChannels.  The LAN Base feature set supports up to 24 EtherChannels; however, in mixed stack configurations, only six EtherChannels are supported.  For Layer 2 EtherChannels, the channel-group command automatically creates the port-channel interface when the channel group gets its first physical port.",
+    "sourcePage": 123,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "channel-protocol",
+    "context": null,
+    "detail": "Restrict the protocol used on a port to manage channeling.",
+    "syntax": "channel-protocol {lacp | pagp}",
+    "noForm": "no channel-protocol",
+    "params": [
+      {
+        "name": "lacp",
+        "description": "Configures an EtherChannel with the Link Aggregation Control Protocol (LACP). pagp Configures an EtherChannel with the Port Aggregation Protocol (PAgP)."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the channel-protocol command only to restrict a channel to LACP or PAgP.  If you set the protocol by using the channel-protocol command, the setting is not overridden by the channel-group interface configuration command.  You must use the channel-group interface configuration command to configure the EtherChannel parameters.",
+    "sourcePage": 127,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear lacp",
+    "context": null,
+    "detail": "Clear Link Aggregation Control Protocol (LACP) channel-group counters.",
+    "syntax": "clear lacp [channel-group-number] counters",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 24."
+      },
+      {
+        "name": "counters",
+        "description": "Clears traffic counters."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can clear all counters by using the clear lacp counters command, or you can clear only the counters for the specified channel group by using the clear lacp channel-group-number counters command.  This example shows how to clear all channel-group information: Device# clear lacp counters This example shows how to clear LACP traffic counters for group 4: Device# clear lacp 4 counters You can verify that the information was deleted by entering the show lacp counters or the show lacp channel-group-number counters privileged EXEC command.  Related Topics show lacp, on page 166 debug lacp, on page 133 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 128,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear pagp",
+    "context": null,
+    "detail": "Clear the Port Aggregation Protocol (PAgP) channel-group information.",
+    "syntax": "clear pagp [channel-group-number] counters",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 24."
+      },
+      {
+        "name": "counters",
+        "description": "Clears traffic counters."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can clear all counters by using the clear pagp counters command, or you can clear only the counters for the specified channel group by using the clear pagp channel-group-number counters command.  This example shows how to clear all channel-group information: Device# clear pagp counters This example shows how to clear PAgP traffic counters for group 10: Device# clear pagp 10 counters You can verify that the information was deleted by entering the show pagp privileged EXEC command.  Related Topics show pagp, on page 171 debug pagp, on page 134 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 129,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear spanning-tree counters",
+    "context": null,
+    "detail": "Clear the spanning-tree counters.",
+    "syntax": "clear spanning-tree counters [interface interface-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Clears all spanning-tree counters on the specified interface. Valid interfaces include physical ports, VLANs, and port channels. The VLAN range is 1 to 4094. The port-channel range is 1 to 24."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If the interface-id value is not specified, spanning-tree counters are cleared for all interfaces.  This example shows how to clear spanning-tree counters for all interfaces: Device# clear spanning-tree counters Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 130,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear spanning-tree detected-protocols",
+    "context": null,
+    "detail": "Restart the protocol migration process and force renegotiation with neighboring devices on the interface.",
+    "syntax": "clear spanning-tree detected-protocols [interface interface-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Restarts the protocol migration process on the specified interface. Valid interfaces include physical ports, VLANs, and port channels. The VLAN range is 1 to 4094. The port-channel range is 1 to 24."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "A device running the rapid per-VLAN spanning-tree plus (rapid-PVST+) protocol or the Multiple Spanning Tree Protocol (MSTP) supports a built-in protocol migration method that enables it to interoperate with legacy IEEE 802. 1D devices.  If a rapid-PVST+ or an MSTP device receives a legacy IEEE 802.",
+    "sourcePage": 131,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug etherchannel",
+    "context": null,
+    "detail": "Enable debugging of EtherChannels.",
+    "syntax": "debug etherchannel [{all | detail | error | event | idb }]",
+    "noForm": "no debug etherchannel [{all | detail | error | event | idb }]",
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all EtherChannel debug messages."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed EtherChannel debug messages."
+      },
+      {
+        "name": "error",
+        "description": "(Optional) Displays EtherChannel error debug messages."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Displays EtherChannel event messages."
+      },
+      {
+        "name": "idb",
+        "description": "(Optional) Displays PAgP interface descriptor block debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug etherchannel command is the same as the no debug etherchannel command.",
+    "sourcePage": 132,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug lacp",
+    "context": null,
+    "detail": "Enable debugging of Link Aggregation Control Protocol (LACP) activity.",
+    "syntax": "debug lacp [{all | event | fsm | misc | packet}]",
+    "noForm": "no debug lacp [{all | event | fsm | misc | packet}]",
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all LACP debug messages."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Displays LACP event debug messages."
+      },
+      {
+        "name": "fsm",
+        "description": "(Optional) Displays messages about changes within the LACP finite state machine."
+      },
+      {
+        "name": "misc",
+        "description": "(Optional) Displays miscellaneous LACP debug messages. packet (Optional) Displays the receiving and transmitting LACP control packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug etherchannel command is the same as the no debug etherchannel command.  When you enable debugging on a stack, it is enabled only on the stack's active switch.  To enable debugging on a stack member , start a session from the stack's active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 133,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug pagp",
+    "context": null,
+    "detail": "Enable debugging of Port Aggregation Protocol (PAgP) activity.",
+    "syntax": "debug pagp [{all | dual-active | event | fsm | misc | packet}]",
+    "noForm": "no debug pagp [{all | dual-active | event | fsm | misc | packet}]",
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all PAgP debug messages."
+      },
+      {
+        "name": "dual-active",
+        "description": "(Optional) Displays dual-active detection messages."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Displays PAgP event debug messages."
+      },
+      {
+        "name": "fsm",
+        "description": "(Optional) Displays messages about changes within the PAgP finite state machine."
+      },
+      {
+        "name": "misc",
+        "description": "(Optional) Displays miscellaneous PAgP debug messages."
+      },
+      {
+        "name": "packet",
+        "description": "(Optional) Displays the receiving and transmitting PAgP control packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug pagp command is the same as the no debug pagp command.  When you enable debugging on a stack, it is enabled only on the stack's active switch.  To enable debugging on a stack member , start a session from the stack's active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 134,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform etherchannel",
+    "context": null,
+    "detail": "Enable debugging of platform-dependent EtherChannel events.",
+    "syntax": "debug platform etherchannel{init | link-up | rpc | warnings}",
+    "noForm": "no debug platform etherchannel {init | link-up | rpc | warnings}",
+    "params": [
+      {
+        "name": "init",
+        "description": "Displays EtherChannel module initialization debug messages. link-up Displays EtherChannel link-up and link-down related debug messages."
+      },
+      {
+        "name": "rpc",
+        "description": "Displays EtherChannel remote procedure call (RPC) debug messages. warnings Displays EtherChannel warning debug messages."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "The undebug platform etherchannel command is the same as the no debug platform etherchannel command.  When you enable debugging on a stack, it is enabled only on the stack's active switch.  To enable debugging on a stack member , start a session from the stack's active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 135,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform pm",
+    "context": null,
+    "detail": "Enable debugging of the platform-dependent port manager software module.",
+    "syntax": "debug platform pm {all | atom | counters | errdisable | etherchnl | exceptions | gvi | hpm-events | idb-events | if-numbers | ios-events | link-status | platform | pm-events | pm-span | pm-vectors [detail] | rpc [{general | oper-info | state | vectors | vp-events}] | soutput-vectors | stack-manager | sync | vlans} if-numbers | ios-events | link-status | platform | pm-events | pm-span | pm-vectors [detail] | rpc [{general | oper-info | state | vectors | vp-events}] | soutput-vectors | stack-manager | sync | vlans}",
+    "noForm": "no debug platform pm{all | counters | errdisable | etherchnl | exceptions | hpm-events | idb-events |",
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all port manager debug messages."
+      },
+      {
+        "name": "atom",
+        "description": "Displays AToM related events."
+      },
+      {
+        "name": "counters",
+        "description": "Displays counters for remote procedure call (RPC) debug messages."
+      },
+      {
+        "name": "errdisable",
+        "description": "Displays error-disabled-related events debug messages."
+      },
+      {
+        "name": "etherchnl",
+        "description": "Displays EtherChannel-related events debug messages."
+      },
+      {
+        "name": "exceptions",
+        "description": "Displays system exception debug messages."
+      },
+      {
+        "name": "gvi",
+        "description": "Displays IPe GVI-related messages."
+      },
+      {
+        "name": "hpm-events",
+        "description": "Displays platform port manager event debug messages."
+      },
+      {
+        "name": "idb-events",
+        "description": "Displays interface descriptor block (IDB)-related events debug messages."
+      },
+      {
+        "name": "if-numbers",
+        "description": "Displays interface-number translation event debug messages."
+      },
+      {
+        "name": "ios-events",
+        "description": "Displays Cisco IOS software events."
+      },
+      {
+        "name": "link-status",
+        "description": "Displays interface link-detection event debug messages."
+      },
+      {
+        "name": "platform",
+        "description": "Displays port manager function event debug messages."
+      },
+      {
+        "name": "pm-events",
+        "description": "Displays port manager event debug messages."
+      },
+      {
+        "name": "pm-span",
+        "description": "Displays port manager Switched Port Analyzer (SPAN) event debug messages."
+      },
+      {
+        "name": "pm-vectors",
+        "description": "Displays port manager vector-related event debug messages."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays vector-function details."
+      },
+      {
+        "name": "rpc",
+        "description": "Displays RPC-related messages. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 136 Layer 2 debug platform pm"
+      },
+      {
+        "name": "general",
+        "description": "(Optional) Displays general RPC-related messages."
+      },
+      {
+        "name": "oper-info",
+        "description": "(Optional) Displays operational- and informational-related RPC messages."
+      },
+      {
+        "name": "state",
+        "description": "(Optional) Displays administrative- and operational-related RPC messages."
+      },
+      {
+        "name": "vectors",
+        "description": "(Optional) Displays vector-related RPC messages."
+      },
+      {
+        "name": "vp-events",
+        "description": "(Optional) Displays virtual ports-related RPC messages."
+      },
+      {
+        "name": "soutput-vectors",
+        "description": "Displays IDB output vector event debug messages."
+      },
+      {
+        "name": "stack-manager",
+        "description": "Displays stack manager-related events debug messages. This keyword is supported only on stacking-capable switches."
+      },
+      {
+        "name": "sync",
+        "description": "Displays operational synchronization and VLAN line-state event debug messages."
+      },
+      {
+        "name": "vlans",
+        "description": "Displays VLAN creation and deletion event debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug platform pm command is the same as the no debug platform pm command.  When you enable debugging on a stack, it is enabled only on the stack's active switch.  To enable debugging on a stack member , start a session from the stack's active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 136,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug spanning-tree",
+    "context": null,
+    "detail": "Enable debugging of spanning-tree activities.",
+    "syntax": "debug spanning-tree {all | backbonefast | bpdu | bpdu-opt | config | csuf/csrt | etherchannel | events | exceptions | general | mstp | pvst+ | root | snmp | synchronization | switch | uplinkfast} events | exceptions | general | mstp | pvst+ | root | snmp | synchronization | switch | uplinkfast}",
+    "noForm": "no debug spanning-tree {all | backbonefast | bpdu | bpdu-opt | config | csuf/csrt | etherchannel |",
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all spanning-tree debug messages."
+      },
+      {
+        "name": "backbonefast",
+        "description": "Displays BackboneFast-event debug messages."
+      },
+      {
+        "name": "bpdu",
+        "description": "Displays spanning-tree bridge protocol data unit (BPDU) debug messages."
+      },
+      {
+        "name": "bpdu-opt",
+        "description": "Displays optimized BPDU handling debug messages."
+      },
+      {
+        "name": "config",
+        "description": "Displays spanning-tree configuration change debug messages."
+      },
+      {
+        "name": "csuf/csrt",
+        "description": "Displays cross-stack UplinkFast and cross-stack rapid transition activity debug messages."
+      },
+      {
+        "name": "etherchannel",
+        "description": "Displays EtherChannel-support debug messages."
+      },
+      {
+        "name": "events",
+        "description": "Displays spanning-tree topology event debug messages."
+      },
+      {
+        "name": "exceptions",
+        "description": "Displays spanning-tree exception debug messages."
+      },
+      {
+        "name": "general",
+        "description": "Displays general spanning-tree activity debug messages."
+      },
+      {
+        "name": "mstp",
+        "description": "Debugs Multiple Spanning Tree Protocol (MSTP) events."
+      },
+      {
+        "name": "pvst+",
+        "description": "Displays per-VLAN spanning-tree plus (PVST+) event debug messages."
+      },
+      {
+        "name": "root",
+        "description": "Displays spanning-tree root-event debug messages."
+      },
+      {
+        "name": "snmp",
+        "description": "Displays spanning-tree Simple Network Management Protocol (SNMP) handling debug messages."
+      },
+      {
+        "name": "switch",
+        "description": "Displays device shim command debug messages. This shim is the software module that is the interface between the generic Spanning Tree Protocol (STP) code and the platform-specific code of various device platforms."
+      },
+      {
+        "name": "synchronization",
+        "description": "Displays the spanning-tree synchronization event debug messages."
+      },
+      {
+        "name": "uplinkfast",
+        "description": "Displays UplinkFast-event debug messages. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 138 Layer 2 debug spanning-tree"
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug spanning-tree command is the same as the no debug spanning-tree command.  When you enable debugging on a stack, it is enabled only on the stack's active switch.  To enable debugging on a stack member , start a session from the stack's active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 138,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform udld",
+    "context": null,
+    "detail": "Enable debugging of the platform-dependent UniDirectional Link Detection (UDLD) software.",
+    "syntax": "debug platform udld [{all | error | switch | rpc {events | messages}}]",
+    "noForm": "no platform udld [{all | error | rpc {events | messages}}]",
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all UDLD debug messages."
+      },
+      {
+        "name": "error",
+        "description": "(Optional) Displays error condition debug messages. rpc {events | messages} (Optional) Displays UDLD remote procedure call (RPC) debug messages. The keywords have these meanings: • events—Displays UDLD RPC events. • messages—Displays UDLD RPC messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug platform udld command is the same as the no debug platform udld command.  When you enable debugging on a stack, it is enabled only on the stack's active switch.  To enable debugging on a stack member , start a session from the stack's active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 140,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "interface port-channel",
+    "context": null,
+    "detail": "Access or create a port channel.",
+    "syntax": "interface port-channel port-channel-number",
+    "noForm": "no interface port-channel",
+    "params": [
+      {
+        "name": "port-channel-number",
+        "description": "(Optional) Channel group number. The range is 1 to 24."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "For Layer 2 EtherChannels, you do not have to create a port-channel interface before assigning physical ports to a channel group.  Instead, you can use the channel-group interface configuration command, which automatically creates the port-channel interface when the channel group obtains its first physical port.  If you create the port-channel interface first, the channel-group-number can be the same as the port-channel-number, or you can use a new number.",
+    "sourcePage": 141,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp port-priority",
+    "context": null,
+    "detail": "Configure the port priority for the Link Aggregation Control Protocol (LACP).",
+    "syntax": "lacp port-priority priority",
+    "noForm": "no lacp port-priority",
+    "params": [
+      {
+        "name": "priority",
+        "description": "Port priority for LACP. The range is 1 to 65535."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The lacp port-priority interface configuration command determines which ports are bundled and which ports are put in hot-standby mode when there are more than eight ports in an LACP channel group.  An LACP channel group can have up to 16 Ethernet ports of the same type.  Up to eight ports can be active, and up to eight ports can be in standby mode.",
+    "sourcePage": 143,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp system-priority",
+    "context": null,
+    "detail": "Configure the system priority for the Link Aggregation Control Protocol (LACP).",
+    "syntax": "lacp system-priority priority",
+    "noForm": "no lacp system-priority",
+    "params": [
+      {
+        "name": "priority",
+        "description": "System priority for LACP. The range is 1 to 65535."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The lacp system-priority command determines which device in an LACP link controls port priorities.  An LACP channel group can have up to 16 Ethernet ports of the same type.  Up to eight ports can be active, and up to eight ports can be in standby mode.",
+    "sourcePage": 145,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "link state group",
+    "context": null,
+    "detail": "Configure an interface as a member of a link-state group.",
+    "syntax": "link state group [{number}]{downstream | upstream}",
+    "noForm": "no link state group [{number}]{downstream | upstream}",
+    "params": [
+      {
+        "name": "number",
+        "description": "(Optional) Specifies the number of the link-state group. The range is 1 to 2. The default group number is 1."
+      },
+      {
+        "name": "downstream",
+        "description": "Configures the interface as a downstream interface in the group."
+      },
+      {
+        "name": "upstream",
+        "description": "Configures the interface as an upstream interface in the group."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "This command is supported only on the LAN Base image.  Add upstream interfaces to the link-state group before adding downstream interfaces, otherwise, the downstream interfaces move into error-disable mode.  These are the limitations: • An interface can be an upstream interface or a downstream interface.",
+    "sourcePage": 146,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "link state track",
+    "context": null,
+    "detail": "Enable a link-state group.",
+    "syntax": "link state track [{number}]",
+    "noForm": "no link state track [{number}]",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command is supported only on the LAN Base image.  Use the link state group command to create and configure the link-state group.  You then can use this command to enable the link-state group.",
+    "sourcePage": 147,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "pagp learn-method",
+    "context": null,
+    "detail": "Learn the source address of incoming packets received from an EtherChannel port.",
+    "syntax": "pagp learn-method {aggregation-port | physical-port}",
+    "noForm": "no pagp learn-method",
+    "params": [
+      {
+        "name": "aggregation-port",
+        "description": "Specifies address learning on the logical port channel. The device sends packets to the source using any port in the EtherChannel. This setting is the default. With aggregation-port learning, it is not important on which physical port the packet arrives."
+      },
+      {
+        "name": "physical-port",
+        "description": "Specifies address learning on the physical port within the EtherChannel. The device sends packets to the source using the same port in the EtherChannel from which it learned the source address. The other end of the channel uses the same port in the channel for a particular destination MAC or IP address."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The learn method must be configured the same at both ends of the link.  The device supports address learning only on aggregate ports even though the physical-port keyword is provided in the command-line interface (CLI).  The pagp learn-method and the pagp port-priority interface configuration commands have no effect on the device hardware, but they are required for PAgP interoperability with devices that only support address learning by physical ports.",
+    "sourcePage": 148,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "pagp port-priority",
+    "context": null,
+    "detail": "Select a port over which all Port Aggregation Protocol (PAgP) traffic through the EtherChannel is sent.",
+    "syntax": "pagp port-priority priority",
+    "noForm": "no pagp port-priority",
+    "params": [
+      {
+        "name": "priority",
+        "description": "Priority number. The range is from 0 to 255."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The physical port with the highest priority that is operational and has membership in the same EtherChannel is the one selected for PAgP transmission.  The device supports address learning only on aggregate ports even though the physical-port keyword is provided in the command-line interface (CLI).  The pagp learn-method and the pagp port-priority interface configuration commands have no effect on the device hardware, but they are required for PAgP interoperability with devices that only support address learning by physical ports, such as the Catalyst 1900 switch.",
+    "sourcePage": 150,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "pagp timer",
+    "context": null,
+    "detail": "Set the PAgP timer expiration.",
+    "syntax": "pagp timer time",
+    "noForm": "no pagp timer",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "This command is available for all interfaces configured as part of a PAgP port channel.  This example shows how to set the PAgP timer expiration to 50 seconds: Switch(config-if)# pagp timer 50 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 151,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel load-balance",
+    "context": null,
+    "detail": "Set the load-distribution method among the ports in the EtherChannel.",
+    "syntax": "port-channel load-balance {dst-ip | dst-mac | src-dst-ip | src-dst-mac | src-ip | src-mac}",
+    "noForm": "no port-channel load-balance",
+    "params": [
+      {
+        "name": "dst-ip",
+        "description": "Specifies load distribution based on the destination host IP address."
+      },
+      {
+        "name": "dst-mac",
+        "description": "Specifies load distribution based on the destination host MAC address. Packets to the same destination are sent on the same port, but packets to different destinations are sent on different ports in the channel. src-dst-ip Specifies load distribution based on the source and destination host IP address. src-dst-mac Specifies load distribution based on the source and destination host MAC address."
+      },
+      {
+        "name": "src-ip",
+        "description": "Specifies load distribution based on the source host IP address."
+      },
+      {
+        "name": "src-mac",
+        "description": "Specifies load distribution based on the source MAC address. Packets from different hosts use different ports in the channel, but packets from the same host use the same port."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can verify your setting by entering the show running-config privileged EXEC command or the show etherchannel load-balance privileged EXEC command.",
+    "sourcePage": 152,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "rep admin vlan",
+    "context": null,
+    "detail": "Configure a Resilient Ethernet Protocol (REP) administrative VLAN for REP to transmit hardware flood layer (HFL) messages.",
+    "syntax": "rep admin vlan vlan-id [segment segment-id]",
+    "noForm": "no rep admin vlan vlan-id [segment segment-id]",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "The REP administrative VLAN. This is a 48-bit static MAC address. segment segment-id Configures the administrative VLAN for the specified segment. The segment ID range is from 1 to 1024."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The range of the REP administrative VLAN is from 2 to 4094.  If you do not configure an administrative VLAN, the default VLAN is VLAN 1.  There can be only one administrative VLAN on a device and on a segment.",
+    "sourcePage": 153,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "rep block port",
+    "context": null,
+    "detail": "Configure a Resilient Ethernet Protocol (REP) VLAN load balancing on the REP primary edge port.",
+    "syntax": "rep block port {id port-id | neighbor-offset | preferred} vlan {vlan-list | all}",
+    "noForm": "no rep block port {id port-id | neighbor-offset | preferred}",
+    "params": [
+      {
+        "name": "id port-id",
+        "description": "Specifies the VLAN blocking alternate port by entering the unique port ID, which is automatically generated when REP is enabled. The REP port ID is a 16-character hexadecimal value. neighbor-offset Identifies the VLAN blocking alternate port by entering the offset number of a neighbor. The range is from -256 to +256; a value of 0 is invalid."
+      },
+      {
+        "name": "preferred",
+        "description": "Selects the regular segment port previously identified as the preferred alternate port for VLAN load balancing."
+      },
+      {
+        "name": "vlan",
+        "description": "Identifies the VLANs to be blocked."
+      },
+      {
+        "name": "vlan-list",
+        "description": "VLAN ID or range of VLAN IDs to be displayed. Enter a VLAN ID from 1 to 4094 or a range or sequence of VLANs (such as 1-3, 22, 41-44) to be blocked."
+      },
+      {
+        "name": "all",
+        "description": "Blocks all VLANs."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You must enter this command on the REP primary edge port.  When you select an alternate port by entering an offset number, this number identifies the downstream neighbor port of an edge port.  The primary edge port has an offset number of 1; positive numbers above 1 identify downstream neighbors of the primary edge port.",
+    "sourcePage": 154,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "rep lsl-age-timer",
+    "context": null,
+    "detail": "Configure the Resilient Ethernet Protocol (REP) link status layer (LSL) age-out timer value.",
+    "syntax": "rep lsl-age-timer milliseconds",
+    "noForm": "no rep lsl-age-timer milliseconds",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The rep lsl-age-timer command is used to configure the REP LSL age-out timer value.  While configuring REP configurable timers, we recommend that you configure the REP LSL number of retries first and then configure the REP LSL age-out timer value.  The following example shows how to configure REP LSL age-out timer value.",
+    "sourcePage": 156,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "rep preempt delay",
+    "context": null,
+    "detail": "Configure a waiting period after a segment port failure and recovery before Resilient Ethernet Protocol (REP) VLAN load balancing is triggered.",
+    "syntax": "rep preempt delay seconds",
+    "noForm": "no rep preempt delay",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You must enter this command on the REP primary edge port.  You must enter this command and configure a preempt time delay for VLAN load balancing to automatically trigger after a link failure and recovery.  If VLAN load balancing is configured, after a segment port failure and recovery, the REP primary edge port starts a delay timer before VLAN load balancing occurs.",
+    "sourcePage": 157,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "rep preempt segment",
+    "context": null,
+    "detail": "Manually start Resilient Ethernet Protocol (REP) VLAN load balancing on a segment.",
+    "syntax": "rep preempt segment segment-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "segment-id",
+        "description": "ID of the REP segment. The range is from 1 to 1024."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Enter this command on the segment, which has the primary edge port on the device.  Ensure that all the other segment configuration is completed before setting preemption for VLAN load balancing.  When you enter the rep preempt segment segment-id command, a confirmation message appears before the command is executed because preemption for VLAN load balancing can disrupt the network.",
+    "sourcePage": 158,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "rep segment",
+    "context": null,
+    "detail": "Enable Resilient Ethernet Protocol (REP) on an interface and to assign a segment ID to the interface.",
+    "syntax": "rep segment segment-id [edge [no-neighbor] [primary]] [preferred]",
+    "noForm": "no rep segment",
+    "params": [
+      {
+        "name": "segment-id",
+        "description": "Segment for which REP is enabled. Assign a segment ID to the interface. The range is from 1 to 1024."
+      },
+      {
+        "name": "edge",
+        "description": "(Optional) Configures the port as an edge port. Each segment has only two edge ports. no-neighbor (Optional) Specifies the segment edge as one with no external REP neighbor."
+      },
+      {
+        "name": "primary",
+        "description": "(Optional) Specifies that the port is the primary edge port where you can configure VLAN load balancing. A segment has only one primary edge port."
+      },
+      {
+        "name": "preferred",
+        "description": "(Optional) Specifies that the port is the preferred alternate port or the preferred port for VLAN load balancing."
+      },
+      {
+        "name": "Note",
+        "description": "Configuring a port as a preferred port does not guarantee that it becomes the alternate port; it merely gives it a slight edge among equal contenders. The alternate port is usually a previously failed port."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "REP ports must be a Layer 2 IEEE 802. 1Q port or 802. 1AD port.",
+    "sourcePage": 159,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "rep stcn",
+    "context": null,
+    "detail": "Configure a Resilient Ethernet Protocol (REP) edge port to send segment topology change notifications (STCNs) to another interface or to other segments.",
+    "syntax": "rep stcn {interface interface-id | segment segment-id-list}",
+    "noForm": "no rep stcn {interface | segment}",
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "Specifies a physical interface or port channel to receive STCNs. segment segment-id-list Specifies one REP segment or a list of segments to receive STCNs. The segment range is from 1 to 1024. You can also configure a sequence of segments (for example 3 to 5, 77, 100)."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Enter this command on a segment edge port to send STCNs to one or more segments or to an interface.  You can verify your settings by entering the show interfaces rep detail privileged EXEC command.  The following example shows how to configure a REP edge port to send STCNs to segments 25 to 50.",
+    "sourcePage": 161,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show etherchannel",
+    "context": null,
+    "detail": "Display EtherChannel information for a channel.",
+    "syntax": "show etherchannel [{channel-group-number | {detail | port | port-channel | protocol | summary }}] | [{auto | detail | load-balance | port | port-channel | protocol | summary}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 24."
+      },
+      {
+        "name": "auto",
+        "description": "(Optional) Displays that Etherchannel is created automatically."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed EtherChannel information."
+      },
+      {
+        "name": "load-balance",
+        "description": "(Optional) Displays the load-balance or frame-distribution scheme among ports in the port channel."
+      },
+      {
+        "name": "port",
+        "description": "(Optional) Displays EtherChannel port information."
+      },
+      {
+        "name": "port-channel",
+        "description": "(Optional) Displays port-channel information."
+      },
+      {
+        "name": "protocol",
+        "description": "(Optional) Displays the protocol that is being used in the channel."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays a one-line summary per channel group."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "If you do not specify a channel group number, all channel groups are displayed.  In the output, the passive port list field is displayed only for Layer 3 port channels.  This field means that the physical port, which is still not up, is configured to be in the channel group (and indirectly is in the only port channel in the channel group).",
+    "sourcePage": 162,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces rep detail",
+    "context": null,
+    "detail": "Display detailed Resilient Ethernet Protocol (REP) configuration and status for all interfaces or a specified interface, including the administrative VLAN.",
+    "syntax": "show interfaces [interface-id] rep detail",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) Physical interface used to display the port ID."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Enter this command on a segment edge port to send STCNs to one or more segments or to an interface.  You can verify your settings by entering the show interfaces rep detail privileged EXEC command.  The following example shows how to display the REP configuration and status for a specified interface.",
+    "sourcePage": 165,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show lacp",
+    "context": null,
+    "detail": "Display Link Aggregation Control Protocol (LACP) channel-group information.",
+    "syntax": "show lacp [channel-group-number] {counters | internal | neighbor | sys-id}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 24."
+      },
+      {
+        "name": "counters",
+        "description": "Displays traffic information."
+      },
+      {
+        "name": "internal",
+        "description": "Displays internal information."
+      },
+      {
+        "name": "neighbor",
+        "description": "Displays neighbor information."
+      },
+      {
+        "name": "sys-id",
+        "description": "Displays the system identifier that is being used by LACP. The system identifier consists of the LACP system priority and the device MAC address."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "You can enter any show lacp command to display the active channel-group information.  To display specific channel information, enter the show lacp command with a channel-group number.  If you do not specify a channel group, information for all channel groups appears.",
+    "sourcePage": 166,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show link state group",
+    "context": null,
+    "detail": "Display link-state group information.",
+    "syntax": "show link state group [{number}][{detail}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "number",
+        "description": "(Optional) Specifies the number of the link-state group number. The range is 1 to 2."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information about the link-state group."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "This command is supported only on the LAN Base image.  To display information about all link-state groups, enter this command without keywords.  To display information about a specific link-state group enter the link-state group number.",
+    "sourcePage": 170,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show pagp",
+    "context": null,
+    "detail": "Display Port Aggregation Protocol (PAgP) channel-group information.",
+    "syntax": "show pagp [channel-group-number] {counters | dual-active | internal | neighbor}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "counters",
+        "description": "Displays traffic information."
+      },
+      {
+        "name": "dual-active",
+        "description": "Displays the dual-active status."
+      },
+      {
+        "name": "internal",
+        "description": "Displays internal information."
+      },
+      {
+        "name": "neighbor",
+        "description": "Displays neighbor information."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "You can enter any show pagp command to display the active channel-group information.  To display the nonactive information, enter the show pagp command with a channel-group number.",
+    "sourcePage": 171,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform backup interface",
+    "context": null,
+    "detail": "Display platform-dependent backup information used in a Flex Links configuration.",
+    "syntax": "show platform backup interface [{interface-id | dummyQ}]",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  Do not use this command unless a technical support representative asks you to do so.  Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 173,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform etherchannel",
+    "context": null,
+    "detail": "Display platform-dependent EtherChannel information.",
+    "syntax": "show platform etherchannel {data-structures | flags | time-stamps}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "data-structures",
+        "description": "Displays EtherChannel data structures."
+      },
+      {
+        "name": "flags",
+        "description": "Displays EtherChannel port flags."
+      },
+      {
+        "name": "time-stamps",
+        "description": "Displays EtherChannel time stamps."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  Do not use this command unless a technical support representative asks you to do so.  Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 174,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform pm",
+    "context": null,
+    "detail": "Display platform-dependent port manager information.",
+    "syntax": "show platform pm {counters | group-masks | idbs {active-idbs | deleted-idbs} | if-numbers | link-status | module-info | platform-block | port-info interface-id | stack-view | vlan {info | line-state}}",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The stack-view keyword is not supported on switches running the LAN Lite image.  Use this command only when you are working directly with your technical support representative while troubleshooting a problem.  Do not use this command unless your technical support representative asks you to do so.",
+    "sourcePage": 175,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform spanning-tree",
+    "context": null,
+    "detail": "Display platform-dependent spanning-tree information.",
+    "syntax": "show platform spanning-tree synchronization [{detail | vlan vlan-id}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed spanning-tree information."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Displays VLAN device spanning-tree information for the specified VLAN. The range is 1 to 4094."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with your technical support representative while troubleshooting a problem.  Do not use this command unless your technical support representative asks you to do so.  Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 176,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show rep topology",
+    "context": null,
+    "detail": "Display Resilient Ethernet Protocol (REP) topology information for a segment or for all segments, including the primary and secondary edge ports in the segment.",
+    "syntax": "show rep topology [segment segment-id] [archive] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "segment segment-id",
+        "description": "(Optional) Specifies the segment for which to display the REP topology information. The segment-id range is from 1 to 1024."
+      },
+      {
+        "name": "archive",
+        "description": "(Optional) Displays the previous topology of the segment. This keyword is useful for troubleshooting a link failure."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed REP topology information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 177,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show spanning-tree",
+    "context": null,
+    "detail": "Display spanning-tree information for the specified spanning-tree instances.",
+    "syntax": "show spanning-tree [{active | backbonefast | blockedports | bridge | detail | inconsistentports | interface interface-type interface-number | mst | pathcost | root | summary [totals] | uplinkfast | vlan vlan-id}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "active",
+        "description": "(Optional) Displays spanning-tree information on active interfaces only."
+      },
+      {
+        "name": "backbonefast",
+        "description": "(Optional) Displays spanning-tree BackboneFast status."
+      },
+      {
+        "name": "blockedports",
+        "description": "(Optional) Displays blocked port information."
+      },
+      {
+        "name": "bridge",
+        "description": "(Optional) Displays status and configuration of this switch."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information."
+      },
+      {
+        "name": "inconsistentports",
+        "description": "(Optional) Displays information about inconsistent ports."
+      },
+      {
+        "name": "interface interface-type",
+        "description": "(Optional) Specifies the type and number of the interface. interface-number"
+      },
+      {
+        "name": "mst",
+        "description": "(Optional) Specifies multiple spanning-tree."
+      },
+      {
+        "name": "pathcost",
+        "description": "(Optional) Displays spanning-tree pathcost options."
+      },
+      {
+        "name": "root",
+        "description": "(Optional) Displays root-switch status and configuration."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Specifies a summary of port states."
+      },
+      {
+        "name": "totals",
+        "description": "(Optional) Displays the total lines of the spanning-tree state section."
+      },
+      {
+        "name": "uplinkfast",
+        "description": "(Optional) Displays spanning-tree UplinkFast status."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies the VLAN ID. The range is 1 to 4094."
+      }
+    ],
+    "modes": ["User EXEC Privileged EXEC"],
+    "usageSummary": "If you do not specify a vlan-id value when you use the vlan keyword, the command applies to spanning-tree instances for all VLANs.  This is an example of output from the show spannning-tree active command: Consolidated Platform Command Reference, Cisco IOS Release 15. 2(6)E (Catalyst 2960-X Switches) 179 Layer 2 show spanning-tree Device# show spanning-tree active VLAN0001 Spanning tree enabled protocol ieee Root ID Priority 32768 Address 0001.",
+    "sourcePage": 179,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show udld",
+    "context": null,
+    "detail": "Display UniDirectional Link Detection (UDLD) administrative and operational status for all ports or the specified port.",
+    "syntax": "show udld [{interface_id | neighbors}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the interface and port number. Valid interfaces include physical ports, VLANs, and port channels."
+      },
+      {
+        "name": "neighbors",
+        "description": "(Optional) Displays neighbor information only."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "If you do not enter an interface ID, administrative and operational UDLD status for all interfaces appear.  This is an example of output from the show udld interface-id command.  For this display, UDLD is enabled on both ends of the link, and UDLD detects that the link is bidirectional.",
+    "sourcePage": 183,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree backbonefast",
+    "context": null,
+    "detail": "Enable BackboneFast to allow a blocked port on a device to change immediately to a listening mode.",
+    "syntax": "spanning-tree backbonefast",
+    "noForm": "no spanning-tree backbonefast",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Enable BackboneFast so that the device detects indirect link failures and starts the spanning-tree reconfiguration sooner than it would under normal spanning-tree rules.  You can configure BackboneFast for rapid PVST+ or for multiple spanning-tree (MST) mode; however, the feature remains disabled until you change the spanning-tree mode to PVST+.  Use the show spanning-tree privileged EXEC command to verify your settings.",
+    "sourcePage": 186,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree bpdufilter",
+    "context": null,
+    "detail": "Enable bridge protocol data unit (BPDU) filtering on the interface.",
+    "syntax": "spanning-tree bpdufilter {enable | disable}",
+    "noForm": "no spanning-tree bpdufilter",
+    "params": [
+      {
+        "name": "enable",
+        "description": "Enables BPDU filtering on this interface."
+      },
+      {
+        "name": "disable",
+        "description": "Disables BPDU filtering on this interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "This command has three states: • spanning-tree bpdufilter enable —Unconditionally enables BPDU filtering on the interface.  • spanning-tree bpdufilter disable —Unconditionally disables BPDU filtering on the interface.  • no spanning-tree bpdufilter —Enables BPDU filtering on the interface if the interface is in the operational PortFast state and if you configure the spanning-tree portfast bpdufilter default command.",
+    "sourcePage": 187,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree bpduguard",
+    "context": null,
+    "detail": "Enable bridge protocol data unit (BPDU) guard on the interface.",
+    "syntax": "spanning-tree bpduguard {enable | disable}",
+    "noForm": "no spanning-tree bpduguard",
+    "params": [
+      {
+        "name": "enable",
+        "description": "Enables BPDU guard on this interface."
+      },
+      {
+        "name": "disable",
+        "description": "Disables BPDU guard on this interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the BPDU guard feature in a service-provider environment to prevent an access port from participating in the spanning tree.  If the port still receives a BPDU, it is put in the error-disabled state as a protective measure.  This command has three states: • spanning-tree bpduguard enable —Unconditionally enables BPDU guard on the interface.",
+    "sourcePage": 188,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree bridge assurance",
+    "context": null,
+    "detail": "Enable Bridge Assurance on your network.",
+    "syntax": "spanning-tree bridge assurance",
+    "noForm": "no spanning-tree bridge assurance",
+    "params": [],
+    "modes": ["Global configuration mode"],
+    "usageSummary": "This feature protects your network from bridging loops.  It monitors the receipt of BPDUs on point-to-point links on all network ports.  When a port does not receive BPDUs within the allotted hello time period, the port is put into a blocked state (the same as a port inconsistent state, which stops forwarding of frames).",
+    "sourcePage": 189,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree cost",
+    "context": null,
+    "detail": "Set the path cost of the interface for Spanning Tree Protocol (STP) calculations.",
+    "syntax": "spanning-tree [vlan vlan-id] cost cost",
+    "noForm": "no spanning-tree cost",
+    "params": [
+      {
+        "name": "cost",
+        "description": "The path cost; valid values are from 1 to 200000000."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "When you specify VLANs associated with a spanning tree instance, you can specify a single VLAN identified by a VLAN ID number, a range of VLANs separated by a hyphen, or a series of VLAN IDs separated by a comma.  When you specify a value for the cost argument, higher values indicate higher costs.  This range applies regardless of the protocol type specified.",
+    "sourcePage": 191,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree etherchannel guard misconfig",
+    "context": null,
+    "detail": "Display an error message when the device detects an EtherChannel misconfiguration.",
+    "syntax": "spanning-tree etherchannel guard misconfig",
+    "noForm": "no spanning-tree etherchannel guard misconfig",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "When the device detects an EtherChannel misconfiguration, this error message is displayed: PM-4-ERR_DISABLE: Channel-misconfig error detected on [chars], putting [chars] in err-disable state.  To determine which local ports are involved in the misconfiguration, enter the show interfaces status err-disabled command.  To check the EtherChannel configuration on the remote device, enter the show etherchannel summary command on the remote device.",
+    "sourcePage": 192,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree extend system-id",
+    "context": null,
+    "detail": "Enable extended system identification.",
+    "syntax": "spanning-tree extend system-id",
+    "noForm": "no spanning-tree extend system-id",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "The spanning tree uses the extended system ID, the device priority, and the allocated spanning-tree MAC address to make the bridge ID unique for each VLAN or multiple spanning-tree instance.  Because a switch stack appears as a single switch to the rest of the network, all switches in the stack use the same bridge ID for a given spanning tree.  If the stack's active switch fails, the stack members recalculate their bridge IDs of all running spanning trees based on the new MAC address of the stack's active switch.",
+    "sourcePage": 193,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree guard",
+    "context": null,
+    "detail": "Enable or disable root-guard mode or loop-guard mode on the VLANs associated with an interface.",
+    "syntax": "spanning-tree guard {loop | root | none}",
+    "noForm": "no spanning-tree guard",
+    "params": [
+      {
+        "name": "loop",
+        "description": "Enables the loop-guard mode on the interface."
+      },
+      {
+        "name": "root",
+        "description": "Enables root-guard mode on the interface."
+      },
+      {
+        "name": "none",
+        "description": "Sets the guard mode to none."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You can enable root guard or loop guard when the device is operating in the per-VLAN spanning-tree plus (PVST+), rapid-PVST+, or the multiple spanning-tree (MST) mode.  You cannot enable both root guard and loop guard at the same time.  Use the spanning-tree guard loop command to override the setting of the spanning-tree loop guard default setting.",
+    "sourcePage": 194,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree link-type",
+    "context": null,
+    "detail": "Configure a link type for a port.",
+    "syntax": "spanning-tree link-type {point-to-point | shared}",
+    "noForm": "no spanning-tree link-type",
+    "params": [
+      {
+        "name": "shared",
+        "description": "Specifies that the interface is a shared medium."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Rapid Spanning Tree Protocol Plus (RSTP+) fast transition works only on point-to-point links between two bridges.  By default, the device derives the link type of a port from the duplex mode.  A full-duplex port is considered as a point-to-point link while a half-duplex configuration is assumed to be on a shared link.",
+    "sourcePage": 196,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree loopguard default",
+    "context": null,
+    "detail": "Enable loop guard as a default on all ports of a given bridge.",
+    "syntax": "spanning-tree loopguard default",
+    "noForm": "no spanning-tree loopguard default",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Loop guard provides additional security in the bridge network.  Loop guard prevents alternate or root ports from becoming the designated port due to a failure that could lead to a unidirectional link.  Loop guard operates only on ports that are considered point-to-point by the spanning tree.",
+    "sourcePage": 197,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mode",
+    "context": null,
+    "detail": "Switch between per-VLAN Spanning Tree+ (PVST+), Rapid-PVST+, and Multiple Spanning Tree (MST) modes.",
+    "syntax": "spanning-tree mode {pvst | mst | rapid-pvst}",
+    "noForm": "no spanning-tree mode",
+    "params": [
+      {
+        "name": "pvst",
+        "description": "Enables PVST+ mode."
+      },
+      {
+        "name": "mst",
+        "description": "Enables MST mode."
+      },
+      {
+        "name": "rapid-pvst",
+        "description": "Enables Rapid-PVST+ mode."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Only one mode can be active at a time.  All stack members run the same spanning-tree mode.  Caution Be careful when using the spanning-tree mode command to switch between PVST+, Rapid-PVST+, and MST modes.",
+    "sourcePage": 198,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst configuration",
+    "context": null,
+    "detail": "Enter MST-configuration mode.",
+    "syntax": "spanning-tree mst configuration",
+    "noForm": "no spanning-tree mst configuration",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can use these commands for MST configuration: • abort Exits the MST region configuration mode without applying configuration changes.  • exit Exits the MST region configuration mode and applies all configuration changes.  • instance instance_id vlan vlan_id Maps VLANs to an MST instance.",
+    "sourcePage": 199,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst cost",
+    "context": null,
+    "detail": "Set the path cost of the interface for multiple spanning tree (MST) calculations.",
+    "syntax": "spanning-tree mst instance-id cost cost",
+    "noForm": "no spanning-tree mst instance-id cost",
+    "params": [
+      {
+        "name": "instance-id",
+        "description": "Range of spanning-tree instances. The range is 1 to 4094."
+      },
+      {
+        "name": "cost",
+        "description": "Path cost. The range is 1 to 200000000."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "When you specify a value for the cost argument, higher values indicate higher costs.",
+    "sourcePage": 201,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst forward-time",
+    "context": null,
+    "detail": "Set the forward-delay timer for MST instances.",
+    "syntax": "spanning-tree mst forward-time seconds",
+    "noForm": "no spanning-tree mst forward-time",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Number of seconds to set the forward-delay timer for all the MST instances. The range is 4 to 30."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 202,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst hello-time",
+    "context": null,
+    "detail": "Set the hello-time delay timer.",
+    "syntax": "spanning-tree mst hello-time seconds",
+    "noForm": "no spanning-tree mst hello-time",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Interval, in seconds, between hello BPDUs. The range is 1 to 10."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "If you do not specify the hello-time value, the value is calculated from the network diameter.  Exercise care when using this command.  For most situations, we recommend that you use the spanning-tree vlan vlan-id root primary and the spanning-tree vlan vlan-id root secondary global configuration commands to modify the hello time.",
+    "sourcePage": 203,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst max-age",
+    "context": null,
+    "detail": "Set the interval between messages that the spanning tree receives from the root switch.",
+    "syntax": "spanning-tree mst max-age seconds",
+    "noForm": "no spanning-tree mst max-age",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Interval, in seconds, between messages the spanning tree receives from the root switch. The range is 6 to 40."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 204,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst max-hops",
+    "context": null,
+    "detail": "Specify the number of possible hops in the region before a bridge protocol data unit (BPDU) is discarded.",
+    "syntax": "spanning-tree mst max-hops hop-count",
+    "noForm": "no spanning-tree mst max-hops",
+    "params": [
+      {
+        "name": "hop-count",
+        "description": "Number of possible hops in the region before a BPDU is discarded. The range is 1 to 255."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 205,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst port-priority",
+    "context": null,
+    "detail": "Set the priority for an interface.",
+    "syntax": "spanning-tree mst instance-id port-priority priority",
+    "noForm": "no spanning-tree mst instance-id port-priority",
+    "params": [
+      {
+        "name": "instance-id",
+        "description": "Range of spanning-tree instances. The range is 1 to 4094."
+      },
+      {
+        "name": "priority",
+        "description": "Priority. The range is 0 to 240 in increments of 16."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You can assign higher priority values (lower numerical values) to interfaces that you want selected first and lower priority values (higher numerical values) that you want selected last.  If all interfaces have the same priority value, the multiple spanning tree (MST) puts the interface with the lowest interface number in the forwarding state and blocks other interfaces.  If the switch is a member of a switch stack, you must use the spanning-tree mst instance_id cost cost command to select an interface to put in the forwarding state.",
+    "sourcePage": 206,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst pre-standard",
+    "context": null,
+    "detail": "Configure a port to transmit only prestandard bridge protocol data units (BPDUs).",
+    "syntax": "spanning-tree mst pre-standard",
+    "noForm": "no spanning-tree mst pre-standard",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The port can accept both prestandard and standard BPDUs.  If the neighbor types are mismatched, only the common and internal spanning tree (CIST) runs on this interface.",
+    "sourcePage": 207,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst priority",
+    "context": null,
+    "detail": "Set the bridge priority for an instance.",
+    "syntax": "spanning-tree mst instance priority priority",
+    "noForm": "no spanning-tree mst priority",
+    "params": [
+      {
+        "name": "instance",
+        "description": "Instance identification number. The range is 0 to 4094."
+      },
+      {
+        "name": "priority priority",
+        "description": "Specifies the bridge priority. The range is 0 to 614440 in increments of 4096."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can set the bridge priority in increments of 4096 only.  Valid values are 0, 4096, 8192, 12288, 16384, 20480.  24576, 28672, 32768, 40960, 45056, 49152, 53248, 57344 and 61440.",
+    "sourcePage": 208,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst root",
+    "context": null,
+    "detail": "Designate the primary and secondary root switch and set the timer value for an instance.",
+    "syntax": "spanning-tree mst instance root {primary | secondary}",
+    "noForm": "no spanning-tree mst instance root",
+    "params": [
+      {
+        "name": "instance",
+        "description": "Instance identification number. The range is 0 to 4094."
+      },
+      {
+        "name": "primary",
+        "description": "Forces this switch to be the root switch."
+      },
+      {
+        "name": "secondary",
+        "description": "Specifies this switch to act as the root switch, if the primary root fail."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use this command only on backbone switches.  You can enter instance-id as a single instance or a range of instances, for example, 0-3,5,7-9.  When you enter the spanning-tree mst instance-id root command, the software tries to set a high enough priority to make this switch the root of the spanning-tree instance.",
+    "sourcePage": 209,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst simulate pvst",
+    "context": "global configuration",
+    "detail": "Enable PVST + simulation globally.",
+    "syntax": "spanning-tree mst simulate pvst global",
+    "noForm": "no spanning-tree mst simulate pvst global",
+    "params": [],
+    "modes": ["Global configuration mode"],
+    "usageSummary": "This feature configures MST switches (in the same region) to seamlessly interact with PVST+ switches.  Use the show spanning-tree summary command to see if the feature is enabled.  To enable PVST+ simulation on a port, see spanning-tree mst simulate pvst (interface configuration).",
+    "sourcePage": 210,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst simulate pvst",
+    "context": "interface configuration",
+    "detail": "Enable PVST + simulation on a port.",
+    "syntax": "spanning-tree mst simulate pvst [disable]",
+    "noForm": "no spanning-tree mst simulate pvst",
+    "params": [
+      {
+        "name": "disable",
+        "description": "Disables the PVST+ simulation feature. This prevents a port from automatically interoperating with a connecting device that is running Rapid PVST+."
+      }
+    ],
+    "modes": ["Interface configuration mode"],
+    "usageSummary": "This feature configures MST switches (in the same region) to seamlessly interact with PVST+ switches.  Use the show spanning-tree interface interface-id detail command to see if the feature is enabled.  To enable PVST+ simulation globally, see spanning-tree mst simulate pvst global.",
+    "sourcePage": 212,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree pathcost method",
+    "context": null,
+    "detail": "Set the default path-cost calculation method.",
+    "syntax": "spanning-tree pathcost method {long | short}",
+    "noForm": "no spanning-tree pathcost method",
+    "params": [
+      {
+        "name": "long",
+        "description": "Specifies the 32-bit based values for default port-path costs."
+      },
+      {
+        "name": "short",
+        "description": "Specifies the 16-bit based values for default port-path costs."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The long path-cost calculation method utilizes all 32 bits for path-cost calculation and yields values in the range of 1 through 200,000,000.  The short path-cost calculation method (16 bits) yields values in the range of 1 through 65535.",
+    "sourcePage": 214,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree port-priority",
+    "context": null,
+    "detail": "Configure an interface priority when two bridges tie for position as the root bridge.",
+    "syntax": "spanning-tree [{vlan vlan-id}] port-priority port-priority",
+    "noForm": "no spanning-tree [{vlan vlan-id}] port-priority",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The priority you set breaks the tie.",
+    "sourcePage": 215,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree portfast edge",
+    "context": "global configuration",
+    "detail": "Enable bridge protocol data unit (BPDU) filtering on PortFast edge-enabled interfaces, the BDPU guard feature on PortFast edge-enabled interfaces, or the PortFast edge feature on all nontrunking interfaces.",
+    "syntax": "spanning-tree portfast edge {bpdufilter default | bpduguard default | default}",
+    "noForm": "no portfast edge {bpdufilter default | bpduguard default | default}",
+    "params": [
+      {
+        "name": "bdpufilter default",
+        "description": "Enables BDPU filtering on PortFast edge-enabled interfaces and prevents the switch interface connect to end stations from sending or receiving BPDUs. bdpuguard default Enables the BDPU guard feature on PortFast edge-enabled interfaces and places the interfaces that receive BPDUs in an error-disabled state."
+      },
+      {
+        "name": "default",
+        "description": "Enables the PortFast edge feature on all nontrunking interfaces."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can enable these features when the switch is operating in the per-VLAN spanning-tree plus (PVST+) rapid-PVST+, or the multiple spanning-tree (MST) mode.  Use the spanning-tree portfast edge bpdufilter default global configuration command to globally enable BPDU filtering on interfaces that are PortFast edge-enabled (the interfaces are in a PortFast edge-operational state).  The interfaces still send a few BPDUs at link-up before the switch begins to filter outbound BPDUs.",
+    "sourcePage": 216,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree portfast edge",
+    "context": "interface configuration",
+    "detail": "Enable PortFast edge mode where the interface is immediately put into the forwarding state upon linkup without waiting for the timer to expire.",
+    "syntax": "spanning-tree portfast edge [{disable | trunk}]",
+    "noForm": "no spanning-tree portfast edge",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You can enable this feature when the switch is operating in the per-VLAN spanning-tree plus (PVST+), Rapid PVST+, or the multiple spanning-tree (MST) mode.  This feature affects all VLANs on the interface.  Use this command only on interfaces that connect to end stations; otherwise, an accidental topology loop could cause a data-packet loop and disrupt the switch and network operation.",
+    "sourcePage": 218,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree transmit hold-count",
+    "context": null,
+    "detail": "Specify the transmit hold count.",
+    "syntax": "spanning-tree transmit hold-count value",
+    "noForm": "no spanning-tree transmit hold-count",
+    "params": [
+      {
+        "name": "value",
+        "description": "Number of bridge protocol data units (BPDUs) sent every second. The range is 1 to 20."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command is supported on all spanning-tree modes.  The transmit hold count determines the number of BPDUs that can be sent before pausing for 1 second.",
+    "sourcePage": 220,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree uplinkfast",
+    "context": null,
+    "detail": "Enable UplinkFast.",
+    "syntax": "spanning-tree uplinkfast [max-update-rate packets-per-second]",
+    "noForm": "no spanning-tree uplinkfast [max-update-rate]",
+    "params": [
+      {
+        "name": "max-update-rate",
+        "description": "(Optional) Specifies the rate (number of packets per second) at which"
+      },
+      {
+        "name": "packets-per-second",
+        "description": "update packets are sent. The range is 0 to 320000. The default is 150."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use this command only on access switches.  You can configure the UplinkFast feature for rapid PVST+ or for multiple spanning-tree (MST) mode, but the feature remains disabled (inactive) until you change the spanning-tree mode to PVST+.  When you enable UplinkFast, it is enabled for the entire switch; it cannot be enabled for individual VLANs.",
+    "sourcePage": 221,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree vlan",
+    "context": null,
+    "detail": "Configure Spanning Tree Protocol (STP) on a per-virtual LAN (VLAN) basis.",
+    "syntax": "spanning-tree vlan vlan-id [{forward-time seconds | hello-time seconds | max-age seconds | priority priority | [root {primary | secondary} [diameter net-diameter]]}]",
+    "noForm": "no spanning-tree vlan vlan-id [{forward-time | hello-time | max-age | priority | root}]",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "VLAN range associated with the spanning-tree instance. The range is 1 to 4094."
+      },
+      {
+        "name": "forward-time seconds",
+        "description": "(Optional) Sets the STP forward delay time in second. The range is 4 to 30. The default is 15."
+      },
+      {
+        "name": "hello-time seconds",
+        "description": "(Optional) Specifies the duration, in seconds, between the generation of configuration messages by the root switch. The range is 1 to 10. The default is 2."
+      },
+      {
+        "name": "max-age seconds",
+        "description": "(Optional) Sets the maximum number of seconds the information in a bridge packet data unit (BPDU) is valid. The range is 6 to 40. The default is 20."
+      },
+      {
+        "name": "priority priority",
+        "description": "(Optional) Sets the STP bridge priority. The range is 0 to 61440 in increments of 4096. The default for the primary root switch is 24576. The default for the secondary root switch is 28672."
+      },
+      {
+        "name": "root primary",
+        "description": "(Optional) Forces this switch to be the root switch."
+      },
+      {
+        "name": "root secondary",
+        "description": "(Optional) Specifies this switch to act as the root switch should the primary root fail. diameter net -diameter (Optional) Specifies the maximum number of switches between any two points of attachment of end stations. The range is 2 through 7."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "If the switch does not hear BPDUs within the time specified by the max-age seconds- value, it recomputes the spanning-tree topology.  Use the spanning-tree vlan vlan-id root only on backbone switches.  Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 223,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport access vlan",
+    "context": null,
+    "detail": "Configure a port as a static-access port.",
+    "syntax": "switchport access vlan {vlan-id }",
+    "noForm": "no switchport access vlan",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "(Optional) Number of the VLAN on the interface in access mode. Valid values are from 1 to 4094."
+      }
+    ],
+    "modes": ["Interface configuration mode"],
+    "usageSummary": "The port must be in access mode before the switchport access vlan command can take effect.  If the switchport mode is set to access vlan vlan-id, the port operates as a member of the specified VLAN.  If set to access vlan dynamic, the port starts discovery of VLAN assignment based on the incoming packets it receives.",
+    "sourcePage": 225,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport mode",
+    "context": null,
+    "detail": "Configure the VLAN membership mode of a port.",
+    "syntax": "switchport mode {access | dynamic | {auto | desirable} | trunk} noswitchport mode {access | dynamic | {auto | desirable} | trunk}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "access",
+        "description": "Sets the port to access mode (either static-access or dynamic-access depending on the setting of the switchport access vlan interface configuration command). The port is set to access unconditionally and operates as a nontrunking, single VLAN interface that sends and receives nonencapsulated (non-tagged) frames. An access port can be assigned to only one VLAN."
+      },
+      {
+        "name": "dynamic auto",
+        "description": "Sets the port trunking mode dynamic parameter to auto to specify that the interface convert the link to a trunk link. This is the default switchport mode."
+      },
+      {
+        "name": "dynamic",
+        "description": "Sets the port trunking mode dynamic parameter to desirable to specify that the interface"
+      },
+      {
+        "name": "desirable",
+        "description": "actively attempt to convert the link to a trunk link."
+      },
+      {
+        "name": "trunk",
+        "description": "Sets the port to trunk unconditionally. The port is a trunking VLAN Layer 2 interface. The port sends and receives encapsulated (tagged) frames that identify the VLAN of origination. A trunk is a point-to-point link between two devices or between a device and a router."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "A configuration that uses the access,or trunk keywords takes effect only when you configure the port in the appropriate mode by using the switchport mode command.  The static-access and trunk configuration are saved, but only one configuration is active at a time.  When you enter access mode, the interface changes to permanent nontrunking mode and negotiates to convert the link into a nontrunk link even if the neighboring interface does not agree to the change.",
+    "sourcePage": 227,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport nonegotiate",
+    "context": null,
+    "detail": "Specify that Dynamic Trunking Protocol (DTP) negotiation packets are not sent on the Layer 2 interface.",
+    "syntax": "switchport nonegotiate",
+    "noForm": "no switchport nonegotiate",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The no switchport nonegotiate command removes nonegotiate status.  This command is valid only when the interface switchport mode is access or trunk (configured by using the switchport mode access or the switchport mode trunk interface configuration command).  This command returns an error if you attempt to execute it in dynamic (auto or desirable) mode.",
+    "sourcePage": 229,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "udld",
+    "context": null,
+    "detail": "Enable aggressive or normal mode in the UniDirectional Link Detection (UDLD) and to set the configurable message timer time.",
+    "syntax": "udld {aggressive | enable | message time message-timer-interval}",
+    "noForm": "no udld {aggressive | enable | message}",
+    "params": [
+      {
+        "name": "aggressive",
+        "description": "Enables UDLD in aggressive mode on all fiber-optic interfaces."
+      },
+      {
+        "name": "enable",
+        "description": "Enables UDLD in normal mode on all fiber-optic interfaces."
+      },
+      {
+        "name": "message time",
+        "description": "Configures the period of time between UDLD probe messages on ports"
+      },
+      {
+        "name": "message-timer-interval",
+        "description": "that are in the advertisement phase and are determined to be bidirectional. The range is 1 to 90 seconds. The default is 15 seconds."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "UDLD supports two modes of operation: normal (the default) and aggressive.  In normal mode, UDLD detects unidirectional links due to misconnected interfaces on fiber-optic connections.  In aggressive mode, UDLD also detects unidirectional links due to one-way traffic on fiber-optic and twisted-pair links and due to misconnected interfaces on fiber-optic links.",
+    "sourcePage": 230,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "udld port",
+    "context": null,
+    "detail": "Enable UniDirectional Link Detection (UDLD) on an individual interface or to prevent a fiber-optic interface from being enabled by the udld global configuration command.",
+    "syntax": "udld port [aggressive]",
+    "noForm": "no udld port [aggressive]",
+    "params": [
+      {
+        "name": "aggressive",
+        "description": "(Optional) Enables UDLD in aggressive mode on the specified interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "A UDLD-capable port cannot detect a unidirectional link if it is connected to a UDLD-incapable port of another device.  UDLD supports two modes of operation: normal (the default) and aggressive.  In normal mode, UDLD detects unidirectional links due to misconnected interfaces on fiber-optic connections.",
+    "sourcePage": 232,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "udld reset",
+    "context": null,
+    "detail": "Reset all interfaces disabled by UniDirectional Link Detection (UDLD) and permit traffic to begin passing through them again (though other features, such as spanning tree, Port Aggregation Protocol (PAgP), and Dynamic Trunking Protocol (DTP) still have their normal effects, if enabled).",
+    "syntax": "udld reset",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If the interface configuration is still enabled for UDLD, these ports begin to run UDLD again and are disabled for the same reason if the problem has not been corrected.  This example shows how to reset all interfaces disabled by UDLD: Device# udld reset 1 ports shutdown by UDLD were reset.  Related Topics show udld, on page 183 udld, on page 230 udld port, on page 232 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 234,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  }
+]

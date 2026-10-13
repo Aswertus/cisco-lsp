@@ -1,0 +1,58 @@
+name: Release
+
+# Build the .vsix and publish a GitHub Release whenever a version tag is pushed
+# to the public repo. Tags are created by `scripts/public/release.sh vX.Y.Z --tag`
+# in the private dev repo — never push tags by hand.
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write # required for the built-in GITHUB_TOKEN to create the release
+
+jobs:
+  release:
+    # Only the public release repo publishes; the private dev repo never does.
+    if: github.repository == 'Aswertus/cisco-lsp'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Package extension
+        run: npm run package # runs lint+test+build via vscode:prepublish, then `vsce package`
+
+      - name: Extract release notes from CHANGELOG.md
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v ver="$VERSION" '
+            $0 ~ "^## \\[" ver "\\]" { flag=1; next }
+            /^## \[/ { flag=0 }
+            flag { print }
+          ' CHANGELOG.md > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "::error::No CHANGELOG.md section found for version $VERSION — add a '## [$VERSION]' entry before tagging."
+            exit 1
+          fi
+          echo "----- release notes -----"
+          cat release-notes.md
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: release-notes.md # your CHANGELOG section …
+          generate_release_notes: true # … with GitHub's auto compare link appended
+          files: "*.vsix"

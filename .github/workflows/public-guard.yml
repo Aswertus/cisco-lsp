@@ -1,0 +1,48 @@
+name: Public guard
+
+# Server-side backstop for the public repo: fails if a PR or any pushed ref
+# contains a path that must never be public (scripts/public/check.sh +
+# .publicignore). Required status check for merging into main.
+#
+# pull_request_target (not pull_request): GitHub runs THIS file and the
+# checker as they are on the base branch, so a PR cannot edit the check that
+# judges it. Safe here because PR content is only read with git (ls-tree/log),
+# never checked out or executed.
+on:
+  pull_request_target:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  public-guard:
+    # The private dev repo legitimately tracks CLAUDE.md etc.; check public only.
+    if: github.repository == 'Aswertus/cisco-lsp'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout trusted base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.base.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check for forbidden paths
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          # Pattern list and checker come from the checked-out trusted tree;
+          # missing either is a failure, never a pass.
+          test -s .publicignore
+          test -s scripts/public/check.sh
+          if [ "$EVENT" = pull_request_target ]; then
+            git fetch --no-tags origin "+refs/pull/${PR_NUMBER}/head:refs/pr/head"
+            bash scripts/public/check.sh "$BASE_SHA..refs/pr/head"
+            bash scripts/public/check.sh refs/pr/head
+          else
+            bash scripts/public/check.sh "$GITHUB_SHA"
+          fi

@@ -1,0 +1,1119 @@
+[
+  {
+    "name": "broadcast-underlay",
+    "context": null,
+    "detail": "Configure the underlay in a LISP network to use a multicast group to send encapsulated broadcast packets and link local multicast packets.",
+    "syntax": "broadcast-underlay multicast-ip",
+    "noForm": "no broadcast-underlay multicast-ip",
+    "params": [
+      {
+        "name": "multicast-ip",
+        "description": "IP address of the multicast group that sends the encapsulated broadcast packets"
+      }
+    ],
+    "modes": [
+      "LISP Instance Service Ethernet (router-lisp-inst-serv-eth)",
+      "LISP Service Ethernet (router-lisp-serv-eth)"
+    ],
+    "usageSummary": "Use this command to enable the broadcast functionality on the fabric edge node in a LISP network.  Ensure that this command is used in the router-lisp-service-ethernet mode or router-lisp-instance-service-ethernet mode.",
+    "sourcePage": 17,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "database-mapping",
+    "context": null,
+    "detail": "Configure an IPv4 or IPv6 endpoint identifier-to-routing locator (EID-to-RLOC) mapping relationship and an associated traffic policy for Location Identifier Separation Protocol (LISP).",
+    "syntax": "database-mapping eid-prefix / prefix-length { locator-set RLOC-name [ proxy | default-etr | default-etr-route-map | route-tag | silent-host-detection ] | ipv6-interface interface-name | ipv4-interface interface-name | auto-discover-rlocs | limit } default-etr-route-map | route-tag | silent-host-detection ] | ipv6-interface interface-name | ipv4-interface interface-name | auto-discover-rlocs | limit }",
+    "noForm": "no database-mapping eid-prefix / prefix-length { locator-set RLOC-name [ proxy | default-etr |",
+    "params": [
+      {
+        "name": "eid-prefix / prefix-length",
+        "description": "IPv4 or IPv6 endpoint identifier prefix and length that is advertised by the router."
+      },
+      {
+        "name": "locator-set RLOC-name",
+        "description": "Routing Locator (RLOC) associated with the value specified for the eid-prefix. Use the following keyword options for database mapping: • proxy: Enables configuration of static proxy database mapping. • default-etr: Enables configuration of default Egress Tunnel Router (ETR) database mapping. • route-tag route-tag: Monitors the RIB entry for a match with the route-tag specified. • default-etr-route-map route-map: Enables the route map to look for default-etr RIB route updates, and dynamically changes the locator set for this database mapping. • silent-host-detection: Enables silent host detection for hosts under the EID prefix."
+      },
+      {
+        "name": "ipv4 interface",
+        "description": "IPv4 address and name of the interface that is used as the RLOC for the EID"
+      },
+      {
+        "name": "interface-name",
+        "description": "prefix."
+      },
+      {
+        "name": "ipv6 interface",
+        "description": "IPv6 address and name of the interface that is used as the RLOC for the EID"
+      },
+      {
+        "name": "interface-name",
+        "description": "prefix."
+      },
+      {
+        "name": "auto-discover-rlocs",
+        "description": "Configures the ETR to discover the locators of all the routers configured to function as both an ETR and an Ingress Tunnel Router (ITR)—such routers are referred to as xTRs—in the ETR LISP site when the site uses multiple xTRs, and each xTR is configured to use DHCP-learned locators or configured with only its own locators."
+      },
+      {
+        "name": "limit",
+        "description": "Specifies the maximum size of local EID prefixes database."
+      }
+    ],
+    "modes": ["LISP-instance-service (router-lisp-instance-service)"],
+    "usageSummary": "In the LISP-instance-service configuration mode, the database-mapping command configures LISP database parameters with a specified IPv4 or IPv6 EID prefix block.  The locator is the IPv4 or IPv6 address of any interface used as the RLOC address for the eid-prefix assigned to the site but can also be the loopback address of the interface.  When a LISP site has multiple locators associated with the same EID prefix block, multiple database-mapping commands are used to configure all of the locators for a given EID prefix block.",
+    "sourcePage": 18,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dynamic-eid",
+    "context": null,
+    "detail": "Create a dynamic End Point Identifier (EID) policy and enter the dynamic-eid configuration mode on an xTR.",
+    "syntax": "dynamic-eid eid-name",
+    "noForm": null,
+    "params": [],
+    "modes": ["LISP EID-table (router-lisp-eid-table)"],
+    "usageSummary": "To configure LISP mobility, create a dynamic-EID roaming policy that can be referenced by the lisp mobility interface command.  After you execute the dynamic-eid command, the referenced LISP dynamic-EID policy is created and the device goes to dynamic-EID configuration mode.  In this mode, all attributes that are associated with the referenced LISP dynamic-EID policy can be configured.",
+    "sourcePage": 21,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dynamic-eid detection multiple-addr",
+    "context": null,
+    "detail": "Enable the detection of multiple IP addresses for a single MAC address.",
+    "syntax": "dynamic-eid detection multiple-addr [ bridged-vm ]",
+    "noForm": "no dynamic-eid detection multiple-addr [ bridged-vm ]",
+    "params": [
+      {
+        "name": "bridged-vm",
+        "description": "Enables specific features of bridge-mode virtual machines (VM)."
+      }
+    ],
+    "modes": [
+      "LISP Service (router-lisp-serv)",
+      "LISP Instance Service (router-lisp-instance-serv)"
+    ],
+    "usageSummary": "The VMs on a wireless host are networked in a bridge mode.  Each VM has its own IP address that is associated with the host MAC address.  This leads to a situation where several IP addresses (one on each of the VMs) are associated with a single MAC address (of the host).",
+    "sourcePage": 22,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "eid-record-provider",
+    "context": null,
+    "detail": "Define an extranet policy table for the provider instance use the eid-record-provider command in the LISP Extranet configuration mode. To negate the EID-record-provider configuration.",
+    "syntax": "eid-record-provider instance-id instance id { ipv4 address prefix | ipv6 address prefix } bidirectional bidirectional",
+    "noForm": "no eid-record-provider instance-id instance id { ipv4 address prefix | ipv6 address prefix }",
+    "params": [
+      {
+        "name": "ipv4 address prefix",
+        "description": "IPv4 EID prefixes to be leaked. Prefix specified in a.b.c.d/nn form."
+      },
+      {
+        "name": "ipv6 address prefix",
+        "description": "IPv6 EID prefixes to be leaked. Prefix specified in X:X:X:X::X/<0-128> form."
+      },
+      {
+        "name": "bidirectional",
+        "description": "Specifies that the extranet communication between the provider and subscriber EID prefixes are bidirectional."
+      }
+    ],
+    "modes": ["LISP Extranet (router-lisp-extranet)"],
+    "usageSummary": null,
+    "sourcePage": 23,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "eid-record-subscriber",
+    "context": null,
+    "detail": "Define an extranet policy table for the subscriber instance.",
+    "syntax": "eid-record-subscriber instance-id instance id { ipv4 address prefix | ipv6 address prefix } bidirectional bidirectional",
+    "noForm": "no eid-record-subscriber instance-id instance id { ipv4 address prefix | ipv6 address prefix }",
+    "params": [
+      {
+        "name": "ipv4 address prefix",
+        "description": "IPv4 EID prefixes to be leaked. Prefix specified in a.b.c.d/nn form."
+      },
+      {
+        "name": "ipv6 address prefix",
+        "description": "IPv6 EID prefixes to be leaked. Prefix specified in X:X:X:X::X/<0-128> form."
+      },
+      {
+        "name": "bidirectional",
+        "description": "Specifies that the extranet communication between the provider and subscriber EID prefixes are bidirectional."
+      }
+    ],
+    "modes": ["LISP Extranet (router-lisp-extranet)"],
+    "usageSummary": null,
+    "sourcePage": 24,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "eid-table",
+    "context": null,
+    "detail": "Configure a Locator ID Separation Protocol (LISP) instance ID for association with a virtual routing and forwarding (VRF) table or default table through which the endpoint identifier (EID) address space is reachable.",
+    "syntax": "eid-table { vrf-name | default | vrf vrf-name }",
+    "noForm": "no eid-table { vrf-name | default | vrf vrf-name }",
+    "params": [
+      {
+        "name": "default",
+        "description": "Selects the default (global) routing table for association with the configured instance-service."
+      },
+      {
+        "name": "vrf",
+        "description": "Selects the named VRF table for association with the configured instance. vrf-name"
+      }
+    ],
+    "modes": ["LISP Service Instance (router-lisp-inst-serv)"],
+    "usageSummary": "Use this command only in the LISP Instance Service mode.  For Layer 3 (service ipv4 / service ipv6), a VRF table is associated with the instance-service.  For Layer 2 (service ethernet), a VLAN is associated with the instance-service.",
+    "sourcePage": 25,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "encapsulation",
+    "context": null,
+    "detail": "Configure the type of encapsulation of the data packets in the LISP network.",
+    "syntax": "encapsulation { vxlan | lisp }",
+    "noForm": "no encapsulation { vxlan | lisp }",
+    "params": [
+      {
+        "name": "encapsulation lisp",
+        "description": "Specifies LISP-based encapsulation"
+      }
+    ],
+    "modes": [
+      "LISP Service IPv4 (router-lisp-serv-ipv4)",
+      "LISP Service IPv6 (router-lisp-serv-ipv6)"
+    ],
+    "usageSummary": "Use the encapsulation vxlan command in the LISP Service Ethernet mode to encapuslate Layer 2 packets.  Use the encapsulation vxlan command in the LISP Service IPv4 or LISP Service IPv6 mode to encapsulate the Layer 3 packets.",
+    "sourcePage": 27,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "etr",
+    "context": null,
+    "detail": "Configure a device as an Egress Tunnel Router (ETR) use the etr command in the LISP Instance Service mode or LISP Service submode. To remove the ETR functionality.",
+    "syntax": "etr",
+    "noForm": "no etr",
+    "params": [],
+    "modes": [
+      "LISP Instance Service (router-lisp-instance-service)",
+      "LISP Service (router-lisp-service)"
+    ],
+    "usageSummary": "Use this command to enable a device to perform the ETR functionality.  A router configured as an ETR is also typically configured with database-mapping commands so that the ETR knows what endpoint identifier (EID)-prefix blocks and corresponding locators are used for the LISP site.  In addition, the ETR should be configured to register with a map server with the etr map-server command, or to use static LISP EID-to-routing locator (EID-to-RLOC) mappings with the map-cache command to participate in LISP networking.",
+    "sourcePage": 28,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "etr map-server",
+    "context": null,
+    "detail": "Configure a map server to be used by the Egress Tunnel Router (ETR) when configuring the EIDs.",
+    "syntax": "etr map-server map-server-address {key [0|6|7] authentication-key | proxy-reply } }",
+    "noForm": "no etr map-server map-server-address { key [ 0 | 6 | 7 ] authentication-key | proxy-reply",
+    "params": [
+      {
+        "name": "key",
+        "description": "Specifies the key type."
+      },
+      {
+        "name": "0",
+        "description": "Indicates that password is entered as clear text."
+      },
+      {
+        "name": "6",
+        "description": "Indicates that password is in the AES encrypted form."
+      },
+      {
+        "name": "7",
+        "description": "Indicates that password is a weak encrypted one."
+      },
+      {
+        "name": "authentication-key",
+        "description": "The password used for computing the SHA-1 HMAC hash that is included in the header of the map-register message."
+      },
+      {
+        "name": "proxy-reply",
+        "description": "Specifies that the map server answer the map-requests on behalf the ETR."
+      }
+    ],
+    "modes": ["LISP Instance Service (router-lisp-inst-serv)", "LISP Service (router-lisp-serv)"],
+    "usageSummary": "Use the etr map-server command to configure the locator of the map server to which the ETR will register for its EIDs.  The authentication key argument in the command syntax is a password that is used for a SHA-1 HMAC hash (included in the header of the map-register message).  The password used for the SHA-1 HMAC may be entered in unencrypted (cleartext) form or encrypted form.",
+    "sourcePage": 29,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "extranet",
+    "context": null,
+    "detail": "Enable inter-VRF communication in a LISP network.",
+    "syntax": "extranet name-extranet",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name-extranet",
+        "description": "Specifies the name of the extranet created."
+      }
+    ],
+    "modes": ["LISP (router-lisp)"],
+    "usageSummary": null,
+    "sourcePage": 31,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "extranet-config-from-transit",
+    "context": null,
+    "detail": "Specify that extranet configuration must be learnt from the Transit Control Plane.",
+    "syntax": "extranet-config-from-transit",
+    "noForm": "no extranet-config-from-transit",
+    "params": [],
+    "modes": ["Extranet Configuration (config-router-lisp-extranet)"],
+    "usageSummary": "In multi-site deployment of an SD-Access fabric, an extranet policy is propagated from the transit map server map resolver (MSMR) to all the site map servers.  In such cases, run the extranet-config-from-transit command on the local map server to allow the extranet policy propagation from the transit MSMR to the site local map server.  After configuring this command, do not add or delete the policy on the local map server.",
+    "sourcePage": 32,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "fast-detection",
+    "context": null,
+    "detail": "Enable fast detection of endpoints.",
+    "syntax": "fast-detection",
+    "noForm": "no fast-detection",
+    "params": [],
+    "modes": ["LISP Instance Service Ethernet (config-lisp-inst-srv-eth)"],
+    "usageSummary": "LISP uses Switch Integrated Security Features (SISF) for host detection and by default the GUARD policy is installed.  GUARD policy follows a zero-trust process and provides security but affects the endpoint roaming latency.  To improve the wireless roaming performance, use the fast-detection command to enforce the SISF GLEAN policy.",
+    "sourcePage": 33,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "first-packet-petr",
+    "context": null,
+    "detail": "Prevent the loss of the first packet (and subsequent packets until map-cache is resolved).",
+    "syntax": "first-packet-petr remote-locator-set fpetr-RLOC",
+    "noForm": "no first-packet-petr remote-locator-set fpetr-RLOC",
+    "params": [
+      {
+        "name": "remote-locator-set",
+        "description": "Specifies a remote locator-set, which is a set of IP addresses of remote"
+      },
+      {
+        "name": "fpetr-RLOC",
+        "description": "devices, that connect to an external network or to networks across sites or to Data Center through remote or local sites."
+      }
+    ],
+    "modes": ["LISP-instance-service", "LISP-service"],
+    "usageSummary": "The ITR or the fabric edge device drops the initial packets sent to it until it learns the destination EID reachability from the local MSMR.  To prevent the drop of the first packet, configure the first-packet-petr command on the local MSMR.  Configure the first-packet-petr command on the local map server to ensure that when the fabric edges boots up and resolves the 0/0 map-cache entry, it gets the first packet forwarding RLOCs.",
+    "sourcePage": 36,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "import-database-publication locator-set",
+    "context": null,
+    "detail": "Configure the import of map server publications to the database.",
+    "syntax": "import database publication locator-set locator-set-name [ preserve-priority ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "preserve-priority",
+        "description": "Specifies that the locator-set priority should be retained while importing the publication to the database."
+      }
+    ],
+    "modes": ["LISP Service (router-lisp-serv)", "LISP Instance Service (router-lisp-inst-serv)"],
+    "usageSummary": "In a LISP multisite topology wherein multiple fabric sites are connected through a transit, you can choose the point from where traffic can egress the multisite domain.  This is done by assigning a priority to the RLOCs when registering them with the map server.  An RLOC with a higher priority is chosen for the traffic to egress.",
+    "sourcePage": 38,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "instance-id",
+    "context": null,
+    "detail": "Create a LISP EID instance under the router-lisp configuration mode and enter the instance-id submode.",
+    "syntax": "instance-id iid",
+    "noForm": null,
+    "params": [
+      {
+        "name": "iid",
+        "description": "Specifies the instance ID"
+      }
+    ],
+    "modes": ["LISP (router-lisp)"],
+    "usageSummary": "Use the instance-id command to create a LISP EID instance to group multiple services.  Configuration under this instance applies to all the services underneath it.",
+    "sourcePage": 41,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim lisp core-group-range",
+    "context": null,
+    "detail": "Configure the core range of address of a Protocol Independent Multicast (PIM) Source Specific Multicast (SSM) on a LISP sub-interface.",
+    "syntax": "ip pim lisp core-group-range start-SSM-address range-size",
+    "noForm": "no ip pim lisp core-group-range start-SSM-address range-size",
+    "params": [],
+    "modes": ["LISP Interface Configuration (config-if)"],
+    "usageSummary": "Native multicast transport supports only PIM SSM in the underlay or the core.  Multicast transport uses a grouping mechanism to map the end-point identifiers (EID) entries to the RLOC space SSM group entries.  By default, the group range 232.",
+    "sourcePage": 42,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim lisp transport multicast",
+    "context": null,
+    "detail": "Enable multicast as the transport mechanism on LISP interface and sub-interface.",
+    "syntax": "ip pim lisp transport multicast",
+    "noForm": "no ip pim lisp transport multicast",
+    "params": [],
+    "modes": ["LISP Interface Configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 43,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim rp-address",
+    "context": null,
+    "detail": "Configure the address of a Protocol Independent Multicast (PIM) rendezvous point (RP) for a particular group.",
+    "syntax": "ip pim [ vrf vrf-name ] rp-address rp-address [ access-list ]",
+    "noForm": "no ip pim [ vrf vrf-name ] rp-address rp-address [ access-list ]",
+    "params": [
+      {
+        "name": "vrf",
+        "description": "Specifies the multicast Virtual Private Network (VPN) routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "vrf-name",
+        "description": "Name assigned to the VRF. rp-address IP address of a router to be a PIM RP. This is a unicast IP address in four-part dotted-decimal notation. access-list Number or name of an access list that defines the multicast groups for which the RP should be used."
+      }
+    ],
+    "modes": ["Global Configuration (config)"],
+    "usageSummary": "Use the ip pim rp-address command to statically define the RP address for multicast groups that are to operate in sparse mode or bidirectional mode.  You can configure the Cisco IOS XE software to use a single RP for more than one group.  The conditions specified by the access list determine the groups for which an RP can be used.",
+    "sourcePage": 44,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim sparse mode",
+    "context": null,
+    "detail": "Enable sparse mode of operation of Protocol Independent Multicast (PIM) on an interface.",
+    "syntax": "ip pim sparse mode",
+    "noForm": "no ip pim sparse mode",
+    "params": [],
+    "modes": ["Interface Configuration (config-if)"],
+    "usageSummary": "The NetFlow collect commands are used to configure nonkey fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in nonkey fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a nonkey field does not create a new flow.",
+    "sourcePage": 45,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv4 multicast multitopology",
+    "context": null,
+    "detail": "Enable Multicast-Specific RPF topology support for IP Multicast routing.",
+    "syntax": "ipv4 multicast multitopology",
+    "noForm": "no ipv4 multicast multitopology",
+    "params": [],
+    "modes": ["VRF Configuration (config-vrf)"],
+    "usageSummary": null,
+    "sourcePage": 46,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim ssm",
+    "context": null,
+    "detail": "Define the Source Specific Multicast (SSM) range of IP multicast addresses.",
+    "syntax": "ip pim [ vrf vrf-name ] ssm { default | range access-list }",
+    "noForm": "no ip pim [ vrf vrf-name ] ssm { default | range access-list }",
+    "params": [
+      {
+        "name": "vrf",
+        "description": "Specifies the multicast Virtual Private Network (VPN) routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "vrf-name",
+        "description": "Name assigned to the VRF."
+      },
+      {
+        "name": "range",
+        "description": "Specifies the standard IP access list number or name defining the SSM range. access-list"
+      },
+      {
+        "name": "default2",
+        "description": "Defines the SSM range access list to 232/8."
+      }
+    ],
+    "modes": ["Global Configuration (config)"],
+    "usageSummary": "When an SSM range of IP multicast addresses is defined by the ip pim ssm command, no Multicast Source Discovery Protocol (MSDP) Source-Active (SA) messages will be accepted or originated in the SSM range.",
+    "sourcePage": 47,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv4-interface Loopback affinity-id",
+    "context": null,
+    "detail": "Configure an Affinity ID for a Locator.",
+    "syntax": "ipv4-interface Loopback loopback-interface-id [ priority locator-priority weight locator-weight | affinity-id x-dimension [ , y-dimension ] ] | affinity-id x-dimension [ , y-dimension ] ]",
+    "noForm": "no ipv4-interface Loopback loopback-interface-id [ priority locator-priority weight locator-weight",
+    "params": [
+      {
+        "name": "priority locator-priority",
+        "description": "Configures a preferred Locator. Locator with a lower priority value takes preference. Values range from 0 to 255."
+      },
+      {
+        "name": "weight locator-weight",
+        "description": "Configures the load-balance on the device. Values range from 0 to 100. affinity-id x-dimension[ ,y-dimension] Configures an Affinity ID, which is specified by the x dimension and an optional y dimension values."
+      }
+    ],
+    "modes": ["Locator-Set (config-router-lisp-locator-set)"],
+    "usageSummary": "First define a locator-set and then configure an affinity ID for its locator.  Affinity ID with its x and y dimensions identifies a particular site or region.  Affinity ID is a part of the locator information, like priority and weight.",
+    "sourcePage": 48,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "itr",
+    "context": null,
+    "detail": "Configure a device as an Ingress Tunnel Router (ITR) use the itr command in the LISP Service submode or LISP Instance Service mode. To remove the ITR functionality.",
+    "syntax": "itr",
+    "noForm": "no itr",
+    "params": [],
+    "modes": [
+      "LISP Instance Service (router-lisp-instance-service)",
+      "LISP Service (router-lisp-service)"
+    ],
+    "usageSummary": "Use this command to enable a device to perform the ITR functionality.  A device configured as an ITR helps find the EID-to-RLOC mapping for all traffic that is destined to LISP-capable sites.",
+    "sourcePage": 50,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "itr map-resolver",
+    "context": null,
+    "detail": "Configure a device as a map resolver to be used by an Ingress Tunnel Router (ITR) when sending map-requests.",
+    "syntax": "itr [ map-resolver map-address ] prefix-list prefix-list-name",
+    "noForm": "no itr [ map-resolver map-address ] prefix-list prefix-list-name",
+    "params": [],
+    "modes": ["router-lisp-instance-service"],
+    "usageSummary": "Use this command to enable a device to perform the ITR map-resolver functionality.  A device configured as a Map Resolver accepts encapsulated Map-Request messages from ITRs, decapsulates those messages, and then forwards the messages to the Map Server responsible for the egress tunnel routers (ETRs) that are authoritative for the requested EIDs.  In a multi-site environment, the site border relies on Map Resolver prefix-list to determine whether to query the transit site MSMR or site MSMR.",
+    "sourcePage": 51,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "locator default-set",
+    "context": null,
+    "detail": "Mark a locator-set as default.",
+    "syntax": "locator default-set rloc-set-name",
+    "noForm": "no locator default-set rloc-set-name",
+    "params": [
+      {
+        "name": "rloc-set-name",
+        "description": "Name of locator-set that is set as default."
+      }
+    ],
+    "modes": ["LISP (router-lisp)"],
+    "usageSummary": "The locator-set configured as default with the locator default-set command applies to all services and instances.",
+    "sourcePage": 52,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "locator-set",
+    "context": null,
+    "detail": "Specify a locator-set and enter the locator-set configuration mode.",
+    "syntax": "locator-set loc-set-name",
+    "noForm": "no locator-set loc-set-name",
+    "params": [],
+    "modes": ["LISP (router-lisp)"],
+    "usageSummary": "You must first define the locator-set before referring to it.",
+    "sourcePage": 53,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "map-cache",
+    "context": null,
+    "detail": "Configure a static endpoint identifier (EID) to routing locator (RLOC) (EID-to-RLOC) mapping relationship.",
+    "syntax": "map-cache destination-eid-prefix/prefix-len { ipv4-address { priority priority weight weight } | ipv6-address | map-request | native-forward } } | ipv6-address | map-request | native-forward }",
+    "noForm": "no map-cache destination-eid-prefix/prefix-len { ipv4-address { priority priority weight weight",
+    "params": [
+      {
+        "name": "destination-eid-prefix/prefix-len",
+        "description": "Destination IPv4 or IPv6 EID-prefix/prefix-length. The slash is required in the syntax."
+      },
+      {
+        "name": "ipv4-address priority priority",
+        "description": "IPv4 Address of loopback interface. Associated with this locator address"
+      },
+      {
+        "name": "weight weight",
+        "description": "is a priority and weight that are used to define traffic policies when multiple RLOCs are defined for the same EID-prefix block. Note Lower priority locator takes preference."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "IPv6 Address of loopback interface."
+      },
+      {
+        "name": "map-request",
+        "description": "Send map-request for LISP destination EID"
+      },
+      {
+        "name": "native-forward",
+        "description": "Natively forward packets that match this map-request."
+      }
+    ],
+    "modes": ["LISP Instance Service (router-lisp-instance-service)"],
+    "usageSummary": "The first use of this command is to configure an Ingress Tunnel Router (ITR) with a static IPv4 or IPv6 EID-to-RLOC mapping relationship and its associated traffic policy.  For each entry, a destination EID-prefix block and its associated locator, priority, and weight are entered.  The value in the EID-prefix/prefix-length argument is the LISP EID-prefix block at the destination site.",
+    "sourcePage": 54,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "map-cache extranet",
+    "context": null,
+    "detail": "Install all configured extranet prefixes into map-cache.",
+    "syntax": "map-cache extranet-registration",
+    "noForm": null,
+    "params": [],
+    "modes": ["LISP Instance Service (router-lisp-instance-service)"],
+    "usageSummary": "To support inter-VRF communication, use the map-cache extranet command on the Map Server Map Resolver (MSMR).  This command generates map requests for all fabric destinations.  Use this command in the service-ipv4 or service-ipv6 mode under the extranet instance.",
+    "sourcePage": 55,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "prefix-list",
+    "context": null,
+    "detail": "Define a named LISP prefix set and to enter the LISP prefix-list configuration mode.",
+    "syntax": "prefix-list prefix-list-name",
+    "noForm": "no prefix-list prefix-list-name",
+    "params": [],
+    "modes": ["LISP (router-lisp)"],
+    "usageSummary": "Use the prefix-list command to configure an IPV4 or IPv6 prefix list.  This command places the router in prefix-list configuration mode, in which you can define IPv4 prefix list, or IPv6 prefix list.  Use the exit-prefix-list command to exit the prefix-list-configuration mode.",
+    "sourcePage": 56,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "route-export destinations-summary",
+    "context": null,
+    "detail": "Export the LISP destination summary routes into the Routing Information Base (RIB).",
+    "syntax": "route-export destinations-summary [ route-tag route-tag-value ]",
+    "noForm": "no route-export destinations-summary [ route-tag route-tag-value ]",
+    "params": [
+      {
+        "name": "route-tag route-tag-value",
+        "description": "A tag that is assigned to the exported RIB entry. The route-tag-value ranges between 0 to 4294967295."
+      }
+    ],
+    "modes": [
+      "LISP Service (router-lisp-service)",
+      "LISP Instance Service (router-lisp-instance-service)"
+    ],
+    "usageSummary": "When you configure the route-export destinations-summary route-tag route-tag-value command, the static endpoint ID to routing locator (EID-to-RLOC) mappings are exported to RIB as routes with a specified route tag.  If you use this command in the LISP Service mode, all the EID instances that are enabled for Layer 3 services export the map-cache mappings to the RIB.",
+    "sourcePage": 57,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "route-import database",
+    "context": null,
+    "detail": "Configure the import of Routing Information Base (RIB) routes to define local endpoint identifier (EID) prefixes for database entries and associate them with a locator set.",
+    "syntax": "route-import database { bgp | connected | eigrp | isis | maximum-prefix | ospf | ospfv3 | rip | static } { [ route-map ] locator-set locator-set-name proxy } rip | static } { [ route-map ] locator-set locator-set-name proxy }",
+    "noForm": "no route-import database { bgp | connected | eigrp | isis | maximum-prefix | ospf | ospfv3 |",
+    "params": [
+      {
+        "name": "bgp",
+        "description": "Border Gateway Protocol. Imports RIB routes into LISP using BGP protocol."
+      },
+      {
+        "name": "connected",
+        "description": "Connected routing protocol"
+      },
+      {
+        "name": "eigrp",
+        "description": "Enhanced Interior Gateway Routing Protocol. Imports RIB routes into LISP using EIGRP protocol."
+      },
+      {
+        "name": "isis",
+        "description": "ISO IS-IS. Imports RIB routes into LISP using IS-IS protocol."
+      },
+      {
+        "name": "ospf",
+        "description": "Open Shortest Path First"
+      },
+      {
+        "name": "ospfv3",
+        "description": "Open Shortest Path First version 3"
+      },
+      {
+        "name": "maximum-prefix",
+        "description": "Configures the maximum number of prefixes to pick up from the RIB."
+      },
+      {
+        "name": "rip",
+        "description": "Routing Information Protocol"
+      },
+      {
+        "name": "static",
+        "description": "Defines static routes."
+      },
+      {
+        "name": "locator-set",
+        "description": "Specifies the Locator Set to be used with created database mapping entries. locator-set-name"
+      },
+      {
+        "name": "proxy",
+        "description": "Enables the dynamic import of RIB route as proxy database mapping."
+      }
+    ],
+    "modes": ["LISP Instance Service (router-lisp-instance-service)"],
+    "usageSummary": "Use the route-import database command with the proxy option to enable the dynamic import of RIB route as proxy database mapping.  When RIB import is in use, the corresponding RIB map-cache import, using route-import map-cache command must also be configured, else the inbound site traffic will not pass the LISP eligibility check due to the presence of RIB route.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 58,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "service",
+    "context": null,
+    "detail": "Create a configuration template for all instance-service instantiations of a particular service.",
+    "syntax": "service { ipv4 | ipv6 | ethernet }",
+    "noForm": "no service { ipv4 | ipv6 | ethernet }",
+    "params": [
+      {
+        "name": "service ipv4",
+        "description": "Enables Layer 3 network services for the IPv4 address family."
+      },
+      {
+        "name": "service ipv6",
+        "description": "Enables Layer 3 network services for the IPv6 address family. service ethernet Enables Layer 2 network services."
+      }
+    ],
+    "modes": ["LISP Instance (router-lisp-instance)", "LISP (router-lisp)"],
+    "usageSummary": "The service command creates a service instance under the instance-id and enters the instance-service mode.  You cannot configure service ethernet for the same instance where service ipv4 or service ipv6 is configured.",
+    "sourcePage": 60,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "sgt",
+    "context": null,
+    "detail": "Configure the propagation of security group tag (SGT) information through the LISP packets.",
+    "syntax": "sgt [ distribution ]",
+    "noForm": "no sgt [ distribution ]",
+    "params": [
+      {
+        "name": "distribution",
+        "description": "SGT information is distributed through the LISP packets."
+      }
+    ],
+    "modes": ["LISP Instance Service (router-lisp-inst-serv)", "LISP Service (router-lisp-serv)"],
+    "usageSummary": null,
+    "sourcePage": 61,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id",
+    "context": null,
+    "detail": "Display the summary information related to a given LISP instance configuration for an address family.",
+    "syntax": "show lisp instance-id instance-id ipv4 show lisp instance-id instance-id ipv6 show lisp instance-id instance-id ethernet",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use this command on a LISP-based fabric device to display the summary information about the map resolver, map server, map cache, database, publications, and other configurations.  Use the show lisp instance-id ipv4 command to see a summary of the LISP instance configuration for the IPv4 address family.  Use the show lisp instance-id ipv6 command to see a summary of the LISP instance configuration for the IPv6 address family.",
+    "sourcePage": 62,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id ipv4 database",
+    "context": null,
+    "detail": "Display the operational status of the IPv4 address family and the database mappings on a device.",
+    "syntax": "show lisp instance-id instance-id ipv4 database [ silent-host-detection ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "silent-host-detection",
+        "description": "(Optional) Displays the silent host detection database entry on the tunnel router (xTR)."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 65,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id ipv6 database",
+    "context": null,
+    "detail": "Display the operational status of the IPv6 address family and the database mappings on a device.",
+    "syntax": "show lisp instance-id instance-id ipv6 database [ silent-host-detection ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "silent-host-detection",
+        "description": "(Optional) Displays the silent host detection database entry on the xTR."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 67,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id ipv4 publication config-propagation",
+    "context": null,
+    "detail": "Display the config-propagation type of LISP-mapping notifications or publications for extranet policy.",
+    "syntax": "show lisp instance-id instance-id ipv4 publication config-propagation [ detail | ipv4-prefix ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detail",
+        "description": "EID prefix details from all publications ipv4-prefix IPv4 EID prefix of a particular publication"
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the show lisp instance-id ipv4 publication config-propagation detail command on the border node to see a detailed report of all the extranet policy publications.  Use the show lisp instance-id ipv4 publication config-propagation ipv4-prefix command to view the extranet policy publication for the particular EID prefix specified by ipv4-prefix.",
+    "sourcePage": 68,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id ipv4 publisher config-propagation",
+    "context": null,
+    "detail": "Display the config-propagation type of LISP publications that a publisher propagates.",
+    "syntax": "show lisp instance-id instance-id ipv4 publisher config-propagation [ ipv4-address | ipv6-address ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ipv4-address",
+        "description": "IPv4 address of the publisher"
+      },
+      {
+        "name": "ipv6-address",
+        "description": "IPv6 address of the publisher"
+      }
+    ],
+    "modes": ["Privileged Exec (#)"],
+    "usageSummary": "Use the show lisp instance-id ipv4 publisher config-propagation command on the border node to see a report of all the publishers.  Use the show lisp instance-id ipv4 publisher config-propagation ip-address command to view the information for the publisher that is specified by the IP address.",
+    "sourcePage": 69,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id ipv4 map-cache",
+    "context": null,
+    "detail": "Display the IPv4 end point identifier (EID) to the Resource Locator (RLOC) cache mapping on an ITR.",
+    "syntax": "show lisp instance-id instance-id ipv4 map-cache[destination-EID|destination-EID-prefix |detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "destination-EID",
+        "description": "(Optional) Specifies the IPv4 destination end point identifier (EID) for which the EID-to-RLOC mapping is displayed. destination-EID-prefix (Optional) Specifies the IPv4 destinationEID prefix (in the form of a.b.c.d/nn) for which to display the mapping."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed EID-to-RLOC cache mapping information."
+      }
+    ],
+    "modes": ["Privileged Exec (#)"],
+    "usageSummary": "This command is used to display the current dynamic and static IPv4 EID-to-RLOC map-cache entries.  When no IPv4 EID or IPv4 EID prefix is specified, summary information is listed for all current dynamic and static IPv4 EID-to-RLOC map-cache entries.  When an IPv4 EID or IPv4 EID prefix is included, information is listed for the longest-match lookup in the cache.",
+    "sourcePage": 71,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id ipv6 map-cache",
+    "context": null,
+    "detail": "Display the IPv6 end point identifier (EID) to the Resource Locator (RLOC) cache mapping on an ITR.",
+    "syntax": "show lisp instance-id instance-id ipv6 map-cache[destination-EID|destination-EID-prefix |detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "destination-EID",
+        "description": "(Optional) Specifies the IPv4 destination end point identifier (EID) for which the EID-to-RLOC mapping is displayed. destination-EID-prefix (Optional) Specifies the IPv4 destination EID prefix (in the form of a.b.c.d/nn) for which to display the mapping."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed EID-to-RLOC cache mapping information."
+      }
+    ],
+    "modes": ["Privileged Exec (#)"],
+    "usageSummary": "This command is used to display the current dynamic and static IPv6 EID-to-RLOC map-cache entries.  When no IPv6 EID or IPv6 EID prefix is specified, summary information is listed for all current dynamic and static IPv4 EID-to-RLOC map-cache entries.  When an IPv6 EID or IPv6 EID prefix is included, information is listed for the longest-match lookup in the cache.",
+    "sourcePage": 77,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id ipv4 server",
+    "context": null,
+    "detail": "Display the Location Identifier Separation Protocol (LISP) site registration information.",
+    "syntax": "show lisp instance-id instance-id ipv4 server [ EID-address | EID-prefix | detail | name | rloc | summary | silent-host-detection ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "EID-address",
+        "description": "(Optional) Site registration information for this end point."
+      },
+      {
+        "name": "EID-prefix",
+        "description": "(Optional) Site registration information for this IPv4 EID prefix."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed site information."
+      },
+      {
+        "name": "name",
+        "description": "(Optional) Displays site registration information for the named site."
+      },
+      {
+        "name": "rloc",
+        "description": "(Optional) Displays the routing locator endpoint identifier (RLOC-EID) instance membership details."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays summary information for each site. silent-host-detection (Optional) Displays the silent host detection registration information on the Map Server Map Resolver (MSMR)."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "When a host is detected by the tunnel router (xTR), it registers the host with the map server.  Use the show lisp instance-id ipv4 server command to see the site registration details.  TCP registrations display the port number, whereas UDP registrations do not display the port number.",
+    "sourcePage": 79,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id ipv6 server",
+    "context": null,
+    "detail": "Display the Location Identifier Separation Protocol (LISP) site registration information.",
+    "syntax": "show lisp instance-id instance-id ipv6 server [ EID-address | EID-prefix | detail | name | rloc | summary | silent-host-detection ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "EID-address",
+        "description": "(Optional) Site registration information for this end point."
+      },
+      {
+        "name": "EID-prefix",
+        "description": "(Optional) Site registration information for this IPv6 EID prefix."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed site information."
+      },
+      {
+        "name": "name",
+        "description": "(Optional) Displays the site registration information for the named site."
+      },
+      {
+        "name": "rloc",
+        "description": "(Optional) Displays the routing locator endpoint identifier (RLOC-EID) instance membership details."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays summary information for each site. silent-host-detection (Optional) Displays the silent host detection registration information on the Map Server Map Resolver (MSMR)."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "When a host is detected by the tunnel router (xTR), it registers the host with the map server.",
+    "sourcePage": 82,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id ipv4 statistics",
+    "context": null,
+    "detail": "Display Locator/ID Separation Protocol (LISP) IPv4 address-family packet count statistics.",
+    "syntax": "show lisp instance-id instance-id ipv4 statistics",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged Exec (#)"],
+    "usageSummary": "This command is used to display IPv4 LISP statistics related to packet encapsulations, de-encapsulations, map requests, map replies, map registers, and other LISP-related packets.  The following is a sample output of the show lisp instance-id 4099 ipv4 statistics command: device# show lisp instance-id 4099 ipv4 statistics LISP EID Statistics for instance ID 4099 - last cleared: never Control Packets: Map-Requests in/out: 0/0 Map-Requests in (5 sec/1 min/5 min): 0/0/0 Encapsulated Map-Requests in/out: 0/0 RLOC-probe Map-Requests in/out: 0/0 SMR-based Map-Requests in/out: 0/0 Extranet SMR cross-IID Map-Requests in: 0 Map-Requests expired on-queue/no-reply 0/0 Map-Resolver Map-Requests forwarded: 0 Map-Server Map-Requests forwarded: 0 Map-Reply records in/out: 0/0 Authoritative records in/out: 0/0 Non-authoritative records in/out: 0/0 Negative records in/out: 0/0 RLOC-probe records in/out: 0/0 Map-Server Proxy-Reply records out: 0 WLC Map-Subscribe records in/out: 2/2 Map-Subscribe failures in/out: 0/0 WLC Map-Unsubscribe records in/out: 1/1 Map-Unsubscribe failures in/out: 0/0 Map-Register records in/out: 11/11 Map-Registers in (5 sec/1 min/5 min): 0/0/0 Map-Server AF disabled: 0 Not valid site eid prefix: 2 Authentication failures: 0 Disallowed locators: 0 Miscellaneous: 0 WLC Map-Register records in/out: 0/0 WLC AP Map-Register in/out: 0/0 WLC Client Map-Register in/out: 0/0 Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 84,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp instance-id ipv6 statistics",
+    "context": null,
+    "detail": "Display Locator/ID Separation Protocol (LISP) IPv6 address-family packet count statistics.",
+    "syntax": "show lisp instance-id instance-id ipv6 statistics",
+    "noForm": null,
+    "params": [
+      {
+        "name": "This",
+        "description": "command does not have any keywords or arguments."
+      }
+    ],
+    "modes": ["Privileged Exec (#)"],
+    "usageSummary": "This command is used to display IPv6 LISP statistics related to packet encapsulations, de-encapsulations, map requests, map replies, map registers, and other LISP-related packets.  The following is a sample output of the show lisp instance-id 4099 ipv6 statistics command : device# show lisp instance-id 4099 ipv6 statistics LISP EID Statistics for instance ID 4099 - last cleared: never Control Packets: Map-Requests in/out: 2/2 Map-Requests in (5 sec/1 min/5 min): 0/0/0 Encapsulated Map-Requests in/out: 2/2 RLOC-probe Map-Requests in/out: 0/0 SMR-based Map-Requests in/out: 0/0 Extranet SMR cross-IID Map-Requests in: 0 Map-Requests expired on-queue/no-reply 0/0 Map-Resolver Map-Requests forwarded: 0 Map-Server Map-Requests forwarded: 0 Map-Reply records in/out: 2/2 Authoritative records in/out: 2/2 Non-authoritative records in/out: 0/0 Negative records in/out: 0/0 RLOC-probe records in/out: 0/0 Map-Server Proxy-Reply records out: 0 WLC Map-Subscribe records in/out: 2/2 Map-Subscribe failures in/out: 0/0 WLC Map-Unsubscribe records in/out: 1/1 Map-Unsubscribe failures in/out: 0/0 Map-Register records in/out: 9/9 Map-Registers in (5 sec/1 min/5 min): 0/0/0 Map-Server AF disabled: 0 Not valid site eid prefix: 2 Authentication failures: 0 Disallowed locators: 0 Miscellaneous: 0 WLC Map-Register records in/out: 0/0 WLC AP Map-Register in/out: 0/0 WLC Client Map-Register in/out: 0/0 Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 87,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp prefix-list",
+    "context": null,
+    "detail": "Display the LISP prefix-list information.",
+    "syntax": "show lisp prefix-list [name-prefix-list]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name-prefix-list",
+        "description": "(Optional) Specifies the prefix-list whose information is displayed."
+      }
+    ],
+    "modes": ["Privileged Exec (#)"],
+    "usageSummary": null,
+    "sourcePage": 90,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lisp session",
+    "context": null,
+    "detail": "Display the current list of reliable transport sessions in the fabric.",
+    "syntax": "show lisp session [all|established]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays transport session inforamtion for all the sessions. established (Optional) Displays transport session information for established connections."
+      }
+    ],
+    "modes": ["Privileged Exec"],
+    "usageSummary": "The show lisp session command displays only those sessions that are in Up or Down state.  Use the show lisp session all command to see all sessions in any state.  The following is a sample output of the command show lisp session on an MSMR: device# show lisp session Sessions for VRF default, total: 4, established: 2 Peer State Up/Down In/Out Users 172.",
+    "sourcePage": 91,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "use-petr",
+    "context": null,
+    "detail": "Configure a router to use an IPv4 or IPv6 Locator/ID Separation Protocol (LISP) Proxy Egress Tunnel Router (PETR).",
+    "syntax": "use-petr locator-address [ priority priority weight weight ]",
+    "noForm": "no use-petr locator-address [ priority priority weight weight ]",
+    "params": [
+      {
+        "name": "locator-address",
+        "description": "The name of locator-set that is set as default. priority priority (Optional) Specifies the priority (value between 0 and 255) assigned to this PETR. A lower value indicates a higher priority."
+      },
+      {
+        "name": "weight weight",
+        "description": "(Optional) Specifies the percentage of traffic to be load-shared (value between 0 and 100)."
+      }
+    ],
+    "modes": [
+      "LISP Service (router-lisp-service) LISP Instance-Service (router-lisp-instance-service)"
+    ],
+    "usageSummary": "Use the use-petr command to enable an Ingress Tunnel Router (ITR) or Proxy Ingress Tunnel Router (PITR) to use IPv4 Proxy Egress Tunnel Router (PETR) services.  When the use of PETR services is enabled, instead of natively forwarding LISP endpoint identifier (EID) (source) packets destined to non-LISP sites, these packets are LISP-encapsulated and forwarded to the PETR.  Upon receiving these packets, the PETR decapsulates them and then forwards them natively toward the non-LISP destination.",
+    "sourcePage": 92,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  }
+]

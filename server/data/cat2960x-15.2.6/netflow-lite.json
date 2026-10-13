@@ -1,0 +1,1138 @@
+[
+  {
+    "name": "cache",
+    "context": null,
+    "detail": "Configure a flow cache parameter for a flow monitor.",
+    "syntax": "cache {entries number | timeout {active | inactive | update} seconds | type {normal | permanent}}",
+    "noForm": "no cache {entries | timeout {active | inactive | update} | type}",
+    "params": [
+      {
+        "name": "entries number",
+        "description": "Specifies the maximum number of entries in the flow monitor cache. The range is 16 to 1048576. The default is 16640 for each switch in the stack."
+      },
+      {
+        "name": "timeout",
+        "description": "Specifies the flow timeout."
+      },
+      {
+        "name": "active",
+        "description": "Specifies the active flow timeout."
+      },
+      {
+        "name": "inactive",
+        "description": "Specifies the inactive flow timeout."
+      },
+      {
+        "name": "update",
+        "description": "Specifies the update timeout for a permanent flow cache."
+      },
+      {
+        "name": "seconds",
+        "description": "The timeout value in seconds. The range is 30 to 604800 (7 days) for a normal flow cache. For a permanent flow cache the range is 1 to 604800 (7 days)."
+      },
+      {
+        "name": "type",
+        "description": "Specifies the type of the flow cache."
+      },
+      {
+        "name": "normal",
+        "description": "Configures a normal cache type. The entries in the flow cache will be aged out according to the timeout active seconds and timeout inactive seconds settings. This is the default cache type."
+      },
+      {
+        "name": "permanent",
+        "description": "Configures a permanent cache type. This cache type disables flow removal from the flow cache."
+      }
+    ],
+    "modes": ["Flow monitor configuration"],
+    "usageSummary": "Each flow monitor has a cache that it uses to store all the flows it monitors.  Each cache has various configurable elements, such as the time that a flow is allowed to remain in it.  When a flow times out, it is removed from the cache and sent to any exporters that are configured for the corresponding flow monitor.",
+    "sourcePage": 239,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear flow exporter",
+    "context": null,
+    "detail": "Clear the statistics for a Flexible Netflow flow exporter.",
+    "syntax": "clear flow exporter [[name] exporter-name] statistics",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow exporter."
+      },
+      {
+        "name": "exporter-name",
+        "description": "(Optional) Name of a flow exporter that was previously configured."
+      },
+      {
+        "name": "statistics",
+        "description": "Clears the flow exporter statistics."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The clear flow exporter command removes all statistics from the flow exporter.  These statistics will not be exported and the data gathered in the cache will be lost.  You can view the flow exporter statistics by using the show flow exporter statistics privileged EXEC command.",
+    "sourcePage": 242,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear flow monitor",
+    "context": null,
+    "detail": "Clear a flow monitor cache or flow monitor statistics and to force the export of the data in the flow monitor cache.",
+    "syntax": "clear flow monitor [name] monitor-name [{[cache] force-export | statistics}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "Specifies the name of a flow monitor."
+      },
+      {
+        "name": "monitor-name",
+        "description": "Name of a flow monitor that was previously configured."
+      },
+      {
+        "name": "cache",
+        "description": "(Optional) Clears the flow monitor cache information."
+      },
+      {
+        "name": "force-export",
+        "description": "(Optional) Forces the export of the flow monitor cache statistics."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Clears the flow monitor statistics."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The clear flow monitor cache command removes all entries from the flow monitor cache.  These entries will not be exported and the data gathered in the cache will be lost.",
+    "sourcePage": 243,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "collect counter",
+    "context": null,
+    "detail": "Configure the number of bytes or packets in a flow as a non-key field for a flow record.",
+    "syntax": "collect counter {bytes | packets} {long | permanent}",
+    "noForm": "no collect counter {bytes | packets} {long | permanent}",
+    "params": [
+      {
+        "name": "bytes",
+        "description": "Configures the number of bytes seen in a flow as a non-key field and enables collecting the total number of bytes from the flow."
+      },
+      {
+        "name": "packets",
+        "description": "Configures the number of packets seen in a flow as a non-key field and enables collecting the total number of packets from the flow."
+      },
+      {
+        "name": "long",
+        "description": "Enables collecting the total number of bytes or packets from the flow using a 64-bit counter. After collection the counter resets to 0. permanent Enables collecting the total number of bytes or packets from the flow using a 64-bit counter. After collection the counter does not reset."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "Flow packets are exported after cache timeout interval.  After they are exported, the count restarts from 0 if the long keyword is specified.  If the permanent keyword is specified, the counter increments for each byte or packet seen in the flow.",
+    "sourcePage": 245,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "collect flow sampler",
+    "context": null,
+    "detail": "Configure the flow sampler ID as a non-key field and enable the collection of the ID of the sampler that is assigned to the flow monitor.",
+    "syntax": "collect flow sampler",
+    "noForm": "no collect flow sampler",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "The NetFlow Lite collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
+    "sourcePage": 246,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "collect interface",
+    "context": null,
+    "detail": "Configure the input interface name as a non-key field for a flow record.",
+    "syntax": "collect interface input",
+    "noForm": "no collect interface input",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "The NetFlow Lite collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
+    "sourcePage": 247,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "collect timestamp sys-uptime",
+    "context": null,
+    "detail": "Configure the system uptime of the first seen or last seen packet in a flow as a nonkey field for a flow record.",
+    "syntax": "collect timestamp sys-uptime {first | last}",
+    "noForm": "no collect timestamp sys-uptime {first | last}",
+    "params": [
+      {
+        "name": "first",
+        "description": "Configures the system uptime for the time the first packet was seen from the flows as a nonkey field and enables collecting time stamps based on the system uptime for the time the first packet was seen from the flows."
+      },
+      {
+        "name": "last",
+        "description": "Configures the system uptime for the time the last packet was seen from the flows as a nonkey field and enables collecting time stamps based on the system uptime for the time the most recent packet was seen from the flows."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "The NetFlow Lite collect commands are used to configure nonkey fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in nonkey fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a nonkey field does not create a new flow.",
+    "sourcePage": 248,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "collect transport tcp flags",
+    "context": null,
+    "detail": "Configure one or more TCP flags as a non-key field for a flow record and enable the collecting of values from the flow.",
+    "syntax": "collect transport tcp flags [{ack | cwr | ece | fin | psh | rst | syn | urg}]",
+    "noForm": "no collect transport tcp flags [{ack | cwr | ece | fin | psh | rst | syn | urg}]",
+    "params": [
+      {
+        "name": "ack",
+        "description": "(Optional) Configures the TCP acknowledgment flag as a non-key field."
+      },
+      {
+        "name": "cwr",
+        "description": "(Optional) Configures the TCP congestion window reduced flag as a non-key field."
+      },
+      {
+        "name": "ece",
+        "description": "(Optional) Configures the TCP Explicit Congestion Notification echo (ECE) flag as a non-key field."
+      },
+      {
+        "name": "fin",
+        "description": "(Optional) Configures the TCP finish flag as a non-key field."
+      },
+      {
+        "name": "psh",
+        "description": "(Optional) Configures the TCP push flag as a non-key field."
+      },
+      {
+        "name": "rst",
+        "description": "(Optional) Configures the TCP reset flag as a non-key field."
+      },
+      {
+        "name": "syn",
+        "description": "(Optional) Configures the TCP synchronize flag as a non-key field."
+      },
+      {
+        "name": "urg",
+        "description": "(Optional) Configures the TCP urgent flag as a non-key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "The values of the transport layer fields are taken from all packets in the flow.  You cannot specify which TCP flag to collect.  You can only specify to collect transport TCP flags.",
+    "sourcePage": 249,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "datalink flow monitor",
+    "context": null,
+    "detail": "Apply a NetFlow Lite flow monitor to an interface.",
+    "syntax": "datalink flow monitor monitor-name sampler sampler-name input",
+    "noForm": "no datalink flow monitor monitor-name sampler sampler-name input",
+    "params": [
+      {
+        "name": "monitor-name",
+        "description": "Name of the flow monitor to apply to the interface."
+      },
+      {
+        "name": "sampler sampler-name",
+        "description": "Enables the specified flow sampler for the flow monitor."
+      },
+      {
+        "name": "input",
+        "description": "Monitors traffic that the switch receives on the interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Before you apply a flow monitor to an interface with the datalink flow monitor command, you must have already created the flow monitor using the flow monitor global configuration command and the flow sampler using the sampler global configuration command.  To enable a flow sampler for the flow monitor, you must have already created the sampler.",
+    "sourcePage": 251,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug flow exporter",
+    "context": null,
+    "detail": "Enable debugging output for Flexible Netflow flow exporters.",
+    "syntax": "debug flow exporter [[name] exporter-name] [{error | event | packets number}]",
+    "noForm": "no debug flow exporter [[name] exporter-name] [{error | event | packets number}]",
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow exporter."
+      },
+      {
+        "name": "exporter-name",
+        "description": "(Optional) The name of a flow exporter that was previously configured."
+      },
+      {
+        "name": "error",
+        "description": "(Optional) Enables debugging for flow exporter errors."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Enables debugging for flow exporter events."
+      },
+      {
+        "name": "packets",
+        "description": "(Optional) Enables packet-level debugging for flow exporters."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) The number of packets to debug for packet-level debugging of flow exporters. The range is 1 to 65535."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 252,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug flow monitor",
+    "context": null,
+    "detail": "Enable debugging output for Flexible NetFlow flow monitors.",
+    "syntax": "debug flow monitor [{error | [name] monitor-name [{cache [error] | error | packets packets}]}]",
+    "noForm": "no debug flow monitor [{error | [name] monitor-name [{cache [error] | error | packets packets}]}]",
+    "params": [
+      {
+        "name": "error",
+        "description": "(Optional) Enables debugging for flow monitor errors for all flow monitors or for the specified flow monitor."
+      },
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow monitor."
+      },
+      {
+        "name": "monitor-name",
+        "description": "(Optional) Name of a flow monitor that was previously configured."
+      },
+      {
+        "name": "cache",
+        "description": "(Optional) Enables debugging for the flow monitor cache."
+      },
+      {
+        "name": "cache error",
+        "description": "(Optional) Enables debugging for flow monitor cache errors."
+      },
+      {
+        "name": "packets",
+        "description": "(Optional) Enables packet-level debugging for flow monitors."
+      },
+      {
+        "name": "packets",
+        "description": "(Optional) Number of packets to debug for packet-level debugging of flow monitors. The range is 1 to 65535."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 253,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug sampler",
+    "context": null,
+    "detail": "Enable debugging output for Flexible NetFlow samplers.",
+    "syntax": "debug sampler [{detailed | error | [name] sampler-name [{detailed | error | sampling samples}]}]",
+    "noForm": "no debug sampler [{detailed | error | [name] sampler-name [{detailed | error | sampling}]}]",
+    "params": [
+      {
+        "name": "detailed",
+        "description": "(Optional) Enables detailed debugging for sampler elements."
+      },
+      {
+        "name": "error",
+        "description": "(Optional) Enables debugging for sampler errors."
+      },
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a sampler."
+      },
+      {
+        "name": "sampler-name",
+        "description": "(Optional) Name of a sampler that was previously configured."
+      },
+      {
+        "name": "sampling samples",
+        "description": "(Optional) Enables debugging for sampling and specifies the number of samples to debug."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 254,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "description",
+    "context": null,
+    "detail": "Configure a description for a flow monitor, flow exporter, or flow record.",
+    "syntax": "description description",
+    "noForm": "no description description",
+    "params": [
+      {
+        "name": "description",
+        "description": "Text string that describes the flow monitor, flow exporter, or flow record."
+      }
+    ],
+    "modes": [
+      "The following command modes are supported:",
+      "Flow exporter configuration",
+      "Flow monitor configuration",
+      "Flow record configuration"
+    ],
+    "usageSummary": "To return this command to its default setting, use the no description or default description command in the appropriate configuration mode.  The following example configures a description for a flow monitor: Device(config)# flow monitor FLOW-MONITOR-1 Device(config-flow-monitor)# description Monitors traffic to 172. 16.",
+    "sourcePage": 255,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "destination",
+    "context": null,
+    "detail": "Configure an export destination for a flow exporter.",
+    "syntax": "destination {hostnameip-address}",
+    "noForm": "no destination {hostnameip-address}",
+    "params": [
+      {
+        "name": "hostname",
+        "description": "Hostname of the device to which you want to send the NetFlow information."
+      },
+      {
+        "name": "ip-address",
+        "description": "IPv4 address of the workstation to which you want to send the NetFlow information."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "Each flow exporter can have only one destination address or hostname.  When you configure a hostname instead of the IP address for the device, the hostname is resolved immediately and the IPv4 address is stored in the running configuration.  If the hostname-to-IP-address mapping that was used for the original Domain Name System (DNS) name resolution changes dynamically on the DNS server, the device does not detect this, and the exported data continues to be sent to the original IP address, resulting in a loss of data.",
+    "sourcePage": 256,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "dscp",
+    "context": null,
+    "detail": "Configure a differentiated services code point (DSCP) value for flow exporter datagrams.",
+    "syntax": "dscp dscp",
+    "noForm": "no dscp dscp",
+    "params": [
+      {
+        "name": "dscp",
+        "description": "DSCP to be used in the DSCP field in exported datagrams. The range is 0 to 63. The default is 0."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "To return this command to its default setting, use the no dscp or default dscp flow exporter configuration command.  The following example sets 22 as the value of the DSCP field in exported datagrams: Device(config)# flow exporter FLOW-EXPORTER-1 Device(config-flow-exporter)# dscp 22 Related Topics flow exporter, on page 260 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 257,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "export-protocol netflow-v9",
+    "context": null,
+    "detail": "Configure NetFlow Version 9 export as the export protocol for a NetFlow Lite exporter.",
+    "syntax": "export-protocol netflow-v9",
+    "noForm": null,
+    "params": [],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "The device does not support NetFlow v5 export format, only NetFlow v9 export format is supported.  The following example configures NetFlow Version 9 export as the export protocol for a NetFlow exporter: Device(config)# flow exporter FLOW-EXPORTER-1 Device(config-flow-exporter)# export-protocol netflow-v9 Related Topics flow exporter, on page 260 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 258,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "exporter",
+    "context": null,
+    "detail": "Add a flow exporter for a flow monitor.",
+    "syntax": "exporter exporter-name",
+    "noForm": "no exporter exporter-name",
+    "params": [
+      {
+        "name": "exporter-name",
+        "description": "Name of a flow exporter that was previously configured."
+      }
+    ],
+    "modes": ["Flow monitor configuration"],
+    "usageSummary": "You must have already created a flow exporter by using the flow exporter command before you can apply the flow exporter to a flow monitor with the exporter command.  To return this command to its default settings, use the no exporter or default exporter flow monitor configuration command.",
+    "sourcePage": 259,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "flow exporter",
+    "context": null,
+    "detail": "Create a NetFlow Lite flow exporter, or to modify an existing NetFlow Lite flow exporter, and enter NetFlow Lite flow exporter configuration mode.",
+    "syntax": "flow exporter exporter-name",
+    "noForm": "no flow exporter exporter-name",
+    "params": [
+      {
+        "name": "exporter-name",
+        "description": "Name of the flow exporter that is being created or modified."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Flow exporters export the data in the flow monitor cache to a remote system, such as a server running NetFlow collector, for analysis and storage.  Flow exporters are created as separate entities in the configuration.  Flow exporters are assigned to flow monitors to provide data export capability for the flow monitors.",
+    "sourcePage": 260,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "flow monitor",
+    "context": null,
+    "detail": "Create a flow monitor, or to modify an existing flow monitor, and enter flow monitor configuration mode.",
+    "syntax": "flow monitor monitor-name",
+    "noForm": "no flow monitor monitor-name",
+    "params": [
+      {
+        "name": "monitor-name",
+        "description": "Name of the flow monitor that is being created or modified."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Flow monitors are the NetFlow Lite component that is applied to interfaces to perform network traffic monitoring.  Flow monitors consist of a flow record and a cache.  You add the record to the flow monitor after you create the flow monitor.",
+    "sourcePage": 261,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "flow record",
+    "context": null,
+    "detail": "Create a NetFlow Lite flow record, or to modify an existing NetFlow Lite flow record, and enter NetFlow Lite flow record configuration mode.",
+    "syntax": "flow record record-name",
+    "noForm": "no flow record record-name",
+    "params": [
+      {
+        "name": "record-name",
+        "description": "Name of the flow record that is being created or modified."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "A flow record defines the keys that NetFlow Lite uses to identify packets in the flow, as well as other fields of interest that NetFlow Lite gathers for the flow.  You can define a flow record with any combination of keys and fields of interest.  The supports a rich set of keys.",
+    "sourcePage": 262,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip flow monitor",
+    "context": null,
+    "detail": "Enable a NetFlow Lite flow monitor for IPv4 traffic that the device is receiving.",
+    "syntax": "ip flow monitor monitor-name sampler sampler-name input",
+    "noForm": "no ip flow monitor monitor-name sampler sampler-name input",
+    "params": [
+      {
+        "name": "monitor-name",
+        "description": "Name of the flow monitor to apply to the interface. sampler sampler-name Enables the specified flow sampler for the flow monitor."
+      },
+      {
+        "name": "input",
+        "description": "Monitors IPv4 traffic that the device receives on the interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Before you can apply a flow monitor to an interface with the ip flow monitor command, you must have already created the flow monitor using the flow monitor global configuration command.  When you add a sampler to a flow monitor, only packets that are selected by the named sampler will be entered into the cache to form flows.  Each use of a sampler causes separate statistics to be stored for that usage.",
+    "sourcePage": 263,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 flow monitor",
+    "context": null,
+    "detail": "Enable a flow monitor for IPv6 traffic that the device is receiving.",
+    "syntax": "ipv6 flow monitor monitor-name sampler sampler-name input",
+    "noForm": "no ipv6 flow monitor monitor-name sampler sampler-name input",
+    "params": [
+      {
+        "name": "monitor-name",
+        "description": "Name of the flow monitor to apply to the interface. sampler sampler-name Enables the specified flow sampler for the flow monitor."
+      },
+      {
+        "name": "input",
+        "description": "Monitors IPv6 traffic that the device receives on the interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Before you can apply a flow monitor to the interface with the ipv6 flow monitor command, you must have already created the flow monitor using the flow monitor global configuration command.  When you add a sampler to a flow monitor, only packets that are selected by the named sampler will be entered into the cache to form flows.  Each use of a sampler causes separate statistics to be stored for that usage.",
+    "sourcePage": 264,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match datalink ethertype",
+    "context": null,
+    "detail": "Configure the EtherType of the packet as a key field for a flow record.",
+    "syntax": "match datalink ethertype",
+    "noForm": "no match datalink ethertype",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 265,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match datalink mac",
+    "context": null,
+    "detail": "Configure the use of MAC addresses as a key field for a flow record.",
+    "syntax": "match datalink mac {destination address input | source address input}",
+    "noForm": "no match datalink mac {destination address input | source address input}",
+    "params": [
+      {
+        "name": "destination address",
+        "description": "Configures the use of the destination MAC address as a key field."
+      },
+      {
+        "name": "input",
+        "description": "Specifies the MAC address of input packets."
+      },
+      {
+        "name": "source address",
+        "description": "Configures the use of the source MAC address as a key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 266,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv4",
+    "context": null,
+    "detail": "Configure one or more of the IPv4 fields as a key field for a flow record.",
+    "syntax": "match ipv4 {destination address | protocol | source address | tos | version}",
+    "noForm": "no match ipv4 {destination address | protocol | source address | tos | version}",
+    "params": [
+      {
+        "name": "destination address",
+        "description": "Configures the IPv4 destination address as a key field. For more information see match ipv4 destination address, on page 268."
+      },
+      {
+        "name": "protocol",
+        "description": "Configures the IPv4 protocol as a key field."
+      },
+      {
+        "name": "source address",
+        "description": "Configures the IPv4 destination address as a key field. For more information see match ipv4 source address, on page 269."
+      },
+      {
+        "name": "tos",
+        "description": "Configures the IPv4 ToS as a key field."
+      },
+      {
+        "name": "version",
+        "description": "Configures the IP version from IPv4 header as a key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 267,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv4 destination address",
+    "context": null,
+    "detail": "Configure the IPv4 destination address as a key field for a flow record.",
+    "syntax": "match ipv4 destination address",
+    "noForm": "no match ipv4 destination address",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 268,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv4 source address",
+    "context": null,
+    "detail": "Configure the IPv4 source address as a key field for a flow record.",
+    "syntax": "match ipv4 source address",
+    "noForm": "no match ipv4 source address",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 269,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv6",
+    "context": null,
+    "detail": "Configure one or more of the IPv6 fields as a key field for a flow record.",
+    "syntax": "match ipv6 {destination address | flow-label | protocol | source address}",
+    "noForm": "no match ipv6 {destination address | flow-label | protocol | source address}",
+    "params": [
+      {
+        "name": "destination address",
+        "description": "Configures the IPv4 destination address as a key field. For more information see match ipv6 destination address, on page 271."
+      },
+      {
+        "name": "flow-label",
+        "description": "Configures the IPv6 flow-label as a key field."
+      },
+      {
+        "name": "protocol",
+        "description": "Configures the IPv6 protocol as a key field."
+      },
+      {
+        "name": "source address",
+        "description": "Configures the IPv4 destination address as a key field. For more information see match ipv6 source address, on page 272."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 270,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv6 destination address",
+    "context": null,
+    "detail": "Configure the IPv6 destination address as a key field for a flow record.",
+    "syntax": "match ipv6 destination address",
+    "noForm": "no match ipv6 destination address",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 271,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv6 source address",
+    "context": null,
+    "detail": "Configure the IPv6 source address as a key field for a flow record.",
+    "syntax": "match ipv6 source address",
+    "noForm": "no match ipv6 source address",
+    "params": [],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 272,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match transport",
+    "context": null,
+    "detail": "Configure one or more of the transport fields as a key field for a flow record.",
+    "syntax": "match transport {destination-port | source-port}",
+    "noForm": "no match transport {destination-port | source-port}",
+    "params": [
+      {
+        "name": "source-port",
+        "description": "Configures the transport source port as a key field."
+      }
+    ],
+    "modes": ["Flow record configuration"],
+    "usageSummary": "A flow record requires at least one key field before it can be used in a flow monitor.  The key fields distinguish flows, with each flow having a unique set of values for the key fields.  The key fields are defined using the match command.",
+    "sourcePage": 273,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mode",
+    "context": null,
+    "detail": "Specify the type of sampling and the packet interval for a NetFlow Lite sampler.",
+    "syntax": "mode {deterministic | random} 1 out-of window-size",
+    "noForm": "no mode",
+    "params": [
+      {
+        "name": "deterministic",
+        "description": "Enables deterministic mode sampling for the sampler."
+      },
+      {
+        "name": "random",
+        "description": "Enables random mode sampling for the sampler. 1 out-of window-size Specifies the window size from which to select packets. The range is 32 to 1022."
+      }
+    ],
+    "modes": ["Sampler configuration"],
+    "usageSummary": "A total of four unique samplers (random or deterministic) are supported on the .  In deterministic mode, packets are chosen periodically based on the configured interval.  This mode has less overhead than random mode and can be useful when the device samples traffic that is random in nature.",
+    "sourcePage": 274,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "option",
+    "context": null,
+    "detail": "Configure optional data parameters for a flow exporter for NetFlow Lite.",
+    "syntax": "option {exporter-stats | interface-table | sampler-table} [{timeout seconds}]",
+    "noForm": "no option {exporter-stats | interface-table | sampler-table}",
+    "params": [
+      {
+        "name": "exporter-stats",
+        "description": "Configures the exporter statistics option for flow exporters."
+      },
+      {
+        "name": "interface-table",
+        "description": "Configures the interface table option for flow exporters."
+      },
+      {
+        "name": "sampler-table",
+        "description": "Configures the export sampler table option for flow exporters."
+      },
+      {
+        "name": "timeout seconds",
+        "description": "(Optional) Configures the option resend time in seconds for flow exporters. The range is 1 to 86400. The default is 600."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "The option exporter-stats command causes the periodic sending of the exporter statistics, including the number of records, bytes, and packets sent.  This command allows the collector to estimate packet loss for the export records it receives.  The optional timeout alters the frequency at which the reports are sent.",
+    "sourcePage": 276,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "record",
+    "context": null,
+    "detail": "Add a flow record for a NetFlow Lite flow monitor.",
+    "syntax": "record record-name",
+    "noForm": "no record",
+    "params": [
+      {
+        "name": "record-name",
+        "description": "Name of a user-defined flow record that was previously configured."
+      }
+    ],
+    "modes": ["Flow monitor configuration"],
+    "usageSummary": "Each flow monitor requires a record to define the contents and layout of its cache entries.  The flow monitor can use one of the wide range of predefined record formats, or advanced users may create their own record formats.",
+    "sourcePage": 278,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "sampler",
+    "context": null,
+    "detail": "Create a NetFlow Lite flow sampler, or to modify an existing NetFlow Lite flow sampler, and to enter NetFlow Lite sampler configuration mode.",
+    "syntax": "sampler sampler-name",
+    "noForm": "no sampler sampler-name",
+    "params": [
+      {
+        "name": "sampler-name",
+        "description": "Name of the flow sampler that is being created or modified."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Flow samplers are used to reduce the load placed by NetFlow Lite on the networking device to monitor traffic by limiting the number of packets that are analyzed.  You configure a rate of sampling that is 1 out of a range of 32 to 1022 packets.  Flow samplers are applied to interfaces in conjunction with a flow monitor to implement sampled NetFlow Lite.",
+    "sourcePage": 279,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show flow exporter",
+    "context": null,
+    "detail": "Display flow exporter status and statistics.",
+    "syntax": "show flow exporter [{export-ids netflow-v9 | [name] exporter-name [{statistics | templates}] | statistics | templates}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow exporter."
+      },
+      {
+        "name": "exporter-name",
+        "description": "(Optional) Name of a flow exporter that was previously configured."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays statistics for all flow exporters or for the specified flow exporter."
+      },
+      {
+        "name": "templates",
+        "description": "(Optional) Displays template information for all flow exporters or for the specified flow exporter."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 280,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show flow interface",
+    "context": null,
+    "detail": "Display the NetFlow Lite configuration and status for an interface.",
+    "syntax": "show flow interface [type number]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "type",
+        "description": "(Optional) The type of interface on which you want to display NetFlow Lite accounting configuration information."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) The number of the interface on which you want to display NetFlow Lite accounting configuration information."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 282,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show flow monitor",
+    "context": null,
+    "detail": "Display the status and statistics for a NetFlow Lite flow monitor.",
+    "syntax": "show flow monitor [[name] monitor-name [cache [format {csv | record | table}]] [statistics]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow monitor."
+      },
+      {
+        "name": "monitor-name",
+        "description": "(Optional) Name of a flow monitor that was previously configured."
+      },
+      {
+        "name": "cache",
+        "description": "(Optional) Displays the contents of the cache for the flow monitor."
+      },
+      {
+        "name": "format",
+        "description": "(Optional) Specifies the use of one of the format options for formatting the display output."
+      },
+      {
+        "name": "csv",
+        "description": "(Optional) Displays the flow monitor cache contents in comma-separated variables (CSV) format."
+      },
+      {
+        "name": "record",
+        "description": "(Optional) Displays the flow monitor cache contents in record format."
+      },
+      {
+        "name": "table",
+        "description": "(Optional) Displays the flow monitor cache contents in table format."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays the statistics for the flow monitor."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The cache keyword uses the record format by default.  The uppercase field names in the display output of the show flowmonitor monitor-name cache command are key fields that NetFlow Lite uses to differentiate flows.  The lowercase field names in the display output of the show flow monitor monitor-name cache command are nonkey fields from which NetFlow Lite collects values as additional data for the cache.",
+    "sourcePage": 284,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show flow record",
+    "context": null,
+    "detail": "Display the status and statistics for a NetFlow Lite flow record.",
+    "syntax": "show flow record [{[name] record-name}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow record. record-name (Optional) Name of a user-defined flow record that was previously configured."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 290,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show sampler",
+    "context": null,
+    "detail": "Display the status and statistics for a NetFlow Lite sampler.",
+    "syntax": "show sampler [{[name] sampler-name}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a sampler. sampler-name (Optional) Name of a sampler that was previously configured."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 291,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "source",
+    "context": null,
+    "detail": "Configure the source IP address interface for all of the packets sent by a NetFlow Lite flow exporter.",
+    "syntax": "source interface-type interface-number",
+    "noForm": "no source",
+    "params": [
+      {
+        "name": "interface-type",
+        "description": "Type of interface whose IP address you want to use for the source IP address of the packets sent by a NetFlow Lite flow exporter."
+      },
+      {
+        "name": "interface-number",
+        "description": "Interface number whose IP address you want to use for the source IP address of the packets sent by a NetFlow Lite flow exporter."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "The benefits of using a consistent IP source address for the datagrams that NetFlow Lite sends include the following: • The source IP address of the datagrams exported by NetFlow Lite is used by the destination system to determine from which device the NetFlow Lite data is arriving.  If your network has two or more paths that can be used to send NetFlow Lite datagrams from the device to the destination system and you do not specify the source interface from which the source IP address is to be obtained, the device uses the IP address of the interface over which the datagram is transmitted as the source IP address of the datagram.  In this situation the destination system might receive NetFlow Lite datagrams from the same device, but with different source IP addresses.",
+    "sourcePage": 293,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "statistics packet protocol",
+    "context": null,
+    "detail": "Collect protocol distribution statistics for a flow monitor.",
+    "syntax": "statistics packet protocol",
+    "noForm": "no statistics packet protocol",
+    "params": [],
+    "modes": ["Flow monitor configuration"],
+    "usageSummary": "Before you can collect protocol distribution statistics for a flow monitor with the statistics packet protocol command, you must define the protocol, source and destination ports, first and last time stamps and packet and bytes counters in the flow record.  If you do not define these fields, you will get the following warning: Warning: Cannot set protocol distribution with this Flow Record.  Require protocol, source and destination ports, first and last timestamps and packet and bytes counters.",
+    "sourcePage": 295,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "template data timeout",
+    "context": null,
+    "detail": "Specify a timeout period for resending flow exporter template data.",
+    "syntax": "template data timeout seconds",
+    "noForm": "no template data timeout seconds",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Timeout value in seconds. The range is 1 to 86400. The default is 600."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "Flow exporter template data describes the exported data records.  Data records cannot be decoded without the corresponding template.  The template data timeout command controls how often those templates are exported.",
+    "sourcePage": 296,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "transport",
+    "context": null,
+    "detail": "Configure the transport protocol for a flow exporter for NetFlow Lite.",
+    "syntax": "transport udp udp-port",
+    "noForm": "no transport udp udp-port",
+    "params": [
+      {
+        "name": "udp udp-port",
+        "description": "Specifies User Datagram Protocol (UDP) as the transport protocol and the UDP port number."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "To return this command to its default settings, use the no transport or default transport flow exporter configuration command.  The following example configures UDP as the transport protocol and a UDP port number of 250: Device(config)# flow exporter FLOW-EXPORTER-1 Device(config-flow-exporter)# transport udp 250 Related Topics flow exporter, on page 260 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 297,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ttl",
+    "context": null,
+    "detail": "Configure the time-to-live (TTL) value.",
+    "syntax": "ttl ttl",
+    "noForm": "no ttl ttl",
+    "params": [
+      {
+        "name": "ttl",
+        "description": "Time-to-live (TTL) value for exported datagrams. The range is 1 to 255. The default is 255."
+      }
+    ],
+    "modes": ["Flow exporter configuration"],
+    "usageSummary": "To return this command to its default settings, use the no ttl or default ttl flow exporter configuration command.  The following example specifies a TTL of 15: Device(config)# flow exporter FLOW-EXPORTER-1 Device(config-flow-exporter)# ttl 15 Related Topics flow exporter, on page 260 Consolidated Platform Command Reference, Cisco IOS Release 15. 2(6)E (Catalyst 2960-X Switches) 298 PA R T V Network Management • Network Management , on page 301 Network Management • monitor session, on page 302 • monitor session destination, on page 304 • monitor session filter, on page 308 • monitor session source, on page 310 • show monitor, on page 313 • snmp-server enable traps, on page 316 • snmp-server enable traps bridge, on page 319 • snmp-server enable traps cpu, on page 320 • snmp-server enable traps envmon, on page 321 • snmp-server enable traps errdisable, on page 322 • snmp-server enable traps flash, on page 323 • snmp-server enable traps mac-notification, on page 324 • snmp-server enable traps port-security, on page 325 • snmp-server enable traps rtr, on page 326 • snmp-server enable traps snmp, on page 328 • snmp-server enable traps storm-control, on page 329 • snmp-server enable traps stpx, on page 330 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 298,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  }
+]

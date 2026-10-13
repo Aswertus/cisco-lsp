@@ -1,0 +1,690 @@
+[
+  {
+    "name": "clear vtp counters",
+    "context": null,
+    "detail": "Clear the VLAN Trunking Protocol (VTP) and pruning counters.",
+    "syntax": "clear vtp counters",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2504,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "access-session voice skip-data-vlan",
+    "context": null,
+    "detail": "Skip assigning to the data VLAN and placing it directly in the voice VLAN upon successful authentication.",
+    "syntax": "access-session voice skip-data-vlan",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 2505,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug sw-vlan",
+    "context": null,
+    "detail": "Enable debugging of VLAN manager activities.",
+    "syntax": "debug sw-vlan {badpmcookies | cfg-vlan {bootup | cli} | events | ifs | mapping | notification | packets | redundancy | registries | vtp} | redundancy | registries | vtp}",
+    "noForm": "no debug sw-vlan {badpmcookies | cfg-vlan {bootup | cli} | events | ifs | mapping | notification | packets",
+    "params": [
+      {
+        "name": "cfg-vlan",
+        "description": "Displays VLAN configuration debug messages."
+      },
+      {
+        "name": "bootup",
+        "description": "Displays messages when the switch is booting up."
+      },
+      {
+        "name": "cli",
+        "description": "Displays messages when the command-line interface (CLI) is in VLAN configuration mode."
+      },
+      {
+        "name": "events",
+        "description": "Displays debug messages for VLAN manager events."
+      },
+      {
+        "name": "ifs",
+        "description": "Displays debug messages for the VLAN manager IOS file system (IFS). See debug sw-vlan ifs, on page 2508 for more information."
+      },
+      {
+        "name": "mapping",
+        "description": "Displays debug messages for VLAN mapping."
+      },
+      {
+        "name": "notification",
+        "description": "Displays debug messages for VLAN manager notifications. See debug sw-vlan notification, on page 2509 for more information."
+      },
+      {
+        "name": "packets",
+        "description": "Displays debug messages for packet handling and encapsulation processes."
+      },
+      {
+        "name": "redundancy",
+        "description": "Displays debug messages for VTP VLAN redundancy."
+      },
+      {
+        "name": "registries",
+        "description": "Displays debug messages for VLAN manager registries."
+      },
+      {
+        "name": "vtp",
+        "description": "Displays debug messages for the VLAN Trunking Protocol (VTP) code. See debug sw-vlan vtp, on page 2510 for more information."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug sw-vlan command is the same as the no debug sw-vlan command.",
+    "sourcePage": 2506,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug sw-vlan ifs",
+    "context": null,
+    "detail": "Enable debugging of the VLAN manager IOS file system (IFS) error tests.",
+    "syntax": "debug sw-vlan ifs {open {read | write} | read {1 | 2 | 3 | 4} | write}",
+    "noForm": "no debug sw-vlan ifs {open {read | write} | read {1 | 2 | 3 | 4} | write}",
+    "params": [
+      {
+        "name": "open",
+        "description": "Displays VLAN manager IFS file-read operation debug messages. read"
+      },
+      {
+        "name": "open",
+        "description": "Displays VLAN manager IFS file-write operation debug messages. write"
+      },
+      {
+        "name": "read",
+        "description": "Displays file-read operation debug messages for the specified error test (1, 2, 3, or 4)."
+      },
+      {
+        "name": "write",
+        "description": "Displays file-write operation debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug sw-vlan ifs command is the same as the no debug sw-vlan ifs command.  When selecting the file read operation, Operation 1 reads the file header, which contains the header verification word and the file version number.  Operation 2 reads the main body of the file, which contains most of the domain and VLAN information.",
+    "sourcePage": 2508,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug sw-vlan notification",
+    "context": null,
+    "detail": "Enable debugging of VLAN manager notifications.",
+    "syntax": "debug sw-vlan notification {accfwdchange | allowedvlancfgchange | fwdchange | linkchange | modechange | pruningcfgchange | statechange} modechange | pruningcfgchange | statechange}",
+    "noForm": "no debug sw-vlan notification {accfwdchange | allowedvlancfgchange | fwdchange | linkchange |",
+    "params": [
+      {
+        "name": "accfwdchange",
+        "description": "Displays debug messages for VLAN manager notification of aggregated access interface spanning-tree forward changes. allowedvlancfgchange Displays debug messages for VLAN manager notification of changes to the allowed VLAN configuration."
+      },
+      {
+        "name": "fwdchange",
+        "description": "Displays debug messages for VLAN manager notification of spanning-tree forwarding changes."
+      },
+      {
+        "name": "linkchange",
+        "description": "Displays debug messages for VLAN manager notification of interface link-state changes."
+      },
+      {
+        "name": "modechange",
+        "description": "Displays debug messages for VLAN manager notification of interface mode changes."
+      },
+      {
+        "name": "pruningcfgchange",
+        "description": "Displays debug messages for VLAN manager notification of changes to the pruning configuration."
+      },
+      {
+        "name": "statechange",
+        "description": "Displays debug messages for VLAN manager notification of interface state changes."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug sw-vlan notification command is the same as the no debug sw-vlan notification command.",
+    "sourcePage": 2509,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug sw-vlan vtp",
+    "context": null,
+    "detail": "Enable debugging of the VLAN Trunking Protocol (VTP) code.",
+    "syntax": "debug sw-vlan vtp {events | packets | pruning [packets | xmit] | redundancy | xmit}",
+    "noForm": "no debug sw-vlan vtp {events | packets | pruning | redundancy | xmit}",
+    "params": [
+      {
+        "name": "events",
+        "description": "Displays debug messages for general-purpose logic flow and detailed VTP messages generated by the VTP_LOG_RUNTIME macro in the VTP code."
+      },
+      {
+        "name": "packets",
+        "description": "Displays debug messages for the contents of all incoming VTP packets that have been passed into the VTP code from the Cisco IOS VTP platform-dependent layer, except for pruning packets."
+      },
+      {
+        "name": "pruning",
+        "description": "Displays debug messages generated by the pruning segment of the VTP code."
+      },
+      {
+        "name": "packets",
+        "description": "(Optional) Displays debug messages for the contents of all incoming VTP pruning packets that have been passed into the VTP code from the Cisco IOS VTP platform-dependent layer."
+      },
+      {
+        "name": "xmit",
+        "description": "(Optional) Displays debug messages for the contents of all outgoing VTP packets that the VTP code requests the Cisco IOS VTP platform-dependent layer to send."
+      },
+      {
+        "name": "redundancy",
+        "description": "Displays debug messages for VTP redundancy."
+      },
+      {
+        "name": "xmit",
+        "description": "Displays debug messages for the contents of all outgoing VTP packets that the VTP code requests the Cisco IOS VTP platform-dependent layer to send, except for pruning packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug sw-vlan vtp command is the same as the no debug sw-vlan vtp command.  If no additional parameters are entered after the pruning keyword, VTP pruning debugging messages appear.  They are generated by the VTP_PRUNING_LOG_NOTICE, VTP_PRUNING_LOG_INFO, VTP_PRUNING_LOG_DEBUG, VTP_PRUNING_LOG_ALERT, and VTP_PRUNING_LOG_WARNING macros in the VTP pruning code.",
+    "sourcePage": 2510,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dot1q vlan native",
+    "context": null,
+    "detail": "Assign the native VLAN ID of a physical interface trunking 802.1Q VLAN traffic.",
+    "syntax": "dot1q vlan vlan-id [native]",
+    "noForm": "no dot1q vlan vlan-id [native]",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "Trunk interface ID. The range is from 1 to 4000."
+      },
+      {
+        "name": "native",
+        "description": "Specifies the native VLAN associated with the 802.1Q trunk interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "To use this command, you must be in a user group associated with a task group that includes proper task IDs.  If you suspect that user group assignment is preventing you from using a command, contact your AAA administrator.  The dot1q vlan native command defines the default, or native VLAN, associated with an 802.",
+    "sourcePage": 2512,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "interface",
+    "context": "VLAN",
+    "detail": "Create a VLAN subinterface.",
+    "syntax": "interface {type switch |slot |port.subinterface }",
+    "noForm": "no interface {type switch |slot |port.subinterface }",
+    "params": [
+      {
+        "name": "type",
+        "description": "Type of interface to be configured."
+      },
+      {
+        "name": "switch/slot/port.subinterface",
+        "description": "Physical interfaces or virtual interfaces followed by the subinterface path ID."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "To use this command, you must be in a user group associated with a task group that includes the proper task IDs.  If you suspect user group assignment is preventing you from using a command, contact your AAA administrator.  To configure a large number of subinterfaces, we recommend entering all configuration data before you commit the interface command.",
+    "sourcePage": 2513,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "private-vlan",
+    "context": null,
+    "detail": "Configure private VLANs and to configure the association between private VLAN primary and secondary VLANs.",
+    "syntax": "private-vlan {association [add | remove] secondary-vlan-list | community | isolated | primary}",
+    "noForm": "no private-vlan {association | community | isolated | primary}",
+    "params": [
+      {
+        "name": "association",
+        "description": "Creates an association between the primary VLAN and a secondary VLAN."
+      },
+      {
+        "name": "add",
+        "description": "Associates a secondary VLAN to a primary VLAN."
+      },
+      {
+        "name": "remove",
+        "description": "Clears the association between a secondary VLAN and a primary VLAN."
+      },
+      {
+        "name": "secondary-vlan-list",
+        "description": "One or more secondary VLANs to be associated with a primary VLAN in a private VLAN."
+      },
+      {
+        "name": "community",
+        "description": "Designates the VLAN as a community VLAN."
+      },
+      {
+        "name": "isolated",
+        "description": "Designates the VLAN as an isolated VLAN."
+      },
+      {
+        "name": "primary",
+        "description": "Designates the VLAN as a primary VLAN."
+      }
+    ],
+    "modes": ["VLAN configuration"],
+    "usageSummary": "Before configuring private VLANs, you must disable VTP (VTP mode transparent).  After you configure a private VLAN, you should not change the VTP mode to client or server.  VTP does not propagate private VLAN configurations.",
+    "sourcePage": 2514,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "private-vlan mapping",
+    "context": null,
+    "detail": "Create a mapping between the primary and the secondary VLANs so that both VLANs share the same primary VLAN switched virtual interface (SVI).",
+    "syntax": "private-vlan mapping [add | remove] secondary-vlan-list",
+    "noForm": "no private-vlan mapping",
+    "params": [
+      {
+        "name": "add",
+        "description": "(Optional) Maps the secondary VLAN to the primary VLAN SVI."
+      },
+      {
+        "name": "remove",
+        "description": "(Optional) Removes the mapping between the secondary VLAN and the primary VLAN SVI."
+      },
+      {
+        "name": "secondary-vlan-list",
+        "description": "One or more secondary VLANs to be mapped to the primary VLAN SVI."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The device must be in VTP transparent mode when you configure private VLANs.  The SVI of the primary VLAN is created at Layer 3.  Configure Layer 3 VLAN interfaces (SVIs) only for primary VLANs.",
+    "sourcePage": 2516,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces private-vlan mapping",
+    "context": null,
+    "detail": "Display private VLAN mapping information for the VLAN switch virtual interfaces (SVIs).",
+    "syntax": "show interfaces [interface-id] private-vlan mapping",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the interface for which to display private VLAN mapping information."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2518,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show vlan",
+    "context": null,
+    "detail": "Display the parameters for all configured VLANs or one VLAN (if the VLAN ID or name is specified) on the switch.",
+    "syntax": "show vlan [brief | dot1q tag native | group | id vlan-id | mtu | name vlan-name | private-vlan [type] | remote-span | summary]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "brief",
+        "description": "(Optional) Displays one line for each VLAN with the VLAN name, status, and its ports."
+      },
+      {
+        "name": "dot1q tag native",
+        "description": "(Optional) Displays the IEEE 802.1Q native VLAN tagging status."
+      },
+      {
+        "name": "group",
+        "description": "(Optional) Displays information about VLAN groups."
+      },
+      {
+        "name": "id vlan-id",
+        "description": "(Optional) Displays information about a single VLAN identified by the VLAN ID number. For vlan-id, the range is 1 to 4094."
+      },
+      {
+        "name": "mtu",
+        "description": "(Optional) Displays a list of VLANs and the minimum and maximum transmission unit (MTU) sizes configured on ports in the VLAN."
+      },
+      {
+        "name": "name vlan-name",
+        "description": "(Optional) Displays information about a single VLAN identified by the VLAN name. The VLAN name is an ASCII string from 1 to 32 characters."
+      },
+      {
+        "name": "private-vlan",
+        "description": "(Optional) Displays information about configured private VLANs, including primary and secondary VLAN IDs, type (community, isolated, or primary) and ports belonging to the private VLAN. This keyword is only supported if your switch is running the IP services feature set."
+      },
+      {
+        "name": "type",
+        "description": "(Optional) Displays only private VLAN ID and type."
+      },
+      {
+        "name": "remote-span",
+        "description": "(Optional) Displays information about Remote SPAN (RSPAN) VLANs."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays VLAN summary information."
+      },
+      {
+        "name": "Note",
+        "description": "The ifindex keyword is not supported, even though it is visible in the command-line help string."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "In the show vlan mtu command output, the MTU_Mismatch column shows whether all the ports in the VLAN have the same MTU.  When yes appears in the column, it means that the VLAN has ports with different MTUs, and packets that are switched from a port with a larger MTU to a port with a smaller MTU might be dropped.  If the VLAN does not have an SVI, the hyphen (-) symbol appears in the SVI_MTU column.",
+    "sourcePage": 2519,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show vtp",
+    "context": null,
+    "detail": "Display general information about the VLAN Trunking Protocol (VTP) management domain, status, and counters.",
+    "syntax": "show vtp {counters | devices [conflicts] | interface [interface-id] | password | status}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "counters",
+        "description": "Displays the VTP statistics for the device."
+      },
+      {
+        "name": "devices",
+        "description": "Displays information about all VTP version 3 devices in the domain. This keyword applies only if the device is not running VTP version 3."
+      },
+      {
+        "name": "conflicts",
+        "description": "(Optional) Displays information about VTP version 3 devices that have conflicting primary servers. This command is ignored when the device is in VTP transparent or VTP off mode."
+      },
+      {
+        "name": "interface",
+        "description": "Displays VTP status and configuration for all interfaces or the specified interface."
+      },
+      {
+        "name": "interface-id",
+        "description": "(Optional) Interface for which to display VTP status and configuration. This can be a physical interface or a port channel."
+      },
+      {
+        "name": "password",
+        "description": "Displays whether the VTP password is configured or not (available in privileged EXEC mode only)."
+      },
+      {
+        "name": "status",
+        "description": "Displays general information about the VTP management domain status."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2523,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport mode private-vlan",
+    "context": null,
+    "detail": "Configure an interface as either a host private-VLAN port or a promiscuous private-VLAN port.",
+    "syntax": "switchport mode private-vlan {host | promiscuous}",
+    "noForm": "no switchport mode private-vlan",
+    "params": [
+      {
+        "name": "host",
+        "description": "Configures the interface as a private-VLAN host port. Host ports belong to private-VLAN secondary VLANs and are either community ports or isolated ports, depending on the VLAN to which they belong. promiscuous Configures the interface as a private-VLAN promiscuous port. Promiscuous ports are members of private-VLAN primary VLANs."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "A private-VLAN host or promiscuous port cannot be a Switched Port Analyzer (SPAN) destination port.  If you configure a SPAN destination port as a private-VLAN host or promiscuous port, the port becomes inactive.  Do not configure private VLAN on ports with these other features: • Dynamic-access port VLAN membership • Dynamic Trunking Protocol (DTP) • Port Aggregation Protocol (PAgP) • Link Aggregation Control Protocol (LACP) • Multicast VLAN Registration (MVR) • Voice VLAN While a port is part of the private-VLAN configuration, any EtherChannel configuration for it is inactive A private-VLAN port cannot be a secure port and should not be configured as a protected port.",
+    "sourcePage": 2528,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport priority extend",
+    "context": null,
+    "detail": "Set a port priority for the incoming untagged frames or the priority of frames received by the IP phone connected to the specified port.",
+    "syntax": "switchport priority extend {cos value | trust}",
+    "noForm": "no switchport priority extend",
+    "params": [
+      {
+        "name": "cos",
+        "description": "Sets the IP phone port to override the IEEE 802.1p priority received from the PC or the attached"
+      },
+      {
+        "name": "value",
+        "description": "device with the specified class of service (CoS) value. The range is 0 to 7. Seven is the highest priority. The default is 0."
+      },
+      {
+        "name": "trust",
+        "description": "Sets the IP phone port to trust the IEEE 802.1p priority received from the PC or the attached device."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "When voice VLAN is enabled, you can configure the device to send the Cisco Discovery Protocol (CDP) packets to instruct the IP phone how to send data packets from the device attached to the access port on the Cisco IP Phone.  You must enable CDP on the device port connected to the Cisco IP Phone to send the configuration to the Cisco IP Phone.  (CDP is enabled by default globally and on all device interfaces.",
+    "sourcePage": 2530,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport trunk",
+    "context": null,
+    "detail": "Set the trunk characteristics when the interface is in trunking mode.",
+    "syntax": "switchport trunk {allowed vlan vlan-list | native vlan vlan-id | pruning vlan vlan-list}",
+    "noForm": "no switchport trunk {allowed vlan | native vlan | pruning vlan}",
+    "params": [
+      {
+        "name": "native vlan vlan-id",
+        "description": "Sets the native VLAN for sending and receiving untagged traffic when the interface is in IEEE 802.1Q trunking mode. The range is 1 to 4094. pruning vlan vlan-list Sets the list of VLANs that are eligible for VTP pruning when in trunking mode. See the Usage Guidelines for the vlan-list choices."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The vlan-list format is all | none | [add | remove | except] vlan-atom [,vlan-atom... ]: • all specifies all VLANs from 1 to 4094.  This is the default.",
+    "sourcePage": 2531,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vlan",
+    "context": null,
+    "detail": "Add a VLAN and to enter the VLAN configuration mode.",
+    "syntax": "vlan vlan-id",
+    "noForm": "no vlan vlan-id",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "ID of the VLAN to be added and configured. The range is 1 to 4094. You can enter a single VLAN ID, a series of VLAN IDs separated by commas, or a range of VLAN IDs separated by hyphens."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can use the vlan vlan-id global configuration command to add normal-range VLANs (VLAN IDs 1 to 1005) or extended-range VLANs (VLAN IDs 1006 to 4094).  Configuration information for normal-range VLANs is always saved in the VLAN database, and you can display this information by entering the show vlan privileged EXEC command.  If the VTP mode is transparent, VLAN configuration information for normal-range VLANs is also saved in the device running configuration file.",
+    "sourcePage": 2534,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vlan dot1q tag native",
+    "context": null,
+    "detail": "Enable tagging of native VLAN frames on all IEEE 802.1Q trunk ports.",
+    "syntax": "vlan dot1q tag native",
+    "noForm": "no vlan dot1q tag native",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "When enabled, native VLAN packets going out of all IEEE 802. 1Q trunk ports are tagged.  When disabled, native VLAN packets going out of all IEEE 802.",
+    "sourcePage": 2540,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vtp",
+    "context": "global configuration",
+    "detail": "Set or modify the VLAN Trunking Protocol (VTP) configuration characteristics.",
+    "syntax": "vtp {domain domain-name | file filename | interface interface-name [only] | mode {client | off | server | transparent} [mst | unknown | vlan] | password password [hidden | secret] | pruning | version number} pruning | version}",
+    "noForm": "no vtp {file | interface | mode [client | off | server | transparent] [mst | unknown | vlan] | password |",
+    "params": [
+      {
+        "name": "domain",
+        "description": "Specifies the VTP domain name, an ASCII string from 1 to 32 characters that identifies"
+      },
+      {
+        "name": "domain-name",
+        "description": "the VTP administrative domain for the device. The domain name is case sensitive."
+      },
+      {
+        "name": "file filename",
+        "description": "Specifies the Cisco IOS file system file where the VTP VLAN configuration is stored."
+      },
+      {
+        "name": "interface",
+        "description": "Specifies the name of the interface providing the VTP ID updated for this device. interface-name"
+      },
+      {
+        "name": "only",
+        "description": "(Optional) Uses only the IP address of this interface as the VTP IP updater."
+      },
+      {
+        "name": "mode",
+        "description": "Specifies the VTP device mode as client, server, or transparent."
+      },
+      {
+        "name": "client",
+        "description": "Places the device in VTP client mode. A device in VTP client mode is enabled for VTP, and can send advertisements, but does not have enough nonvolatile storage to store VLAN configurations. You cannot configure VLANs on a VTP client. VLANs are configured on another device in the domain that is in server mode. When a VTP client starts up, it does not send VTP advertisements until it receives advertisements to initialize its VLAN database."
+      },
+      {
+        "name": "off",
+        "description": "Places the device in VTP off mode. A device in VTP off mode functions the same as a VTP transparent device except that it does not forward VTP advertisements on trunk ports."
+      },
+      {
+        "name": "server",
+        "description": "Places the device in VTP server mode. A device in VTP server mode is enabled for VTP and sends advertisements. You can configure VLANs on the device. The device can recover all the VLAN information in the current VTP database from nonvolatile storage after reboot."
+      },
+      {
+        "name": "transparent",
+        "description": "Places the device in VTP transparent mode. A device in VTP transparent mode is disabled for VTP, does not send advertisements or learn from advertisements sent by other devices, and cannot affect VLAN configurations on other devices in the network. The device receives VTP advertisements and forwards them on all trunk ports except the one on which the advertisement was received. When VTP mode is transparent, the mode and domain name are saved in the device running configuration file, and you can save them in the device startup configuration file by entering the copy running-config startup config privileged EXEC command."
+      },
+      {
+        "name": "mst",
+        "description": "(Optional) Sets the mode for the multiple spanning tree (MST) VTP database (only VTP Version 3). Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2541 VLAN vtp (global configuration)"
+      },
+      {
+        "name": "unknown",
+        "description": "(Optional) Sets the mode for unknown VTP databases (only VTP Version 3)."
+      },
+      {
+        "name": "vlan",
+        "description": "(Optional) Sets the mode for VLAN VTP databases. This is the default (only VTP Version 3)."
+      },
+      {
+        "name": "password",
+        "description": "Sets the administrative domain password for the generation of the 16-byte secret value"
+      },
+      {
+        "name": "password",
+        "description": "used in MD5 digest calculation to be sent in VTP advertisements and to validate received VTP advertisements. The password can be an ASCII string from 1 to 32 characters. The password is case sensitive."
+      },
+      {
+        "name": "hidden",
+        "description": "(Optional) Specifies that the key generated from the password string is saved in the VLAN database file. When the hidden password is entered, you need to reenter the password to issue a command in the domain. This keyword is supported only in VTP Version 3."
+      },
+      {
+        "name": "secret",
+        "description": "(Optional) Allows the user to directly configure the password secret key (only VTP Version 3)."
+      },
+      {
+        "name": "pruning",
+        "description": "Enables VTP pruning on the device."
+      },
+      {
+        "name": "version number",
+        "description": "Sets the VTP Version to Version 1, Version 2, or Version 3."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "When you save VTP mode, domain name, and VLAN configurations in the device startup configuration file and reboot the device, the VTP and VLAN configurations are selected by these conditions: • If the VTP mode is transparent in the startup configuration and the VLAN database and the VTP domain name from the VLAN database matches that in the startup configuration file, the VLAN database is ignored (cleared), and the VTP and VLAN configurations in the startup configuration file are used.  The VLAN database revision number remains unchanged in the VLAN database.  • If the VTP mode or domain name in the startup configuration do not match the VLAN database, the domain name and VTP mode and configuration for VLAN IDs 1 to 1005 use the VLAN database information.",
+    "sourcePage": 2541,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vtp",
+    "context": "interface configuration",
+    "detail": "Enable the VLAN Trunking Protocol (VTP) on a per-port basis.",
+    "syntax": "vtp",
+    "noForm": "no vtp",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Enter this command only on interfaces that are in trunking mode.",
+    "sourcePage": 2546,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vtp primary",
+    "context": null,
+    "detail": "Configure a device as the VLAN Trunking Protocol (VTP) primary server.",
+    "syntax": "vtp primary [mst | vlan] [force]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "mst",
+        "description": "(Optional) Configures the device as the primary VTP server for the multiple spanning tree (MST) feature."
+      },
+      {
+        "name": "vlan",
+        "description": "(Optional) Configures the device as the primary VTP server for VLANs."
+      },
+      {
+        "name": "force",
+        "description": "(Optional) Configures the device to not check for conflicting devices when configuring the primary server."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "A VTP primary server updates the database information and sends updates that are honored by all devices in the system.  A VTP secondary server can only back up the updated VTP configurations received from the primary server to NVRAM.  By default, all devices come up as secondary servers.",
+    "sourcePage": 2547,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  }
+]

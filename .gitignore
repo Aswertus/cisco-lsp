@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.vsix
+_manuals/
+*.cisco
+_testing/
+.env
+.env.*

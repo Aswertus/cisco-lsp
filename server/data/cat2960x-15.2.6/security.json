@@ -1,0 +1,1992 @@
+[
+  {
+    "name": "aaa accounting dot1x",
+    "context": null,
+    "detail": "Enable authentication, authorization, and accounting (AAA) accounting and to create method lists defining specific accounting methods on a per-line or per-interface basis for IEEE 802.1x sessions.",
+    "syntax": "aaa accounting dot1x {name | default } start-stop {broadcast group {name | radius | tacacs+} [group {name | radius | tacacs+} ... ] | group {name | radius | tacacs+} [group {name | radius | tacacs+}... ]}",
+    "noForm": "no aaa accounting dot1x {name | default }",
+    "params": [
+      {
+        "name": "name",
+        "description": "Name of a server group. This is optional when you enter it after the broadcast group and group keywords."
+      },
+      {
+        "name": "default",
+        "description": "Specifies the accounting methods that follow as the default list for accounting services. start-stop Sends a start accounting notice at the beginning of a process and a stop accounting notice at the end of a process. The start accounting record is sent in the background. The requested user process begins regardless of whether or not the start accounting notice was received by the accounting server. broadcast Enables accounting records to be sent to multiple AAA servers and sends accounting records to the first server in each group. If the first server is unavailable, the switch uses the list of backup servers to identify the first server."
+      },
+      {
+        "name": "group",
+        "description": "Specifies the server group to be used for accounting services. These are valid server group names: • name — Name of a server group. • radius — Lists of all RADIUS hosts. • tacacs+ — Lists of all TACACS+ hosts. The group keyword is optional when you enter it after the broadcast group and group keywords. You can enter more than optional group keyword."
+      },
+      {
+        "name": "radius",
+        "description": "(Optional) Enables RADIUS accounting."
+      },
+      {
+        "name": "tacacs+",
+        "description": "(Optional) Enables TACACS+ accounting."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command requires access to a RADIUS server.  We recommend that you enter the dot1x reauthentication interface configuration command before configuring IEEE 802. 1x RADIUS accounting on an interface.",
+    "sourcePage": 425,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "aaa accounting identity",
+    "context": null,
+    "detail": "Enable authentication, authorization, and accounting (AAA) accounting for IEEE 802.1x, MAC authentication bypass (MAB), and web authentication sessions.",
+    "syntax": "aaa accounting identity {name | default } start-stop {broadcast group {name | radius | tacacs+} [group {name | radius | tacacs+} ... ] | group {name | radius | tacacs+} [group {name | radius | tacacs+}... ]}",
+    "noForm": "no aaa accounting identity {name | default }",
+    "params": [
+      {
+        "name": "name",
+        "description": "Name of a server group. This is optional when you enter it after the broadcast group and group keywords."
+      },
+      {
+        "name": "default",
+        "description": "Uses the accounting methods that follow as the default list for accounting services. start-stop Sends a start accounting notice at the beginning of a process and a stop accounting notice at the end of a process. The start accounting record is sent in the background. The requested-user process begins regardless of whether or not the start accounting notice was received by the accounting server. broadcast Enables accounting records to be sent to multiple AAA servers and send accounting records to the first server in each group. If the first server is unavailable, the switch uses the list of backup servers to identify the first server."
+      },
+      {
+        "name": "group",
+        "description": "Specifies the server group to be used for accounting services. These are valid server group names: • name — Name of a server group. • radius — Lists of all RADIUS hosts. • tacacs+ — Lists of all TACACS+ hosts. The group keyword is optional when you enter it after the broadcast group and group keywords. You can enter more than optional group keyword."
+      },
+      {
+        "name": "radius",
+        "description": "(Optional) Enables RADIUS authorization."
+      },
+      {
+        "name": "tacacs+",
+        "description": "(Optional) Enables TACACS+ accounting."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "To enable AAA accounting identity, you need to enable policy mode.  To enable policy mode, enter the authentication display new-style command in privileged EXEC mode.  Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 427,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "aaa authentication dot1x",
+    "context": null,
+    "detail": "Specify the authentication, authorization, and accounting (AAA) method to use on ports complying with the IEEE 802.1x authentication.",
+    "syntax": "aaa authentication dot1x {default} method1",
+    "noForm": "no aaa authentication dot1x {default} method1",
+    "params": [
+      {
+        "name": "default",
+        "description": "The default method when a user logs in. Use the listed authentication method that follows this argument."
+      },
+      {
+        "name": "method1",
+        "description": "Specifies the server authentication. Enter the group radius keywords to use the list of all RADIUS servers for authentication."
+      },
+      {
+        "name": "Note",
+        "description": "Though other keywords are visible in the command-line help strings, only the default and group radius keywords are supported."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The method argument identifies the method that the authentication algorithm tries in the specified sequence to validate the password provided by the client.  The only method that is IEEE 802. 1x-compliant is the group radius method, in which the client data is validated against a RADIUS authentication server.",
+    "sourcePage": 429,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "aaa authorization network",
+    "context": null,
+    "detail": "The configure the switch to use user-RADIUS authorization for all network-related service requests, such as IEEE 802.1x VLAN assignment.",
+    "syntax": "aaa authorization network default group radius",
+    "noForm": "no aaa authorization network default",
+    "params": [
+      {
+        "name": "default group radius",
+        "description": "Use the list of all RADIUS hosts in the server group as the default authorization list."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use the aaa authorization network default group radius global configuration command to allow the switch to download IEEE 802. 1x authorization parameters from the RADIUS servers in the default authorization list.  The authorization parameters are used by features such as VLAN assignment to get parameters from the RADIUS servers.",
+    "sourcePage": 430,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "aaa new-model",
+    "context": null,
+    "detail": "Enable the authentication, authorization, and accounting (AAA) access control model.",
+    "syntax": "aaa new-model",
+    "noForm": "no aaa new-model",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "This command enables the AAA access control system.  If the login local command is configured for a virtual terminal line (VTY), and the aaa new-model command is removed, you must reload the switch to get the default configuration or the login command.  If the switch is not reloaded, the switch defaults to the login local command under the VTY.",
+    "sourcePage": 431,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "authentication host-mode",
+    "context": null,
+    "detail": "Set the authorization manager mode on a port.",
+    "syntax": "authentication host-mode {multi-auth | multi-domain | multi-host | single-host}",
+    "noForm": "no authentication host-mode",
+    "params": [
+      {
+        "name": "multi-auth",
+        "description": "Enables multiple-authorization mode (multi-auth mode) on the port."
+      },
+      {
+        "name": "multi-domain",
+        "description": "Enables multiple-domain mode on the port."
+      },
+      {
+        "name": "multi-host",
+        "description": "Enables multiple-host mode on the port."
+      },
+      {
+        "name": "single-host",
+        "description": "Enables single-host mode on the port."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Single-host mode should be configured if only one data host is connected.  Do not connect a voice device to authenticate on a single-host port.  Voice device authorization fails if no voice VLAN is configured on the port.",
+    "sourcePage": 433,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "authentication mac-move permit",
+    "context": null,
+    "detail": "Enable MAC move on a device.",
+    "syntax": "authentication mac-move permit",
+    "noForm": "no authentication mac-move permit",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "The command enables authenticated hosts to move between 802. 1x-enabled ports on a device.  For example, if there is a device between an authenticated host and port, and that host moves to another port, the authentication session is deleted from the first port, and the host is reauthenticated on the new port.",
+    "sourcePage": 435,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "authentication priority",
+    "context": null,
+    "detail": "Add an authentication method to the port-priority list.",
+    "syntax": "authentication priority [dot1x | mab] {webauth}",
+    "noForm": "no authentication priority [dot1x | mab] {webauth}",
+    "params": [
+      {
+        "name": "dot1x",
+        "description": "(Optional) Adds 802.1x to the order of authentication methods."
+      },
+      {
+        "name": "mab",
+        "description": "(Optional) Adds MAC authentication bypass (MAB) to the order of authentication methods."
+      },
+      {
+        "name": "webauth",
+        "description": "Adds web authentication to the order of authentication methods."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Ordering sets the order of methods that the switch attempts when trying to authenticate a new device is connected to a port.  When configuring multiple fallback methods on a port, set web authentication (webauth) last.  Assigning priorities to different authentication methods allows a higher-priority method to interrupt an in-progress authentication method with a lower priority.",
+    "sourcePage": 436,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "authentication violation",
+    "context": null,
+    "detail": "Configure the violation modes that occur when a new device connects to a port or when a new device connects to a port after the maximum number of devices are connected to that port.",
+    "syntax": "authentication violation{ protect|replace|restrict|shutdown }",
+    "noForm": "no authentication violation{ protect|replace|restrict|shutdown }",
+    "params": [
+      {
+        "name": "protect",
+        "description": "Drops unexpected incoming MAC addresses. No syslog errors are generated."
+      },
+      {
+        "name": "replace",
+        "description": "Removes the current session and initiates authentication with the new host."
+      },
+      {
+        "name": "restrict",
+        "description": "Generates a syslog error when a violation error occurs."
+      },
+      {
+        "name": "shutdown",
+        "description": "Error-disables the port or the virtual port on which an unexpected MAC address occurs."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the authentication violation command to specify the action to be taken when a security violation occurs on a port.  This example shows how to configure an IEEE 802. 1x-enabled port as error-disabled and to shut down when a new device connects it: Device(config-if)# authentication violation shutdown This example shows how to configure an 802.",
+    "sourcePage": 439,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "auto security",
+    "context": null,
+    "detail": "Configure global auto security.",
+    "syntax": "auto security This command has no arguments and keywords.",
+    "noForm": "no auto security",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "When you configure auto security in global configuration mode, auto security is enabled on all interfaces.  When you disable auto security, it is disabled on all interfaces.  To enable auto security on specific interfaces, use the auto security-port command in interface configuration mode.",
+    "sourcePage": 441,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "auto security-port",
+    "context": null,
+    "detail": "Configure auto security on an interface.",
+    "syntax": "auto security {host | uplink}",
+    "noForm": "no auto security",
+    "params": [
+      {
+        "name": "host",
+        "description": "Configures auto security for a host port."
+      },
+      {
+        "name": "uplink",
+        "description": "Configures auto security for an uplink port."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You can enable auto security globally, by using the auto security in global configuration mode.",
+    "sourcePage": 442,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "cisp enable",
+    "context": null,
+    "detail": "Enable Client Information Signaling Protocol (CISP) on a switch so that it acts as an authenticator to a supplicant switch and a supplicant to an authenticator switch.",
+    "syntax": "cisp enable",
+    "noForm": "no cisp enable",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "The link between the authenticator and supplicant switch is a trunk.  When you enable VTP on both switches, the VTP domain name must be the same, and the VTP mode must be server.  To avoid the MD5 checksum mismatch error when you configure VTP mode, verify that: • VLANs are not configured on two different switches, which can be caused by two VTP servers in the same domain.",
+    "sourcePage": 443,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear errdisable interface vlan",
+    "context": null,
+    "detail": "Reenable a VLAN that was error-disabled.",
+    "syntax": "clear errdisable interface interface-id vlan [vlan-list]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "Specifies an interface."
+      },
+      {
+        "name": "vlan list",
+        "description": "(Optional) Specifies a list of VLANs to be reenabled. If a VLAN list is not specified, then all VLANs are reenabled."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can reenable a port by using the shutdown and no shutdown interface configuration commands, or you can clear error-disable for VLANs by using the clear errdisable interface command.  This example shows how to reenable all VLANs that were error-disabled on Gigabit Ethernet port 4/0/2: Device# clear errdisable interface gigabitethernet4/0/2 vlan Related Commands Command Description errdisable detect cause Enables error-disabled detection for a specific cause or all causes.  errdisable recovery Configures the recovery mechanism variables.",
+    "sourcePage": 444,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "clear mac address-table",
+    "context": null,
+    "detail": "Delete from the MAC address table a specific dynamic address, all dynamic addresses on a particular interface, all dynamic addresses on stack members, or all dynamic addresses on a particular VLAN.",
+    "syntax": "clear mac address-table {dynamic [address mac-addr | interface interface-id | vlan vlan-id] | move update | notification}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "dynamic",
+        "description": "Deletes all dynamic MAC addresses."
+      },
+      {
+        "name": "address mac-addr",
+        "description": "(Optional) Deletes the specified dynamic MAC address."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Deletes all dynamic MAC addresses on the specified physical port or port channel."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Deletes all dynamic MAC addresses for the specified VLAN. The range is 1 to 4094."
+      },
+      {
+        "name": "move update",
+        "description": "Clears the MAC address table move-update counters."
+      },
+      {
+        "name": "notification",
+        "description": "Clears the notifications in the history table and reset the counters."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can verify that the information was deleted by entering the show mac address-table privileged EXEC command.  This example shows how to remove a specific MAC address from the dynamic address table: Device# clear mac address-table dynamic address 0008. 0070.",
+    "sourcePage": 445,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug ip rip",
+    "context": null,
+    "detail": "Display information on Routing Information Protocol ( RIP) routing transactions.",
+    "syntax": "debug ip rip [{database | events | trigger}]",
+    "noForm": "no debug ip rip [{database | events | trigger}]",
+    "params": [
+      {
+        "name": "database",
+        "description": "(Optional) Displays information about RIP database events."
+      },
+      {
+        "name": "events",
+        "description": "(Optional) Displays information about RIP protocol-based events."
+      },
+      {
+        "name": "trigger",
+        "description": "(Optional) Displays information about RIP trigger extensions."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 447,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "deny",
+    "context": "MAC access-list configuration",
+    "detail": "Prevent non-IP traffic from being forwarded if the conditions are matched.",
+    "syntax": "deny {any | host src-MAC-addr | src-MAC-addr mask} {any | host dst-MAC-addr | dst-MAC-addr mask} [type mask | aarp | amber | appletalk | dec-spanning | decnet-iv | diagnostic | dsm | etype-6000 | etype-8042 | lat | lavc-sca | lsap lsap mask | mop-console | mop-dump | msdos | mumps | netbios | vines-echo | vines-ip | xns-idp][cos cos] dst-MAC-addr mask} [type mask | aarp | amber | appletalk | dec-spanning | decnet-iv | diagnostic | dsm | etype-6000 | etype-8042 | lat | lavc-sca | lsap lsap mask | mop-console | mop-dump | msdos | mumps | netbios | vines-echo | vines-ip | xns-idp][cos cos]",
+    "noForm": "no deny {any | host src-MAC-addr | src-MAC-addr mask} {any | host dst-MAC-addr |",
+    "params": [
+      {
+        "name": "any",
+        "description": "Denies any source or destination MAC address. host src-MAC-addr | src-MAC-addr mask Defines a host MAC address and optional subnet mask. If the source address for a packet matches the defined address, non-IP traffic from that address is denied. host dst-MAC-addr | dst-MAC-addr mask Defines a destination MAC address and optional subnet mask. If the destination address for a packet matches the defined address, non-IP traffic to that address is denied."
+      },
+      {
+        "name": "type mask",
+        "description": "(Optional) Specifies the EtherType number of a packet with Ethernet II or SNAP encapsulation to identify the protocol of the packet. The type is 0 to 65535, specified in hexadecimal. The mask is a mask of don’t care bits applied to the EtherType before testing for a match."
+      },
+      {
+        "name": "aarp",
+        "description": "(Optional) Specifies EtherType AppleTalk Address Resolution Protocol that maps a data-link address to a network address."
+      },
+      {
+        "name": "amber",
+        "description": "(Optional) Specifies EtherType DEC-Amber."
+      },
+      {
+        "name": "appletalk",
+        "description": "(Optional) Specifies EtherType AppleTalk/EtherTalk."
+      },
+      {
+        "name": "dec-spanning",
+        "description": "(Optional) Specifies EtherType Digital Equipment Corporation (DEC) spanning tree."
+      },
+      {
+        "name": "decnet-iv",
+        "description": "(Optional) Specifies EtherType DECnet Phase IV protocol."
+      },
+      {
+        "name": "diagnostic",
+        "description": "(Optional) Specifies EtherType DEC-Diagnostic. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 449 Security deny (MAC access-list configuration)"
+      },
+      {
+        "name": "dsm",
+        "description": "(Optional) Specifies EtherType DEC-DSM."
+      },
+      {
+        "name": "etype-6000",
+        "description": "(Optional) Specifies EtherType 0x6000."
+      },
+      {
+        "name": "etype-8042",
+        "description": "(Optional) Specifies EtherType 0x8042."
+      },
+      {
+        "name": "lat",
+        "description": "(Optional) Specifies EtherType DEC-LAT."
+      },
+      {
+        "name": "lavc-sca",
+        "description": "(Optional) Specifies EtherType DEC-LAVC-SCA."
+      },
+      {
+        "name": "lsap lsap-number mask",
+        "description": "(Optional) Specifies the LSAP number (0 to 65535) of a packet with 802.2 encapsulation to identify the protocol of the packet. mask is a mask of don’t care bits applied to the LSAP number before testing for a match."
+      },
+      {
+        "name": "mop-console",
+        "description": "(Optional) Specifies EtherType DEC-MOP Remote Console."
+      },
+      {
+        "name": "mop-dump",
+        "description": "(Optional) Specifies EtherType DEC-MOP Dump."
+      },
+      {
+        "name": "msdos",
+        "description": "(Optional) Specifies EtherType DEC-MSDOS."
+      },
+      {
+        "name": "mumps",
+        "description": "(Optional) Specifies EtherType DEC-MUMPS."
+      },
+      {
+        "name": "netbios",
+        "description": "(Optional) Specifies EtherType DEC- Network Basic Input/Output System (NetBIOS)."
+      },
+      {
+        "name": "vines-echo",
+        "description": "(Optional) Specifies EtherType Virtual Integrated Network Service (VINES) Echo from Banyan Systems."
+      },
+      {
+        "name": "vines-ip",
+        "description": "(Optional) Specifies EtherType VINES IP."
+      },
+      {
+        "name": "xns-idp",
+        "description": "(Optional) Specifies EtherType Xerox Network Systems (XNS) protocol suite (0 to 65535), an arbitrary EtherType in decimal, hexadecimal, or octal."
+      },
+      {
+        "name": "cos cos",
+        "description": "(Optional) Specifies a class of service (CoS) number from 0 to 7 to set priority. Filtering on CoS can be performed only in hardware. A warning message reminds the user if the cos option is configured."
+      }
+    ],
+    "modes": ["Mac-access list configuration"],
+    "usageSummary": "You enter MAC-access list configuration mode by using the mac access-list extended global configuration command.  If you use the host keyword, you cannot enter an address mask; if you do not use the host keyword, you must enter an address mask.  When an access control entry (ACE) is added to an access control list, an implied deny-any-any condition exists at the end of the list.",
+    "sourcePage": 449,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "device-role",
+    "context": "IPv6 snooping",
+    "detail": "Specify the role of the device attached to the port.",
+    "syntax": "device-role {node | switch}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "node",
+        "description": "Sets the role of the attached device to node. switch Sets the role of the attached device to switch."
+      }
+    ],
+    "modes": ["IPv6 snooping configuration"],
+    "usageSummary": "The device-role command specifies the role of the device attached to the port.  By default, the device role is node.  The switch keyword indicates that the remote device is a switch and that the local switch is now operating in multiswitch mode; binding entries learned from the port will be marked with trunk_port preference level.",
+    "sourcePage": 453,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "device-role",
+    "context": "IPv6 nd inspection",
+    "detail": "Specify the role of the device attached to the port.",
+    "syntax": "device-role {host | monitor | router | switch}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "host",
+        "description": "Sets the role of the attached device to host."
+      },
+      {
+        "name": "monitor",
+        "description": "Sets the role of the attached device to monitor."
+      },
+      {
+        "name": "router",
+        "description": "Sets the role of the attached device to router."
+      },
+      {
+        "name": "switch",
+        "description": "Sets the role of the attached device to switch."
+      }
+    ],
+    "modes": ["ND inspection policy configuration"],
+    "usageSummary": "The device-role command specifies the role of the device attached to the port.  By default, the device role is host, and therefore all the inbound router advertisement and redirect messages are blocked.  If the device role is enabled using the router keyword, all messages (router solicitation [RS], router advertisement [RA], or redirect) are allowed on this port.",
+    "sourcePage": 454,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "device-tracking policy",
+    "context": null,
+    "detail": "Configure a Switch Integrated Security Features (SISF)-based IP device tracking policy.",
+    "syntax": "device -tracking policy policy-name",
+    "noForm": "no device-tracking policy policy-name",
+    "params": [
+      {
+        "name": "policy-name",
+        "description": "User-defined name of the device tracking policy. The policy name can be a symbolic string (such as Engineering) or an integer (such as 0)."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use the SISF-based device-tracking policy command to create a device tracking policy.  When the device-tracking policy command is enabled, the configuration mode changes to device-tracking configuration mode.  In this mode, the administrator can configure the following first-hop security commands: • (Optional) device-role{node] | switch}—Specifies the role of the device attached to the port.",
+    "sourcePage": 455,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "dot1x critical",
+    "context": "global configuration",
+    "detail": "Configure the IEEE 802.1X critical authentication parameters.",
+    "syntax": "dot1x critical eapol",
+    "noForm": null,
+    "params": [
+      {
+        "name": "eapol",
+        "description": "Specifies that the switch send an EAPOL-Success message when the switch successfully authenticates the critical port."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 457,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "dot1x pae",
+    "context": null,
+    "detail": "Set the Port Access Entity (PAE) type.",
+    "syntax": "dot1x pae {supplicant | authenticator}",
+    "noForm": "no dot1x pae {supplicant | authenticator}",
+    "params": [
+      {
+        "name": "supplicant",
+        "description": "The interface acts only as a supplicant and will not respond to messages that are meant for an authenticator. authenticator The interface acts only as an authenticator and will not respond to any messages meant for a supplicant."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the no dot1x pae interface configuration command to disable IEEE 802. 1x authentication on the port.  When you configure IEEE 802.",
+    "sourcePage": 458,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "dot1x supplicant force-multicast",
+    "context": null,
+    "detail": "Force a supplicant switch to send only multicast Extensible Authentication Protocol over LAN (EAPOL) packets whenever it receives multicast or unicast EAPOL packets.",
+    "syntax": "dot1x supplicant force-multicast",
+    "noForm": "no dot1x supplicant force-multicast",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Enable this command on the supplicant switch for Network Edge Access Topology (NEAT) to work in all host modes.  This example shows how force a supplicant switch to send multicast EAPOL packets to the authenticator switch: Device(config)# dot1x supplicant force-multicast Related Commands Command Description cisp enable Enable Client Information Signalling Protocol (CISP) on a switch so that it acts as an authenticator to a supplicant switch.  dot1x credentials Configure the 802.",
+    "sourcePage": 459,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "dot1x test eapol-capable",
+    "context": null,
+    "detail": "Monitor IEEE 802.1x activity on all the switch ports and to display information about the devices that are connected to the ports that support IEEE 802.1x.",
+    "syntax": "dot1x test eapol-capable [interface interface-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Port to be queried."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command to test the IEEE 802. 1x capability of the devices connected to all ports or to specific ports on a switch.  There is not a no form of this command.",
+    "sourcePage": 460,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "dot1x test timeout",
+    "context": null,
+    "detail": "Configure the timeout used to wait for EAPOL response from a port being queried for IEEE 802.1x readiness.",
+    "syntax": "dot1x test timeout timeout",
+    "noForm": null,
+    "params": [
+      {
+        "name": "timeout",
+        "description": "Time in seconds to wait for an EAPOL response. The range is from 1 to 65535 seconds."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use this command to configure the timeout used to wait for EAPOL response.  There is not a no form of this command.  This example shows how to configure the switch to wait 27 seconds for an EAPOL response: Device# dot1x test timeout 27 You can verify the timeout configuration status by entering the show run privileged EXEC command.",
+    "sourcePage": 461,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "dot1x timeout",
+    "context": null,
+    "detail": "Configure the value for retry timeouts.",
+    "syntax": "dot1x timeout {auth-period seconds | held-period seconds | quiet-period seconds | ratelimit-period seconds | server-timeout seconds | start-period seconds | supp-timeout seconds | tx-period seconds}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "auth-period seconds",
+        "description": "Configures the time, in seconds for which a supplicant will stay in the HELD state (that is, the length of time it will wait before trying to send the credentials again after a failed attempt). The range is from 1 to 65535. The default is 30."
+      },
+      {
+        "name": "held-period seconds",
+        "description": "Configures the time, in seconds for which a supplicant will stay in the HELD state (that is, the length of time it will wait before trying to send the credentials again after a failed attempt). The range is from 1 to 65535. The default is 60"
+      },
+      {
+        "name": "quiet-period seconds",
+        "description": "Configures the time, in seconds, that the authenticator (server) remains quiet (in the HELD state) following a failed authentication exchange before trying to reauthenticate the client. The range is from 1 to 65535. The default is 60"
+      },
+      {
+        "name": "ratelimit-period seconds",
+        "description": "Throttles the EAP-START packets that are sent from misbehaving client PCs (for example, PCs that send EAP-START packets that result in the wasting of switch processing power). • The authenticator ignores EAPOL-Start packets from clients that have successfully authenticated for the rate-limit period duration. • The range is from 1 to 65535. By default, rate limiting is disabled."
+      },
+      {
+        "name": "server-timeout seconds",
+        "description": "Configures the interval, in seconds, between two successive EAPOL-Start frames when they are being retransmitted. • The range is from 1 to 65535. The default is 30. If the server does not send a response to an 802.1X packet within the specified period, the packet is sent again."
+      },
+      {
+        "name": "start-period seconds",
+        "description": "Configures the interval, in seconds, between two successive EAPOL-Start frames when they are being retransmitted. The range is from 1 to 65535. The default is 30. In Cisco IOS Release 15.2(5)E, this command is only available in the supplicant mode. If the command is applied in any other mode, the command misses from the configuration. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 462 Security dot1x timeout"
+      },
+      {
+        "name": "supp-timeout seconds",
+        "description": "Sets the authenticator-to-supplicant retransmission time for all EAP messages other than EAP Request ID. The range is from 1 to 65535. The default is 30."
+      },
+      {
+        "name": "tx-period seconds",
+        "description": "Configures the number of seconds between retransmission of EAP request ID packets (assuming that no response is received) to the client. • The range is from 1 to 65535. The default is 30. • If an 802.1X packet is sent to the supplicant and the supplicant does not send a response after the retry period, the packet will be sent again."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You should change the default value of this command only to adjust for unusual circumstances such as unreliable links or specific behavioral problems with certain clients and authentication servers.  The dot1x timeout reauth-period interface configuration command affects the behavior of the switch only if you have enabled periodic re-authentication by using the dot1x reauthentication interface configuration command.  During the quiet period, the switch does not accept or initiate any authentication requests.",
+    "sourcePage": 462,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "epm access-control open",
+    "context": null,
+    "detail": "Configure an open directive for ports that do not have an access control list (ACL) configured.",
+    "syntax": "epm access-control open",
+    "noForm": "no epm access-control open",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use this command to configure an open directive that allows hosts without an authorization policy to access ports configured with a static ACL.  If you do not configure this command, the port applies the policies of the configured ACL to the traffic.  If no static ACL is configured on a port, both the default and open directives allow access to the port.",
+    "sourcePage": 464,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip admission",
+    "context": null,
+    "detail": "Enable web authentication.",
+    "syntax": "ip admission rule",
+    "noForm": "no ip admission rule",
+    "params": [
+      {
+        "name": "rule",
+        "description": "IP admission rule name."
+      }
+    ],
+    "modes": ["Interface configuration", "Fallback-profile configuration"],
+    "usageSummary": "The ip admission command applies a web authentication rule to a switch port.  This example shows how to apply a web authentication rule to a switchport: Device# configure terminal Device(config)# interface gigabitethernet1/0/1 Device(config-if)# ip admission rule1 This example shows how to apply a web authentication rule to a fallback profile for use on an IEEE 802. 1x enabled switch port.",
+    "sourcePage": 465,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip admission name",
+    "context": null,
+    "detail": "Enable web authentication.",
+    "syntax": "ip admission name name {consent | proxy http} [absolute timer minutes | inactivity-time minutes | list {acl | acl-name} | service-policy type tag service-policy-name] minutes | list {acl | acl-name} | service-policy type tag service-policy-name]",
+    "noForm": "no ip admission name name {consent | proxy http} [absolute timer minutes | inactivity-time",
+    "params": [
+      {
+        "name": "name",
+        "description": "Name of network admission control rule."
+      },
+      {
+        "name": "consent",
+        "description": "Associates an authentication proxy consent web page with the IP admission rule specified using the admission-name argument."
+      },
+      {
+        "name": "proxy http",
+        "description": "Configures web authentication custom page."
+      },
+      {
+        "name": "absolute-timer minutes",
+        "description": "(Optional) Elapsed time, in minutes, before the external server times out."
+      },
+      {
+        "name": "inactivity-time minutes",
+        "description": "(Optional) Elapsed time, in minutes, before the external file server is deemed unreachable."
+      },
+      {
+        "name": "list",
+        "description": "(Optional) Associates the named rule with an access control list (ACL)."
+      },
+      {
+        "name": "acl",
+        "description": "Applies a standard, extended list to a named admission control rule. The value ranges from 1 through 199, or from 1300 through 2699 for expanded range."
+      },
+      {
+        "name": "acl-name",
+        "description": "Applies a named access list to a named admission control rule."
+      },
+      {
+        "name": "service-policy type tag",
+        "description": "(Optional) A control plane service policy is to be configured."
+      },
+      {
+        "name": "service-policy-name",
+        "description": "Control plane tag service policy that is configured using the policy-map type control tagpolicyname command, keyword, and argument. This policy map is used to apply the actions on the host when a tag is received."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The ip admission name command globally enables web authentication on a switch.  After you enable web authentication on a switch, use the ip access-group in and ip admission web-rule interface configuration commands to enable web authentication on a specific interface.",
+    "sourcePage": 466,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip device tracking maximum",
+    "context": null,
+    "detail": "Configure IP device tracking parameters on a Layer 2 access port.",
+    "syntax": "ip device tracking maximum number",
+    "noForm": "no ip device tracking maximum",
+    "params": [],
+    "modes": ["Interface configuration mode"],
+    "usageSummary": "To remove the maximum value, use the no ip device tracking maximum command.  To disable IP device tracking, use the ip device tracking maximum 0 command.",
+    "sourcePage": 468,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip device tracking probe",
+    "context": null,
+    "detail": "Configure the IP device tracking table for Address Resolution Protocol (ARP) probes.",
+    "syntax": "ip device tracking probe {count number | delay seconds | interval seconds | use-svi address}",
+    "noForm": "no ip device tracking probe {count number | delay seconds | interval seconds | use-svi address}",
+    "params": [
+      {
+        "name": "count number",
+        "description": "Sets the number of times that the device sends the ARP probe. The range is from 1 to 255."
+      },
+      {
+        "name": "delay seconds",
+        "description": "Sets the number of seconds that the device waits before sending the ARP probe. The range is from 1 to 120."
+      },
+      {
+        "name": "interval",
+        "description": "Sets the number of seconds that the device waits for a response before resending the ARP"
+      },
+      {
+        "name": "seconds",
+        "description": "probe. The range is from 30 to 1814400 seconds."
+      },
+      {
+        "name": "use-svi",
+        "description": "Uses the switch virtual interface (SVI) IP address as source of ARP probes."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use the use-svi keyword to configure the IP device tracking table to use the SVI IP address for ARP probes in cases when the default source IP address 0. 0. 0.",
+    "sourcePage": 469,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip dhcp snooping database",
+    "context": null,
+    "detail": "Configure the Dynamic Host Configuration Protocol (DHCP)-snooping database.",
+    "syntax": "ip dhcp snooping database {flash:url | flash1:url | ftp:url | http:url | https:url | rcp:url | scp:url | tftp:url | timeout seconds | write-delay seconds}",
+    "noForm": "no ip dhcp snooping database [ timeout | write-delay ]",
+    "params": [
+      {
+        "name": "flash1:url",
+        "description": "Specifies the database URL for storing entries using flash."
+      },
+      {
+        "name": "flash:url",
+        "description": "Specifies the database URL for storing entries using flash."
+      },
+      {
+        "name": "ftp:url",
+        "description": "Specifies the database URL for storing entries using FTP."
+      },
+      {
+        "name": "http:url",
+        "description": "Specifies the database URL for storing entries using HTTP."
+      },
+      {
+        "name": "https:url",
+        "description": "Specifies the database URL for storing entries using secure HTTP (https)."
+      },
+      {
+        "name": "rcp:url",
+        "description": "Specifies the database URL for storing entries using remote copy (rcp)."
+      },
+      {
+        "name": "scp:url",
+        "description": "Specifies the database URL for storing entries using Secure Copy (SCP)."
+      },
+      {
+        "name": "tftp:url",
+        "description": "Specifies the database URL for storing entries using TFTP."
+      },
+      {
+        "name": "timeout seconds",
+        "description": "Specifies the timeout interval; valid values are from 0 to 86400 seconds."
+      },
+      {
+        "name": "write-delay seconds",
+        "description": "Specifies the amount of time before writing the DHCP-snooping entries to an external server after a change is seen in the local DHCP-snooping database; valid values are from 15 to 86400 seconds."
+      }
+    ],
+    "modes": [
+      "Global configuration",
+      "Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 470 Security ip dhcp snooping database"
+    ],
+    "usageSummary": "You must enable DHCP snooping on the interface before entering this command.  Use the ip dhcp snooping command to enable DHCP snooping.  This example shows how to specify the database URL using TFTP: Device(config)# ip dhcp snooping database tftp://10.",
+    "sourcePage": 470,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip dhcp snooping information option format remote-id",
+    "context": null,
+    "detail": "Configure the option-82 remote-ID suboption.",
+    "syntax": "ip dhcp snooping information option format remote-id {hostname | string string}",
+    "noForm": "no ip dhcp snooping information option format remote-id {hostname | string string}",
+    "params": [
+      {
+        "name": "hostname",
+        "description": "Specify the switch hostname as the remote ID."
+      },
+      {
+        "name": "string string",
+        "description": "Specify a remote ID, using from 1 to 63 ASCII characters (no spaces)."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You must globally enable DHCP snooping by using the ip dhcp snooping global configuration command for any DHCP snooping configuration to take effect.  When the option-82 feature is enabled, the default remote-ID suboption is the switch MAC address.  This command allows you to configure either the switch hostname or a string of up to 63 ASCII characters (but no spaces) to be the remote ID.",
+    "sourcePage": 472,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip dhcp snooping verify no-relay-agent-address",
+    "context": null,
+    "detail": "Disable the DHCP snooping feature from verifying that the relay agent address (giaddr) in a DHCP client message matches the client hardware address on an untrusted port.",
+    "syntax": "ip dhcp snooping verify no-relay-agent-address",
+    "noForm": "no ip dhcp snooping verify no-relay-agent-address",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "By default, the DHCP snooping feature verifies that the relay-agent IP address (giaddr) field in DHCP client message on an untrusted port is 0; the message is dropped if the giaddr field is not 0.  Use the ip dhcp snooping verify no-relay-agent-address command to disable the verification.  Use the no ip dhcp snooping verify no-relay-agent-address to reenable verification.",
+    "sourcePage": 473,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip source binding",
+    "context": null,
+    "detail": "Add a static IP source binding entry.",
+    "syntax": "ip source binding mac-address vlan vlan-id ip-address interface interface-id",
+    "noForm": "no ip source binding mac-address vlan vlan-id ip-address interface interface-id",
+    "params": [
+      {
+        "name": "mac-address",
+        "description": "Binding MAC address."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "Specifies the Layer 2 VLAN identification; valid values are from 1 to 4094."
+      },
+      {
+        "name": "ip-address",
+        "description": "Binding IP address."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "ID of the physical interface."
+      }
+    ],
+    "modes": ["Global configuration."],
+    "usageSummary": "You can use this command to add a static IP source binding entry only.  The no format deletes the corresponding IP source binding entry.  It requires the exact match of all required parameter in order for the deletion to be successful.",
+    "sourcePage": 474,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ip verify source",
+    "context": null,
+    "detail": "Enable IP source guard on an interface.",
+    "syntax": "ip verify source [port-security] port-security (Optional) Enables IP source guard with IP and MAC address filtering. If you do not enter the port-security keyword, IP source guard with IP address filtering is enabled.",
+    "noForm": "no ip verify source",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "To enable IP source guard with source IP address filtering, use the ip verify source interface configuration command.  To enable IP source guard with source IP and MAC address filtering, use the ip verify source port-security interface configuration command.",
+    "sourcePage": 475,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 snooping policy",
+    "context": null,
+    "detail": null,
+    "syntax": "Note All existing IPv6 Snooping commands (prior to ) now have corresponding SISF-based device-tracking commands that allow you to apply your configuration to both IPv4 and IPv6 address families. For more information, seedevice-tracking policy To configure an IPv6 snooping policy and enter IPv6 snooping configuration mode, use the ipv6 snooping policy command in global configuration mode. To delete an IPv6 snooping policy, use the no form of this command. ipv6 snooping policy snooping-policy",
+    "noForm": "no ipv6 snooping policy snooping-policy",
+    "params": [
+      {
+        "name": "snooping-policy",
+        "description": "User-defined name of the snooping policy. The policy name can be a symbolic string (such as Engineering) or an integer (such as 0)."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use the ipv6 snooping policy command to create an IPv6 snooping policy.  When the ipv6 snooping policy command is enabled, the configuration mode changes to IPv6 snooping configuration mode.  In this mode, the administrator can configure the following IPv6 first-hop security commands: • The device-role command specifies the role of the device attached to the port.",
+    "sourcePage": 477,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "limit address-count",
+    "context": null,
+    "detail": "Limit the number of IPv6 addresses allowed to be used on the port.",
+    "syntax": "limit address-count maximum",
+    "noForm": "no limit address-count",
+    "params": [
+      {
+        "name": "maximum",
+        "description": "The number of addresses allowed on the port. The range is from 1 to 10000."
+      }
+    ],
+    "modes": ["ND inspection policy configuration", "IPv6 snooping configuration"],
+    "usageSummary": "The limit address-count command limits the number of IPv6 addresses allowed to be used on the port on which the policy is applied.  Limiting the number of IPv6 addresses on a port helps limit the binding table size.  The range is from 1 to 10000.",
+    "sourcePage": 478,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mab request format attribute 32",
+    "context": null,
+    "detail": "Enable VLAN ID-based MAC authentication on a switch.",
+    "syntax": "mab request format attribute 32 vlan access-vlan",
+    "noForm": "no mab request format attribute 32 vlan access-vlan",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Use this command to allow a RADIUS server to authenticate a new user based on the host MAC address and VLAN.  Use this feature on networks with the Microsoft IAS RADIUS server.  The Cisco ACS ignores this command.",
+    "sourcePage": 479,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "match",
+    "context": "access-map configuration",
+    "detail": "Set the VLAN map to match packets against one or more access lists.",
+    "syntax": "match {ip address {namenumber} [{namenumber}] [{namenumber}]... | ipv6 address {namenumber} [{namenumber}] [{namenumber}]... | mac address {name} [{name}] [{name}]...} {namenumber} [{namenumber}] [{namenumber}]... | mac address {name} [{name}] [{name}]...}",
+    "noForm": "no match {ip address {namenumber} [{namenumber}] [{namenumber}]... | ipv6 address",
+    "params": [
+      {
+        "name": "ip address",
+        "description": "Sets the access map to match packets against an IP address access list."
+      },
+      {
+        "name": "ipv6 address",
+        "description": "Sets the access map to match packets against an IPv6 address access list."
+      },
+      {
+        "name": "mac address",
+        "description": "Sets the access map to match packets against a MAC address access list."
+      },
+      {
+        "name": "name",
+        "description": "Name of the access list to match packets against."
+      },
+      {
+        "name": "number",
+        "description": "Number of the access list to match packets against. This option is not valid for MAC access lists."
+      }
+    ],
+    "modes": ["Access-map configuration"],
+    "usageSummary": "You enter access-map configuration mode by using the vlan access-map global configuration command.  You must enter one access list name or number; others are optional.  You can match packets against one or more access lists.",
+    "sourcePage": 481,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mls qos copp protocol",
+    "context": null,
+    "detail": "Protect the switch's control plane.",
+    "syntax": "mls qos copp protocol {protocol-name} police {pps | bps} police rate Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 483 Security mls qos copp protocol",
+    "noForm": "no mls qos copp protocol {protocol-name} police",
+    "params": [
+      {
+        "name": "police pps | bps",
+        "description": "Indicates the type of policing required for a specific protocol. It can be packets per second (pps) or bit per second (bps)."
+      },
+      {
+        "name": "police rate",
+        "description": "Specifies the rate limit for pps or bps for policing. The range for bps is 8000 to 2000000000 and pps is 100 to100000."
+      }
+    ],
+    "modes": ["Global configuration."],
+    "usageSummary": "Use this command to enable control-plane policer (CoPP) for a specific protocol.  The police rate should be specified either as packets per second (PPS) or Bit per second (BPS).  This example shows how to enable control-plane policer (CoPP) for a specific protocol: Device(config)# mls qos copp protocol cdp police bps 10000 Related Commands Command Description show mls qos copp protocols Displays the CoPP parameters and counters for all the configured protocol.",
+    "sourcePage": 483,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "authentication logging verbose",
+    "context": null,
+    "detail": "Filter detailed information from authentication system messages.",
+    "syntax": "authentication logging verbose",
+    "noForm": "no authentication logging verbose",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "This command filters details, such as anticipated success, from authentication system messages.  Failure messages are not filtered.  To filter verbose authentication system messages: Device(config)# authentication logging verbose You can verify your settings by entering the show running-config privileged EXEC command.",
+    "sourcePage": 487,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "dot1x logging verbose",
+    "context": null,
+    "detail": "Filter detailed information from 802.1x system messages.",
+    "syntax": "dot1x logging verbose",
+    "noForm": "no dot1x logging verbose",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "This command filters details, such as anticipated success, from 802. 1x system messages.  Failure messages are not filtered.",
+    "sourcePage": 488,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "mab logging verbose",
+    "context": null,
+    "detail": "Filter detailed information from MAC authentication bypass (MAB) system messages.",
+    "syntax": "mab logging verbose",
+    "noForm": "no mab logging verbose",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "This command filters details, such as anticipated success, from MAC authentication bypass (MAB) system messages.  Failure messages are not filtered.  To filter verbose MAB system messages: Device(config)# mab logging verbose You can verify your settings by entering the show running-config privileged EXEC command.",
+    "sourcePage": 489,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "permit",
+    "context": "MAC access-list configuration",
+    "detail": "Allow non-IP traffic to be forwarded if the conditions are matched.",
+    "syntax": "{permit {any | hostsrc-MAC-addr | src-MAC-addr mask} {any | hostdst-MAC-addr | dst-MAC-addr mask} [type mask | aarp | amber | appletalk | dec-spanning | decnet-iv | diagnostic | dsm | etype-6000 | etype-8042 | lat | lavc-sca | lsaplsap mask | mop-console | mop-dump | msdos | mumps | netbios | vines-echo | vines-ip | xns-idp][coscos] nopermit {any | host src-MAC-addr | src-MAC-addr mask} {any | host dst-MAC-addr | dst-MAC-addr mask} [type mask | aarp | amber | appletalk | dec-spanning | decnet-iv | diagnostic | dsm | etype-6000 | etype-8042 | lat | lavc-sca | lsap lsap mask | mop-console | mop-dump | msdos | mumps | netbios | vines-echo | vines-ip | xns-idp][coscos]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "any",
+        "description": "Denies any source or destination MAC address. host src-MAC-addr | src-MAC-addr mask Specifies a host MAC address and optional subnet mask. If the source address for a packet matches the defined address, non-IP traffic from that address is denied. host dst-MAC-addr | dst-MAC-addr mask Specifies a destination MAC address and optional subnet mask. If the destination address for a packet matches the defined address, non-IP traffic to that address is denied."
+      },
+      {
+        "name": "type mask",
+        "description": "(Optional) Specifies the EtherType number of a packet with Ethernet II or SNAP encapsulation to identify the protocol of the packet. • type is 0 to 65535, specified in hexadecimal. • mask is a mask of don’t care bits applied to the EtherType before testing for a match."
+      },
+      {
+        "name": "aarp",
+        "description": "(Optional) Specifies EtherType AppleTalk Address Resolution Protocol that maps a data-link address to a network address."
+      },
+      {
+        "name": "amber",
+        "description": "(Optional) Specifies EtherType DEC-Amber."
+      },
+      {
+        "name": "appletalk",
+        "description": "(Optional) Specifies EtherType AppleTalk/EtherTalk."
+      },
+      {
+        "name": "dec-spanning",
+        "description": "(Optional) Specifies EtherType Digital Equipment Corporation (DEC) spanning tree."
+      },
+      {
+        "name": "decnet-iv",
+        "description": "(Optional) Specifies EtherType DECnet Phase IV protocol."
+      },
+      {
+        "name": "diagnostic",
+        "description": "(Optional) Specifies EtherType DEC-Diagnostic. Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 490 Security permit (MAC access-list configuration)"
+      },
+      {
+        "name": "dsm",
+        "description": "(Optional) Specifies EtherType DEC-DSM."
+      },
+      {
+        "name": "etype-6000",
+        "description": "(Optional) Specifies EtherType 0x6000."
+      },
+      {
+        "name": "etype-8042",
+        "description": "(Optional) Specifies EtherType 0x8042."
+      },
+      {
+        "name": "lat",
+        "description": "(Optional) Specifies EtherType DEC-LAT."
+      },
+      {
+        "name": "lavc-sca",
+        "description": "(Optional) Specifies EtherType DEC-LAVC-SCA."
+      },
+      {
+        "name": "lsap lsap-number mask",
+        "description": "(Optional) Specifies the LSAP number (0 to 65535) of a packet with 802.2 encapsulation to identify the protocol of the packet. The mask is a mask of don’t care bits applied to the LSAP number before testing for a match."
+      },
+      {
+        "name": "mop-console",
+        "description": "(Optional) Specifies EtherType DEC-MOP Remote Console."
+      },
+      {
+        "name": "mop-dump",
+        "description": "(Optional) Specifies EtherType DEC-MOP Dump."
+      },
+      {
+        "name": "msdos",
+        "description": "(Optional) Specifies EtherType DEC-MSDOS."
+      },
+      {
+        "name": "mumps",
+        "description": "(Optional) Specifies EtherType DEC-MUMPS."
+      },
+      {
+        "name": "netbios",
+        "description": "(Optional) Specifies EtherType DEC- Network Basic Input/Output System (NetBIOS)."
+      },
+      {
+        "name": "vines-echo",
+        "description": "(Optional) Specifies EtherType Virtual Integrated Network Service (VINES) Echo from Banyan Systems."
+      },
+      {
+        "name": "vines-ip",
+        "description": "(Optional) Specifies EtherType VINES IP."
+      },
+      {
+        "name": "xns-idp",
+        "description": "(Optional) Specifies EtherType Xerox Network Systems (XNS) protocol suite."
+      },
+      {
+        "name": "cos cos",
+        "description": "(Optional) Specifies an arbitrary class of service (CoS) number from 0 to 7 to set priority. Filtering on CoS can be performed only in hardware. A warning message appears if the cos option is configured."
+      }
+    ],
+    "modes": ["Mac-access list configuration"],
+    "usageSummary": "Though visible in the command-line help strings, appletalk is not supported as a matching condition.  Consolidated Platform Command Reference, Cisco IOS Release 15. 2(6)E (Catalyst 2960-X Switches) 491 Security permit (MAC access-list configuration) You enter MAC access-list configuration mode by using the mac access-list extended global configuration command.",
+    "sourcePage": 490,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "protocol",
+    "context": "IPv6 snooping",
+    "detail": "Specify that addresses should be gleaned with Dynamic Host Configuration Protocol (DHCP) or Neighbor Discovery Protocol (NDP), or to associate the protocol with an IPv6 prefix list.",
+    "syntax": "protocol {dhcp | ndp}",
+    "noForm": "no protocol {dhcp | ndp}",
+    "params": [
+      {
+        "name": "dhcp",
+        "description": "Specifies that addresses should be gleaned in Dynamic Host Configuration Protocol (DHCP) packets."
+      },
+      {
+        "name": "ndp",
+        "description": "Specifies that addresses should be gleaned in Neighbor Discovery Protocol (NDP) packets."
+      }
+    ],
+    "modes": ["IPv6 snooping configuration mode"],
+    "usageSummary": "If an address does not match the prefix list associated with DHCP or NDP, then control packets will be dropped and recovery of the binding table entry will not be attempted with that protocol.  • Using the no protocol {dhcp | ndp} command indicates that a protocol will not be used for snooping or gleaning.  • If the no protocol dhcp command is used, DHCP can still be used for binding table recovery.",
+    "sourcePage": 494,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "radius server",
+    "context": null,
+    "detail": null,
+    "syntax": "Note Starting from Cisco IOS 15.2(5)E release, the radius server command replaces the radius-server host command, being used in releases prior to Cisco IOS Release 15.2(5)E. The old command has been deprecated. Use the radius server configuration sub-mode command on the switch stack or on a standalone switch to configure the RADIUS server parameters, including the RADIUS accounting and authentication. Use the no form of this command to return to the default settings. radius server name address {ipv4 | ipv6} ip{address | hostname} auth-port udp-port acct-port udp-port key string automate tester name | retransmit value | timeout seconds",
+    "noForm": "no radius server name",
+    "params": [
+      {
+        "name": "address {ipv4 | ipv6}",
+        "description": "Specify the IP address of the RADIUS server. ip{address | hostname}"
+      },
+      {
+        "name": "auth-port udp-port",
+        "description": "(Optional) Specify the UDP port for the RADIUS authentication server. The range is from 0 to 65536."
+      },
+      {
+        "name": "acct-port udp-port",
+        "description": "(Optional) Specify the UDP port for the RADIUS accounting server. The range is from 0 to 65536."
+      },
+      {
+        "name": "key string",
+        "description": "(Optional) Specify the authentication and encryption key for all RADIUS communication between the switch and the RADIUS daemon."
+      },
+      {
+        "name": "Note",
+        "description": "The key is a text string that must match the encryption key used on the RADIUS server. Always configure the key as the last item in this command. Leading spaces are ignored, but spaces within and at the end of the key are used. If there are spaces in your key, do not enclose the key in quotation marks unless the quotation marks are part of the key."
+      },
+      {
+        "name": "automate tester name",
+        "description": "(Optional) Enable automatic server testing of the RADIUS server status, and specify the username to be used."
+      },
+      {
+        "name": "retransmit value",
+        "description": "(Optional) Specifies the number of times a RADIUS request is resent when the server is not responding or responding slowly. The range is 1 to 100. This setting overrides the radius-server retransmit global configuration command setting."
+      },
+      {
+        "name": "timeout seconds",
+        "description": "(Optional) Specifies the time interval that the Switch waits for the RADIUS server to reply before sending a request again. The range is 1 to 1000. This setting overrides the radius-server timeout global configuration command setting."
+      },
+      {
+        "name": "no radius server name",
+        "description": "Returns to the default settings Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 495 Security radius server"
+      }
+    ],
+    "modes": ["Radius server sub-mode configuration"],
+    "usageSummary": "• We recommend that you configure the UDP port for the RADIUS accounting server and the UDP port for the RADIUS authentication server to non-default values.  • You can configure the authentication and encryption key by using the key string sub-mode configuration command.  Always configure the key as the last item in this command.",
+    "sourcePage": 495,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "router rip",
+    "context": null,
+    "detail": "Configure the Routing Information Protocol (RIP) routing process.",
+    "syntax": "router rip",
+    "noForm": "no router rip",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 497,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "security level",
+    "context": "IPv6 snooping",
+    "detail": "Specify the level of security enforced.",
+    "syntax": "security level {glean | guard | inspect}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "glean",
+        "description": "Extracts addresses from the messages and installs them into the binding table without performing any verification."
+      },
+      {
+        "name": "guard",
+        "description": "Performs both glean and inspect. Additionally, RA and DHCP server messages are rejected unless they are received on a trusted port or another policy authorizes them."
+      },
+      {
+        "name": "inspect",
+        "description": "Validates messages for consistency and conformance; in particular, address ownership is enforced. Invalid messages are dropped."
+      }
+    ],
+    "modes": ["IPv6 snooping configuration"],
+    "usageSummary": null,
+    "sourcePage": 498,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show aaa acct-stop-cache",
+    "context": null,
+    "detail": "Show accounting session IDs of poisoned sessions.",
+    "syntax": null,
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC"],
+    "usageSummary": "Accounting Stop records for poisoned sessions are cached only on the standby switch.  This is an example of output from the show aaa acct-stop-cache command: Device# show aaa acct-stop-cache Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 499,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show aaa clients",
+    "context": null,
+    "detail": "Show AAA client statistics.",
+    "syntax": "show aaa clients [detailed]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detailed",
+        "description": "(Optional) Shows detailed AAA client statistics."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": null,
+    "sourcePage": 500,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show aaa command handler",
+    "context": null,
+    "detail": "Show AAA command handler statistics.",
+    "syntax": "show aaa command handler",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC"],
+    "usageSummary": null,
+    "sourcePage": 501,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show aaa local",
+    "context": null,
+    "detail": "Show AAA local method options.",
+    "syntax": "show aaa localuser lockout",
+    "noForm": null,
+    "params": [
+      {
+        "name": "user",
+        "description": "Specifies the AAA local locked-out user. lockout"
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": null,
+    "sourcePage": 502,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show aaa servers",
+    "context": null,
+    "detail": "Shows all AAA servers as seen by the AAA server MIB.",
+    "syntax": "show aaa servers [ private|public|[detailed]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detailed",
+        "description": "(Optional) Displays private AAA servers as seen by the AAA Server MIB."
+      },
+      {
+        "name": "public",
+        "description": "(Optional) Displays public AAA servers as seen by the AAA Server MIB."
+      },
+      {
+        "name": "detailed",
+        "description": "(Optional) Displays detailed AAA server statistics."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": null,
+    "sourcePage": 503,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show aaa sessions",
+    "context": null,
+    "detail": "Show AAA sessions as seen by the AAA Session MIB.",
+    "syntax": "show aaa sessions",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC"],
+    "usageSummary": null,
+    "sourcePage": 504,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show authentication sessions",
+    "context": null,
+    "detail": "Display information about current Auth Manager sessions.",
+    "syntax": "show authentication sessions[handle handle-id ][interface type number ][mac mac-address [interface type number][method method-name [interface type number [session-id session-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "handle handle-id",
+        "description": "(Optional) Specifies the particular handle for which Auth Manager information is to be displayed. interface type number (Optional) Specifies a particular interface type and number for which Auth Manager information is to be displayed."
+      },
+      {
+        "name": "mac mac-address",
+        "description": "(Optional) Specifies the particular MAC address for which you want to display information. method method-name (Optional) Specifies the particular authentication method for which Auth Manager information is to be displayed. If you specify a method (dot1x, mab, or webauth), you may also specify an interface. session-id session-id (Optional) Specifies the particular session for which Auth Manager information is to be displayed."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "Use the show authentication sessions command to display information about all current Auth Manager sessions.  To display information about specific Auth Manager sessions, use one or more of the keywords.  This table shows the possible operating states for the reported authentication sessions.",
+    "sourcePage": 505,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show auto security",
+    "context": null,
+    "detail": "Display auto security status.",
+    "syntax": "show auto-security This command has no arguments or keywords.",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Configuring the auto security command in global configuration mode, configures auto security globally; including all interfaces.  When you disable auto security, it is disabled on all interfaces.  Use the auto security-port command to enable auto security on specific interfaces.",
+    "sourcePage": 508,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show cisp",
+    "context": null,
+    "detail": "Display CISP information for a specified interface.",
+    "syntax": "show cisp {[clients | interface interface-id] | registrations | summary}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "clients",
+        "description": "(Optional) Display CISP client details."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Display CISP information about the specified interface. Valid interfaces include physical ports and port channels."
+      },
+      {
+        "name": "registrations",
+        "description": "Displays CISP registrations."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays CISP summary."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 510,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show dot1x",
+    "context": null,
+    "detail": "Display IEEE 802.1x statistics, administrative status, and operational status for the switch or for the specified port.",
+    "syntax": "show dot1x [all [count | details | statistics | summary]] [interface type number [details | statistics]] [statistics]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays the IEEE 802.1x information for all interfaces."
+      },
+      {
+        "name": "count",
+        "description": "(Optional) Displays total number of authorized and unauthorized clients."
+      },
+      {
+        "name": "details",
+        "description": "(Optional) Displays the IEEE 802.1x interface details."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays the IEEE 802.1x statistics for all interfaces."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays the IEEE 802.1x summary for all interfaces."
+      },
+      {
+        "name": "interface type number",
+        "description": "(Optional) Displays the IEEE 802.1x status for the specified port."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": null,
+    "sourcePage": 512,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show eap pac peer",
+    "context": null,
+    "detail": "Display stored Protected Access Credentials (PAC) for Extensible Authentication Protocol (EAP) Flexible Authentication via Secure Tunneling (FAST) peers.",
+    "syntax": "show eap pac peer",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 514,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip dhcp snooping statistics",
+    "context": null,
+    "detail": "Display DHCP snooping statistics in summary or detail form.",
+    "syntax": "show ip dhcp snooping statistics [detail ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed statistics information."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "In a switch stack, all statistics are generated on the stack primary.  If a new active switch is elected, the statistics counters reset.  This is an example of output from the show ip dhcp snooping statistics command: Device> show ip dhcp snooping statistics Packets Forwarded = 0 Packets Dropped = 0 Packets Dropped From untrusted ports = 0 This is an example of output from the show ip dhcp snooping statistics detail command: Device> show ip dhcp snooping statistics detail Packets Processed by DHCP Snooping = 0 Packets Dropped Because IDB not known = 0 Queue full = 0 Interface is in errdisabled = 0 Rate limit exceeded = 0 Received on untrusted ports = 0 Nonzero giaddr = 0 Source mac not equal to chaddr = 0 Binding mismatch = 0 Insertion of opt82 fail = 0 Interface Down = 0 Unknown output interface = 0 Reply output port equal to input port = 0 Packet denied by platform = 0 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 515,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip rip database",
+    "context": null,
+    "detail": "Display summary address entries in the Routing Information Protocol (RIP) routing database entries if relevant are routes being summarized based upon a summary address.",
+    "syntax": "show ip rip database [ip-address mask]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "(Optional) Address about which routing information should be displayed."
+      },
+      {
+        "name": "mask",
+        "description": "(Optional) Argument for the subnet mask. The subnet mask must also be specified if the IP address argument is entered."
+      }
+    ],
+    "modes": ["Privileged EXEC(#)"],
+    "usageSummary": "Summary address entries will appear in the database only if relevant child routes are being summarized.  When the last child route for a summary address becomes invalid, the summary address is also removed from the routing table.  The RIP private database is populated only if triggered extensions to RIP are enabled with the ip rip triggered command.",
+    "sourcePage": 518,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show mls qos copp protocols",
+    "context": null,
+    "detail": "Display the Copp parameters and counters for all the configured protocol.",
+    "syntax": "show mls qos copp protocols",
+    "noForm": null,
+    "params": [],
+    "modes": ["Exec mode."],
+    "usageSummary": "Use this command to display CoPP parameters and counters for all the configured protocol.  The following example shows the CoPP parameters and counters for all the configured protocol: Device # show running-config | inc copp mls qos copp protocol rep-hfl police pps 5600 mls qos copp protocol lldp police bps 908900 mls qos copp protocol cdp police pps 3434 /* Copp detailed output */ Device# show mls qos copp protocols ------------------------------------------------------------------------------- Protocol Mode PolicerRate PolicerBurst InProfilePackets OutProfilePackets InProfileBytes OutProfileBytes ------------------------------------------------------------------------------- rep-hfl pps 5600 5600 0 0 0 0 lldp bps 908900 908900 0 0 0 0 cdp pps 3434 3434 45172 0 2891008 0 Related Commands Command Description mls qos copp protocol Protects the switch's control plane.  Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 520,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show radius server-group",
+    "context": null,
+    "detail": "Display properties for the RADIUS server group.",
+    "syntax": "show radius server-group {name | all}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "Name of the server group. The character string used to name the group of servers must be defined using the aaa group server radius command."
+      },
+      {
+        "name": "all",
+        "description": "Displays properties for all of the server groups."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Use the show radius server-group command to display the server groups that you defined by using the aaa group server radius command.  This is an example of output from the show radius server-group all command: Device# show radius server-group all Server group radius Sharecount = 1 sg_unconfigured = FALSE Type = standard Memlocks = 1 This table describes the significant fields shown in the display.  Table 35: show radius server-group command Field Descriptions Field Description Server group Name of the server group.",
+    "sourcePage": 521,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show vlan group",
+    "context": null,
+    "detail": "Display the VLANs that are mapped to VLAN groups.",
+    "syntax": "show vlan group [{group-name vlan-group-name [user_count]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "group-name vlan-group-name",
+        "description": "(Optional) Displays the VLANs mapped to the specified VLAN group."
+      },
+      {
+        "name": "user_count",
+        "description": "(Optional) Displays the number of users in each VLAN mapped to a specified VLAN group."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The show vlan group command displays the existing VLAN groups and lists the VLANs and VLAN ranges that are members of each VLAN group.  If you enter the group-name keyword, only the members of the specified VLAN group are displayed.  This example shows how to display the members of a specified VLAN group: Related Topics vlan group, on page 538 Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 523,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport port-security aging",
+    "context": null,
+    "detail": "Set the aging time and type for secure address entries or to change the aging behavior for secure addresses on a particular port.",
+    "syntax": "switchport port-security aging {static | time time | type {absolute | inactivity}}",
+    "noForm": "no switchport port-security aging {static | time | type}",
+    "params": [
+      {
+        "name": "static",
+        "description": "Enables aging for statically configured secure addresses on this port."
+      },
+      {
+        "name": "time",
+        "description": "Specifies the aging time for this port. The range is 0 to 1440 minutes. If the time is 0, aging is"
+      },
+      {
+        "name": "time",
+        "description": "disabled for this port."
+      },
+      {
+        "name": "type",
+        "description": "Sets the aging type. absolute Sets absolute aging type. All the secure addresses on this port age out exactly after the time (minutes) specified and are removed from the secure address list. inactivity Sets the inactivity aging type. The secure addresses on this port age out only if there is no data traffic from the secure source address for the specified time period."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "To enable secure address aging for a particular port, set the aging time to a value other than 0 for that port.  To allow limited time access to particular secure addresses, set the aging type as absolute.  When the aging time lapses, the secure addresses are deleted.",
+    "sourcePage": 524,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport port-security mac-address",
+    "context": null,
+    "detail": "Configure secure MAC addresses or sticky MAC address learning.",
+    "syntax": "switchport port-security mac-address {mac-address [{vlan {vlan-id {access | voice}}}] | sticky [{mac-address | vlan {vlan-id {access | voice}}}]} [{mac-address | vlan {vlan-id {access | voice}}}]}",
+    "noForm": "no switchport port-security mac-address {mac-address [{vlan {vlan-id {access | voice}}}] | sticky",
+    "params": [
+      {
+        "name": "vlan voice",
+        "description": "(Optional) On an access port only, specifies the VLAN as a voice VLAN."
+      },
+      {
+        "name": "Note",
+        "description": "The voice keyword is available only if voice VLAN is configured on a port and if that port is not the access VLAN."
+      },
+      {
+        "name": "sticky",
+        "description": "Enables the interface for sticky learning. When sticky learning is enabled, the interface adds all secure MAC addresses that are dynamically learned to the running configuration and converts these addresses to sticky secure MAC addresses. mac-address (Optional) A MAC address to specify a sticky secure MAC address."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "A secure port has the following limitations: • A secure port can be an access port or a trunk port; it cannot be a dynamic access port.  • A secure port cannot be a routed port.  • A secure port cannot be a protected port.",
+    "sourcePage": 526,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport port-security maximum",
+    "context": null,
+    "detail": "Configure the maximum number of secure MAC addresses.",
+    "syntax": "switchport port-security maximum value [vlan [{vlan-list | [{access | voice}]}]]",
+    "noForm": "no switchport port-security maximum value [vlan [{vlan-list | [{access | voice}]}]]",
+    "params": [
+      {
+        "name": "value",
+        "description": "Sets the maximum number of secure MAC addresses for the interface. The default setting is 1."
+      },
+      {
+        "name": "vlan",
+        "description": "(Optional) For trunk ports, sets the maximum number of secure MAC addresses on a VLAN or range of VLANs. If the vlan keyword is not entered, the default value is used. vlan-list (Optional) Range of VLANs separated by a hyphen or a series of VLANs separated by commas. For nonspecified VLANs, the per-VLAN maximum value is used. access (Optional) On an access port only, specifies the VLAN as an access VLAN."
+      },
+      {
+        "name": "voice",
+        "description": "(Optional) On an access port only, specifies the VLAN as a voice VLAN."
+      },
+      {
+        "name": "Note",
+        "description": "The voice keyword is available only if voice VLAN is configured on a port and if that port is not the access VLAN."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The maximum number of secure MAC addresses that you can configure on a switch or switch stack is set by the maximum number of available MAC addresses allowed in the system.  This number is determined by the active Switch Database Management (SDM) template.  See the sdm prefer command.",
+    "sourcePage": 528,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport port-security violation",
+    "context": null,
+    "detail": "Configure secure MAC address violation mode or the action to be taken if port security is violated.",
+    "syntax": "switchport port-security violation {protect | restrict | shutdown | shutdown vlan}",
+    "noForm": "no switchport port-security violation {protect | restrict | shutdown | shutdown vlan}",
+    "params": [
+      {
+        "name": "protect",
+        "description": "Sets the security violation protect mode."
+      },
+      {
+        "name": "restrict",
+        "description": "Sets the security violation restrict mode."
+      },
+      {
+        "name": "shutdown",
+        "description": "Sets the security violation shutdown mode."
+      },
+      {
+        "name": "shutdown",
+        "description": "Sets the security violation mode to per-VLAN shutdown. vlan"
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "In the security violation protect mode, when the number of port secure MAC addresses reaches the maximum limit allowed on the port, packets with unknown source addresses are dropped until you remove a sufficient number of secure MAC addresses to drop below the maximum value or increase the number of maximum allowable addresses.  You are not notified that a security violation has occurred.",
+    "sourcePage": 530,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "tracking",
+    "context": "IPv6 snooping",
+    "detail": "Override the default tracking policy on a port.",
+    "syntax": "tracking {enable [reachable-lifetime {value | infinite}] | disable [stale-lifetime {value | infinite}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "enable",
+        "description": "Enables tracking."
+      },
+      {
+        "name": "reachable-lifetime",
+        "description": "(Optional) Specifies the maximum amount of time a reachable entry is considered to be directly or indirectly reachable without proof of reachability. • The reachable-lifetime keyword can be used only with the enable keyword. • Use of the reachable-lifetime keyword overrides the global reachable lifetime configured by the ipv6 neighbor binding reachable-lifetime command."
+      },
+      {
+        "name": "value",
+        "description": "Lifetime value, in seconds. The range is from 1 to 86400, and the default is 300."
+      },
+      {
+        "name": "infinite",
+        "description": "Keeps an entry in a reachable or stale state for an infinite amount of time."
+      },
+      {
+        "name": "disable",
+        "description": "Disables tracking."
+      },
+      {
+        "name": "stale-lifetime",
+        "description": "(Optional) Keeps the time entry in a stale state, which overwrites the global stale-lifetime configuration. • The stale lifetime is 86,400 seconds. • The stale-lifetime keyword can be used only with the disable keyword. • Use of the stale-lifetime keyword overrides the global stale lifetime configured by the ipv6 neighbor binding stale-lifetime command."
+      }
+    ],
+    "modes": ["IPv6 snooping configuration"],
+    "usageSummary": "The tracking command overrides the default tracking policy set by the ipv6 neighbor tracking command on the port on which this policy applies.  This function is useful on trusted ports where, for example, you may not want to track entries but want an entry to stay in the binding table to prevent it from being stolen.  Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 532,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "trusted-port",
+    "context": null,
+    "detail": "Configure a port to become a trusted port.",
+    "syntax": "trusted-port",
+    "noForm": "no trusted-port",
+    "params": [],
+    "modes": ["ND inspection policy configuration", "IPv6 snooping configuration"],
+    "usageSummary": "When the trusted-port command is enabled, limited or no verification is performed when messages are received on ports that have this policy.  However, to protect against address spoofing, messages are analyzed so that the binding information that they carry can be used to maintain the binding table.  Bindings discovered from these ports will be considered more trustworthy than bindings received from ports that are not configured to be trusted.",
+    "sourcePage": 534,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vlan access-map",
+    "context": null,
+    "detail": "Create or modify a VLAN map entry for VLAN packet filtering, and change the mode to the VLAN access-map configuration.",
+    "syntax": "vlan access-map name [number] Note This command is not supported on switches running the LAN Base feature set.",
+    "noForm": "no vlan access-map name [number]",
+    "params": [
+      {
+        "name": "name",
+        "description": "Name of the VLAN map."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) The sequence number of the map entry that you want to create or modify (0 to 65535). If you are creating a VLAN map and the sequence number is not specified, it is automatically assigned in increments of 10, starting from 10. This number is the sequence to insert to, or delete from, a VLAN access-map entry."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "In global configuration mode, use this command to create or modify a VLAN map.  This entry changes the mode to VLAN access-map configuration, where you can use the match access-map configuration command to specify the access lists for IP or non-IP traffic to match and use the action command to set whether a match causes the packet to be forwarded or dropped.  In VLAN access-map configuration mode, these commands are available: • action—Sets the action to be taken (forward or drop).",
+    "sourcePage": 535,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vlan filter",
+    "context": null,
+    "detail": "Apply a VLAN map to one or more VLANs.",
+    "syntax": "vlan filter mapname vlan-list {list | all} Note This command is not supported on switches running the LAN Base feature set.",
+    "noForm": "no vlan filter mapname vlan-list {list | all}",
+    "params": [
+      {
+        "name": "mapname",
+        "description": "Name of the VLAN map entry."
+      },
+      {
+        "name": "vlan-list",
+        "description": "Specifies which VLANs to apply the map to."
+      },
+      {
+        "name": "list",
+        "description": "The list of one or more VLANs in the form tt, uu-vv, xx, yy-zz, where spaces around commas and dashes are optional. The range is 1 to 4094."
+      },
+      {
+        "name": "all",
+        "description": "Adds the map to all VLANs."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "To avoid accidentally dropping too many packets and disabling connectivity in the middle of the configuration process, we recommend that you completely define the VLAN access map before applying it to a VLAN.  For more information about VLAN map entries, see the software configuration guide for this release.  This example applies VLAN map entry map1 to VLANs 20 and 30: Device(config)# vlan filter map1 vlan-list 20, 30 This example shows how to delete VLAN map entry mac1 from VLAN 20: Device(config)# no vlan filter map1 vlan-list 20 You can verify your settings by entering the show vlan filter privileged EXEC command.",
+    "sourcePage": 537,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "vlan group",
+    "context": null,
+    "detail": "Create or modify a VLAN group.",
+    "syntax": "vlan group group-name vlan-list vlan-list",
+    "noForm": "no vlan group group-name vlan-list vlan-list",
+    "params": [
+      {
+        "name": "group-name",
+        "description": "Name of the VLAN group. The group name may contain up to 32 characters and must begin with a letter."
+      },
+      {
+        "name": "vlan-list vlan-list",
+        "description": "Specifies one or more VLANs to be added to the VLAN group. The vlan-list argument can be a single VLAN ID, a list of VLAN IDs, or VLAN ID range. Multiple entries are separated by a hyphen (-) or a comma (,)."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "If the named VLAN group does not exist, the vlan group command creates the group and maps the specified VLAN list to the group.  If the named VLAN group exists, the specified VLAN list is mapped to the group.  The no form of the vlan group command removes the specified VLAN list from the VLAN group.",
+    "sourcePage": 538,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  }
+]

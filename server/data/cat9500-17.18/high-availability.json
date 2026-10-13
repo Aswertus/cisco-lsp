@@ -1,0 +1,1667 @@
+[
+  {
+    "name": "clear diagnostic event-log",
+    "context": null,
+    "detail": "Clear the diagnostic event logs for a specific switch module or event type.",
+    "syntax": "clear diagnostic event-log [event-type {error | info | warning} | switch {switch_num module module_num | all [event-type {error | info | warning}]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "event-type error",
+        "description": "Clears the error events."
+      },
+      {
+        "name": "event-type info",
+        "description": "Clears the informative events."
+      },
+      {
+        "name": "event-type warning",
+        "description": "Clears the warning events."
+      },
+      {
+        "name": "switch num",
+        "description": "Clears the events for a specific switch."
+      },
+      {
+        "name": "module num",
+        "description": "Clears the events for a specific module."
+      },
+      {
+        "name": "switch all",
+        "description": "Clears all the event logs from all the switches."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 197,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear secure-stackwise-virtual interface",
+    "context": null,
+    "detail": "Clear the Secure StackWise Virtual interface statistics counters.",
+    "syntax": "clear secure-stackwise-virtualinterfaceinterface-id",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 198,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "diagnostic monitor",
+    "context": null,
+    "detail": "Configure health-monitoring diagnostic testing.",
+    "syntax": "diagnostic monitor interval switch number module number test {name | test-id | test-id-range | all} hh:mm:ss milliseconds day [cardindex number] diagnostic monitor switch number module number test {name | test-id | test-id-range | all} [cardindex number] diagnostic monitor threshold switch number module number test {name | test-id | test-id-range | all} failure count count [days number | hours number | milliseconds number | minutes number | runs number | seconds number] cardindex number all} [cardindex number] all}[cardindex number] | all} { failure count [[count [days number | hours number | milliseconds number | minutes number | runs number | seconds number] | cardindex number] | cardindex number]}",
+    "noForm": "no diagnostic monitor interval switch number module number test {name | test-id | test-id-range | no diagnostic monitor switch number module number test {name | test-id | test-id-range | no diagnostic monitor threshold switch number module number test {name | test-id | test-id-range",
+    "params": [
+      {
+        "name": "interval",
+        "description": "Configures the interval between tests."
+      },
+      {
+        "name": "switch number",
+        "description": "Specifies the switch number, which is the stack member number. If the switch is a standalone switch, the switch number is 1. If the switch is in a stack, the range is from 1 to 9, depending on the switch member numbers in the stack. This keyword is supported only on on stacking-capable switches."
+      },
+      {
+        "name": "test",
+        "description": "Specifies the tests to be run."
+      },
+      {
+        "name": "name",
+        "description": "Name of the test."
+      },
+      {
+        "name": "test-id",
+        "description": "ID number of the test."
+      },
+      {
+        "name": "test-id-range",
+        "description": "Range of test ID numbers. Enter the range as integers separated by a comma and a hyphen (for example, 1,3-6 specifies test IDs 1, 3, 4, 5, and 6)."
+      },
+      {
+        "name": "all",
+        "description": "Specifies all the diagnostic tests."
+      },
+      {
+        "name": "hh:mm:ss",
+        "description": "Monitoring interval, in hours, minutes, and seconds. Enter the hours from 0 to 24, minutes from 0 to 60, and seconds from 0 to 60. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 199 High Availability diagnostic monitor"
+      },
+      {
+        "name": "milliseconds",
+        "description": "Monitoring interval, in milliseconds (ms). Enter the test time, in milliseconds, from 0 to 999."
+      },
+      {
+        "name": "day",
+        "description": "Monitoring interval, in days. Enter the number of days between test, from 0 to 20."
+      },
+      {
+        "name": "threshold",
+        "description": "Configures the failure threshold."
+      },
+      {
+        "name": "failure count count",
+        "description": "Sets the failure threshold count."
+      },
+      {
+        "name": "cardindex number",
+        "description": "(Optional) Specifies the card index number."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "You must configure the failure threshold and the interval between tests before enabling diagnostic monitoring.  When entering the diagnostic monitor switch module test command, you must isolate network traffic by disabling all the connected ports, and not send test packets during a test.",
+    "sourcePage": 199,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "diagnostic schedule module",
+    "context": null,
+    "detail": "Schedule test-based diagnostic task for a specific switch module or schedule a supervisor engine switchover.",
+    "syntax": "diagnostic schedule switch number module module-num test {test-id | { {complete | minimal} {daily hh:mm | on month | weekly day-of-week}} | { {all | basic | non-disruptive | per-port } {daily hh:mm | on month | port {interface-port-number | port-number-list | all {daily hh:mm | on month | weekly day-of-week }} | weekly day-of-week }}} hh:mm | on month | weekly day-of-week}} | { {all | basic | non-disruptive | per-port } {daily hh:mm | on month | port {interface-port-number | port-number-list | all {daily hh:mm | on month | weekly day-of-week }} | weekly day-of-week }}}",
+    "noForm": "no diagnostic schedule switch number module module-num test {test-id | { {complete | minimal} {daily",
+    "params": [
+      {
+        "name": "switch switch_num",
+        "description": "Specifies the switch number."
+      },
+      {
+        "name": "module module_num",
+        "description": "Specifies the module number."
+      },
+      {
+        "name": "test",
+        "description": "Specifies the diagnostic test suite attribute."
+      },
+      {
+        "name": "test-id",
+        "description": "Identification number for the test to be run. Enter the show diagnostic content command to displ"
+      },
+      {
+        "name": "all",
+        "description": "Runs all the diagnostic tests."
+      },
+      {
+        "name": "complete",
+        "description": "Selects the complete bootup test suite."
+      },
+      {
+        "name": "minimal",
+        "description": "Selects the minimal bootup test suite."
+      },
+      {
+        "name": "non-disruptive",
+        "description": "Selects the nondisruptive test suite."
+      },
+      {
+        "name": "per-port",
+        "description": "Selects the per-port test suite. per-port is not supported when specifying a schedule"
+      },
+      {
+        "name": "port",
+        "description": "(Optional) Specifies the port-to-schedule testing."
+      },
+      {
+        "name": "interface-port- number",
+        "description": "(Optional) Port number. The range is from 1-48."
+      },
+      {
+        "name": "port-number-list",
+        "description": "(Optional) Range of port numbers, separated by a hyp 1-48."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Specifies all the ports."
+      },
+      {
+        "name": "on month",
+        "description": "Specifies the schedule of a test-based diagnostic task. Enter the month name, for example, January or Febru lowercase characters). Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 201 High Availability diagnostic schedule module"
+      },
+      {
+        "name": "daily hh:mm",
+        "description": "Specifies the daily schedule of a test-based diagnostic tas Enter the time as a two-digit number (for a 24-hour clock the colon (:) is required."
+      },
+      {
+        "name": "weekly day-of-week",
+        "description": "Specifies the weekly schedule of a test-based diagnostic t Enter the day of the week, for example, Monday or Tuesd or lowercase characters)."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Run the diagnostic schedule switch module test command to schedule a switchover from the active supervisor engine to the standby supervisor engine.  The show diagnostic content switch module command displays the test ID list.  The test ID is displayed in the ScheduleSwitchover field.",
+    "sourcePage": 201,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug secure-stackwise-virtual",
+    "context": null,
+    "detail": "Enable debugging of Secure StackWise Virtual.",
+    "syntax": "debug secure-stackwise-virtual undebug secure-stackwise-virtual",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 204,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "diagnostic start",
+    "context": null,
+    "detail": "Run a specified diagnostic test.",
+    "syntax": "diagnostic start switch number module module_num test {test-id | minimal | complete | { {all | basic | non-disruptive | per-port } {port {num | port_range | all}}}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch_num",
+        "description": "Specifies the switch number."
+      },
+      {
+        "name": "module module_num",
+        "description": "Specifies the module number."
+      },
+      {
+        "name": "test",
+        "description": "Specifies a test to run."
+      },
+      {
+        "name": "test-id",
+        "description": "Enter the identification number of the test you want to run. Enter the test-id-range or port_range as integers separated by a comma and a hyphen (for example, 1,3-6 specifies test IDs 1, 3, 4, 5, and 6)."
+      },
+      {
+        "name": "minimal",
+        "description": "Runs minimal bootup diagnostic tests."
+      },
+      {
+        "name": "complete",
+        "description": "Runs complete bootup diagnostic tests."
+      },
+      {
+        "name": "basic",
+        "description": "Runs basic on-demand diagnostic tests."
+      },
+      {
+        "name": "per-port",
+        "description": "Runs per-port level tests."
+      },
+      {
+        "name": "non-disruptive",
+        "description": "Runs nondisruptive health-monitoring tests."
+      },
+      {
+        "name": "all",
+        "description": "Runs all the diagnostic tests."
+      },
+      {
+        "name": "port num",
+        "description": "(Optional) Specifies the interface port number. The range is from 1-48."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Run the show diagnostic content command to display the test ID list .  Use the diagnostic stop command to stop the testing process.",
+    "sourcePage": 205,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "diagnostic stop",
+    "context": null,
+    "detail": "Stop the testing process.",
+    "syntax": "diagnostic stop switch number module module_num",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch_num",
+        "description": "Specifies the switch number."
+      },
+      {
+        "name": "module module_num",
+        "description": "Specifies the module number."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the diagnostic start command to start the testing process.",
+    "sourcePage": 208,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "domain id",
+    "context": null,
+    "detail": "Configure Cisco StackWise Virtual domain ID on a switch.",
+    "syntax": "domain id",
+    "noForm": "no domain id",
+    "params": [
+      {
+        "name": "domain",
+        "description": "Associates StackWise Virtual configuration with a specific domain."
+      },
+      {
+        "name": "id",
+        "description": "Value of the domain ID. The range is from 1 to 255. The default is one."
+      }
+    ],
+    "modes": ["StackWise Virtual configuration (config-stackwise-virtual)"],
+    "usageSummary": "This command is optional.  You must enable Stackwise Virtual, using the stackwise-virtual command, before configuring the domain ID.",
+    "sourcePage": 210,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dual-active detection pagp",
+    "context": null,
+    "detail": "Enable PAgP dual-active detection.",
+    "syntax": "dual-active detection pagp",
+    "noForm": "no dual-active detection pagp",
+    "params": [
+      {
+        "name": "dual-active detection pagp",
+        "description": "Enables pagp dual-active detection."
+      }
+    ],
+    "modes": ["StackWise Virtual configuration (config-stackwise-virtual)"],
+    "usageSummary": null,
+    "sourcePage": 211,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dual-active recovery-reload-disable",
+    "context": null,
+    "detail": "Disable automatic recovery reload of a switch.",
+    "syntax": "dual-active recovery-reload-disable",
+    "noForm": "no dual-active recovery-reload-disable",
+    "params": [
+      {
+        "name": "dual-active recovery-reload-disable",
+        "description": "Disables automatic recovery reload."
+      }
+    ],
+    "modes": ["StackWise Virtual configuration (config-stackwise-virtual)"],
+    "usageSummary": null,
+    "sourcePage": 212,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "hw-module switch slot",
+    "context": null,
+    "detail": "Control components such as linecard or a supervisor available in a slot.",
+    "syntax": "hw-module switch switch-number slot slot-number{logging onboard[counter|environment|message|poe|temperature|voltage]|shutdown}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch-number",
+        "description": "The switch to access. Valid values are 1 and 2."
+      },
+      {
+        "name": "slotslot-number",
+        "description": "Specifies the slot number to access. Valid values are 1 to 4. • 1: Linecard slot 1 • 2: Supervisor slot 0 • 3: Supervisor slot 1 • 4: Linecard slot 4 logging onboard Enables logging onboard."
+      },
+      {
+        "name": "counter",
+        "description": "(Optional) Configures the logging onboard counter."
+      },
+      {
+        "name": "environment",
+        "description": "(Optional) Configures the logging onboard environment."
+      },
+      {
+        "name": "message",
+        "description": "(Optional) Configures the logging onboard message."
+      },
+      {
+        "name": "poe",
+        "description": "(Optional) Configures the logging onboard PoE."
+      },
+      {
+        "name": "temperature",
+        "description": "(Optional) Configures the logging onboard temperature."
+      },
+      {
+        "name": "voltage",
+        "description": "(Optional) Configures the logging onboard voltage."
+      },
+      {
+        "name": "shutdown",
+        "description": "Shuts down a field-replaceable unit (FRU)."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 213,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "hw-module switch usbflash",
+    "context": null,
+    "detail": "Unmount the USB SSD.",
+    "syntax": "hw-module switch switch-numberusbflashunmount",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch number",
+        "description": "The switch to access. Valid values are 1 and 2. usbflash unmount Unmounts the USB SSD."
+      }
+    ],
+    "modes": ["Global Configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 215,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "main-cpu",
+    "context": null,
+    "detail": "Enter the redundancy main configuration submode and enable the standby switch.",
+    "syntax": "main-cpu",
+    "noForm": null,
+    "params": [],
+    "modes": ["Redundancy configuration (config-red)"],
+    "usageSummary": "From the redundancy main configuration submode, use the standby console enable command to enable the standby switch.  This example shows how to enter the redundancy main configuration submode and enable the standby switch: Device(config)# redundancy Device(config-red)# main-cpu Device(config-r-mc)# standby console enable Device# Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 216,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "maintenance-template",
+    "context": null,
+    "detail": "Create a maintenance template.",
+    "syntax": "maintenance-template template_name",
+    "noForm": "no maintenance-template template_name",
+    "params": [
+      {
+        "name": "maintenance-template",
+        "description": "Creates a template for GIR with a specific name."
+      },
+      {
+        "name": "template_name",
+        "description": "Name of the maintanence template."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 217,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mode sso",
+    "context": null,
+    "detail": "Set the redundancy mode to stateful switchover (SSO).",
+    "syntax": "mode sso",
+    "noForm": null,
+    "params": [],
+    "modes": ["Redundancy configuration"],
+    "usageSummary": "The mode sso command can be entered only from within redundancy configuration mode.  Follow these guidelines when configuring your system to SSO mode: • You must use identical Cisco IOS images on the switches in the stack to support SSO mode.  Redundancy may not work due to differences between the Cisco IOS releases.",
+    "sourcePage": 218,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "policy config-sync prc reload",
+    "context": null,
+    "detail": "Reload the standby switch if a parser return code (PRC) failure occurs during configuration synchronization.",
+    "syntax": "policy config-sync {bulk | lbl} prc reload",
+    "noForm": "no policy config-sync {bulk | lbl} prc reload",
+    "params": [
+      {
+        "name": "bulk",
+        "description": "Specifies bulk configuration mode."
+      },
+      {
+        "name": "lbl",
+        "description": "Specifies line-by-line (lbl) configuration mode."
+      }
+    ],
+    "modes": ["Redundancy configuration (config-red)"],
+    "usageSummary": null,
+    "sourcePage": 219,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redundancy",
+    "context": null,
+    "detail": "Enter redundancy configuration mode.",
+    "syntax": "redundancy",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The redundancy configuration mode is used to enter the main CPU submode, which is used to enable the standby switch.  To enter the main CPU submode, use the main-cpu command while in redundancy configuration mode.  From the main CPU submode, use the standby console enable command to enable the standby switch.",
+    "sourcePage": 220,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redundancy force-switchover",
+    "context": null,
+    "detail": "Force a switchover from the active switch to the standby switch.",
+    "syntax": "redundancy force-switchover",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the redundancy force-switchover command to manually switch over to the redundant switch.  The redundant switch becomes the new active switch that runs the Cisco IOS XE image, and the modules are reset to their default settings.  The old active switch reboots with the new image.",
+    "sourcePage": 221,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "reload",
+    "context": null,
+    "detail": "Reload the stack member and to apply configuration changes.",
+    "syntax": "reload [ /noverify | /verify ] [ at | cancel | in | pause | reason reason ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/noverify",
+        "description": "(Optional) Specifies to not verify the file signature before the reload."
+      },
+      {
+        "name": "/verify",
+        "description": "(Optional) Verifies the file signature before the reload."
+      },
+      {
+        "name": "at",
+        "description": "(Optional) Specifies the time in hh:mm format for the reload to occur."
+      },
+      {
+        "name": "cancel",
+        "description": "(Optional) Cancels the pending reload."
+      },
+      {
+        "name": "in",
+        "description": "(Optional) Specifies a time interval for reloads to occur."
+      },
+      {
+        "name": "pause",
+        "description": "(Optional) Pauses the reload."
+      },
+      {
+        "name": "reason reason",
+        "description": "(Optional) Specifies the reason for reloading the system."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 222,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "router routing protocol shutdown l2",
+    "context": null,
+    "detail": "Create instances that should be isolated within a maintenance template.",
+    "syntax": "{ router routing_protocol instance_id | shutdown l2 } no{ router routing_protocol instance_id | shutdown l2 }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "router",
+        "description": "Configures instance associated with routing protocol."
+      },
+      {
+        "name": "routing_protocol",
+        "description": "Routing protocol defined for the template."
+      },
+      {
+        "name": "instance_id",
+        "description": "Instance ID associated with the routing protocol."
+      },
+      {
+        "name": "shutdown l2",
+        "description": "Configures instance to shut down layer 2 interfaces."
+      }
+    ],
+    "modes": ["Maintenance template configuration (config-maintenance-temp)"],
+    "usageSummary": null,
+    "sourcePage": 223,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "secure-stackwise-virtual authorization-key 128-bits",
+    "context": null,
+    "detail": "Configure the Secure StackWise Virtual authorization key.",
+    "syntax": "secure-stackwise-virtual authorization-key 128-bits nosecure-stackwise-virtual authorization-key 128-bits",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The StackWise Virtual authorization key must be configured individually on all stack members before they join the stack.  The same authorization key must be set on all members of the stack.  The nosecure-stackwise-virtualauthorization-key command will remove the authorization key without zeroizing it.",
+    "sourcePage": 224,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "secure-stackwise-virtual zeroize sha1-key",
+    "context": null,
+    "detail": "Zeroize the Secure StackWise Virtual SHA-1 key from the device.",
+    "syntax": "secure-stackwise-virtual zeroize sha1-key",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Note This command will zeroize the Secure StackWise Virtual SHA-1 key from the device by deleting the IOS image and configuration from the device by deleting the IOS image and configuration files.  Example: The following is a sample output of the secure-stackwise-virtual zeroize sha1-key command.  Device(config)#secure-stackwise-virtual zeroize sha1-key **Critical Warning** - This command is irreversible and will zeroize the Secure-SVL-VPK by Deleting the IOS image and config files, please use extreme caution and confirm with Yes on each of three iterations to complete.",
+    "sourcePage": 225,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set platform software fed switch",
+    "context": null,
+    "detail": "Set the packet cache count per SVL port.",
+    "syntax": "set platform software fed switch {switch-number | active | standby} {F0 | F1 active}fss pak-cache count",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch",
+        "description": "Specifies information about the switch. You have the following options: {switch-number|active|standby} • switch-number • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available."
+      },
+      {
+        "name": "F0",
+        "description": "Specifies information about the Embedded Service Processor slot 0."
+      },
+      {
+        "name": "FP active",
+        "description": "Specifies information about the active Embedded Service Processor."
+      },
+      {
+        "name": "pak-cache count",
+        "description": "Specifies the packet cache count. The range is 10 to 600.The default is 10."
+      }
+    ],
+    "modes": ["User EXEC(>)", "Privileged EXEC (#)"],
+    "usageSummary": "None",
+    "sourcePage": 226,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set platform software nif-mgr switch",
+    "context": null,
+    "detail": "Set the packet cache count per SVL port.",
+    "syntax": "set platform software nif-mgr switch {switch-number | active | standby }R0 pak-cache count",
+    "noForm": null,
+    "params": [
+      {
+        "name": "R0",
+        "description": "Specifies information about the Route Processor (RP) slot 0."
+      },
+      {
+        "name": "pak-cache count",
+        "description": "Specifies the packet cache count. The range is 10 to 600.The default is 10."
+      }
+    ],
+    "modes": ["User EXEC(>)", "Privileged EXEC (#)"],
+    "usageSummary": "None",
+    "sourcePage": 227,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show diagnostic bootup",
+    "context": null,
+    "detail": "Show the diagnostic boot information for a switch.",
+    "syntax": "show diagnostic bootup level",
+    "noForm": null,
+    "params": [
+      {
+        "name": "level",
+        "description": "Shows the diagnostic boot-level information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 228,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show diagnostic content",
+    "context": null,
+    "detail": "Show the diagnostic test content for a switch.",
+    "syntax": "show diagnostic content switch {switch-number module {1 | 2 | 4} | all [all]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Specifies the switch to be selected."
+      },
+      {
+        "name": "module",
+        "description": "Selects a module of the switch."
+      },
+      {
+        "name": "1",
+        "description": "Displays the diagnostic test content for the module C9400-LC-48U."
+      },
+      {
+        "name": "2",
+        "description": "Displays the diagnostic test content for the module C9400-SUP-1."
+      },
+      {
+        "name": "4",
+        "description": "Displays the diagnostic test content for the module C9400-LC-48T."
+      },
+      {
+        "name": "switch all [all]",
+        "description": "• switch all–Selects all the switches. • (Optional) all–Displays all the diagnostic test content for all the switches."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 229,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show diagnostic description",
+    "context": null,
+    "detail": "Show the diagnostic test description for a switch.",
+    "syntax": "show diagnostic description switch {switch-number module {1 | 2 | 4} {test {test-id | all}} | all test {test-list | test-id | all}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Specifies the switch to be selected."
+      },
+      {
+        "name": "switch all",
+        "description": "Selects all the switches."
+      },
+      {
+        "name": "module",
+        "description": "Selects a module of the switch."
+      },
+      {
+        "name": "1",
+        "description": "Selects the module C9400-LC-48U."
+      },
+      {
+        "name": "2",
+        "description": "Selects the module C9400-SUP-1."
+      },
+      {
+        "name": "4",
+        "description": "Selects the module C9400-LC-48T."
+      },
+      {
+        "name": "test test-id",
+        "description": "Displays the diagnostic test description for the test ID or test name specified."
+      },
+      {
+        "name": "test test-list",
+        "description": "Displays the diagnostic test description for the list of test IDs specified."
+      },
+      {
+        "name": "test all",
+        "description": "Displays the diagnostic test description for all the test IDs."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 233,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show diagnostic events",
+    "context": null,
+    "detail": "Show the diagnostic event log for a switch.",
+    "syntax": "show diagnostic events switch {switch-number module {1 | 2 | 4} | all [event-type [error | info | warning]]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Specifies the switch to be selected."
+      },
+      {
+        "name": "switch all",
+        "description": "Selects all the switches."
+      },
+      {
+        "name": "module",
+        "description": "Selects a module of the switch."
+      },
+      {
+        "name": "1",
+        "description": "Displays diagnostic event logs for the C9400-LC-48U module."
+      },
+      {
+        "name": "2",
+        "description": "Displays diagnostic event logs for the C9400-SUP-1 module."
+      },
+      {
+        "name": "4",
+        "description": "Displays diagnostic event logs for the C9400-LC-48T module."
+      },
+      {
+        "name": "event-type",
+        "description": "(Optional) Displays the event log of a specific event type. The following are the valid values: • error:Displays the error type event logs. • info:Displays the information type event logs. • warning:Displays the warning type event logs."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 235,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show diagnostic result",
+    "context": null,
+    "detail": "Show the diagnostic test result information.",
+    "syntax": "show diagnostic result switch {switch-numbermodule {1 | 2 | 4} [detail | failure [detail] | test {test-id | all} [detail] | xml] | all [all [detail | failure [detail]]]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Specifies the switch to be selected."
+      },
+      {
+        "name": "module",
+        "description": "Selects a module of the switch."
+      },
+      {
+        "name": "1",
+        "description": "Displays the diagnostic test results for the module C9400-LC-48U."
+      },
+      {
+        "name": "2",
+        "description": "Displays the diagnostic test results for the module C9400-SUP-1."
+      },
+      {
+        "name": "4",
+        "description": "Displays the diagnostic test results for the module C9400-LC-48T."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays the detailed test results."
+      },
+      {
+        "name": "failure",
+        "description": "(Optional) Displays the failed test results."
+      },
+      {
+        "name": "test test-id",
+        "description": "(Optional) Displays the diagnostic test results for the selected test ID or test name or list of test IDs of a module."
+      },
+      {
+        "name": "test all",
+        "description": "(Optional) Displays the diagnostic test results for all the tests of a module."
+      },
+      {
+        "name": "xml",
+        "description": "(Optional) Displays the test results in XML format."
+      },
+      {
+        "name": "switch all [all]",
+        "description": "• switch all—Displays the diagnostic test results for all the switches. • (Optional)all—Displays the diagnostic test results for all the cards of all the switches."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 237,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show diagnostic simulation failure",
+    "context": null,
+    "detail": "Display the diagnostic failure simulation information for a card on a switch.",
+    "syntax": "show diagnostic simulation failure switch {switch-number module {1 | 2 | 4} | all [all]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Specifies the switch to be selected."
+      },
+      {
+        "name": "module",
+        "description": "Selects a module of the switch."
+      },
+      {
+        "name": "1",
+        "description": "Displays diagnostic failure simulation information for the C9400-LC-48U module."
+      },
+      {
+        "name": "2",
+        "description": "Displays diagnostic failure simulation information for the C9400-SUP-1 module."
+      },
+      {
+        "name": "4",
+        "description": "Displays diagnostic failure simulation information for the C9400-LC-48T module."
+      },
+      {
+        "name": "switch all [all]",
+        "description": "• switch all—Selects all the switches. • (Optional)all—Displays all the diagnostic failure simulation information for all the switches."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 242,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show diagnostic schedule",
+    "context": null,
+    "detail": "Display the diagnostic schedule information for a card on a switch.",
+    "syntax": "show diagnostic schedule switch {switch-number module {1 | 2 | 4} | all [all]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Specifies the switch to be selected."
+      },
+      {
+        "name": "module",
+        "description": "Selects a module of the switch."
+      },
+      {
+        "name": "1",
+        "description": "Displays diagnostic schedule information for the C9400-LC-48U module."
+      },
+      {
+        "name": "2",
+        "description": "Displays diagnostic schedule information for the C9400-SUP-1 module."
+      },
+      {
+        "name": "4",
+        "description": "Displays diagnostic schedule information for the C9400-LC-48T module."
+      },
+      {
+        "name": "switch all [all]",
+        "description": "• switch all—Selects all switches. • (Optional)all—Displays all the diagnostic schedule information for all the switches."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 243,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show hw-module switch subslot",
+    "context": null,
+    "detail": "Display information for all the supported modules in the system and chassis location information.",
+    "syntax": "show hw-module switch switch-number subslot {slot/subslot|all{attribute|entity|oir|sensors[limits]|subblock|tech-support}} noshow hw-module switch switch-number subslot {slot/subslot|all{attribute|entity|oir|sensors[limits]|subblock|tech-support}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch number",
+        "description": "Specifies the switch to access; valid values are 1 and 2."
+      },
+      {
+        "name": "subslot slot/subslot",
+        "description": "Specifies module slot or subslot number. Valid values for slot are 1 to 4. Valid value for subslot is 0."
+      },
+      {
+        "name": "all",
+        "description": "Selects all the supported modules in the subslot level."
+      },
+      {
+        "name": "attribute",
+        "description": "Displays module attribute information."
+      },
+      {
+        "name": "entity",
+        "description": "Displays entity MIB details. Note Not intended for production use."
+      },
+      {
+        "name": "oir",
+        "description": "Displays online insertion and removal (OIR) summary."
+      },
+      {
+        "name": "sensors",
+        "description": "Displays environmental sensor summary."
+      },
+      {
+        "name": "limits",
+        "description": "Displays sensor limits."
+      },
+      {
+        "name": "subblock",
+        "description": "Displays subblock details. Note Not intended for production use."
+      },
+      {
+        "name": "tech-support",
+        "description": "Displays subslot information for technical support."
+      }
+    ],
+    "modes": ["Priviledged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 244,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging onboard switch",
+    "context": null,
+    "detail": "Display the on-board failure logging (OBFL) information of a switch.",
+    "syntax": "show logging onboard switch {switch-number | active | standby} {RP {standby | active} | slot {1 | 4 | F0 | F1 | R0 | R1}} {{clilog | counter | environment | message | poe | temperature | uptimevo | voltage}[continuous | detail | summary][start hh:mm:ss day month year][end hh:mm:ss day month year]} | state | status}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch-number",
+        "description": "Switch for which OBFL information is displayed."
+      },
+      {
+        "name": "active",
+        "description": "Displays OBFL information about the active switch."
+      },
+      {
+        "name": "standby",
+        "description": "Displays OBFL information about the standby switch."
+      },
+      {
+        "name": "RP",
+        "description": "Specifies the route processor (RP)."
+      },
+      {
+        "name": "slot",
+        "description": "Specifies the slot information."
+      },
+      {
+        "name": "clilog",
+        "description": "Displays the OBFL commands that were entered on the standalone switch or specified stack members."
+      },
+      {
+        "name": "counter",
+        "description": "Displays the counter of the standalone switch or specified stack members."
+      },
+      {
+        "name": "environment",
+        "description": "Displays the unique device identifier (UDI) information for the standalone switch or specified stack members. Also displays the product identification (PID), the version identification (VID), and the serial number for all the connected FRU devices."
+      },
+      {
+        "name": "message",
+        "description": "Displays the hardware-related system messages generated by the standalone switch or specified stack members."
+      },
+      {
+        "name": "poe",
+        "description": "Displays the power consumption of the Power over Ethernet (PoE) ports on the standalone switch or specified stack members."
+      },
+      {
+        "name": "state",
+        "description": "Displays the state of the standalone switch or specified stack members."
+      },
+      {
+        "name": "status",
+        "description": "Displays the status of the standalone switch or specified stack members."
+      },
+      {
+        "name": "temperature",
+        "description": "Displays the temperature of the standalone switch or specified stack members."
+      },
+      {
+        "name": "uptime",
+        "description": "Displays the time at which the standalone switch or specified stack members start, the reason the standalone switch or specified members restart, and the length of time the standalone switch or specified stack members have been running since they last restarted. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 246 High Availability show logging onboard switch"
+      },
+      {
+        "name": "voltage",
+        "description": "Displays the system voltages of the standalone switch or the specified switch stack members."
+      },
+      {
+        "name": "continuous",
+        "description": "(Optional) Displays the data in the continuous file."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays both the continuous and summary data."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays the data in the summary file. start hh:mm:ss day month year (Optional) Displays the data from the specified time and date. Enter the time as a 2-digit number for a 24-hour clock. Make sure to use the colons (:), for example, 13:32:45. The range of day is from 1 to 31. The month in upper case or lower case letters. You can enter the full name of the month, such as January or august, or the first three letters of the month, such as jan or Aug. The year is a 4-digit number, such as 2008. The range is from 1970 to 2099. end hh:mm:ss day month year (Optional) Displays the data up to the specified time and date. Enter the time as a 2-digit number for a 24-hour clock. Make sure to use the colons (:), for example, 13:32:45. The range of day is from 1 to 31. The month in upper case or lower case letters. You can enter the full name of the month, such as January or august, or the first three letters of the month, such as jan or Aug. The year is a 4-digit number, such as 2008. The range is from 1970 to 2099."
+      }
+    ],
+    "modes": ["Priviledged EXEC (#)"],
+    "usageSummary": "When OBFL is enabled, the switch records the OBFL data in a continuous file that contains all the data.  The continuous file is circular.  When the continuous file is full, the switch combines the data into a summary file, which is also known as a historical file.",
+    "sourcePage": 246,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform pm l2bum-status",
+    "context": null,
+    "detail": "To display the global status of the Layer 2 Broadcast, Unicast, Muticast (BUM) traffic optimization use the show platform pm l2bum-status command in privileged EXEC mode.",
+    "syntax": "show platform pm l2bum-status",
+    "noForm": null,
+    "params": [
+      {
+        "name": "pm",
+        "description": "Displays the platform port manager information."
+      },
+      {
+        "name": "l2bum-status",
+        "description": "Displays the Layer 2 BUM traffic optimization global status."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 249,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform pm l2bum-status vlan",
+    "context": null,
+    "detail": "Display the forwarding physical port count in a VLAN.",
+    "syntax": "show platform pm l2bum-statusvlanvlan-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "pm",
+        "description": "Displays the platform port manager information."
+      },
+      {
+        "name": "l2bum-status",
+        "description": "Displays the Layer 2 BUM traffic optimization global status."
+      },
+      {
+        "name": "vlanvlan-id",
+        "description": "Displays the forwarding physical port count in vlan. The VLAN ID range is from 1 to 4093."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 250,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed",
+    "context": null,
+    "detail": "Display the per port SDP/LMP control packet exchange history between FED and Network Interface Manager (NIF Mgr) software processes.",
+    "syntax": "show platform software fed switch {switch-number | active | standby} fss {counters |interface-counters interface {interface-type interface-number} |lmp-packets interface {interface-type interface-number} |sdp-packets",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch-number",
+        "description": "Displays information about the switch. You have the following options: |active|standby} • switch-number • active—Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note This keyword is not supported."
+      },
+      {
+        "name": "fss",
+        "description": "Specifies information about Front Side Stacking (FSS)."
+      },
+      {
+        "name": "counters",
+        "description": "Displays the number of TX and RX packets of SDP, LMP, OOB1/2, EMP and LOOPBACK types."
+      },
+      {
+        "name": "interface-counters",
+        "description": "Displays the number of TX and RX packets for all the interfaces. You can filter the output to display for a particular SVL interface using the interface-counters interface {interface-type interface-number} command."
+      },
+      {
+        "name": "lmp-packets",
+        "description": "Displays details of LMP packet transactions between FED and NIF Manager for all the SVL interfaces. You can filter the output to display for a particular SVL interface using the lmp-packets interface {interface-type interface-number} command."
+      },
+      {
+        "name": "sdp-packets",
+        "description": "Displays details of SDP packets transmitted between FED and NIF Manager for all the SVL interfaces."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "By default, the output of show platform software fed switch active fss sdp-packets command displays a packet cache count of 10.  You can set the packet cache count per port to a maximum of 600 using the set platform software fed switch command.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 251,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch fss bum-opt summary",
+    "context": null,
+    "detail": "Display the Front Side Stacking (FSS) BUM traffic optimization information.",
+    "syntax": "show platformsoftwarefedswitch{switch-number|active|standby}{fssbum-optsummary",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch-number |",
+        "description": "Displays information about the switch. You have the following options: active | standby} • switch-number—Specifies the switch number. The available switch numbers are 1 and 2. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available."
+      },
+      {
+        "name": "fss",
+        "description": "Displays front side stacking (FSS) information."
+      },
+      {
+        "name": "bum-opt",
+        "description": "Displays FSS BUM traffic optimization info."
+      },
+      {
+        "name": "summary",
+        "description": "Displays FSS BUM traffic optimization summary."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 254,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software l2_svl_bum forwarding-manager switch",
+    "context": null,
+    "detail": "Display the forwarding-manager Layer 2 BUM traffic optimization information for a switch.",
+    "syntax": "show platform softwarel2_svl_bumforwarding-managerswitch{switch-number|active|standby}{F0{vlanvlan-id|R0{entries}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "F0vlan vlan-id",
+        "description": "• F0 —Displays information about Embedded-Service-Processor slot 0. • vlan vlan-id—Specifies the VLAN ID The VLAN ID ranges from 1 to 65535."
+      },
+      {
+        "name": "R0entries",
+        "description": "• R0—Displays information about the Route-Processor (RP) slot 0. • entries—Displays the SVL link optimization entry for VLAN."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 255,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software nif-mgr switch",
+    "context": null,
+    "detail": "Display the control packet exchange history between the Network Interface Manager software process (NIF Mgr) and the StackWise Virtual Link (SVL) interfaces.",
+    "syntax": "show platform software nif-mgr switch {switch-number | active | standby} R0 {counters [lpn lpn-index] | packets [lpn lpn-index ] | switch-info} show platform software nif-mgr switch {switch-number | active | standby} R0counters {slotslot-number } {port port-number }packets {slotslot-number } {port port-number } {switch-info}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch-number |",
+        "description": "Displays information about the switch. You have the following options: active | standby} • switch-number. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note This keyword is not supported."
+      },
+      {
+        "name": "R0",
+        "description": "Displays information about the Route Processor (RP) slot 0."
+      },
+      {
+        "name": "counters",
+        "description": "Displays the number of TX and RX packets of LMP and SDP type."
+      },
+      {
+        "name": "lpn lpn-index",
+        "description": "Specifies the local port number (LPN). The range is 1 to 96. Use the show platform software nif-mgr switch active R0 switch-info command for information about lpn-index."
+      },
+      {
+        "name": "packets",
+        "description": "Displays the details of TX and RX packets of LMP and SDP type."
+      },
+      {
+        "name": "switch-info",
+        "description": "Displays information about NIF Manager operational database."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of the show platform software nif-mgr switch active R0 counters command displays counters for LMP and SDP packets that are transmitted.  The output of the show platform software nif-mgr switch active R0 switch-info command displays the SVL links details and the protocol flap count on each of the links.  • LMP to FED Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 257,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show redundancy",
+    "context": null,
+    "detail": "To display redundancy facility information, use the show redundancy command in privileged EXEC mode",
+    "syntax": "show redundancy [clients | config-sync | counters | history [reload | reverse] | slaves[slave-name] {clients | counters} | states | switchover history [domain default]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "clients",
+        "description": "(Optional) Displays information about the redundancy facility client."
+      },
+      {
+        "name": "config-sync",
+        "description": "(Optional) Displays a configuration synchronization failure or the ignored mismatched command list (MCL)."
+      },
+      {
+        "name": "counters",
+        "description": "(Optional) Displays information about the redundancy facility counter."
+      },
+      {
+        "name": "history",
+        "description": "(Optional) Displays a log of past status and related information for the redundancy facility."
+      },
+      {
+        "name": "history reload",
+        "description": "(Optional) Displays a log of past reload information for the redundancy facility."
+      },
+      {
+        "name": "history reverse",
+        "description": "(Optional) Displays a reverse log of past status and related information for the redundancy facility."
+      },
+      {
+        "name": "slaves",
+        "description": "(Optional) Displays all standby switches in the redundancy facility."
+      },
+      {
+        "name": "slave-name",
+        "description": "(Optional) The name of the redundancy facility standby switch to display specific information for. Enter additional keywords to display all clients or counters in the specified standby switch."
+      },
+      {
+        "name": "clients",
+        "description": "Displays all redundancy facility clients in the specified secondary switch."
+      },
+      {
+        "name": "counters",
+        "description": "Displays all counters in the specified standby switch."
+      },
+      {
+        "name": "states",
+        "description": "(Optional) Displays information about the redundancy facility state, such as disabled, initialization, standby or active. switchover history (Optional) Displays information about the redundancy facility switchover history."
+      },
+      {
+        "name": "domain default",
+        "description": "(Optional) Displays the default domain as the domain to display switchover history for."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 261,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show redundancy config-sync",
+    "context": null,
+    "detail": "Display a configuration synchronization failure or the ignored mismatched command list (MCL), if any.",
+    "syntax": "show redundancy config-sync {failures {bem | mcl | prc} | ignored failures mcl}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "failures",
+        "description": "Displays MCL entries or best effort method (BEM)/Parser Return Code (PRC) failures."
+      },
+      {
+        "name": "bem",
+        "description": "Displays a BEM failed command list, and forces the standby switch to reboot."
+      },
+      {
+        "name": "mcl",
+        "description": "Displays commands that exist in the switch’s running configuration but are not supported by the image on the standby switch, and forces the standby switch to reboot."
+      },
+      {
+        "name": "prc",
+        "description": "Displays a PRC failed command list and forces the standby switch to reboot."
+      },
+      {
+        "name": "ignored failures mcl",
+        "description": "Displays the ignored MCL failures."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "When two versions of Cisco IOS images are involved, the command sets supported by two images might differ.  If any of those mismatched commands are executed on the active switch, the standby switch might not recognize those commands, which causes a configuration mismatch condition.  If the syntax check for the command fails on the standby switch during a bulk synchronization, the command is moved into the MCL and the standby switch is reset.",
+    "sourcePage": 265,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show secure-stackwise-virtual",
+    "context": null,
+    "detail": "View your Secure StackWise Virtual configuration information.",
+    "syntax": "show secure stackwise-virtual{ authorization-key |interfaceinterface-id |status",
+    "noForm": null,
+    "params": [
+      {
+        "name": "authorization-key",
+        "description": "Displays the Secure StackWise Virtual authorization key installed on the device. interface interface-id Displays the Secure StackWise Virtual interface statistics."
+      },
+      {
+        "name": "status",
+        "description": "Displays the Secure StackWise Virtual status of the device."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 267,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show stackwise-virtual",
+    "context": null,
+    "detail": "Display your Cisco StackWise Virtual configuration information.",
+    "syntax": "show stackwise-virtual {[switch [switch number <1-2>] {link | bandwidth | neighbors | dual-active-detection}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch number",
+        "description": "(Optional) Displays information of a particular switch in the stack."
+      },
+      {
+        "name": "link",
+        "description": "Displays Stackwise Virtual link information."
+      },
+      {
+        "name": "bandwidth",
+        "description": "Displays bandwidth availability for StackWise Virtual."
+      },
+      {
+        "name": "neighbors",
+        "description": "Displays Stackwise Virtual neighbors."
+      },
+      {
+        "name": "dual-active-detection",
+        "description": "Displays Stackwise-Virtual dual-active-detection information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 269,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support stack",
+    "context": null,
+    "detail": "Display all switch stack-related information for use by technical support.",
+    "syntax": "show tech-support stack",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The show tech-support stack command captures the snapshot of stacking states and information for debug issues.  Use this command, when stacking issues (such as stack cable issue, silent reload, switch not coming to ready state, stack crash, and so on) occur.  The output of the show tech-support stack command is very long.",
+    "sourcePage": 271,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "stackwise-virtual",
+    "context": null,
+    "detail": "Enable Cisco StackWise Virtual on a switch.",
+    "syntax": "stackwise-virtual",
+    "noForm": "no stackwise-virtual",
+    "params": [
+      {
+        "name": "stackwise-virtual",
+        "description": "Enables Cisco StackWise Virtual."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "After disabling Cisco StackWise Virtual, the switches must be reloaded to unstack them.",
+    "sourcePage": 276,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "stackwise-virtual dual-active-detection",
+    "context": null,
+    "detail": "Configure an interface as dual-active-detection link.",
+    "syntax": "stackwise-virtual dual-active-detection",
+    "noForm": "no stackwise-virtual dual-active-detection",
+    "params": [
+      {
+        "name": "stackwise-virtual dual-active-detection",
+        "description": "Enables Cisco StackWise Virtual dual-active-detection for the specified interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 277,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "stackwise-virtual link",
+    "context": null,
+    "detail": "Associate an interface with configured StackWise Virtual link.",
+    "syntax": "stackwise-virtual link link-value",
+    "noForm": "no stackwise-virtual link link-value",
+    "params": [
+      {
+        "name": "stackwise-virtual link",
+        "description": "Associates a interface to StackWise Virtual link."
+      },
+      {
+        "name": "link value",
+        "description": "Domain ID configured for Cisco StackWise Virtual."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)."],
+    "usageSummary": null,
+    "sourcePage": 278,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "standby console enable",
+    "context": null,
+    "detail": "Enable access to the standby console switch.",
+    "syntax": "standby console enable",
+    "noForm": "no standby console enable",
+    "params": [],
+    "modes": ["Redundancy main configuration submode"],
+    "usageSummary": "This command is used to collect and review specific data about the standby console.  The command is useful primarily for Cisco technical support representatives troubleshooting the switch.  This example shows how to enter the redundancy main configuration submode and enable access to the standby console switch: Device(config)# redundancy Device(config-red)# main-cpu Device(config-r-mc)# standby console enable Device(config-r-mc)# Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 279,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "start maintenance",
+    "context": null,
+    "detail": "Put the system into maintenance mode.",
+    "syntax": "start maintenance",
+    "noForm": null,
+    "params": [
+      {
+        "name": "start maintenance",
+        "description": "Puts the system into maintenance mode."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 280,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "stop maintenance",
+    "context": null,
+    "detail": "Put the system out of maintenance mode.",
+    "syntax": "stop maintenance",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 281,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "svl l2bum optimization",
+    "context": null,
+    "detail": "Enable Layer 2 Broadcast, Unicast, Muticast (BUM) traffiic optimization on a StackWise Virtual link.",
+    "syntax": "svl l2bum optimization",
+    "noForm": "no svl l2bum optimization",
+    "params": [
+      {
+        "name": "svl",
+        "description": "l2bum optimization Enables Layer 2 BUM traffiic optimization on StackWise Virtual link."
+      }
+    ],
+    "modes": ["Global Configuration (config) #"],
+    "usageSummary": null,
+    "sourcePage": 282,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "system mode maintenance",
+    "context": null,
+    "detail": "To enter the system mode maintenance configuration mode, use the system mode maintenancecommand in the global configuration mode.",
+    "syntax": "system mode maintenance",
+    "noForm": null,
+    "params": [
+      {
+        "name": "system mode maintenance",
+        "description": "Enters the maintenance configuration mode."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 283,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  }
+]

@@ -1,0 +1,416 @@
+[
+  {
+    "name": "debug platform remote-commands",
+    "context": null,
+    "detail": "Enable debugging of remote commands.",
+    "syntax": "debug platform remote-commands",
+    "noForm": "no debug platform remote-commands",
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug platform remote-commands command is the same as the no debug platform remote-commands command.  When you enable debugging on a switch stack, it is enabled only on the active switch.  To enable debugging on a stack member, you can start a session from the stack's active switch by using the session switch-number privileged EXEC command.",
+    "sourcePage": 542,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform stack-manager",
+    "context": null,
+    "detail": "Enable debugging of the stack manager software.",
+    "syntax": "debug platform stack-manager {all | rpc | sdp | sim | ssm | tdm | trace}",
+    "noForm": "no debug platform stack-manager {all | rpc | sdp | sim | ssm | tdm | trace}",
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all stack manager debug messages. rpc Displays stack manager remote procedure call (RPC) usage debug messages. sdp Displays the Stack Discovery Protocol (SDP) debug messages. sim Displays the stack information module debug messages. ssm Displays the stack state-machine debug messages. tdm Displays the stack manager topology discovery use debug messages. trace Traces the stack manager entry and exit debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "This command is supported only on stacking-capable switches.  The undebug platform stack-manager command is the same as the no debug platform stack-manager command.  When you enable debugging on a switch stack, it is enabled only on the active switch.",
+    "sourcePage": 543,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "reload",
+    "context": null,
+    "detail": "Reload the stack member and to apply a configuration change.",
+    "syntax": "reload [{/noverify | /verify}] [{LINE | at | cancel | in | slot stack-member-number | standby-cpu}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/noverify",
+        "description": "(Optional) Specifies to not verify the file signature before the reload."
+      },
+      {
+        "name": "/verify",
+        "description": "(Optional) Verifies the file signature before the reload."
+      },
+      {
+        "name": "LINE",
+        "description": "(Optional) Reason for the reload."
+      },
+      {
+        "name": "at",
+        "description": "(Optional) Specifies the time in hh:mm for the reload to occur."
+      },
+      {
+        "name": "cancel",
+        "description": "(Optional) Cancels the pending reload."
+      },
+      {
+        "name": "in",
+        "description": "(Optional) Specifies a time interval for reloads to occur."
+      },
+      {
+        "name": "slot",
+        "description": "(Optional) Saves the changes on the specified stack member and then restarts it."
+      },
+      {
+        "name": "stack-member-number",
+        "description": "(Optional) Stack member number on which to save the changes. The range is 1 to 8."
+      },
+      {
+        "name": "standby-cpu",
+        "description": "(Optional) Reloads the standby route processor (RP)."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If there is more than one switch in the switch stack, and you enter the reload slot stack-member-number command, you are not prompted to save the configuration.",
+    "sourcePage": 544,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "remote command",
+    "context": null,
+    "detail": "Monitor all or specified stack members.",
+    "syntax": "remote command {allstack-member-number} LINE",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Applies to all stack members. stack-member-number The stack member. The range is 1 to 8."
+      },
+      {
+        "name": "LINE",
+        "description": "The command to execute."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The commands that you use in the LINE command-to-execute string (such as debug, show, or clear) apply to a specific stack member or to the switch stack.",
+    "sourcePage": 546,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "session",
+    "context": null,
+    "detail": "Access a specific stack member.",
+    "syntax": "session stack-member-number",
+    "noForm": null,
+    "params": [
+      {
+        "name": "stack-member-number",
+        "description": "Stack member number to access from the active switch. The range is 1 to 8."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "When you access the member, its member number is appended to the system prompt.  Use the session command from the active switch to access a member.  Use the session command with processor 1 from the active or a standalone switch to access the internal controller.",
+    "sourcePage": 547,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform stack compatibility configuration",
+    "context": null,
+    "detail": "Display switch stack compatibility information.",
+    "syntax": "show platform stack compatibility configuration{current | failure-log | mismatch [switch switch-number]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "current",
+        "description": "Displays currently configured system level features."
+      },
+      {
+        "name": "failure-log",
+        "description": "Displays non-baseline feature configuration failure log."
+      },
+      {
+        "name": "mismatch",
+        "description": "Displays configured non-baseline features that are causing a mismatch. switch switch-number (Optional) Displays configured non-baseline features that are causing a mismatch for the specified switch. The range is 1 to 8."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with your technical support representative while troubleshooting a problem.  Do not use this command unless your technical support representative asks you to do so.  This example shows how to display switch stack compatibility information: Device# show platform stack compatibility configuration current Consolidated Platform Command Reference, Cisco IOS Release 15.",
+    "sourcePage": 548,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform stack compatibility feature",
+    "context": null,
+    "detail": "Display switch stack state machine and message trace feature compatibility information.",
+    "syntax": "show platform stack compatibility feature {all | independent [feature-id feature-id] | interdependent [feature-id feature-id] | port [feature-id feature-id]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all non-baseline features."
+      },
+      {
+        "name": "independent",
+        "description": "Displays switch-level independent features. feature-id feature-id (Optional) Displays switch-level independent, system-level interdependent or port-level independent features with the specified feature ID."
+      },
+      {
+        "name": "interdependent",
+        "description": "Displays system-level interdependent features."
+      },
+      {
+        "name": "port",
+        "description": "Displays port-level independent features."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The show platform stack compatibility commands display feature incompatibility information between stack members in a mixed stack.  Compatibility checks ensure that features that are supported across members of a stack using a forwarding ASIC with different capabilities will function effortlessly and error free.  Use this command only when you are working directly with your technical support representative while troubleshooting a problem.",
+    "sourcePage": 549,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform stack compatibility table",
+    "context": null,
+    "detail": "Display feature compatibility tables for the switch stack.",
+    "syntax": "show platform stack compatibility table {all | independent | interdependent | port}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all feature compatibility tables."
+      },
+      {
+        "name": "independent",
+        "description": "Displays a switch-level independent feature compatibility table. interdependent Displays a system-level interdependent feature compatibility table."
+      },
+      {
+        "name": "port",
+        "description": "Displays a port-level independent feature compatibility table."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The show platform stack compatibility commands display feature incompatibility information between stack members in a mixed stack.  Compatibility checks ensure that features that are supported across members of a stack using a forwarding ASIC with different capabilities will function effortlessly and error free.  Use this command only when you are working directly with your technical support representative while troubleshooting a problem.",
+    "sourcePage": 551,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform stack manager",
+    "context": null,
+    "detail": "Display platform-dependent switch-stack information.",
+    "syntax": "show platform stack manager {all | counters | trace [{cs [cs] | sdp [reverse] | state [reverse] | tdm}]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all information for the entire switch stack. counters Displays the stack manager counters."
+      },
+      {
+        "name": "trace",
+        "description": "Displays trace information."
+      },
+      {
+        "name": "cs",
+        "description": "(Optional) Displays information about changes in stack-related trace messages."
+      },
+      {
+        "name": "sdp",
+        "description": "(Optional) Displays Stack Discovery Protocol (SDP) information. reverse (Optional) Displays trace information in reverse chronological order (from recent to older chronological sequence)."
+      },
+      {
+        "name": "state",
+        "description": "(Optional) Displays stack state machine information."
+      },
+      {
+        "name": "tdm",
+        "description": "(Optional) Displays information about topology discovery including a summary of the stacking over Ethernet state machine events and messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with your technical support representative while troubleshooting a problem.  Do not use this command unless your technical support representative asks you to do so.",
+    "sourcePage": 553,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "show switch",
+    "context": null,
+    "detail": "Display information that is related to the stack member or the switch stack.",
+    "syntax": "show switch [{stack-member-number | detail | neighbors | stack-ports | stack-ring speed}] Note This command is supported only on Catalyst 2960-X switches running the LAN Base image.",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information about the stack ring."
+      },
+      {
+        "name": "neighbors",
+        "description": "(Optional) Displays the neighbors of the entire switch stack."
+      },
+      {
+        "name": "stack-ports",
+        "description": "(Optional) Displays port information for the entire switch stack."
+      },
+      {
+        "name": "stack-ring",
+        "description": "(Optional) Displays information about the stack ring."
+      },
+      {
+        "name": "speed",
+        "description": "Displays the stack ring speed."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "This command output displays these states: • Waiting—A switch is booting up and waiting for communication from other switches in the stack.  The switch has not determined whether or not it is an active stack.  Stack members not participating in a active stack election remain in the waiting state until the active stack is elected and ready.",
+    "sourcePage": 555,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "stack-mac persistent timer",
+    "context": null,
+    "detail": "Enable the persistent MAC address feature.",
+    "syntax": "stack-mac persistent timer [{0time-value}]",
+    "noForm": "no stack-mac persistent timer",
+    "params": [
+      {
+        "name": "0",
+        "description": "(Optional) Continues using the MAC address of the current active switch after a new active switch takes over. time-value (Optional) Time period in minutes before the stack MAC address changes to that of the new active switch. The range is 1 to 60 minutes. When no value is entered, the default is 4 minutes. We recommend that you configure an explicit value for this command."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The MAC address of the switch stack is determined by the MAC address of the active switch.  In the default state (persistent MAC address disabled), if a new switch becomes active switch, the stack MAC address changes to the MAC address of the new active switch.  When persistent MAC address is enabled, the stack MAC address does not change for a time period.",
+    "sourcePage": 558,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switch stack port",
+    "context": null,
+    "detail": "Disable or enable the specified stack port on the member.",
+    "syntax": "switch stack-member-number stack port port-number {disable | enable} Note This command is supported only on Catalyst 2960-X switches running the LAN Base image.",
+    "noForm": null,
+    "params": [
+      {
+        "name": "disable",
+        "description": "Disables the specified port."
+      },
+      {
+        "name": "enable",
+        "description": "Enables the specified port."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "A stack is in the full-ring state when all members are connected through the stack ports and are in the ready state.  The stack is in the partial-ring state when the following occurs: • All members are connected through their stack ports but some are not in the ready state.  • Some members are not connected through the stack ports.",
+    "sourcePage": 561,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switch priority",
+    "context": null,
+    "detail": "Change the stack member priority value.",
+    "syntax": "switch stack-member-number priority new-priority-value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "new-priority-value",
+        "description": "New stack member priority value. The range is 1 to 15."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The new priority value is a factor when a new active switch is elected.  When you change the priority value, the active switch is not changed immediately.",
+    "sourcePage": 563,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switch provision",
+    "context": null,
+    "detail": "Supply a configuration to a new switch before it joins the switch stack.",
+    "syntax": "switch stack-member-number provision type",
+    "noForm": "no switch stack-member-number provision",
+    "params": [
+      {
+        "name": "type",
+        "description": "Switch type of the new switch before it joins the stack."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "For type, enter the model number of a supported switch that is listed in the command-line help strings.  To avoid receiving an error message, you must remove the specified switch from the switch stack before using the no form of this command to delete a provisioned configuration.  To change the switch type, you must also remove the specified switch from the switch stack.",
+    "sourcePage": 564,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switch renumber",
+    "context": null,
+    "detail": "Change the stack member number.",
+    "syntax": "switch current-stack-member-number renumber new-stack-member-number",
+    "noForm": null,
+    "params": [
+      {
+        "name": "new-stack-member-number",
+        "description": "New stack member number for the stack member. The range is 1 to 8."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "If another stack member is already using the member number that you just specified, the active switch assigns the lowest available number when you reload the stack member.",
+    "sourcePage": 566,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  },
+  {
+    "name": "switch stack port-speed 10",
+    "context": null,
+    "detail": "Set the switch stack port speed to 10 Gbps and enable mixed stacking with one or more Catalyst 2960-S switches.",
+    "syntax": "switch stack port-speed 10",
+    "noForm": "no switch stack port-speed",
+    "params": [],
+    "modes": [],
+    "usageSummary": "By default, Catalyst 2960-X switches operate at a port speed of 20 Gbps while 2960-S switches have a maximum port speed of 10 Gbps.  In a mixed stack of Catalyst 2960-X and Catalyst 2960-S switches, the stack must operate at the port speed of the Catalyst 2960-S switch; otherwise, the switches will not stack.  To set the port speed of the stack to 10 Gbps, use the switch stack port-speed 10 global configuration command on a Catalyst 2960-X stack member before you add a Catalyst 2960-S switch to the stack, and then reload the stack.",
+    "sourcePage": 567,
+    "pack": "cat2960x-15.2.6",
+    "platform": "Catalyst 2960-X Switches",
+    "release": "15.2(6)E",
+    "source": "pdf"
+  }
+]

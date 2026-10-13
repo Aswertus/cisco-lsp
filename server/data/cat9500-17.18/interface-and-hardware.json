@@ -1,0 +1,3002 @@
+[
+  {
+    "name": "bluetooth pin",
+    "context": null,
+    "detail": "Configure a new Bluetooth pin.",
+    "syntax": "bluetooth pin pin",
+    "noForm": null,
+    "params": [
+      {
+        "name": "pin",
+        "description": "Pairing pin for the Bluetooth interface. The pin is a 4-digit number."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)", "Global configuration (config)"],
+    "usageSummary": "The bluetooth pin command can be configured either in the interface configuration or global configuration mode.  Cisco recommends using the global configuration mode to configure the Bluetooth pin.",
+    "sourcePage": 290,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug ilpower",
+    "context": null,
+    "detail": "Enable debugging of the power controller and Power over Ethernet (PoE) system.",
+    "syntax": "debug ilpower {cdp | event | ha | ipc | police | port | powerman | registries | scp | sense}",
+    "noForm": "no debug ilpower {cdp | event | ha | ipc | police | port | powerman | registries | scp | sense}",
+    "params": [
+      {
+        "name": "cdp",
+        "description": "Displays PoE Cisco Discovery Protocol (CDP) debug messages."
+      },
+      {
+        "name": "event",
+        "description": "Displays PoE event debug messages."
+      },
+      {
+        "name": "ha",
+        "description": "Displays PoE high-availability messages."
+      },
+      {
+        "name": "ipc",
+        "description": "Displays PoE Inter-Process Communication (IPC) debug messages."
+      },
+      {
+        "name": "police",
+        "description": "Displays PoE police debug messages."
+      },
+      {
+        "name": "port",
+        "description": "Displays PoE port manager debug messages. powerman Displays PoE power management debug messages. registries Displays PoE registries debug messages."
+      },
+      {
+        "name": "scp",
+        "description": "Displays PoE SCP debug messages."
+      },
+      {
+        "name": "sense",
+        "description": "Displays PoE sense debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "This command is supported only on PoE-capable switches.  When you enable debugging on a switch stack, it is enabled only on the active switch.  To enable debugging on a stack member, you can start a session from the active switch by using the session switch-number EXEC command.",
+    "sourcePage": 291,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug interface",
+    "context": null,
+    "detail": "Enable debugging of interface-related activities.",
+    "syntax": "debug interface {interface-id | counters {exceptions | protocol memory} | null interface-number | port-channel port-channel-number | states|vlan vlan-id} | port-channel port-channel-number | states|vlan vlan-id}",
+    "noForm": "no debug interface {interface-id | counters {exceptions | protocol memory} | null interface-number",
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "ID of the physical interface. Displays debug messages for the specified physical port, identified by type switch number/module number/port, for example, gigabitethernet 1/0/2."
+      },
+      {
+        "name": "null interface-number",
+        "description": "Displays debug messages for null interfaces. The interface number is always 0."
+      },
+      {
+        "name": "port-channel",
+        "description": "Displays debug messages for the specified EtherChannel port-channel"
+      },
+      {
+        "name": "port-channel-number",
+        "description": "interface. The port-channel-number range is 1 to 48."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "Displays debug messages for the specified VLAN. The vlan range is 1 to 4094."
+      },
+      {
+        "name": "counters",
+        "description": "Displays counters debugging information."
+      },
+      {
+        "name": "exceptions",
+        "description": "Displays debug messages when a recoverable exceptional condition occurs during the computation of the interface packet and data rate statistics."
+      },
+      {
+        "name": "protocol memory",
+        "description": "Displays debug messages for memory operations of protocol counters."
+      },
+      {
+        "name": "states",
+        "description": "Displays intermediary debug messages when an interface's state transitions."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "If you do not specify a keyword, all debug messages appear.  The undebug interface command is the same as the no debug interface command.  When you enable debugging on a switch stack, it is enabled only on the active switch.",
+    "sourcePage": 292,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug lldp packets",
+    "context": null,
+    "detail": "Enable debugging of Link Layer Discovery Protocol (LLDP) packets.",
+    "syntax": "debug lldp packets",
+    "noForm": "no debug lldp packets",
+    "params": [
+      {
+        "name": "This",
+        "description": "commnd has no arguments or keywords."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The undebug lldp packets command is the same as the no debug lldp packets command.  When you enable debugging on a switch stack, it is enabled only on the active switch.  To enable debugging on a stack member, you can start a session from the active switch by using the session switch-number EXEC command.",
+    "sourcePage": 293,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform poe",
+    "context": null,
+    "detail": "Enable debugging of a Power over Ethernet (PoE) port.",
+    "syntax": "debug platform poe [error | info] [switch switch-number]",
+    "noForm": "no debug platform poe [error | info] [switch switch-number]",
+    "params": [
+      {
+        "name": "error",
+        "description": "(Optional) Displays PoE-related error debug messages."
+      },
+      {
+        "name": "info",
+        "description": "(Optional) Displays PoE-related information debug messages. switch switch-number (Optional) Specifies the stack member. This keyword is supported only on stacking-capable switches."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The undebug platform poe command is the same as the no debug platform poe command.  Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 294,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "duplex",
+    "context": null,
+    "detail": "Specify the duplex mode of operation for a port.",
+    "syntax": "duplex {auto | full | half}",
+    "noForm": "no duplex {auto | full | half}",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "For Gigabit Ethernet ports, setting the port to auto has the same effect as specifying full if the attached device does not autonegotiate the duplex parameter.",
+    "sourcePage": 296,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "enable",
+    "context": "interface configuration",
+    "detail": "Enable the 100 GigabitEthernet interface.",
+    "syntax": "enable",
+    "noForm": "no enable",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the enable command in the interface configuration mode, to enable the 100 GigabitEthernet interface.  Use the no version of the command to disable the 100 GigabitEthernet interface.  To display the current state of an interface, enter the show interface interface-id command in privileged EXEC mode.",
+    "sourcePage": 298,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "errdisable detect cause",
+    "context": null,
+    "detail": "Enable error-disable detection for a specific cause or for all causes.",
+    "syntax": "errdisable detect cause {all | arp-inspection | bpduguard shutdown vlan | dhcp-rate-limit | dtp-flap | gbic-invalid | inline-power | link-flap | loopback | pagp-flap | pppoe-ia-rate-limit | psp shutdown vlan | security-violation shutdown vlan | sfp-config-mismatch} dtp-flap | gbic-invalid | inline-power | link-flap | loopback | pagp-flap | pppoe-ia-rate-limit | psp shutdown vlan | security-violation shutdown vlan | sfp-config-mismatch}",
+    "noForm": "no errdisable detect cause {all | arp-inspection | bpduguard shutdown vlan | dhcp-rate-limit |",
+    "params": [
+      {
+        "name": "all",
+        "description": "Enables error detection for all error-disabled causes."
+      },
+      {
+        "name": "arp-inspection",
+        "description": "Enables error detection for dynamic Address Resolution Protocol (ARP) inspection."
+      },
+      {
+        "name": "bpduguard shutdown vlan",
+        "description": "Enables per-VLAN error-disable for BPDU guard."
+      },
+      {
+        "name": "dhcp-rate-limit",
+        "description": "Enables error detection for DHCP snooping."
+      },
+      {
+        "name": "dtp-flap",
+        "description": "Enables error detection for the Dynamic Trunking Protocol (DTP) flapping."
+      },
+      {
+        "name": "gbic-invalid",
+        "description": "Enables error detection for an invalid Gigabit Interface Converter (GBIC) module. Note This error refers to an invalid small form-factor pluggable (SFP) module."
+      },
+      {
+        "name": "inline-power",
+        "description": "Enables error detection for the Power over Ethernet (PoE) error-disabled cause. Note This keyword is supported only on switches with PoE ports."
+      },
+      {
+        "name": "link-flap",
+        "description": "Enables error detection for link-state flapping."
+      },
+      {
+        "name": "loopback",
+        "description": "Enables error detection for detected loopbacks."
+      },
+      {
+        "name": "pagp-flap",
+        "description": "Enables error detection for the Port Aggregation Protocol (PAgP) flap error-disabled cause."
+      },
+      {
+        "name": "pppoe-ia-rate-limit",
+        "description": "Enables error detection for the PPPoE Intermediate Agent rate-limit error-disabled cause."
+      },
+      {
+        "name": "psp shutdown vlan",
+        "description": "Enables error detection for protocol storm protection (PSP)."
+      },
+      {
+        "name": "security-violation shutdown",
+        "description": "Enables voice aware 802.1x security. vlan Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 299 Interface and Hardware Components errdisable detect cause"
+      },
+      {
+        "name": "sfp-config-mismatch",
+        "description": "Enables error detection on an SFP configuration mismatch."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "A cause (such as a link-flap or dhcp-rate-limit) is the reason for the error-disabled state.  When a cause is detected on an interface, the interface is placed in an error-disabled state, an operational state that is similar to a link-down state.  When a port is error-disabled, it is effectively shut down, and no traffic is sent or received on the port.",
+    "sourcePage": 299,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "errdisable recovery cause",
+    "context": null,
+    "detail": null,
+    "syntax": "port-mode-failure Enables the timer to recover from the port mode change failure error-disabled state. pppoe-ia-rate-limit Enables the timer to recover from the PPPoE IA rate limit error-disabled state. psecure-violation Enables the timer to recover from a port security violation disable state. psp Enables the timer to recover from the protocol storm protection (PSP) error-disabled state. security-violation Enables the timer to recover from an IEEE 802.1x-violation disabled state. sfp-config-mismatch Enables error detection on an SFP configuration mismatch. storm-control Enables the timer to recover from a storm control error. udld Enables the timer to recover from the UniDirectional Link Detection (UDLD) error-disabled state.",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Enables the timer to recover from all error-disabled causes."
+      },
+      {
+        "name": "arp-inspection",
+        "description": "Enables the timer to recover from the Address Resolution Protocol (ARP) inspection error-disabled state."
+      },
+      {
+        "name": "bpduguard",
+        "description": "Enables the timer to recover from the bridge protocol data unit (BPDU) guard error-disabled state."
+      },
+      {
+        "name": "channel-misconfig",
+        "description": "Enables the timer to recover from the EtherChannel misconfiguration error-disabled state."
+      },
+      {
+        "name": "dhcp-rate-limit",
+        "description": "Enables the timer to recover from the DHCP snooping error-disabled state."
+      },
+      {
+        "name": "dtp-flap",
+        "description": "Enables the timer to recover from the Dynamic Trunking Protocol (DTP) flap error-disabled state."
+      },
+      {
+        "name": "gbic-invalid",
+        "description": "Enables the timer to recover from an invalid Gigabit Interface Converter (GBIC) module error-disabled state. Note This error refers to an invalid small form-factor pluggable (SFP) error-disabled state."
+      },
+      {
+        "name": "inline-power",
+        "description": "Enables the timer to recover from the Power over Ethernet (PoE) error-disabled state. This keyword is supported only on switches with PoE ports."
+      },
+      {
+        "name": "link-flap",
+        "description": "Enables the timer to recover from the link-flap error-disabled state."
+      },
+      {
+        "name": "loopback",
+        "description": "Enables the timer to recover from a loopback error-disabled state."
+      },
+      {
+        "name": "mac-limit",
+        "description": "Enables the timer to recover from the mac limit error-disabled state."
+      },
+      {
+        "name": "pagp-flap",
+        "description": "Enables the timer to recover from the Port Aggregation Protocol (PAgP)-flap error-disabled state. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 303 Interface and Hardware Components errdisable recovery cause"
+      },
+      {
+        "name": "port-mode-failure",
+        "description": "Enables the timer to recover from the port mode change failure error-disabled state."
+      },
+      {
+        "name": "pppoe-ia-rate-limit",
+        "description": "Enables the timer to recover from the PPPoE IA rate limit error-disabled state."
+      },
+      {
+        "name": "psecure-violation",
+        "description": "Enables the timer to recover from a port security violation disable state."
+      },
+      {
+        "name": "psp",
+        "description": "Enables the timer to recover from the protocol storm protection (PSP) error-disabled state."
+      },
+      {
+        "name": "security-violation",
+        "description": "Enables the timer to recover from an IEEE 802.1x-violation disabled state."
+      },
+      {
+        "name": "sfp-config-mismatch",
+        "description": "Enables error detection on an SFP configuration mismatch."
+      },
+      {
+        "name": "storm-control",
+        "description": "Enables the timer to recover from a storm control error."
+      },
+      {
+        "name": "udld",
+        "description": "Enables the timer to recover from the UniDirectional Link Detection (UDLD) error-disabled state."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "A cause (such as all or BDPU guard) is defined as the reason that the error-disabled state occurred.  When a cause is detected on an interface, the interface is placed in the error-disabled state, an operational state similar to link-down state.  When a port is error-disabled, it is effectively shut down, and no traffic is sent or received on the port.",
+    "sourcePage": 303,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "hw-module beacon",
+    "context": null,
+    "detail": "Control the beacon LED on a device.",
+    "syntax": "Note This command description is not applicable to the C9500-32C, C9500-32QC, C9500-48Y4C, and C9500-24Y4C models of the Cisco Catalyst 9500 Series Switches. Cisco IOS XE Fuji 16.8.x and Earlier Releases hw-module beacon { off | on } switch switch-number Cisco IOS XE Fuji 16.9.1 and Later Releases hw-module beacon slot { switch-number | active | standby } { off | on }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "off",
+        "description": "Turns the beacon off."
+      },
+      {
+        "name": "on",
+        "description": "Turns the beacon on."
+      },
+      {
+        "name": "switch switch-number",
+        "description": "Specifies the switch to be controlled. • switch-number: Switch number. The range is from 1 to 8. slot {switch-number | active | standby} Specifies the switch to be controlled. • switch-number: Switch number. The range is from 1 to 8. • active: Specifies the active switch. • standby: Specifies the standby switch."
+      }
+    ],
+    "modes": [
+      "Global configuration (config) (Cisco IOS XE Fuji 16.8.x and Earlier Releases) Privileged EXEC (#) (Cisco IOS XE Fuji 16.9.1 and Later Releases)"
+    ],
+    "usageSummary": null,
+    "sourcePage": 305,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "hw-module beacon",
+    "context": null,
+    "detail": null,
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "rp {active | standby}",
+        "description": "Specifies the active or the standby Supervisor to be controlled."
+      },
+      {
+        "name": "slot slot-number",
+        "description": "Specifies the slot to be controlled."
+      },
+      {
+        "name": "ssd",
+        "description": "Specifies the SSD to be controlled."
+      },
+      {
+        "name": "off",
+        "description": "Turns the beacon off."
+      },
+      {
+        "name": "on",
+        "description": "Turns the beacon on."
+      },
+      {
+        "name": "status",
+        "description": "Displays the status of the beacon."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the hw-module beacon slot slot-number command to enable or disable the module slot LED and also check its status.  Blue indicates the slot LED is on and black indicates that it is off.  Use the hw-module beacon rp active {off | on} command to enable or disable the active supervisor LED.",
+    "sourcePage": 307,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "interface",
+    "context": null,
+    "detail": "Configure an interface.",
+    "syntax": "interface {Auto-Template interface-number | FortyGigabitEthernet switch-number/slot-number/port-number | GigabitEthernet switch-number/slot-number/port-number | Group VI Group VI interface number | Internal Interface Internal Interface number | Loopback interface-number Null interface-number Port-channel interface-number TenGigabitEthernet switch-number/slot-number/port-number Tunnel interface-number Vlan interface-number }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Auto-Template interface-number",
+        "description": "Enables you to configure a auto-template interface. The range is from 1 to 999."
+      },
+      {
+        "name": "FortyGigabitEthernet",
+        "description": "Enables you to configure a 40-Gigabit Ethernet"
+      },
+      {
+        "name": "switch-number/slot-number/port-number",
+        "description": "interface. • switch-number — Switch ID. The range is from 1 to 8. • slot-number — Slot number. Value is 1. • port-number — Port number. The range is from 1 to 2."
+      },
+      {
+        "name": "GigabitEthernet",
+        "description": "Enables you to configure a Gigabit Ethernet IEEE"
+      },
+      {
+        "name": "switch-number/slot-number/port-number",
+        "description": "802.3z interface. • switch-number — Switch ID. The range is from 1 to 8. • slot-number — Slot number. The range is from 0 to 1. • port-number — Port number. The range is from 1 to 48. Group VI Group VI interface number Enables you to configure a Group VI interface. The range is from 0 to 9."
+      },
+      {
+        "name": "Internal Interface Internal Interface",
+        "description": "Enables you to configure an internal interface."
+      },
+      {
+        "name": "Loopback interface-number",
+        "description": "Enables you to configure a loopback interface. The range is from 0 to 2147483647."
+      },
+      {
+        "name": "Null interface-number",
+        "description": "Enables you to configure a null interface. The default value is 0."
+      },
+      {
+        "name": "Port-channel interface-number",
+        "description": "Enables you to configure a port-channel interface. The range is from 1 to 128. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 308 Interface and Hardware Components interface"
+      },
+      {
+        "name": "TenGigabitEthernet",
+        "description": "Enables you to configure a 10-Gigabit Ethernet"
+      },
+      {
+        "name": "switch-number/slot-number/port-number",
+        "description": "interface. • switch-number — Switch ID. The range is from 1 to 8. • slot-number — Slot number. The range is from 0 to 1. • port-number — Port number. The range is from 1 to 24 and 37 to 48 ."
+      },
+      {
+        "name": "Tunnel interface-number",
+        "description": "Enables you to configure a tunnel interface. The range is from 0 to 2147483647."
+      },
+      {
+        "name": "Vlan interface-number",
+        "description": "Enables you to configure a switch VLAN. The range is from 1 to 4094."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "You can not use the \"no\" form of this command.",
+    "sourcePage": 308,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "interface range",
+    "context": null,
+    "detail": "Configure an interface range.",
+    "syntax": "interface range {Auto-Template interface-number | FortyGigabitEthernet switch-number/slot-number/port-number | GigabitEthernet switch-number/slot-number/port-number | Group VI Group VI interface number | Internal Interface Internal Interface number | Loopback interface-number Null interface-number Port-channel interface-number TenGigabitEthernet switch-number/slot-number/port-number Tunnel interface-number Vlan interface-number }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Auto-Template interface-number",
+        "description": "Enables you to configure a auto-template interface. The range is from 1 to 999."
+      },
+      {
+        "name": "FortyGigabitEthernet",
+        "description": "Enables you to configure a 40-Gigabit Ethernet"
+      },
+      {
+        "name": "switch-number/slot-number/port-number",
+        "description": "interface. • switch-number — Switch ID. The range is from 1 to 8. • slot-number — Slot number. Value is 1. • port-number — Port number. The range is from 1 to 2."
+      },
+      {
+        "name": "GigabitEthernet",
+        "description": "Enables you to configure a Gigabit Ethernet IEEE"
+      },
+      {
+        "name": "switch-number/slot-number/port-number",
+        "description": "802.3z interface. • switch-number — Switch ID. The range is from 1 to 8. • slot-number — Slot number. The range is from 0 to 1. • port-number — Port number. The range is from 1 to 48. Group VI Group VI interface number Enables you to configure a Group VI interface. The range is from 0 to 9."
+      },
+      {
+        "name": "Internal Interface Internal Interface",
+        "description": "Enables you to configure an internal interface."
+      },
+      {
+        "name": "Loopback interface-number",
+        "description": "Enables you to configure a loopback interface. The range is from 0 to 2147483647."
+      },
+      {
+        "name": "Null interface-number",
+        "description": "Enables you to configure a null interface. The default value is 0."
+      },
+      {
+        "name": "Port-channel interface-number",
+        "description": "Enables you to configure a port-channel interface. The range is from 1 to 128. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 310 Interface and Hardware Components interface range"
+      },
+      {
+        "name": "TenGigabitEthernet",
+        "description": "Enables you to configure a 10-Gigabit Ethernet"
+      },
+      {
+        "name": "switch-number/slot-number/port-number",
+        "description": "interface. • switch-number — Switch ID. The range is from 1 to 8. • slot-number — Slot number. The range is from 0 to 1. • port-number — Port number. The range is from 1 to 24 and 37 to 48 ."
+      },
+      {
+        "name": "Tunnel interface-number",
+        "description": "Enables you to configure a tunnel interface. The range is from 0 to 2147483647."
+      },
+      {
+        "name": "Vlan interface-number",
+        "description": "Enables you to configure a switch VLAN. The range is from 1 to 4094."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 310,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip mtu",
+    "context": null,
+    "detail": "Set the IP maximum transmission unit (MTU) size of routed packets on all routed ports of the switch or switch stack.",
+    "syntax": "ip mtu bytes",
+    "noForm": "no ip mtu bytes",
+    "params": [
+      {
+        "name": "bytes",
+        "description": "MTU size, in bytes. The range is from 68 up to the system MTU value (in bytes)."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The upper limit of the IP value is based on the switch or switch stack configuration and refers to the currently applied system MTU value.  For more information about setting the MTU sizes, see the system mtu global configuration command.  To return to the default IP MTU setting, you can apply the default ip mtu command or the no ip mtu command on the interface.",
+    "sourcePage": 312,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 mtu",
+    "context": null,
+    "detail": "Set the IPv6 maximum transmission unit (MTU) size of routed packets on all routed ports of the switch or switch stack.",
+    "syntax": "ipv6 mtu bytes",
+    "noForm": "no ipv6 mtu bytes",
+    "params": [
+      {
+        "name": "bytes",
+        "description": "MTU size, in bytes. The range is from 1280 up to the system MTU value (in bytes)."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The upper limit of the IPv6 MTU value is based on the switch or switch stack configuration and refers to the currently applied system MTU value.  For more information about setting the MTU sizes, see the system mtu global configuration command.  To return to the default IPv6 MTU setting, you can apply the default ipv6 mtu command or the no ipv6 mtu command on the interface.",
+    "sourcePage": 313,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "lldp",
+    "context": "interface configuration",
+    "detail": "Enable Link Layer Discovery Protocol (LLDP) on an interface.",
+    "syntax": "lldp {med-tlv-select tlv | receive | tlv-select power-management | transmit}",
+    "noForm": "no lldp {med-tlv-select tlv | receive | tlv-select power-management | transmit}",
+    "params": [
+      {
+        "name": "med-tlv-select",
+        "description": "Selects an LLDP Media Endpoint Discovery (MED) time-length-value (TLV) element to send."
+      },
+      {
+        "name": "tlv",
+        "description": "String that identifies the TLV element. Valid values are the following: • inventory-management— LLDP MED Inventory Management TLV. • location— LLDP MED Location TLV. • network-policy— LLDP MED Network Policy TLV. • power-management— LLDP MED Power Management TLV."
+      },
+      {
+        "name": "receive",
+        "description": "Enables the interface to receive LLDP transmissions."
+      },
+      {
+        "name": "tlv-select",
+        "description": "Selects the LLDP TLVs to send."
+      },
+      {
+        "name": "power-management",
+        "description": "Sends the LLDP Power Management TLV."
+      },
+      {
+        "name": "transmit",
+        "description": "Enables LLDP transmission on the interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "This command is supported on 802. 1 media types.  If the interface is configured as a tunnel port, LLDP is automatically disabled.",
+    "sourcePage": 314,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "link debounce timer",
+    "context": null,
+    "detail": "To configure debounce timer on a port, use the link debounce [time debounce-time]",
+    "syntax": "link debounce time debounce_time",
+    "noForm": null,
+    "params": [
+      {
+        "name": "debounce_time",
+        "description": "Sets the debounce time in miliseconds. The range is from 120 to 10000."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 316,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mode",
+    "context": "power-stack configuration",
+    "detail": "Configure power stack mode for the power stack.",
+    "syntax": "mode {power-shared | redundant} [strict]",
+    "noForm": "no mode",
+    "params": [
+      {
+        "name": "power-shared",
+        "description": "Sets the power stack to operate in power-shared mode. This is the default."
+      },
+      {
+        "name": "redundant",
+        "description": "Sets the power stack to operate in redundant mode. The largest power supply is removed from the power pool to be used as backup power in case one of the other power supplies fails."
+      },
+      {
+        "name": "strict",
+        "description": "(Optional) Configures the power stack mode to run a strict power budget. The stack power needs cannot exceed the available power."
+      }
+    ],
+    "modes": ["Power-stack configuration (config-stackpower)"],
+    "usageSummary": "This command is available only on switch stacks running the IP Base or IP Services feature set.  To access power-stack configuration mode, enter the stack-power stack power stack name global configuration command.  Entering the no mode command sets the switch to the defaults of power-shared and non-strict mode.",
+    "sourcePage": 317,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitoring",
+    "context": null,
+    "detail": "Enable monitoring of all optical transceivers and to specify the time period for monitoring the transceivers.",
+    "syntax": "monitoring [ interval seconds ]",
+    "noForm": "no monitoring [interval]",
+    "params": [
+      {
+        "name": "interval",
+        "description": "(Optional) Specifies the time interval for monitoring optical transceivers. seconds The range is from 300 to 3600 seconds, and the default interval time is 600 seconds."
+      }
+    ],
+    "modes": ["Transceiver type configuration (config-xcvr-type)"],
+    "usageSummary": "You need digital optical monitoring (DOM) feature and transceiver module compatibility information to configure the monitoring command.  Refer to the compatibility matrix to get the lists of Cisco platforms and minimum required software versions to support Gigabit Ethernet transceiver modules.  Gigabit Ethernet Transceivers transmit and receive Ethernet frames at a rate of a gigabit per second, as defined by the IEEE 802.",
+    "sourcePage": 319,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "network-policy",
+    "context": null,
+    "detail": "Apply a network-policy profile to an interface.",
+    "syntax": "network-policy profile-number",
+    "noForm": "no network-policy",
+    "params": [
+      {
+        "name": "profile-number",
+        "description": "The network-policy profile number to apply to the interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Use the network-policy profile number interface configuration command to apply a profile to an interface.  You cannot apply the switchport voice vlan command on an interface if you first configure a network-policy profile on it.  However, if switchport voice vlan vlan-id is already configured on the interface, you can apply a network-policy profile on the interface.",
+    "sourcePage": 320,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "network-policy profile",
+    "context": "global configuration",
+    "detail": "Create a network-policy profile and to enter network-policy configuration mode.",
+    "syntax": "network-policy profile profile-number",
+    "noForm": "no network-policy profile profile-number",
+    "params": [
+      {
+        "name": "profile-number",
+        "description": "Network-policy profile number. The range is 1 to 4294967295."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the network-policy profile global configuration command to create a profile and to enter network-policy profile configuration mode.  To return to privileged EXEC mode from the network-policy profile configuration mode, enter the exit command.  When you are in network-policy profile configuration mode, you can create the profile for voice and voice signaling by specifying the values for VLAN, class of service (CoS), differentiated services code point (DSCP), and tagging mode.",
+    "sourcePage": 321,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "platform usb disable",
+    "context": null,
+    "detail": "Disable all the USB ports on a device.",
+    "syntax": "platform usb disable",
+    "noForm": "no platform usb disable",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The platform usb disable command disables all the USB ports on both stacked and standalone devices, but not Bluetooth dongles connected to USB ports.  This command also disables all USB ports in ROMMON, which can be reenabled by using the no platform usb disable command in global configuration mode.",
+    "sourcePage": 322,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-settings",
+    "context": null,
+    "detail": "Configure port settings for an interface.",
+    "syntax": "port-settings { speed { 10 | 100 | 1000 | auto | auto-list } } { duplex { auto | full | half } } { autoneg { disable | enable } } | full | half } } { autoneg { disable | enable } }",
+    "noForm": "no port-settings port-settings { speed { 10 | 100 | 1000 | auto | auto-list } } { duplex { auto",
+    "params": [
+      {
+        "name": "speed",
+        "description": "Configures the speed for an interface."
+      },
+      {
+        "name": "10",
+        "description": "Configures the interface to transmit at 10 Mbps."
+      },
+      {
+        "name": "100",
+        "description": "Configures the interface to transmit at 100 Mbps."
+      },
+      {
+        "name": "1000",
+        "description": "Configures the interface to transmit at 1000 Mbps."
+      },
+      {
+        "name": "auto",
+        "description": "Enables auto speed configuration. This keyword autonegotiates speed with the connected device."
+      },
+      {
+        "name": "auto-list",
+        "description": "Advertises a subset of speeds for auto-negotiation. Enter the auto-list keyword with a specific speed to enable the interface to autonegotiate only at the specified speed."
+      },
+      {
+        "name": "duplex",
+        "description": "Configures duplex operation on an interface."
+      },
+      {
+        "name": "auto",
+        "description": "Enable auto-duplex configuration."
+      },
+      {
+        "name": "full",
+        "description": "Specifies full-duplex operation."
+      },
+      {
+        "name": "half",
+        "description": "Specifies half-duplex operation."
+      },
+      {
+        "name": "autoneg",
+        "description": "Enables autonegotiation. The interface automatically operates at half-duplex or full-duplex mode depending on environmental factors, such as the type of media and the transmission speeds for the peer routers, hubs, and switches used in the network configuration. The autoneg keyword also enables autonegociation on speed configuration and flow-control."
+      },
+      {
+        "name": "disable",
+        "description": "Disables auto negotiation."
+      },
+      {
+        "name": "enable",
+        "description": "Enables autonegotiation."
+      }
+    ],
+    "modes": [
+      "Interface configuration (config-if)",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 323 Interface and Hardware Components port-settings"
+    ],
+    "usageSummary": "Use the port-settings command to simultaneously or separately configure the speed, duplex, and auto negotiation for an interface.  This command can configure port settings for an interface, an interface range, or a port-channel interface.  When using a single command to configure multiple parameters of the port-settings command, the order must be, speed, duplex, and autoneg.",
+    "sourcePage": 323,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "power-priority",
+    "context": null,
+    "detail": "Configure Cisco StackPower power-priority values for a switch in a power stack and for its high-priority and low-priority PoE ports.",
+    "syntax": "power-priority {high value | low value | switch value}",
+    "noForm": "no power-priority {high | low | switch}",
+    "params": [
+      {
+        "name": "high value",
+        "description": "Sets the power priority for the ports configured as high-priority ports. The range is 1 to 27, with 1 as the highest priority. The high value must be lower than the value set for the low-priority ports and higher than the value set for the switch."
+      },
+      {
+        "name": "low value",
+        "description": "Sets the power priority for the ports configured as low-priority ports. The range is 1 to 27. The low value must be higher than the value set for the high-priority ports and the value set for the switch."
+      },
+      {
+        "name": "switch",
+        "description": "Sets the power priority for the switch. The range is 1 to 27. The switch value must be lower"
+      },
+      {
+        "name": "value",
+        "description": "than the values set for the low and high-priority ports."
+      }
+    ],
+    "modes": ["Switch stack-power configuration (config-stack)"],
+    "usageSummary": "To access switch stack-power configuration mode, enter the stack-power switch switch-number global configuration command.  Cisco StackPower power-priority values determine the order for shutting down switches and ports when power is lost and load shedding must occur.  Priority values are from 1 to 27; the highest numbers are shut down first.",
+    "sourcePage": 327,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "power supply",
+    "context": null,
+    "detail": "Configure and manage the internal power supplies on a switch.",
+    "syntax": "power supply stack-member-number slot {A | B} {off | on}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "stack-member-number",
+        "description": "Stack member number for which to configure the internal power supplies. The range is 1 to 9, depending on the number of switches in the stack. This parameter is available only on stacking-capable switches."
+      },
+      {
+        "name": "slot",
+        "description": "Selects the switch power supply to set."
+      },
+      {
+        "name": "A",
+        "description": "Selects the power supply in slot A."
+      },
+      {
+        "name": "B",
+        "description": "Selects the power supply in slot B. Note Power supply slot B is the closest slot to the outer edge of the switch."
+      },
+      {
+        "name": "off",
+        "description": "Sets the switch power supply to off."
+      },
+      {
+        "name": "on",
+        "description": "Sets the switch power supply to on."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The power supply command applies to a switch or to a switch stack where all switches are the same platform.  In a switch stack with the same platform switches, you must specify the stack member before entering the slot {A | B} off or on keywords.  To return to the default setting, use the power supply stack-member-number on command.",
+    "sourcePage": 329,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "power supply autoLC shutdown",
+    "context": null,
+    "detail": "Enable automatic shutdown control on linecards.",
+    "syntax": "power supply autoLC shutdown",
+    "noForm": "no power supply autoLC shutdown",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 331,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request tech-support",
+    "context": null,
+    "detail": "Generate an archive of tech-support data and system report files in a report.",
+    "syntax": "request tech-support",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The request tech-support command generates an archive that is a combination of the tech support file and the system report files.  The command displays the generated file path from where you can access the archive file.  The tech support file is the output of the show tech-support command.",
+    "sourcePage": 332,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "shell trigger",
+    "context": null,
+    "detail": "Create an event trigger.",
+    "syntax": "shell trigger identifier description",
+    "noForm": "no shell trigger identifier description",
+    "params": [
+      {
+        "name": "identifier",
+        "description": "Specifies the event trigger identifier. The identifier should have no spaces or hyphens between words."
+      },
+      {
+        "name": "description",
+        "description": "Specifies the event trigger description text."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use this command to create user-defined event triggers for use with the macro auto device and the macro auto execute commands.  To support dynamic device discovery when using IEEE 802. 1x authentication, you need to configure the RADIUS authentication server to support the Cisco attribute-value pair: auto-smart-port=event trigger.",
+    "sourcePage": 333,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show beacon all",
+    "context": null,
+    "detail": "Display the status of beacon LED on the device.",
+    "syntax": "show beacon {rp {active |standby}|slot slot-number } |all}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "rp {active | standby}",
+        "description": "Specifies the active or the standby Switch whose beacon LED status is to be displayed."
+      },
+      {
+        "name": "slot slot-num",
+        "description": "Specifies the slot whose beacon LED status is to be displayed."
+      },
+      {
+        "name": "all",
+        "description": "Displays the status of all beacon LEDs."
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS XE Fuji 16.9.1 This command was introduced."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC (#)",
+      "Usage Guidelines Use the command show beacon all to know the status of all beacon LEDs.",
+      "Sample output of show beacon all command. Device#show beacon all Switch# Beacon Status ----------------------- *1 OFF",
+      "Sample output of show beacon rp command. Device#show beacon rp active Switch# Beacon Status ----------------------- *1 OFF",
+      "Device#show beacon slot 1 Switch# Beacon Status ----------------------- *1 OFF",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 334 Interface and Hardware Components show environment"
+    ],
+    "usageSummary": "Use the command show beacon all to know the status of all beacon LEDs.  Sample output of show beacon all command.  Device#show beacon all Switch# Beacon Status ----------------------- *1 OFF Sample output of show beacon rp command.",
+    "sourcePage": 334,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show environment",
+    "context": null,
+    "detail": "Display information about the sensors, and status of fan and power supply.",
+    "syntax": "show environment { all | counters | fan-air-direction | history | location | sensor | status | summary | table }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays the list of sensors."
+      },
+      {
+        "name": "counters",
+        "description": "(Optional) Displays the operational counters of the sensors."
+      },
+      {
+        "name": "fan-air-direction",
+        "description": "(Optional) Displays information of the fan tray and power supply fan air direction."
+      },
+      {
+        "name": "history",
+        "description": "(Optional) Displays history of the sensor state changes."
+      },
+      {
+        "name": "location",
+        "description": "(Optional) Displays the sensors by location."
+      },
+      {
+        "name": "sensor",
+        "description": "(Optional) Displays sensor summary."
+      },
+      {
+        "name": "status",
+        "description": "(Optional) Displays the power supply and fan tray status of the switch."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays a summary of all the environment monitoring sensors."
+      },
+      {
+        "name": "table",
+        "description": "(Optional) Displays sensor state table."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "Use the show environment EXEC command to display the information for the switch being accessed.",
+    "sourcePage": 335,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show errdisable detect",
+    "context": null,
+    "detail": "Display error-disabled detection status.",
+    "syntax": "show errdisable detect",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "A gbic-invalid error reason refers to an invalid small form-factor pluggable (SFP) module.  The error-disable reasons in the command output are listed in alphabetical order.  The mode column shows how error-disable is configured for each feature.",
+    "sourcePage": 337,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show errdisable recovery",
+    "context": null,
+    "detail": "Display the error-disabled recovery timer information.",
+    "syntax": "show errdisable recovery",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "A gbic-invalid error-disable reason refers to an invalid small form-factor pluggable (SFP) module interface.",
+    "sourcePage": 339,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show idprom tan",
+    "context": null,
+    "detail": "Display the Identification Programmable Read-Only Memory (IDPROM) top assembly part number and revision number.",
+    "syntax": "show idprom tan [ switch [switch-num] ]",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 340,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip interface",
+    "context": null,
+    "detail": "Display the usability status of interfaces configured for IP.",
+    "syntax": "show ip interface [type number] [brief]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "type",
+        "description": "(Optional) Interface type."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) Interface number."
+      },
+      {
+        "name": "brief",
+        "description": "(Optional) Displays a summary of the usability status information for each interface. Note The output of the show ip interface brief command displays information of all the available interfaces whether or not the corresponding network module for these interfaces are connected. These interfaces can be configured if the network module is connected. Run the show interface status command to see which network modules are connected. This is not applicable for Cisco Catalyst 9500 Series High-Performance switches."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The Cisco IOS software automatically enters a directly connected route in the routing table if the interface is usable (which means that it can send and receive packets).  If an interface is not usable, the directly connected routing entry is removed from the routing table.  Removing the entry lets the software use dynamic routing protocols to determine backup routes to the network, if any.",
+    "sourcePage": 341,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces",
+    "context": null,
+    "detail": "Display the administrative and operational status of all interfaces or for a specified interface.",
+    "syntax": "show interfaces [ interface-id | vlan vlan-id ] [ accounting | capabilities [ module number ] | description | etherchannel | flowcontrol | link [ module number ] | private-vlan mapping | pruning | stats | status [ err-disabled | inactive ] | trunk ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the interface. Valid interfaces include physical ports (including type, stack member for stacking-capable switches, module, and port number) and port channels. The port channel range is 1 to 128. Note This command does not report output drops for Catalyst 9500X Series Switches."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) VLAN identification. The range is 1 to 4094."
+      },
+      {
+        "name": "accounting",
+        "description": "(Optional) Displays accounting information on the interface, including active protocols and input and output packets and octets. Note The display shows only packets processed in software; hardware-switched packets do not appear."
+      },
+      {
+        "name": "capabilities",
+        "description": "(Optional) Displays the capabilities of all interfaces or the specified interface, including the features and options that you can configure on the interface. Though visible in the command line help, this option is not available for VLAN IDs."
+      },
+      {
+        "name": "module number",
+        "description": "(Optional) Displays capabilities of all interfaces on the switch or specified stack member. The range is 1 to 9. This option is not available if you entered a specific interface ID."
+      },
+      {
+        "name": "description",
+        "description": "(Optional) Displays the administrative status and description set for interfaces. Note The output of the show interfaces description command displays information of all the available interfaces whether or not the corresponding network module for these interfaces are connected. These interfaces can be configured if the network module is connected. Run the show interface status command to see which network modules are connected. This is not applicable for Cisco Catalyst 9500 Series High-Performance switches. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 346 Interface and Hardware Components show interfaces"
+      },
+      {
+        "name": "etherchannel",
+        "description": "(Optional) Displays interface EtherChannel information."
+      },
+      {
+        "name": "flowcontrol",
+        "description": "(Optional) Displays interface flow control information."
+      },
+      {
+        "name": "link [modulenumber]",
+        "description": "(Optional) Displays the up time and down time of the interface."
+      },
+      {
+        "name": "private-vlan mapping",
+        "description": "(Optional) Displays private-VLAN mapping information for the VLAN switch virtual interfaces (SVIs). This keyword is not available if the switch is running the LAN base feature set."
+      },
+      {
+        "name": "pruning",
+        "description": "(Optional) Displays trunk VTP pruning information for the interface."
+      },
+      {
+        "name": "stats",
+        "description": "(Optional) Displays the input and output packets by switching the path for the interface."
+      },
+      {
+        "name": "status",
+        "description": "(Optional) Displays the status of the interface. A status of unsupported in the Type field means that a non-Cisco small form-factor pluggable (SFP) module is inserted in the module slot."
+      },
+      {
+        "name": "err-disabled",
+        "description": "(Optional) Displays interfaces in an error-disabled state."
+      },
+      {
+        "name": "inactive",
+        "description": "(Optional) Displays interfaces in an inactive state."
+      },
+      {
+        "name": "trunk",
+        "description": "(Optional) Displays interface trunk information. If you do not specify an interface, only information for active trunking ports appears."
+      },
+      {
+        "name": "Note",
+        "description": "Though visible in the command-line help strings, the crb, fair-queue, irb, mac-accounting, precedence, random-detect, rate-limit, and shape keywords are not supported."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The show interfaces capabilities command with different keywords has these results: • Use the show interface capabilities module number command to display the capabilities of all interfaces on that switch in the stack.  If there is no switch with that module number in the stack, there is no output.  • Use the show interfaces interface-id capabilities to display the capabilities of the specified interface.",
+    "sourcePage": 346,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces counters",
+    "context": null,
+    "detail": "Display various counters for the switch or for a specific interface.",
+    "syntax": "show interfaces [ interface-id ] counters [ broadcast | errors | etherchannel | module member-number | multicast | protocol | trunk | unicast ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the physical interface, including type, stack member (stacking-capable switches only) module, and port number."
+      },
+      {
+        "name": "broadcast",
+        "description": "(Optional) Displays interface broadcast suppression discard counters."
+      },
+      {
+        "name": "errors",
+        "description": "(Optional) Displays error counters."
+      },
+      {
+        "name": "etherchannel",
+        "description": "(Optional) Displays EtherChannel counters, including octets, broadcast packets, multicast packets, and unicast packets received and sent."
+      },
+      {
+        "name": "multicast",
+        "description": "(Optional) Displays interface multicast suppression discard counters. module member-number (Optional) Displays counters for the specified member."
+      },
+      {
+        "name": "protocol status",
+        "description": "(Optional) Displays the status of protocols enabled on interfaces."
+      },
+      {
+        "name": "unicast",
+        "description": "(Optional) Displays interface unicast suppression discard counters."
+      },
+      {
+        "name": "trunk",
+        "description": "(Optional) Displays trunk counters."
+      },
+      {
+        "name": "Note",
+        "description": "Though visible in the command-line help string, the vlan vlan-id keyword is not supported."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "If you do not enter any keywords, all counters for all interfaces are included.",
+    "sourcePage": 351,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces switchport",
+    "context": null,
+    "detail": "Display the administrative and operational status of a switching (nonrouting) port, including port blocking and port protection settings.",
+    "syntax": "show interfaces [interface-id] switchport [module number]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the interface. Valid interfaces include physical ports (including type, stack member for stacking-capable switches, module, and port number) and port channels. The port channel range is 1 to 48. module number (Optional) Displays switchport configuration of all interfaces on the switch or specified stack member. The range is 1 to 9. This option is not available if you entered a specific interface ID."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the show interface switchport module number command to display the switch port characteristics of all interfaces on that switch in the stack.  If there is no switch with that module number in the stack, there is no output.  This is an example of output from the show interfaces switchport command for a port.",
+    "sourcePage": 354,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces transceiver",
+    "context": null,
+    "detail": "Display the physical properties of a small form-factor pluggable (SFP) module interface.",
+    "syntax": "show interfaces [interface-id] transceiver [detail | module number | properties | supported-list | threshold-table]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the physical interface, including type, stack member (stacking-capable switches only) module, and port number."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays calibration properties, including high and low numbers and any alarm information for any Digital Optical Monitoring (DoM)-capable transceiver if one is installed in the switch."
+      },
+      {
+        "name": "module number",
+        "description": "(Optional) Limits display to interfaces on module on the switch. This option is not available if you entered a specific interface ID."
+      },
+      {
+        "name": "properties",
+        "description": "(Optional) Displays speed, duplex, and inline power settings on an interface."
+      },
+      {
+        "name": "supported-list",
+        "description": "(Optional) Lists all supported transceivers. threshold-table (Optional) Displays alarm and warning threshold table."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 356,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show inventory",
+    "context": null,
+    "detail": "Display the product inventory listing of all Cisco products installed in the networking device.",
+    "syntax": "show inventory {fru | oid | raw} [entity] fru (Optional) Retrieves information about all Field Replaceable Units (FRUs) installed in the Cisco networking device. oid (Optional) Retrieves information about the vendor specific hardware registration identifier referred to as object identifier (OID). The OID identifies the MIB object’s location in the MIB hierarchy, and provides a means of accessing the MIB object in a network of managed devices raw (Optional) Retrieves information about all Cisco products referred to as entities installed in the Cisco networking device, even if the entities do not have a product ID (PID) value, a unique device identifier (UDI), or other physical identification. entity (Optional) Name of a Cisco entity (for example, chassis, backplane, module, or slot). A quoted string may be used to display very specific UDI information; for example “sfslot 1” will display the UDI information for slot 1 of an entity named sfslot.",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The show inventory command retrieves and displays inventory information about each Cisco product in the form of a UDI.  The UDI is a combination of three separate data elements: a product identifier (PID), a version identifier (VID), and the serial number (SN).  The PID is the name by which the product can be ordered; it has been historically called the “Product Name” or “Part Number.",
+    "sourcePage": 360,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show memory platform",
+    "context": null,
+    "detail": "Display memory statistics of a platform.",
+    "syntax": "show memory platform [compressed-swap | information | page-merging]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "compressed-swap",
+        "description": "(Optional) Displays platform memory compressed-swap information."
+      },
+      {
+        "name": "information",
+        "description": "(Optional) Displays general information about the platform."
+      },
+      {
+        "name": "page-merging",
+        "description": "(Optional) Displays platform memory page-merging information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Free memory is accurately computed and displayed in the Free Memory field of the command output.",
+    "sourcePage": 366,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show module",
+    "context": null,
+    "detail": "To display module information such as switch number, model number, serial number, hardware revision number, software version, MAC address and so on, use this command in user EXEC or privileged EXEC mode.",
+    "syntax": "show module [switch-num]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch-num",
+        "description": "(Optional) Number of the switch."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "Entering the show module command without the switch-num argument is the same as entering the show module all command.  Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 369,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mgmt-infra trace messages ilpower",
+    "context": null,
+    "detail": "Display inline power messages within a trace buffer.",
+    "syntax": "show mgmt-infra trace messages ilpower [switch stack-member-number]",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 370,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mgmt-infra trace messages ilpower-ha",
+    "context": null,
+    "detail": "Display inline power high availability messages within a trace buffer.",
+    "syntax": "show mgmt-infra trace messages ilpower-ha [switch stack-member-number]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch stack-member-number",
+        "description": "(Optional) Specifies the stack member number for which to display inline power messages within a trace buffer."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 372,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mgmt-infra trace messages platform-mgr-poe",
+    "context": null,
+    "detail": "Display platform manager Power over Ethernet (PoE) messages within a trace buffer.",
+    "syntax": "show mgmt-infra trace messages platform-mgr-poe [switch stack-member-number]",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 373,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show network-policy profile",
+    "context": null,
+    "detail": "Display the network-policy profiles.",
+    "syntax": "show network-policy profile [profile-number] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed status and statistics information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 374,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware bluetooth",
+    "context": null,
+    "detail": "Display information about Bluetooth interface.",
+    "syntax": "show platform hardware bluetooth",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The show platform hardware bluetooth command is to be used when an external USB Bluetooth dongle is connected on the device.",
+    "sourcePage": 375,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed switch forward",
+    "context": null,
+    "detail": "Display device-specific hardware information.",
+    "syntax": "show platform hardware fed switch {switch_num | active | standby} forward summary",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch_num |",
+        "description": "The switch for which you want to display information. You have the following"
+      },
+      {
+        "name": "active | standby }",
+        "description": "options : • switch_num—ID of the switch. • active—Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available."
+      },
+      {
+        "name": "forward summary",
+        "description": "Displays packet forwarding information. Note Support for the keyword summary has been discontinued in the Cisco IOS XE Everest 16.6.1 release and later releases."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Do not use this command unless a technical support representative asks you to.  Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  Fields displayed in the command output are explained below.",
+    "sourcePage": 376,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed switch forward interface",
+    "context": null,
+    "detail": "Debug forwarding information and to trace the packet path in the hardware forwarding plane.",
+    "syntax": "show platform hardware fed switch {switch_num | active | standby} forward interface interface-type interface-number source-mac-address destination-mac-address {protocol-number | arp | cos | ipv4 | ipv6 | mpls} show platform hardware fed switch {switch_num | active | standby} forward interface interface-type interface-number pcap pcap-file-name number packet-number data show platform hardware fed switch {switch_num | active | standby} forward interface interface-type interface-number vlan vlan-id source-mac-address destination-mac-address {protocol-number | arp | cos | ipv4 | ipv6 | mpls}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "| standby }",
+        "description": "should be available on this switch. You have the following options : • switch_num—ID of the switch on which the ingress port is present. • active—indicates the active switch on which the the ingress port is present. • standby—indicates the standby switch on which the ingress port is present. Note This keyword is not supported."
+      },
+      {
+        "name": "interface interface-type",
+        "description": "The input interface on which packet trace is simulated. interface-number"
+      },
+      {
+        "name": "source-mac-address",
+        "description": "The source MAC address of the packet you want to simulate."
+      },
+      {
+        "name": "destination-mac-address",
+        "description": "The MAC address of the destination interface in hexadecimal format."
+      },
+      {
+        "name": "protocol-number",
+        "description": "The number assigned to any L3 protocol."
+      },
+      {
+        "name": "arp",
+        "description": "The Address Resolution Protocol (ARP) parameters."
+      },
+      {
+        "name": "ipv4",
+        "description": "The IPv4 packet parameters."
+      },
+      {
+        "name": "ipv6",
+        "description": "The IPv6 packet parameters."
+      },
+      {
+        "name": "mpls",
+        "description": "The Multiprotocol Label Switching (MPLS) label parameters. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 379 Interface and Hardware Components show platform hardware fed switch forward interface"
+      },
+      {
+        "name": "cos",
+        "description": "The class of service (CoS) number from 0 to 7 to set priority."
+      },
+      {
+        "name": "pcap pcap-file-name",
+        "description": "Name of the pcap file in internal flash (flash:). Ensure that the file already exists in flash:."
+      },
+      {
+        "name": "number packet-number",
+        "description": "Specifies the packet number in the pcap file."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "VLAN id of the dot1q header in the simulated packet. The range is 1 to 4096."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Do not use this command unless a technical support representative asks you to.  Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  This command supports the following packet types: • Non-IP packets with any L3 protocol • ARP packets • IPv4 packets with any L4 protocol • IPv4 packets with TCP/UDP/IGMP/ICMP/SCTP payload • VxLAN packets • MPLS packets with up to 3 Labels and meta data • MPLS packets with IPv4/IPv6 payload • IPv6 packets with TCP/UDP/IGMP/ICMP/SCTP payload In a stack environment, you can trace packets across the stack irrespective of the number of stack members and topology.",
+    "sourcePage": 379,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed switch forward last summary",
+    "context": null,
+    "detail": "Display a summary of packet tracing data from a switch or switches in a stack.",
+    "syntax": "show platform hardware fed switch {switch_number | active | standby} forward last summary",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch_number |",
+        "description": "The switch on which you want to schedule a packet capture for a port. You"
+      },
+      {
+        "name": "active | standby }",
+        "description": "have the following options : • switch_num—ID of the switch on which the ingress port is present. • active—indicates the active switch on which the the ingress port is present. • standby—indicates the standby switch on which the ingress port is present. Note This keyword is not supported."
+      },
+      {
+        "name": "forward last summary",
+        "description": "Displays packet forwarding information."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Do not use this command unless a technical support representative asks you to.  Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  With Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 382,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed switch fwd-asic counters tla",
+    "context": null,
+    "detail": "Display the register information of a counter from the forwarding ASIC.",
+    "syntax": "show platform hardware fed switch {switch_num | active | standby} fwd-asic counters tla tla_counter {detail | drop | statistics}[asic asic_num]output location:filename",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch_num",
+        "description": "The switch for which you want to display information. You have the following"
+      },
+      {
+        "name": "| active | standby",
+        "description": "options : } • switch_num: ID of the switch. • active: Displays information relating to the active switch. • standby: Displays information relating to the standby switch, if available. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 385 Interface and Hardware Components show platform hardware fed switch fwd-asic counters tla"
+      },
+      {
+        "name": "tlatla_counter",
+        "description": "tla_counter can be any of the following Three Letter Acronym (TLA) counters: • AQM Active Queue Management • ASE ACL Search Engine • DPP DopplerE Point to Point • EGR Egress Global Resolution • EPF Egress Port FIFO • ESM Egress Scheduler Module • EQC Egress Queue Controller • FPE Flexible Parser • FPS Flexible Pipe Stage • FSE Fib Search Engine • IGR Ingress Global Resolution • IPF Ingress Port FIFO • IQS Ingress Queues and Scheduler • MSC Macsec Engine • NFL Netflow • NIF Network Interface • PBC Packet Buffer Complex • PIM Protocol Independent Multicast • PLC Policer • RMU Recirculation Multiplexer Unit • RRE Reassembly Engine • RWE Rewrite Engine • SEC Security Engine • SIF Stack Interface • SPQ Supervisor Packet Queuing Engine • SQS Stack Queues And Scheduler • SUP Supervisor Interface"
+      },
+      {
+        "name": "detail",
+        "description": "Displays the contents of the registers of all non-zero counters."
+      },
+      {
+        "name": "drop",
+        "description": "Displays the contents of the registers of all non-zero drop counters."
+      },
+      {
+        "name": "statistics",
+        "description": "Displays the contents of the registers of all non-zero statistical counters. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 386 Interface and Hardware Components show platform hardware fed switch fwd-asic counters tla"
+      },
+      {
+        "name": "asci asic_num",
+        "description": "(Optional) Specifies the ASIC."
+      },
+      {
+        "name": "output",
+        "description": "Specifies an output file to which the contents of the counters registers are to be"
+      },
+      {
+        "name": "location:filename",
+        "description": "dumped."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Do not use this command unless a technical support representative asks you to.  Use this command only when you are working directly with a technical support representative while troubleshooting a problem.",
+    "sourcePage": 385,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform resources",
+    "context": null,
+    "detail": "Display platform resource information.",
+    "syntax": "show platform resources This command has no arguments or keywords.",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command displays the used memory, which is total memory minus the accurate free memory.",
+    "sourcePage": 391,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software audit",
+    "context": null,
+    "detail": "Display the SE Linux Audit logs.",
+    "syntax": "show platform software audit {all | summary | [switch {switch-number | active | standby}] {0 | F0 | R0 | {FP | RP} {active}}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Shows the audit log from all the slots."
+      },
+      {
+        "name": "summary",
+        "description": "Shows the audit log summary count from all the slots."
+      },
+      {
+        "name": "switch",
+        "description": "Shows the audit logs for a slot on a specific switch."
+      },
+      {
+        "name": "switch-number",
+        "description": "Selects the switch with the specified switch number."
+      },
+      {
+        "name": "switch active",
+        "description": "Selects the active instance of the switch."
+      },
+      {
+        "name": "standby",
+        "description": "Selects the standby instance of the switch."
+      },
+      {
+        "name": "0",
+        "description": "Shows the audit log for the SPA-Inter-Processor slot 0."
+      },
+      {
+        "name": "F0",
+        "description": "Shows the audit log for the Embedded-Service-Processor slot 0."
+      },
+      {
+        "name": "R0",
+        "description": "Shows the audit log for the Route-Processor slot 0."
+      },
+      {
+        "name": "FP active",
+        "description": "Shows the audit log for the active Embedded-Service-Processor slot."
+      },
+      {
+        "name": "RP active",
+        "description": "Shows the audit log for the active Route-Processor slot."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command was introduced in the Cisco IOS XE Gibraltar 16. 10. 1 as a part of the SELinux Permissive Mode feature.",
+    "sourcePage": 392,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch punt cpuq rates",
+    "context": null,
+    "detail": "Display the rate at which packets are punted, including the drops in the punted path.",
+    "syntax": "show platform software fed switch {switch-number | active | standby} punt cpuq rates",
+    "noForm": null,
+    "params": [
+      {
+        "name": "punt",
+        "description": "Specifies the punt informtion."
+      },
+      {
+        "name": "cpuq",
+        "description": "Specifies information about CPU receive queue."
+      },
+      {
+        "name": "rates",
+        "description": "Specifies the rate at which the packets are punted."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 396,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch punt packet-capture display",
+    "context": null,
+    "detail": "Display packet capture information during high CPU utilization.",
+    "syntax": "show platform software fed switch active punt packet-capture display { detailed | hexdump}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch{switch-number|active|standby}",
+        "description": "Displays information about a switch. You have the following options: • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note The standby keyword is not supported."
+      },
+      {
+        "name": "punt",
+        "description": "Specifies punt information."
+      },
+      {
+        "name": "packet-capture display",
+        "description": "Specifies information about the captured packet."
+      },
+      {
+        "name": "detailed",
+        "description": "Specifies detailed information about the captured packet."
+      },
+      {
+        "name": "hex-dump",
+        "description": "Specifies information about the captured packet, in hex format."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command displays the periodic and persistent logs of CPU-bound packets, inband CPU traffic rates, and running CPU processes when the CPU passes a high CPU utilization threshold.",
+    "sourcePage": 398,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch punt packet-capture cpu-top-talker",
+    "context": null,
+    "detail": null,
+    "syntax": "show platform software fed switch punt packet-capture cpu-top-talker To display the occurrences of an attribute of a packet capture, use the show platform softwarefed switch punt packet-capture cpu-top-talker command in privileged EXEC mode. show platform software fed switch { switch number | active | standby } punt packet-capture cpu-top-talker { cause-code | dst_ipv4 | dst_ipv6 | dst_l4 | dst_mac | eth_type | incoming-interface | ipv6_hoplt | protocol | src_dst_port | src_ipv4 | src_ipv6 | src_l4 | src_mac | summary | ttl | vlan }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "cause-code",
+        "description": "Displays the occurrences of cause-code."
+      },
+      {
+        "name": "dst_ipv4",
+        "description": "Displays the occurrences on the destination IPv4 interface."
+      },
+      {
+        "name": "dst_ipv6",
+        "description": "Displays the occurrences on the destination IPv6 interface."
+      },
+      {
+        "name": "dst_l4",
+        "description": "Displays the occurrences of the Layer 4 destination port."
+      },
+      {
+        "name": "dst_mac",
+        "description": "Displays the occurrences of the destination MAC address."
+      },
+      {
+        "name": "eth_type",
+        "description": "Displays the occurrences of the Ethernet frame type."
+      },
+      {
+        "name": "incoming-interface",
+        "description": "Displays the occurrences of incoming-interfaces."
+      },
+      {
+        "name": "ipv6_hoplt",
+        "description": "Displays the occurrences of the hop limit on IPv6."
+      },
+      {
+        "name": "protocol",
+        "description": "Displays the occurrences of the Layer 4 protocol."
+      },
+      {
+        "name": "src_dst_port",
+        "description": "Displays the occurrences of the Layer 4 source destination port."
+      },
+      {
+        "name": "src_ipv4",
+        "description": "Displays the occurrences on the source IPv4 interface."
+      },
+      {
+        "name": "src_ipv6",
+        "description": "Displays the occurrences on the source IPv6 interface."
+      },
+      {
+        "name": "src_l4",
+        "description": "Displays the occurrences on the Layer 4 source. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 400 Interface and Hardware Components show platform software fed switch punt packet-capture cpu-top-talker"
+      },
+      {
+        "name": "src_mac",
+        "description": "Displays the occurrences of the source MAC address."
+      },
+      {
+        "name": "summary",
+        "description": "Displays the summary of the occurrences of all the attributes."
+      },
+      {
+        "name": "ttl",
+        "description": "Displays the occurrences on IPv4 Time to Live (TTL)."
+      },
+      {
+        "name": "vlan",
+        "description": "Displays the occurrences of VLAN."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Ensure to start and stop debugging of the packets from the active switch to obtain the occurrences of the packet capture attributes.",
+    "sourcePage": 400,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch punt rates interfaces",
+    "context": null,
+    "detail": "Display the overall statistics of punt rate for all the interfaces.",
+    "syntax": "show platform software fed switch {switch-number | active | standby} punt rates interfaces[interface-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch{switch-number|active|standby}",
+        "description": "Displays information about the switch. You have the following options: • switch-number. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note This keyword is not supported."
+      },
+      {
+        "name": "punt",
+        "description": "Specifies the punt informtion."
+      },
+      {
+        "name": "rates",
+        "description": "Specifies the rate at which the packets are punted."
+      },
+      {
+        "name": "interfaces[interface-id]",
+        "description": "(Optional) Displays the overall statistics for an interface and also the per-queue configuration for the interface at an interval of 10 seconds."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output displays the punt rates in packets per second at intervals of 10 seconds, 1 minute and 5 minutes.",
+    "sourcePage": 403,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software ilpower",
+    "context": null,
+    "detail": "Display the inline power details of all the PoE ports on the device.",
+    "syntax": "show platform software ilpower {details | port {GigabitEthernet interface-number } | system slot-number }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "details",
+        "description": "Displays inline power details for all the interfaces."
+      },
+      {
+        "name": "port",
+        "description": "Displays inline power port configuration. GigabitEthernet interface-number The GigabitEthernet interface number. Values range from 0 to 9."
+      },
+      {
+        "name": "system slot-number",
+        "description": "Displays inline power system configuration."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 406,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software memory",
+    "context": null,
+    "detail": "Display memory information for a specified switch.",
+    "syntax": "show platform software memory [chunk | database | messaging] process slot",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Syntax Description",
+        "description": "chunk                           (Optional) Displays chunk memory information for the specified process."
+      },
+      {
+        "name": "database",
+        "description": "(Optional) Displays database memory information for the specified process."
+      },
+      {
+        "name": "messaging",
+        "description": "(Optional) Displays messaging memory information for the specified process. The information displayed is for internal debugging purposes only. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 408 Interface and Hardware Components show platform software memory process Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 409 Interface and Hardware Components show platform software memory Level that is being set. Options include: • bt-logger—The Binary-Tracing Logger process. • btrace-manager—The Btrace Manager process. • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • cmm—The CMM process. • dbm—The Database Manager process. • dmiauthd—The DMI Authentication Daemon process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • geo—The Geo Manager process. • gnmi—The GNMI process. • host-manager—The Host Manager process. • interface-manager—The Interface Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • iox-manager—The IOx Manager process. • license-manager—The License Manager process. • logger—The Logging Manager process. • mdt-pubd—The Model Defined Telemetry Publisher process. • ndbman—The Netconf DataBase Manager process. • nesd—The Network Element Synchronizer Daemon process. • nginx—The Nginx Webserver process. • nif_mgr—The NIF Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • sif—The Stack Interface (SIF) Manager process. • smd—The Session Manager process. • stack-mgr—The Stack Manager process. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 410 Interface and Hardware Components show platform software memory • syncfd—The SyncmDaemon process. • table-manager—The Table Manager Server. • thread-test—The Multithread Manager process. • virt-manager—The Virtualization Manager process."
+      },
+      {
+        "name": "slot",
+        "description": "Hardware slot where the process for which the level is set, is running. Options include: • number—Number of the SIP slot of the hardware module where the level is set. For instance, if you want to specify the SIP in SIP slot 2 of the switch, enter 2. • SIP-slot / SPA-bay—Number of the SIP switch slot and the number of the shared port adapter (SPA) bay of that SIP. For instance, if you want to specify the SPA in bay 2 of the SIP in switch slot 3, enter 3/2. • F0—The Embedded Service Processor slot 0. • FP active—The active Embedded Service Processor. • R0—The route processor in slot 0. • RP active—The active route processor. • RP standby—The standby route processor. • switch active—The active switch."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 408,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software process list",
+    "context": null,
+    "detail": "Display the list of running processes on a platform.",
+    "syntax": "show platform software process list switch {switch-number | active | standby} {0 | F0 | R0} [name process-name | process-id process-ID | sort memory | summary]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "active",
+        "description": "Displays information about the active instance of the switch."
+      },
+      {
+        "name": "standby",
+        "description": "Displays information about the standby instance of the switch."
+      },
+      {
+        "name": "0",
+        "description": "Displays information about the shared port adapters (SPA) Interface Processor slot 0."
+      },
+      {
+        "name": "F0",
+        "description": "Displays information about the Embedded Service Processor (ESP) slot 0."
+      },
+      {
+        "name": "R0",
+        "description": "Displays information about the Route Processor (RP) slot 0."
+      },
+      {
+        "name": "name process-name",
+        "description": "(Optional) Displays information about the specified process. Enter the process name. process-id process-ID (Optional) Displays information about the specified process ID. Enter the process ID."
+      },
+      {
+        "name": "sort",
+        "description": "(Optional) Displays information sorted according to processes."
+      },
+      {
+        "name": "memory",
+        "description": "(Optional) Displays information sorted according to memory."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays a summary of the process memory of the host device."
+      }
+    ],
+    "modes": ["Privileged EXE (#)"],
+    "usageSummary": null,
+    "sourcePage": 413,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software process memory",
+    "context": null,
+    "detail": "Display the amount of memory used by each system process.",
+    "syntax": "show platform process memory switch{switch-number|active|standby}{0|F0|FP|R0}{all[sorted|virtual[sorted]]|name process-name{maps|smaps[summary]}|process-id process-id{maps|smaps[summary]}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Displays information about the switch. Enter the switch number."
+      },
+      {
+        "name": "active",
+        "description": "Specifies the active instance of the device."
+      },
+      {
+        "name": "standby",
+        "description": "Specifies the standby instance of the device."
+      },
+      {
+        "name": "0",
+        "description": "Specifies the Shared Port Adapter (SPA) Interface Processor slot 0."
+      },
+      {
+        "name": "F0",
+        "description": "Specifies the Embedded Service Processor (ESP) slot 0."
+      },
+      {
+        "name": "FP",
+        "description": "Specifies the Embedded Service Processor (ESP)."
+      },
+      {
+        "name": "R0",
+        "description": "Specifies the Route Processor (RP) slot 0."
+      },
+      {
+        "name": "all",
+        "description": "Lists all processes."
+      },
+      {
+        "name": "sorted",
+        "description": "(Optional) Sorts the output based on Resident Set Size (RSS)."
+      },
+      {
+        "name": "virtual",
+        "description": "(Optional) Specifies virtual memory."
+      },
+      {
+        "name": "name process-name",
+        "description": "Specifies a process name."
+      },
+      {
+        "name": "maps",
+        "description": "Specifies the memory maps of a process."
+      },
+      {
+        "name": "smaps summary",
+        "description": "Specifies the smaps summary of a process."
+      },
+      {
+        "name": "process-id process-id",
+        "description": "Specifies a process identifier."
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS XE Gibraltar 16.10.1 This command was introduced."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC(#)",
+      "Examples: The following is a sample output from the show platform software process memory active R0 all command:",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 417 Interface and Hardware Components show platform software process memory",
+      "Device# show platform software process memory switch active R0 all",
+      "Pid RSS PSS Heap Shared Private Name -------------------------------------------------------------------------- 1 4876 3229 1064 1808 3068 systemd 118 3184 1327 132 2352 832 systemd-journal 159 3008 1191 396 1996 1012 systemd-udevd 407 3192 1262 132 2196 996 dbus-daemon 3406 4772 3064 264 1940 2832 virtlogd 3411 5712 3474 2964 2344 3368 droputil.sh 3416 2588 358 132 2336 252 libvirtd.sh 3420 5708 3484 2976 2308 3400 reflector.sh 3424 1804 263 132 1632 172 xinetd 3425 964 118 132 872 92 sleep 3434 3060 844 528 2304 756 oom.sh 3442 2068 606 132 1604 464 rpcbind 3485 2380 845 132 1636 744 rpc.statd 3486 1632 338 132 1348 284 boothelper_evt. 3493 1136 156 132 1004 132 inotifywait 3504 2048 753 132 1372 676 rpc.mountd 3584 2868 620 36 2384 484 rotee 3649 1032 116 132 944 88 sleep 3705 2784 613 36 2296 488 rotee 3718 2856 610 36 2376 480 rotee 3759 1292 184 132 1136 156 inotifywait 3787 4256 2040 1640 2300 1956 iptbl.sh 3894 2948 637 36 2460 488 rotee 4017 1380 175 132 1236 144 inotifywait 4866 1820 287 132 1624 196 xinetd 5887 1692 257 132 1508 184 xinetd 5891 7248 4984 4584 2348 4900 rollback_timer. 5893 1764 257 132 1588 176 xinetd 6031 2804 601 36 2332 472 rotee 6037 1228 163 132 1092 136 inotifywait 6077 4736 3389 2992 1368 3368 psvp.sh 6115 1620 476 36 1152 468 rotee 6122 624 149 132 480 144 inotifywait 6127 5440 4077 3680 1384 4056 pvp.sh 6165 1736 592 36 1152 584 rotee 6245 624 149 132 480 144 inotifywait 6353 2592 1260 924 1352 1240 pman.sh 6470 1632 488 36 1152 480 rotee 6499 2588 1262 924 1348 1240 pman.sh 6666 1640 496 36 1152 488 rotee 6718 2584 1258 800 1348 1236 pman.sh 6736 8360 7020 6640 1360 7000 auto_upgrade_cl 6909 1636 492 36 1152 484 rotee 6955 2588 1262 928 1348 1240 pman.sh 7029 2196 679 40 1552 644 auto_upgrade_se 7149 1636 492 36 1152 484 rotee 7224 13200 4595 48 9368 3832 bt_logger 7295 2588 1262 800 1348 1240 pman.sh . . .",
+      "The table below describes the significant fields shown in the displays.",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 418 Interface and Hardware Components show platform software process memory",
+      "Table 23: show platform software process memory Field Descriptions",
+      "Field Description",
+      "PID Displays the process ID that is used by the operating system to identify and keep track of the processes.",
+      "RSS Displays the Resident Set Size (in kilobytes (KB)) that shows how much memory is allocated to that process in the RAM.",
+      "PSS Displays the Proportional Set Size of a process. This is the count of pages it has in memory, where each page is divided by the number of processes sharing it.",
+      "Heap Displays where all user-allocated memory is located.",
+      "Shared Shared clean + Shared dirty",
+      "Private Private clean + Private dirty",
+      "Name Displays the command name associated with the process. Different threads in the same process may have different command values.",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 419 Interface and Hardware Components"
+    ],
+    "usageSummary": null,
+    "sourcePage": 417,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software process slot switch",
+    "context": null,
+    "detail": "Display platform software process switch information.",
+    "syntax": "show platform software process slot switch {switch-number | active | standby} {0 | F0 | R0} monitor [cycles no-of-times [interval delay [lines number]]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch-number",
+        "description": "Switch number."
+      },
+      {
+        "name": "active",
+        "description": "Specifies the active instance."
+      },
+      {
+        "name": "standby",
+        "description": "Specifies the standby instance."
+      },
+      {
+        "name": "0",
+        "description": "Specifies the shared port adapter (SPA) interface processor slot 0."
+      },
+      {
+        "name": "F0",
+        "description": "Specifies the Embedded Service Processor (ESP) slot 0."
+      },
+      {
+        "name": "R0",
+        "description": "Specifies the Route Processor (RP) slot 0."
+      },
+      {
+        "name": "monitor",
+        "description": "Monitors the running processes."
+      },
+      {
+        "name": "cycles no-of-tmes",
+        "description": "(Optional) Sets the number of times to run monitor command. Valid values are from 1 to 4294967295. The default is 5."
+      },
+      {
+        "name": "interval delay",
+        "description": "(Optional) Sets a delay after each . Valid values are from 0 to 300. The default is 3."
+      },
+      {
+        "name": "lines number",
+        "description": "(Optional) Sets the number of lines of output displayed. Valid values are from 0 to 512. The default is 0."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of the show platform software process slot switch and show processes cpu platform monitor location commands display the output of the Linux top command.  The output of these commands display Free memory and Used memory as displayed by the Linux top command.  The values displayed for the Free memory and Used memory by these commands do not match the values displayed by the output of other platform-memory related CLIs.",
+    "sourcePage": 420,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software status control-processor",
+    "context": null,
+    "detail": "Display platform software control-processor status.",
+    "syntax": "show platform software status control-processor [brief]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "brief",
+        "description": "(Optional) Displays a summary of the platform control-processor status."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 422,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software thread list",
+    "context": null,
+    "detail": "Display the list of threads on a platform.",
+    "syntax": "show platform software thread list switch{switch-number|active|standby}{0|F0|FP active|R0}pname{cdman|vidman|all}tname{main|pktio|rt|all}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Displays information about the switch. Enter the switch number."
+      },
+      {
+        "name": "active",
+        "description": "Specifies the active instance of the device."
+      },
+      {
+        "name": "standby",
+        "description": "Specifies standby instance of the device."
+      },
+      {
+        "name": "0",
+        "description": "Specifies the Shared Port Adapter (SPA) Interface Processor slot 0."
+      },
+      {
+        "name": "F0",
+        "description": "Specifies the Embedded Service Processor (ESP) slot 0."
+      },
+      {
+        "name": "FP active",
+        "description": "Specifies the active instance of Embedded Service Processor (ESP)."
+      },
+      {
+        "name": "R0",
+        "description": "Specifies the Route Processor (RP) slot 0."
+      },
+      {
+        "name": "pname",
+        "description": "Specifies a process name. The possible values are cdman, vidman, and all."
+      },
+      {
+        "name": "tname",
+        "description": "Specifies a thread name. The possible values are main, pktio, rt, and all."
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS XE Gibraltar 16.10.1 This command was introduced."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC(#)",
+      "Examples: The following is sample output from the show platform software thread list switch active R0 pname cdman tname all command: Device# show platform software thread list switch active R0 pname cdman tname all",
+      "Name Tid PPid Group Id Core Vcswch Nvcswch Status Priority TIME+ Size ---------------------------------------------------------------------------------------------------------- cdman 8407 7295 8407 1 0 0 S 20 12309 36976",
+      "The table below describes the significant fields shown in the displays.",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 425 Interface and Hardware Components show platform software thread list",
+      "Table 24: show platform software thread list Field Descriptions",
+      "Field Description",
+      "Name Displays the command name associated with the process. Different threads in the same process may have different command values.",
+      "Tid Displays the process ID.",
+      "PPid Displays the process ID of the parent process.",
+      "Group Id Displays the group ID.",
+      "Core Displays processor information.",
+      "Vcswch Displays the number of voluntary context switches.",
+      "Nvcswch Displays the number of non-voluntary context switches.",
+      "Status Displays the process status in human readable form.",
+      "Priority Displays the negated scheduling priority.",
+      "TIME+ Displays the time since the start of the process.",
+      "Size Displays the Resident Set Size (in kilobytes (KB)) that shows how much memory is allocated to that process in the RAM.",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 426 Interface and Hardware Components show platform usb status"
+    ],
+    "usageSummary": null,
+    "sourcePage": 425,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform usb status",
+    "context": null,
+    "detail": "Display the status of the USB ports on a device.",
+    "syntax": "show platform usb status",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 427,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show processes cpu platform",
+    "context": null,
+    "detail": "Display information about the CPU utilization of the IOS-XE processes.",
+    "syntax": "show processes cpu platform [[ sorted[1min|5min|5sec]]location switch{switch-number|active|standby}{F0|FP active|R0|RP active}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "sorted",
+        "description": "(Optional) Displays output sorted based on percentage of CPU usage on a platform."
+      },
+      {
+        "name": "1min",
+        "description": "(Optional) Sorts based on 1 minute intervals."
+      },
+      {
+        "name": "5min",
+        "description": "(Optional) Sorts based on 5 minute intervals."
+      },
+      {
+        "name": "5sec",
+        "description": "(Optional) Sorts based on 5 second intervals."
+      },
+      {
+        "name": "location",
+        "description": "Specifies the Field Replaceable Unit (FRU) location."
+      },
+      {
+        "name": "switch",
+        "description": "Displays information about the switch. Enter the switch number. switch-number"
+      },
+      {
+        "name": "active",
+        "description": "Specifies the active instance of the device."
+      },
+      {
+        "name": "standby",
+        "description": "Specifies the standby instance of the device."
+      },
+      {
+        "name": "F0",
+        "description": "Specifies the Embedded Service Processor (ESP) slot 0."
+      },
+      {
+        "name": "FP active",
+        "description": "Specifies active instances on the Embedded Service Processor (ESP)."
+      },
+      {
+        "name": "R0",
+        "description": "Specifies the Route Processor (RP) slot 0."
+      },
+      {
+        "name": "RP active",
+        "description": "Specifies active instances on the Route Processor (RP)."
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS XE Gibraltar 16.10.1 This command was introduced."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC (#)",
+      "Examples: The following is sample output from the show processes cpu platform command: Device# show processes cpu platform",
+      "CPU utilization for five seconds: 1%, one minute: 3%, five minutes: 2% Core 0: CPU utilization for five seconds: 2%, one minute: 2%, five minutes: 2% Core 1: CPU utilization for five seconds: 2%, one minute: 1%, five minutes: 1% Core 2: CPU utilization for five seconds: 3%, one minute: 1%, five minutes: 1% Core 3: CPU utilization for five seconds: 2%, one minute: 5%, five minutes: 2% Pid PPid 5Sec 1Min 5Min Status Size Name -------------------------------------------------------------------------------- 1 0 0% 0% 0% S 4876 systemd",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 428 Interface and Hardware Components show processes cpu platform",
+      "2 0 0% 0% 0% S 0 kthreadd 3 2 0% 0% 0% S 0 ksoftirqd/0 5 2 0% 0% 0% S 0 kworker/0:0H 7 2 0% 0% 0% S 0 rcu_sched 8 2 0% 0% 0% S 0 rcu_bh 9 2 0% 0% 0% S 0 migration/0 10 2 0% 0% 0% S 0 watchdog/0 11 2 0% 0% 0% S 0 watchdog/1 12 2 0% 0% 0% S 0 migration/1 13 2 0% 0% 0% S 0 ksoftirqd/1 15 2 0% 0% 0% S 0 kworker/1:0H 16 2 0% 0% 0% S 0 watchdog/2 17 2 0% 0% 0% S 0 migration/2 18 2 0% 0% 0% S 0 ksoftirqd/2 20 2 0% 0% 0% S 0 kworker/2:0H 21 2 0% 0% 0% S 0 watchdog/3 22 2 0% 0% 0% S 0 migration/3 23 2 0% 0% 0% S 0 ksoftirqd/3 24 2 0% 0% 0% S 0 kworker/3:0 25 2 0% 0% 0% S 0 kworker/3:0H 26 2 0% 0% 0% S 0 kdevtmpfs 27 2 0% 0% 0% S 0 netns 28 2 0% 0% 0% S 0 perf 29 2 0% 0% 0% S 0 khungtaskd 30 2 0% 0% 0% S 0 writeback 31 2 7% 8% 8% S 0 ksmd 32 2 0% 0% 0% S 0 khugepaged 33 2 0% 0% 0% S 0 crypto 34 2 0% 0% 0% S 0 bioset 35 2 0% 0% 0% S 0 kblockd 36 2 0% 0% 0% S 0 ata_sff 37 2 0% 0% 0% S 0 rpciod 63 2 0% 0% 0% S 0 kswapd0 64 2 0% 0% 0% S 0 vmstat 65 2 0% 0% 0% S 0 fsnotify_mark . . .",
+      "The following is sample output from the show processes cpu platform sorted 5min location switch 5 R0 Device# show processes cpu platform sorted 5min location switch 5 R0",
+      "CPU utilization for five seconds: 0%, one minute: 0%, five minutes: 0% Core 0: CPU utilization for five seconds: 1%, one minute: 1%, five minutes: 1% Core 1: CPU utilization for five seconds: 1%, one minute: 1%, five minutes: 1% Core 2: CPU utilization for five seconds: 1%, one minute: 1%, five minutes: 1% Core 3: CPU utilization for five seconds: 2%, one minute: 2%, five minutes: 1% Core 4: CPU utilization for five seconds: 0%, one minute: 0%, five minutes: 0% Core 5: CPU utilization for five seconds: 0%, one minute: 0%, five minutes: 0% Core 6: CPU utilization for five seconds: 0%, one minute: 0%, five minutes: 0% Core 7: CPU utilization for five seconds: 0%, one minute: 0%, five minutes: 0% Pid PPid 5Sec 1Min 5Min Status Size Name -------------------------------------------------------------------------------- 16358 15516 4% 4% 4% S 221376 fed main event 14062 12756 1% 1% 1% S 52140 sif_mgr 32105 8618 0% 0% 0% S 260 inotifywait 31396 31393 0% 0% 0% S 36516 python2.7 31393 31271 0% 0% 0% S 2744 rdope.sh 31319 1 0% 0% 0% S 2648 rotee 31271 1 0% 0% 0% S 3852 pman.sh 29671 2 0% 0% 0% S 0 kworker/u16:0 29341 29329 0% 0% 0% S 1780 sntp 29329 1 0% 0% 0% S 2788 stack_sntp.sh .",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 429 Interface and Hardware Components show processes cpu platform",
+      ". .",
+      "The following is sample output from the show processes cpu platform location switch 7 R0 command: Device# show processes cpu platform location switch 7 R0",
+      "CPU utilization for five seconds: 3%, one minute: 3%, five minutes: 3% Core 0: CPU utilization for five seconds: 1%, one minute: 5%, five minutes: 5% Core 1: CPU utilization for five seconds: 1%, one minute: 11%, five minutes: 5% Core 2: CPU utilization for five seconds: 22%, one minute: 7%, five minutes: 6% Core 3: CPU utilization for five seconds: 5%, one minute: 6%, five minutes: 6% Core 4: CPU utilization for five seconds: 0%, one minute: 0%, five minutes: 0% Core 5: CPU utilization for five seconds: 0%, one minute: 0%, five minutes: 0% Core 6: CPU utilization for five seconds: 0%, one minute: 0%, five minutes: 0% Core 7: CPU utilization for five seconds: 0%, one minute: 0%, five minutes: 6% Pid PPid 5Sec 1Min 5Min Status Size Name -------------------------------------------------------------------------------- 1 0 0% 0% 0% S 8044 systemd 2 0 0% 0% 0% S 0 kthreadd . . .",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 430 Interface and Hardware Components show processes cpu platform history"
+    ],
+    "usageSummary": null,
+    "sourcePage": 428,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show processes cpu platform history",
+    "context": null,
+    "detail": "Display information about the CPU usage history of a system.",
+    "syntax": "show processes cpu platform history[1min|5min|5sec|60min]location switch{switch-number|active|standby}{0|F0|FP active|R0} 1min (Optional) Displays CPU utilization history with 1 minute intervals. 5min (Optional) Displays CPU utilization history with 5 minute intervals. 5sec (Optional) Displays CPU utilization history with 5 second intervals. 60min (Optional) Displays CPU utilization history with 60 minute intervals. location Specifies the Field Replaceable Unit (FRU) location. switch switch-number Displays information about the switch. Enter the switch number. active Specifies the active instance of the device. standby Specifies the standby instance of the device. 0 Specifies the Shared Port Adapter (SPA) Interface Processor slot 0. F0 Specifies the Embedded Service Processor (ESP) slot 0. FP active Specifies active instances on the Embedded Service Processor (ESP). R0 Specifies the Route Processor (RP) slot 0.",
+    "noForm": null,
+    "params": [],
+    "modes": [
+      "Privileged EXEC (#)",
+      "Examples: The following is sample output from the show processes cpu platform command: Device# show processes cpu platform",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 431 Interface and Hardware Components show processes cpu platform history",
+      "CPU utilization for five seconds: 1%, one minute: 3%, five minutes: 2% Core 0: CPU utilization for five seconds: 2%, one minute: 2%, five minutes: 2% Core 1: CPU utilization for five seconds: 2%, one minute: 1%, five minutes: 1% Core 2: CPU utilization for five seconds: 3%, one minute: 1%, five minutes: 1% Core 3: CPU utilization for five seconds: 2%, one minute: 5%, five minutes: 2% Pid PPid 5Sec 1Min 5Min Status Size Name -------------------------------------------------------------------------------- 1 0 0% 0% 0% S 4876 systemd 2 0 0% 0% 0% S 0 kthreadd 3 2 0% 0% 0% S 0 ksoftirqd/0 5 2 0% 0% 0% S 0 kworker/0:0H 7 2 0% 0% 0% S 0 rcu_sched 8 2 0% 0% 0% S 0 rcu_bh 9 2 0% 0% 0% S 0 migration/0 10 2 0% 0% 0% S 0 watchdog/0 11 2 0% 0% 0% S 0 watchdog/1 12 2 0% 0% 0% S 0 migration/1 13 2 0% 0% 0% S 0 ksoftirqd/1 15 2 0% 0% 0% S 0 kworker/1:0H 16 2 0% 0% 0% S 0 watchdog/2 17 2 0% 0% 0% S 0 migration/2 18 2 0% 0% 0% S 0 ksoftirqd/2 20 2 0% 0% 0% S 0 kworker/2:0H 21 2 0% 0% 0% S 0 watchdog/3 22 2 0% 0% 0% S 0 migration/3 23 2 0% 0% 0% S 0 ksoftirqd/3 24 2 0% 0% 0% S 0 kworker/3:0 25 2 0% 0% 0% S 0 kworker/3:0H 26 2 0% 0% 0% S 0 kdevtmpfs 27 2 0% 0% 0% S 0 netns 28 2 0% 0% 0% S 0 perf 29 2 0% 0% 0% S 0 khungtaskd 30 2 0% 0% 0% S 0 writeback 31 2 7% 8% 8% S 0 ksmd 32 2 0% 0% 0% S 0 khugepaged 33 2 0% 0% 0% S 0 crypto 34 2 0% 0% 0% S 0 bioset 35 2 0% 0% 0% S 0 kblockd 36 2 0% 0% 0% S 0 ata_sff 37 2 0% 0% 0% S 0 rpciod 63 2 0% 0% 0% S 0 kswapd0 64 2 0% 0% 0% S 0 vmstat 65 2 0% 0% 0% S 0 fsnotify_mark . . .",
+      "The following is sample output from the show processes cpu platform history 5sec command: Device# show processes cpu platform history 5sec",
+      "5 seconds ago, CPU utilization: 0% 10 seconds ago, CPU utilization: 0% 15 seconds ago, CPU utilization: 0% 20 seconds ago, CPU utilization: 0% 25 seconds ago, CPU utilization: 0% 30 seconds ago, CPU utilization: 0% 35 seconds ago, CPU utilization: 0% 40 seconds ago, CPU utilization: 0% 45 seconds ago, CPU utilization: 0% 50 seconds ago, CPU utilization: 0% 55 seconds ago, CPU utilization: 0% 60 seconds ago, CPU utilization: 0% 65 seconds ago, CPU utilization: 0% 70 seconds ago, CPU utilization: 0%",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 432 Interface and Hardware Components show processes cpu platform history",
+      "75 seconds ago, CPU utilization: 0% 80 seconds ago, CPU utilization: 0% 85 seconds ago, CPU utilization: 0% 90 seconds ago, CPU utilization: 0% 95 seconds ago, CPU utilization: 0% 100 seconds ago, CPU utilization: 0% 105 seconds ago, CPU utilization: 0% 110 seconds ago, CPU utilization: 0% 115 seconds ago, CPU utilization: 0% 120 seconds ago, CPU utilization: 0% 125 seconds ago, CPU utilization: 0% 130 seconds ago, CPU utilization: 0% 135 seconds ago, CPU utilization: 0% 140 seconds ago, CPU utilization: 0% 145 seconds ago, CPU utilization: 1% 150 seconds ago, CPU utilization: 0% 155 seconds ago, CPU utilization: 0% 160 seconds ago, CPU utilization: 0% 165 seconds ago, CPU utilization: 0% 170 seconds ago, CPU utilization: 0% 175 seconds ago, CPU utilization: 0% 180 seconds ago, CPU utilization: 0% 185 seconds ago, CPU utilization: 0% 190 seconds ago, CPU utilization: 0% 195 seconds ago, CPU utilization: 0% 200 seconds ago, CPU utilization: 0% 205 seconds ago, CPU utilization: 0% 210 seconds ago, CPU utilization: 0% 215 seconds ago, CPU utilization: 0% 220 seconds ago, CPU utilization: 0% 225 seconds ago, CPU utilization: 0% 230 seconds ago, CPU utilization: 0% 235 seconds ago, CPU utilization: 0% 240 seconds ago, CPU utilization: 0% 245 seconds ago, CPU utilization: 0% 250 seconds ago, CPU utilization: 0% . . .",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 433 Interface and Hardware Components"
+    ],
+    "usageSummary": null,
+    "sourcePage": 431,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show processes cpu platform monitor",
+    "context": null,
+    "detail": "Displays information about the CPU utilization of the IOS-XE processes.",
+    "syntax": "show processes cpu platform monitor location switch {switch-number | active | standby} {0 | F0 | R0}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "location",
+        "description": "Displays information about the Field Replaceable Unit (FRU) location."
+      },
+      {
+        "name": "switch",
+        "description": "Specifies the switch. switch-number Switch number."
+      },
+      {
+        "name": "active",
+        "description": "Specifies the active instance."
+      },
+      {
+        "name": "standby",
+        "description": "Specifies the standby instance."
+      },
+      {
+        "name": "0",
+        "description": "Specifies the shared port adapter (SPA) interface processor slot 0."
+      },
+      {
+        "name": "F0",
+        "description": "Specifies the Embedded Service Processor (ESP) slot 0."
+      },
+      {
+        "name": "R0",
+        "description": "Specifies the Route Processor (RP) slot 0."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of the show platform software process slot switch and show processes cpu platform monitor location commands display the output of the Linux top command.  The output of these commands display Free memory and Used memory as displayed by the Linux top command.  The values displayed for the Free memory and Used memory by these commands do not match the values displayed by the output of other platform-memory related CLIs.",
+    "sourcePage": 434,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show processes memory",
+    "context": null,
+    "detail": "Display the amount of memory used by each system process.",
+    "syntax": "show processes memory [ process-id | sorted [ allocated | getbufs | holding ] ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process-id",
+        "description": "(Optional) Process ID (PID) of a specific process. When you specify a process ID, only details for the specified process will be shown."
+      },
+      {
+        "name": "sorted",
+        "description": "(Optional) Displays memory data sorted by the Allocated, Get Buffers, or Holding column. If the sorted keyword is used by itself, data is sorted by the Holding column by default."
+      },
+      {
+        "name": "allocated",
+        "description": "(Optional) Displays memory data sorted by the Allocated column."
+      },
+      {
+        "name": "getbufs",
+        "description": "(Optional) Displays memory data sorted by the Getbufs (Get Buffers) column."
+      },
+      {
+        "name": "holding",
+        "description": "(Optional) Displays memory data sorted by the Holding column. This keyword is the default."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The show processes memory command and the show processes memory sorted command displays a summary of total, used, and free memory, followed by a list of processes and their memory impact.  If the standard show processes memory process-id command is used, processes are sorted by their PID.  If the show processes memory sorted command is used, the default sorting is by the Holding value.",
+    "sourcePage": 436,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show processes memory platform",
+    "context": null,
+    "detail": "Display memory usage for each Cisco IOS XE process.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "accounting",
+        "description": "(Optional) Displays the top memory allocators for each Cisco IOS XE process."
+      },
+      {
+        "name": "detailed",
+        "description": "(Optional) Displays detailed memory information for a specified Cisco IOS XE process."
+      },
+      {
+        "name": "name process-name",
+        "description": "(Optional) Displays the Cisco IOS XE process name. Enter the process name."
+      },
+      {
+        "name": "process-id process-ID",
+        "description": "(Optional) Displayss the Cisco IOS XE process ID. Enter the process ID."
+      },
+      {
+        "name": "location",
+        "description": "(Optional) Displays information about the Field Replaceable Unit (FRU) location."
+      },
+      {
+        "name": "maps",
+        "description": "(Optional) Displays memory maps of a process."
+      },
+      {
+        "name": "smaps",
+        "description": "(Optional) Displays static memory maps of a process."
+      },
+      {
+        "name": "sorted",
+        "description": "(Optional) Displays the sorted output based on the Resident Set Size (RSS) memory used by Cisco IOS XE process."
+      },
+      {
+        "name": "switch switch-number",
+        "description": "Displays information about the device."
+      },
+      {
+        "name": "active",
+        "description": "Displays information about the active instance of the device."
+      },
+      {
+        "name": "standby",
+        "description": "Displays information about the standby instance of the device."
+      },
+      {
+        "name": "0",
+        "description": "Displays information about Shared Port Adapter (SPA)-Inter-Processor slot 0."
+      },
+      {
+        "name": "F0",
+        "description": "Displays information about Embedded Service Processor (ESP) slot 0."
+      },
+      {
+        "name": "R0",
+        "description": "Displays information about Route Processor (RP) slot 0."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 439,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show processes platform",
+    "context": null,
+    "detail": "Display information about the IOS-XE processes running on a platform.",
+    "syntax": "show processes platform[detailed name process-name][location switch{switch-number|active|standby}{0|F0|FP active|R0}] detailed (Optional) Displays detailed information of the specified IOS-XE process. name process-name (Optional) Specifies the process name. location (Optional) Specifies the Field Replaceable Unit (FRU) location. switch (Optional) Displays information about the switch. switch-number active (Optional) Specifies the active instance of the device. standby (Optional) Specifies standby instance of the device. 0 Specifies the Shared Port Adapter (SPA) Interface Processor slot 0. F0 Specifies the Embedded Service Processor (ESP) slot 0. FP active Specifies the active instance in the Embedded Service Processor (ESP). R0 Specifies the Route Processor (RP) slot 0.",
+    "noForm": null,
+    "params": [],
+    "modes": [
+      "Privileged EXEC(#)",
+      "Examples: The following is sample output from the show processes platform command: Device# show processes platform",
+      "CPU utilization for five seconds: 1%, one minute: 2%, five minutes: 1% Pid PPid Status Size Name -------------------------------------------------------- 1 0 S 4876 systemd 2 0 S 0 kthreadd 3 2 S 0 ksoftirqd/0 5 2 S 0 kworker/0:0H 7 2 S 0 rcu_sched 8 2 S 0 rcu_bh 9 2 S 0 migration/0 10 2 S 0 watchdog/0 11 2 S 0 watchdog/1 12 2 S 0 migration/1",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 443 Interface and Hardware Components show processes platform",
+      "13 2 S 0 ksoftirqd/1 15 2 S 0 kworker/1:0H 16 2 S 0 watchdog/2 17 2 S 0 migration/2 18 2 S 0 ksoftirqd/2 20 2 S 0 kworker/2:0H 21 2 S 0 watchdog/3 22 2 S 0 migration/3 23 2 S 0 ksoftirqd/3 24 2 S 0 kworker/3:0 25 2 S 0 kworker/3:0H 26 2 S 0 kdevtmpfs 27 2 S 0 netns 28 2 S 0 perf 29 2 S 0 khungtaskd 30 2 S 0 writeback 31 2 S 0 ksmd 32 2 S 0 khugepaged 33 2 S 0 crypto 34 2 S 0 bioset 35 2 S 0 kblockd 36 2 S 0 ata_sff 37 2 S 0 rpciod 63 2 S 0 kswapd0 64 2 S 0 vmstat 65 2 S 0 fsnotify_mark 66 2 S 0 nfsiod 74 2 S 0 bioset 75 2 S 0 bioset 76 2 S 0 bioset 77 2 S 0 bioset 78 2 S 0 bioset 79 2 S 0 bioset 80 2 S 0 bioset 81 2 S 0 bioset 82 2 S 0 bioset 83 2 S 0 bioset 84 2 S 0 bioset 85 2 S 0 bioset 86 2 S 0 bioset 87 2 S 0 bioset 88 2 S 0 bioset 89 2 S 0 bioset 90 2 S 0 bioset 91 2 S 0 bioset 92 2 S 0 bioset 93 2 S 0 bioset 94 2 S 0 bioset 95 2 S 0 bioset 96 2 S 0 bioset 97 2 S 0 bioset 100 2 S 0 ipv6_addrconf 102 2 S 0 deferwq",
+      "The table below describes the significant fields shown in the displays.",
+      "Table 26: show processes platform Field Descriptions",
+      "Field Description",
+      "Pid Displays the process ID.",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 444 Interface and Hardware Components show processes platform",
+      "Field Description",
+      "PPid Displays the process ID of the parent process.",
+      "Status Displays the process status in human readable form.",
+      "Size Displays the Resident Set Size (in kilobytes (KB)) that shows how much memory is allocated to that process in the RAM.",
+      "Name Displays the command name associated with the process. Different threads in the same process may have different command values.",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 445 Interface and Hardware Components"
+    ],
+    "usageSummary": null,
+    "sourcePage": 443,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show system mtu",
+    "context": null,
+    "detail": "Display the global maximum transmission unit (MTU) or maximum packet size set for the switch.",
+    "syntax": "show system mtu",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "For information about the MTU values and the stack configurations that affect the MTU values, see the system mtu command.",
+    "sourcePage": 446,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support",
+    "context": null,
+    "detail": "Automatically run show commands that display system information.",
+    "syntax": "show tech-support [cef|cft|eigrp|evc|fnf||ipc|ipmulticast|ipsec|mfib|nat|nbar|onep|ospf|page|password|rsvp|subscriber|vrrp|wccp",
+    "noForm": null,
+    "params": [
+      {
+        "name": "cef",
+        "description": "(Optional) Displays CEF related information."
+      },
+      {
+        "name": "cft",
+        "description": "(Optional) Displays CFT related information."
+      },
+      {
+        "name": "eigrp",
+        "description": "(Optional) Displays EIGRP related information."
+      },
+      {
+        "name": "evc",
+        "description": "(Optional) Displays EVC related information."
+      },
+      {
+        "name": "fnf",
+        "description": "(Optional) Displays flexible netflow related information."
+      },
+      {
+        "name": "ipc",
+        "description": "(Optional) Displays IPC related information. ipmulticast (Optional) Displays IP multicast related information."
+      },
+      {
+        "name": "ipsec",
+        "description": "(Optional) Displays IPSEC related information."
+      },
+      {
+        "name": "mfib",
+        "description": "(Optional) Displays MFIB related information."
+      },
+      {
+        "name": "nat",
+        "description": "(Optional) Displays NAT related information."
+      },
+      {
+        "name": "nbar",
+        "description": "(Optional) Displays NBAR related information."
+      },
+      {
+        "name": "onep",
+        "description": "(Optional) Displays ONEP related information."
+      },
+      {
+        "name": "ospf",
+        "description": "(Optional) Displays OSPF related information."
+      },
+      {
+        "name": "page",
+        "description": "(Optional) Displays the command output on a single page at a time. Use the Return key to display the next line of output or use the space bar to display the next page of information. If not used, the output scrolls (that is, it does not stop for page breaks). Press the Ctrl-C keys to stop the command output. password (Optional) Leaves passwords and other security information in the output. If not used, passwords and other security-sensitive information in the output are replaced with the label \"<removed>\"."
+      },
+      {
+        "name": "rsvp",
+        "description": "(Optional) Displays IP RSVP related information. subscriber (Optional) Displays subscriber related information."
+      },
+      {
+        "name": "vrrp",
+        "description": "(Optional) Displays VRRP related information."
+      },
+      {
+        "name": "wccp",
+        "description": "(Optional) Displays WCCP related information."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC (#)",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 447 Interface and Hardware Components show tech-support"
+    ],
+    "usageSummary": "The output from the show tech-support command is very long.  To better manage this output, you can redirect the output to a file (for example, show tech-support > filename ) in the local writable storage file system or the remote file system.  Redirecting the output to a file also makes sending the output to your Cisco Technical Assistance Center (TAC) representative easier.",
+    "sourcePage": 447,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support bgp",
+    "context": null,
+    "detail": "Automatically run show commands that display BGP related system information.",
+    "syntax": "show tech-support bgp [address-family {all | ipv4 [flowspec | multicast | unicast | [mdt | mvpn] {all | vrf vrf-instance-name} ] |ipv6 [flowspec | multicast | mvpn {all | vrf vrf-instance-name} | unicast] | l2vpn [evpn | vpls] | link-state [link-state] | [nsap | rtfilter] [unicast] | [vpnv4 | vpnv6] [flowspec | multicast | unicast] {all | vrf vrf-instance-name}}] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "address-family",
+        "description": "(Optional) Displays the output for a specified address family."
+      },
+      {
+        "name": "address-family all",
+        "description": "(Optional) Displays the output for all address families."
+      },
+      {
+        "name": "ipv4",
+        "description": "(Optional) Displays the output for IPv4 address family."
+      },
+      {
+        "name": "ipv6",
+        "description": "(Optional) Displays the output for IPv6 address family."
+      },
+      {
+        "name": "l2vpn",
+        "description": "(Optional) Displays the output for L2VPN address family."
+      },
+      {
+        "name": "link-state",
+        "description": "(Optional) Displays the output for Link State address family."
+      },
+      {
+        "name": "nsap",
+        "description": "(Optional) Displays the output for NSAP address family."
+      },
+      {
+        "name": "rtfilter",
+        "description": "(Optional) Displays the output for RT Filter address family."
+      },
+      {
+        "name": "vpnv4",
+        "description": "(Optional) Displays the output for VPNv4 address family."
+      },
+      {
+        "name": "vpnv6",
+        "description": "(Optional) Displays the output for VPNv6 address family."
+      },
+      {
+        "name": "flowspec",
+        "description": "(Optional) Displays the flowspec related information for an address family."
+      },
+      {
+        "name": "multicast",
+        "description": "(Optional) Displays the multicast related information for an address family."
+      },
+      {
+        "name": "unicast",
+        "description": "(Optional) Displays the unicast related information for an address family."
+      },
+      {
+        "name": "mdt",
+        "description": "(Optional) Displays the Multicast Distribution Tree (MDT) related information for an address family. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 449 Interface and Hardware Components show tech-support bgp"
+      },
+      {
+        "name": "mvpn",
+        "description": "(Optional) Displays the Multicast VPN (MVPN) related information for an address family."
+      },
+      {
+        "name": "vrf",
+        "description": "Displays the information for a VPN Routing/Forwarding instance."
+      },
+      {
+        "name": "evpn",
+        "description": "(Optional) Displays the Ethernet VPN (EVPN) related information for an address family."
+      },
+      {
+        "name": "vpls",
+        "description": "(Optional) Displays the Virtual Private LAN Services (VPLS) related information for an address family."
+      },
+      {
+        "name": "vrf-instance-name",
+        "description": "Specifies the name of the VPN Routing/Forwarding instance."
+      },
+      {
+        "name": "all",
+        "description": "Displays the information about all VPN NLRIs."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays the detailed routes information."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The show tech-support bgp command is used to display the outputs of various BGP show commands and log them to the show-tech file.  The output from the show tech-support bgp command is very long.  To better manage this output, you can redirect the output to a file (for example, show tech-support > filename ) in the local writable storage file system or the remote file system.",
+    "sourcePage": 449,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support diagnostic",
+    "context": null,
+    "detail": "Display diagnostic information for technical support.",
+    "syntax": "show tech-support diagnostic",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command is very long.  To better manage this output, you can redirect the output to a file (for example, show tech-support diagnostic > flash:filename ) in the local writable storage file system or remote file system.",
+    "sourcePage": 452,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support poe",
+    "context": null,
+    "detail": "Display the output of all the PoE-related troubleshooting commands.",
+    "syntax": null,
+    "noForm": null,
+    "params": [],
+    "modes": [
+      "Privileged EXEC",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 454 Interface and Hardware Components show tech-support poe"
+    ],
+    "usageSummary": null,
+    "sourcePage": 454,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "speed",
+    "context": null,
+    "detail": "Specify the speed of a port.",
+    "syntax": "Note Available configuration options depend on the switch model and transceiver module installed. Options include 10, 100, 1000, 2500, 5000, 10000, 25000, 40000, 100000 speed {10 | 100 | 1000 | 2500 | 5000 | 10000 | 25000 | 40000 | 100000 | auto [10 | 100 | 1000 | 2500 | 5000] | nonegotiate}",
+    "noForm": "no speed",
+    "params": [
+      {
+        "name": "10",
+        "description": "Specifies that the port runs at 10 Mbps."
+      },
+      {
+        "name": "100",
+        "description": "Specifies that the port runs at 100 Mbps."
+      },
+      {
+        "name": "1000",
+        "description": "Specifies that the port runs at 1000 Mbps. This option is valid and visible only on 10/100/1000 Mb/s ports."
+      },
+      {
+        "name": "2500",
+        "description": "Specifies that the port runs at 2500 Mbps. This option is valid and visible only on multi-Gigabit-supported Ethernet ports."
+      },
+      {
+        "name": "5000",
+        "description": "Specifies that the port runs at 5000 Mbps. This option is valid and visible only on multi-Gigabit-supported Ethernet ports."
+      },
+      {
+        "name": "10000",
+        "description": "Specifies that the port runs at 10000 Mbps operation."
+      },
+      {
+        "name": "25000",
+        "description": "Specifies that the port runs at 25000 Mbps operation."
+      },
+      {
+        "name": "40000",
+        "description": "Specifies that the port runs at 40000 Mbps operation."
+      },
+      {
+        "name": "100000",
+        "description": "Specifies that the port runs at 100000 Mbps operation."
+      },
+      {
+        "name": "auto",
+        "description": "Detects the speed at which the port should run, automatically, based on the port at the other end of the link. If you use the 10, 100, 1000, 2500, or 5000 keyword with the auto keyword, the port autonegotiates only at the specified speeds. nonegotiate Disables autonegotiation, and the port runs at 1000 Mbps."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You cannot configure speed on 10-Gigabit Ethernet ports.  Except for the 1000BASE-T small form-factor pluggable (SFP) modules, you can configure the speed to not negotiate (nonegotiate) when an SFP module port is connected to a device that does not support autonegotiation.  The keywords, 2500 and 5000 are visible only on multi-Gigabit (m-Gig) Ethernet supporting devices.",
+    "sourcePage": 469,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport block",
+    "context": null,
+    "detail": "Prevent unknown multicast or unicast packets from being forwarded.",
+    "syntax": "switchport block {multicast | unicast}",
+    "noForm": "no switchport block {multicast | unicast}",
+    "params": [
+      {
+        "name": "unicast",
+        "description": "Specifies that unknown unicast traffic should be blocked."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "By default, all traffic with unknown MAC addresses is sent to all ports.  You can block unknown multicast or unicast traffic on protected or nonprotected ports.  If unknown multicast or unicast traffic is not blocked on a protected port, there could be security issues.",
+    "sourcePage": 471,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "system debounce link-down",
+    "context": null,
+    "detail": "Configure debounce down timer on the Cisco Catalyst 9500X Series Switches.",
+    "syntax": "system debounce link-down debounce_time",
+    "noForm": null,
+    "params": [
+      {
+        "name": "debounce_time",
+        "description": "Sets the debounce time in miliseconds. The range is from 120 to 10000."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "To validate this configuration, use the show run command.",
+    "sourcePage": 472,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "system debounce link-up",
+    "context": null,
+    "detail": "Configure debounce up timer on the Cisco Catalyst 9500X Series Switches.",
+    "syntax": "system debounce link-up debounce_time",
+    "noForm": null,
+    "params": [
+      {
+        "name": "debounce_time",
+        "description": "Sets the debounce time in miliseconds. The range is from 120 to 10000."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "To validate this configuration, use the show run command.",
+    "sourcePage": 473,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "system mtu",
+    "context": null,
+    "detail": "Set the global maximum packet size or MTU size for switched packets on Gigabit Ethernet and 10-Gigabit Ethernet ports.",
+    "syntax": "system mtu bytes",
+    "noForm": "no system mtu",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "You can verify your setting by entering the show system mtu privileged EXEC command.  The switch does not support the MTU on a per-interface basis.  If you enter a value that is outside the allowed range for the specific type of interface, the value is not accepted.",
+    "sourcePage": 474,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "voice-signaling vlan",
+    "context": "network-policy configuration",
+    "detail": "Create a network-policy profile for the voice-signaling application type.",
+    "syntax": "voice-signaling vlan {vlan-id [cos cos-value | dscp dscp-value] | dot1p [cos l2-priority | dscp dscp] | none | untagged}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "(Optional) The VLAN for voice traffic. The range is 1 to 4094."
+      },
+      {
+        "name": "cos cos-value",
+        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5. dscp dscp-value (Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
+      },
+      {
+        "name": "dot1p",
+        "description": "(Optional) Configures the phone to use IEEE 802.1p priority tagging and to use VLAN 0 (the native VLAN)."
+      },
+      {
+        "name": "none",
+        "description": "(Optional) Does not instruct the Cisco IP phone about the voice VLAN. The phone uses the configuration from the phone key pad."
+      },
+      {
+        "name": "untagged",
+        "description": "(Optional) Configures the phone to send untagged voice traffic. This is the default for the phone."
+      }
+    ],
+    "modes": ["Network-policy profile configuration"],
+    "usageSummary": "Use the network-policy profile global configuration command to create a profile and to enter network-policy profile configuration mode.  The voice-signaling application type is for network topologies that require a different policy for voice signaling than for voice media.  This application type should not be advertised if all of the same network policies apply as those advertised in the voice policy TLV.",
+    "sourcePage": 475,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "voice vlan",
+    "context": "network-policy configuration",
+    "detail": "Create a network-policy profile for the voice application type.",
+    "syntax": "voice vlan {vlan-id [cos cos-value | dscp dscp-value] | dot1p [cos l2-priority | dscp dscp] | none | untagged}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "(Optional) The VLAN for voice traffic. The range is 1 to 4094."
+      },
+      {
+        "name": "cos cos-value",
+        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5. dscp dscp-value (Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
+      },
+      {
+        "name": "dot1p",
+        "description": "(Optional) Configures the phone to use IEEE 802.1p priority tagging and to use VLAN 0 (the native VLAN)."
+      },
+      {
+        "name": "none",
+        "description": "(Optional) Does not instruct the Cisco IP phone about the voice VLAN. The phone uses the configuration from the phone key pad."
+      },
+      {
+        "name": "untagged",
+        "description": "(Optional) Configures the phone to send untagged voice traffic. This is the default for the phone."
+      }
+    ],
+    "modes": ["Network-policy profile configuration"],
+    "usageSummary": "Use the network-policy profile global configuration command to create a profile and to enter network-policy profile configuration mode.  The voice application type is for dedicated IP telephones and similar devices that support interactive voice services.  These devices are typically deployed on a separate VLAN for ease of deployment and enhanced security through isolation from data applications.",
+    "sourcePage": 477,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  }
+]

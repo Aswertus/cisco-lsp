@@ -1,0 +1,807 @@
+[
+  {
+    "name": "set platform software trace",
+    "context": null,
+    "detail": "Set the trace level for a specific module within a process.",
+    "syntax": "set platform software trace process slot module trace-level",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process",
+        "description": "Process whose tracing level is being set. Options include: • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • dbm—The Database Manager process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • host-manager—The Host Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • license-manager—The License Manager process. • logger—The Logging Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • smd—The Session Manager process. • table-manager—The Table Manager Server. • wireless—The wireless controller module process. • wireshark—The Embedded Packet Capture (EPC) Wireshark process. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2436 System Management set platform software trace"
+      },
+      {
+        "name": "slot",
+        "description": "Hardware slot where the process for which the trace level is set, is running. Options include: • number—Number of the SIP slot of the hardware module where the trace level is set. For instance, if you want to specify the SIP in SIP slot 2 of the switch, enter 2. • SIP-slot / SPA-bay—Number of the SIP switch slot and the number of the shared port adapter (SPA) bay of that SIP. For instance, if you want to specify the SPA in bay 2 of the SIP in switch slot 3, enter 3/2. • F0—The Embedded-Service-Processor in slot 0. • FP active—The active Embedded-Service-Processor. • R0—The route processor in slot 0. • RP active—The active route processor. • switch <number> —The switch with its number specified. • switch active—The active switch. • switch standby—The standby switch."
+      },
+      {
+        "name": "module",
+        "description": "Module within the process for which the tracing level is set. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2437 System Management set platform software trace"
+      },
+      {
+        "name": "trace-level",
+        "description": "Trace level. Options include: • debug—Debug level tracing. A debug-level trace message is a non-urgent message providing a large amount of detail about the module. • emergency—Emergency level tracing. An emergency-level trace message is a message indicating that the system is unusable. • error—Error level tracing. An error-level tracing message is a message indicating a system error. • info—Information level tracing. An information-level tracing message is a non-urgent message providing information about the system. • noise—Noise level tracing. The noise level is always equal to the highest tracing level possible and always generates every possible tracing message. The noise level is always equal to the highest-level tracing message possible for a module, even if future enhancements to this command introduce options that allow users to set higher tracing levels. • notice—The message is regarding a significant issue, but the switch is still working normally. • verbose—Verbose level tracing. All possible tracing messages are sent when the trace level is set to verbose. • warning—Warning messages."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The module options vary by process and by hardware-module.  Use the ? option when entering this command to see which module options are available with each keyword sequence.  Trace files are stored in the tracelogs directory in the harddisk: file system.",
+    "sourcePage": 2436,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software trace level",
+    "context": null,
+    "detail": "View the trace levels for all the modules under a specific process.",
+    "syntax": "show platform software trace level process slot",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process",
+        "description": "Process whose tracing level is being set. Options include: • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • cmm—The CMM process. • dbm—The Database Manager process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • geo—The Geo Manager process. • host-manager—The Host Manager process. • interface-manager—The Interface Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • license-manager—The License Manager process. • logger—The Logging Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • sif—The Stack Interface (SIF) Manager process. • smd—The Session Manager process. • stack-mgr—The Stack Manager process. • table-manager—The Table Manager Server. • thread-test—The Multithread Manager process. • virt-manager—The Virtualization Manager process. • wireless—The wireless controller module process. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2440 System Management show platform software trace level"
+      },
+      {
+        "name": "slot",
+        "description": "Hardware slot where the process for which the trace level is set, is running. Options include: • number—Number of the SIP slot of the hardware module where the trace level is set. For instance, if you want to specify the SIP in SIP slot 2 of the switch, enter 2. • SIP-slot / SPA-bay—Number of the SIP switch slot and the number of the shared port adapter (SPA) bay of that SIP. For instance, if you want to specify the SPA in bay 2 of the SIP in switch slot 3, enter 3/2. • F0—The Embedded Service Processor in slot 0. • F1—The Embedded Service Processor in slot 1. • FP active—The active Embedded Service Processor. • R0—The route processor in slot 0. • RP active—The active route processor. • switch <number> —The switch, with its number specified. • switch active—The active switch. • switch standby—The standby switch. • number—Number of the SIP slot of the hardware module where the trace level is set. For instance, if you want to specify the SIP in SIP slot 2 of the switch, enter 2. • SIP-slot / SPA-bay—Number of the SIP switch slot and the number of the shared port adapter (SPA) bay of that SIP. For instance, if you want to specify the SPA in bay 2 of the SIP in switch slot 3, enter 3/2. • F0—The Embedded Service Processor in slot 0. • FP active—The active Embedded Service Processor. • R0—The route processor in slot 0. • RP active—The active route processor."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2440,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software trace archive",
+    "context": null,
+    "detail": "Archive all the trace logs relevant to all the processes running on a system since the last reload on the switch and to save this in the specified location.",
+    "syntax": "request platform software trace archive [last number-of-days [days [target location]] | target location]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "last number-of-days",
+        "description": "Specifies the number of days for which the trace files have to be archived."
+      },
+      {
+        "name": "target location",
+        "description": "Specifies the location and name of the archive file."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "This archive file can be copied from the system, using the tftp or scp commands.",
+    "sourcePage": 2443,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software btrace-manager",
+    "context": null,
+    "detail": "Display the most recent UTF/UTM information for a specific module.",
+    "syntax": "show platform software trace filter-binary filter [ status UTF UTM ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filter",
+        "description": "Shows the UTF binary stream filter."
+      },
+      {
+        "name": "status",
+        "description": "Shows the status of the binary trace manager filter."
+      },
+      {
+        "name": "UTF",
+        "description": "Shows the UTF unified trace file."
+      },
+      {
+        "name": "UTM",
+        "description": "Shows the UTM trace encoder."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2444,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set logging",
+    "context": null,
+    "detail": "Display the time zone for logging operations.",
+    "syntax": "set logging { backtrace process | marker string | ra { collect } | timezone { UTC | local } | tracelog-number process | tracelog-files-to-preserve number | tracelog-storage-quota size }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "backtrace",
+        "description": "Displays the backtrace details of a specific process."
+      },
+      {
+        "name": "marker",
+        "description": "Selects the logs corresponding to the specified marker: • start last marker— The latest matching marker in the marker list. • end marker— The first matching marker after the start marker."
+      },
+      {
+        "name": "timezone",
+        "description": "Sets the time zone to be displayed in trace logs. The time zone set by using the set logging command is displayed for the trace logs of show logging and monitor logging commands. If the time zone is not set for a device, then the trace logss appear in Cordinated Universal Time (UTC)."
+      },
+      {
+        "name": "ra",
+        "description": "Sets the RA attributes."
+      },
+      {
+        "name": "tracelog-number",
+        "description": "Sets the tracelog number of a specific process."
+      },
+      {
+        "name": "tracelog-files-to-preserve",
+        "description": "Set amount of files to preserve from rotation"
+      },
+      {
+        "name": "tracelog-storage-quota",
+        "description": "Set Tracelog files to preserve"
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "In scenarios where the time zone has already been set and the trace logs need to be dispalyed in UTC, use the command set logging timezone UTC and the trace logs will appear in UTC.",
+    "sourcePage": 2445,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set logging marker",
+    "context": null,
+    "detail": "Add a marker trace to all the processes.",
+    "syntax": "set logging marker marker-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "marker-name",
+        "description": "Sets the marker trace in the trace logs of a process. The marker string entered is not case sensitive."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2447,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging",
+    "context": null,
+    "detail": "Display the state of system logging (syslog) and the contents of the standard system logging buffer.",
+    "syntax": "show logging",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2448,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging process",
+    "context": null,
+    "detail": "View messages logged by binary trace for a process or processes.",
+    "syntax": "show logging process process-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process-name",
+        "description": "You can choose a certain process for which the logs need to be displayed. Example: dbm, sman, ios, btman and so on. The process name is not case sensitive."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2453,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging process-helper",
+    "context": null,
+    "detail": "Display the logs for a specific process.",
+    "syntax": "show logging process-helper process-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process-name",
+        "description": "You can choose a certain process for which the logs need to be displayed. Example: bt-logger, btrace-manager, ios, dbm, logger, and so on."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2456,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile",
+    "context": null,
+    "detail": "Display the logs for a specific profile.",
+    "syntax": "show logging profile profile-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "profile-name",
+        "description": "• all: Displays the logs for all processes. • file: Displays the logs for a specific profile file. • hardware-diagnostics: Displays the logs for the hardware-diagnostics specific processes • install: Displays the logs for Install-specific processes. • netconf-yang: Displays the logs for netconf-yang specific processes. • restconf: Displays the logs for restconf-specific processes. • sdwan: Displays the logs for SDWAN-specific processes. • wireless: Displays the logs for Wireless-specific processes."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2458,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless",
+    "context": null,
+    "detail": "Display the logs for a specific profile.",
+    "syntax": "show logging profile wireless",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.  The following example shows how to display logs for the wireless profile.",
+    "sourcePage": 2461,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless end",
+    "context": null,
+    "detail": "Specify log filtering end location timestamp for filtering.",
+    "syntax": "show logging profile wireless end timestamp time-stamp show logging profile wireless end timestamp time-stamp",
+    "noForm": null,
+    "params": [
+      {
+        "name": "time-stamp",
+        "description": "The timestamp to end the filtering. For example, 2023/02/10 14:41:50.849."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.",
+    "sourcePage": 2464,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless filter",
+    "context": null,
+    "detail": "Specify filter for logs.",
+    "syntax": "show logging profile wireless filter { interface | ipv4 | ipv6 | mac | ra | string | uuid }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface",
+        "description": "Selects logs with specific interface app context."
+      },
+      {
+        "name": "ipv4",
+        "description": "Selects logs with specific IPv4 address app context."
+      },
+      {
+        "name": "ipv6",
+        "description": "Selects logs with specific IPv6 address app context."
+      },
+      {
+        "name": "mac",
+        "description": "Selects logs with specific MAC app context."
+      },
+      {
+        "name": "string",
+        "description": "Selects logs with specific string app context."
+      },
+      {
+        "name": "uuid",
+        "description": "Selects logs with specific Universally Unique Identifier (UUID) app context."
+      },
+      {
+        "name": "ra",
+        "description": "Selects the radioactive logs."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.  The following example shows how to specify filter for logs: Device# show logging profile wireless filter mac ECE1.",
+    "sourcePage": 2465,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless fru",
+    "context": null,
+    "detail": "Specify field-replaceable unit (FRU) specific commands.",
+    "syntax": "show logging profile wireless fru",
+    "noForm": null,
+    "params": [
+      {
+        "name": "0",
+        "description": "SM-Inter-Processor slot 0"
+      },
+      {
+        "name": "1",
+        "description": "SM-Inter-Processor slot 1"
+      },
+      {
+        "name": "F0",
+        "description": "Embedded-Service-Processor slot 0"
+      },
+      {
+        "name": "FP",
+        "description": "Embedded-Service-Processor"
+      },
+      {
+        "name": "R0",
+        "description": "Route-Processor slot 0"
+      },
+      {
+        "name": "RP",
+        "description": "Route-Processor"
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.",
+    "sourcePage": 2467,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless internal",
+    "context": null,
+    "detail": "Select all the logs.",
+    "syntax": "show logging profile wireless internal",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.",
+    "sourcePage": 2469,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless level",
+    "context": null,
+    "detail": "Select logs above a specific level.",
+    "syntax": "show logging profile wireless level { debug | error | info | notice | verbose | warning }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "debug",
+        "description": "Selects the debug-level trace messages."
+      },
+      {
+        "name": "error",
+        "description": "Selects the error-level trace messages."
+      },
+      {
+        "name": "info",
+        "description": "Selects the informational-level trace messages."
+      },
+      {
+        "name": "notice",
+        "description": "Selects the notice-level trace messages."
+      },
+      {
+        "name": "verbose",
+        "description": "Selects the verbose-level trace messages."
+      },
+      {
+        "name": "warning",
+        "description": "Selects the warning-level trace messages."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "• Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.  • Trace level determines the types of traces outputted.",
+    "sourcePage": 2472,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless module",
+    "context": null,
+    "detail": "Select logs for specific modules.",
+    "syntax": "show logging profile wireless module module-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "module-name",
+        "description": "List the module names separated by commas or space. For example, dbal, tdllib or \"dbal tdllib\"."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.  The following example shows how to select logs for specific modules: Device# show logging profile wireless module dbal Logging display requested on 2023/03/13 08:53:08 (UTC) for Hostname: [FABRIEK], Model: [C8300-1N1S-4T2X], Version: [17.",
+    "sourcePage": 2474,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless reverse",
+    "context": null,
+    "detail": "View logs in reverse chronological order.",
+    "syntax": "show logging profile wireless reverse",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.  The following example shows how to view logs in reverse chronological order: Device# show logging profile wireless reverse Logging display requested on 2023/03/13 08:18:40 (UTC) for Hostname: [BRU-C9K-153-05], Model: [C9300-24T], Version: [17.",
+    "sourcePage": 2476,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless start",
+    "context": null,
+    "detail": "Specify log filtering start location.",
+    "syntax": "show logging profile wireless start { last | marker | timestamp }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "last",
+        "description": "Display the logs since last event."
+      },
+      {
+        "name": "marker",
+        "description": "The marker to start filtering from. It must match with previously set marker"
+      },
+      {
+        "name": "timestamp",
+        "description": "The timestamp for filtering. for example, \"2023/02/10 14:41:50.849\"."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.",
+    "sourcePage": 2479,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless switch",
+    "context": null,
+    "detail": "Specify the switch to look for logs.",
+    "syntax": "show logging profile wireless switch { <switch-nmber> | active | standby }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Chasis-number",
+        "description": "The chasis number."
+      },
+      {
+        "name": "active",
+        "description": "Selects the active instance."
+      },
+      {
+        "name": "standby",
+        "description": "Selects the standby instance."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.",
+    "sourcePage": 2482,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile wireless to-file",
+    "context": null,
+    "detail": "Decode files stored in disk and write the output to a file.",
+    "syntax": "show logging profile wireless to-file output-file-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "output-file-name",
+        "description": "Output file name. File with this name will be created in the flash/bootflash/crashinfo/harddisk memory."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Ensure that you enable internal keyword using the show logging profile wireless internal command to get the trace output.  Without the internal keyword, only customer curated logs are displayed.",
+    "sourcePage": 2484,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile sdwan",
+    "context": null,
+    "detail": "View messages logged by binary trace for Cisco-SD-WAN-specific processes and process modules.",
+    "syntax": "show logging profile sdwan [ extract-pcap to-file path | [ end timestamp ts ] [ module name ] [ internal ] [ start { last { n { days | hours | minutes | seconds } clear boot } | timestamp ts } [ end { last { n { days | hours | minutes | seconds } clear boot } | timestamp ts } ] ] [ level level ] [ fru slot ] [ reverse | [ trace-on-failure | metadata ] [ to-file path ] ] ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "extract-pcap to-file path",
+        "description": "Extracts pcap data to a file."
+      },
+      {
+        "name": "end timestamp ts",
+        "description": "Shows logs up to the specified timestamp."
+      },
+      {
+        "name": "module name",
+        "description": "Selects logs for specific modules."
+      },
+      {
+        "name": "internal",
+        "description": "Selects all logs. start{ last { n {days | hours | minutes | Shows logs collected between the specified start and end seconds} | clear | boot} | timestamp ts}[end{ times. last { n {days | hours | minutes | seconds} | clear | boot} | timestamp ts}]"
+      },
+      {
+        "name": "level level",
+        "description": "Shows logs for the specified and higher levels."
+      },
+      {
+        "name": "fru slot",
+        "description": "Shows logs from a specific FRU."
+      },
+      {
+        "name": "reverse",
+        "description": "Shows logs in reverse chronological order."
+      },
+      {
+        "name": "to-file path",
+        "description": "Decodes files stored in disk and writes output to file."
+      },
+      {
+        "name": "trace-on-failure",
+        "description": "Shows the trace on failure summary."
+      },
+      {
+        "name": "metadata",
+        "description": "Shows metadata for every log message."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Cisco SD-WAN Daemons Supported from Release • fpmd Cisco IOS XE Release 17. 4.",
+    "sourcePage": 2485,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging profile sdwan internal",
+    "context": null,
+    "detail": "View messages logged by binary trace for Cisco-SD-WAN-specific processes and process modules.",
+    "syntax": "show logging profile sdwan internal",
+    "noForm": null,
+    "params": [
+      {
+        "name": "end timestamp ts",
+        "description": "Shows logs up to the specified timestamp. start{ last { n {days | hours | minutes | Shows logs collected between the specified start and end seconds} | clear | boot} | timestamp ts}[end{ times. last { n {days | hours | minutes | seconds} | clear | boot} | timestamp ts}]"
+      },
+      {
+        "name": "level level",
+        "description": "Shows logs for the specified and higher levels."
+      },
+      {
+        "name": "fru slot",
+        "description": "Shows logs from a specific FRU."
+      },
+      {
+        "name": "reverse",
+        "description": "Shows logs in reverse chronological order."
+      },
+      {
+        "name": "to-file path",
+        "description": "Decodes files stored in disk and writes output to file."
+      },
+      {
+        "name": "trace-on-failure",
+        "description": "Shows the trace on failure summary."
+      },
+      {
+        "name": "metadata",
+        "description": "Shows metadata for every log message."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Cisco SD-WAN Daemons Supported from Release • fpmd Cisco IOS XE Release 17. 4. 1a • ftm • ompd • vdaemon • cfgmgr Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 2488,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show log file",
+    "context": null,
+    "detail": "Display the log files in bootflash:, crashinfo:, flash:, harddisk:, or webui:.",
+    "syntax": "show log file",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2491,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor logging",
+    "context": null,
+    "detail": "Monitor log generation in real-time for a process or a profile.",
+    "syntax": "monitor logging",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2492,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor logging filter",
+    "context": null,
+    "detail": "Specify filter for monitorin logs.",
+    "syntax": "monitor logging filter { interface | ipv4 | ipv6 | mac | ra | string | uuid }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface",
+        "description": "Selects logs with specific interface app context."
+      },
+      {
+        "name": "ipv4",
+        "description": "Selects logs with specific IPv4 address app context."
+      },
+      {
+        "name": "ipv6",
+        "description": "Selects logs with specific IPv6 address app context."
+      },
+      {
+        "name": "mac",
+        "description": "Selects logs with specific MAC app context."
+      },
+      {
+        "name": "string",
+        "description": "Selects logs with specific string app context."
+      },
+      {
+        "name": "uuid",
+        "description": "Selects logs with specific Universally Unique Identifier (UUID) app context."
+      },
+      {
+        "name": "ra",
+        "description": "Selects the radioactive logs."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2493,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor logging level",
+    "context": null,
+    "detail": "Monitor logs above a specific level.",
+    "syntax": "monitor logging level { debug | error | info | notice | verbose | warning }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "debug",
+        "description": "Selects the debug-level trace messages."
+      },
+      {
+        "name": "error",
+        "description": "Selects the error-level trace messages."
+      },
+      {
+        "name": "info",
+        "description": "Selects the informational-level trace messages."
+      },
+      {
+        "name": "notice",
+        "description": "Selects the notice-level trace messages."
+      },
+      {
+        "name": "verbose",
+        "description": "Selects the verbose-level trace messages."
+      },
+      {
+        "name": "warning",
+        "description": "Selects the warning-level trace messages."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2494,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor logging metadata",
+    "context": null,
+    "detail": "Display metadata for every log message.",
+    "syntax": "monitor logging metadata",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2495,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor logging process-helper",
+    "context": null,
+    "detail": "Monitor log generation in real-time for a process or a profile.",
+    "syntax": "monitor logging process-helper process-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process-name",
+        "description": "You can choose a certain process for which the logs need to be monitored. Example: bt-logger, btrace-manager, ios, dbm, logger, and so on."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2496,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "monitor logging",
+    "context": null,
+    "detail": "Monitor logs for a profile.",
+    "syntax": "monitor logging profile profile-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "profile",
+        "description": "• all: Displays the logs for all processes. • file: Displays the logs for a specific profile file (bootflash:, crashinfo:, flash:, harddisk:, or webui:). • hardware-diagnostics: Displays the logs for the hardware-diagnostics specific processes • install: Displays the logs for Install-specific processes. • netconf-yang: Displays the logs for netconf-yang specific processes. • restconf: Displays the logs for restconf-specific processes. • sdwan: Displays the logs for SDWAN-specific processes. • wireless: Displays the logs for Wireless-specific processes."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2497,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  }
+]

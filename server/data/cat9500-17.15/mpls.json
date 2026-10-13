@@ -1,0 +1,1224 @@
+[
+  {
+    "name": "autodiscovery",
+    "context": null,
+    "detail": "Designate a Layer 2 virtual forwarding interface (VFI) as having Border Gateway Protocol (BGP) or Label Distribution Protocol (LDP) autodiscovered pseudowire members.",
+    "syntax": "autodiscovery bgp signaling {bgp | ldp}[template template-name]",
+    "noForm": "no autodiscovery bgp signaling {bgp | ldp}[template template-name]",
+    "params": [
+      {
+        "name": "bgp",
+        "description": "Specifies that BGP should be used for signaling and autodiscovery."
+      },
+      {
+        "name": "ldp",
+        "description": "Specifies that LDP should be used for signaling. template template-name Specifies the template to be used for autodiscovered pseudowires."
+      }
+    ],
+    "modes": ["Layer 2 VFI configuration (config-vfi)"],
+    "usageSummary": "Layer 2 VFI autodiscovery enables each VPLS provider edge (PE) device to discover other PE devices that are part of the same VPLS domain.  VPLS autodiscovery also automatically detects when PE devices are added to or removed from the VPLS domain.  The bgp keyword specifies that BGP should be used for signaling and autodiscovery, accordance with RFC 4761.",
+    "sourcePage": 1115,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "backup peer",
+    "context": null,
+    "detail": "Specify a redundant peer for a pseudowire virtual circuit (VC).",
+    "syntax": "backup peer peer-router-ip-addr vcid [pw-class pw-class-name] [priority value]",
+    "noForm": "no backup peer peer-router-ip-addr vcid",
+    "params": [
+      {
+        "name": "peer-router-ip-addr",
+        "description": "IP address of the remote peer."
+      },
+      {
+        "name": "vcid",
+        "description": "32-bit identifier of the VC between the devices at each end of the layer control channel."
+      },
+      {
+        "name": "pw-class",
+        "description": "(Optional) Specifies the pseudowire type. If this is not specified, the pseudowire type is inherited from the parent Xconnect."
+      },
+      {
+        "name": "pw-class-name",
+        "description": "(Optional) Name of the pseudowire that you created while establishing the pseudowire class."
+      },
+      {
+        "name": "priority value",
+        "description": "(Optional) Specifies the priority of the backup pseudowire in instances where multiple backup pseudowires exist. The range is from 1 to 10. The default is 1."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Xconnect configuration (config-if-xconn)"],
+    "usageSummary": "The combination of the peer-router-ip-addr and vcid arguments must be unique on the device.",
+    "sourcePage": 1117,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "encapsulation mpls",
+    "context": null,
+    "detail": "Specify Multiprotocol Label Switching (MPLS) as the data encapsulation method.",
+    "syntax": "encapsulation mpls",
+    "noForm": "no encapsulation mpls",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 1118,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim sparse-mode",
+    "context": null,
+    "detail": "Configure a multiaccess WAN interface to be in sparse mode.",
+    "syntax": "ip pim sparse-mode",
+    "noForm": "no ip pim sparse-mode",
+    "params": [],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": "When this command is configured on all interfaces, any existing groups running in sparse mode will continue to operate in sparse mode but will use an RP address set to 0. 0. 0.",
+    "sourcePage": 1119,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip pim nbma-mode",
+    "context": null,
+    "detail": "Configure a multiaccess WAN interface to be in nonbroadcast multiaccess (NBMA) mode.",
+    "syntax": "ip pim nbma-mode",
+    "noForm": "no ip pim nbma-mode",
+    "params": [],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": "Use this command on Frame Relay, Switched Multimegabit Data Service (SMDS), or ATM only, especially when these media do not have native multicast available.  Do not use this command on multicast-capable LANs such as Ethernet or FDDI.  When this command is configured, each Protocol Independent Multicast (PIM) join message is tracked in the outgoing interface list of a multicast routing table entry.",
+    "sourcePage": 1120,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip ospf network",
+    "context": null,
+    "detail": "Configure the Open Shortest Path First (OSPF) network type to a type other than the default for a given medium.",
+    "syntax": "ip ospf network {broadcast | non-broadcast | {point-to-multipoint [non-broadcast] | point-to-point}}",
+    "noForm": "no ip ospf network",
+    "params": [
+      {
+        "name": "broadcast",
+        "description": "Sets the network type to broadcast."
+      },
+      {
+        "name": "non-broadcast",
+        "description": "Sets the network type to nonbroadcast multiaccess (NBMA)."
+      },
+      {
+        "name": "point-to-multipoint",
+        "description": "Sets the network type to point-to-multipoint. The optional non-broadcast"
+      },
+      {
+        "name": "non-broadcast",
+        "description": "keyword sets the point-to-multipoint network to be nonbroadcast. If you use the non-broadcast keyword, the neighbor command is required."
+      },
+      {
+        "name": "point-to-point",
+        "description": "Sets the network type to point-to-point."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": "Using this feature, you can configure broadcast networks as NBMA networks when, for example, routers in your network do not support multicast addressing.  You can also configure nonbroadcast multiaccess networks (such as X. 25, Frame Relay, and Switched Multimegabit Data Service (SMDS)) as broadcast networks.",
+    "sourcePage": 1121,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip multicast mrinfo-filter",
+    "context": null,
+    "detail": "Filter multicast router information (mrinfo) request packets.",
+    "syntax": "ip multicast [vrf vrf-name] mrinfo-filter access-list",
+    "noForm": "no ip multicast [vrf vrf-name] mrinfo-filter",
+    "params": [
+      {
+        "name": "vrf",
+        "description": "(Optional) Supports the multicast VPN routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "vrf-name",
+        "description": "(Optional) Name assigned to the VRF."
+      },
+      {
+        "name": "access-list",
+        "description": "IP standard numbered or named access list that determines which networks or hosts can query the local multicast device with the mrinfo command."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The ip multicast mrinfo-filtercommand filters the mrinfo request packets from all of the sources denied by the specified access list.  That is, if the access list denies a source, that source's mrinfo requests are filtered.  mrinfo requests from any sources permitted by the ACL are allowed to proceed.",
+    "sourcePage": 1123,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip multicast-routing",
+    "context": null,
+    "detail": "Enable IP multicast routing.",
+    "syntax": "ip multicast-routing [vrf vrf-name]",
+    "noForm": "no ip multicast-routing [vrf vrf-name]",
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Enables IP multicast routing for the Multicast VPN routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      }
+    ],
+    "modes": ["Global configuration (config)."],
+    "usageSummary": "When IP multicast routing is disabled, the Cisco IOS software does not forward any multicast packets.",
+    "sourcePage": 1124,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "l2 vfi autodiscovery",
+    "context": null,
+    "detail": "Enable the Virtual Private LAN Service (VPLS) provider edge (PE) device to automatically discover other PE devices that are part of the same VPLS domain.",
+    "syntax": "l2 vfi vfi-name autodiscovery",
+    "noForm": "no l2 vfi vfi-name autodiscovery",
+    "params": [
+      {
+        "name": "vfi-name",
+        "description": "Specifies the name of the virtual forwarding instance. The virtual forwarding instance (VFI) identifies a group of pseudowires that are associated with a virtual switching instance (VSI)."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "VPLS autodiscovery enables each VPLS PE device to discover other PE devices that are part of the same VPLS domain.  VPLS autodiscovery also automatically detects when PE devices are added to or removed from the VPLS domain.",
+    "sourcePage": 1125,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "l2 vfi manual",
+    "context": null,
+    "detail": "Create a Layer 2 virtual forwarding instance (VFI) and enter Layer 2 VFI manual configuration mode.",
+    "syntax": "l2 vfi name manual",
+    "noForm": "no l2 vfi name manual",
+    "params": [
+      {
+        "name": "name",
+        "description": "Name of a new or existing Layer 2 VFI."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "A VFI is a collection of data structures used by the data plane, software-based or hardware-based, to forward packets to one or more virtual circuits (VC).  It is populated and updated by both the control plane and the data plane and also serves as the data structure interface between the control plane and the data plane.",
+    "sourcePage": 1126,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "l2vpn vfi context",
+    "context": null,
+    "detail": "Establish a Layer 2 VPN virtual forwarding interface (VFI) between two or more separate networks.",
+    "syntax": "l2vpn vfi context name",
+    "noForm": "no l2vpn vfi context name",
+    "params": [
+      {
+        "name": "name",
+        "description": "Name of the VFI context."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The l2vpn vfi context command is used as part of the protocol-CLI mode for configuring Virtual Private LAN Service (VPLS).  This command establishes a VFI for specifying core-facing pseudowires in a VPLS.  The VFI represents an emulated LAN or a VPLS forwarder from the VPLS architectural model when using an emulated LAN interface.",
+    "sourcePage": 1128,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "l2vpn xconnect context",
+    "context": null,
+    "detail": "Create a Layer 2 VPN (L2VPN) cross-connect context and enter Xconnect configuration mode.",
+    "syntax": "l2vpn xconnect context context-name",
+    "noForm": "no l2vpn xconnect context context-name",
+    "params": [
+      {
+        "name": "context-name",
+        "description": "Name of the cross-connect context."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the l2vpn xconnect context command to define a cross-connect context that specifies the two members in a Virtual Private Wire Service (VPWS), that is, attachment circuit to pseudowire, pseudowire-to-pseudowire (multisegment pseudowire), or attachment circuit-to-attachment circuit (local connection).  The type of members specified, that is, attachment circuit interface or pseudowire, automatically define the type of L2VPN service.",
+    "sourcePage": 1129,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "label mode",
+    "context": null,
+    "detail": "Configure the IPv6 Explicit Null Label.",
+    "syntax": "label mode { explicit-null | all-explicit-null }",
+    "noForm": "no label mode",
+    "params": [
+      {
+        "name": "explicit-null",
+        "description": "Configures IPv6 Explicit Null Label for directly connected IPv6 prefixes sent to BGP labelled unicast neighbors."
+      },
+      {
+        "name": "all-explicit-null",
+        "description": "Configures IPv6 Explicit Null Label for all IPv6 prefixes sent to BGP labelled unciast neighbors."
+      }
+    ],
+    "modes": ["Address family configuration mode (config-router-af)"],
+    "usageSummary": null,
+    "sourcePage": 1130,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "load-balance",
+    "context": null,
+    "detail": "Set the load-distribution method for pseudowire.",
+    "syntax": "load-balance {flow [ethernet [dst-mac | src-dst-mac | src-mac] | ip [dst-ip | src-dst-ip | src-ip] ] | flow-label {both | receive | transmit}[static [advertise]]}",
+    "noForm": "no load-balance {flow | flow-label}",
+    "params": [
+      {
+        "name": "flow",
+        "description": "Enables flow-based load balancing for pseudowire."
+      },
+      {
+        "name": "ethernet",
+        "description": "Specifies Ethernet pseudowire flow classification."
+      },
+      {
+        "name": "dst-mac",
+        "description": "Specifies load distribution based on the destination host MAC address. src-dst-mac Specifies load distribution based on the source and destination host MAC address."
+      },
+      {
+        "name": "src-mac",
+        "description": "Specifies load distribution based on the source MAC address."
+      },
+      {
+        "name": "ip",
+        "description": "Specifies IP pseudowire flow classification."
+      },
+      {
+        "name": "dst-ip",
+        "description": "Specifies load distribution based on the destination host IP address. src-dst-ip Specifies load distribution based on the source and destination host IP address."
+      },
+      {
+        "name": "src-ip",
+        "description": "Specifies load distribution based on the source host IP address. flow-label Enables flow-aware transport of pseudowire."
+      },
+      {
+        "name": "both",
+        "description": "Enables flow-aware transport of pseudowire in both directions."
+      },
+      {
+        "name": "receive",
+        "description": "Enables flow-aware transport of pseudowire in the receiving direction."
+      },
+      {
+        "name": "transmit",
+        "description": "Enables flow-aware transport of pseudowire in the transmitting direction."
+      },
+      {
+        "name": "static",
+        "description": "Enables flow labels even if not signaled by the remote peer."
+      },
+      {
+        "name": "advertise",
+        "description": "Sends flow label sub type, length, value (sub-TLV)."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 1131,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mdt log-reuse",
+    "context": null,
+    "detail": "Enable the recording of data multicast distribution tree (MDT) reuse.",
+    "syntax": "mdt log-reuse",
+    "noForm": "no mdt log-reuse",
+    "params": [],
+    "modes": ["VRF address family configuration (config-vrf-af) VRF configuration (config-vrf)"],
+    "usageSummary": "The mdt log-reuse command generates a syslog message whenever a data MDT is reused.  You can access the mdt log-reusecommand by using the ip vrf global configuration command.  You can also access the mdt log-reuse command by using the vrf definition global configuration command followed by the address-family ipv4 VRF configuration command.",
+    "sourcePage": 1133,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mdt default",
+    "context": null,
+    "detail": "Configure a default multicast distribution tree (MDT) group for a Virtual Private Network (VPN) routing and forwarding (VRF) instance.",
+    "syntax": "mdt defaultgroup-address",
+    "noForm": "no mdt defaultgroup-address",
+    "params": [
+      {
+        "name": "group-address",
+        "description": "IP address of the default MDT group. This address serves as an identifier for the community in that provider edge (PE) devices configured with the same group address become members of the group, allowing them to receive packets sent by each other."
+      }
+    ],
+    "modes": ["VRF address family configuration (config-vrf-af) VRF configuration (config-vrf)"],
+    "usageSummary": "The default MDT group must be the same group configured on all PE devices that belong to the same VPN.  If Source Specific Multicast (SSM) is used as the protocol for the default MDT, the source IP address will be the address used to source the Border Gateway Protocol (BGP) sessions.  A tunnel interface is created as a result of this command.",
+    "sourcePage": 1134,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mdt data",
+    "context": null,
+    "detail": "Specify a range of addresses to be used in the data multicast distribution tree (MDT) pool.",
+    "syntax": "mdt data threshold kb/s",
+    "noForm": "no mdt data threshold kb/s",
+    "params": [
+      {
+        "name": "threshold kb/s",
+        "description": "(Optional) Defines the bandwidth threshold value in kilobits per second (kb/s). The range is from 1 to 4294967."
+      }
+    ],
+    "modes": ["VRF address family configuration (config-vrf-af)", "VRF configuration (config-vrf)"],
+    "usageSummary": "A data MDT can include a maximum of 256 multicast groups per MVPN.  Multicast groups used to create the data MDT are dynamically chosen from a pool of configured IP addresses.  Use the mdt data command to specify a range of addresses to be used in the data MDT pool.",
+    "sourcePage": 1136,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "member",
+    "context": "l2vpn vfi",
+    "detail": "Specify the devices that form a point-to-point Layer 2 VPN virtual forwarding interface (VFI) connection.",
+    "syntax": "member {ip-address [vc-id] {encapsulation mpls | template name} | pseudowire pw-int-number [ip-address [vc-id ] {encapsulation mpls | template name}]} [ip-address [vc-id] {encapsulation mpls | template name}]}",
+    "noForm": "no member {ip-address [vc-id ] {encapsulation mpls | template name} | pseudowire pw-int-number",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the VFI neighbor."
+      },
+      {
+        "name": "vc-id",
+        "description": "(Optional) Virtual circuit (VC) identifier."
+      },
+      {
+        "name": "encapsulation mpls",
+        "description": "Specifies Multiprotocol Label Switching (MPLS) as the encapsulation type."
+      },
+      {
+        "name": "template name",
+        "description": "Specifies the template name."
+      },
+      {
+        "name": "pseudowire pw-int-number",
+        "description": "Specifies the pseudowire interface number."
+      }
+    ],
+    "modes": ["Layer 2 VFI configuration (config-vfi)"],
+    "usageSummary": "This instance of the member command is used as part of the protocol-CLI mode for configuring Virtual Private LAN Service (VPLS).",
+    "sourcePage": 1138,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "member pseudowire",
+    "context": null,
+    "detail": "Specify a pseudowire interface that forms a Layer 2 VPN (L2VPN) cross connect.",
+    "syntax": "member pseudowire interface-number [ip-address vc-id {encapsulation mpls | template template-name}] [group group-name [priority number]]",
+    "noForm": "no member pseudowire interface-number",
+    "params": [
+      {
+        "name": "interface-number",
+        "description": "Interface number."
+      },
+      {
+        "name": "ip-address",
+        "description": "IP address of the peer."
+      },
+      {
+        "name": "vcid",
+        "description": "The virtual circuit (VC) ID. The range is from 1 to 4294967295."
+      },
+      {
+        "name": "encapsulation mpls",
+        "description": "Specifies Multiprotocol Label Switching (MPLS) as the data encapsulation method. template template-name (Optional) Specifies the template to be used for encapsulation and protocol configuration. The maximum size is 32 characters."
+      },
+      {
+        "name": "group group-name",
+        "description": "(Optional) Specifies the cross-connect member redundancy group name."
+      },
+      {
+        "name": "priority number",
+        "description": "(Optional) Specifies the cross-connect member priority. The range is from 0 to 16. The highest priority is 0. The lowest priority is 16."
+      }
+    ],
+    "modes": ["Xconnect configuration (config-xconnect)"],
+    "usageSummary": "The member command specifies the two members of the Virtual Private Wired Service (VPWS), multisegment pseudowire or local connect services.  For VPWS, one member is an attachment circuit and the other member is a pseudowire interface.  For a multisegment pseudowire, both members are pseudowire interfaces.",
+    "sourcePage": 1139,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls label range",
+    "context": null,
+    "detail": "Configure the range of local labels available for use with Multiprotocol Label Switching (MPLS) applications on packet interfaces.",
+    "syntax": "mpls label range minimum-value maximum-value [static minimum-static-value maximum-static-value]",
+    "noForm": "no mpls label range",
+    "params": [
+      {
+        "name": "minimum-value",
+        "description": "The value of the smallest label allowed in the label space. The default is 16."
+      },
+      {
+        "name": "maximum-value",
+        "description": "The value of the largest label allowed in the label space. The default is platform-dependent."
+      },
+      {
+        "name": "static",
+        "description": "(Optional) Reserves a block of local labels for static label assignments. If you omit the static keyword and the minimum-static-value maximum-static-value arguments, no labels are reserved for static assignment."
+      },
+      {
+        "name": "minimum-static-value",
+        "description": "(Optional) The minimum value for static label assignments. There is no default value."
+      },
+      {
+        "name": "maximum-static-value",
+        "description": "(Optional) The maximum value for static label assignments. There is no default value."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The labels 0 through 15 are reserved by the IETF (see RFC 3032, MPLS Label Stack Encoding, for details) and cannot be included in the range specified in the mpls label range command.  If you enter a 0 in the command, you will get a message that indicates that the command is an unrecognized command.  The label range defined by the mpls label range command is used by all MPLS applications that allocate local labels (for dynamic label switching, MPLS traffic engineering, MPLS Virtual Private Networks (VPNs), and so on).",
+    "sourcePage": 1141,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls label protocol",
+    "context": "interface configuration",
+    "detail": "Specify the label distribution protocol for an interface.",
+    "syntax": "mpls label protocol ldp",
+    "noForm": "no mpls label protocol ldp",
+    "params": [
+      {
+        "name": "ldp",
+        "description": "Specifies that the label distribution protocol (LDP) is to be used on the interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "To successfully establish a session for label distribution for a link connecting two label switch routers (LSRs), the link interfaces on the LSRs must be configured to use the same label distribution protocol.  If there are multiple links connecting two LSRs, all of the link interfaces connecting the two LSRs must be configured to use the same protocol.",
+    "sourcePage": 1144,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls label protocol",
+    "context": "global configuration",
+    "detail": "Specify the Label Distribution Protocol (LDP) for a platform.",
+    "syntax": "mpls label protocol ldp",
+    "noForm": "no mpls label protocol ldp",
+    "params": [
+      {
+        "name": "ldp",
+        "description": "Specifies that LDP is the default label distribution protocol."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "If neither the global mpls label protocol ldp command nor the interface mpls label protocol ldp command is used, all label distribution sessions use LDP.",
+    "sourcePage": 1145,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls ldp logging neighbor-changes",
+    "context": null,
+    "detail": "Generate system error logging (syslog) messages when Label Distribution Protocol (LDP) sessions go down.",
+    "syntax": "mpls ldp logging neighbor-changes",
+    "noForm": "no mpls ldp logging neighbor-changes",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the mpls ldp logging neighbor-changes command to generate syslog messages when an LDP session goes down.  The command also provides VRF information about the LDP neighbor and the reason for the LDP session going down.  Some of the reasons for an LDP session going down are the following: • An LDP was disabled globally by configuration.",
+    "sourcePage": 1146,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls ip",
+    "context": "interface configuration",
+    "detail": "Enable Multiprotocol Label Switching (MPLS) forwarding of IPv4 and IPv6 packets along normally routed paths for a particular interface.",
+    "syntax": "mpls ip",
+    "noForm": "no mpls ip",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "MPLS forwarding of IPv4 and IPv6 packets along normally routed paths is sometimes called dynamic label switching.  If dynamic label switching has been enabled for the platform when this command is issued on an interface, label distribution for the interface begins with the periodic transmission of neighbor discovery Hello messages on the interface.  When the outgoing label for a destination routed through the interface is known, packets for the destination are labeled with that outgoing label and forwarded through the interface.",
+    "sourcePage": 1147,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls ip",
+    "context": "global configuration",
+    "detail": "Enable Multiprotocol Label Switching (MPLS) forwarding of IPv4 and IPv6 packets along normally routed paths for the platform.",
+    "syntax": "mpls ip",
+    "noForm": "no mpls ip",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "MPLS forwarding of IPv4 and IPv6 packets along normally routed paths (sometimes called dynamic label switching) is enabled by this command.  For a given interface to perform dynamic label switching, this switching function must be enabled for the interface and for the platform.  The no form of this command stops dynamic label switching for all platform interfaces regardless of the interface configuration; it also stops distribution of labels for dynamic label switching.",
+    "sourcePage": 1148,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls ip default-route",
+    "context": null,
+    "detail": "Enable the distribution of labels associated with the IP default route.",
+    "syntax": "mpls ip default-route",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Dynamic label switching (that is, distribution of labels based on routing protocols) must be enabled before you can use the mpls ip default-route command.",
+    "sourcePage": 1149,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "neighbor",
+    "context": "MPLS",
+    "detail": "Specify the peer IP address and virtual circuit (VC) ID value of a Layer 2 VPN (L2VPN) pseudowire.",
+    "syntax": "neighbor peer-address vcid-value",
+    "noForm": "no neighbor",
+    "params": [
+      {
+        "name": "peer-address",
+        "description": "IP address of the provider edge (PE) peer."
+      },
+      {
+        "name": "vcid-value",
+        "description": "VC ID value. The range is from 1 to 4294967295."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You must configure the neighbor command for the pseudowire to be functional.",
+    "sourcePage": 1150,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim mdt send",
+    "context": null,
+    "detail": "Display the data multicast distribution tree (MDT) groups in use.",
+    "syntax": "show ip pim vrf vrf-name mdt send",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "Displays the data MDT groups in use by the Multicast VPN (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command to show the data MDT groups in use by a specified MVRF.",
+    "sourcePage": 1151,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim mdt receive",
+    "context": null,
+    "detail": "To display the data multicast distribution tree (MDT) group mappings received from other provider edge (PE) routers, use the show ip pim mdt receivecommand in privileged EXEC mode.",
+    "syntax": "show ip pim vrf vrf-name mdt receive [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf",
+        "description": "vrf-name Displays the data MDT group mappings for the Multicast VPN (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Provides a detailed description of the data MDT advertisements received."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "When a router wants to switch over from the default MDT to a data MDT, it advertises the VRF source, the group pair, and the global multicast address over which the traffic will be sent.  If the remote router wants to receive this data, then it will join this global address multicast group.",
+    "sourcePage": 1152,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim mdt history",
+    "context": null,
+    "detail": "To display information about the history of data multicast distribution tree (MDT) groups that have been reused, use the show ip pim mdt historycommand in privileged EXEC mode.",
+    "syntax": "show ip pim vrf vrf-name mdt history interval minutes",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf",
+        "description": "vrf-name Displays the history of data MDT groups that have been reused for the Multicast VPN (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      },
+      {
+        "name": "interval minutes",
+        "description": "Specifies the interval (in minutes) for which to display information about the history of data MDT groups that have been reused. The range is from 1 to 71512 minutes (7 weeks)."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The output of the show ip pim mdt history command displays the history of reused MDT data groups for the interval specified with the interval keyword and minutes argument.  The interval is from the past to the present, that is, from the time specified for the minutes argument to the time at which the command is issued.",
+    "sourcePage": 1154,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim mdt bgp",
+    "context": null,
+    "detail": "Show details about the Border Gateway Protocol (BGP) advertisement of the route distinguisher (RD) for the multicast distribution tree (MDT) default group.",
+    "syntax": "show ip pim [vrf vrf-name] mdt bgp",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Displays information about the BGP advertisement of the RD for the MDT default group associated with Multicast Virtual Private Network (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      }
+    ],
+    "modes": ["User EXEC Privileged EXEC"],
+    "usageSummary": "Use this command to show detailed BGP advertisement of the RD for the MDT default group.",
+    "sourcePage": 1155,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mpls label range",
+    "context": null,
+    "detail": "Display the range of local labels available for use on packet interfaces.",
+    "syntax": "show mpls label range",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can use the mpls label range command to configure a range for local labels that is different from the default range.  The show mpls label range command displays both the label range currently in use and the label range that will be in use following the next switch reload.",
+    "sourcePage": 1156,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mpls ldp bindings",
+    "context": null,
+    "detail": "Display the contents of Label Information Base (LIB).",
+    "syntax": "show mpls ldp bindings[all|vrf vrf-name][brief][summary]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all Label Distribution Protocol (LDP) configured VRFs."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "Displays information for the specified VRF."
+      },
+      {
+        "name": "brief",
+        "description": "Displays concise information about specified LDP-enabled interface."
+      },
+      {
+        "name": "summary",
+        "description": "Displays information for LDP discovery."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1157,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mpls ldp discovery",
+    "context": null,
+    "detail": "Display the status of Label Distribution Protocol (LDP) discovery process.",
+    "syntax": "show mpls ldp discovery[all|vrf vrf-name][brief][summary]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all LDP-configured VRFs."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "Displays information for the specified VRF."
+      },
+      {
+        "name": "brief",
+        "description": "Displays concise information about specified LDP-enabled interface."
+      },
+      {
+        "name": "summary",
+        "description": "Displays information for LDP discovery."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1159,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mpls ldp neighbor",
+    "context": null,
+    "detail": "Display the status of Label Distribution Protocol (LDP) sessions.",
+    "syntax": "show mpls ldp neighbor[all|vrf vrf-name][brief][summary]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all LDP-configured VRFs."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "Displays information for the specified VRF."
+      },
+      {
+        "name": "brief",
+        "description": "Displays concise information about specified LDP-enabled interface."
+      },
+      {
+        "name": "summary",
+        "description": "Displays information for LDP discovery."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1161,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mpls forwarding-table",
+    "context": null,
+    "detail": "Display the contents of the Multiprotocol Label Switching (MPLS) Label Forwarding Information Base (LFIB).",
+    "syntax": "Note When a local label is present, the forwarding entry for IP imposition will not be showed; if you want to see the IP imposition information, use show ip cef. show mpls forwarding-table [network {masklength} | interface interface | labels label [dash label] | lcatm atm atm-interface-number | next-hop address | lsp-tunnel [tunnel-id]] [vrf vrf-name] [detail slot slot-number] network (Optional) Destination network number. mask IP address of the destination mask whose entry is to be shown. length Number of bits in the mask of the destination. interface interface (Optional) Displays entries with the outgoing interface specified. labels label-label (Optional) Displays entries with the local labels specified. lcatm atm atm-interface-number Displays ATM entries with the specified Label Controlled Asynchronous Transfer Mode (LCATM). next-hop address (Optional) Displays only entries with the specified neighbor as the next hop. lsp-tunnel (Optional) Displays only entries with the specified label switched path (LSP) tunnel, or with all LSP tunnel entries. tunnel-id (Optional) Specifies the LSP tunnel for which to display entries. vrf vrf-name (Optional) Displays entries with the specified VPN routing and forwarding (VRF) instance. detail (Optional) Displays information in long form (includes length of encapsulation, length of MAC string, maximum transmission unit [MTU], and all labels). slot slot-number (Optional) Specifies the slot number, which is always 0.",
+    "noForm": null,
+    "params": [],
+    "modes": [
+      "User EXEC (>) Privileged EXEC (#)",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1162 Multiprotocol Label Switching show mpls forwarding-table"
+    ],
+    "usageSummary": null,
+    "sourcePage": 1162,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mpls static binding",
+    "context": null,
+    "detail": "Display Multiprotocol Label Switching (MPLS) static label bindings.",
+    "syntax": "show mpls static binding[ipv4[vrf vrf-name]][prefix {mask-lengthmask}][local | remote][nexthop address]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ipv4",
+        "description": "(Optional) Displays IPv4 static label bindings."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) The static label bindings for a specified VPN routing and forwarding instance."
+      },
+      {
+        "name": "prefix {mask-length | mask}",
+        "description": "(Optional) Labels for a specific prefix."
+      },
+      {
+        "name": "local",
+        "description": "(Optional) Displays the incoming (local) static label bindings."
+      },
+      {
+        "name": "remote",
+        "description": "(Optional) Displays the outgoing (remote) static label bindings."
+      },
+      {
+        "name": "nexthop address",
+        "description": "(Optional) Displays the label bindings for prefixes with outgoing labels for which the specified next hop is to be displayed."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "If you do not specify any optional arguments, the show mpls static binding command displays information about all static label bindings.",
+    "sourcePage": 1170,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mpls static crossconnect",
+    "context": null,
+    "detail": "Display statically configured Label Forwarding Information Database (LFIB) entries.",
+    "syntax": "show mpls static crossconnect [low label [high label]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "low label high label",
+        "description": "(Optional) The statically configured LFIB entries."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "If you do not specify any label arguments, then all the configured static cross-connects are displayed.",
+    "sourcePage": 1172,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls static binding ipv4",
+    "context": null,
+    "detail": "Bind a prefix to a local or remote label.",
+    "syntax": "mpls static binding ipv4 prefix mask {label | input label | output nexthop {explicit-null | implicit-nulllabel}} implicit-nulllabel}} prefix mask Specifies the prefix and mask to bind to a label. (When you do not use the input or output keyword, the specified label is an incoming label.) Note Without the arguments, the no form of the command removes all static bindings. label Binds a prefix or a mask to a local (incoming) label. (When you do not use the input or output keyword, the specified label is an incoming label.) input label Binds the specified label to the prefix and mask as a local (incoming) label. output nexthop explicit-null Binds the Internet Engineering Task Force (IETF) Multiprotocol Label Switching (MPLS) IPv4 explicit null label (0) as a remote (outgoing) label. output nexthop implicit-null Binds the IETF MPLS implicit null label (3) as a remote (outgoing) label. output nexthop label Binds the specified label to the prefix/mask as a remote (outgoing) label.",
+    "noForm": "no mpls static binding ipv4 prefix mask {label | input label | output nexthop {explicit-null |",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The mpls static binding ipv4 command pushes bindings into Label Distribution Protocol (LDP).  LDP then needs to match the binding with a route in the Routing Information Base (RIB) or Forwarding Information Base (FIB) before installing forwarding information.  The mpls static binding ipv4 command installs the specified bindings into the LDP Label Information Base (LIB).",
+    "sourcePage": 1173,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed",
+    "context": "TCAM utilization",
+    "detail": "Display Ternary Content Addressable Memory (TCAM) utilization information.",
+    "syntax": "show platform hardware fed switch{switch_number|active|standby} fwd-asic resource tcam utilization[asic_number|detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch{switch_number|active|standby}",
+        "description": "Selects the switch which you want to display information. • switch_number—ID of the switch. • active—Displays information related to the active switch. • standby—Displays information relating to standby switch."
+      },
+      {
+        "name": "fwd-asic",
+        "description": "Displays ASIC information for each ASIC."
+      },
+      {
+        "name": "resource",
+        "description": "Displays all ASIC resources."
+      },
+      {
+        "name": "tcam",
+        "description": "Displays TCAM resource information."
+      },
+      {
+        "name": "utilization[asic_number|detail]",
+        "description": "Displays the current Content Addressable Memory (CAM) utilization. • asic_number—ASIC number. The range is from 0 to 7. • detail—Displays detailed CAM utilization information. This option is available if the service internal command is configured on the device."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The output displayed is for each ASIC on the device which includes the sum of two cores of the ASIC.  Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 1175,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch l2vpn",
+    "context": null,
+    "detail": "Display device-specific software information.",
+    "syntax": "show platform software fed switch {switch number | active | standby} l2vpn {atom-disposition | atom-imposition | summary | vfi-segment | xconnect} Note This topic elaborates on only the Layer 2 VPN-specific (L2VPN-specific) options available with the show platform software fed switch l2vpn command.",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch",
+        "description": "Specifies the device for which you want to display information. number | active | • switch number: Switch ID. Displays information about the specified switch. standby} • active: Displays information about the active switch. • standby: Displays information about the standby switch, if available."
+      },
+      {
+        "name": "l2vpn",
+        "description": "Displays L2VPN information. Choose one of the following options: • atom-disposition: Displays L2VPN atom disposition information. • atom-imposition: Displays L2VPN atom imposition information. • summary: Displays L2VPN summary. • vfi-segment: Displays L2VPN Virtual Forwarder Interface (VFI) segment information. • xconnect: Displays L2VPN Xconnect information."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1178,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch mpls",
+    "context": null,
+    "detail": "Display device-specific software information.",
+    "syntax": "show platform software fed switch {switch number | active | standby } mpls {eos | forwarding | label_oce | lookup | summary} Note This topic elaborates only the Multiprotocol Label Switching-specific options available with the show platform software fed switch mpls command.",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch number |",
+        "description": "Specifies the device for which you want to display information. active | standby} • switch number: Switch ID. Displays information about the specified switch. • active: Displays information about the active switch. • standby: Displays information about the standby switch, if available."
+      },
+      {
+        "name": "mpls",
+        "description": "Displays MPLS information. Choose one of the following options: • eos: Displays MPLS end of stack (EOS) information. • forwarding: Displays MPLS forwarding information. • label_oce: Displays MPLS label output chain element (OCE) information. • lookup: Displays MPLS lookup information. • summary: Displays the summary of the MPLS configuration."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1180,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software l2vpn switch",
+    "context": null,
+    "detail": "Display the software information of Layer 2 VPN (L2VPN).",
+    "syntax": "show platform software fed switch {switch number | active | standby} {F0 | F1 | R0 | R1 | RP | {active | standby}} {atom | disposition | imposition | internal}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch number",
+        "description": "The device for which you want to display information. | active | standby} • switch number: Switch ID. Displays information for the specified switch. • active: Displays information for the active switch. • standby: Displays information for the standby switch, if available."
+      },
+      {
+        "name": "F0",
+        "description": "Displays information about the Embedded Service Processor (ESP) slot 0."
+      },
+      {
+        "name": "F1",
+        "description": "Displays information about the ESP slot 1."
+      },
+      {
+        "name": "R0",
+        "description": "Displays information about the Route Processor (RP) slot 0."
+      },
+      {
+        "name": "R1",
+        "description": "Displays information about the RP slot 1."
+      },
+      {
+        "name": "RP",
+        "description": "Displays information about the RP. Choose one of the following options: • active: Displays information about the active RP. • standby: Displays information about the standby RP."
+      },
+      {
+        "name": "atom",
+        "description": "Displays information about the Any Transport over MPLS (AToM) cross-connect table."
+      },
+      {
+        "name": "disposition",
+        "description": "Displays information about the disposition output chain element (OCE)."
+      },
+      {
+        "name": "imposition",
+        "description": "Displays information about the imposition OCE."
+      },
+      {
+        "name": "internal",
+        "description": "Displays information about AToM's internal state and statistics."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1182,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "source template type pseudowire",
+    "context": null,
+    "detail": "Configure the name of a source template of type pseudowire.",
+    "syntax": "source template type pseudowire template-name",
+    "noForm": "no source template type pseudowire",
+    "params": [
+      {
+        "name": "template-name",
+        "description": "The name of source template of type pseudowire."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The source template type pseudowire command applies a source template of type pseudowire that consists of configuration settings used by all pseudowires bound to the template.",
+    "sourcePage": 1184,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "tunnel mode gre multipoint",
+    "context": null,
+    "detail": "Set the global encapsulation mode on all roaming interfaces of a mobile device to multipoint generic routing encapsulation (GRE).",
+    "syntax": "tunnel mode gre multipoint",
+    "noForm": "no tunnel mode gre multipoint",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Use this command to configure multipoint GRE as the tunnel mode.  The no tunnel mode gre multipoint command instructs the mobile device to revert to the default and register with IP-in-IP encapsulation.",
+    "sourcePage": 1185,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "tunnel destination",
+    "context": null,
+    "detail": "Specify the destination for a tunnel interface.",
+    "syntax": "tunnel destination {host-name ip-address ipv6-address | dynamic}",
+    "noForm": "no tunnel destination",
+    "params": [
+      {
+        "name": "host-name",
+        "description": "Name of the host destination."
+      },
+      {
+        "name": "ip-address",
+        "description": "IP address of the host destination expressed in dotted decimal notation. ipv6-address IPv6 address of the host destination expressed in IPv6 address format."
+      },
+      {
+        "name": "dynamic",
+        "description": "Applies the tunnel destination address dynamically to the tunnel interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You cannot configure two tunnels to use the same encapsulation mode with exactly the same source and destination addresses.  The workaround is to create a loopback interface and configure the packet source off of the loopback interface.",
+    "sourcePage": 1186,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "tunnel mpls-ip-only",
+    "context": null,
+    "detail": "Copy the Do Not Fragment bit of the inner IP header from the payload into the IP header of the tunnel packet.",
+    "syntax": "tunnel mpls-ip-only",
+    "noForm": "no tunnel mpls-ip-only",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "If the Do Not Fragment bit is not set, the payload is fragmented when the IP packet exceeds the MTU set for the interface.  When you enable the tunnel mpls-ip-only command, the tunnel path-mtu-discovery automatically gets enabled due to the dependency.",
+    "sourcePage": 1187,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "tunnel source",
+    "context": null,
+    "detail": "Set the source address for a tunnel interface.",
+    "syntax": "tunnel source {ip-address | ipv6-address | interface-type interface-number | dynamic}",
+    "noForm": "no tunnel source",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "Source IP address of the packets in the tunnel."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "Source IPv6 address of the packets in the tunnel."
+      },
+      {
+        "name": "interface-type",
+        "description": "Interface type. interface-number Port, connector, or interface card number. The numbers are assigned at the factory at the time of installation or when added to a system. This number can be displayed with the show interfaces command."
+      },
+      {
+        "name": "dynamic",
+        "description": "Applies the tunnel source address dynamically to the tunnel interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The source address is either an explicitly defined IP address or the IP address assigned to specified interface.  You cannot have two tunnels using the same encapsulation mode with exactly the same source and destination addresses.  The workaround is to create a loopback interface and source packets from the loopback interface.",
+    "sourcePage": 1188,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "xconnect",
+    "context": null,
+    "detail": "Bind an attachment circuit to a pseudowire, and to configure an Any Transport over MPLS (AToM) static pseudowire.",
+    "syntax": "xconnect peer-ip-address vc-id encapsulation mpls [pw-type]",
+    "noForm": "no xconnect peer-ip-address vc-id encapsulation mpls [pw-type]",
+    "params": [
+      {
+        "name": "peer-ip-address",
+        "description": "IP address of the remote provider edge (PE) peer. The remote router ID can be any IP address, as long as it is reachable."
+      },
+      {
+        "name": "vc-id",
+        "description": "The 32-bit identifier of the virtual circuit (VC) between PE devices."
+      },
+      {
+        "name": "encapsulation mpls",
+        "description": "Specifies Multiprotocol Label Switching (MPLS) as the tunneling method."
+      },
+      {
+        "name": "pw-type",
+        "description": "(Optional) Pseudowire type. You can specify one of the following types: • 4: Specifies Ethernet VLAN. • 5: Specifies Ethernet port."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The use of the xconnect command and the interface configuration mode bridge-group command is not supported on the same physical interface.  The combination of the peer-ip-address and vcid arguments must be unique on the device.  Each Xconnect configuration must have a unique combination of peer-ip-address and vcid configuration.",
+    "sourcePage": 1190,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  }
+]

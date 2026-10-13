@@ -1,0 +1,1871 @@
+[
+  {
+    "name": "address",
+    "context": "CTS",
+    "detail": "Configure the Cisco TrustSec policy-server address.",
+    "syntax": "address {domain-name name | ipv4 policy-server-address | ipv6 policy-server-address}",
+    "noForm": "no address {domain-name | ipv4 | ipv6}",
+    "params": [
+      {
+        "name": "domain-name name",
+        "description": "Specifies the domain name of the policy server."
+      },
+      {
+        "name": "ipv4 policy-server-address",
+        "description": "Specifies the IP address of the policy server."
+      },
+      {
+        "name": "ipv6",
+        "description": "Specifies the IPv6 address of the policy server."
+      }
+    ],
+    "modes": ["Policy-server configuration (config-policy-server)"],
+    "usageSummary": "Configure the policy server name to enter the policy-server configuration mode.",
+    "sourcePage": 99,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear cts environment-data",
+    "context": null,
+    "detail": "Clear Cisco TrustSec environment data.",
+    "syntax": "clear cts environment-data This command has no arguments or keywords.",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 100,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear cts policy-server statistics",
+    "context": null,
+    "detail": "Clear Cisco TrustSec policy-server statistics.",
+    "syntax": "clear cts policy-server statistics {active | all}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "active",
+        "description": "Clears statistics of all active policy servers."
+      },
+      {
+        "name": "all",
+        "description": "Clears all policy server statistics."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 101,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "content-type json",
+    "context": null,
+    "detail": "Enable the JavaScript Object Notation (JSON) as the content type.",
+    "syntax": "content-type json This command has no arguments or keywords.",
+    "noForm": "no content-type json",
+    "params": [],
+    "modes": ["Policy-server configuration (config-policy-server)"],
+    "usageSummary": "JSON is used as the content-type to download Security Group access control lists (SGACLs) and environment data from the Cisco Identity Services Engine (ISE).",
+    "sourcePage": 102,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts authorization list",
+    "context": null,
+    "detail": "Specify a list of authentication, authorization, and accounting (AAA) servers to be used by the TrustSec seed device.",
+    "syntax": "cts authorization list server_list",
+    "noForm": "no cts authorization list server_list",
+    "params": [
+      {
+        "name": "server_list",
+        "description": "Cisco TrustSec AAA server group."
+      }
+    ],
+    "modes": ["Global configuration (config)", "Supported User Roles Administrator"],
+    "usageSummary": "This command is only for the seed device.  Non-seed devices obtain the TrustSec AAA server list from their TrustSec authenticator peer as a component of their TrustSec environment data.  The following example displays an AAA configuration of a TrustSec seed device: Device# cts credentials id Device1 password Cisco123 Device# configure terminal Device(config)# aaa new-model Device(config)# aaa authentication dot1x default group radius Device(config)# aaa authorization network MLIST group radius Device(config)# cts authorization list MLIST Device(config)# aaa accounting dot1x default start-stop group radius Device(config)# radius-server host 10.",
+    "sourcePage": 103,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts change-password",
+    "context": null,
+    "detail": "Change the password between the local device and the authentication server.",
+    "syntax": "cts change-password server ipv4_address udp_port {a-id hex_string | key radius_key }[source interface_list]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "server",
+        "description": "Specifies the authentication server."
+      },
+      {
+        "name": "ipv4_address",
+        "description": "IP address of the authentication server."
+      },
+      {
+        "name": "udp_port",
+        "description": "UPD port of the authentication server."
+      },
+      {
+        "name": "a-id hex_string",
+        "description": "Specifies the identification string of the ACS server."
+      },
+      {
+        "name": "key",
+        "description": "Specifies the RADIUS key to be used for provisioning. source interface_list (Optional) Specifies the interface type and its identifying parameters as per the displayed list for source address in request packets."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)", "Supported User Roles Administrator"],
+    "usageSummary": "The cts change-password command allows an administrator to change the password used between the local device and the Cisco Secure ACS authentication server, without having to reconfigure the authentication server.  The following example shows how to change the Cisco TrustSec password between a switch and a Cisco Secure ACS: Device# cts change-password server 192. 168.",
+    "sourcePage": 104,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts credentials",
+    "context": null,
+    "detail": "Use the cts credentials command in privileged EXEC mode to specify the TrustSec ID and password of the network device. Use the clear cts credentials command to delete the credentials.",
+    "syntax": "cts credentials id cts_id password cts_pwd",
+    "noForm": null,
+    "params": [
+      {
+        "name": "password cts_pwd",
+        "description": "Specifies the password for this device to use when authenticating with other Cisco TrustSec devices with EAP-FAST."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)", "Supported User Roles Administrator"],
+    "usageSummary": "Important The cts credentialscommand must be configured only in privileged EXEC mode.  Do not use global configuration (config) mode to configure the cts credentials command.  The cts credentials command specifies the Cisco TrustSec device ID and password for this device to use when authenticating with other Cisco TrustSec devices with EAP-FAST.",
+    "sourcePage": 105,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts environment-data enable",
+    "context": null,
+    "detail": "Enable the download of environment data through REST application programming interfaces (APIs).",
+    "syntax": "cts environment-data enable This command has no arguments or keywords.",
+    "noForm": "no cts environment-data enable",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The cts environment-data enable command cannot co-exist with the cts authorization list command.  The cts authorization list command enables the download of environment data through RADIUS.  If you try to configure RADIUS-based configuration by using the cts authorization list command, when the cts environment-data enable command is already configured, the following error message is displayed on the console: Error: 'cts policy-server or cts environment-data' related configs are enabled.",
+    "sourcePage": 107,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts policy-server device-id",
+    "context": null,
+    "detail": "Configure the policy-server device ID.",
+    "syntax": "cts policy-server device-id device-ID",
+    "noForm": "no cts policy-server device-id device-ID",
+    "params": [
+      {
+        "name": "device-ID",
+        "description": "Device ID of the Cisco TrustSec device."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The device ID must be the same one that was used to add the network access device (NAD) on Cisco Identity Services Engine (ISE).  This ID is used to send environment data requests to Cisco ISE.",
+    "sourcePage": 108,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts policy-server name",
+    "context": null,
+    "detail": "Configure a Cisco TrustSec policy server and enter policy-server configuration mode.",
+    "syntax": "cts policy-server name server-name",
+    "noForm": "no cts policy-server name server-name",
+    "params": [
+      {
+        "name": "server-name",
+        "description": "Policy-server name."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The policy server name will accept all characters.  Once the policy-server name is configured, the configuration mode changes to policy-server configuration.  You can configure other details of the policy-server in this mode.",
+    "sourcePage": 109,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts policy-server order random",
+    "context": null,
+    "detail": "Change the server-selection logic to random.",
+    "syntax": "cts policy-server order random This command has no arguments or keywords.",
+    "noForm": "no cts policy-server order random",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "When multiple HTTP policy servers are configured on a device, a single Cisco Identity Services Engine (ISE) instance may get overloaded if the device always selects the first configured server.  To avoid this situation, each device randomly selects a server.  A random number is generated by the device and based on this number a server is selected.",
+    "sourcePage": 110,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts policy-server username",
+    "context": null,
+    "detail": "Configure a policy-server username.",
+    "syntax": "cts policy-server username username password {0 | 6 | 7 password} password",
+    "noForm": "no cts policy-server username",
+    "params": [
+      {
+        "name": "username",
+        "description": "Username to access REST application programming interfaces (APIs)."
+      },
+      {
+        "name": "password",
+        "description": "Specifies the password to authenticate the user."
+      },
+      {
+        "name": "0",
+        "description": "Specifies an unencrypted password."
+      },
+      {
+        "name": "6",
+        "description": "Specifies an encrypted password."
+      },
+      {
+        "name": "7",
+        "description": "Specifies a hidden password."
+      },
+      {
+        "name": "password",
+        "description": "Encrypted or unencrypted password."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "You must configure the username and password in Cisco Identity Services Engine (ISE) as the REST API access credentials, before configuring it on the device.  See the Cisco TrustSec HTTP Servers section of the \"Cisco TrustSec Policies Configuration\" chapter for more information.",
+    "sourcePage": 111,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts refresh",
+    "context": null,
+    "detail": "Refresh the TrustSec peer authorization policy of all or specific Cisco TrustSec peers, or to refresh the SGACL policies downloaded to the device by the authentication server.",
+    "syntax": "cts refresh {peer [peer_id] | sgt [sgt_number | default | unknown]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "peer Peer-ID",
+        "description": "(Optional) If a peer-id is specified, only policies related to the specified peer connection are refreshed."
+      },
+      {
+        "name": "sgt sgt_number",
+        "description": "(Optional) Performs an immediate refresh of the SGACL policies from the authentication server. If an SGT number is specified, only policies related to that SGT are refreshed."
+      },
+      {
+        "name": "default",
+        "description": "(Optional) Refreshes the default SGACL policy."
+      },
+      {
+        "name": "unknown",
+        "description": "(Optional) Refreshes the unknown SGACL policy."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)", "Supported User Roles Administrator"],
+    "usageSummary": "To refresh the Peer Authorization Policy on all TrustSec peers, enter cts policy refresh without specifying a peer ID.  The peer authorization policy is initially downloaded from the Cisco ACS at the end of the EAP-FAST NDAC authentication success.  The Cisco ACS is configured to refresh the peer authorization policy, but the cts policy refresh command can force immediate refresh of the policy before the Cisco ACS timer expires.",
+    "sourcePage": 112,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts rekey",
+    "context": null,
+    "detail": "Regenerate the Pairwise Master Key used by the Security Association Protocol (SAP).",
+    "syntax": "cts rekey interface type slot/port",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface",
+        "description": "type slot/port Specifies the Cisco TrustSec interface on which to regenerate the SAP key."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)", "Supported User Roles Administrator"],
+    "usageSummary": "SAP Pair-wise Master Key key (PMK) refresh ordinarily occurs automatically, triggered by combinations of network events and non-configurable internal timers related to dot1X authentication.  The ability to manually refresh encryption keys is often part of network administration security requirements.  To manually force a PMK refresh, use the cts rekey command.",
+    "sourcePage": 114,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based enforcement",
+    "context": null,
+    "detail": "Enable role-based access control globally and on specific Layer 3 interfaces using Cisco TrustSec.",
+    "syntax": "cts role-based enforcement",
+    "noForm": "no cts role-based enforcement",
+    "params": [],
+    "modes": ["Global configuration (config)", "Interface configuration (config-if)"],
+    "usageSummary": "The cts role-based enforcement command in global configuration mode enables role-based access control globally.  Once role-based access control is enabled globally, it is automatically enabled on every Layer 3 interface on the device.  To disable role-based access control on specific Layer 3 interfaces, use the no form of the command in interface configuration mode.",
+    "sourcePage": 115,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based l2-vrf",
+    "context": null,
+    "detail": "Select a virtual routing and forwarding (VRF) instance for Layer 2 VLANs.",
+    "syntax": "cts role-based l2-vrf vrf-name vlan-list {all vlan-ID} [,] [-]",
+    "noForm": "no cts role-based l2-vrf vrf-name vlan-list {all vlan-ID} [,] [-]",
+    "params": [
+      {
+        "name": "vrf-name",
+        "description": "Name of the VRF instance."
+      },
+      {
+        "name": "vlan-list",
+        "description": "Specifies the list of VLANs to be assigned to a VRF instance."
+      },
+      {
+        "name": "all",
+        "description": "Specifies all VLANs."
+      },
+      {
+        "name": "vlan-ID",
+        "description": "VLAN ID. Valid values are from 1 to 4094."
+      },
+      {
+        "name": ",",
+        "description": "(Optional) Specifies another VLAN separated by a comma."
+      },
+      {
+        "name": "-",
+        "description": "(Optional) Specifies a range of VLANs separated by a hyphen."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The vlan-list argument can be a single VLAN ID, a list of comma-separated VLAN IDs, or hyphen-separated VLAN ID ranges.  The all keyword is equivalent to the full range of VLANs supported by the network device.  The all keyword is not preserved in the nonvolatile generation (NVGEN) process.",
+    "sourcePage": 116,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based monitor",
+    "context": null,
+    "detail": "Enable role-based (security-group) access list monitoring.",
+    "syntax": "cts role-based monitor {all | permissions {default [ipv4 | ipv6] | from {sgt | unknown} to {sgt | unknown} [ipv4 | ipv6]}} | unknown} [ipv4 | ipv6]}}",
+    "noForm": "no cts role-based monitor {all | permissions {default [ipv4 | ipv6] | from {sgt | unknown} to {sgt",
+    "params": [
+      {
+        "name": "all",
+        "description": "Monitors permissions for all source tags to all destination tags."
+      },
+      {
+        "name": "permissions",
+        "description": "Monitors permissions from a source tags to a destination tags."
+      },
+      {
+        "name": "default",
+        "description": "Monitors the default permission list."
+      },
+      {
+        "name": "ipv4",
+        "description": "(Optional) Specifies the IPv4 protocol."
+      },
+      {
+        "name": "ipv6",
+        "description": "(Optional) Specifies the IPv6 protocol."
+      },
+      {
+        "name": "from",
+        "description": "Specifies the source group tag for filtered traffic."
+      },
+      {
+        "name": "sgt",
+        "description": "Security Group Tag (SGT). Valid values are from 2 to 65519."
+      },
+      {
+        "name": "unknown",
+        "description": "Specifies an unknown source or destination group tag (DST)."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the cts role-based monitor all command to enable the global monitor mode.  If the cts role-based monitor all command is configured, the output of the show cts role-based permissions command displays monitor mode for all configured policies as true.  The following examples shows how to configure SGACL monitor from a source tag to a destination tag: Device(config)# cts role-based monitor permissions from 10 to 11 Related Commands Command Description show cts role-based permissions Displays the SGACL permission list.",
+    "sourcePage": 118,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based permissions",
+    "context": null,
+    "detail": "Enable permissions from a source group to a destination group.",
+    "syntax": "cts role-based permissions {default | from {sgt | unknown}to {sgt | unknown}} {rbacl-name | ipv4 | ipv6} ipv4 | ipv6}",
+    "noForm": "no cts role-based permissions {default | from {sgt | unknown}to {sgt | unknown}} {rbacl-name |",
+    "params": [
+      {
+        "name": "default",
+        "description": "Specifies the default permissions list. Every cell (an SGT pair) for which, security group access control list (SGACL) permission is not configured statically or dynamically falls under the default category."
+      },
+      {
+        "name": "from",
+        "description": "Specifies the source group tag of the filtered traffic."
+      },
+      {
+        "name": "sgt",
+        "description": "Security Group Tag (SGT). Valid values are from 2 to 65519."
+      },
+      {
+        "name": "unknown",
+        "description": "Specifies an unknown source or destination group tag. rbacl-name Role-based access control list (RBACL) or SGACL name. Up to 16 SGACLs can be specified in the configuration."
+      },
+      {
+        "name": "ipv4",
+        "description": "Specifies the IPv4 protocol."
+      },
+      {
+        "name": "ipv6",
+        "description": "Specifies the IPv6 protocol."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the cts role-based permissions command to define, replace, or delete the list of SGACLs for a given source group tag (SGT), destination group tag (DGT) pair.  This policy is in effect as long as there is no dynamic policy for the same DGT or SGT.  The cts role-based permissions default command defines, replaces, or deletes the list of SGACLs of the default policy as long as there is no dynamic policy for the same DGT.",
+    "sourcePage": 119,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based sgt-caching",
+    "context": null,
+    "detail": "Enable Security Group Tag (SGT) caching globally.",
+    "syntax": "cts role-based sgt-caching [vlan-list {vlan-id | all}]",
+    "noForm": "no cts role-based sgt-caching [vlan-list {vlan-id | all}]",
+    "params": [
+      {
+        "name": "vlan-list vlan-id",
+        "description": "(Optional) Specifies VLAN IDs. Individual VLAN IDs are separated by commas, and a range of IDs specified with a hyphen. Valid values are from 1 to 4094."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Selects all VLANs."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "To enable SGT caching on a VLAN, both cts role-based sgt-caching and cts role-based sgt-caching vlan-list commands must be configured.",
+    "sourcePage": 121,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based sgt-map",
+    "context": null,
+    "detail": "Manually map a source IP address to a Security Group Tag (SGT) on either a host or a VRF.",
+    "syntax": "cts role-based sgt-map {ipv4_netaddress|ipv6_netaddress|ipv4_netaddress/prefix|ipv6_netaddress/prefix} sgt sgt-number cts role-based sgt-map host {ipv4_hostaddress|ipv6_hostaddress} sgt sgt-number cts role-based sgt-map vlan-list [vlan_ids|all] sgt sgt-number cts role-based sgt-map vrf instance_name {ipv4_netaddress|ipv6_netaddress|ipv4_netaddress/prefix|ipv6_netaddress/prefix|host {ipv4_hostaddress|ipv6_hostaddress}} sgt sgt-number",
+    "noForm": "no cts role-based sgt-map",
+    "params": [
+      {
+        "name": "ipv4_netaddress |",
+        "description": "Specifies the network to be associated with an SGT. Enter IPv4 address"
+      },
+      {
+        "name": "ipv6_netaddress",
+        "description": "in dot decimal notation; IPv6 in colon hexadecimal notation."
+      },
+      {
+        "name": "ipv4_netaddress/prefix |",
+        "description": "Maps the SGT to all hosts of the specified subnet address (IPv4 or"
+      },
+      {
+        "name": "ipv6_netaddress/prefix",
+        "description": "IPv6). IPv4 is specified in dot decimal CIDR notation, IPv6 in colon hexadecimal notation"
+      },
+      {
+        "name": "host {ipv4_hostaddress |",
+        "description": "Binds the specified host IP address with the SGT. Enter the IPv4"
+      },
+      {
+        "name": "ipv6_hostaddress}",
+        "description": "address in dot decimal notation; IPv6 in colon hexadecimal notation."
+      },
+      {
+        "name": "vlan-list {vlan_ids | all}",
+        "description": "Specifies VLAN IDs. • (Optional) vlan_ids: Individual VLAN IDs are separated by commas, a range of IDs specified with a hyphen. • (Optional) all: Specifies all VLAN IDs."
+      },
+      {
+        "name": "vrf instance_name",
+        "description": "Specifies a VRF instance, previously created on the device."
+      },
+      {
+        "name": "sgt sgt-number",
+        "description": "Specifies the SGT number from 0 to 65,535."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "If you do not have a Cisco Identity Services Engine, Cisco Secure ACS, dynamic Address Resolution Protocol (ARP) inspection, Dynamic Host Control Protocol (DHCP) snooping, or Host Tracking available on your Command Reference, Cisco IOS XE 17. 15. x (Catalyst 9500 Switches) 122 Cisco TrustSec cts role-based sgt-map device to automatically map SGTs to source IP addresses, you can manually map an SGT to the following with the cts role-based sgt-map command: • A single host IPv4 or IPv6 address • All hosts of an IPv4 or IPv6 network or subnetwork • VRFs • Single or multiple VLANs The cts role-based sgt-map command binds the specified SGT with packets that fall within the specified network address.",
+    "sourcePage": 122,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp connection peer",
+    "context": null,
+    "detail": "Enter the Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) peer IP address, to specify if a password is used for the peer connection, to specify the global hold-time period for a listener or speaker device, and to specify if the connection is bidirectional.",
+    "syntax": "cts sxp connection peer ipv4-address {source | password} {default | none} mode {local | peer} [[[listener | speaker] [hold-time minimum-time maximum-time | vrf vrf-name]] | both [vrf vrf-name]] cts sxp connection peer ipv4-address {source | password} {default | none} mode {local | peer} [[[listener | speaker] [hold-time minimum-time maximum-time | vrf vrf-name]] | both [vrf vrf-name]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ipv4-address",
+        "description": "SXP peer IPv4 address."
+      },
+      {
+        "name": "source",
+        "description": "Specifies the source IPv4 address."
+      },
+      {
+        "name": "password",
+        "description": "Specifies that an SXP password is used for the peer connection."
+      },
+      {
+        "name": "default",
+        "description": "Specifies that the default SXP password is used."
+      },
+      {
+        "name": "none",
+        "description": "Specifies no password is used."
+      },
+      {
+        "name": "mode",
+        "description": "Specifies either the local or peer SXP connection mode."
+      },
+      {
+        "name": "local",
+        "description": "Specifies that the SXP connection mode refers to the local device."
+      },
+      {
+        "name": "peer",
+        "description": "Specifies that the SXP connection mode refers to the peer device."
+      },
+      {
+        "name": "listener",
+        "description": "(Optional) Specifies that the device is the listener in the connection."
+      },
+      {
+        "name": "speaker",
+        "description": "(Optional) Specifies that the device is the speaker in the connection."
+      },
+      {
+        "name": "hold-time minimum-time",
+        "description": "(Optional) Specifies the hold-time period, in seconds, for the device. The range"
+      },
+      {
+        "name": "maximum-time",
+        "description": "for minimum and maximum time is from 0 to 65535. A maximum-time value is required only when you use the following keywords: peer speaker and local listener. In other instances, only a minimum-time value is required. Note If both minimum and maximum times are required, the maximum-time value must be greater than or equal to the minimum-time value."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies the virtual routing and forwarding (VRF) instance name to the peer."
+      },
+      {
+        "name": "both",
+        "description": "(Optional) Specifies that the device is both the speaker and the listener in the bidirectional SXP connection. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 124 Cisco TrustSec cts sxp connection peer"
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "When a CTS-SXP connection to a peer is configured with the cts sxp connection peer command, only the connection mode can be changed.  The vrf keyword is optional.  If a VRF name is not provided or a VRF name is provided with the default keyword, then the connection is set up in the default routing or forwarding domain.",
+    "sourcePage": 124,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp default password",
+    "context": null,
+    "detail": "Specify the Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) default password.",
+    "syntax": "cts sxp default password {0 unencrypted-pwd | 6 encrypted-key | 7 encrypted-keycleartext-pwd}",
+    "noForm": "no cts sxp default password {0 unencrypted-pwd | 6 encrypted-key | 7 encrypted-keycleartext-pwd}",
+    "params": [
+      {
+        "name": "6 encrypted-key",
+        "description": "Specifies that a 6 encryption type password is used as the CTS-SXP default password. The maximum password length is 32 characters."
+      },
+      {
+        "name": "7 encrypted-key",
+        "description": "Specifies that a 7 encryption type password is used as the CTS-SXP default password. The maximum password length is 32 characters."
+      },
+      {
+        "name": "cleartext-pwd",
+        "description": "Specifies a cleartext CTS-SXP default password. The maximum password length is 32 characters."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The cts sxp default password command sets the CTS-SXP default password to be optionally used for all CTS-SXP connections configured on the device.  The CTS-SXP password can be cleartext, or encrypted with the 0, 7, 6 encryption type keywords.  If the encryption type is 0, then an unencrypted cleartext password follows.",
+    "sourcePage": 127,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp default source-ip",
+    "context": null,
+    "detail": "Configure the Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) source IPv4 address.",
+    "syntax": "cts sxp default source-ip ipv4-address",
+    "noForm": "no cts sxp default source-ip ipv4-address",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "Default source CTS-SXP IPv4 address."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The cts sxp default source-ip command sets the default source IP address that CTS-SXP uses for all new TCP connections where a source IP address is not specified.  Preexisting TCP connections are not affected when this command is entered.",
+    "sourcePage": 129,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp export-import-group",
+    "context": null,
+    "detail": "Create an SXP export or import VRF group.",
+    "syntax": "cts sxp export-import-group { listener | speaker } { vrf-group-name | global }",
+    "noForm": "no cts sxp export-import-group { listener | speaker } { vrf-group-name | global }",
+    "params": [
+      {
+        "name": "listener",
+        "description": "Creates an SXP listener import group."
+      },
+      {
+        "name": "speaker",
+        "description": "Creates an SXP speaker export group. vrf-group-name Name of the export or import VRF group name."
+      },
+      {
+        "name": "global",
+        "description": "Configures either an SXP listener global import-group or SXP speaker global export-group."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Export and import list configurations cannot be removed if it is associated with any SXP group.  Modifying a peer list under an SXP group is not supported when the peer connection configuration is present.",
+    "sourcePage": 131,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp export-list",
+    "context": null,
+    "detail": "Create an SXP export list of VRF bindings to be exported to the listener.",
+    "syntax": "cts sxp export-list export-list-name",
+    "noForm": "no cts sxp export-list export-list-name",
+    "params": [
+      {
+        "name": "export-list-name",
+        "description": "Name of the export-list."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Export list configurations cannot be removed if it is associated with any SXP group.  Modifying a peer list under an SXP group is not supported when the peer connection configuration is present.",
+    "sourcePage": 132,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp filter-enable",
+    "context": null,
+    "detail": "Enable filtering after creating filter lists and filter groups.",
+    "syntax": "cts sxp filter-enable",
+    "noForm": "no cts sxp filter-enable",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "This command can be used at any time to enable or disable filtering.  Configured filter lists and filter groups can be used to implement filtering only after filtering is enabled.  The filter action will only filter bindings that are exchanged after filtering is enabled; there won’t be any effect on the bindings that were exchanged before filtering was enabled.",
+    "sourcePage": 133,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp filter-group",
+    "context": null,
+    "detail": "Create a filter group for grouping a set of peers and applying a filter list to them.",
+    "syntax": "cts sxp filter-group {listener | speaker} {filter-group-name | global filter-list-name}",
+    "noForm": "no cts sxp filter-group {listener | speaker} {filter-group-name | global filter-list-name}",
+    "params": [
+      {
+        "name": "listener",
+        "description": "Creates a filter group for a set of listeners."
+      },
+      {
+        "name": "speaker",
+        "description": "Creates a filter group for a set of speakers."
+      },
+      {
+        "name": "global",
+        "description": "Groups all speakers or listeners on the device."
+      },
+      {
+        "name": "filter-group-name",
+        "description": "Name of the filter group."
+      },
+      {
+        "name": "filter-list-name",
+        "description": "Name of the filter list."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Issuing this command, places the device in the filter group configuration mode.  From this mode, you can specify the devices to be grouped and apply a filter list to the filter group.  The command format to add devices or peers to the group is a follows: peer ipv4 peer-IP In a single command, you can add one peer.",
+    "sourcePage": 134,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp filter-list",
+    "context": null,
+    "detail": "Create a SXP filter list to hold a set of filter rules for filtering IP-SGT bindings.",
+    "syntax": "cts sxp filter-list filter-list-name",
+    "noForm": "no cts sxp filter-list filter-list-name",
+    "params": [
+      {
+        "name": "filter-list-name",
+        "description": "Name of the filter-list."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Issuing this command, places the device in the filter list configuration mode.  From this mode, you can specify rules for the filter lists.  A filter rule can be based on SGT or IP Prefixes or a combination of both SGT and IP Prefixes.",
+    "sourcePage": 136,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp import-list",
+    "context": null,
+    "detail": "Create an SXP import list to hold VRFs where received SXP bindings are added.",
+    "syntax": "cts sxp import-list import-list-name",
+    "noForm": "no cts sxp import-list import-list-name",
+    "params": [
+      {
+        "name": "import-list-name",
+        "description": "Name of the import-list."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Import list configurations cannot be removed if it is associated with any SXP group.  Modifying a peer list under an SXP group is not supported when the peer connection configuration is present.",
+    "sourcePage": 138,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp log binding-changes",
+    "context": null,
+    "detail": "Enable logging for IP-to-Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) binding changes.",
+    "syntax": "cts sxp log binding-changes",
+    "noForm": "no cts sxp log binding-changes",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The cts sxp log binding-changes command enables logging for IP-to-SGT binding changes.  SXP syslogs (sev 5 syslogs) are generated whenever IP address-to-SGT binding occurs (add, delete, change).  These changes are learned and propagated on the SXP connection.",
+    "sourcePage": 139,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp reconciliation period",
+    "context": null,
+    "detail": "Change the Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) reconciliation period.",
+    "syntax": "cts sxp reconciliation period seconds",
+    "noForm": "no cts sxp reconciliation period seconds",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "CTS-SXP reconciliation timer in seconds. The range is from 0 to 64000. The default is 120."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "After a peer terminates a CTS-SXP connection, an internal delete hold-down timer starts.  If the peer reconnects before the delete hold-down timer expires, then the CTS-SXP reconciliation timer starts.  While the CTS-SXP reconciliation period timer is active, the CTS-SXP software retains the SGT mapping entries learned from the previous connection and removes invalid entries.",
+    "sourcePage": 140,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp retry period",
+    "context": null,
+    "detail": "Change the Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) retry period timer.",
+    "syntax": "cts sxpretry period seconds",
+    "noForm": "no cts sxpretry period seconds",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "CTS-SXP retry timer in seconds. The range is from 0 to 64000. The default is 120."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The retry timer is triggered if there is at least one CTS-SXP connection that is not up.  A new CTS-SXP connection is attempted when this timer expires.  A zero value results in no retry being attempted.",
+    "sourcePage": 141,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug cts environment-data",
+    "context": null,
+    "detail": "Enable the debugging of Cisco TrustSec environment data operations.",
+    "syntax": "debug cts environment-data [aaa | all | default-epg | default-sg | events | platform | sg-epg]",
+    "noForm": "no debug cts environment-data [aaa | all | default-epg | default-sg | events | platform | sg-epg]",
+    "params": [
+      {
+        "name": "aaa",
+        "description": "(Optional) Specifies the debugging of authentication, authorization, and accounting (AAA) messages."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Specifies the debugging of all environment-data messages."
+      },
+      {
+        "name": "default-epg",
+        "description": "(Optional) Specifies the debugging of default end-point group (EPG) messages."
+      },
+      {
+        "name": "default-sg",
+        "description": "(Optional) Specifies the debugging of default server group messages."
+      },
+      {
+        "name": "events",
+        "description": "(Optional) Specifies the debugging of environment data events."
+      },
+      {
+        "name": "platform",
+        "description": "(Optional) Specifies the debugging of Security Group Tag (SGT)-EPG platform messages."
+      },
+      {
+        "name": "sg-epg",
+        "description": "(Optional) Specifies the debugging of SP-EPG mapping."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 142,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug cts policy-server",
+    "context": null,
+    "detail": "Enable Cisco TrustSec policy-server debugging.",
+    "syntax": "debug cts policy-server {all | {http | json} {all | error | events}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Enables all policy-server debugs."
+      },
+      {
+        "name": "http",
+        "description": "Enables HTTP client debugs."
+      },
+      {
+        "name": "json",
+        "description": "Enables JSON parser debugs."
+      },
+      {
+        "name": "error",
+        "description": "Enables HTTP error debugs."
+      },
+      {
+        "name": "events",
+        "description": "Enables HTTP event debugs."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 144,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port",
+    "context": "CTS",
+    "detail": "Configure the policy server port.",
+    "syntax": "port port-number",
+    "noForm": "no port",
+    "params": [
+      {
+        "name": "port-number",
+        "description": "Policy server port number. Valid values are from 1025 to 65535."
+      }
+    ],
+    "modes": ["Policy-server configuration (config-policy-server)"],
+    "usageSummary": "Only 9063 is supported as the External RESTful Services (ERS) port.",
+    "sourcePage": 145,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "propagate sgt",
+    "context": "cts manual",
+    "detail": "Enable Security Group Tag (SGT) propagation at Layer 2 on Cisco TrustSec Security (CTS) interfaces.",
+    "syntax": "propagate sgt",
+    "noForm": null,
+    "params": [],
+    "modes": ["CTS manual interface configuration mode (config-if-cts-manual)"],
+    "usageSummary": "SGT processing propagation allows a CTS-capable interface to accept and transmit a CTS Meta Data (CMD) based L2 SGT tag.  The no propagate sgt command can be used to disable SGT propagation on an interface in situations where a peer device is not capable of receiving an SGT, and as a result, the SGT tag cannot be put in the L2 header.",
+    "sourcePage": 146,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "retransmit",
+    "context": "CTS",
+    "detail": "Configure the maximum number of retries from the server.",
+    "syntax": "retransmit number-of-retries",
+    "noForm": "no retransmit",
+    "params": [
+      {
+        "name": "number-of-retries",
+        "description": "Maximum number of retries. Valid values are from 0 to 5."
+      }
+    ],
+    "modes": ["Policy-server configuration (config-policy-server)"],
+    "usageSummary": null,
+    "sourcePage": 148,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "sap mode-list",
+    "context": "cts manual",
+    "detail": "Select the Security Association Protocol (SAP) authentication and encryption modes (prioritized from highest to lowest) used to negotiate link encryption between two interfaces.",
+    "syntax": "sap pmk mode-list {gcm-encrypt | gmac | no-encap | null} [gcm-encrypt | gmac | no-encap | null] | null]",
+    "noForm": "no sap pmk mode-list {gcm-encrypt | gmac | no-encap | null} [gcm-encrypt | gmac | no-encap",
+    "params": [
+      {
+        "name": "pmk hex_value",
+        "description": "Specifies the Hex-data PMK (without leading 0x; enter even number of hex characters, or else the last character is prefixed with 0.)."
+      },
+      {
+        "name": "mode-list",
+        "description": "Specifies the list of advertised modes (prioritized from highest to lowest)."
+      },
+      {
+        "name": "gcm-encrypt",
+        "description": "Specifies GMAC authentication, GCM encryption."
+      },
+      {
+        "name": "gmac",
+        "description": "Specifies GMAC authentication only, no encryption."
+      },
+      {
+        "name": "no-encap",
+        "description": "Specifies no encapsulation."
+      },
+      {
+        "name": "null",
+        "description": "Specifies encapsulation present, no authentication, no encryption."
+      }
+    ],
+    "modes": ["CTS manual interface configuration (config-if-cts-manual)"],
+    "usageSummary": "Use the sap pmk mode-list command to specify the authentication and encryption method.  Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 149,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts credentials",
+    "context": null,
+    "detail": "Display the Cisco TrustSec (CTS) device ID.",
+    "syntax": "show cts credentials",
+    "noForm": null,
+    "params": [
+      {
+        "name": "This",
+        "description": "command has no commands or keywords."
+      }
+    ],
+    "modes": ["Privileged EXEC (#) User EXEC (>)"],
+    "usageSummary": null,
+    "sourcePage": 151,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts environment-data",
+    "context": null,
+    "detail": "Display Cisco TrustSec environment data information.",
+    "syntax": "show cts environment-data This command has no arguments and keywords.",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 152,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts interface",
+    "context": null,
+    "detail": "Display Cisco TrustSec (CTS) configuration statistics for an interface(s).",
+    "syntax": "show cts interface [GigabitEthernet port | Vlan number | brief | summary]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "port",
+        "description": "(Optional) Gigabit Ethernet interface number. A verbose status output for this interface is returned."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) VLAN interface number from 1 to 4095."
+      },
+      {
+        "name": "brief",
+        "description": "(Optional) Displays abbreviated status for all CTS interfaces. summary (Optional) Displays a tabular summary of all CTS interfaces with 4 or 5 key status fields for each interface."
+      }
+    ],
+    "modes": ["EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "Use the show cts interface command without keywords to display verbose status for all CTS interfaces.",
+    "sourcePage": 153,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts policy-server",
+    "context": null,
+    "detail": "Display Cisco TrustSec policy-server information.",
+    "syntax": "show cts policy-server {details | statistics } {active | all name}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "details",
+        "description": "Displays policy-server details."
+      },
+      {
+        "name": "statistics",
+        "description": "Displays policy-server statistics."
+      },
+      {
+        "name": "active",
+        "description": "Displays information about active policy servers."
+      },
+      {
+        "name": "all",
+        "description": "Displays statistics information about all servers."
+      },
+      {
+        "name": "name",
+        "description": "Policy-server name."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 155,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts role-based counters",
+    "context": null,
+    "detail": "Display Security Group access control list (ACL) enforcement statistics.",
+    "syntax": "show cts role-based counters [default [ipv4 | ipv6]] [ {from {sgt-number | unknown}[ipv4 | ipv6 | to | {sgt-number | unknown} | [ipv4 | ipv6]]} ][to {sgt-number | unknown} [ipv4 | ipv6]] [ipv4 | ipv6]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "default",
+        "description": "(Optional) Displays information about the default policy counters."
+      },
+      {
+        "name": "from",
+        "description": "(Optional) Displays information about the source security group."
+      },
+      {
+        "name": "ipv4",
+        "description": "(Optional) Displays information about security groups on IPv4 networks."
+      },
+      {
+        "name": "ipv6",
+        "description": "(Optional) Displays information about security groups on IPv6 networks."
+      },
+      {
+        "name": "to",
+        "description": "(Optional) Displays information about the destination security group."
+      },
+      {
+        "name": "sgt-number",
+        "description": "(Optional) Security Group Tag number. Valid values are from 0 to 65533."
+      },
+      {
+        "name": "unknown",
+        "description": "(Optional) Displays information about all source groups."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Use the clear cts role-based counterscommand to reset all or a range of statistics.  Specify the source SGT with the from keyword and the destination SGT with the to keyword.  All statistics are displayed when both the from and to keywords are omitted.",
+    "sourcePage": 158,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts role-based permissions",
+    "context": null,
+    "detail": "Display the role-based (security group) access control permission list.",
+    "syntax": "show cts role-based permissions [default [details | ipv4 [details] | ipv6 [details]] | from { {sgt | unknown }[ipv4 | ipv6 | to { {sgt | unknown}[details | ipv4 [details] | ipv6 [details]]}}] | ipv4 | ipv6 | platform | to {sgt | unknown}[ipv4 | ipv6]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "default",
+        "description": "(Optional) Displays information about the default permission list."
+      },
+      {
+        "name": "details",
+        "description": "(Optional) Displays attached access control list (ACL) details."
+      },
+      {
+        "name": "ipv4",
+        "description": "(Optional) Displays information about the IPv4 protocol."
+      },
+      {
+        "name": "ipv6",
+        "description": "(Optional) Displays information about the IPv6 protocol."
+      },
+      {
+        "name": "from",
+        "description": "(Optional) Displays information about the source group."
+      },
+      {
+        "name": "sgt",
+        "description": "(Optional) Security Group Tag. Valid values are from 2 to 65519."
+      },
+      {
+        "name": "to",
+        "description": "(Optional) Displays information about the destination group. unknown (Optional) Displays information about unknown source and destination groups. platform (Optional) Displays information about the platform."
+      }
+    ],
+    "modes": ["Privileged EXE (#)"],
+    "usageSummary": "This command displays the content of the SGACL permission matrix.  You can specify the source security group tag (SGT) by using the from keyword and the destination SGT by using the to keyword.  When both these keywords are specified RBACLs of a single cell are displayed.",
+    "sourcePage": 160,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts server-list",
+    "context": null,
+    "detail": "Display the list of HTTP and RADIUS servers available to Cisco TrustSec seed and nonseed devices.",
+    "syntax": "show cts server-list",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "This command is useful for gathering Cisco TrustSec RADIUS server address and status information.  In Cisco IOS XE Gibraltar 17. 1.",
+    "sourcePage": 162,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts sxp",
+    "context": null,
+    "detail": "Display Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) connection or source IP-to-SGT mapping information.",
+    "syntax": "show cts sxp {connections [brief | vrf instance-name] | filter-group [detailed | global | listener | speaker ] | filter-list filter-list-name | sgt-map [brief | vrf instance-name]} [brief | vrf instance-name]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "connections",
+        "description": "Displays Cisco TrustSec SXP connections information."
+      },
+      {
+        "name": "brief",
+        "description": "(Optional) Displays an abbreviation of the SXP information."
+      },
+      {
+        "name": "vrf instance-name",
+        "description": "(Optional) Displays the SXP information for the specified Virtual Routing and Forwarding (VRF) instance name. filter-group {detailed | global | (Optional) Displays filter group information. listener | speaker }"
+      },
+      {
+        "name": "filter-list filter-list-name",
+        "description": "(Optional) Displays filter list information."
+      },
+      {
+        "name": "sgt-map",
+        "description": "(Optional) Displays the IP-to-SGT mappings received through SXP."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 164,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed switch active sgacl resource usage",
+    "context": null,
+    "detail": "Display Security Group access control list (SGACL) resource information for Application Specific Integrated Circuit (ASIC).",
+    "syntax": "show platform hardware fed switch active sgacl resource usage",
+    "noForm": null,
+    "params": [
+      {
+        "name": "usage",
+        "description": "Displays SGACL resource usage."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 169,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software classification switch active F0 class-group-manager class-group client acl all",
+    "context": null,
+    "detail": null,
+    "syntax": "show platform software classification switch active F0 class-group-manager class-group client acl all To display ACL class group ID, which is used to view Ternary Content Addressable Memory(TCAM) entry, use the show platform software classification switch active F0 class-group-manager class-group client acl all command in privileged EXEC mode. show platform software classification switch active F0 class-group-manager class-group client acl all",
+    "noForm": null,
+    "params": [
+      {
+        "name": "class-group-manager",
+        "description": "Displays the class group manager."
+      },
+      {
+        "name": "class-group",
+        "description": "Displays the class group."
+      },
+      {
+        "name": "all",
+        "description": "Displays the ACL class group ID for all class groups."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 170,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software cts forwarding-manager switch active F0 port",
+    "context": null,
+    "detail": null,
+    "syntax": "Name The name of the interface. ID The interface ID. CTS The status of CTS. Enable Trusted The trusted status of the interface. Propagate The propagation status of the interface. SGT value The value of SGT. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 174 Cisco TrustSec show platform software cts forwarding-manager switch active F0 show platform software cts forwarding-manager switch active F0 To display Security Group Tag (SGT) binding table, use the show platform software cts forwarding-manager switch active F0 command in privileged EXEC mode. show platform software cts forwarding-manager switch active F0",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 171,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software cts forwarding-manager switch active F0 permissions",
+    "context": null,
+    "detail": null,
+    "syntax": "show platform software cts forwarding-manager switch active F0 permissions To display Security group access control lists (SGACLs) permissions, use the show platform software cts forwarding-manager switch active F0 permissions command in privileged EXEC mode. show platform software cts forwarding-manager switch active F0 permissions",
+    "noForm": null,
+    "params": [
+      {
+        "name": "F0",
+        "description": "Selects embedded service processor slot 0. permissions Displays SGACL permissions."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 176,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch active acl counters hardware | inc SGACL",
+    "context": null,
+    "detail": null,
+    "syntax": "show platform software fed switch active acl counters hardware | inc SGACL To display counters from the forwarding engine driver, use the show platform software fed switch active acl counters hardware | inc SGACL command in privileged EXEC mode. show platform software fed switch active acl counters hardware | inc SGACL",
+    "noForm": null,
+    "params": [
+      {
+        "name": "counters",
+        "description": "Displays counter information."
+      },
+      {
+        "name": "hardware",
+        "description": "Displays hardware counters."
+      },
+      {
+        "name": "include",
+        "description": "Includes lines that match the specified string."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 178,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch active acl usage",
+    "context": null,
+    "detail": "Display Security Group access control lists (SGACLs) usage.",
+    "syntax": "show platform software fed switch active acl usage",
+    "noForm": null,
+    "params": [
+      {
+        "name": "usage",
+        "description": "Displays ACL usage."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 179,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch active ifm mappings",
+    "context": null,
+    "detail": "show platform software fed switch active ifm mappings",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "ifm",
+        "description": "Displays interface manager information. mappings Displays interface to hardware mapping information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 180,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch active ip route",
+    "context": null,
+    "detail": "Display IP route information.",
+    "syntax": "show platform software fed switch active ip route",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ip",
+        "description": "Accepts IP commands. route Displays IPv4 Forwarding Information Base (FIB) details."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 182,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch active sgacl detail",
+    "context": null,
+    "detail": "Display global enforcement status along with policy and count information.",
+    "syntax": "show platform software fed switch active sgacl detail",
+    "noForm": null,
+    "params": [
+      {
+        "name": "sgacl",
+        "description": "Displays SGACL hardware information."
+      },
+      {
+        "name": "detail",
+        "description": "Displays detailed SGACL information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 184,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch active sgacl port",
+    "context": null,
+    "detail": "Display Layer 2 interface configuration settings for all interfaces.",
+    "syntax": "show platform software fed switch active sgacl port",
+    "noForm": null,
+    "params": [
+      {
+        "name": "sgacl",
+        "description": "Displays Security Group access control lists (SGACLs) hardware information."
+      },
+      {
+        "name": "port",
+        "description": "Specifies port configuration."
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS XE Everest 16.5.1a This command was introduced. Example The following is a sample output from the show platform software fed switch active sgacl port command: Device# show platform software fed switch active sgacl port"
+      },
+      {
+        "name": "Port",
+        "description": "Status Port-SGT Trust Propagate IngressCache EgressCache -------------------------------------------------------------------------------"
+      },
+      {
+        "name": "Gi3/0/1",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/2",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/3",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/4",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/5",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/6",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/7",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/8",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/9",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/10",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/11",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/12",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/13",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/14",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/15",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/16",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/17",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/18",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/19",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/20",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/21",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/22",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/23",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/24",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/25",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/26",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/27",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/28",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/29",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/30",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/31",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/32",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/33",
+        "description": "Disabled        0     No      No          No          No"
+      },
+      {
+        "name": "Gi3/0/34",
+        "description": "Disabled 0 No No No No Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 185 Cisco TrustSec show platform software fed switch active sgacl port"
+      },
+      {
+        "name": "Gi3/0/35",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/36",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/37",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/38",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/39",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/40",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/41",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/42",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/43",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/44",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/45",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/46",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/47",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/0/48",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/1/1",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/1/2",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/1/3",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Gi3/1/4",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Te3/1/1",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Te3/1/2",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Te3/1/3",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Te3/1/4",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Te3/1/5",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Te3/1/6",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Te3/1/7",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Te3/1/8",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Fo3/1/1",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Fo3/1/2",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Tw3/1/1",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Tw3/1/2",
+        "description": "Disabled             0        No         No   No   No"
+      },
+      {
+        "name": "Ap3/0/1",
+        "description": "Disabled 0 No No No No Output fields are self-explanatory. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 186 Cisco TrustSec show platform software fed switch active sgacl vlan"
+      }
+    ],
+    "modes": [],
+    "usageSummary": null,
+    "sourcePage": 185,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch active sgacl vlan",
+    "context": null,
+    "detail": "Display global enforcement status on VLANs.",
+    "syntax": "show platform software fed switch active sgacl vlan",
+    "noForm": null,
+    "params": [
+      {
+        "name": "sgacl",
+        "description": "Displays SGACL hardware information."
+      },
+      {
+        "name": "vlan",
+        "description": "Specifies VLAN configuration."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 187,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software status control-processor brief",
+    "context": null,
+    "detail": "Display brief information about CPU and memory.",
+    "syntax": "show platform software status control-processor brief",
+    "noForm": null,
+    "params": [
+      {
+        "name": "status",
+        "description": "Displays system status."
+      },
+      {
+        "name": "control-processor",
+        "description": "Displays control processor status."
+      },
+      {
+        "name": "brief",
+        "description": "Displays brief status."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 188,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show monitor capture <name> buffer",
+    "context": null,
+    "detail": "Display the contents of a monitor capture buffer or a capture point.",
+    "syntax": "show monitor capture name buffer",
+    "noForm": null,
+    "params": [
+      {
+        "name": "buffer",
+        "description": "Displays the contents of the specified capture buffer."
+      },
+      {
+        "name": "name",
+        "description": "Represents the name of the capture buffer."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 189,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "timeout",
+    "context": "CTS",
+    "detail": "Configure the response timeout in seconds.",
+    "syntax": "timeout seconds",
+    "noForm": "no timeout",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Timeout in seconds. Valid values are from 1 to 60."
+      }
+    ],
+    "modes": ["Policy-server configuration (config-policy-server)"],
+    "usageSummary": null,
+    "sourcePage": 190,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "tls server-trustpoint",
+    "context": null,
+    "detail": "Configures the Transport Layer Security (TLS) trustpoint, use the tls server-trustpoint command in policy-server configuration mode. To remove the TLS trustpoint, use the no form of this command.",
+    "syntax": "tls server-trustpoint name",
+    "noForm": "no tls server-trustpoint",
+    "params": [
+      {
+        "name": "name",
+        "description": "Trustpoint name."
+      }
+    ],
+    "modes": ["Policy-server configuration (config-policy-server)"],
+    "usageSummary": "TLS is used by a network device to connect to the Cisco Identity Services Engine (ISE).  The device uses a make or break approach to the TLS connection establishment, and there is no persistent TLS connection between the device and Cisco ISE.  After the TLS connection is established, the device can use this connection to submit multiple REST API calls to specific uniform resource locators (URLs).",
+    "sourcePage": 191,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  }
+]

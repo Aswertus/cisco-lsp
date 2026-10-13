@@ -1,0 +1,2815 @@
+[
+  {
+    "name": "arp",
+    "context": null,
+    "detail": "Display the contents of the Address Resolution Protocol (ARP) table.",
+    "syntax": "arp [ip_address]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ip_address",
+        "description": "(Optional) Shows the ARP table or the mapping for a specific IP address."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "The ARP table contains the IP-address-to-MAC-address mappings.",
+    "sourcePage": 2150,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "boot",
+    "context": null,
+    "detail": "Load and boot an executable image and display the command-line interface (CLI).",
+    "syntax": "boot [-post | -n | -p | flag] filesystem:/file-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "-post",
+        "description": "(Optional) Run the loaded image with an extended or comprehensive power-on self-test (POST). Using this keyword causes POST to take longer to complete."
+      },
+      {
+        "name": "-n",
+        "description": "(Optional) Pause for the Cisco IOS Debugger immediately after launching."
+      },
+      {
+        "name": "-p",
+        "description": "(Optional) Pause for the JTAG Debugger right after loading the image."
+      },
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use flash: for the system board flash device; use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/file-url",
+        "description": "Path (directory) and name of a bootable image. Separate image names with a semicolon."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "When you enter the boot command without any arguments, the device attempts to automatically boot the system by using the information in the BOOT environment variable, if any.  If you supply an image name for the file-url variable, the boot command attempts to boot the specified image.  When you specify boot loader boot command options, they are executed immediately and apply only to the current boot loader session.",
+    "sourcePage": 2151,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cat",
+    "context": null,
+    "detail": "Display the contents of one or more files.",
+    "syntax": "cat filesystem:/file-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/file-url",
+        "description": "Specifies the path (directory) and name of the files to display. Separate each filename with a space."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appears sequentially.",
+    "sourcePage": 2152,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "copy",
+    "context": null,
+    "detail": "Copy a file from a source to a destination.",
+    "syntax": "copy filesystem:/source-file-url filesystem:/destination-file-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/source-file-url",
+        "description": "Path (directory) and filename (source) to be copied. /destination-file-url Path (directory) and filename of the destination."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  Directory names are limited to 127 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.  Filenames are limited to 127 characters; the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.",
+    "sourcePage": 2153,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "copy startup-config tftp:",
+    "context": null,
+    "detail": "Copy the configuration settings from a switch to a TFTP server.",
+    "syntax": "copy startup-config tftp: remote host {ip-address}/{name}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "remote",
+        "description": "host {ip-address}/{name} Host name or IP-address of Remote host."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "To copy your current configurations from the switch, run the command copy startup-config tftp: and follow the instructions.  The configurations are copied onto the TFTP server.  Then, login to another switch and run the command copy tftp: startup-config and follow the instructions.",
+    "sourcePage": 2154,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "copy tftp: startup-config",
+    "context": null,
+    "detail": "Copy the configuration settings from a TFTP server onto a new switch.",
+    "syntax": "copy tftp: startup-config remote host {ip-address}/{name}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "remote",
+        "description": "host {ip-address}/{name} Host name or IP-address of Remote host."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "After the configurations are copied, to save your configurations, use write memory command and then either reload the switch or run the copy startup-config running-config command.",
+    "sourcePage": 2155,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug voice diagnostics mac-address",
+    "context": null,
+    "detail": "Enable debugging of voice diagnostics for voice clients.",
+    "syntax": "debug voice diagnostics mac-address mac-address1 verbose mac-address mac-address2 verbose nodebug voice diagnostics mac-address mac-address1 verbose mac-address mac-address2 verbose",
+    "noForm": null,
+    "params": [
+      {
+        "name": "voice",
+        "description": "diagnostics Configures voice debugging for voice clients. mac-address mac-address1 mac-address mac-address2 Specifies MAC addresses of the voice clients."
+      },
+      {
+        "name": "verbose",
+        "description": "Enables verbose mode for voice diagnostics."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2156,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform condition feature multicast controlplane",
+    "context": null,
+    "detail": "Enable radioactive tracing for the Internet Group Management Protocol (IGMP) and Multicast Listener Discovery (MLD) snooping features.",
+    "syntax": "debug platform condition feature multicast controlplane {{igmp-debug | pim} group-ip {ipv4 address | ipv6 address} | {mld-snooping | igmp-snooping} mac mac-address ip {ipv4 address | ipv6 address} vlan vlan-id } level {debug | error | info | verbose | warning} | ipv6 address} | {mld-snooping | igmp-snooping} mac mac-address ip {ipv4 address | ipv6 address} vlan vlan-id } level {debug | error | info | verbose | warning}",
+    "noForm": "no debug platform condition feature multicast controlplane {{igmp-debug | pim} group-ip {ipv4 address",
+    "params": [
+      {
+        "name": "igmp-debug",
+        "description": "Enables IGMP control radioactive tracing."
+      },
+      {
+        "name": "pim",
+        "description": "Enables Protocol Independent Multicast (PIM) control radioactive tracing."
+      },
+      {
+        "name": "mld-snooping",
+        "description": "Enables MLD snooping control radioactive tracing."
+      },
+      {
+        "name": "igmp-snooping",
+        "description": "Enables IGMP snooping control radioactive tracing."
+      },
+      {
+        "name": "mac mac-address",
+        "description": "MAC address of the receiver. group-ip {ipv4 address | ipv6 address} IPv4 or IPv6 address of the igmp-debug or pim group. ip {ipv4 address | ipv6 address} IPv4 or IPv6 address of the mld-snooping or igmp-snooping group."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "VLAN ID. The range is from 1 to 4094."
+      },
+      {
+        "name": "level",
+        "description": "Enables debug severity levels."
+      },
+      {
+        "name": "debug",
+        "description": "Enables debugging level."
+      },
+      {
+        "name": "error",
+        "description": "Enables error debugging."
+      },
+      {
+        "name": "info",
+        "description": "Enables information debugging."
+      },
+      {
+        "name": "verbose",
+        "description": "Enables detailed debugging."
+      },
+      {
+        "name": "warning",
+        "description": "Enables warning debugging."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC (#)",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2157 System Management debug platform condition feature multicast controlplane"
+    ],
+    "usageSummary": null,
+    "sourcePage": 2157,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform condition mac",
+    "context": null,
+    "detail": "Enable radioactive tracing for MAC learning.",
+    "syntax": "debug platform condition mac {mac-address {control-plane | egress | ingress} | access-list access-list name {egress | ingress}} name {egress | ingress}}",
+    "noForm": "no debug platform condition mac {mac-address {control-plane | egress | ingress} | access-list access-list",
+    "params": [
+      {
+        "name": "mac mac-address",
+        "description": "Filters output on the basis of the specified MAC address."
+      },
+      {
+        "name": "access-list access-list name",
+        "description": "Filters output on the basis of the specified access list."
+      },
+      {
+        "name": "control-plane",
+        "description": "Displays messages about the control plane routines."
+      },
+      {
+        "name": "egress",
+        "description": "Filters output on the basis of outgoing packets."
+      },
+      {
+        "name": "ingress",
+        "description": "Filters output on the basis of incoming packets."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2159,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform rep",
+    "context": null,
+    "detail": "Enable debugging of Resilient Ethernet Protocol (REP) functions.",
+    "syntax": "debug platform rep {all | error | event | packet | verbose}",
+    "noForm": "no debug platform rep {all | error | event | packet | verbose}",
+    "params": [
+      {
+        "name": "all",
+        "description": "Enables all REP debugging functions."
+      },
+      {
+        "name": "error",
+        "description": "Enables REP error debugging."
+      },
+      {
+        "name": "event",
+        "description": "Enables REP event debugging."
+      },
+      {
+        "name": "packet",
+        "description": "Enables REP packet debugging."
+      },
+      {
+        "name": "verbose",
+        "description": "Enables REP verbose debugging."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2160,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug ilpower powerman",
+    "context": null,
+    "detail": "Enable debugging of the power controller and Power over Ethernet (PoE) system.",
+    "syntax": null,
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2161,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "delete",
+    "context": null,
+    "detail": "Delete one or more files from the specified file system.",
+    "syntax": "delete filesystem:/file-url...",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  The device prompts you for confirmation before deleting each file.",
+    "sourcePage": 2164,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dir",
+    "context": null,
+    "detail": "Display the list of files and directories on the specified file system.",
+    "syntax": "dir filesystem:/file-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/file-url",
+        "description": "(Optional) Path (directory) and directory name that contain the contents you want to display. Separate each directory name with a space."
+      }
+    ],
+    "modes": ["Boot Loader", "Privileged EXEC"],
+    "usageSummary": "Directory names are case sensitive.",
+    "sourcePage": 2165,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "emergency-install",
+    "context": null,
+    "detail": "Perform an emergency installation on your system.",
+    "syntax": "Note This feature is not supported on the Cisco Catalyst 9500 Series High Performance Switches. emergency-install url://<url>",
+    "noForm": null,
+    "params": [
+      {
+        "name": "<url>",
+        "description": "URL and name of the file containing the emergency installation bundle image."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "The boot flash is erased during the installation operation.  After you perform the emergency install operation, set the BOOT variable in the ROMMON prompt by using the set BOOT flash:packages. conf command, and run the boot flash:packages.",
+    "sourcePage": 2167,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "exit",
+    "context": null,
+    "detail": "Return to the previous mode or exit from the CLI EXEC mode.",
+    "syntax": "exit",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC", "Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 2169,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "factory-reset",
+    "context": null,
+    "detail": "Erase all customer-specific data and restore a device to its factory configuration.",
+    "syntax": "Note The erasure is consistent with the clear method, as described in NIST SP 800-88 Rev. 1. Standalone Device factory-reset { all [ secure ] [3-pass] | boot-vars | config } Stacked Device factory-reset { all [secure 3-pass] | boot-vars | config | switch switch_number | all { all [secure 3-pass] | boot-vars | config } }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Erases all the content from the NVRAM, all Cisco IOS images, including the current boot image, boot variables, startup and running configuration data, and user data."
+      },
+      {
+        "name": "all secure",
+        "description": "Performs data sanitization and securely resets the device. Note This option implements guidelines for media sanitization as described in NIST SP 800-88 Rev. 1."
+      },
+      {
+        "name": "secure 3-pass",
+        "description": "Erases all the content from the device with 3-pass overwrite. • Pass 1: Overwrites all addressable locations with binary zeroes. • Pass 2: Overwrites all addressable locations with binary ones. • Pass 3: Overwrites all addressable locations with a random bit pattern."
+      },
+      {
+        "name": "boot-vars",
+        "description": "Erases only the user-added boot variables."
+      },
+      {
+        "name": "config",
+        "description": "Erases only the startup configurations. switch {switch_number Erases content on the selected switch: | all} • switch-number: Specifies the switch number. The range is from 1 to 16. • all: Selects all the switches in the stack."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The factory-reset command is used in the following scenarios: • To return a device to Cisco for Return Material Authorization (RMA), use this command to remove all the customer-specific data before obtaining an RMA certificate for the device.  • If the key information or credentials that are stored on a device is compromised, use this command to reset the device to factory configuration, and then reconfigure the device.  After the factory reset process is successfully completed, the device reboots and enters ROMMON mode.",
+    "sourcePage": 2170,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "flash_init",
+    "context": null,
+    "detail": "Initialize the flash: file system.",
+    "syntax": "flash_init",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "During the normal boot process, the flash: file system is automatically initialized.  Use this command to manually initialize the flash: file system.  For example, you use this command during the recovery procedure for a lost or forgotten password.",
+    "sourcePage": 2175,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "help",
+    "context": null,
+    "detail": "Display the available commands.",
+    "syntax": "help",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": null,
+    "sourcePage": 2176,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "hostname",
+    "context": null,
+    "detail": "Specify or modify the hostname for the network server.",
+    "syntax": "hostname name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "New hostname for the network server."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The hostname is used in prompts and default configuration filenames.  Do not expect case to be preserved.  Uppercase and lowercase characters look the same to many internet software applications.",
+    "sourcePage": 2177,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "install",
+    "context": null,
+    "detail": "Install Software Maintenance Upgrade (SMU) packages.",
+    "syntax": "install {abort | activate | file {bootflash: | flash: | harddisk: | webui:} [auto-abort-timer timer timer prompt-level {all | none}] | add file {bootflash: | flash: | ftp: | harddisk: | http: | https: | rcp: | scp: | tftp: | webui:} [activate [auto-abort-timer timer prompt-level {all | none}commit]] | commit | auto-abort-timer stop | deactivate file {bootflash: | flash: | harddisk: | webui:} | label id {description description | label-name name} | remove {file {bootflash: | flash: | harddisk: | webui:} | inactive } | rollback to {base | committed | id {install-ID } | label {label-name}}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "abort",
+        "description": "Terminates the current install operation."
+      },
+      {
+        "name": "activate",
+        "description": "Validates whether the SMU is added through the install add command. This keyword runs a compatibility check, updates package status, and if the package can be restarted, triggers post-install scripts to restart the necessary processes, or triggers a reload for nonrestartable packages."
+      },
+      {
+        "name": "file",
+        "description": "Specifies the package to be activated. {bootflash: | flash: | harddisk: | webui:} Specifies the location of the installed package."
+      },
+      {
+        "name": "auto-abort-timer timer",
+        "description": "(Optional) Installs an auto-abort timer."
+      },
+      {
+        "name": "prompt-level {all | none}",
+        "description": "(Optional) Prompts a user about installation activities. For example, the activate keyword automatically triggers a reload for packages that require a reload. Before activating the package, a message prompts users about wanting to continue or not. The all keyword allows you to enable prompts. The none keyword disables prompts."
+      },
+      {
+        "name": "add",
+        "description": "Copies files from a remote location (through FTP or TFTP) to a device and performs SMU compatibility check for the platform and image versions. This keyword runs base compatibility checks to ensure that a specified package is supported on a platform. { bootflash: | flash: |ftp: |harddisk: |http: |https: | Specifies the package to be added. rcp: | scp: | tftp: |webui:} Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2179 System Management install"
+      },
+      {
+        "name": "commit",
+        "description": "Makes SMU changes persistent over reloads. You can perform a commit after activating a package while the system is up, or after the first reload. If a package is activated, but not committed, it remains active after the first reload, but not after the second reload."
+      },
+      {
+        "name": "auto-abort-timer stop",
+        "description": "Stops the auto-abort timer."
+      },
+      {
+        "name": "deactivate",
+        "description": "Deactivates an installed package. Note Deactivating a package also updates the package status and might trigger a process restart or reload."
+      },
+      {
+        "name": "label id",
+        "description": "Specifies the ID of the install point to label."
+      },
+      {
+        "name": "description",
+        "description": "Adds a description to the specified install point."
+      },
+      {
+        "name": "label-name name",
+        "description": "Adds a label name to the specified install point."
+      },
+      {
+        "name": "remove",
+        "description": "Removes the installed packages. The remove keyword can only be used on packages that are currently inactive."
+      },
+      {
+        "name": "inactive",
+        "description": "Removes all the inactive packages from the device."
+      },
+      {
+        "name": "rollback",
+        "description": "Rolls back the data model interface (DMI) package SMU to the base version, the last committed version, or a known commit ID."
+      },
+      {
+        "name": "to base",
+        "description": "Returns to the base image."
+      },
+      {
+        "name": "committed",
+        "description": "Returns to the installation state when the last commit operation was performed."
+      },
+      {
+        "name": "id install-ID",
+        "description": "Returns to the specific install point ID. Valid values are from 1 to 4294967295."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "An SMU is a package that can be installed on a system to provide a patch fix or security resolution to a released image.  This package contains a minimal set of files for patching the release along with metadata that describes the contents of the package.  Packages must be added before the SMU is activated.",
+    "sourcePage": 2179,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip http banner",
+    "context": null,
+    "detail": "Enable the HTTP or HTTP Secure (HTTPS) server banner.",
+    "syntax": "ip http banner",
+    "noForm": "no ip http banner",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "While the HTTP server processes a request, if the session ID is invalid or expired, the server redirects the user to a banner page.  The banner page allows the user to log in with credentials.  The server validates the credentials and processes the request.",
+    "sourcePage": 2193,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip http banner-path",
+    "context": null,
+    "detail": "Set a custom path for the HTTP or HTTP Secure (HTTPS) banner page.",
+    "syntax": "ip http banner-path path-name",
+    "noForm": "no ip http banner-path path-name",
+    "params": [
+      {
+        "name": "path-name",
+        "description": "Custom path for the HTTP or HTTPS banner."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the ip http banner-path command to direct the user to the banner path.  If the command is not configured or if the custom banner path does not exist, the server directs the user to the default banner page.",
+    "sourcePage": 2194,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip ssh bulk-mode",
+    "context": null,
+    "detail": "Enable the Secure Shell (SSH) bulk data transfer mode.",
+    "syntax": "ip ssh bulk-mode [ window-size ]",
+    "noForm": "no ip ssh bulk-mode [ window-size ]",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "SSH bulk mode enables optimizing the throughput performance of procedures that involve the transfer of large amounts of data.  The Secure Copy feature has been enhanced to leverage bulk mode optimizations.  Beginning from Cisco IOS XE Dublin 17.",
+    "sourcePage": 2195,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "l2 traceroute",
+    "context": null,
+    "detail": "Enable the Layer 2 traceroute server.",
+    "syntax": "l2 traceroute",
+    "noForm": "no l2 traceroute",
+    "params": [],
+    "modes": ["Global configuration (config#)"],
+    "usageSummary": "Layer 2 traceroute is enabled by default and opens a listening socket on User Datagram Protocol (UDP) port 2228.  To close the UDP port 2228 and disable Layer 2 traceroute, use the no l2 traceroute command in global configuration mode.  The following example shows how to configure Layer 2 traceroute using the l2 traceroute command.",
+    "sourcePage": 2196,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "license air level",
+    "context": null,
+    "detail": "Configure AIR licenses on a wireless controller that is connected to Cisco Catalyst Access, Core, and Aggregation Switches, enter the license air level command in global configuration mode. To revert to the default setting.",
+    "syntax": "license air level { air-network-advantage [ addon air-dna-advantage ] | air-network-essentials [ addon air-dna-essentials ] }",
+    "noForm": "no license air level",
+    "params": [
+      {
+        "name": "air-network-advantage",
+        "description": "Configures the AIR network advantage license level. addon air-dna-advantage (Optional) Configures the add-on AIR DNA advantage license level. This add-on option is available with the AIR network advantage license, and is the default license."
+      },
+      {
+        "name": "air-network-essentials",
+        "description": "Configures the AIR network essential license level. addon air-dna-essentials (Optional) Configures the add-on AIR DNA essentials license level. This add-on option is available with the AIR network essential license."
+      }
+    ],
+    "modes": ["Global configuration (Device(config)# )"],
+    "usageSummary": "In the Smart Licensing Using Policy environment, you can use the license air level command to change the license level being used on the product instance, or to additionally configure an add-on license on the product instance.  The change is effective after a reload.  The licenses that can be configured are: • AIR Network Essential • AIR Network Advantage • AIR DNA Essential • AIR DNA Advantage Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 2197,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "license boot level",
+    "context": null,
+    "detail": "Boot a new software license on the device.",
+    "syntax": "license boot level { network-advantage [ addon dna-advantage ] | network-essentials [ addon dna-essentials ] }",
+    "noForm": "no license boot level",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The software features available on Cisco Catalyst 9000 Series Switches fall under these base or add-on license levels: Base Licenses: • Network Essentials • Network Advantage—Includes features available with the Network Essentials license and more.  Add-on Licenses: • DNA Essentials • DNA Advantage—Includes features available with the Network Essentials license and more.  Base licenses are permanent or perpetual licenses.",
+    "sourcePage": 2199,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "license smart",
+    "context": "global config",
+    "detail": "To configure licensing-related settings such as the mode of transport and the URL that the product instance uses to communicate with Cisco Smart Software Manager (CSSM), or Cisco Smart Licensing Utility (CSLU), or Smart Software Manager On-Prem (SSM On-Prem), to configure the usage reporting interval, to configure the information that must be exluded or included in a license usage report (RUM report), enter the license smart command in global configuration mode. Use the no form of the command to revert to default values.",
+    "syntax": "license smart { custom_id ID | enable | privacy { all | hostname | version } | proxy { address address_hostname | port port } | reservation | server-identity-check | transport { automatic | callhome | cslu | off | smart } | url { url | cslu cslu_or_on-prem_url | default | smart smart_url | utility secondary_url } | usage { customer-tags { tag1 | tag2 | tag3 | tag4 } tag_value | interval interval_in_days } | utility [ customer_info { city city | country country | postalcode postalcode | state state | street street } ] } address_hostname | port port } | reservation | server-identity-check | transport | url { url | cslu cslu_or_on-prem_url | default | smart smart_url | utility secondary_url } | usage { customer-tags { tag1 | tag2 | tag3 | tag4 } tag_value | interval interval_in_days } | utility [ customer_info { city city | country country | postalcode postalcode | state state | street street } ] }",
+    "noForm": "no license smart { custom_id | enable | privacy { all | hostname | version } | proxy { address",
+    "params": [
+      {
+        "name": "custom_id ID",
+        "description": "Although available on the CLI, this option is not supported."
+      },
+      {
+        "name": "enable",
+        "description": "Although visible on the CLI, configuring this keyword has no effect. Smart licensing is always enabled. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2202 System Management license smart (global config) privacy { all | hostname | version } Sets a privacy flag to prevent the sending of the specified data privacy related information. When the flag is disabled, the corresponding information is sent in a message or offline file created by the product instance. Depending on the topology this is sent to one or more components, including CSSM, CSLU, and SSM On-Prem. All data privacy settings are disabled by default. You must configure the option you want to exclude from all communication: • all: All data privacy related information is excluded from any communication. The no form of the command causes all data privacy related information to be sent in a message or offline file. Note The Product ID (PID) and serial number are included in the RUM report regardless of whether data privacy is enabled or not. • hostname: Excludes hostname information from any communication. When hostname privacy is enabled, the UDI of the product instance is displayed on the applicable user interfaces (CSSM, CSLU, and SSM On-Prem). The no form of the command causes hostname information to be sent in a message or offline file. The hostname is displayed on the applicable user interfaces (CSSM, CSLU, and SSM On-Prem). • version: Excludes the Cisco IOS-XE software version running on the product instance and the Smart Agent version from any communication. The no form of the command causes version information to be sent in a message or offline file. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2203 System Management license smart (global config) proxy { address address_hostname | port Configures a proxy for license usage synchronization with"
+      },
+      {
+        "name": "port }",
+        "description": "CSLU or CSSM. This means that you can use this option to configure a proxy only if the transport mode is license smart transport smart (CSSM), or license smart transport cslu (CSLU). However, you cannot configure a proxy for license usage synchronization in an SSM On-Prem deployment, which also uses license smart transport cslu as the transport mode. Configure the following options: • address address_hostname: Configures the proxy address. For address_hostname, enter the enter the IP address or hostname of the proxy. • portport: Configures the proxy port. For port, enter the proxy port number."
+      },
+      {
+        "name": "reservation",
+        "description": "Enables or disables a license reservation feature. Note Although available on the CLI, this option is not applicable because license reservation is not applicable in the Smart Licensing Using Policy environment."
+      },
+      {
+        "name": "server-identity-check",
+        "description": "Enables or disables the HTTP secure server identity check. transport { automatic | callhome | cslu | off Configures the mode of transport the product instance uses"
+      },
+      {
+        "name": "| smart }",
+        "description": "to communicate with CSSM. Choose from the following options: • automatic: Sets the transport mode cslu. • callhome: Enables Call Home as the transport mode. • cslu: Enables CSLU as the transport mode. This is the default transport mode. The same keyword applies to both CSLU and SSM On-Prem, but the URLs are different. See cslucslu_or_on-prem_url in the following row. • off: Disables all communication from the product instance. • smart: Enables Smart transport. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2204 System Management license smart (global config) url { url | cslu cslu_url | default | smart smart_url | utility secondary_url } Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2205 System Management license smart (global config) Sets a URL for the configured transport mode. Choose from the following options: • url: If you have configured the transport mode as callhome, configure this option. Enter the CSSM URL exactly as follows: https://tools.cisco.com/its/service/oddce/services/DDCEService The no license smart url url command reverts to the default URL. • cslu cslu_or_on-prem_url: If you have configured the transport mode as cslu, configure this option, with the URL for CSLU or SSM On-Prem, as applicable: • If you are using CSLU, enter the URL as follows: http://<cslu_ip_or_host>:8182/cslu/v1/pi For <cslu_ip_or_host>, enter the hostname or the IP address of the windows host where you have installed CSLU. 8182 is the port number and it is the only port number that CSLU uses. The no license smart url cslu cslu_or_on-prem_url command reverts to http://cslu-local:8182/cslu/v1/pi • If you are using SSM On-Prem, enter the URL as follows: http://<ip>/cslu/v1/pi/<tenant ID> For <ip>, enter the hostname or the IP address of the server where you have installed SSM On-Prem. The <tenantID> must be the default local virtual account ID. Tip You can retrieve the entire URL from SSM On-Prem. In the software configuration guide of the required release (17.3.x onwards), see System Management > Smart Licensing Using Policy > Task Library for Smart Licensing Using Policy > Retrieving the Transport URL (SSM On-Prem UI). The no license smart url cslu cslu_or_on-prem_url command reverts to http://cslu-local:8182/cslu/v1/pi • default: Depends on the configured transport mode. Only the smart and cslu transport modes are supported with this option. If the transport mode is set to cslu, and you configure license smart url default, the CSLU URL is Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2206 System Management license smart (global config) configured automatically (https://cslu-local:8182/cslu/v1/pi). If the transport mode is set to smart, and you configure license smart url default, the Smart URL is configured automatically (https://smartreceiver.cisco.com/licservice/license). • smart smart_url: If you have configured the transport type as smart, configure this option. Enter the URL exactly as follows: https://smartreceiver.cisco.com/licservice/license When you configure this option, the system automatically creates a duplicate of the URL in license smart url url. You can ignore the duplicate entry, no further action is required. The no license smart url smartsmart_url command reverts to the default URL. • utility smart_url: Although available on the CLI, this option is not supported. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2207 System Management license smart (global config) usage { customer-tags { tag1 | tag2 | tag3 Configures usage reporting settings. You can set the | tag4 } tag_value | interval interval_in_days following options: } • customer-tags{tag1|tag2|tag3|tag4}tag_value: Defines strings for inclusion in data models, for telemetry. Up to 4 strings (or tags) may be defined. For tag_value, enter the string value for each tag that you define. • interval interval_in_days: Sets the reporting interval in days. By default the RUM report is sent every 30 days. The valid value range is 1 to 3650. If you set the value to zero, RUM reports are not sent, regardless of what the applied policy specifies - this applies to topologies where CSLU or CSSM may be on the receiving end. If you set a value that is greater than zero and the transport type is set to off, then, between the interval_in_days and the policy value for Ongoing reporting frequency(days):, the lower of the two values is applied. For example, if interval_in_days is set to 100, and the value in the in the policy says Ongoing reporting frequency (days):90, RUM reports are sent every 90 days. If you do not set an interval, and the default is effective, the reporting interval is determined entirely by the policy value. For example, if the default value is effective and only unenforced licenses are in use, if the policy states that reporting is not required, then RUM reports are not sent. utility [ customer_info { city city | country Although visible on the CLI, this option is not supported country | postalcode postalcode | state state on any of the Cisco Catalyst Access, Core, and Aggregation | street street } ] Switches."
+      }
+    ],
+    "modes": ["Global config (Device(config)# )"],
+    "usageSummary": "Data Privacy Settings Command Reference, Cisco IOS XE 17. 18. x (Catalyst 9500 Switches) 2209 System Management license smart (global config) When you disable a privacy setting, the topology you have implemented determines the recipient and how the information reaches its destination: • The recipient of the information may be one or more of the following: CSSM, CSLU, and SSM On-Prem.",
+    "sourcePage": 2202,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "license smart",
+    "context": "privileged EXEC",
+    "detail": "To configure licensing functions such as requesting or returning authorization codes, saving Resource Utilization Measurement reports (RUM reports), importing a file on to a product instance, establishing trust with Cisco Smart Software Manager (CSSM), synchronizing the product instance with CSSM, or Cisco Smart License Utility (CSLU), or Smart Software Manager On-Prem (SSM On-Prem), and removing licensing information from the product instance, enter the license smart command in privileged EXEC mode with the corresponding keyword or argument.",
+    "syntax": "license smart { authorization { request { add | replace | save path } feature_name { all | local } | return { all | local } { offline [ path ] | online } } | clear eventlog | export return { all | local } feature_name | factory reset | import file_path | save { trust-request filepath_filename | usage { all | days days | rum-id rum-ID | unreported } { file file_path } } | sync { all | local } | trust idtoken id_token_value { local | all } [ force ] }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "smart",
+        "description": "Provides options for Smart Licensing."
+      },
+      {
+        "name": "authorization",
+        "description": "Provides the option to request for, or return, authorization codes. Authorization codes are required only if you use licenses with enforcement type: export-controlled or enfored."
+      },
+      {
+        "name": "request",
+        "description": "Requests an authorization code from CSSM, CSLU (CSLU in-turn fetches it from CSSM), or SSM On-Prem and installs it on the product instance."
+      },
+      {
+        "name": "add",
+        "description": "Adds the requested license to the existing authorization code. The new authorization code will contain all the licenses of the existing authorization code and the requested license."
+      },
+      {
+        "name": "replace",
+        "description": "Replaces the existing authorization code. The new authorization code will contain only the requested license. All licenses in the current authorization code are returned. When you enter this option, the product instance verifies if licenses that correspond to the authorization codes that will be removed, are in-use. If licenses are being used, an error message tells you to first disable the corresponding features."
+      },
+      {
+        "name": "save filepath_filename",
+        "description": "Saves the authorization code request to a file. For filepath_filename, specify the absolute path to the file, including the filename."
+      },
+      {
+        "name": "feature_name",
+        "description": "Name of the license for which you are requesting an authorization code."
+      },
+      {
+        "name": "all",
+        "description": "Performs the action for all product instances in a High Availability or stacking set-up."
+      },
+      {
+        "name": "local",
+        "description": "Performs the action for the active product instance. This is the default option."
+      },
+      {
+        "name": "return",
+        "description": "Returns an authorization code back to the license pool in CSSM. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2214 System Management license smart (privileged EXEC)"
+      },
+      {
+        "name": "offline",
+        "description": "Means the product instance is not connected to CSSM. The authorization code is"
+      },
+      {
+        "name": "filepath_filename",
+        "description": "returned offline. This option requires you to print the return code to a file. Optionally, you can also specify a path to save the file. The file format can be any readable format, such as .txt If you choose the offline option, you must complete the additional step of copying the return code from the CLI or the saved file and entering it in CSSM."
+      },
+      {
+        "name": "online",
+        "description": "Means that the product instance is in a connected mode. The authorization code is returned to CSLU or CSSM directly."
+      },
+      {
+        "name": "clear eventlog",
+        "description": "Clears all event log files from the product instance."
+      },
+      {
+        "name": "export return",
+        "description": "Although visible on the CLI, this command is not applicable in the Smart Licensing Using Policy environment. Use the license smart authorization return privileged EXEC command to return an authorization code instead."
+      },
+      {
+        "name": "factory reset",
+        "description": "Clears all saved licensing information from the product instance."
+      },
+      {
+        "name": "import",
+        "description": "Imports a file on to the product instance. The file may be that of an authorization"
+      },
+      {
+        "name": "filepath_filename",
+        "description": "code, a trust code, or, or a policy. For filepath_filename, specify the location, including the filename."
+      },
+      {
+        "name": "save",
+        "description": "Provides options to save RUM reports or trust code requests."
+      },
+      {
+        "name": "trust-request",
+        "description": "Saves the trust code request for the active product instance in the specified location. filepath_filename For filepath_filename, specify the absolute path to the file, including the filename. usage { all | days days Saves RUM reports (license usage information) in the specified location. You must"
+      },
+      {
+        "name": "| rum-id rum-ID |",
+        "description": "specify one of these options: unreported } { file • all: Saves all RUM reports. file_path } • days days: Saves RUM report for the last n number of days (excluding the current day). Enter a number. The valid range is 0 to 4294967295. For example, if you enter 3, RUM reports of the last three days are saved. • rum-Id rum-ID: Saves a specified RUM ID. The valid value range is 0 to 18446744073709551615. • unreported: Saves all unreported RUM reports. file filepath_filename: Saves the specified usage information to a file. Specify the absolute path to the file, including the filename. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2215 System Management license smart (privileged EXEC) sync { all | local } Synchronizes with CSSM or CSLU, or SSM On-Prem, to send and receive any pending data. This includes uploading pending RUM reports, downloading the ACK response, any pending authorization codes, trust codes, and policies for the product instance. Specify the product instance by entering one of these options: • all: Performs synchronization for all the product instances in a High Availability or stacking set-up. If you choose this option, the product instance also sends the list of all the UDIs in the synchronization request. • local: Performs synchronization only for the active product instance sending the request, that is, its own UDI. This is the default option."
+      },
+      {
+        "name": "trust idtoken",
+        "description": "Establishes a trusted connection with CSSM. id_token_value To use this option, you must first generate a token in the CSSM portal. Provide the generated token value for id_token_value."
+      },
+      {
+        "name": "force",
+        "description": "Submits a trust code request even if a trust code already exists on the product instance. A trust code is node-locked to the UDI of a product instance. If the UDI is already registered, CSSM does not allow a new registration for the same UDI. Entering the force keyword overrides this behavior."
+      }
+    ],
+    "modes": ["Privileged EXEC (Device# )"],
+    "usageSummary": "Requesting a Trust Code in an Air-Gapped Network Starting with Cisco IOS XE Cupertino 17. 7. 1 if a trust code is not available on the product instance, the product instance automatically includes a trust code request in the RUM report when you enter the license smart save usage command.",
+    "sourcePage": 2214,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "line auto-consolidation",
+    "context": null,
+    "detail": "Consolidate multiple line configurations of the same submode into a single line.",
+    "syntax": "line auto-consolidation",
+    "noForm": "no line auto-consolidation",
+    "params": [
+      {
+        "name": "auto-consolidation",
+        "description": "Consolidates multiple line configurations of the same submode into a single line."
+      }
+    ],
+    "modes": ["Global configuration mode (config)"],
+    "usageSummary": null,
+    "sourcePage": 2223,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "location",
+    "context": null,
+    "detail": "Configure location information for an endpoint.",
+    "syntax": "location {admin-tag string | civic-location identifier {hostid} | civic-location identifier {hostid} | elin-location {string |identifier id} | geo-location identifier {hostid} | prefer{cdp weight priority-value|lldp-med weight priority-value|static config weight priority-value} | elin-location {string |identifier id} | geo-location identifier {hostid} | prefer{cdp weight priority-value|lldp-med weight priority-value|static config weight priority-value}",
+    "noForm": "no location {admin-tag string | civic-location identifier {hostid} | civic-location identifier {hostid}",
+    "params": [
+      {
+        "name": "admin-tagstring",
+        "description": "Configures administrative tag or site information. Site or location information in alphanumeric format."
+      },
+      {
+        "name": "civic-location",
+        "description": "Configures civic location information."
+      },
+      {
+        "name": "identifier",
+        "description": "Specifies the name of the civic location, emergency, or geographical location."
+      },
+      {
+        "name": "host",
+        "description": "Defines the host civic or geo-spatial location."
+      },
+      {
+        "name": "id",
+        "description": "Name of the civic, emergency, or geographical location. Note The identifier for the civic location in the LLDP-MED switch TLV is limited to 250 bytes or less. To avoid error messages about available buffer space during switch configuration, be sure that the total length of all civic-location information specified for each civic-location identifier does not exceed 250 bytes."
+      },
+      {
+        "name": "elin-location",
+        "description": "Configures emergency location information (ELIN)."
+      },
+      {
+        "name": "geo-location",
+        "description": "Configures geo-spatial location information."
+      },
+      {
+        "name": "prefer",
+        "description": "Sets location information source priority."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "After entering the location civic-location identifier global configuration command, you enter civic location configuration mode.  After entering the location geo-location identifier global configuration command, you enter geo location configuration mode.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 2225,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "location plm calibrating",
+    "context": null,
+    "detail": "Configure path loss measurement (CCX S60) request for calibrating clients.",
+    "syntax": "location plm calibrating {multiband | uniband}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "uniband",
+        "description": "Specifies the path loss measurement request for calibrating clients on the associated 802.11a/b/g radio."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The uniband is useful for single radio clients (even if the radio is a dual band and can operate in the 2. 4-GHz and the 5-GHz bands).  The multiband is useful for multiple radio clients.",
+    "sourcePage": 2228,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mac address-table move update",
+    "context": null,
+    "detail": "Enable the MAC address table move update feature.",
+    "syntax": "mac address-table move update {receive | transmit}",
+    "noForm": "no mac address-table move update {receive | transmit}",
+    "params": [
+      {
+        "name": "receive",
+        "description": "Specifies that the switch processes MAC address-table move update messages. transmit Specifies that the switch sends MAC address-table move update messages to other switches in the network if the primary link goes down and the standby link comes up."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The MAC address-table move update feature allows the switch to provide rapid bidirectional convergence if a primary (forwarding) link goes down and the standby link begins forwarding traffic.  You can configure the access switch to send the MAC address-table move update messages if the primary link goes down and the standby link comes up.  You can configure the uplink switches to receive and process the MAC address-table move update messages.",
+    "sourcePage": 2229,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mgmt_init",
+    "context": null,
+    "detail": "Initialize the Ethernet management port.",
+    "syntax": "mgmt_init",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "Use the mgmt_init command only during debugging of the Ethernet management port.",
+    "sourcePage": 2230,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mkdir",
+    "context": null,
+    "detail": "Create one or more directories on the specified file system.",
+    "syntax": "mkdir filesystem:/directory-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks. /directory-url... Name of the directories to create. Separate each directory name with a space."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Directory names are case sensitive.  Directory names are limited to 127 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.",
+    "sourcePage": 2231,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "more",
+    "context": null,
+    "detail": "Display the contents of one or more files.",
+    "syntax": "more filesystem:/file-url...",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appears sequentially.",
+    "sourcePage": 2232,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "no debug all",
+    "context": null,
+    "detail": "Disable debugging on a switch.",
+    "syntax": null,
+    "noForm": "no debug all",
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2233,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rename",
+    "context": null,
+    "detail": "Rename a file.",
+    "syntax": "rename filesystem:/source-file-url filesystem:/destination-file-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/source-file-url",
+        "description": "Original path (directory) and filename. /destination-file-url New path (directory) and filename."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  Directory names are limited to 127 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.  Filenames are limited to 127 characters; the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.",
+    "sourcePage": 2234,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request consent-token accept-response shell-access",
+    "context": null,
+    "detail": "Submit the Consent Token response to a previously generated challenge.",
+    "syntax": "request consent-token accept-response shell-access response-string",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Syntax",
+        "description": "Description"
+      },
+      {
+        "name": "response-string",
+        "description": "Specifies the character string representing the response."
+      }
+    ],
+    "modes": ["Privileged EXEC mode (#)"],
+    "usageSummary": "You must enter the response string within 30 minutes of challenge generation.  If it is not entered, the challenge expires and a new challenge must be requested.",
+    "sourcePage": 2235,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request consent-token generate-challenge shell-access",
+    "context": null,
+    "detail": "Generate a Consent Token challenge for system shell access.",
+    "syntax": "request consent-token generate-challenge shell-access auth-timeout time-validity-slot",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Syntax",
+        "description": "Description"
+      },
+      {
+        "name": "auth-timeout time-validity-slot",
+        "description": "Specifies the time slot in minutes for which shell-access is requested."
+      }
+    ],
+    "modes": ["Privileged EXEC mode (#)"],
+    "usageSummary": "When the requested time-slot for system shell expires, the session gets terminated automatically.  The maximum authorization timeout for system shell access is seven days.",
+    "sourcePage": 2236,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request consent-token terminate-auth",
+    "context": null,
+    "detail": "Terminate the Consent Token based authorization to system shell.",
+    "syntax": "request consent-token terminate-auth",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC mode (#)"],
+    "usageSummary": "In system shell access scenario, exiting the shell does not terminate authorization until the authorization timeout occurs.  We recommend that you force terminate system shell authorization by explicitly issuing the request consent-token terminate-auth command once the purpose of system shell access is complete.  If the current authentication is terminated using the request consent-token terminate-auth command, the user will have to repeat the authentication process to gain access to system shell.",
+    "sourcePage": 2237,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software console attach switch",
+    "context": null,
+    "detail": "Start a session on a member switch.",
+    "syntax": "Note On stacking switches (Catalyst 3650/3850/9200/9300 switches), this command can only be used to start a session on the standby console. On Catalyst 9500 switches, this command is supported only in a stackwise virtual setup. You cannot start a session on member switches. By default, all consoles are already active, so a request to start a session on the active console will result in an error. request platform software console attach switch { switch-number | active | standby } { 0/0 | R0 }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "active",
+        "description": "Specifies the active switch. Note This argument is not supported on Catalyst 9500 switches."
+      },
+      {
+        "name": "standby",
+        "description": "Specifies the standby switch."
+      },
+      {
+        "name": "0/0",
+        "description": "Specifies that the SPA-Inter-Processor slot is 0, and bay is 0. Note Do not use this option with stacking switches. It will result in an error."
+      },
+      {
+        "name": "R0",
+        "description": "Specifies that the Route-Processor slot is 0."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "To start a session on the standby switch, you must first enable it in the configuration.",
+    "sourcePage": 2238,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "reset",
+    "context": null,
+    "detail": "Perform a hard reset on the system.",
+    "syntax": "reset",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": null,
+    "sourcePage": 2240,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rmdir",
+    "context": null,
+    "detail": "Remove one or more empty directories from the specified file system.",
+    "syntax": "rmdir filesystem:/directory-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks. /directory-url... Path (directory) and name of the empty directories to remove. Separate each directory name with a space."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Directory names are case sensitive and limited to 45 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.  Before removing a directory, you must first delete all of the files in the directory.  The device prompts you for confirmation before deleting each directory.",
+    "sourcePage": 2241,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "sdm prefer",
+    "context": null,
+    "detail": "Specify the SDM template for use on the switch.",
+    "syntax": "sdm prefer {advanced}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "advanced",
+        "description": "Supports advanced features such as NetFlow."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "In a device stack, all stack members must use the same SDM template that is stored on the active device.  When a new device is added to a stack, the SDM configuration that is stored on the active device overrides the template configured on an individual device.",
+    "sourcePage": 2242,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "service private-config-encryption",
+    "context": null,
+    "detail": "Enable private configuration file encryption.",
+    "syntax": "service private-config-encryption",
+    "noForm": "no service private-config-encryption",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 2243,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set",
+    "context": null,
+    "detail": "Set or display environment variables.",
+    "syntax": "set variable value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "variable",
+        "description": "Use one of the following keywords for variable and the appropriate value for value: value MANUAL_BOOT—Decides whether the device boots automatically or manually. Valid values are 1/Yes and 0/No. If it is set to 0 or No, the boot loader attempts to automatically boot the system. If it is set to anything else, you must manually boot the device from the boot loader mode. BOOT filesystem:/file-url—Identifies a semicolon-separated list of executable files to try to load and execute when automatically booting. If the BOOT environment variable is not set, the system attempts to load and execute the first executable image it can find by using a recursive, depth-first search through the flash: file system. If the BOOT variable is set but the specified images cannot be loaded, the system attempts to boot the first bootable file that it can find in the flash: file system. ENABLE_BREAK—Allows the automatic boot process to be interrupted when the user presses the Break key on the console. Valid values are 1, Yes, On, 0, No, and Off. If set to 1, Yes, or On, you can interrupt the automatic boot process by pressing the Break key on the console after the flash: file system has initialized. HELPER filesystem:/file-url—Identifies a semicolon-separated list of loadable files to dynamically load during the boot loader initialization. Helper files extend or patch the functionality of the boot loader. PS1 prompt—Specifies a string that is used as the command-line prompt in boot loader mode. CONFIG_FILE flash: /file-url—Specifies the filename that Cisco IOS uses to read and write a nonvolatile copy of the system configuration. BAUD rate—Specifies the number of bits per second (b/s) that is used for the baud rate for the console. The Cisco IOS software inherits the baud rate setting from the boot loader and continues to use this value unless the configuration file specifies another setting. The range is from 0 to 128000 b/s. Valid values are 50, 75, 110, 150, 300, 600, 1200, 1800, 2000, 2400, 3600, 4800, 7200, 9600, 14400, 19200, 28800, 38400, 56000, 57600, 115200, and 128000. The most commonly used values are 300, 1200, 2400, 9600, 19200, 57600, and 115200. SWITCH_NUMBER stack-member-number—Changes the member number of a stack member. SWITCH_PRIORITY priority-number—Changes the priority value of a stack member."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Environment variables are case sensitive and must be entered as documented.  Environment variables that have values are stored in flash memory outside of the flash: file system.  Under typical circumstances, it is not necessary to alter the setting of the environment variables.",
+    "sourcePage": 2244,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show avc client",
+    "context": null,
+    "detail": "Display information about top number of applications.",
+    "syntax": "show avc client client-mac top n application [aggregate | upstream | downstream]",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2247,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show bootflash:",
+    "context": null,
+    "detail": "Display information about the bootflash: file system.",
+    "syntax": "show bootflash: [all | filesys | namesort | sizesort | timesort ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all possible Flash information."
+      },
+      {
+        "name": "filesys",
+        "description": "(Optional) Displays Flash system information."
+      },
+      {
+        "name": "namesort",
+        "description": "(Optional) Sorts the output by file name."
+      },
+      {
+        "name": "sizesort",
+        "description": "(Optional) Sorts the output by file size."
+      },
+      {
+        "name": "timesort",
+        "description": "(Optional) Sorts the output by time stamp."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2248,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show consistency-checker mcast",
+    "context": null,
+    "detail": "To run a consistency-checker and detect inconsistent states of software entries on Layer 2 multicast forwarding tables and Layer 3 multicast forwarding tables, run the show consistency-checker mcastcommand in privileged EXEC mode.",
+    "syntax": "show consistency-checker mcast { l2m | l3m } start { all | vlan vlan-id { ipv4-address | ipv6-adddress } } [ recursive ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "l2m",
+        "description": "Layer 2 multicast forwarding tables are selected to run a consistency-checker."
+      },
+      {
+        "name": "l3m",
+        "description": "Layer 3 multicast forwarding tables are selected to run a consistency-checker."
+      },
+      {
+        "name": "start",
+        "description": "Starts the consistency-checker for Layer 2 multicast. • all : Starts the checker for entire table • vlan vlan-id {ipv4-address | ipv6-address}: Starts the checker for the specified VLAN."
+      },
+      {
+        "name": "all",
+        "description": "Starts the checker for entire table. vlan vlan-id {ipv4-address | Starts the checker for the specified VLAN. ipv6-address}"
+      },
+      {
+        "name": "recursive",
+        "description": "Runs a recursive consistency-checker."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The consistency checker has the following limitations: • There is no command to abort or terminate the consistency checker.  It will stop only once the full report has been displayed.  • FED hardware checks are partially implemented.",
+    "sourcePage": 2251,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show consistency-checker mcast l3m",
+    "context": null,
+    "detail": "To run a consistency-checker and detect inconsistent states of software entries on the Layer 3 multicast forwarding tables, run the show consistency-checker mcast l3m command in privileged EXEC mode.",
+    "syntax": "show consistency-checker mcast l3m start { all | vrf vrf-name { ipv4-address | ipv6-adddress } } [ recursive ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "start",
+        "description": "Starts the consistency-checker for Layer 3 multicast. • all : Starts the checker for entire table • vrf vrf-name {ipv4-address | ipv6-address}: Starts the checker for the specified VRF."
+      },
+      {
+        "name": "all",
+        "description": "Starts the checker for entire table."
+      },
+      {
+        "name": "vrf vrf-name {ipv4-address |",
+        "description": "Starts the checker for the specified VRF. ipv6-address}"
+      },
+      {
+        "name": "recursive",
+        "description": "Runs a recursive consistency-checker."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The consistency checker has the following limitations: • There is no command to abort or terminate the consistency checker.  It will stop only once the full report has been displayed.  • FED hardware checks are partially implemented.",
+    "sourcePage": 2253,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show consistency-checker objects",
+    "context": null,
+    "detail": "To run a consistency-checker and detect inconsistent states of software entries on objects, run the show consistency-checker objects command in privileged EXEC mode.",
+    "syntax": "show consistency-checker objects { adjacency | | interface | | l2m_group | | l2m_vlan | | l3_entry | | l3m_entry } [ run-id ] [ detail ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "l3_entry",
+        "description": "Runs the consistenc-checker on Layer 3 Unicast entries. l3m_entry Runs the consistenc-checker on Layer 3 Multicast entries."
+      },
+      {
+        "name": "run-id",
+        "description": "Runs the consistency-checker by run ID."
+      },
+      {
+        "name": "detail",
+        "description": "Displays detailed output for the run ID."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The consistency checker has the following limitations: • There is no command to abort or terminate the consistency checker.  It will stop only once the full report has been displayed.  • FED hardware checks are partially implemented.",
+    "sourcePage": 2257,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show consistency-checker run-id",
+    "context": null,
+    "detail": "To run a consistency-checker and detect inconsistent states of software entries by run ID, run the show consistency-checker run-id run-id command in privileged EXEC mode.",
+    "syntax": "show consistency-checker run-id run-id [ detail | | status ]",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The consistency checker has the following limitations: • There is no command to abort or terminate the consistency checker.  It will stop only once the full report has been displayed.  • FED hardware checks are partially implemented.",
+    "sourcePage": 2259,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show debug",
+    "context": null,
+    "detail": "Display all the debug commands available on a switch.",
+    "syntax": "show debug show debug condition Condition identifier | All conditions",
+    "noForm": null,
+    "params": [
+      {
+        "name": "All conditions",
+        "description": "Shows all conditional debugging options available."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Because debugging output is assigned high priority in the CPU process, it can render the system unusable.  For this reason, use debug commands only to troubleshoot specific problems or during troubleshooting sessions with Cisco technical support staff.  Moreover, it is best to use debug commands during periods of lower network traffic and fewer users.",
+    "sourcePage": 2261,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show env",
+    "context": null,
+    "detail": "Display fan, temperature, and power information for the switch (standalone switch, stack's active switch, or stack member).",
+    "syntax": "show env { all | fan | power [all | switch [switch-number]] | stack [stack-number ] | temperature [status] }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays fan, temperature and power environmental status."
+      },
+      {
+        "name": "fan",
+        "description": "Displays the switch fan status."
+      },
+      {
+        "name": "power",
+        "description": "Displays the power supply status."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Displays the status for all power supplies."
+      },
+      {
+        "name": "switch switch-number",
+        "description": "(Optional) Displays the power supply status for a specific switch."
+      },
+      {
+        "name": "stack switch-number",
+        "description": "(Optional) Displays all environmental status for each switch in the stack or for a specified switch. The range is 1 to 9, depending on the switch member numbers in the stack."
+      },
+      {
+        "name": "temperature",
+        "description": "Displays the switch temperature status."
+      },
+      {
+        "name": "status",
+        "description": "(Optional) Displays the temperature status and threshold values."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Use the show env stack [switch-number] command to display information about any switch in the stack from any member switch.  Use the show env temperature status command to display the switch temperature states and threshold levels.",
+    "sourcePage": 2262,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show env xps",
+    "context": null,
+    "detail": "Display budgeting, configuration, power, and system power information for the Cisco eXpandable Power System (XPS) 2200.",
+    "syntax": "show env xps { budgeting | configuration | port [ all | number ] | power | system | thermal | upgrade | version }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "budgeting",
+        "description": "Displays XPS power budgeting, the allocated and budgeted power of all switches in the power stack."
+      },
+      {
+        "name": "configuration",
+        "description": "Displays the configuration resulting from the power xps privileged EXEC commands. The XPS configuration is stored in the XPS. Enter the show env xps configuration command to retrieve the non-default configuration. port [all | number ] Displays the configuration and status of all ports or the specified XPS port. Port numbers are from 1 to 9."
+      },
+      {
+        "name": "power",
+        "description": "Displays the status of the XPS power supplies."
+      },
+      {
+        "name": "system",
+        "description": "Displays the XPS system status."
+      },
+      {
+        "name": "thermal",
+        "description": "Displays the XPS thermal status."
+      },
+      {
+        "name": "upgrade",
+        "description": "Displays the XPS upgrade status."
+      },
+      {
+        "name": "version",
+        "description": "Displays the XPS version details."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the show env xps privileged EXEC command to display the information for XPS 2200.",
+    "sourcePage": 2264,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show flow monitor",
+    "context": null,
+    "detail": "Display the status and statistics for a flow monitor.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow monitor."
+      },
+      {
+        "name": "monitor-name",
+        "description": "(Optional) Name of a flow monitor that was previously configured."
+      },
+      {
+        "name": "cache",
+        "description": "(Optional) Displays the contents of the cache for the flow monitor."
+      },
+      {
+        "name": "format",
+        "description": "(Optional) Specifies the use of one of the format options for formatting the display output."
+      },
+      {
+        "name": "csv",
+        "description": "(Optional) Displays the flow monitor cache contents in comma-separated variables (CSV) format."
+      },
+      {
+        "name": "record",
+        "description": "(Optional) Displays the flow monitor cache contents in record format."
+      },
+      {
+        "name": "table",
+        "description": "(Optional) Displays the flow monitor cache contents in table format."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays the statistics for the flow monitor."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The cache keyword uses the record format by default.  The uppercase field names in the display output of the show flowmonitor monitor-name cache command are key fields that uses to differentiate flows.  The lowercase field names in the display output of the show flow monitor monitor-name cache command are nonkey fields from which collects values as additional data for the cache.",
+    "sourcePage": 2268,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show install",
+    "context": null,
+    "detail": "Display information about install packages.",
+    "syntax": "show install {active | committed | inactive | log | package {bootflash: | flash: | webui:} | rollback | summary | uncommitted}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "active",
+        "description": "Displays information about active packages."
+      },
+      {
+        "name": "committed",
+        "description": "Displays package activations that are persistent."
+      },
+      {
+        "name": "inactive",
+        "description": "Displays inactive packages."
+      },
+      {
+        "name": "log",
+        "description": "Displays entries stored in the logging installation buffer."
+      },
+      {
+        "name": "package",
+        "description": "Displays metadata information about the package, including description, restart information, components in the package, and so on. {bootflash: | flash: | harddisk: |webui:} Specifies the location of the install package."
+      },
+      {
+        "name": "rollback",
+        "description": "Displays the software set associated with a saved installation."
+      },
+      {
+        "name": "summary",
+        "description": "Displays information about the list of active, inactive, committed, and superseded packages."
+      },
+      {
+        "name": "uncommitted",
+        "description": "Displays package activations that are nonpersistent."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the show commands to view the status of the install package.",
+    "sourcePage": 2270,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license all",
+    "context": null,
+    "detail": "To display all licensing information enter the show license all command in privileged EXEC mode. This command displays status, authorization, UDI, and usage information, all combined.",
+    "syntax": "show license all",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command concatenates the output of other show license commands, enabling you to display different kinds of licensing information together.  For field descriptions, refer to the corresponding commands.  Smart Licensing: If the software version on the device is Cisco IOS XE Amsterdam 17.",
+    "sourcePage": 2272,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license authorization",
+    "context": null,
+    "detail": "To display authorization-related information for (export-controlled and enforced) licenses, enter the show license authorization command in privileged EXEC mode.",
+    "syntax": "show license authorization This command has no arguments or keywords.",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (Device#)"],
+    "usageSummary": "Use this command to display information about authorization codes.  This includes SLR authorization codes and Smart Licensing Authorization Codes (SLAC).",
+    "sourcePage": 2280,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license data conversion",
+    "context": null,
+    "detail": "To display license data conversion information, enter the show license data command in privileged EXEC mode.",
+    "syntax": "show license data conversion",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (Device#)"],
+    "usageSummary": "Smart Licensing: If the software version on the device is Cisco IOS XE Amsterdam 17. 3. 1 or an earlier release, command output displays fields pertinent to Smart Licensing.",
+    "sourcePage": 2285,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license eventlog",
+    "context": null,
+    "detail": "To display event logs relating to Smart Licensing Using Policy, enter the show license eventlog command in privileged EXEC mode.",
+    "syntax": "show license eventlog [ days ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "days",
+        "description": "Enter the number of days for which you want to display event logs. The valid value range is from 0 to 2147483647."
+      }
+    ],
+    "modes": ["Privileged EXEC (Device#)"],
+    "usageSummary": "Smart Licensing: If the software version on the device is Cisco IOS XE Amsterdam 17. 3. 1 or an earlier release, command output displays fields pertinent to Smart Licensing.",
+    "sourcePage": 2286,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license history message",
+    "context": null,
+    "detail": "To display communication history between the product instance and CSSM or CSLU (as the case may be), enter the show license history message command in privileged EXEC mode. The output of this command is used by the technical support team, for troubleshooting.",
+    "syntax": "show license history message",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (Device#)"],
+    "usageSummary": "When you encounter an error message that you are not able to resolve, along with a copy of the message that appears on the console or in the system log, provide your Cisco technical support representative with sample output of these commands: show license tech support, show license history message, and the show platform software sl-infra all privileged EXEC commands.  Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 2288,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license reservation",
+    "context": null,
+    "detail": "To display license reservation information, enter the show license reservation command in privileged EXEC mode.",
+    "syntax": "show license reservation This command has no arguments or keywords.",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (Device#)"],
+    "usageSummary": "The command continues to be available on the CLI and corresponding output is displayed, but with the introduction of Smart Licensing Using Policy, the notion of reservation is not longer applicable.  Use the show license all command in privileged EXEC mode, to display migrated SLR licenses instead (the SLR authorization code is migrated to Smart Licensing Using Policy).  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 2289,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license rum",
+    "context": null,
+    "detail": "To display information about Resource Utilization Measurement reports (RUM report) available on the product instance, including report IDs, the current processing state of a report, error information (if any), and to save the detailed or summarized view that is displayed, enter the show license rum command in privileged EXEC mode.",
+    "syntax": "show license rum { feature { license_name | all } | id { rum_id | all } } [ detail ] [ save path ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detail",
+        "description": "Displays detailed RUM report information. You can use this to display detailed information by license name and detailed information by RUM report ID."
+      },
+      {
+        "name": "save path",
+        "description": "Saves the information that is displayed. This can be the simplified or detailed version and depends on the preceeding keywords you have entered. Information about 200 RUM reports can be displayed. If there are more 200 RUM reports on the product instance, you can view information about all the RUM reports by saving it to a text (.txt) file. Note This option saves the information about RUM reports and is not for reporting purposes. It does not save the RUM report, which is an XML file containing usage information."
+      }
+    ],
+    "modes": ["Privileged EXEC (Device#)"],
+    "usageSummary": "A RUM report is a license usage report, which the product instance generates, to fulfil reporting requirements as specified by the policy.  An acknowledgement (ACK) is a response from CSSM and provides information about the status of a RUM report.  Once the ACK for a report is available on the product instance, it indicates Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 2290,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license status",
+    "context": null,
+    "detail": "To display information about licensing settings such as data privacy, policy, transport, usage reporting and trust codes, enter the show license status command in privileged EXEC mode.",
+    "syntax": "show license status",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Smart Licensing: If the software version on the device is Cisco IOS XE Amsterdam 17. 3. 1 or an earlier release, command output displays fields pertinent to Smart Licensing.",
+    "sourcePage": 2298,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license summary",
+    "context": null,
+    "detail": "Display a brief summary of license usage, which includes information about licenses being used, the count, and status.",
+    "syntax": "show license summary",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Smart Licensing: If the software version on the device is Cisco IOS XE Amsterdam 17. 3. 1 or an earlier release, command output displays fields pertinent to Smart Licensing.",
+    "sourcePage": 2307,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license tech",
+    "context": null,
+    "detail": "To display licensing information to help the technical support team troubleshoot a problem, enter the show license tech command in privileged EXEC mode. The output for this command includes outputs of several other show license commands and more.",
+    "syntax": "show license tech { message | rum { feature { license_name | all } | id { rum_id | all } } [ detail ] [ save path ] | support }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "message",
+        "description": "Displays messages concerning trust establishment, usage reporting, result polling, authorization code requests and returns, and trust synchronization. This is the same information as displayed in the output of the show license history message command."
+      },
+      {
+        "name": "rum { feature {",
+        "description": "Displays information about Resource Utilization Measurement reports (RUM license_name | all } | id { reports) on the product instance, including report IDs, the current processing rum_id | all } } [ detail ] [ state of a report, error information (if any), and an option save the displayed"
+      },
+      {
+        "name": "save path ]",
+        "description": "RUM report information. Note This option saves the information about RUM reports and is not for reporting purposes. It does not save the RUM report, which is an XML file containing usage information."
+      },
+      {
+        "name": "support",
+        "description": "Displays licensing information that helps the technical support team to debug a problem."
+      }
+    ],
+    "modes": ["Privileged EXEC (Device#)"],
+    "usageSummary": "Smart Licensing: If the software version on the device is Cisco IOS XE Amsterdam 17. 3. 1 or an earlier release, command output displays fields pertinent to Smart Licensing (whether smart licensing is enabled, all associated licensing certificates, compliance status, and so on).",
+    "sourcePage": 2311,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license udi",
+    "context": null,
+    "detail": "To display Unique Device Identifier (UDI) information for a product instance, enter the show license udi command in Privileged EXEC mode. In a High Availability set-up, the output displays UDI information for all connected product instances.",
+    "syntax": "show license udi",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Smart Licensing: If the software version on the device is Cisco IOS XE Amsterdam 17. 3. 1 or an earlier release, command output displays fields pertinent to Smart Licensing.",
+    "sourcePage": 2329,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license usage",
+    "context": null,
+    "detail": "To display license usage information such as status, a count of licenses being used, and enforcement type, enter the show license usage command in privileged EXEC mode.",
+    "syntax": "show license usage This command has no arguments or keywords.",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Smart Licensing: If the software version on the device is Cisco IOS XE Amsterdam 17. 3. 1 or an earlier release, command output displays fields pertinent to Smart Licensing.",
+    "sourcePage": 2330,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show location",
+    "context": null,
+    "detail": "Display location information for an endpoint.",
+    "syntax": "show location [admin-tag | civic-location {identifier identifier-string | interface type number | static} | custom-location {identifier identifier-string | interface type number | static} | elin-location {identifier identifier-string | interface type number | static} | geo-location {identifier identifier-string | interface type number | static} | host]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "admin-tag",
+        "description": "Displays administrative tag or site information."
+      },
+      {
+        "name": "civic-location",
+        "description": "Specifies civic location information."
+      },
+      {
+        "name": "identifier",
+        "description": "Information identifier of the civic location, custom location, or geo-spatial"
+      },
+      {
+        "name": "identifier-string",
+        "description": "location."
+      },
+      {
+        "name": "interface type number",
+        "description": "Interface type and number. For information about the numbering syntax for your device, use the question mark (?) online help function."
+      },
+      {
+        "name": "static",
+        "description": "Displays configured civic, custom, or geo-spatial location information."
+      },
+      {
+        "name": "custom-location",
+        "description": "Specifies custom location information."
+      },
+      {
+        "name": "elin-location",
+        "description": "Specifies emergency location information (ELIN)."
+      },
+      {
+        "name": "geo-location",
+        "description": "Specifies geo-spatial location information."
+      },
+      {
+        "name": "host",
+        "description": "Specifies the civic, custom, or geo-spatial host location information."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2334,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging onboard switch uptime",
+    "context": null,
+    "detail": "Display a history of all reset reasons for all modules or switches in a system.",
+    "syntax": "show logging onboard switch { switch-number | active | standby } uptime [[[continuous | detail][start hour day month [year][end hour day month year]]] |summary]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Specifies a switch. Enter the switch number."
+      },
+      {
+        "name": "active",
+        "description": "Specifies the active instance."
+      },
+      {
+        "name": "standby",
+        "description": "Specifies the standby instance."
+      },
+      {
+        "name": "continuous",
+        "description": "(Optional) Displays continuous data."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed data. start hour day month year (Optional) Specifies the start time to display data. end hour day month year (Optional) Specifies the end time to display data."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays summary data."
+      }
+    ],
+    "modes": ["Privileged EXEC(#)"],
+    "usageSummary": null,
+    "sourcePage": 2336,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table",
+    "context": null,
+    "detail": "Display the MAC address table.",
+    "syntax": "show mac address-table [ address mac-addr [ interface type/number | vlan vlan-id ] | aging-time [ routed-mac | vlan vlan-id ] | control-packet-learn | count [ summary | vlan vlan-id ] | [ dynamic | secure | static ] [ address mac-addr ] [ interface type/number | vlan vlan-id ] | interface type/number | learning [ vlan vlan-id ] | multicast [ count ] [ igmp-snooping | mld-snooping | user ] [ vlan vlan-id ] | notification { change [ interface [ type/number ] ] | mac-move | threshold } | vlan vlan-id ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "address mac-addr",
+        "description": "(Optional) Displays information about the MAC address table for a specific MAC address."
+      },
+      {
+        "name": "interface type/number",
+        "description": "(Optional) Displays addresses for a specific interface."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Displays addresses for a specific VLAN."
+      },
+      {
+        "name": "aging-time [routed-mac | vlan",
+        "description": "(Optional) Displays the aging time for the routed MAC or VLAN. vlan-id]"
+      },
+      {
+        "name": "control-packet-learn",
+        "description": "(Optional) Displays the controlled packet MAC learning parameters."
+      },
+      {
+        "name": "count",
+        "description": "(Optional) Displays the number of entries that are currently in the MAC address table."
+      },
+      {
+        "name": "dynamic",
+        "description": "(Optional) Displays only the dynamic addresses."
+      },
+      {
+        "name": "secure",
+        "description": "(Optional) Displays only the secure addresses."
+      },
+      {
+        "name": "static",
+        "description": "(Optional) Displays only the static addresses."
+      },
+      {
+        "name": "learning",
+        "description": "(Optional) Displays learnings of a VLAN or interface."
+      },
+      {
+        "name": "multicast",
+        "description": "(Optional) Displays information about the multicast MAC address table entries only."
+      },
+      {
+        "name": "igmp-snooping",
+        "description": "(Optional) Displays the addresses learned by Internet Group Management Protocol (IGMP) snooping."
+      },
+      {
+        "name": "mld-snooping",
+        "description": "(Optional) Displays the addresses learned by Multicast Listener Discover version 2 (MLDv2) snooping."
+      },
+      {
+        "name": "user",
+        "description": "(Optional) Displays the manually entered (static) addresses."
+      },
+      {
+        "name": "notification change",
+        "description": "Displays the MAC notification parameters and history table."
+      },
+      {
+        "name": "notification mac-move",
+        "description": "Displays the MAC-move notification status."
+      },
+      {
+        "name": "notification threshold",
+        "description": "Displays the Counter-Addressable Memory (CAM) table utilization notification status. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2339 System Management show mac address-table"
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The mac-addr value is a 48-bit MAC address.  The valid format is H. H.",
+    "sourcePage": 2339,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table move update",
+    "context": null,
+    "detail": "Display the MAC address-table move update information on the device.",
+    "syntax": "show mac address-table move update",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2344,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show parser encrypt file status",
+    "context": null,
+    "detail": "View the private configuration encryption status.",
+    "syntax": "show parser encrypt file status",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2345,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fpga",
+    "context": null,
+    "detail": "Display the system field-programmable gate array (FPGA) settings.",
+    "syntax": "show platform hardware fpga",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2346,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform integrity",
+    "context": null,
+    "detail": "Display checksum record for the boot stages.",
+    "syntax": "show platform integrity [sign [nonce <nonce>]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "sign",
+        "description": "(Optional) Show signature"
+      },
+      {
+        "name": "nonce",
+        "description": "(Optional) Enter a nonce value"
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2347,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software audit",
+    "context": null,
+    "detail": "Display the SE Linux Audit logs.",
+    "syntax": "show platform software audit {all | summary | [switch {switch-number | active | standby}] {0 | F0 | R0 | {FP | RP} {active}}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Shows the audit log from all the slots."
+      },
+      {
+        "name": "summary",
+        "description": "Shows the audit log summary count from all the slots."
+      },
+      {
+        "name": "switch",
+        "description": "Shows the audit logs for a slot on a specific switch."
+      },
+      {
+        "name": "switch-number",
+        "description": "Selects the switch with the specified switch number."
+      },
+      {
+        "name": "switch active",
+        "description": "Selects the active instance of the switch."
+      },
+      {
+        "name": "standby",
+        "description": "Selects the standby instance of the switch."
+      },
+      {
+        "name": "0",
+        "description": "Shows the audit log for the SPA-Inter-Processor slot 0."
+      },
+      {
+        "name": "F0",
+        "description": "Shows the audit log for the Embedded-Service-Processor slot 0."
+      },
+      {
+        "name": "R0",
+        "description": "Shows the audit log for the Route-Processor slot 0."
+      },
+      {
+        "name": "FP active",
+        "description": "Shows the audit log for the active Embedded-Service-Processor slot."
+      },
+      {
+        "name": "RP active",
+        "description": "Shows the audit log for the active Route-Processor slot."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command was introduced in the Cisco IOS XE Gibraltar 16. 10. 1 as a part of the SELinux Permissive Mode feature.",
+    "sourcePage": 2348,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch punt cause",
+    "context": null,
+    "detail": "Display information about why the packets received on an interface are punted to the Router Processor (RP).",
+    "syntax": "show platform software fed switch {switch-number | active | standby} punt {cause_id | clear | summary}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch-number |",
+        "description": "Displays information about the switch. You have the following options: active | standby} • switch-number. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note This keyword is not supported."
+      },
+      {
+        "name": "cause_id",
+        "description": "Specifies the ID of the cause for which the details have to be displayed."
+      },
+      {
+        "name": "clear",
+        "description": "Clears the statistics for all the causes. Clearing the causes might result in inconsistent statistics."
+      },
+      {
+        "name": "summary",
+        "description": "Displays a high-level overview of the punt reason."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "None",
+    "sourcePage": 2352,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch punt cpuq",
+    "context": null,
+    "detail": "Display information about the punt traffic on CPU queues.",
+    "syntax": "show platform software fed switch {switch-number | active | standby} punt cpuq {cpuq_id | all | brief | clear | rates}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch-number active standby}",
+        "description": "Displays information about the switch. You have the following options: • switch-number. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note This keyword is not supported."
+      },
+      {
+        "name": "punt",
+        "description": "Displays the punt informtion."
+      },
+      {
+        "name": "cpuq",
+        "description": "Displays information about the CPU receive queue."
+      },
+      {
+        "name": "cpuq_id",
+        "description": "Specifies details specific to a particular CPU queue."
+      },
+      {
+        "name": "all",
+        "description": "Displays the statistics for all the CPU queues."
+      },
+      {
+        "name": "brief",
+        "description": "Displays summarized statistics for all the queues like details about punt packets received and dropped."
+      },
+      {
+        "name": "clear",
+        "description": "Clears the statistics for all the CPU queues. Clearing the CPU queue might result in inconsistent statistics."
+      },
+      {
+        "name": "rates",
+        "description": "Displays the rate at which the packets are punted."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "None Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 2354,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software sl-infra",
+    "context": null,
+    "detail": "To display troubleshooting information and for debugging, enter the show platform software sl-infra command in privileged EXEC mode. The output of this command is used by the technical support team, for troubleshooting and debugging.",
+    "syntax": "show platform software sl-infra { all | current | debug | stored }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays current, debugging, and stored information. current Displays current license-related information."
+      },
+      {
+        "name": "debug",
+        "description": "Enables debugging"
+      },
+      {
+        "name": "stored",
+        "description": "Displays information that is stored on the product instance."
+      }
+    ],
+    "modes": ["Privileged EXEC (Device#)"],
+    "usageSummary": "When you encounter an error message that you are not able to resolve, along with a copy of the message that appears on the console or in the system log, provide your Cisco technical support representative with sample output of these commands: show license tech support, show license history message, and the show platform software sl-infra all privileged EXEC commands.  Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 2357,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform sudi certificate",
+    "context": null,
+    "detail": "Display checksum record for the specific SUDI.",
+    "syntax": "show platform sudi certificate [sign [nonce <nonce>]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "sign",
+        "description": "(Optional) Show signature"
+      },
+      {
+        "name": "nonce",
+        "description": "(Optional) Enter a nonce value"
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2358,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show reload history",
+    "context": null,
+    "detail": "Display the reason for the device reload and its history.",
+    "syntax": "show reload history",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "You can use this command when you want to view the reload history details.  This command displays the history for a maximum of 10 reloads.",
+    "sourcePage": 2360,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show romvar",
+    "context": null,
+    "detail": "View all ROMMON environment variables.",
+    "syntax": "show romvar",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 2362,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show running-config",
+    "context": null,
+    "detail": "Display the contents of the current running configuration file or the configuration for a specific module, Layer 2 VLAN, class map, interface, map class, policy map, or virtual circuit (VC) class.",
+    "syntax": "show running-config [options]",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The show running-config command is technically a command alias (substitute or replacement syntax) of the more system:running-config command.  Although the use of more commands is recommended (because of their uniform structure across platforms and their expandable syntax), the show running-config command remains enabled to accommodate its widespread use, and to allow typing shortcuts such as show run.  The show running-config interface command is useful when there are multiple interfaces and you want to look at the configuration of a specific interface.",
+    "sourcePage": 2363,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show sdm prefer",
+    "context": null,
+    "detail": "Display information about the templates that can be used to maximize system resources for a particular feature.",
+    "syntax": "show sdm prefer [ advanced ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "advanced",
+        "description": "(Optional) Displays information on the advanced template."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If you did not reload the device after entering the sdm prefer global configuration command, the show sdm prefer privileged EXEC command displays the template currently in use and not the newly configured template.  The numbers displayed for each template represent an approximate maximum number for each feature resource.  The actual number might vary, depending on the actual number of other features configured.",
+    "sourcePage": 2369,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support confidential",
+    "context": null,
+    "detail": "Hide confidential information from the show tech-support output.",
+    "syntax": "show tech-support confidential output file-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "output file-name",
+        "description": "Specifies the output file where the tech-support data is to be saved."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The show tech-support confidential command will hide sensitive data like MAC addresses, IP addresses, and passwords.  The output will be the same as that of the show tech-support command with all the customer-specific data masked.  The output from the show tech-support confidential command is very long.",
+    "sourcePage": 2371,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support monitor",
+    "context": null,
+    "detail": "Display the SPAN monitor information.",
+    "syntax": "show tech-support monitor [switch switch-number | active | standby]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch-number",
+        "description": "Specifies the switch."
+      },
+      {
+        "name": "active",
+        "description": "Specifies the active instance of the switch."
+      },
+      {
+        "name": "standby",
+        "description": "Specifies the standby instance of the switch."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output from the show tech-support monitor command is very long.  To better manage this output, you can redirect the output to a file (for example, show tech-support monitor[switch switch-number | active | standby ] | redirect location:filename ) in the local writable storage file system or the remote file system.  Redirecting the output to a file also makes sending the output to your Cisco Technical Assistance Center (TAC) representative easier.",
+    "sourcePage": 2372,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform",
+    "context": null,
+    "detail": "Display detailed information about a platform for use by technical support.",
+    "syntax": "show tech-support platform",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command is used for platform-specific debugging.  The output provides detailed information about a platform, such as CPU usage, Ternary Content Addressable Memory (TCAM) usage, capacity, and memory usage.  The output of the show tech-support platform command is very long.",
+    "sourcePage": 2373,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform evpn_vxlan",
+    "context": null,
+    "detail": "Display Ethernet VPN (EVPN)-Virtual eXtensible LAN (VXLAN)-related platform information for use by technical support.",
+    "syntax": "show tech-support platform evpn_vxlan switch switch-number",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Displays information for the specified switch. Valid values are from 1 to 9."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support platform evpn_vxlan switch 1 | redirect flash:filename) in the local writable storage file system or remote file system.",
+    "sourcePage": 2377,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform fabric",
+    "context": null,
+    "detail": "Display information about the switch fabric.",
+    "syntax": "show tech-support platform fabric [display-cli | vrf vrf-name {ipv4 display-cli | ipv6 display-cli | source instance-id instance-id {ipv4 ip-address/ip-prefix | ipv6 ipv6-address/ipv6-prefix | mac mac-address} {dest instance-id instance-id} {ipv4 ip-address/ip-prefix | ipv6 ipv6-address/ipv6-prefix | mac mac-address} [display-cli]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "display-cli",
+        "description": "(Optional) Displays the list of show commands available in the output of this command."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Displays fabric-related information for the specified virtual routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "ipv4 ip-address/ip-prefix",
+        "description": "(Optional) Displays fabric-related information for the source or destination IP VRF."
+      },
+      {
+        "name": "ipv6 ipv6-address/ipv6-prefix",
+        "description": "(Optional) Displays fabric-related information for the source or destination IPv6 VRF."
+      },
+      {
+        "name": "source",
+        "description": "(Optional) Displays fabric-related information for the source VRF."
+      },
+      {
+        "name": "instance-id instance-id",
+        "description": "(Optional) Displays information about the endpoint identifier (EID) of the source."
+      },
+      {
+        "name": "mac mac-address",
+        "description": "(Optional) Displays fabric-related information for the source and destination MAC VRF for Layer 2 extension deployments."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support platform fabric | redirect flash:filename) in the local writable storage file system or remote file system.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 2379,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform igmp_snooping",
+    "context": null,
+    "detail": "Display Internet Group Management Protocol (IGMP) snooping information about a group.",
+    "syntax": "show tech-support platform igmp_snooping [Group_ipAddr ipv4-address | [vlan vlan-ID]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Group_ipAddr",
+        "description": "(Optional) Displays snooping information about the specified group address."
+      },
+      {
+        "name": "ipv4-address",
+        "description": "(Optional) IPv4 address of the group."
+      },
+      {
+        "name": "vlan vlan-ID",
+        "description": "(Optional) Displays IGMP snooping VLAN information. Valid values are from 1 to 4094."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2383,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform layer3",
+    "context": null,
+    "detail": "Display Layer 3 platform forwarding information.",
+    "syntax": "show tech-support platform layer3 {multicast Group_ipAddr ipv4-address switch switch-number srcIP ipv4-address | unicast {dstIP ipv4-address srcIP ipv4-address | vrf vrf-name destIP ipv4-address srcIP ipv4-address}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "multicast",
+        "description": "Displays multicast information."
+      },
+      {
+        "name": "Group_ipv6Addr ipv4-address",
+        "description": "Displays information about the specified multicast group address."
+      },
+      {
+        "name": "switch switch-number",
+        "description": "Displays information about the specified switch. Valid values are from 1 to 9."
+      },
+      {
+        "name": "srcIP ipv4-address",
+        "description": "Displays information about the specified source address."
+      },
+      {
+        "name": "unicast",
+        "description": "Displays unicast-related information."
+      },
+      {
+        "name": "dstIP ipv4-address",
+        "description": "Displays information about the specified destination address."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "Displays unicast-related virtual routing and forwarding (VRF) information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support platform layer3 multicast group 224. 1.",
+    "sourcePage": 2386,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform mld_snooping",
+    "context": null,
+    "detail": "Display Multicast Listener Discovery (MLD) snooping information about a group.",
+    "syntax": "show tech-support platform mld_snooping [Group_ipv6Addr ipv6-address ][vlan vlan-ID]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Group_ipv6Addr",
+        "description": "(Optional) Displays snooping information about the specified group address."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "(Optional) IPv6 address of the group."
+      },
+      {
+        "name": "vlan vlan-ID",
+        "description": "(Optional) Displays MLD snooping VLAN information. Valid values are from 1 to 4094."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support platform mld_snooping | redirect flash:filename) in the local writable storage file system or remote file system.",
+    "sourcePage": 2394,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support port",
+    "context": null,
+    "detail": "Display port-related information for use by technical support.",
+    "syntax": "show tech-support port",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of the show tech-support port command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support port | redirect flash:filename) in the local writable storage file system or remote file system.  The output of this command displays the following commands: • show clock • show version • show module • show inventory • show interface status • show interface counters • show interface counters errors • show interfaces • show interfaces capabilities • show controllers • show controllers utilization • show idprom interface • show controller ethernet-controller phy detail • show switch • show platform software fed switch active port summary • show platform software fed switch ifm interfaces ethernet • show platform software fed switch ifm mappings • show platform software fed switch ifm mappings lpn Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 2401,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support pvlan",
+    "context": null,
+    "detail": "Display the private VLAN related information.",
+    "syntax": "show tech-support pvlan [pvlan_id pvlan-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "pvlan_id pvlan-id",
+        "description": "Specifies the private VLAN ID."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output from the show tech-support pvlan command is very long.  To better manage this output, you can redirect the output to a file in the local writable storage file system or the remote file system by using the show tech-support pvlan [ pvlan_id pvlan-id] | redirect location:filename ) .  Redirecting the output to a file also makes sending the output to your Cisco Technical Assistance Center (TAC) representative easier.",
+    "sourcePage": 2404,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support resource",
+    "context": null,
+    "detail": "Display the switch resource information.",
+    "syntax": "show tech-support resource",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 2405,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show version",
+    "context": null,
+    "detail": "Display information about the currently loaded software along with hardware and device information.",
+    "syntax": "show version [switch node][installed | provisioned | running]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch node",
+        "description": "(optional) Only a single switch may be specified. Default is all switches in a stacked system."
+      },
+      {
+        "name": "running",
+        "description": "(optional) Specifies information on the files currently running."
+      },
+      {
+        "name": "provisioned",
+        "description": "(optional)Specifies information on the software files that are provisioned."
+      },
+      {
+        "name": "installed",
+        "description": "Specifies information on the software installed on the RP"
+      },
+      {
+        "name": "user-interface",
+        "description": "Specifies information on the files related to the user-interface."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "This command displays information about the Cisco IOS software version currently running on a device, the ROM Monitor and Bootflash software versions, and information about the hardware configuration, including the amount of system memory.  Because this command displays both software and hardware information, the output of this command is the same as the output of the show hardware command.  (The show hardware command is a command alias for the show version command.",
+    "sourcePage": 2410,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "system env temperature threshold yellow",
+    "context": null,
+    "detail": "Configure the difference between the yellow and red temperature thresholds that determines the value of yellow threshold.",
+    "syntax": "system env temperature threshold yellow value",
+    "noForm": "no system env temperature threshold yellow value",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "You cannot configure the green and red thresholds but can configure the yellow threshold.  Use the system env temperature threshold yellow value global configuration command to specify the difference between the yellow and red thresholds and to configure the yellow threshold.  For example, if the red threshold is 66 degrees C and you want to configure the yellow threshold as 51 degrees C, set the difference between the thresholds as 15 by using the system env temperature threshold yellow 15 command.",
+    "sourcePage": 2417,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "tftp-server",
+    "context": null,
+    "detail": "Configure a router or a Flash memory device on the router as a TFTP server, use one of the following tftp-server commands in global configuration mode. To remove a previously defined filename.",
+    "syntax": "tftp-server [ bootflash | crashinfo | disk0 | flash | null | nvram | rom | system | tmpsys ] { <1-99> | <1300-1999> | alias } tmpsys ] { <1-99> | <1300-1999> | alias }",
+    "noForm": "no tftp-server [ bootflash | crashinfo | disk0 | flash | null | nvram | rom | system |",
+    "params": [
+      {
+        "name": "bootflash",
+        "description": "Specifies TFTP service of a file on a Flash memory device"
+      },
+      {
+        "name": "crashinfo",
+        "description": "Collection of useful information related to the current crash stored in bootflash or flash memory."
+      },
+      {
+        "name": "disk0",
+        "description": "Source or destination URL of rotating media."
+      },
+      {
+        "name": "flash",
+        "description": "Specifies TFTP service of a file in Flash memory."
+      },
+      {
+        "name": "null",
+        "description": "Null destination for copies or files. You can copy a remote file to null to determine its size."
+      },
+      {
+        "name": "nvram",
+        "description": "Device's NVRAM."
+      },
+      {
+        "name": "rom",
+        "description": "Specifies TFTP service of a file in ROM."
+      },
+      {
+        "name": "system",
+        "description": "Source or destination URL for system memory, which includes the running configuration."
+      },
+      {
+        "name": "alias",
+        "description": "Specifies an alternate name for the file that the TFTP server uses in answering TFTP Read Requests."
+      },
+      {
+        "name": "Usage Guidelines",
+        "description": "You can specify multiple filenames by repeating the tftp-server command. The system sends a copy of the system image contained in ROM or one of the system images contained in Flash memory to any client that issues a TFTP Read Request with this filename. If the specified filename1 or filename2 argument exists in Flash memory, a copy of the Flash image is sent. On systems that contain a complete image in ROM, the system sends the ROM image if the specified filename1 or filename2 argument is not found in Flash memory. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2419 System Management tftp-server Images that run from ROM cannot be loaded over the network. Therefore, it does not make sense to use TFTP to offer the ROMs on these images. If a USB is configured as a TFTP server, it is recommended that all corresponding configurations be removed before physically removing or disabling the USB. The usb option will not be available once the USB is disabled or physically removed."
+      }
+    ],
+    "modes": ["Global Configuration"],
+    "usageSummary": null,
+    "sourcePage": 2419,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "traceroute mac",
+    "context": null,
+    "detail": "Display the Layer 2 path taken by the packets from the specified source MAC address to the specified destination MAC address.",
+    "syntax": "traceroute mac [ interface interface-id ] source-mac-address [ interface interface-id ] destination-mac-address [ vlan vlan-id ] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Specifies an interface on the source or destination device."
+      },
+      {
+        "name": "source-mac-address",
+        "description": "The MAC address of the source device in hexadecimal format. destination-mac-address The MAC address of the destination device in hexadecimal format."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies the VLAN on which to trace the Layer 2 path that the packets take from the source device to the destination device. Valid VLAN IDs are 1 to 4094."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Specifies that detailed information appears."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "For Layer 2 traceroute to function properly, Cisco Discovery Protocol (CDP) must be enabled on all of the devices in the network.  Do not disable CDP.  When the device detects a device in the Layer 2 path that does not support Layer 2 traceroute, the device continues to send Layer 2 trace queries and lets them time out.",
+    "sourcePage": 2421,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "traceroute mac ip",
+    "context": null,
+    "detail": "Display the Layer 2 path taken by the packets from the specified source IP address or hostname to the specified destination IP address or hostname.",
+    "syntax": "traceroute mac ip { source-ip-address source-hostname } { destination-ip-address destination-hostname } [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "source-ip-address",
+        "description": "The IP address of the source device as a 32-bit quantity in dotted-decimal format."
+      },
+      {
+        "name": "source-hostname",
+        "description": "The IP hostname of the source device. destination-ip-address The IP address of the destination device as a 32-bit quantity in dotted-decimal format. destination-hostname The IP hostname of the destination device."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Specifies that detailed information appears."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "For Layer 2 traceroute to function properly, Cisco Discovery Protocol (CDP) must be enabled on each device in the network.  Do not disable CDP.  When the device detects a device in the Layer 2 path that does not support Layer 2 traceroute, the device continues to send Layer 2 trace queries and lets them time out.",
+    "sourcePage": 2424,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "type",
+    "context": null,
+    "detail": "Display the contents of one or more files.",
+    "syntax": "type filesystem:/file-url...",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appear sequentially.",
+    "sourcePage": 2426,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "unset",
+    "context": null,
+    "detail": "Reset one or more environment variables.",
+    "syntax": "unset variable...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "variable",
+        "description": "Use one of these keywords for variable: MANUAL_BOOT—Specifies whether the device automatically or manually boots. BOOT—Resets the list of executable files to try to load and execute when automatically booting. If the BOOT environment variable is not set, the system attempts to load and execute the first executable image it can find by using a recursive, depth-first search through the flash: file system. If the BOOT variable is set but the specified images cannot be loaded, the system attempts to boot the first bootable file that it can find in the flash: file system. ENABLE_BREAK—Specifies whether the automatic boot process can be interrupted by using the Break key on the console after the flash: file system has been initialized. HELPER—Identifies the semicolon-separated list of loadable files to dynamically load during the boot loader initialization. Helper files extend or patch the functionality of the boot loader. PS1—Specifies the string that is used as the command-line prompt in boot loader mode. CONFIG_FILE—Resets the filename that Cisco IOS uses to read and write a nonvolatile copy of the system configuration. BAUD—Resets the rate in bits per second (b/s) used for the console. The Cisco IOS software inherits the baud rate setting from the boot loader and continues to use this value unless the configuration file specifies another setting."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Under typical circumstances, it is not necessary to alter the setting of the environment variables.  The MANUAL_BOOT environment variable can also be reset by using the no boot manual global configuration command.  The BOOT environment variable can also be reset by using the no boot system global configuration command.",
+    "sourcePage": 2427,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "upgrade rom-monitor capsule",
+    "context": null,
+    "detail": "Upgrade the read-only memory monitor (ROMMON) by using the capsule method.",
+    "syntax": "Standalone Devices upgrade rom-monitor capsule {golden | primary}[R0 | RP active] Device with High Availability upgrade rom-monitor capsule {golden | primary}[R0 | R1 | RP {active | standby}] Device with StackWise Virtual upgrade rom-monitor capsule {golden | primary}[R0 | R1 | RP {active | standby} | switch {switch_number | active | standby} {R0 | R1 | RP {active | standby}}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "golden",
+        "description": "Specifies the golden ROMMON to be upgraded."
+      },
+      {
+        "name": "primary",
+        "description": "Specifies the primary ROMMON to be upgraded."
+      },
+      {
+        "name": "R0",
+        "description": "Upgrades the ROMMON of the Route Processor (RP) slot 3."
+      },
+      {
+        "name": "R1",
+        "description": "Upgrades the ROMMON of the RP slot 4."
+      },
+      {
+        "name": "RP {active | standby}",
+        "description": "Upgrades the ROMMON of the RP slot 1 and slot 2. • active: Specifies the active instance. • standby: Specifies the standby instance. switch {switch_number | active | standby} Specifies the switch. • switch_number: ID of the switch. The range is from 1 to 2. • active: Specifies the active switch. • standby: Specifies the standby switch."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "To know if a ROMMON version upgrade is applicable to a software version, see the release notes of the corresponding software release: https://www. cisco. com/c/en/us/support/switches/catalyst-9500-series-switches/products-release-notes-list.",
+    "sourcePage": 2429,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "version",
+    "context": null,
+    "detail": "Display the boot loader version.",
+    "syntax": "version",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": null,
+    "sourcePage": 2431,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  }
+]

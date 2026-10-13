@@ -1,0 +1,21 @@
+{
+  // Recommended extensions for developing cisco-ios-lsp.
+  // VS Code offers to install these on first open: "Install recommended extensions".
+  "recommendations": [
+    // Optional — alternate grammar for the "cisco" language ID. cisco-lsp bundles its own
+    // grammar now, so this is no longer required; safe to keep installed alongside it (see
+    // README "Coexisting with Y-Ysss.cisco-config-highlight").
+    "Y-Ysss.cisco-config-highlight",
+    // Formatting & linting (matches .prettierrc.yml / .eslintrc.json)
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    // Quality of life
+    "streetsidesoftware.code-spell-checker",
+    "usernamehw.errorlens",
+    "eamodio.gitlens",
+    // Theme & icons — matches ansible-test monorepo
+    "Y-Ysss.vscode-daybreak-theme",
+    "pkief.material-icon-theme",
+    "editorconfig.editorconfig"
+  ]
+}

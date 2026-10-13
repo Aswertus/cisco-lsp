@@ -1,0 +1,3398 @@
+[
+  {
+    "name": "avb",
+    "context": null,
+    "detail": "Enable Audio Video Bridging (AVB).",
+    "syntax": "avb [ msrp-join-timer milliseconds | msrp-leave-timer milliseconds | msrp-leaveall-timer milliseconds | msrp-tx-slow | strict | vlan vlan-id ] ]",
+    "noForm": "no avb [ msrp-join-timer | msrp-leave-timer | msrp-leaveall-timer | msrp-tx-slow | strict | vlan",
+    "params": [
+      {
+        "name": "msrp-join-timer milliseconds",
+        "description": "(Optional) Configures the Multiple Stream Reservation Protocol (MSRP) join timer value in milliseconds. The range is from 100 to 4000. The default is 200."
+      },
+      {
+        "name": "msrp-leave-timer milliseconds",
+        "description": "(Optional) Configures the MSRP leave timer value in milliseconds. The range is from 500 to 60000. The default is 1000."
+      },
+      {
+        "name": "msrp-leaveall-timer",
+        "description": "(Optional) Configures the MSRP leaveall timer value in milliseconds. The"
+      },
+      {
+        "name": "milliseconds",
+        "description": "range is from 10000 to 50000. The default is 10000."
+      },
+      {
+        "name": "msrp-tx-slow",
+        "description": "(Optional) Slows down the default packet sending rate with a gap of 100 milliseconds."
+      },
+      {
+        "name": "strict",
+        "description": "(Optional) Configures the strict mode of AVB."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Configures a specified VLAN as the default AVB VLAN. The range is from from 2 to 4094."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 924,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "channel-group",
+    "context": null,
+    "detail": "Assign an Ethernet port to an EtherChannel group, or to enable an EtherChannel mode, or both.",
+    "syntax": "channel-group channel-group-number mode {active | auto [non-silent] | desirable [non-silent] | on | passive}",
+    "noForm": "no channel-group",
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "mode",
+        "description": "Specifies the EtherChannel mode."
+      },
+      {
+        "name": "active",
+        "description": "Unconditionally enables Link Aggregation Control Protocol (LACP)."
+      },
+      {
+        "name": "auto",
+        "description": "Enables the Port Aggregation Protocol (PAgP) only if a PAgP device is detected."
+      },
+      {
+        "name": "non-silent",
+        "description": "(Optional) Configures the interface for nonsilent operation when connected to a partner that is PAgP-capable. Use in PAgP mode with the auto or desirable keyword when traffic is expected from the other device."
+      },
+      {
+        "name": "desirable",
+        "description": "Unconditionally enables PAgP."
+      },
+      {
+        "name": "on",
+        "description": "Enables the on mode."
+      },
+      {
+        "name": "passive",
+        "description": "Enables LACP only if a LACP device is detected."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "For Layer 2 EtherChannels, the channel-group command automatically creates the port-channel interface when the channel group gets its first physical port.  You do not have to use the interface port-channel command Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 926,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "channel-protocol",
+    "context": null,
+    "detail": "Restrict the protocol used on a port to manage channeling.",
+    "syntax": "channel-protocol {lacp | pagp}",
+    "noForm": "no channel-protocol",
+    "params": [
+      {
+        "name": "lacp",
+        "description": "Configures an EtherChannel with the Link Aggregation Control Protocol (LACP). pagp Configures an EtherChannel with the Port Aggregation Protocol (PAgP)."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the channel-protocol command only to restrict a channel to LACP or PAgP.  If you set the protocol by using the channel-protocol command, the setting is not overridden by the channel-group command in interface configuration mode.  You must use the channel-group command in interface configuration mode to configure the EtherChannel parameters.",
+    "sourcePage": 929,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear l2protocol-tunnel counters",
+    "context": null,
+    "detail": "Clear the protocol counters in protocol tunnel ports.",
+    "syntax": "clear l2protocol-tunnel counters [interface-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) The interface (physical interface or port cha counters are to be cleared."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command to clear protocol tunnel counters on the switch or on the specified interface.  This example shows how to clear Layer 2 protocol tunnel counters on an interface: Device# clear l2protocol-tunnel counters gigabitethernet1/0/3 Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 930,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear lacp",
+    "context": null,
+    "detail": "Clear Link Aggregation Control Protocol (LACP) channel-group counters.",
+    "syntax": "clear lacp [channel-group-number] counters",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "counters",
+        "description": "Clears traffic counters."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can clear all counters by using the clear lacp counters command, or you can clear only the counters for the specified channel group by using the clear lacp channel-group-number counters command.  This example shows how to clear all channel-group information: Device> enable Device# clear lacp counters This example shows how to clear LACP traffic counters for group 4: Device> enable Device# clear lacp 4 counters You can verify that the information was deleted by entering the show lacp counters or the show lacp channel-group-number counters command in privileged EXEC mode.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 931,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear pagp",
+    "context": null,
+    "detail": "Clear the Port Aggregation Protocol (PAgP) channel-group information.",
+    "syntax": "clear pagp [channel-group-number] counters",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "counters",
+        "description": "Clears traffic counters."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can clear all counters by using the clear pagp counters command, or you can clear only the counters for the specified channel group by using the clear pagp channel-group-number counters command.  This example shows how to clear all channel-group information: Device> enable Device# clear pagp counters This example shows how to clear PAgP traffic counters for group 10: Device> enable Device# clear pagp 10 counters You can verify that the information was deleted by entering the show pagp command in privileged EXEC mode.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 932,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear spanning-tree counters",
+    "context": null,
+    "detail": "Clear the spanning-tree counters.",
+    "syntax": "clear spanning-tree counters [interface interface-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Clears all spanning-tree counters on the specified include physical ports, VLANs, and port channels. The VLAN range is 1 to 4094. The port channel range is 1 to 128."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If the interface-id value is not specified, spanning-tree counters are cleared for all interfaces.  This example shows how to clear spanning-tree counters for all interfaces: Device> enable Device# clear spanning-tree counters Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 933,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear spanning-tree detected-protocols",
+    "context": null,
+    "detail": "Restart the protocol migration process and force renegotiation with neighboring devices on the interface.",
+    "syntax": "clear spanning-tree detected-protocols [interface interface-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Restarts the protocol migration process on the specified in channels. The VLAN range is 1 to 4094. The port channel range is 1 to 128."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "A device running the rapid per-VLAN spanning-tree plus (rapid-PVST+) protocol or the Multiple Spanning Tree Protocol (MSTP) supports a built-in protocol migration method that enables it to interoperate with legacy IEEE 802. 1D devices.  If a rapid-PVST+ or an MSTP device receives a legacy IEEE 802.",
+    "sourcePage": 934,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug etherchannel",
+    "context": null,
+    "detail": "Enable debugging of EtherChannels.",
+    "syntax": "debug etherchannel [all | detail | error | event | idb ]",
+    "noForm": "no debug etherchannel [all | detail | error | event | idb ]",
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all EtherChannel debug messages."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed EtherChannel debug messages."
+      },
+      {
+        "name": "error",
+        "description": "(Optional) Displays EtherChannel error debug messages."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Displays EtherChannel event messages."
+      },
+      {
+        "name": "idb",
+        "description": "(Optional) Displays PAgP interface descriptor block debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug etherchannel command is the same as the no debug etherchannel command.",
+    "sourcePage": 935,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug lacp",
+    "context": null,
+    "detail": "Enable debugging of Link Aggregation Control Protocol (LACP) activity.",
+    "syntax": "debug lacp [all | event | fsm | misc | packet]",
+    "noForm": "no debug lacp [all | event | fsm | misc | packet]",
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all LACP debug messages."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Displays LACP event debug messages."
+      },
+      {
+        "name": "fsm",
+        "description": "(Optional) Displays messages about changes within the LACP finite state machine."
+      },
+      {
+        "name": "misc",
+        "description": "(Optional) Displays miscellaneous LACP debug messages. packet (Optional) Displays the receiving and transmitting LACP control packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug etherchannel command is the same as the no debug etherchannel command.  This example shows how to display all LACP debug messages: Device> enable Device# debug LACP all This example shows how to display debug messages related to LACP events: Device> enable Device# debug LACP event Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 936,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug pagp",
+    "context": null,
+    "detail": "Enable debugging of Port Aggregation Protocol (PAgP) activity.",
+    "syntax": "debug pagp [all | dual-active | event | fsm | misc | packet]",
+    "noForm": "no debug pagp [all | dual-active | event | fsm | misc | packet]",
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all PAgP debug messages."
+      },
+      {
+        "name": "dual-active",
+        "description": "(Optional) Displays dual-active detection messages."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Displays PAgP event debug messages."
+      },
+      {
+        "name": "fsm",
+        "description": "(Optional) Displays messages about changes within the PAgP finite state machine."
+      },
+      {
+        "name": "misc",
+        "description": "(Optional) Displays miscellaneous PAgP debug messages."
+      },
+      {
+        "name": "packet",
+        "description": "(Optional) Displays the receiving and transmitting PAgP control packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug pagp command is the same as the no debug pagp command.  This example shows how to display all PAgP debug messages: Device> enable Device# debug pagp all This example shows how to display debug messages related to PAgP events: Device> enable Device# debug pagp event Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 937,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform pm",
+    "context": null,
+    "detail": "Enable debugging of the platform-dependent port manager software module.",
+    "syntax": "debug platform pm {all | counters | errdisable | fec | if-numbers | l2-control | link-status | platform | pm-vectors [detail] | ses | vlans} | platform | pm-vectors [detail] | ses | vlans}",
+    "noForm": "no debug platform pm {all | counters | errdisable | fec | if-numbers | l2-control | link-status",
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all port manager debug messages."
+      },
+      {
+        "name": "counters",
+        "description": "Displays counters for remote procedure call (RPC) debug messages."
+      },
+      {
+        "name": "errdisable",
+        "description": "Displays error-disabled-related events debug messages."
+      },
+      {
+        "name": "fec",
+        "description": "Displays forwarding equivalence class (FEC) platform-related events debug messages."
+      },
+      {
+        "name": "if-numbers",
+        "description": "Displays interface-number translation event debug messages."
+      },
+      {
+        "name": "l2-control",
+        "description": "Displays Layer 2 control infra debug messages."
+      },
+      {
+        "name": "link-status",
+        "description": "Displays interface link-detection event debug messages."
+      },
+      {
+        "name": "platform",
+        "description": "Displays port manager function event debug messages."
+      },
+      {
+        "name": "pm-vectors",
+        "description": "Displays port manager vector-related event debug messages."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays vector-function details."
+      },
+      {
+        "name": "ses",
+        "description": "Displays service expansion shelf (SES) related event debug messages."
+      },
+      {
+        "name": "vlans",
+        "description": "Displays VLAN creation and deletion event debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug platform pm command is the same as the no debug platform pm command.  This example shows how to display debug messages related to the creation and deletion of VLANs: Device> enable Device# debug platform pm vlans Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 938,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform udld",
+    "context": null,
+    "detail": "Enable debugging of the platform-dependent UniDirectional Link Detection (UDLD) software.",
+    "syntax": "debug platform udld [error | event] [switch switch-number]",
+    "noForm": "no debug platform udld [error | event] [switch switch-number]",
+    "params": [
+      {
+        "name": "error",
+        "description": "(Optional) Displays error condition debug messages."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Displays UDLD-related platform event debug messages."
+      },
+      {
+        "name": "switch",
+        "description": "(Optional) Displays UDLD debug messages for the specified stack member. switch-number"
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug platform udld command is the same as the no debug platform udld command.  When you enable debugging on a switch stack, it is enabled only on the active switch.  To enable debugging on a stack member, you can start a session from the active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 939,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug spanning-tree",
+    "context": null,
+    "detail": "Enable debugging of spanning-tree activities.",
+    "syntax": "debug spanning-tree {all | backbonefast | bpdu | bpdu-opt | config | etherchannel | events | exceptions | general | ha | mstp | pvst+ | root | snmp | synchronization | switch | uplinkfast} exceptions | general | mstp | pvst+ | root | snmp | synchronization | switch | uplinkfast}",
+    "noForm": "no debug spanning-tree {all | backbonefast | bpdu | bpdu-opt | config | etherchannel | events |",
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all spanning-tree debug messages."
+      },
+      {
+        "name": "backbonefast",
+        "description": "Displays BackboneFast-event debug messages."
+      },
+      {
+        "name": "bpdu",
+        "description": "Displays spanning-tree bridge protocol data unit (BPDU) debug messages."
+      },
+      {
+        "name": "bpdu-opt",
+        "description": "Displays optimized BPDU handling debug messages."
+      },
+      {
+        "name": "config",
+        "description": "Displays spanning-tree configuration change debug messages."
+      },
+      {
+        "name": "etherchannel",
+        "description": "Displays EtherChannel-support debug messages."
+      },
+      {
+        "name": "events",
+        "description": "Displays spanning-tree topology event debug messages."
+      },
+      {
+        "name": "exceptions",
+        "description": "Displays spanning-tree exception debug messages."
+      },
+      {
+        "name": "general",
+        "description": "Displays general spanning-tree activity debug messages."
+      },
+      {
+        "name": "ha",
+        "description": "Displays high-availability spanning-tree debug messages."
+      },
+      {
+        "name": "mstp",
+        "description": "Debugs Multiple Spanning Tree Protocol (MSTP) events."
+      },
+      {
+        "name": "pvst+",
+        "description": "Displays per-VLAN spanning-tree plus (PVST+) event debug messages."
+      },
+      {
+        "name": "root",
+        "description": "Displays spanning-tree root-event debug messages."
+      },
+      {
+        "name": "snmp",
+        "description": "Displays spanning-tree Simple Network Management Protocol (SNMP) handling debug messages."
+      },
+      {
+        "name": "switch",
+        "description": "Displays switch shim command debug messages. This shim is the software module that is the interface between the generic Spanning Tree Protocol (STP) code and the platform-specific code of various device platforms."
+      },
+      {
+        "name": "synchronization",
+        "description": "Displays the spanning-tree synchronization event debug messages."
+      },
+      {
+        "name": "uplinkfast",
+        "description": "Displays UplinkFast-event debug messages. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 940 Layer 2/3 debug spanning-tree"
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug spanning-tree command is the same as the no debug spanning-tree command.  When you enable debugging on a stack, it is enabled only on the active switch.  To enable debugging on the standby switch, start a session from the active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 940,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "instance",
+    "context": "VLAN",
+    "detail": "Map a VLAN or a group of VLANs to a multiple spanning tree (MST) instance.",
+    "syntax": "instance instance-id vlans vlan-range",
+    "noForm": "no instance instance-id",
+    "params": [
+      {
+        "name": "instance-id",
+        "description": "Instance to which the specified VLANs are mapped. The range is from 0 to 4094. vlans vlan-range Specifies the number of the VLANs to be mapped to the specified instance. The range is from 1 to 4094."
+      }
+    ],
+    "modes": ["MST configuration mode (config-mst)"],
+    "usageSummary": "The vlans vlan-range is entered as a single value or a range.  The mapping is incremental, not absolute.  When you enter a range of VLANs, this range is added or removed to the existing instances.",
+    "sourcePage": 942,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "interface port-channel",
+    "context": null,
+    "detail": "Access or create a port channel.",
+    "syntax": "interface port-channel port-channel-number",
+    "noForm": "no interface port-channel",
+    "params": [
+      {
+        "name": "port-channel-number",
+        "description": "Channel group number. The range is 1 to 128."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "For Layer 2 EtherChannels, you do not have to create a port-channel interface before assigning physical ports to a channel group.  Instead, you can use the channel-group command in interface configuration mode, which automatically creates the port-channel interface when the channel group obtains its first physical port.  If you create the port-channel interface first, the channel-group-number can be the same as the port-channel-number, or you can use a new number.",
+    "sourcePage": 944,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "l2protocol-tunnel",
+    "context": null,
+    "detail": "Enable tunneling of Layer 2 protocols on an access port, IEEE 802.1Q tunnel port, or a port channel.",
+    "syntax": "l2protocol-tunnel [drop-threshold | shutdown-threshold] [value] [cdp | stp | vtp ] [lldp] [point-to-point | [pagp | lacp | udld]] [point-to-point | [pagp | lacp | udld]]",
+    "noForm": "no l2protocol-tunnel [drop-threshold | shutdown-threshold] [value] [cdp | stp | vtp ] [lldp]",
+    "params": [
+      {
+        "name": "drop-threshold",
+        "description": "(Optional) Sets a drop threshold for the maximum rate of Layer 2 protocol packets per second to be received before an interface drops packets. shutdown-threshold (Optional) Sets a shutdown threshold for the maximum rate of Layer 2 protocol packets per second to be received before an interface is shut down."
+      },
+      {
+        "name": "value",
+        "description": "A threshold in packets per second to be received for encapsulation before the interface shuts down, or the threshold before the interface drops packets. The range is 1 to 4096. The default is no threshold."
+      },
+      {
+        "name": "cdp",
+        "description": "(Optional) Enables tunneling of CDP, specifies a shutdown threshold for CDP, or specifies a drop threshold for CDP."
+      },
+      {
+        "name": "stp",
+        "description": "(Optional) Enables tunneling of STP, specifies a shutdown threshold for STP, or specifies a drop threshold for STP."
+      },
+      {
+        "name": "vtp",
+        "description": "(Optional) Enables tunneling or VTP, specifies a shutdown threshold for VTP, or specifies a drop threshold for VTP."
+      },
+      {
+        "name": "lldp",
+        "description": "(Optional) Enables tunneling of LLDP packets."
+      },
+      {
+        "name": "point-to-point",
+        "description": "(Optional) Enables point-to point tunneling of PAgP, LACP, and UDLD packets."
+      },
+      {
+        "name": "pagp",
+        "description": "(Optional) Enables point-to-point tunneling of PAgP, specifies a shutdown threshold for PAgP, or specifies a drop threshold for PAgP."
+      },
+      {
+        "name": "lacp",
+        "description": "(Optional) Enables point-to-point tunneling of LACP, specifies a shutdown threshold for LACP, or specifis a drop threshold for LACP."
+      },
+      {
+        "name": "udld",
+        "description": "(Optional) Enables point-to-point tunneling of UDLD, specifies a shutdown threshold for UDLD, or specifies a drop threshold for UDLD."
+      }
+    ],
+    "modes": [
+      "Interface configuration",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 946 Layer 2/3 l2protocol-tunnel"
+    ],
+    "usageSummary": "You can enable tunneling for Cisco Discovery Protocol (CDP), Spanning Tree Protocol (STP), or VLAN Trunking Protocol (VTP) packets.  You can also enable point-to-point tunneling for Port Aggregation Protocol (PAgP), Link Aggregation Control Protocol (LACP), or UniDirectional Link Detection (UDLD) packets.  You must enter this command, with or without protocol types, to tunnel Layer 2 packets.",
+    "sourcePage": 946,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp fast-switchover",
+    "context": null,
+    "detail": "Enable Link Aggregation Control Protocol (LACP) 1:1 link redundancy.",
+    "syntax": "lacp fast-switchover [dampening time]",
+    "noForm": "no lacp fast-switchover[dampening time]",
+    "params": [
+      {
+        "name": "dampening",
+        "description": "time Enables LACP 1:1 hot-standby dampening. The range is 30 to 180 seconds."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Prior to entering the lacp fast-switchover command, you must ensure the following: • The port channel protocol type is LACP.  • The lacp max-bundle 1 command has been entered on the port channel.",
+    "sourcePage": 949,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp max-bundle",
+    "context": null,
+    "detail": "Define the maximum number of active LACP ports allowed in a port channel.",
+    "syntax": "lacp max-bundle max_bundle_number",
+    "noForm": "no lacp max-bundle",
+    "params": [
+      {
+        "name": "max_bundle_number",
+        "description": "The maximum number of active LACP ports in the port channel. The range is 1 to 8. The default is 8."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "An LACP channel group can have up to 16 Ethernet ports of the same type.  Up to eight ports can be active, and up to eight ports can be in hot-standby mode.  When there are more than eight ports in an LACP channel group, the device on the controlling end of the link uses port priorities to determine which ports are bundled into the channel and which ports are put in hot-standby mode.",
+    "sourcePage": 951,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp port-priority",
+    "context": null,
+    "detail": "Configure the port priority for the Link Aggregation Control Protocol (LACP).",
+    "syntax": "lacp port-priority priority",
+    "noForm": "no lacp port-priority",
+    "params": [
+      {
+        "name": "priority",
+        "description": "Port priority for LACP. The range is 1 to 65535."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The lacp port-priority command in interface configuration mode determines which ports are bundled and which ports are put in hot-standby mode when there are more than eight ports in an LACP channel group.  An LACP channel group can have up to 16 Ethernet ports of the same type.  Up to eight ports can be active, and up to eight ports can be in standby mode.",
+    "sourcePage": 952,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp rate",
+    "context": null,
+    "detail": "Set the rate at which Link Aggregation Control Protocol (LACP) control packets are ingressed to an LACP-supported interface.",
+    "syntax": "lacp rate {normal | fast}",
+    "noForm": "no lacp rate",
+    "params": [
+      {
+        "name": "fast",
+        "description": "Specifies that LACP control packets are ingressed at the fast rate, once every 1 second."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use this command to modify the duration of LACP timeout.  The LACP timeout value on Cisco switch is three times the LACP rate that is configured on the interface.  Using the lacp ratecommand, you can select the LACP timeout value for a switch to be either 90 seconds or 3 seconds.",
+    "sourcePage": 953,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp system-priority",
+    "context": null,
+    "detail": "Configure the system priority for the Link Aggregation Control Protocol (LACP).",
+    "syntax": "lacp system-priority priority",
+    "noForm": "no lacp system-priority",
+    "params": [
+      {
+        "name": "priority",
+        "description": "System priority for LACP. The range is 1 to 65535."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The lacp system-priority command determines which device in an LACP link controls port priorities.  An LACP channel group can have up to 16 Ethernet ports of the same type.  Up to eight ports can be active, and up to eight ports can be in standby mode.",
+    "sourcePage": 954,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "loopdetect",
+    "context": null,
+    "detail": "Detect network loops.",
+    "syntax": "loopdetect [ time | action syslog | source-port ]",
+    "noForm": "no loopdetect [ time | action syslog | source-port ]",
+    "params": [
+      {
+        "name": "time",
+        "description": "(Optional) Time interval at which loop-detect frames are sent, in seconds. Range: 0 to 10. Default: 5."
+      },
+      {
+        "name": "action syslog",
+        "description": "(Optional) Displays a system message when a loop is detected."
+      },
+      {
+        "name": "source-port",
+        "description": "(Optional) Error-disables the source port."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You can error-disable either the source port or the destination port depending on your requirement.  When the loopdetect command is configured without any of the keywords or variables, the feature is enabled and the destination port is error-disabled when a loop is detected. We recommend that you error-disable the source port to better control traffic flow to and from your network.",
+    "sourcePage": 955,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mvrp vlan creation",
+    "context": null,
+    "detail": "Enable dynamic VLAN creation on a device using Multiple VLAN Registration Protocol (MVRP).",
+    "syntax": "mvrp vlan creation",
+    "noForm": "no mvrp vlan creation",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "MVRP dynamic VLAN creation can be used only if Virtual Trunking Protocol (VTP) is in transparent mode.",
+    "sourcePage": 957,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mvrp registration",
+    "context": null,
+    "detail": "Set the registrars in a Multiple Registration Protocol (MRP) Attribute Declaration (MAD) instance associated with an interface.",
+    "syntax": "mvrp registration {normal | fixed | forbidden}",
+    "noForm": "no mvrp registration",
+    "params": [
+      {
+        "name": "normal",
+        "description": "Registrar responds normally to incoming Multiple VLAN Registration Protocol (MVRP) messages. Normal is the default state."
+      },
+      {
+        "name": "fixed",
+        "description": "Registrar ignores all incoming MVRP messages and remains in the IN state."
+      },
+      {
+        "name": "forbidden",
+        "description": "Registrar ignores all incoming MVRP messages and remains in the EMPTY (MT) state."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The mvrpregistration command is operational only if MVRP is configured on an interface.  The nomvrpregistration command sets the registrar state to the default (normal).  This command can be used to set the registrar in a MAD instance associated with an interface to one of the three states.",
+    "sourcePage": 958,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mvrp timer",
+    "context": null,
+    "detail": "Set period timers that are used in Multiple VLAN Registration Protocol (MVRP) on a given interface.",
+    "syntax": "mvrp timer {join | leave | leave-all | periodic} [centiseconds]",
+    "noForm": "no mvrp timer",
+    "params": [
+      {
+        "name": "join",
+        "description": "Specifies the time interval between two transmit opportunities that are applied to the Applicant State Machine (ASMs)."
+      },
+      {
+        "name": "leave",
+        "description": "Specifies the duration time before a registrar is moved to EMPTY (MT) state from leave-all (LV) state."
+      },
+      {
+        "name": "leave-all",
+        "description": "Specifies the time it takes for a LeaveAll timer to expire."
+      },
+      {
+        "name": "periodic",
+        "description": "Sets the timer value to periodic, a fixed value of 100 centiseconds."
+      },
+      {
+        "name": "centiseconds",
+        "description": "Timer value measured in centiseconds. • Join timer value range is 20 to 10000000. • Leave timer value range is 60 to 10000000. • LeaveAll timer value range is 10000 and 10000000. • Periodic timer value is fixed at 100 centiseconds."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The nomvrptimer command resets the timer value to the default value.",
+    "sourcePage": 960,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "name",
+    "context": "MST",
+    "detail": "Set the name of a Multiple Spanning Tree (MST) region.",
+    "syntax": "name name",
+    "noForm": "no name name",
+    "params": [
+      {
+        "name": "name",
+        "description": "Name to give the MST region. It can be any string with a maximum length of 32 characters."
+      }
+    ],
+    "modes": ["MST configuration (config-mst)"],
+    "usageSummary": "Two or more devices with the same VLAN mapping and configuration version number are considered to be in different MST regions if the region names are different.",
+    "sourcePage": 962,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "no ptp enable",
+    "context": null,
+    "detail": "Disable PTP on an interface.",
+    "syntax": "ptp enable",
+    "noForm": "no ptp enable",
+    "params": [
+      {
+        "name": "This",
+        "description": "command has no aruguments or keywords."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 963,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "pagp learn-method",
+    "context": null,
+    "detail": "Learn the source address of incoming packets received from an EtherChannel port.",
+    "syntax": "pagp learn-method {aggregation-port | physical-port}",
+    "noForm": "no pagp learn-method",
+    "params": [
+      {
+        "name": "aggregation-port",
+        "description": "Specifies address learning on the logical port channel. The device sends packets to the source using any port in the EtherChannel. This setting is the default. With aggregation-port learning, it is not important on which physical port the packet arrives."
+      },
+      {
+        "name": "physical-port",
+        "description": "Specifies address learning on the physical port within the EtherChannel. The device sends packets to the source using the same port in the EtherChannel from which it learned the source address. The other end of the channel uses the same port in the channel for a particular destination MAC or IP address."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The learn method must be configured the same at both ends of the link.  The device supports address learning only on aggregate ports even though the physical-port keyword is provided in the command-line interface (CLI).  The pagp learn-method and the pagp port-priority commands in interface configuration mode have no effect on the device hardware, but they are required for PAgP interoperability with devices that only support address learning by physical ports.",
+    "sourcePage": 964,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "pagp port-priority",
+    "context": null,
+    "detail": "Select a port over which all Port Aggregation Protocol (PAgP) traffic through the EtherChannel is sent.",
+    "syntax": "pagp port-priority priority",
+    "noForm": "no pagp port-priority",
+    "params": [
+      {
+        "name": "priority",
+        "description": "Priority number. The range is from 0 to 255."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The physical port with the highest priority that is operational and has membership in the same EtherChannel is the one selected for PAgP transmission.  The device supports address learning only on aggregate ports even though the physical-port keyword is provided in the command-line interface (CLI).  The pagp learn-method and the pagp port-priority commands in interface configuration mode have no effect on the device hardware, but they are required for PAgP interoperability with devices that only support address learning by physical ports, such as the Catalyst 1900 switch.",
+    "sourcePage": 966,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "peer",
+    "context": "PTP",
+    "detail": "Connect to a peer Precision Time Protocol-aware (PTP-aware) device.",
+    "syntax": "peer { ip ip_address | vrf word ip ip_address }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ip ip_address",
+        "description": "IP address of a peer PTP device."
+      },
+      {
+        "name": "vrf word",
+        "description": "Default virtual routing and forwarding (VRF) or user-defined VRF."
+      }
+    ],
+    "modes": ["Property transport configuration (config-property-transport)"],
+    "usageSummary": "You must configure the PTP-property name using the ptp property command and configure a unicast IPv4 connection from a loopback interface using the transport unicast ipv4 local loopback command before connecting to a peer PTP-aware device.",
+    "sourcePage": 967,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "policy-map",
+    "context": null,
+    "detail": "Enter policy-map configuration mode and create or modify a policy map that can be attached to one or more interfaces to specify a service policy.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "type",
+        "description": "(Optional) Specifies the policy-map type."
+      },
+      {
+        "name": "access-control",
+        "description": "(Optional) Enables the access-control specific policy map."
+      },
+      {
+        "name": "control subscriber",
+        "description": "(Optional) Enables subscriber control policy domain."
+      },
+      {
+        "name": "packet-service",
+        "description": "(Optional) Enables packet service policy map."
+      },
+      {
+        "name": "performance-monitor",
+        "description": "(Optional) Enables policy map for the performance monitoring feature."
+      },
+      {
+        "name": "policy-map name",
+        "description": "Specifies the policy map."
+      }
+    ],
+    "modes": [
+      "Global configuration (config)",
+      "Usage Guidelines Use the policy-map command to specify the name of the policy map to create (add or modify) before you configure policies for classes whose match criteria are defined in a class map with the class-map and match commands.",
+      "Note You can configure class policies in a policy map only if the classes have match criteria defined for them.",
+      "Note Because you can configure a maximum of 64 class maps, a policy map cannot contain more than 64 class policies.",
+      "A single policy map can be attached concurrently to more than one interface. Except as noted, when you attempt to attach a policy map to an interface, the attempt is denied if the available bandwidth on the interface cannot accommodate the total bandwidth requested by the multiple policies. In such cases, if the policy map is already attached to other interfaces, the map is removed.",
+      "Example: The following is sample output from the policy-map command:",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 968 Layer 2/3 policy-map",
+      "Device# policy-map AVB-Output-Child-Policy",
+      "policy-map AVB-Output-Child-Policy class VOIP-PRIORITY-QUEUE bandwidth remaining percent 30 queue-buffers ratio 10 class MULTIMEDIA-CONFERENCING-STREAMING-QUEUE bandwidth remaining percent 15 queue-limit dscp AF41 percent 80 queue-limit dscp AF31 percent 80 queue-limit dscp AF42 percent 90 queue-limit dscp AF32 percent 90 queue-buffers ratio 10 class TRANSACTIONAL-DATA-QUEUE bandwidth remaining percent 15 queue-limit dscp AF21 percent 80 queue-limit dscp AF22 percent 90 queue-buffers ratio 10 class BULK-SCAVENGER-DATA-QUEUE bandwidth remaining percent 15 queue-limit dscp AF11 percent 80 queue-limit dscp AF12 percent 90 queue-limit dscp CS1 percent 80 queue-buffers ratio 15 class class-default bandwidth remaining percent 25 queue-buffers ratio 25",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 969 Layer 2/3"
+    ],
+    "usageSummary": "Use the policy-map command to specify the name of the policy map to create (add or modify) before you configure policies for classes whose match criteria are defined in a class map with the class-map and match commands.",
+    "sourcePage": 968,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel",
+    "context": null,
+    "detail": "Convert the auto created EtherChannel into a manual channel and adding configuration on the EtherChannel.",
+    "syntax": "port-channel {channel-group-number persistent | persistent }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "persistent",
+        "description": "Converts the auto created EtherChannel into a manual channel and allows you to add configuration on the EtherChannel."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can use the show etherchannel summary command in privileged EXEC mode to display the EtherChannel information.",
+    "sourcePage": 970,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel auto",
+    "context": null,
+    "detail": "Enable the auto-LAG feature on a switch globally.",
+    "syntax": "port-channel auto",
+    "noForm": "no port-channel auto",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can use the show etherchannel auto command in privileged EXEC mode to verify if the EtherChannel was created automatically.",
+    "sourcePage": 971,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel load-balance",
+    "context": null,
+    "detail": "Set the load-distribution method among the ports in the EtherChannel.",
+    "syntax": "port-channel load-balance {dst-ip | dst-mac | dst-mixed-ip-port | dst-port | extended | src-dst-ip | src-dst-mac | src-dst-mixed-ip-port | src-dst-port | src-ip | src-mac | src-mixed-ip-port | src-port | vlan-dst-ip | vlan-dst-mixed-ip-port | vlan-src-dst-ip | vlan-src-dst-mixed-ip-port | vlan-src-ip | vlan-src-mixed-ip-port}",
+    "noForm": "no port-channel load-balance",
+    "params": [
+      {
+        "name": "dst-ip",
+        "description": "Specifies load distribution based on the destination host IP address."
+      },
+      {
+        "name": "dst-mac",
+        "description": "Specifies load distribution based on the destination host MAC address. Packets to the same destination are sent on the same port, but packets to different destinations are sent on different ports in the channel."
+      },
+      {
+        "name": "dst-mixed-ip-port",
+        "description": "Specifies load distribution based on the destination IPv4 or IPv6 address and the TCP/UDP (Layer 4) port number."
+      },
+      {
+        "name": "dst-port",
+        "description": "Specifies load distribution based on the destination TCP/UDP (Layer 4) port number for both IPv4 and IPv6."
+      },
+      {
+        "name": "extended",
+        "description": "Sets extended load balance methods among the ports in the EtherChannel."
+      },
+      {
+        "name": "src-dst-ip",
+        "description": "Specifies load distribution based on the source and destination host IP address."
+      },
+      {
+        "name": "src-dst-mac",
+        "description": "Specifies load distribution based on the source and destination host MAC address."
+      },
+      {
+        "name": "src-dst-mixed-ip-port",
+        "description": "Specifies load distribution based on the source and destination host IP address and TCP/UDP (layer 4) port number."
+      },
+      {
+        "name": "src-dst-port",
+        "description": "Specifies load distribution based on the source and destination TCP/UDP (Layer 4) port number."
+      },
+      {
+        "name": "src-ip",
+        "description": "Specifies load distribution based on the source host IP address."
+      },
+      {
+        "name": "src-mac",
+        "description": "Specifies load distribution based on the source MAC address. Packets from different hosts use different ports in the channel, but packets from the same host use the same port."
+      },
+      {
+        "name": "src-mixed-ip-port",
+        "description": "Specifies load distribution based on the source host IP address and TCP/UDP (Layer 4) port number."
+      },
+      {
+        "name": "src-port",
+        "description": "Specifies load distribution based on the TCP/UDP (Layer 4) port number."
+      },
+      {
+        "name": "vlan-dst-ip",
+        "description": "Specifies load distribution based on the VLAN ID and destination IP address. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 972 Layer 2/3 port-channel load-balance"
+      },
+      {
+        "name": "vlan-dst-mixed-ip-port",
+        "description": "Specifies load distribution based on the VLAN ID, destination IP address, and TCP/UDP port number."
+      },
+      {
+        "name": "vlan-src-dst-ip",
+        "description": "Specifies load distribution based on the VLAN ID, source and destination IP address. vlan-src-dst-mixed-ip-port Specifies load distribution based on the VLAN ID, source and destination IP address, and TCP/UDP port number."
+      },
+      {
+        "name": "vlan-src-ip",
+        "description": "Specifies load distribution based on the VLAN ID and source IP address."
+      },
+      {
+        "name": "vlan-src-mixed-ip-port",
+        "description": "Specifies load distribution based on the VLAN ID, source IP address, and TCP/UDP port number."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "You can verify your setting by entering either the show running-config command in privileged EXEC mode or the show etherchannel load-balance command in privileged EXEC mode.",
+    "sourcePage": 972,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel load-balance extended",
+    "context": null,
+    "detail": "Set combinations of load-distribution methods among the ports in the EtherChannel.",
+    "syntax": "port-channel load-balance extended {dst-ip | dst-mac | dst-port | ipv6-label | l3-proto | src-ip | src-mac | src-port}",
+    "noForm": "no port-channel load-balance extended",
+    "params": [
+      {
+        "name": "dst-ip",
+        "description": "Specifies load distribution based on the destination host IP address. dst-mac Specifies load distribution based on the destination host MAC address. Packets to the same destination are sent on the same port, but packets to different destinations are sent on different ports in the channel. dst-port Specifies load distribution based on the destination TCP/UDP (Layer 4) port number for both IPv4 and IPv6. ipv6-label Specifies load distribution based on the source MAC address and IPv6 flow label. This keyword is supported only on Cisco Catalyst 9500 Series Switches. l3-proto Specifies load distribution based on the source MAC address and Layer 3 protocols. This keyword is supported only on Cisco Catalyst 9500 Series Switches."
+      },
+      {
+        "name": "src-ip",
+        "description": "Specifies load distribution based on the source host IP address. src-mac Specifies load distribution based on the source MAC address. Packets from different hosts use different ports in the channel, but packets from the same host use the same port. src-port Specifies load distribution based on the TCP/UDP (Layer 4) port number."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can verify your setting by entering either the show running-config command in privileged EXEC mode or the show etherchannel load-balance command in privileged EXEC mode.  Command Reference, Cisco IOS XE 17. 15.",
+    "sourcePage": 975,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel min-links",
+    "context": null,
+    "detail": "Define the minimum number of LACP ports that must be bundled in the link-up state and bundled in the EtherChannel in order that a port channel becomes active.",
+    "syntax": "port-channel min-links min_links_number",
+    "noForm": "no port-channel min-links",
+    "params": [
+      {
+        "name": "min_links_number",
+        "description": "The minimum number of active LACP ports in the port channel. The range is 2 to 8 if the port channel number is 128 or lesser and the range is 2 to 4 if the port channel number is 129 or greater. The default is 1."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "An LACP channel group can have up to 16 Ethernet ports of the same type.  Up to eight ports can be active, and up to eight ports can be in hot-standby mode.  When there are more than eight ports in an LACP channel group, the device on the controlling end of the link uses port priorities to determine which ports are bundled into the channel and which ports are put in hot-standby mode.",
+    "sourcePage": 977,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ptp dot1as extend property",
+    "context": null,
+    "detail": "Extend IEEE 802.1AS profile to a Precision Time Protocol-property (PTP-property) name.",
+    "syntax": "ptp dot1as extend property word",
+    "noForm": null,
+    "params": [
+      {
+        "name": "word",
+        "description": "PTP property name"
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 978,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ptp ip dscp",
+    "context": null,
+    "detail": "Configure IP DSCP value for PTP messages.",
+    "syntax": "ptp ip dscp value message { event | general }",
+    "noForm": "no ptp ip dscp value message { event | general }",
+    "params": [
+      {
+        "name": "value",
+        "description": "IP DSCP value. The range is from 0 to 63. event Configures IP DSCP value for PTP event messages. general Configures IP DSCP value for PTP general messages."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use this command for IEEE 1588 PTP profiles in IPv4 UDP transport mode only.",
+    "sourcePage": 979,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ptp priority1 value",
+    "context": null,
+    "detail": "Specify the priority 1 value to use when advertising a PTP clock.",
+    "syntax": "ptp priority1 value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "value",
+        "description": "Specifies the priority 1 number to use for this clock. The range is 0 to 255. The default value is 128. Note If the value of priority1 is configured to 255, the clock cannot become as Grandmaster."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 980,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ptp priority2 value",
+    "context": null,
+    "detail": "To specify the priority 2 number to use when advertising a PTP clock, use the ptp priority2 value command in global configuration mode",
+    "syntax": "ptp priority2 value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "value",
+        "description": "Specifies the priority 2 number to use for this clock. The range is 0 to 255. The default value is 128."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 981,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ptp profile dot1as",
+    "context": null,
+    "detail": "Enable Generalized Precision Time Protocol (gPTP) globally.",
+    "syntax": "ptp profile dot1as",
+    "noForm": "no ptp profile dot1as",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 982,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ptp property",
+    "context": null,
+    "detail": "Set the Precision Time Protocol-property (PTP-property) name.",
+    "syntax": "ptp property word",
+    "noForm": "no ptp property word",
+    "params": [
+      {
+        "name": "word",
+        "description": "PTP-property name."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "You can configure more than one IPv4 unicast connection that connects to a different boundary clock under the same property name.",
+    "sourcePage": 983,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ptp role primary",
+    "context": null,
+    "detail": "Set an interface permanently as primary (master).",
+    "syntax": "ptp role primary",
+    "noForm": "no ptp role primary",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Setting a port permanently ensures that the port remain as a primary (master) even if a clock connected to the port can be elected as grandmaster clock.",
+    "sourcePage": 984,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep admin vlan",
+    "context": null,
+    "detail": "Configure a Resilient Ethernet Protocol (REP) administrative VLAN for the REP to transmit hardware flood layer (HFL) messages.",
+    "syntax": "rep admin vlan vlan-id segment segment-id",
+    "noForm": "no rep admin vlan vlan-id segment segment-id",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "48-bit static MAC address."
+      },
+      {
+        "name": "segment",
+        "description": "configures administrative VLAN for an REP segment."
+      },
+      {
+        "name": "segment-id",
+        "description": "specifies the segment for which the admin VLAN has been assigned. Segment id number ranges from 1-1024"
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 985,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep block port",
+    "context": null,
+    "detail": "Configure Resilient Ethernet Protocol (REP) VLAN load balancing on a REP primary edge port.",
+    "syntax": "rep block port {id port-id | neighbor-offset | preferred} vlan {vlan-list | all}",
+    "noForm": "no rep block port {id port-id | neighbor-offset | preferred}",
+    "params": [
+      {
+        "name": "id port-id",
+        "description": "Specifies the VLAN blocking alternate port by entering the unique port ID, which is automatically generated when REP is enabled. The REP port ID is a 16-character hexadecimal value. neighbor-offset VLAN blocking alternate port by entering the offset number of a neighbor. The range is from -256 to +256. A value of 0 is invalid."
+      },
+      {
+        "name": "preferred",
+        "description": "Selects the regular segment port previously identified as the preferred alternate port for VLAN load balancing."
+      },
+      {
+        "name": "vlan",
+        "description": "Identifies the VLANs to be blocked."
+      },
+      {
+        "name": "vlan-list",
+        "description": "VLAN ID or range of VLAN IDs to be displayed. Enter a VLAN ID from 1 to 4094, or a range or sequence of VLANs (such as 1-3, 22, and 41-44) to be blocked."
+      },
+      {
+        "name": "all",
+        "description": "Blocks all the VLANs."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "When you select an alternate port by entering an offset number, this number identifies the downstream neighbor port of an edge port.  The primary edge port has an offset number of 1; positive numbers above 1 identify downstream neighbors of the primary edge port.  Negative numbers identify the secondary edge port (offset number -1) and its downstream neighbors.",
+    "sourcePage": 986,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep lsl-age-timer",
+    "context": null,
+    "detail": "Configure the Resilient Ethernet Protocol (REP) link status layer (LSL) age-out timer value.",
+    "syntax": "rep lsl-age-timer milliseconds",
+    "noForm": "no rep lsl-age-timer milliseconds",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "While configuring REP configurable timers, we recommend that you configure the REP LSL number of retries first and then configure the REP LSL age-out timer value.",
+    "sourcePage": 988,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep lsl-retries",
+    "context": null,
+    "detail": "Configure the REP link status layer (LSL) number of retries.",
+    "syntax": "rep lsl-retries number-of-retries",
+    "noForm": "no rep lsl-retries number-of-retries",
+    "params": [
+      {
+        "name": "number-of-retries",
+        "description": "Number of LSL retries. The range of retries is from 3 to 10."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The rep lsl-retries command is used to configure the number of retries before the REP link is disabled.  While configuring REP configurable timers, we recommend that you configure the REP LSL number of retries first and then configure the REP LSL age-out timer value.  The following example shows how to configure REP LSL retries.",
+    "sourcePage": 989,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep preempt delay",
+    "context": null,
+    "detail": "Configure a waiting period after a segment port failure and recovery before Resilient Ethernet Protocol (REP) VLAN load balancing is triggered.",
+    "syntax": "rep preempt delay seconds",
+    "noForm": "no rep preempt delay",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Enter this command on the REP primary edge port.  Enter this command and configure a preempt time delay for VLAN load balancing to be automatically triggered after a link failure and recovery.  If VLAN load balancing is configured after a segment port failure and recovery, the REP primary edge port starts a delay timer before VLAN load balancing occurs.",
+    "sourcePage": 990,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep preempt segment",
+    "context": null,
+    "detail": "Manually start Resilient Ethernet Protocol (REP) VLAN load balancing on a segment.",
+    "syntax": "rep preempt segment segment-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "segment-id",
+        "description": "ID of the REP segment. The range is from 1 to 1024."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Enter this command on the segment, which has the primary edge port on the device.  Ensure that all the other segment configuratios are completed before setting preemption for VLAN load balancing.  When you enter the rep preempt segment segment-id command, a confirmation message appears before the command is executed because preemption for VLAN load balancing can disrupt the network.",
+    "sourcePage": 991,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep segment",
+    "context": null,
+    "detail": "Enable Resilient Ethernet Protocol (REP) on an interface and to assign a segment ID to the interface.",
+    "syntax": "rep segment segment-id [edge [no-neighbor] [primary]] [preferred]",
+    "noForm": "no rep segment",
+    "params": [
+      {
+        "name": "segment-id",
+        "description": "Segment for which REP is enabled. Assign a segment ID to the interface. The range is from 1 to 1024."
+      },
+      {
+        "name": "edge",
+        "description": "(Optional) Configures the port as an edge port. Each segment has only two edge ports. no-neighbor (Optional) Specifies the segment edge as one with no external REP neighbor."
+      },
+      {
+        "name": "primary",
+        "description": "(Optional) Specifies that the port is the primary edge port where you can configure VLAN load balancing. A segment has only one primary edge port."
+      },
+      {
+        "name": "preferred",
+        "description": "(Optional) Specifies that the port is the preferred alternate port or the preferred port for VLAN load balancing. Note Configuring a port as a preferred port does not guarantee that it becomes the alternate port; it merely gives it a slight edge among equal contenders. The alternate port is usually a previously failed port."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "REP ports must be a Layer 2 IEEE 802. 1Q port or a 802. 1AD port.",
+    "sourcePage": 992,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep stcn",
+    "context": null,
+    "detail": "Configure a Resilient Ethernet Protocol (REP) edge port to send segment topology change notifications (STCNs) to another interface or to other segments.",
+    "syntax": "rep stcn {interface interface-id | segment segment-id-list}",
+    "noForm": "no rep stcn {interface | segment}",
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "Specifies a physical interface or port channel to receive STCNs. segment segment-id-list Specifies one REP segment or a list of REP segments to receive STCNs. The segment range is from 1 to 1024. You can also configure a sequence of segments, for example, 3 to 5, 77, 100."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You can verify your settings by entering the show interfaces rep detail command in privileged EXEC mode.",
+    "sourcePage": 994,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "revision",
+    "context": null,
+    "detail": "Set the revision number for the Multiple Spanning Tree (802.1s) (MST) configuration.",
+    "syntax": "revision version",
+    "noForm": "no revision",
+    "params": [
+      {
+        "name": "version",
+        "description": "Revision number for the configuration; valid values are from 0 to 65535."
+      }
+    ],
+    "modes": ["MST configuration (config-mst)"],
+    "usageSummary": "Devices that have the same configuration but different revision numbers are considered to be part of two different regions.",
+    "sourcePage": 995,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show avb domain",
+    "context": null,
+    "detail": "Display the AVB domain information.",
+    "syntax": null,
+    "noForm": null,
+    "params": [],
+    "modes": [
+      "Global configuration mode (#)",
+      "Example: The following is sample output from the show avb domain command: Device# show avb domain",
+      "AVB Class-A Priority Code Point : 3 VLAN : 2 Core ports : 1 Boundary ports : 67",
+      "AVB Class-B Priority Code Point : 2 VLAN : 2 Core ports : 1 Boundary ports : 67",
+      "-------------------------------------------------------------------------------- Interface State Delay PCP VID Information -------------------------------------------------------------------------------- Te1/0/1 down N/A Oper state not up Te1/0/2 down N/A Oper state not up Te1/0/3 down N/A Oper state not up Te1/0/4 down N/A Oper state not up Te1/0/5 up N/A Port is not asCapable Te1/0/6 down N/A Oper state not up Te1/0/7 down N/A Oper state not up Te1/0/8 down N/A Oper state not up Te1/0/9 down N/A Oper state not up Te1/0/10 down N/A Oper state not up Te1/0/11 down N/A Oper state not up Te1/0/12 down N/A Oper state not up Te1/0/13 down N/A Oper state not up Te1/0/14 down N/A Oper state not up Te1/0/15 down N/A Oper state not up Te1/0/16 down N/A Oper state not up Te1/0/17 down N/A Oper state not up Te1/0/18 down N/A Oper state not up Te1/0/19 up N/A Port is not asCapable Te1/0/20 down N/A Oper state not up Te1/0/21 down N/A Oper state not up Te1/0/22 down N/A Oper state not up Te1/0/23 up N/A Port is not asCapable Te1/0/24 down N/A Oper state not up Te1/0/25 down N/A Oper state not up Te1/0/26 down N/A Oper state not up",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 996 Layer 2/3 show avb domain",
+      "Te1/0/27 down N/A Oper state not up Te1/0/28 down N/A Oper state not up Te1/0/29 up N/A Port is not asCapable Te1/0/30 down N/A Oper state not up Te1/0/31 down N/A Oper state not up Te1/0/32 down N/A Oper state not up Te1/0/33 down N/A Oper state not up Te1/0/34 down N/A Oper state not up Te1/0/35 up N/A Port is not asCapable Te1/0/36 down N/A Oper state not up Te1/0/37 down N/A Oper state not up Te1/0/38 down N/A Oper state not up Te1/0/39 up 507ns Class- A core 3 2 Class- B core 2 2 Te1/0/40 down N/A Oper state not up Te1/0/41 down N/A Oper state not up Te1/0/42 down N/A Oper state not up Te1/0/43 down N/A Oper state not up Te1/0/44 down N/A Oper state not up Te1/0/45 down N/A Oper state not up Te1/0/46 down N/A Oper state not up Te1/0/47 down N/A Oper state not up Te1/0/48 down N/A Oper state not up Te1/1/1 down N/A Oper state not up Te1/1/2 down N/A Oper state not up Te1/1/3 down N/A Oper state not up Te1/1/4 down N/A Oper state not up Te1/1/5 down N/A Oper state not up Te1/1/6 down N/A Oper state not up Te1/1/7 down N/A Oper state not up Te1/1/8 down N/A Oper state not up Te1/1/9 down N/A Oper state not up Te1/1/10 down N/A Oper state not up Te1/1/11 down N/A Oper state not up Te1/1/12 down N/A Oper state not up Te1/1/13 down N/A Oper state not up Te1/1/14 down N/A Oper state not up Te1/1/15 down N/A Oper state not up Te1/1/16 down N/A Oper state not up Fo1/1/1 down N/A Oper state not up Fo1/1/2 down N/A Oper state not up Fo1/1/3 down N/A Oper state not up Fo1/1/4 down N/A Oper state not up . . .",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 997 Layer 2/3"
+    ],
+    "usageSummary": null,
+    "sourcePage": 996,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show avb streams",
+    "context": null,
+    "detail": "Display the AVB stream information.",
+    "syntax": null,
+    "noForm": null,
+    "params": [],
+    "modes": [
+      "Global configuration mode (#)",
+      "Example: The following is sample output from the show avb streams command: Device# show avb streams",
+      "Stream ID: 0011.0100.0001:1 Incoming Interface: Te1/1/1 Destination : 91E0.F000.FE00 Class : A Rank : 1 Bandwidth : 6400 Kbit/s",
+      "Outgoing Interfaces: ---------------------------------------------------------------------------- Interface State Time of Last Update Information ---------------------------------------------------------------------------- Te1/1/1 Ready Tue Apr 26 01:25:40.634",
+      "Stream ID: 0011.0100.0002:2 Incoming Interface: Te1/1/1 Destination : 91E0.F000.FE01 Class : A Rank : 1 Bandwidth : 6400 Kbit/s",
+      "Outgoing Interfaces: ---------------------------------------------------------------------------- Interface State Time of Last Update Information ---------------------------------------------------------------------------- Te1/1/1 Ready Tue Apr 26 01:25:40.634 . . .",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 998 Layer 2/3 show dot1q-tunnel"
+    ],
+    "usageSummary": null,
+    "sourcePage": 998,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show dot1q-tunnel",
+    "context": null,
+    "detail": "To display information about IEEE 802.1Q tunnel ports, use the show dot1q-tunnel in EXEC mode.",
+    "syntax": "show dot1q-tunnel [interface interface-id]",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 999,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show etherchannel",
+    "context": null,
+    "detail": "Display EtherChannel information for a channel.",
+    "syntax": "show etherchannel [channel-group-number | {detail | port | port-channel | protocol | summary }] | [detail | load-balance | port | port-channel | protocol | summary]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed EtherChannel information."
+      },
+      {
+        "name": "load-balance",
+        "description": "(Optional) Displays the load-balance or frame-distribution scheme among ports in the port channel."
+      },
+      {
+        "name": "port",
+        "description": "(Optional) Displays EtherChannel port information."
+      },
+      {
+        "name": "port-channel",
+        "description": "(Optional) Displays port-channel information."
+      },
+      {
+        "name": "protocol",
+        "description": "(Optional) Displays the protocol that is being used in the channel."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays a one-line summary per channel group."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "If you do not specify a channel group number, all channel groups are displayed.  In the output, the passive port list field is displayed only for Layer 3 port channels.  This field means that the physical port, which is still not up, is configured to be in the channel group (and indirectly is in the only port channel in the channel group).",
+    "sourcePage": 1000,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces rep detail",
+    "context": null,
+    "detail": "Display detailed Resilient Ethernet Protocol (REP) configuration and status for all interfaces or a specified interface, including the administrative VLAN.",
+    "syntax": "show interfaces [interface-id] rep detail",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) Physical interface used to display the port ID."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Enter this command on a segment edge port to send STCNs to one or more segments or to an interface.  You can verify your settings by entering the show interfaces rep detail command in privileged EXEC mode.",
+    "sourcePage": 1003,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show l2protocol-tunnel",
+    "context": null,
+    "detail": "To display information about Layer 2 protocol tunnel ports, use the show l2protocol-tunnel in EXEC mode.",
+    "syntax": "show l2protocol-tunnel [interface interface-id] summary",
+    "noForm": null,
+    "params": [
+      {
+        "name": "summary",
+        "description": "(Optional) Displays only Layer 2 protocol summary information."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "After enabling Layer 2 protocol tunneling on an access or IEEE 802. 1Q tunnel port by using the l2protocol-tunnel interface configuration command, you can configure some or all of these parameters: • Protocol type to be tunneled • Shutdown threshold • Drop threshold If you enter the show l2protocol-tunnel interface command, only information about the active ports on which all the parameters are configured appears.  If you enter the show l2protocol-tunnel summary command, only information about the active ports on which some or all of the parameters are configured appears.",
+    "sourcePage": 1004,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lacp",
+    "context": null,
+    "detail": "Display Link Aggregation Control Protocol (LACP) channel-group information.",
+    "syntax": "show lacp [channel-group-number] {counters | internal | neighbor | sys-id}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "counters",
+        "description": "Displays traffic information."
+      },
+      {
+        "name": "internal",
+        "description": "Displays internal information."
+      },
+      {
+        "name": "neighbor",
+        "description": "Displays neighbor information."
+      },
+      {
+        "name": "sys-id",
+        "description": "Displays the system identifier that is being used by LACP. The system identifier consists of the LACP system priority and the device MAC address."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "You can enter any show lacp command to display the active channel-group information.  To display specific channel information, enter the show lacp command with a channel-group number.  If you do not specify a channel group, information for all channel groups appears.",
+    "sourcePage": 1006,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show loopdetect",
+    "context": null,
+    "detail": "Display the details of all the interfaces where loop-detection guard is enabled.",
+    "syntax": null,
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC(#)"],
+    "usageSummary": null,
+    "sourcePage": 1010,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show msrp port bandwidth",
+    "context": null,
+    "detail": "Display Multiple Stream Reservation Protocol (MSRP) port bandwidth information.",
+    "syntax": null,
+    "noForm": null,
+    "params": [],
+    "modes": [
+      "Global configuration mode (#)",
+      "Example: The following is sample output from the show msrp port bandwidth command: Device# show msrp port bandwidth",
+      "-------------------------------------------------------------------------------- Ethernet Capacity Assigned Available Reserved Interface (Kbit/s) A | B A | B A | B -------------------------------------------------------------------------------- Te1/0/1 10000000 75 | 0 75 | 75 0 | 0 Te1/0/2 10000000 75 | 0 75 | 75 0 | 0 Te1/0/3 1000000 75 | 0 75 | 75 0 | 0 Te1/0/4 10000000 75 | 0 75 | 75 0 | 0 Te1/0/5 10000000 75 | 0 75 | 75 0 | 0 Te1/0/6 10000000 75 | 0 75 | 75 0 | 0 Te1/0/8 10000000 75 | 0 75 | 75 0 | 0 Te1/0/9 10000000 75 | 0 75 | 75 0 | 0 Te1/0/10 10000000 75 | 0 75 | 75 0 | 0 Te1/0/11 10000000 75 | 0 75 | 75 0 | 0 Te1/0/12 10000000 75 | 0 75 | 75 0 | 0 Te1/0/13 1000000 75 | 0 75 | 75 0 | 0 Te1/0/14 10000000 75 | 0 75 | 75 0 | 0 Te1/0/15 10000000 75 | 0 75 | 75 0 | 0 Te1/0/16 10000000 75 | 0 75 | 75 0 | 0 Te1/0/17 10000000 75 | 0 75 | 75 0 | 0 Te1/0/18 10000000 75 | 0 75 | 75 0 | 0 Te1/0/19 1000000 75 | 0 75 | 75 0 | 0 Te1/0/20 10000000 75 | 0 75 | 75 0 | 0 Te1/0/21 10000000 75 | 0 75 | 75 0 | 0 Te1/0/22 10000000 75 | 0 75 | 75 0 | 0 Te1/0/23 10000000 75 | 0 75 | 75 0 | 0 Te1/0/24 10000000 75 | 0 75 | 75 0 | 0 Gi1/1/1 1000000 75 | 0 75 | 75 0 | 0 Gi1/1/2 1000000 75 | 0 75 | 75 0 | 0 Gi1/1/3 1000000 75 | 0 75 | 75 0 | 0 Gi1/1/4 1000000 75 | 0 75 | 75 0 | 0 Te1/1/1 10000000 75 | 0 75 | 75 0 | 0 Te1/1/2 10000000 75 | 0 75 | 75 0 | 0 Te1/1/3 10000000 75 | 0 75 | 75 0 | 0 Te1/1/4 10000000 75 | 0 75 | 75 0 | 0 Te1/1/5 10000000 75 | 0 75 | 75 0 | 0 Te1/1/6 10000000 75 | 0 75 | 75 0 | 0 Te1/1/7 10000000 75 | 0 75 | 75 0 | 0 Te1/1/8 10000000 75 | 0 75 | 75 0 | 0 Fo1/1/1 40000000 75 | 0 75 | 75 0 | 0",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1011 Layer 2/3 show msrp port bandwidth",
+      "Fo1/1/2 40000000 75 | 0 75 | 75 0 | 0",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1012 Layer 2/3 show msrp streams"
+    ],
+    "usageSummary": null,
+    "sourcePage": 1011,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show msrp streams",
+    "context": null,
+    "detail": "Display information about the Multiple Stream Reservation Protocol (MSRP) streams.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "detailed",
+        "description": "Displays detailed MSRP stream information."
+      },
+      {
+        "name": "brief",
+        "description": "Displays MSRP stream information in brief."
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS XE Fuji 16.8.1a This command was introduced."
+      }
+    ],
+    "modes": [
+      "Global configuration mode (#)",
+      "Example: The following is sample output from the show msrp streams command: Device# show msrp streams",
+      "-------------------------------------------------------------------------------- Stream ID Talker Listener Advertise Fail Ready ReadyFail AskFail R | D R | D R | D R | D R | D -------------------------------------------------------------------------------- yy:yy:yy:yy:yy:yy:0001 1 | 2 0 | 0 1 | 0 0 | 1 1 | 0 zz:zz:zz:zz:zz:zz:0002 1 | 0 0 | 1 1 | 0 0 | 0 0 | 1",
+      "The following is sample output from the show msrp streams detailed command: Device# show msrp streams detailed",
+      "Stream ID: 0011.0100.0001:1 Stream Age: 01:57:46 (since Mon Apr 25 23:41:11.413) Create Time: Mon Apr 25 23:41:11.413 Destination Address: 91E0.F000.FE00 VLAN Identifier: 1 Data Frame Priority: 3 (Class A) MaxFrameSize: 100 MaxIntervalFrames: 1 frames/125us Stream Bandwidth: 6400 Kbit/s Rank: 1 Received Accumulated Latency: 20 Stream Attributes Table: ---------------------------------------------------------------------------- Interface Attr State Direction Type ---------------------------------------------------------------------------- Gi1/0/1 Register Talker Advertise Attribute Age: 01:57:46 (since Mon Apr 25 23:41:11.413) MRP Applicant: Very Anxious Observer, send None MRP Registrar: In Accumulated Latency: 20 ----",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1013 Layer 2/3 show msrp streams",
+      "Te1/1/1 Declare Talker Advertise Attribute Age: 00:19:52 (since Tue Apr 26 01:19:05.525) MRP Applicant: Quiet Active, send None MRP Registrar: In Accumulated Latency: 20 ---- Te1/1/1 Register Listener Ready Attribute Age: 00:13:17 (since Tue Apr 26 01:25:40.635) MRP Applicant: Very Anxious Observer, send None MRP Registrar: In ---- Gi1/0/1 Declare Listener Ready Attribute Age: 00:13:17 (since Tue Apr 26 01:25:40.649) MRP Applicant: Quiet Active, send None MRP Registrar: In",
+      "The following is sample output from the show msrp streams brief command: Device# show msrp streams brief",
+      "Legend: R = Registered, D = Declared. -------------------------------------------------------------------------------- Stream ID Destination Bandwidth Talkers Listeners Fail Address (Kbit/s) R | D R | D -------------------------------------------------------------------------------- 0011.0100.0001:1 91E0.F000.FE00 6400 1 | 1 1 | 1 No 0011.0100.0002:2 91E0.F000.FE01 6400 1 | 1 1 | 1 No 0011.0100.0003:3 91E0.F000.FE02 6400 1 | 1 1 | 1 No 0011.0100.0004:4 91E0.F000.FE03 6400 1 | 1 1 | 1 No 0011.0100.0005:5 91E0.F000.FE04 6400 1 | 1 1 | 1 No 0011.0100.0006:6 91E0.F000.FE05 6400 1 | 1 1 | 1 No 0011.0100.0007:7 91E0.F000.FE06 6400 1 | 1 1 | 1 No 0011.0100.0008:8 91E0.F000.FE07 6400 1 | 1 1 | 1 No 0011.0100.0009:9 91E0.F000.FE08 6400 1 | 1 1 | 1 No 0011.0100.000A:10 91E0.F000.FE09 6400 1 | 1 1 | 1 No",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1014 Layer 2/3 show pagp"
+    ],
+    "usageSummary": null,
+    "sourcePage": 1013,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show pagp",
+    "context": null,
+    "detail": "Display Port Aggregation Protocol (PAgP) channel-group information.",
+    "syntax": "show pagp [channel-group-number] {counters | dual-active | internal | neighbor}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "counters",
+        "description": "Displays traffic information."
+      },
+      {
+        "name": "dual-active",
+        "description": "Displays the dual-active status."
+      },
+      {
+        "name": "internal",
+        "description": "Displays internal information."
+      },
+      {
+        "name": "neighbor",
+        "description": "Displays neighbor information."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "You can enter any show pagp command to display the active channel-group information.  To display the nonactive information, enter the show pagp command with a channel-group number.",
+    "sourcePage": 1015,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform etherchannel",
+    "context": null,
+    "detail": "Display platform-dependent EtherChannel information.",
+    "syntax": "show platform etherchannel channel-group-number {group-mask | load-balance mac src-mac dst-mac [ip src-ip dst-ip [port src-port dst-port]]} [switch switch-number]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "group-mask",
+        "description": "Displays EtherChannel group mask."
+      },
+      {
+        "name": "load-balance",
+        "description": "Tests EtherChannel load-balance hash algorithm."
+      },
+      {
+        "name": "mac src-mac",
+        "description": "Specifies the source and destination MAC addresses. dst-mac"
+      },
+      {
+        "name": "ip src-ip dst-ip",
+        "description": "(Optional) Specifies the source and destination IP addresses."
+      },
+      {
+        "name": "port src-port",
+        "description": "(Optional) Specifies the source and destination layer port numbers. dst-port"
+      },
+      {
+        "name": "switch",
+        "description": "(Optional) Specifies the stack member. switch-number"
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  Do not use this command unless a technical support representative asks you to do so.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 1017,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform hardware fed active vlan ingress",
+    "context": null,
+    "detail": "To display if native vlan tagging is enabled or disabled for a particular vlan, use the show platform hardware fed active vlan ingress",
+    "syntax": "show platform hardware fed active vlan vlan ID ingress",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Syntax",
+        "description": "Description"
+      },
+      {
+        "name": "vlan vlan ID",
+        "description": "Specifies the VLAN ID."
+      },
+      {
+        "name": "ingress",
+        "description": "Specifies Spanning Tree Protocol (STP) state information in ingress direction."
+      }
+    ],
+    "modes": ["Privileged EXEC mode (#)"],
+    "usageSummary": null,
+    "sourcePage": 1018,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform pm",
+    "context": null,
+    "detail": "Display platform-dependent port manager information.",
+    "syntax": "show platform pm {etherchannel channel-group-number group-mask | interface-numbers | port-data interface-id | port-state}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "etherchannel channel-group-number",
+        "description": "Displays the EtherChannel group-mask table for the specified"
+      },
+      {
+        "name": "group-mask",
+        "description": "channel group. The range is 1 to 128."
+      },
+      {
+        "name": "interface-numbers",
+        "description": "Displays interface numbers information."
+      },
+      {
+        "name": "port-data interface-id",
+        "description": "Displays port data information for the specified interface."
+      },
+      {
+        "name": "port-state",
+        "description": "Displays port state information."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with your technical support representative while troubleshooting a problem.  Do not use this command unless your technical support representative asks you to do so.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 1019,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed active ptp interface loopback",
+    "context": null,
+    "detail": "Display the Precision Time Protocol (PTP) connection details and events of the specified loopback interface.",
+    "syntax": "show platform software fed active php interface value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "value",
+        "description": "Loopback interface number. The maximum number of sessions supported is 127."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1020,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch ptp",
+    "context": null,
+    "detail": "Display information about ptp status on the port.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Displays information about the switch. Valid values for switch-number argument are from 0 to 9."
+      },
+      {
+        "name": "active",
+        "description": "Displays information about the active instance of the switch."
+      },
+      {
+        "name": "standby",
+        "description": "Displays information about the standby instance of the switch."
+      },
+      {
+        "name": "domain domain-value",
+        "description": "Displays information about the specified domain."
+      },
+      {
+        "name": "if-id value",
+        "description": "Displays information about the specified interface."
+      },
+      {
+        "name": "test",
+        "description": "Executes ptp test"
+      },
+      {
+        "name": "Command History",
+        "description": "Release Modification Cisco IOS XE Fuji 16.8.1a This command was introduced."
+      }
+    ],
+    "modes": [
+      "Global configuration mode (#)",
+      "Example: The following is sample output from the show platform software fed switch active ptp if-id 0x20 command: Device# show platform software fed switch active ptp if-id 0x20",
+      "Displaying port data for if_id 20 =======================================",
+      "Port Mac Address 04:6C:9D:4E:3A:9A Port Clock Identity 04:6C:9D:FF:FE:4E:3A:80 Port number 28 PTP Version 2 domain_value 0 dot1as capable: FALSE sync_recpt_timeout_time_interval 375000000 nanoseconds sync_interval 125000000 nanoseconds neighbor_rate_ratio 0.000000 neighbor_prop_delay 0 nanoseconds compute_neighbor_rate_ratio: TRUE compute_neighbor_prop_delay: TRUE port_enabled: TRUE ptt_port_enabled: TRUE current_log_pdelay_req_interval 0 pdelay_req_interval 0 nanoseconds allowed_lost_responses 3 neighbor_prop_delay_threshold 2000 nanoseconds",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1021 Layer 2/3 show platform software fed switch ptp",
+      "is_measuring_delay : FALSE Port state: : MASTER sync_seq_num 22023 delay_req_seq_num 23857 num sync messages transmitted 0 num sync messages received 0 num followup messages transmitted 0 num followup messages received 0 num pdelay requests transmitted 285695 num pdelay requests received 0 num pdelay responses transmitted 0 num pdelay responses received 0 num pdelay followup responses transmitted 0 num pdelay followup responses received 0",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1022 Layer 2/3 show ptp brief"
+    ],
+    "usageSummary": null,
+    "sourcePage": 1021,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ptp brief",
+    "context": null,
+    "detail": "Display a brief status of PTP on the interfaces.",
+    "syntax": "show ptp brief",
+    "noForm": null,
+    "params": [
+      {
+        "name": "This",
+        "description": "command has no aruguments or keywords."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1023,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ptp clock",
+    "context": null,
+    "detail": "Display PTP clock information.",
+    "syntax": "show ptp clock",
+    "noForm": null,
+    "params": [
+      {
+        "name": "This",
+        "description": "command has no aruguments or keywords."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1024,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ptp parent",
+    "context": null,
+    "detail": "Display the PTP parent clock information.",
+    "syntax": "show ptp parent",
+    "noForm": null,
+    "params": [
+      {
+        "name": "This",
+        "description": "command has no aruguments or keywords."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1025,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ptp port",
+    "context": null,
+    "detail": "Display the PTP port information.",
+    "syntax": "show ptp port",
+    "noForm": null,
+    "params": [
+      {
+        "name": "This",
+        "description": "command has no aruguments or keywords."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1027,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ptp port loopback",
+    "context": null,
+    "detail": "Display Precision Time Protocol (PTP) configurations of a loopback interface.",
+    "syntax": "show ptp port loopback value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "value",
+        "description": "Loopback interface number. The maximum number of sessions supported is 127."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1028,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ptp transport properties",
+    "context": null,
+    "detail": "Display a Precision Time Protocol (PTP) profile and its properties.",
+    "syntax": "show ptp transport properties",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1029,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show rep topology",
+    "context": null,
+    "detail": "Display Resilient Ethernet Protocol (REP) topology information for a segment or for all the segments, including the primary and secondary edge ports in the segment.",
+    "syntax": "show rep topology [segment segment-id] [archive] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "segment segment-id",
+        "description": "(Optional) Specifies the segment for which to display the REP topology information. The segment-id range is from 1 to 1024."
+      },
+      {
+        "name": "archive",
+        "description": "(Optional) Displays the previous topology of the segment. This keyword is useful for troubleshooting a link failure."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed REP topology information."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1030,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show spanning-tree",
+    "context": null,
+    "detail": "Display spanning-tree information for the specified spanning-tree instances.",
+    "syntax": "show spanning-tree [bridge-group] [ active | backbonefast | blockedports | bridge [id] | detail | inconsistentports | instances | interface interface-type interface-number | mst [ list | configuration [digest] ] | pathcost method | root | summary [totals] | uplinkfast | vlan vlan-id ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "bridge-group",
+        "description": "(Optional) Specifies the bridge group number. The range is 1 to 255."
+      },
+      {
+        "name": "active",
+        "description": "(Optional) Displays spanning-tree information on active interfaces only."
+      },
+      {
+        "name": "backbonefast",
+        "description": "(Optional) Displays spanning-tree BackboneFast status."
+      },
+      {
+        "name": "blockedports",
+        "description": "(Optional) Displays blocked port information."
+      },
+      {
+        "name": "bridge",
+        "description": "(Optional) Displays status and configuration of this switch."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Shows status and configuration details."
+      },
+      {
+        "name": "inconsistentports",
+        "description": "(Optional) Displays information about inconsistent ports."
+      },
+      {
+        "name": "instances",
+        "description": "(Optional) Displays information about maximum STP instances."
+      },
+      {
+        "name": "interface",
+        "description": "interface-type            (Optional) Specifies the type and number of the interface. Enter each"
+      },
+      {
+        "name": "interface-number",
+        "description": "interface designator, using a space to separate it from the one before and the one after. Ranges are not supported. Valid interfaces include physical ports and virtual LANs (VLANs). See the “Usage Guidelines” for valid values."
+      },
+      {
+        "name": "mst",
+        "description": "(Optional) Specifies multiple spanning-tree."
+      },
+      {
+        "name": "list",
+        "description": "(Optional) Specifies a multiple spanning-tree instance list."
+      },
+      {
+        "name": "configuration digest",
+        "description": "(Optional) Displays the multiple spanning-tree current region configuration."
+      },
+      {
+        "name": "pathcost method",
+        "description": "(Optional) Displays the default path-cost calculation method that is used. See the “Usage Guidelines” section for the valid values."
+      },
+      {
+        "name": "root",
+        "description": "(Optional) Displays root-switch status and configuration."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Specifies a summary of port states."
+      },
+      {
+        "name": "totals",
+        "description": "(Optional) Displays the total lines of the spanning-tree state section."
+      },
+      {
+        "name": "uplinkfast",
+        "description": "(Optional) Displays spanning-tree UplinkFast status."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies the VLAN ID. The range is 1 to 4094. If the vlan-id value is omitted, the command applies to the spanning-tree instance for all VLANs."
+      },
+      {
+        "name": "id",
+        "description": "(Optional) Identifies the spanning tree bridge. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1032 Layer 2/3 show spanning-tree"
+      },
+      {
+        "name": "port-channel number",
+        "description": "(Optional) Identifies the Ethernet channel associated with the interfaces."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The keywords and arguments that are available with the show spanning-tree command vary depending on the platform you are using and the network modules that are installed and operational.  The port-channel number values from 257 to 282 are supported on the Content Switching Module (CSM) and the Firewal Services Module (FWSM) only.  The interface-number argument designates the module and port number.",
+    "sourcePage": 1032,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show spanning-tree mst",
+    "context": null,
+    "detail": "Display the information about the Multiple Spanning Tree (MST) protocol.",
+    "syntax": "show spanning-tree mst [ configuration [digest] | instance-id-number ] [ interface interface ] [ detail ] [ service instance ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "instance-id-number",
+        "description": "(Optional) Instance identification number. The range is from 0 to 4094."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information about the MST protocol."
+      },
+      {
+        "name": "interface",
+        "description": "(Optional) Displays the information about the interfaces. See the “Usage Guidelines” section for valid number values."
+      },
+      {
+        "name": "configuration",
+        "description": "(Optional) Displays information about the region configuration."
+      },
+      {
+        "name": "digest",
+        "description": "(Optional) Displays information about the message digest 5 (MD5) algorithm included in the current MST configuration identifier (MSTCI)."
+      },
+      {
+        "name": "interface",
+        "description": "(Optional) Displays information about the interface type."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The valid values for the interface argument depend on the specified interface type and the chassis and module that are used.  For example, if you specify a Gigabit Ethernet interface and have a 48-port 10/100BASE-T Ethernet module that is installed in a 13-slot chassis, valid values for the module number are from 2 to 13 and valid values for the port number are from 1 to 48.  The number of valid values for port-channel number are a maximum of 64 values ranging from 1 to 282.",
+    "sourcePage": 1038,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show udld",
+    "context": null,
+    "detail": "Display UniDirectional Link Detection (UDLD) administrative and operational status for all ports or the specified port.",
+    "syntax": "show udld [ANI | AccessTunnel | Auto-Template | BDI | CEM-PG | GMPLS | GigabitEthernet | HundredGigE | InternalInterface | LISP | Loopback | Null | PROTECTION_GROUP | Port-channel | SDH_ACR | SERIAL-ACR | Serial-PG | TLS-VIF | Tunnel | Tunnel-tp | TwentyFiveGigE | VirtualPortGroup | Vlan | nve] interface_number show udld neighbors show udld fast-hello interface_number",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ANI",
+        "description": "(Optional) Displays UDLD operational status of the Autonomic-Networking virtual interface."
+      },
+      {
+        "name": "AccessTunnel",
+        "description": "(Optional) Displays UDLD operational status of the Access Tunnel Interface."
+      },
+      {
+        "name": "Auto-Template",
+        "description": "(Optional) Displays UDLD operational status of the auto-template interface. The range is from 1 to 999."
+      },
+      {
+        "name": "BDI",
+        "description": "(Optional) Displays UDLD operational status of the Bridge-Domain interface."
+      },
+      {
+        "name": "CEM-PG",
+        "description": "(Optional) Displays UDLD operational status of the Circuit Emulation interface with Protection group."
+      },
+      {
+        "name": "GMPLS",
+        "description": "(Optional) Displays UDLD operational status of the MPLS interface."
+      },
+      {
+        "name": "GigabitEthernet",
+        "description": "(Optional) Displays UDLD operational status of the GigabitEthernet interface."
+      },
+      {
+        "name": "HundredGigE",
+        "description": "(Optional) Displays UDLD operational status of the Hundred Gigabit Ethernet."
+      },
+      {
+        "name": "InternalInterface",
+        "description": "(Optional) Displays UDLD operational status of the internal interface. The range is from 0 to 9."
+      },
+      {
+        "name": "LISP",
+        "description": "(Optional) Displays UDLD operational status of the Locator/ID Separation Protocol Virtual Interface."
+      },
+      {
+        "name": "Loopback",
+        "description": "(Optional) Displays UDLD operational status of the loopback interface. The range is from 0 to 2147483647."
+      },
+      {
+        "name": "Null",
+        "description": "(Optional) Displays UDLD operational status of the null interface."
+      },
+      {
+        "name": "PROTECTION_GROUP",
+        "description": "(Optional) Displays UDLD operational status of the Protection-group controller. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1041 Layer 2/3 show udld"
+      },
+      {
+        "name": "Port-channel",
+        "description": "(Optional) Displays UDLD operational status of the Ethernet channel interfaces. The range is 1 to 128."
+      },
+      {
+        "name": "SDH_ACR",
+        "description": "(Optional) Displays UDLD operational status of the Virtual SDH-ACR controller."
+      },
+      {
+        "name": "SERIAL-ACR",
+        "description": "(Optional) Displays UDLD operational status of the Serial interface with ACR."
+      },
+      {
+        "name": "Serial-PG",
+        "description": "(Optional) Displays UDLD operational status of the Serial interface with Protection Group."
+      },
+      {
+        "name": "TLS-VIF",
+        "description": "(Optional) Displays UDLD operational status of the TLS Virtual Interface."
+      },
+      {
+        "name": "Tunnel",
+        "description": "(Optional) Displays UDLD operational status of the tunnel interface. The range is from 0 to 2147483647."
+      },
+      {
+        "name": "Tunnel-tp",
+        "description": "(Optional) Displays UDLD operational status of the MPLS Transport Profile interface."
+      },
+      {
+        "name": "TwentyFiveGigE",
+        "description": "(Optional) Displays UDLD operational status of the Twenty Five Gigabit Ethernet."
+      },
+      {
+        "name": "VirtualPortGroup",
+        "description": "(Optional) Displays UDLD operational status of the Virtual Port Group."
+      },
+      {
+        "name": "Vlan",
+        "description": "(Optional) Displays UDLD operational status of the VLAN interface. The range is from 1 to 4095."
+      },
+      {
+        "name": "interface_number",
+        "description": "(Optional) ID of the interface and port number. Valid interfaces include physical ports, VLANs, and port channels."
+      },
+      {
+        "name": "nve",
+        "description": "(Optional) Displays UDLD operational status of Network virtualization endpoint interface"
+      },
+      {
+        "name": "neighbors",
+        "description": "(Optional) Displays neighbor information only."
+      },
+      {
+        "name": "fast-hello",
+        "description": "(Optional) Displays ports that have fast-hello configured and their fast-hello operational status."
+      },
+      {
+        "name": "fast-hello interface_number",
+        "description": "(Optional) Displays the fast-hello information of a specific interface."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "If you do not enter an interface ID, administrative and operational UDLD status for all interfaces appear.  Examples: This is an example of output from the show udld interface-id command.  For this display, UDLD is enabled on both ends of the link, and UDLD detects that the link is bidirectional.",
+    "sourcePage": 1041,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show vlan dot1q tag native",
+    "context": null,
+    "detail": "To display the status of tagging on the native VLAN use the show vlan dot1q tag native command.",
+    "syntax": "show vlan dot1q tag native",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC mode (#)"],
+    "usageSummary": null,
+    "sourcePage": 1045,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "source ip interface",
+    "context": null,
+    "detail": "Configure the source IP address.",
+    "syntax": "source ip interface interface_id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface_id",
+        "description": "Source IP address."
+      }
+    ],
+    "modes": ["Property transport (config-property-transport)"],
+    "usageSummary": "This command is optional.  Use this command as an alternative to the peer command.",
+    "sourcePage": 1046,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree backbonefast",
+    "context": null,
+    "detail": "Enable BackboneFast to allow a blocked port on a switch to change immediately to a listening mode.",
+    "syntax": "spanning-tree backbonefast",
+    "noForm": "no spanning-tree backbonefast",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "BackboneFast should be enabled on all of the Cisco devices containing an Ethernet switch network module.  BackboneFast provides for fast convergence in the network backbone after a spanning-tree topology change.  It enables the switch to detect an indirect link failure and to start the spanning-tree reconfiguration sooner than it would under normal spanning-tree rules.",
+    "sourcePage": 1047,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree bpdufilter",
+    "context": null,
+    "detail": "Enable bridge protocol data unit (BPDU) filtering on the interface.",
+    "syntax": "spanning-tree bpdufilter { enable | disable }",
+    "noForm": "no spanning-tree bpdufilter",
+    "params": [
+      {
+        "name": "enable",
+        "description": "Enables BPDU filtering on this interface."
+      },
+      {
+        "name": "disable",
+        "description": "Disables BPDU filtering on this interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Template configuration (config-template)"],
+    "usageSummary": "Caution Be careful when you enter the spanning-tree bpdufilter enable command.  Enabling BPDU filtering on an interface is similar to disabling the spanning tree for this interface.  If you do not use this command correctly, you might create bridging loops.",
+    "sourcePage": 1048,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree bpduguard",
+    "context": null,
+    "detail": "Enable bridge protocol data unit (BPDU) guard on the interface.",
+    "syntax": "spanning-tree bpduguard { enable | disable }",
+    "noForm": "no spanning-tree bpduguard",
+    "params": [
+      {
+        "name": "enable",
+        "description": "Enables BPDU guard on this interface."
+      },
+      {
+        "name": "disable",
+        "description": "Disables BPDU guard on this interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Template configuration (config-template)"],
+    "usageSummary": "BPDU guard prevents a port from receiving BPDUs.  Typically, this feature is used in a service-provider environment where the network administrator wants to prevent an access port from participating in the spanning tree.  If the port still receives a BPDU, it is put in the error-disabled state as a protective measure.",
+    "sourcePage": 1050,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree bpdu sender-conflict",
+    "context": null,
+    "detail": "Enable spanning tree protocol BPDU sender conflict feature.",
+    "syntax": "spanning-tree bpdu sender-conflict",
+    "noForm": "no spanning-tree bpdu sender-conflict",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "When the device is in RSTP mode, BPDU packets are transmitted every two seconds from a designated port to a non-designated port.  The arrival time of the messages can be monitored in the ports which are in the non-designated state.  When you use the spanning-tree bpdu sender-conflict command, if there is any change in the RSTP mode due to sender conflict, the device generates a notification.",
+    "sourcePage": 1052,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree bridge assurance",
+    "context": null,
+    "detail": "Enable bridge assurance on all network ports on the device.",
+    "syntax": "spanning-tree bridge assurance",
+    "noForm": "no spanning-tree bridge assurance",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Bridge assurance protects against a unidirectional link failure or other software failure and a device that continues to forward data traffic when it is no longer running the spanning tree algorithm.  Bridge assurance is enabled only on spanning tree network ports that are point-to-point links.  Both ends of the link must have bridge assurance enabled.",
+    "sourcePage": 1053,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree cost",
+    "context": null,
+    "detail": "Set the path cost of the interface for Spanning Tree Protocol (STP) calculations.",
+    "syntax": "spanning-tree cost cost",
+    "noForm": "no spanning-tree cost",
+    "params": [
+      {
+        "name": "cost",
+        "description": "Path cost. The range is from 1 to 200000000."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Template configuration (config-template)"],
+    "usageSummary": "When you specify a value for the cost argument, higher values indicate higher costs.  This range applies regardless of the protocol type specified.  If a loop occurs, spanning tree uses the path cost when selecting an interface to place into the forwarding state.",
+    "sourcePage": 1054,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree etherchannel guard misconfig",
+    "context": null,
+    "detail": "Display an error message when a loop due to a channel misconfiguration is detected.",
+    "syntax": "spanning-tree etherchannel guard misconfig",
+    "noForm": "no spanning-tree etherchannel guard misconfig",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "EtherChannel uses either Port Aggregation Protocol (PAgP) or Link Aggregation Control Protocol (LACP) and does not work if the EtherChannel mode of the interface is enabled using the channel-group group-number mode on command.  The spanning-tree etherchannel guard misconfig command detects two types of errors: misconfiguration and misconnection errors.  A misconfiguration error is an error between the port-channel and an individual port.",
+    "sourcePage": 1056,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree extend system-id",
+    "context": null,
+    "detail": "Enable the extended-system ID feature on chassis that support 1024 MAC addresses.",
+    "syntax": "spanning-tree extend system-id",
+    "noForm": "no spanning-tree extend system-id",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Enabling or disabling the extended-system ID updates the bridge IDs of all active Spanning Tree Protocol (STP) instances, which might change the spanning-tree topology.",
+    "sourcePage": 1058,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree guard",
+    "context": null,
+    "detail": "Enable or disable the guard mode.",
+    "syntax": "spanning-tree guard { loop | root | none }",
+    "noForm": "no spanning-tree guard",
+    "params": [
+      {
+        "name": "loop",
+        "description": "Enables the loop-guard mode on the interface."
+      },
+      {
+        "name": "root",
+        "description": "Enables root-guard mode on the interface."
+      },
+      {
+        "name": "none",
+        "description": "Sets the guard mode to none."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Template configuration (config-template)"],
+    "usageSummary": null,
+    "sourcePage": 1059,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree link-type",
+    "context": null,
+    "detail": "Configure a link type for a port.",
+    "syntax": "spanning-tree link-type { point-to-point | shared }",
+    "noForm": "no spanning-tree link-type",
+    "params": [
+      {
+        "name": "point-to-point",
+        "description": "Specifies that the interface is a point-to-point link."
+      },
+      {
+        "name": "shared",
+        "description": "Specifies that the interface is a shared medium."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Template configuration (config-template)"],
+    "usageSummary": "Rapid Spanning Tree Protocol Plus (RSTP+) fast transition works only on point-to-point links between two bridges.  By default, the switch derives the link type of a port from the duplex mode.  A full-duplex port is considered as a point-to-point link while a half-duplex configuration is assumed to be on a shared link.",
+    "sourcePage": 1060,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree loopguard default",
+    "context": null,
+    "detail": "Enable loop guard as a default on all ports of a given bridge.",
+    "syntax": "spanning-tree loopguard default",
+    "noForm": "no spanning-tree loopguard default",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Loop guard provides additional security in the bridge network.  Loop guard prevents alternate or root ports from becoming the designated port due to a failure that could lead to a unidirectional link.  Loop guard operates only on ports that are considered point to point by the spanning tree.",
+    "sourcePage": 1062,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mode",
+    "context": null,
+    "detail": "Switch between Per-VLAN Spanning Tree+ (PVST+), Rapid-PVST+, and Multiple Spanning Tree (MST) modes.",
+    "syntax": "spanning-tree mode [ pvst | mst | rapid-pvst ]",
+    "noForm": "no spanning-tree mode",
+    "params": [
+      {
+        "name": "pvst",
+        "description": "(Optional) PVST+ mode."
+      },
+      {
+        "name": "mst",
+        "description": "(Optional) MST mode."
+      },
+      {
+        "name": "rapid-pvst",
+        "description": "(Optional) Rapid-PVST+ mode."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Note Be careful when using the spanning-tree mode command to switch between PVST+, Rapid-PVST+, and MST modes.  When you enter the command, all spanning-tree instances are stopped for the previous mode and are restarted in the new mode.  Using this command may cause disruption of user traffic.",
+    "sourcePage": 1063,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst",
+    "context": null,
+    "detail": "Set the priority parameters or configure the device as a root for any Multiple Spanning Tree (MST) instance.",
+    "syntax": "spanning-tree mst instance-id { priority priority | root { primary | secondary } }",
+    "noForm": "no spanning-tree mst instance-id { { priority priority | root { primary | secondary } } }",
+    "params": [
+      {
+        "name": "priority priority",
+        "description": "Port priority for an instance. The range is from 0 to 61440 in increments of 4096."
+      },
+      {
+        "name": "root",
+        "description": "Configures the device as a root."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 1064,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst configuration",
+    "context": null,
+    "detail": "Enter MST-configuration submode.",
+    "syntax": "spanning-tree mst configuration",
+    "noForm": "no spanning-tree mst configuration",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The MST configuration consists of three main parameters: • Instance VLAN mapping: See the instance command.  • Region name: See the name command (MST configuration submode).  • Configuration revision number: See the revision command.",
+    "sourcePage": 1065,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst forward-time",
+    "context": null,
+    "detail": "Set the forward-delay timer for all the instances on the device.",
+    "syntax": "spanning-tree mst forward-time seconds",
+    "noForm": "no spanning-tree mst forward-time",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Number of seconds to set the forward-delay timer for all the instances on the device. The range is from 4 to 30 seconds."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 1067,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst hello-time",
+    "context": null,
+    "detail": "Set the hello-time delay timer for all the instances on the device.",
+    "syntax": "spanning-tree mst hello-time seconds",
+    "noForm": "no spanning-tree mst hello-time",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Number of seconds to set the hello-time delay timer for all the instances on the device. The range is from 1 to 10 in seconds."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "If you do not specify the hello-time value, the value is calculated from the network diameter.",
+    "sourcePage": 1068,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst max-age",
+    "context": null,
+    "detail": "Set the max-age timer for all the instances on the device.",
+    "syntax": "spanning-tree mst max-age seconds",
+    "noForm": "no spanning-tree mst max-age",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Number of seconds to set the max-age timer for all the instances on the device. The range is from 6 to 40 in seconds."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 1069,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst max-hops",
+    "context": null,
+    "detail": "Specify the number of possible hops in the region before a bridge protocol data unit (BPDU) is discarded.",
+    "syntax": "spanning-tree mst max-hops hopnumber",
+    "noForm": "no spanning-tree mst max-hops",
+    "params": [
+      {
+        "name": "hopnumber",
+        "description": "Number of possible hops in the region before a BPDU is discarded. The range is from 1 to 255 hops."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 1070,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst pre-standard",
+    "context": null,
+    "detail": "Configure a port to transmit only prestandard bridge protocol data units (BPDUs).",
+    "syntax": "spanning-tree mst pre-standard",
+    "noForm": "no spanning-tree mst pre-standard",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Even with the default configuration, the port can receive both prestandard and standard BPDUs.  Prestandard BPDUs are based on the Cisco IOS Multiple Spanning Tree (MST) implementation that was created before the IEEE standard was finalized.  Standard BPDUs are based on the finalized IEEE standard.",
+    "sourcePage": 1071,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst priority",
+    "context": null,
+    "detail": "Set the bridge priority for an instance.",
+    "syntax": "spanning-tree mst instance priority priority",
+    "noForm": "no spanning-tree mst priority",
+    "params": [
+      {
+        "name": "instance",
+        "description": "Instance identification number; valid values are from 0 to 4094. priority priority Specifies the bridge priority; see the “Usage Guidelines” section for valid values and additional information."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "You can set the bridge priority in increments of 4096 only.  When you set the priority, valid values are 0, 4096, 8192, 12288, 16384, 20480, 24576, 28672, 32768, 36864, 40960, 45056, 49152, 53248, 57344, and 61440.  You can set the priority to 0 to make the switch root.",
+    "sourcePage": 1073,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst root",
+    "context": null,
+    "detail": "Designate the primary and secondary root switch and set the timer value for an instance.",
+    "syntax": "spanning-tree mst instance root { primary | secondary } [ diameter diameter [ hello-time seconds ]]",
+    "noForm": "no spanning-tree mst instance root",
+    "params": [
+      {
+        "name": "instance",
+        "description": "Instance identification number. The range is from 0 to 4094."
+      },
+      {
+        "name": "primary",
+        "description": "Specifies the high enough priority (low value) to make the root of the spanning-tree instance."
+      },
+      {
+        "name": "secondary",
+        "description": "Specifies the switch as a secondary root, should the primary root fail."
+      },
+      {
+        "name": "diameter diameter",
+        "description": "(Optional) Specifies the timer values for the root switch that are based on the network diameter. The range is from 1 to 7."
+      },
+      {
+        "name": "hello-time seconds",
+        "description": "(Optional) Specifies the duration between the generation of configuration messages by the root switch."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "You can enter instance as a single instance or a range of instances, for example, 0-3,5,7-9.  The spanning-tree mst root secondary value is 16384.  The diameter diameter and hello-time seconds keywords and arguments are available for instance 0 only.",
+    "sourcePage": 1074,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree mst simulate pvst global",
+    "context": null,
+    "detail": "To enable Per-VLAN Spanning Tree (PVST) simulation globally, enter the spanning-tree mst simulate pvst global command in global configuration mode. To disable PVST simulation globally, enter the no form of this command.",
+    "syntax": "spanning-tree mst simulate pvst global",
+    "noForm": "no spanning-tree mst simulate pvst global",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "PVST simulation is enabled by default so that all interfaces on the device interoperate between Multiple Spanning Tree (MST) and Rapid Per-VLAN Spanning Tree Plus (PVST+).  To prevent an accidental connection to a device that does not run MST as the default Spanning Tree Protocol (STP) mode, you can disable PVST simulation.  If you disable PVST simulation, the MST-enabled port moves to the blocking state once it detects it is connected to a Rapid PVST+-enabled port.",
+    "sourcePage": 1075,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree pathcost method",
+    "context": null,
+    "detail": "Set the default path-cost calculation method.",
+    "syntax": "spanning-tree pathcost method { long | short }",
+    "noForm": "no spanning-tree pathcost method",
+    "params": [
+      {
+        "name": "long",
+        "description": "Specifies the 32-bit based values for default port-path costs."
+      },
+      {
+        "name": "short",
+        "description": "Specifies the 16-bit based values for default port-path costs."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The long path-cost calculation method utilizes all 32 bits for path-cost calculation and yields values in the range of 1 through 200,000,000.  The short path-cost calculation method (16 bits) yields values in the range of 1 through 65535.",
+    "sourcePage": 1076,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree port-priority",
+    "context": null,
+    "detail": "Set an interface priority when two bridges tie for position as the root bridge.",
+    "syntax": "spanning-tree port-priority port-priority",
+    "noForm": "no spanning-tree port-priority",
+    "params": [
+      {
+        "name": "port-priority",
+        "description": "Port priority. The range is from 0 to 240 in increments of 16 . The default is 128."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Template configuration (config-if)"],
+    "usageSummary": "The priority you set breaks the tie between two bridges to be designated as a root bridge.",
+    "sourcePage": 1077,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree portfast edge bpdufilter default",
+    "context": null,
+    "detail": "Enable bridge protocol data unit (BPDU) filtering by default on all PortFast ports.",
+    "syntax": "spanning-tree portfast edge bpdufilter default",
+    "noForm": "no spanning-tree portfast edge bpdufilter default",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The spanning-tree portfast edge bpdufilter command enables BPDU filtering globally on PortFast ports.  BPDU filtering prevents a port from sending or receiving any BPDUs.  You can override the effects of the portfast edge bpdufilter default command by configuring BPDU filtering at the interface level.",
+    "sourcePage": 1079,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree portfast edge bpduguard default",
+    "context": null,
+    "detail": "Enable bridge protocol data unit (BPDU) guard by default on all PortFast ports.",
+    "syntax": "spanning-tree portfast edge bpduguard default",
+    "noForm": "no spanning-tree portfast edge bpduguard default",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Caution Be careful when using this command.  You should use this command only with interfaces that connect to end stations; otherwise, an accidental topology loop could cause a data-packet loop and disrupt the device and network operation.  BPDU guard disables a port if it receives a BPDU.",
+    "sourcePage": 1081,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree portfast default",
+    "context": null,
+    "detail": "Enable PortFast by default on all access ports.",
+    "syntax": "spanning-tree portfast { edge [ bpdufilter | bpduguard ] | network | normal } default",
+    "noForm": "no spanning-tree portfast { edge [ bpdufilter | bpduguard ] | network | normal } default",
+    "params": [
+      {
+        "name": "bpdufilter",
+        "description": "Enables PortFast edge BPDU filter by default on all PortFast edge ports."
+      },
+      {
+        "name": "bpduguard",
+        "description": "Enables PortFast edge BPDU guard by default on all PortFast edge ports."
+      },
+      {
+        "name": "edge",
+        "description": "Enables PortFast edge mode by default on all switch access ports."
+      },
+      {
+        "name": "network",
+        "description": "Enables PortFast network mode by default on all switch access ports."
+      },
+      {
+        "name": "normal",
+        "description": "Enables PortFast normal mode by default on all switch access ports."
+      }
+    ],
+    "modes": [
+      "Global configuration (config)",
+      "Release Modification",
+      "Cisco IOS XE Everest 16.5.1a This command was introduced.",
+      "Usage Guidelines",
+      "Note Be careful when using this command. You should use this command only with interfaces that connect to end stations; otherwise, an accidental topology loop could cause a data-packet loop and disrupt the operation of the router or switch and the network.",
+      "An interface with PortFast mode enabled is moved directly to the spanning-tree forwarding state when linkup occurs without waiting for the standard forward-time delay. You can enable PortFast mode on individual interfaces using the spanning-tree portfast (interface) command.",
+      "Examples This example shows how to enable PortFast edge mode with BPDU Guard by default on all access ports:",
+      "Device(config)# spanning-tree portfast edge bpduguard default Device(config)#",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1082 Layer 2/3 spanning-tree portfast default",
+      "Related Commands Command Description",
+      "show spanning-tree Displays information about the spanning-tree state.",
+      "spanning-tree portfast (interface) Enables PortFast on a specific interface.",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1083 Layer 2/3"
+    ],
+    "usageSummary": "Note Be careful when using this command.  You should use this command only with interfaces that connect to end stations; otherwise, an accidental topology loop could cause a data-packet loop and disrupt the operation of the router or switch and the network.  An interface with PortFast mode enabled is moved directly to the spanning-tree forwarding state when linkup occurs without waiting for the standard forward-time delay.",
+    "sourcePage": 1082,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree transmit hold-count",
+    "context": null,
+    "detail": "Specify the transmit hold count.",
+    "syntax": "spanning-tree transmit hold-count value",
+    "noForm": "no spanning-tree transmit hold-count",
+    "params": [
+      {
+        "name": "value",
+        "description": "Number of bridge protocol data units (BPDUs) that can be sent before pausing for 1 second. The range is from 1 to 20."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "This command is supported on all spanning-tree modes.  The transmit hold count determines the number of BPDUs that can be sent before pausing for 1 second.",
+    "sourcePage": 1084,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree uplinkfast",
+    "context": null,
+    "detail": "Enable UplinkFast.",
+    "syntax": "spanning-tree uplinkfast [ max-update-rate packets-per-second ]",
+    "noForm": "no spanning-tree uplinkfast [max-update-rate]",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the spanning-tree uplinkfast max-update-rate command to enable UplinkFast (if it is not already enabled) and change the rate at which update packets are sent.  Use the no form of this command to return to the default rate.",
+    "sourcePage": 1085,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning-tree vlan",
+    "context": null,
+    "detail": "Configure Spanning Tree Protocol (STP) on a per-virtual LAN (VLAN) basis.",
+    "syntax": "spanning-tree vlan vlan-id [ forward-time seconds | hello-time seconds | max-age seconds | priority priority | root [ primary | secondary ] ]",
+    "noForm": "no spanning-tree vlan vlan-id [ forward-time | hello-time | max-age | priority | root ]",
+    "params": [
+      {
+        "name": "vlan id",
+        "description": "VLAN identification number. The range is from 1 to 4094. forward-time seconds (Optional) Sets the STP forward delay time. The range is from 4 to 30 seconds."
+      },
+      {
+        "name": "hello-time seconds",
+        "description": "(Optional) Specifies the duration, in seconds, between the generation of configuration messages by the root switch. The range is from 1 to 10 seconds."
+      },
+      {
+        "name": "max-age seconds",
+        "description": "(Optional) Sets the maximum number of seconds the information in a bridge packet data unit (BPDU) is valid. the range is from 6 to 40 seconds."
+      },
+      {
+        "name": "priority priority",
+        "description": "(Optional) Sets the STP bridge priority. the range is from 0 to 65535."
+      },
+      {
+        "name": "root primary",
+        "description": "(Optional) Forces this switch to be the root bridge."
+      },
+      {
+        "name": "root secondary",
+        "description": "(Optional) Specifies this switch to act as the root switch should the primary root fail."
+      }
+    ],
+    "modes": [
+      "Global configuration (config)",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1086 Layer 2/3 spanning-tree vlan",
+      "Release Modification",
+      "Cisco IOS XE Everest 16.5.1a This command was introduced.",
+      "Usage Guidelines",
+      "Caution • When disabling spanning tree on a VLAN using the no spanning-tree vlan vlan-id command, ensure that all switches and bridges in the VLAN have spanning tree disabled. You cannot disable spanning tree on some switches and bridges in a VLAN and leave it enabled on other switches and bridges in the same VLAN because switches and bridges with spanning tree enabled have incomplete information about the physical topology of the network. • We do not recommend disabling spanning tree, even in a topology that is free of physical loops. Spanning tree is a safeguard against misconfigurations and cabling errors. Do not disable spanning tree in a VLAN without ensuring that there are no physical loops present in the VLAN.",
+      "When you set the max-age seconds parameter, if a bridge does not hear bridge protocol data units (BPDUs) from the root bridge within the specified interval, it assumes that the network has changed and recomputes the spanning-tree topology. The spanning-tree root primary command alters this switch’s bridge priority to 8192. If you enter the spanning-tree root primary command and the switch does not become the root switch, then the bridge priority is changed to 100 less than the bridge priority of the current bridge. If the switch still does not become the root, an error results. The spanning-tree root secondary command alters this switch’s bridge priority to 16384. If the root switch should fail, this switch becomes the next root switch. Use the spanning-tree root commands on backbone switches only. The spanning-tree etherchannel guard misconfig command detects two types of errors: misconfiguration and misconnection errors. A misconfiguration error is an error between the port-channel and an individual port. A misconnection error is an error between a switch that is channeling more ports and a switch that is not using enough Spanning Tree Protocol (STP) Bridge Protocol Data Units (BPDUs) to detect the error. In this case, the switch will only error disable an EtherChannel if the switch is a nonroot switch.",
+      "Examples The following example shows how to enable spanning tree on VLAN 200:",
+      "Device(config)# spanning-tree vlan 200",
+      "The following example shows how to configure the switch as the root switch for VLAN 10 with a network diameter of 4:",
+      "Device(config)# spanning-tree vlan 10 root primary diameter 4",
+      "The following example shows how to configure the switch as the secondary root switch for VLAN 10 with a network diameter of 4:",
+      "Device(config)# spanning-tree vlan 10 root secondary diameter 4",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1087 Layer 2/3 spanning-tree vlan",
+      "Related Commands Command Description",
+      "spanning-tree cost Sets the path cost of the interface for STP calculations.",
+      "spanning-tree etherchannel guard Displays an error message when a loop due to a channel misconfig misconfiguration is detected",
+      "spanning-tree port-priority Sets an interface priority when two bridges tie for position as the root bridge.",
+      "spanning-tree uplinkfast Enables the UplinkFast feature.",
+      "show spanning-tree Displays spanning-tree information for the specified spanning-tree instances.",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1088 Layer 2/3 switchport"
+    ],
+    "usageSummary": "Caution • When disabling spanning tree on a VLAN using the no spanning-tree vlan vlan-id command, ensure that all switches and bridges in the VLAN have spanning tree disabled.  You cannot disable spanning tree on some switches and bridges in a VLAN and leave it enabled on other switches and bridges in the same VLAN because switches and bridges with spanning tree enabled have incomplete information about the physical topology of the network.  • We do not recommend disabling spanning tree, even in a topology that is free of physical loops.",
+    "sourcePage": 1086,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport",
+    "context": null,
+    "detail": "Put an interface that is in Layer 3 mode into Layer 2 mode for Layer 2 configuration.",
+    "syntax": "switchport",
+    "noForm": "no switchport",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the no switchport command (without parameters) to set the interface to the routed-interface status and to erase all Layer 2 configurations.  You must use this command before assigning an IP address to a routed port.  Entering the no switchport command shuts the port down and then reenables it, which might generate messages on the device to which the port is connected.",
+    "sourcePage": 1089,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport access vlan",
+    "context": null,
+    "detail": "Configure a port as a static-access port.",
+    "syntax": "switchport access vlan {vlan-id }",
+    "noForm": "no switchport access vlan",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "VLAN ID of the access mode VLAN; the range is 1 to 4094."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The port must be in access mode before the switchport access vlan command can take effect.  If the switchport mode is set to access vlan vlan-id, the port operates as a member of the specified VLAN.  An access port can be assigned to only one VLAN.",
+    "sourcePage": 1090,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport dot1q ethertype",
+    "context": null,
+    "detail": "Specify the EtherType value to be programmed on the interface.",
+    "syntax": "switchport dot1q ethertype value",
+    "noForm": "no switchport dot1q ethertype value",
+    "params": [
+      {
+        "name": "value",
+        "description": "EtherType value for 802.1Q encapsulation; valid values are from 0x600 to 0xFFFF."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You can configure a custom EtherType-field value on trunk ports and on access ports.  Each port supports only one EtherType-field value.  A port that is configured with a custom EtherType-field value does not recognize frames that have any other EtherType-field value as tagged frames.",
+    "sourcePage": 1091,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport mode",
+    "context": null,
+    "detail": "Configure the VLAN membership mode of a port.",
+    "syntax": "switchport mode {access | dynamic | {auto | desirable} | trunk} noswitchport mode {access | dynamic | {auto | desirable} | trunk}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "access",
+        "description": "Sets the port to access mode (either static-access or dynamic-access depending on the setting of the switchport access vlan interface configuration command). The port is set to access unconditionally and operates as a nontrunking, single VLAN interface that sends and receives nonencapsulated (non-tagged) frames. An access port can be assigned to only one VLAN."
+      },
+      {
+        "name": "dynamic auto",
+        "description": "Sets the port trunking mode dynamic parameter to auto to specify that the interface convert the link to a trunk link. This is the default switchport mode."
+      },
+      {
+        "name": "dynamic",
+        "description": "Sets the port trunking mode dynamic parameter to desirable to specify that the interface"
+      },
+      {
+        "name": "desirable",
+        "description": "actively attempt to convert the link to a trunk link."
+      },
+      {
+        "name": "trunk",
+        "description": "Sets the port to trunk unconditionally. The port is a trunking VLAN Layer 2 interface. The port sends and receives encapsulated (tagged) frames that identify the VLAN of origination. A trunk is a point-to-point link between two switches or between a switch and a router."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "A configuration that uses the access,or trunk keywords takes effect only when you configure the port in the appropriate mode by using the switchport mode command.  The static-access and trunk configuration are saved, but only one configuration is active at a time.  When you enter access mode, the interface changes to permanent nontrunking mode and negotiates to convert the link into a nontrunk link even if the neighboring interface does not agree to the change.",
+    "sourcePage": 1092,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport nonegotiate",
+    "context": null,
+    "detail": "Specify that Dynamic Trunking Protocol (DTP) negotiation packets are not sent on the Layer 2 interface.",
+    "syntax": "switchport nonegotiate",
+    "noForm": "no switchport nonegotiate",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The no switchport nonegotiate command removes nonegotiate status.  This command is valid only when the interface switchport mode is access or trunk (configured by using the switchport mode access or the switchport mode trunk interface configuration command).  This command returns an error if you attempt to execute it in dynamic (auto or desirable) mode.",
+    "sourcePage": 1094,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport trunk",
+    "context": null,
+    "detail": "Set the trunk characteristics when the interface is in trunking mode.",
+    "syntax": "Note The keyword native vlan tag is supported only on Cisco Catalyst 9500 Series Switches - High Performance. switchport trunk {allowed vlan vlan-list | native vlan {tag |vlan-id} | pruning vlan vlan-list}",
+    "noForm": "no switchport trunk {allowed vlan | native vlan[tag] | pruning vlan}",
+    "params": [
+      {
+        "name": "native vlan vlan-id",
+        "description": "Sets the native VLAN for sending and receiving untagged traffic when the interface is in IEEE 802.1Q trunking mode. The range is 1 to 4094."
+      },
+      {
+        "name": "native vlan tag",
+        "description": "Enables native VLAN tagging on a particular trunk port. pruning vlan vlan-list Sets the list of VLANs that are eligible for VTP pruning when in trunking mode. See the Usage Guidelines for the vlan-list choices."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The vlan-list format is all | none | [add | remove | except] vlan-atom [,vlan-atom... ]: • all specifies all VLANs from 1 to 4094.  This is the default.",
+    "sourcePage": 1095,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport voice vlan",
+    "context": null,
+    "detail": "Configure voice VLAN on the port.",
+    "syntax": "switchport voice vlan {vlan-id | dot1p | none | untagged | name vlan_name}",
+    "noForm": "no switchport voice vlan",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "The VLAN to be used for voice traffic. The range is 1 to 4094. By default, the IP phone forwards the voice traffic with an IEEE 802.1Q priority of 5."
+      },
+      {
+        "name": "dot1p",
+        "description": "Configures the telephone to use IEEE 802.1p priority tagging and uses VLAN 0 (the native VLAN). By default, the Cisco IP phone forwards the voice traffic with an IEEE 802.1p priority of 5."
+      },
+      {
+        "name": "none",
+        "description": "Does not instruct the IP telephone about the voice VLAN. The telephone uses the configuration from the telephone key pad."
+      },
+      {
+        "name": "untagged",
+        "description": "Configures the telephone to send untagged voice traffic. This is the default for the telephone. name vlan_name (Optional) Specifies the VLAN name to be used for voice traffic. You can enter up to 128 characters."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You should configure voice VLAN on Layer 2 access ports.  You must enable Cisco Discovery Protocol (CDP) on the switch port connected to the Cisco IP phone for the device to send configuration information to the phone.  CDP is enabled by default globally and on the interface.",
+    "sourcePage": 1098,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "transport unicast ipv4 local loopback",
+    "context": null,
+    "detail": "Configure a unicast IPv4 connection from a loopback interface.",
+    "syntax": "transport unicast ipv4 local loopback value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "value",
+        "description": "Loopback interface number. The maximum number of sessions supported is 127."
+      }
+    ],
+    "modes": ["Property configuration (config-property)"],
+    "usageSummary": "Configure the PTP property name using the ptp property command before configuring a unicast IPv4 connection from a loopback interface.",
+    "sourcePage": 1101,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "udld",
+    "context": null,
+    "detail": "Enable aggressive or normal mode in the UniDirectional Link Detection (UDLD) and to set the configurable message timer time.",
+    "syntax": "udld {aggressive | enable | fast-hello error-reporting | message time message-timer-interval | recovery interval recovery-timer-interval}",
+    "noForm": "no udld {aggressive | enable | message}",
+    "params": [
+      {
+        "name": "aggressive",
+        "description": "Enables UDLD in aggressive mode on all fiber-optic interfaces."
+      },
+      {
+        "name": "enable",
+        "description": "Enables UDLD in normal mode on all fiber-optic interfaces."
+      },
+      {
+        "name": "fast-hello error-reporting",
+        "description": "Reports link failure on the console instead of err-disabling the affected Fast UDLD port."
+      },
+      {
+        "name": "message time",
+        "description": "Configures the period of time between UDLD probe messages on"
+      },
+      {
+        "name": "message-timer-interval",
+        "description": "ports that are in the advertisement phase and are determined to be bidirectional. The range is 1 to 90 seconds. The default is 15 seconds."
+      },
+      {
+        "name": "recovery interval",
+        "description": "Configures the error disable recovery timer value. recovery-timer-interval"
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "UDLD supports two modes of operation: normal (the default) and aggressive.  In normal mode, UDLD detects unidirectional links due to misconnected interfaces on fiber-optic connections.  In aggressive mode, UDLD also detects unidirectional links due to one-way traffic on fiber-optic and twisted-pair links and due to misconnected interfaces on fiber-optic links.",
+    "sourcePage": 1102,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "udld fast-hello",
+    "context": null,
+    "detail": "Enable Fast UniDirectional Link Detection (UDLD) on an individual interface which has UDLD configured on it.",
+    "syntax": "udld fast-hello message-timer-interval",
+    "noForm": null,
+    "params": [
+      {
+        "name": "message-timer-interval",
+        "description": "Configures time in milliseconds between sending of messages in steady state. The range is from 200 to 1000 milliseconds."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "A UDLD-capable port cannot detect a unidirectional link if it is connected to a UDLD-incapable port of another device.  UDLD supports two modes of operation: normal (the default) and aggressive.  In normal mode, UDLD detects unidirectional links due to misconnected interfaces on fiber-optic connections.",
+    "sourcePage": 1104,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "udld port",
+    "context": null,
+    "detail": "Enable UniDirectional Link Detection (UDLD) on an individual interface or to prevent a fiber-optic interface from being enabled by the udld command in global configuration mode.",
+    "syntax": "udld port [aggressive | disable]",
+    "noForm": "no udld port [aggressive]",
+    "params": [
+      {
+        "name": "aggressive",
+        "description": "(Optional) Enables UDLD in aggressive mode on the specified interface."
+      },
+      {
+        "name": "disable",
+        "description": "(Optional) Disables UDLD on the specified interface despite the global UDLD configuration."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "A UDLD-capable port cannot detect a unidirectional link if it is connected to a UDLD-incapable port of another device.  UDLD supports two modes of operation: normal (the default) and aggressive.  In normal mode, UDLD detects unidirectional links due to misconnected interfaces on fiber-optic connections.",
+    "sourcePage": 1105,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "udld reset",
+    "context": null,
+    "detail": "Reset all interfaces disabled by UniDirectional Link Detection (UDLD) and permit traffic to begin passing through them again (though other features, such as spanning tree, Port Aggregation Protocol (PAgP), and Dynamic Trunking Protocol (DTP) still have their normal effects, if enabled).",
+    "syntax": "udld reset",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If the interface configuration is still enabled for UDLD, these ports begin to run UDLD again and are disabled for the same reason if the problem has not been corrected.  This example shows how to reset all interfaces disabled by UDLD: Device> enable Device# udld reset 1 ports shutdown by UDLD were reset.  Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 1107,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vlan dot1q tag native",
+    "context": null,
+    "detail": "Enable tagging of native VLAN frames on all IEEE 802.1Q trunk ports.",
+    "syntax": "vlan dot1q tag native",
+    "noForm": "no vlan dot1q tag native",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "When enabled, native VLAN packets going out of all IEEE 802. 1Q trunk ports are tagged.  When disabled, native VLAN packets going out of all IEEE 802.",
+    "sourcePage": 1108,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vtp mode",
+    "context": null,
+    "detail": "Configure the VLAN Trunking Protocol (VTP) device mode, use thevtp mode command. To revert to the default server mode.",
+    "syntax": "vtp mode {client | off |transparent}",
+    "noForm": "no vtp mode",
+    "params": [
+      {
+        "name": "client",
+        "description": "Specifies the device as a client."
+      },
+      {
+        "name": "off",
+        "description": "Specifies the device mode as off."
+      },
+      {
+        "name": "server",
+        "description": "Specifies the device as a server."
+      },
+      {
+        "name": "transparent",
+        "description": "Specifies the device mode as transparent."
+      }
+    ],
+    "modes": [
+      "Global configuration mode.",
+      "Usage Guidelines VLAN Trunking Protocol (VTP) is a Cisco Proprietary Layer 2 messaging protocol used to distribute the VLAN configuration information across multiple devices within a VTP domain. Without VTP, you must configure VLANs in each device in the network. Using VTP, you configure VLANs on a VTP server and then distribute the configuration to other VTP devices in the VTP domain. In VTP transparent mode, you can configure VLANs (add, delete, or modify) and private VLANs. VTP transparent switches do not participate in VTP. A VTP transparent switch does not advertise its VLAN configuration and does not synchronize its VLAN configuration based on received advertisements. The VTP configuration revision number is always set to zero (0). Transparent switches do forward VTP advertisements that they receive out their trunk ports in VTP version 2. A VTP device mode can be one of the following: • server —You can create, modify, and delete VLANs and specify other configuration parameters, such as VTP version, for the entire VTP domain. VTP servers advertise their VLAN configuration to other switches in the same VTP domain and synchronize their VLAN configuration with other switches based on advertisements received over trunk links. VTP server is the default mode.",
+      "Note You can configure VLANs 1 to 1005. VLANs 1002 to 1005 are reserved for token ring in VTP version 2.",
+      "• client —VTP clients behave the same way as VTP servers, but you cannot create, change, or delete VLANs on a VTP client.",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1109 Layer 2/3 vtp mode",
+      "• transparent —You can configure VLANs (add, delete, or modify) and private VLANs. VTP transparent switches do not participate in VTP. A VTP transparent switch does not advertise its VLAN configuration and does not synchronize its VLAN configuration based on received advertisements. Because of this, the VTP configuration revision number is always set to zero (0). Transparent switches do forward VTP advertisements that they receive out their trunk ports in VTP version 2. • off —In the above three described modes, VTP advertisements are received and transmitted as soon as the switch enters the management domain state. In the VTP off mode, switches behave the same as in VTP transparent mode with the exception that VTP advertisements are not forwarded. You can use this VTP device to monitor the VLANs.",
+      "Note If you use the no vtp mode command to remove a VTP device, the device will be configured as a VTP server. Use the vtp mode off command to remove a VTP device.",
+      "Example This example shows how to configure a VTP device in transparent mode and add VLANs 2, 3, and 4: Device> enable Device(config)#vtp mode transparent Device(config)# vlan 2-4",
+      "Example This example shows how to remove a device configured as a VTP device: Device> enable Device(config)# vtp mode off",
+      "Example This example shows how to configure a VTP device as a VTP server and adds VLANs 2 and 3: Device> enable Device# vtp mode server Device(config)# vlan 2,3",
+      "Example This example shows how to configure a VTP device as a client: Device> enable Device# vtp mode client",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1110 PA R T VIII Multiprotocol Label Switching • MPLS Commands, on page 1113 MPLS Commands • autodiscovery, on page 1115 • backup peer, on page 1117 • encapsulation mpls, on page 1118 • ip pim sparse-mode, on page 1119 • ip pim nbma-mode, on page 1120 • ip ospf network, on page 1121 • ip multicast mrinfo-filter, on page 1123 • ip multicast-routing, on page 1124 • l2 vfi autodiscovery, on page 1125 • l2 vfi manual, on page 1126 • l2vpn vfi context , on page 1128 • l2vpn xconnect context, on page 1129 • label mode , on page 1130 • load-balance, on page 1131 • mdt log-reuse, on page 1133 • mdt default, on page 1134 • mdt data, on page 1136 • member (l2vpn vfi), on page 1138 • member pseudowire, on page 1139 • mpls label range, on page 1141 • mpls label protocol (interface configuration), on page 1144 • mpls label protocol (global configuration), on page 1145 • mpls ldp logging neighbor-changes, on page 1146 • mpls ip (interface configuration), on page 1147 • mpls ip (global configuration), on page 1148 • mpls ip default-route, on page 1149 • neighbor (MPLS), on page 1150 • show ip pim mdt send, on page 1151 • show ip pim mdt receive, on page 1152 • show ip pim mdt history, on page 1154 • show ip pim mdt bgp, on page 1155 • show mpls label range, on page 1156 • show mpls ldp bindings, on page 1157",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1113 Multiprotocol Label Switching",
+      "• show mpls ldp discovery, on page 1159 • show mpls ldp neighbor, on page 1161 • show mpls forwarding-table, on page 1162 • show mpls static binding, on page 1170 • show mpls static crossconnect, on page 1172 • mpls static binding ipv4, on page 1173 • show platform hardware fed (TCAM utilization), on page 1175 • show platform software fed switch l2vpn, on page 1178 • show platform software fed switch mpls, on page 1180 • show platform software l2vpn switch, on page 1182 • source template type pseudowire, on page 1184 • tunnel mode gre multipoint, on page 1185 • tunnel destination, on page 1186 • tunnel mpls-ip-only, on page 1187 • tunnel source, on page 1188 • xconnect, on page 1190",
+      "Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1114 Multiprotocol Label Switching autodiscovery"
+    ],
+    "usageSummary": "VLAN Trunking Protocol (VTP) is a Cisco Proprietary Layer 2 messaging protocol used to distribute the VLAN configuration information across multiple devices within a VTP domain.  Without VTP, you must configure VLANs in each device in the network.  Using VTP, you configure VLANs on a VTP server and then distribute the configuration to other VTP devices in the VTP domain.",
+    "sourcePage": 1109,
+    "pack": "cat9500-17.15",
+    "platform": "Catalyst 9500",
+    "release": "17.15.x",
+    "source": "pdf"
+  }
+]

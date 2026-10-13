@@ -1,0 +1,2096 @@
+[
+  {
+    "name": "aaa accounting identity",
+    "context": null,
+    "detail": "Enable accounting and to create an accounting method list for Session Aware Networking subscriber services.",
+    "syntax": "aaa accounting identity {method-list-name | default} start-stop [broadcast] group {server-group-name | radius | tacacs+} [group {server-group-name | radius | tacacs+}]",
+    "noForm": "no aaa accounting identity {method-list-name | default}",
+    "params": [
+      {
+        "name": "method-list-name",
+        "description": "Name of the method list for which to create accounting services by specifying the accounting methods that follow this name."
+      },
+      {
+        "name": "default",
+        "description": "Creates a default method list for accounting services using the accounting methods that follow this keyword."
+      },
+      {
+        "name": "start-stop",
+        "description": "Sends a “start” accounting notice at the beginning of a process and a “stop” accounting notice at the end of a process. The “start” accounting record is sent in the background. The requested user process begins regardless of whether the “start” accounting notice was received by the accounting server."
+      },
+      {
+        "name": "broadcast",
+        "description": "(Optional) Sends accounting records to multiple authentication, authorization, and accounting (AAA) servers. Simultaneously sends accounting records to the first server in each group. If the first server is unavailable, the device uses the backup servers defined within that group."
+      },
+      {
+        "name": "group",
+        "description": "Specifies one or more server groups to use for accounting services. Server groups are applied in the specified order. server-group-name Named subset of RADIUS or TACACS+ servers as defined by the aaa group server radius command or aaa group server tacacs+ command."
+      },
+      {
+        "name": "radius",
+        "description": "Uses the list of all RADIUS servers configured with the radius-server host command."
+      },
+      {
+        "name": "tacacs+",
+        "description": "Uses the list of all TACACS+ servers configured with the tacacs-server host command."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The aaa accounting identity command enables accounting services and creates method lists that define specific accounting methods for Session Aware Networking subscriber services.  A method list identifies the list of security servers to which the network access server sends accounting records.  Cisco IOS software supports the following two methods of accounting for Session Aware Networking: Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 2022,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "aaa local authentication",
+    "context": null,
+    "detail": "Specify the method lists to use for local authentication and authorization from a Lightweight Directory Access Protocol (LDAP) server.",
+    "syntax": "aaa local authentication {method-list-name | default} authorization {method-list-name | default}",
+    "noForm": "no aaa local authentication {method-list-name | default} authorization {method-list-name | default}",
+    "params": [
+      {
+        "name": "default",
+        "description": "Uses the default AAA method list."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the aaa local authentication command to retrieve Extensible Authentication Protocol (EAP) credentials from local or remote LDAP servers.  The following example shows how to configure local authentication to use the method list named EAP_LIST: aaa new-model aaa local authentication EAP_LIST authorization EAP_LIST Related Commands aaa Enables the AAA access control model.  new-model ldap server Defines an LDAP server.",
+    "sourcePage": 2024,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "absolute-timer",
+    "context": null,
+    "detail": "Enable an absolute timeout for subscriber sessions.",
+    "syntax": "absolute-timer minutes",
+    "noForm": "no absolute-timer",
+    "params": [
+      {
+        "name": "minutes",
+        "description": "Maximum session duration, in minutes. Range: 1 to 65535. Default: 0, which disables the timer."
+      }
+    ],
+    "modes": ["Service template configuration (config-service-template)"],
+    "usageSummary": "Use the absolute-timer command to limit the number of minutes that a subscriber session can remain active.  After this timer expires, a session must repeat the process of establishing its connection as if it were a new request.",
+    "sourcePage": 2025,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "access-group",
+    "context": "service template",
+    "detail": "Apply an access list to sessions using a service template.",
+    "syntax": "access-group access-list-name",
+    "noForm": "no access-group access-list-name",
+    "params": [
+      {
+        "name": "access-list-name",
+        "description": "Name of the access control list (ACL) to apply."
+      }
+    ],
+    "modes": ["Service template configuration (config-service-template)"],
+    "usageSummary": "Use the access-group command to apply a locally configured ACL to sessions on which the service template is activated.",
+    "sourcePage": 2026,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "access-session closed",
+    "context": null,
+    "detail": "Prevent preauthentication access on a port.",
+    "syntax": "access-session closed",
+    "noForm": "no access-session closed",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The access-session closed command closes access to a port, preventing clients or devices from gaining network access before authentication is performed.  The following example shows how to set port 1/0/2 to closed access.  interface GigabitEthernet 1/0/2 access-session host-mode single-host access-session closed access-session port-control auto access-session control-direction in Related Commands access-session control-direction Sets the direction of authentication control on a port.",
+    "sourcePage": 2027,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "access-session control-direction",
+    "context": null,
+    "detail": "Set the direction of authentication control on a port.",
+    "syntax": "access-session control-direction {both | in}",
+    "noForm": "no access-session control-direction",
+    "params": [
+      {
+        "name": "in",
+        "description": "Enables unidirectional control on the port."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Use the access-session control-direction command to set the port control to either unidirectional or bidirectional.  The in keyword configures a port as unidirectional, allowing a device on the network to “wake up” the client and force it to reauthenticate.  The port can send packets to the host but cannot receive packets from the host.",
+    "sourcePage": 2028,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "access-session host-mode",
+    "context": null,
+    "detail": "Allow hosts to gain access to a controlled port.",
+    "syntax": "access-session host-mode {multi-auth | multi-domain | multi-host | single-host}",
+    "noForm": "no access-session host-mode",
+    "params": [
+      {
+        "name": "multi-auth",
+        "description": "Specifies that multiple clients can be authenticated on the port at any given time. This is the default value. multi-domain Specifies that only one client per domain (DATA or VOICE) can be authenticated at a time."
+      },
+      {
+        "name": "multi-host",
+        "description": "Specifies that after the first client is authenticated all subsequent clients are allowed access."
+      },
+      {
+        "name": "single-host",
+        "description": "Specifies that only one client can be authenticated on a port at any given time. A security violation occurs if more than one client is detected."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Before you use this command, you must enable the access-session port-control auto command.  In multi-host mode, only one of the attached hosts has to be successfully authorized for all hosts to be granted network access.  If the port becomes unauthorized (reauthentication fails or an Extensible Authentication Protocol over LAN (EAPOL) logoff message is received), all attached clients are denied access to the network.",
+    "sourcePage": 2029,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "access-session port-control",
+    "context": null,
+    "detail": "Set the authorization state of a port.",
+    "syntax": "access-session port-control {auto | force-authorized | force-unauthorized}",
+    "noForm": "no access-session port-control",
+    "params": [
+      {
+        "name": "auto",
+        "description": "Enables port-based authentication and causes the port to begin in the unauthorized state, allowing only Extensible Authentication Protocol over LAN (EAPOL) frames to be sent and received through the port."
+      },
+      {
+        "name": "force-authorized",
+        "description": "Disables IEEE 802.1X on the interface and causes the port to change to the authorized state without requiring any authentication exchange. The port transmits and receives normal traffic without 802.1X-based authentication of the client. This is the default value. force-unauthorized Denies all access through this interface by forcing the port to change to the unauthorized state, ignoring all attempts by the client to authenticate."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The authentication process begins when the link state of the port transitions from down to up or when an EAPOL-start frame is received.  The system requests the identity of the client and begins relaying authentication messages between the client and the authentication server.  The following example shows how to set the authorization state on port 1/0/2 to automatic: interface GigabitEthernet 1/0/2 access-session host-mode single-host access-session closed access-session port-control auto access-session control-direction in Related Commands access-session closed Prevents preauthentication access on a port.",
+    "sourcePage": 2031,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "access-session",
+    "context": "template",
+    "detail": "Configures access session information in an interface templates.",
+    "syntax": "aceess-session {closed | control-direction | {all | in } | host-mode | {multi-auth | multi-domain | multi-host | single-host } | interface-template sticky | port-control | {auto | force-authorized | force-unauthorized}}",
+    "noForm": "no aceess-session {closed | control-direction | host-mode | interface-template sticky | port-control}",
+    "params": [
+      {
+        "name": "closed",
+        "description": "Enables closed access on ports. Closed access is disabled by default."
+      },
+      {
+        "name": "control-direction",
+        "description": "Sets the traffic control direction on the interface."
+      },
+      {
+        "name": "all",
+        "description": "Sets control for both inbound and outbound traffic."
+      },
+      {
+        "name": "in",
+        "description": "Sets traffic control on both directions."
+      },
+      {
+        "name": "host-mode",
+        "description": "Sets the host mode for authentication on the interface."
+      },
+      {
+        "name": "multi-auth",
+        "description": "Sets multiple authentication mode as the host mode on the interface."
+      },
+      {
+        "name": "multi-domain",
+        "description": "Sets multiple domain mode as the host mode on the interface."
+      },
+      {
+        "name": "multi-host",
+        "description": "Sets multiple host mode as the host mode on the interface."
+      },
+      {
+        "name": "single-host",
+        "description": "Sets single host mode as the host mode on the interface. interface-template sticky Sets the interface as sticky so that the interface template is retained even when the link is down or the device is disconnected."
+      },
+      {
+        "name": "port-control",
+        "description": "Sets the port state."
+      },
+      {
+        "name": "auto",
+        "description": "Sets the port state as automatic."
+      },
+      {
+        "name": "force-authorized",
+        "description": "Sets the port state as authorized."
+      },
+      {
+        "name": "force-unauthorized",
+        "description": "Sets the port state as unauthorized."
+      }
+    ],
+    "modes": ["Template configuration (config-template)"],
+    "usageSummary": "The following example shows how to retain the interface template if the link is down or the device is disconnected: Command Reference, Cisco IOS XE 17. 18. x (Catalyst 9500 Switches) 2032 Security access-session (template) Device# configure terminal Device(config)# template user-template1 Device(config-template)# access-session interface-template sticky Device(config-template)# end Related Commands Command Description authentication (template) Configures authentication manager settings for interface templates.",
+    "sourcePage": 2032,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "access-session tunnel vlan",
+    "context": null,
+    "detail": "Configure an access session for a VLAN tunnel.",
+    "syntax": "access-session tunnel vlan vlan-id",
+    "noForm": "no access-session tunnel vlan [vlan-id]",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "Specifies the tunnel VLAN ID. The range is from 1 to 4096."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Before you use this command, you must configure a VLAN using the vlan command.  You can use the show access-session command to verify access session settings.",
+    "sourcePage": 2034,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "activate",
+    "context": "policy-map action",
+    "detail": "Activate a control policy or service template on a subscriber session.",
+    "syntax": "action-number activate {policy type control subscriber control-policy-name | service-template template-name [aaa-list list-name] [precedence number] [replace-all]}",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Action identifier. Actions are executed sequentially within the policy rule. policy type control subscriber Specifies the name of the control policy to apply to a session, as defined"
+      },
+      {
+        "name": "control-policy-name",
+        "description": "by the policy-map type control subscriber command."
+      },
+      {
+        "name": "service-template",
+        "description": "Specifies the name of the service template to apply to a session. This"
+      },
+      {
+        "name": "template-name",
+        "description": "template can be defined locally with the service-template command or downloaded from an authentication, authorization, and accounting (AAA) server."
+      },
+      {
+        "name": "aaa-list list-name",
+        "description": "(Optional) Specifies the name of the AAA method list that identifies the AAA server from which to download the service template. If this is not specified, the template must be locally defined."
+      },
+      {
+        "name": "precedence number",
+        "description": "(Optional) Specifies the priority level of the service template. Range: 1 to 254, where 1 is the highest priority and 254 is the lowest."
+      },
+      {
+        "name": "replace-all",
+        "description": "(Optional) Replaces all existing authorization data and services with new data and services."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The activate command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before actions are executed.",
+    "sourcePage": 2035,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "authenticate using",
+    "context": null,
+    "detail": "Initiate the authentication of a subscriber session using the specified method.",
+    "syntax": "action-number authenticate using {dot1x | mab | webauth}[aaa {authc-list authc-list-name | authz-list authz-list-name}] [merge] [parameter-map parameter-map-name] [priority priority-number] [replace | replace-all] [retries number {retry-time seconds}]",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      },
+      {
+        "name": "dot1x",
+        "description": "Specifies the IEEE 802.1X authentication method."
+      },
+      {
+        "name": "mab",
+        "description": "Specifies the MAC authentication bypass (MAB) method."
+      },
+      {
+        "name": "webauth",
+        "description": "Specifies the web authentication method."
+      },
+      {
+        "name": "aaa",
+        "description": "(Optional) Indicates that authentication is performed using an authentication, authorization, and accounting (AAA) method list."
+      },
+      {
+        "name": "authc-list authc-list-name",
+        "description": "Specifies the name of AAA method list to use for authentication requests."
+      },
+      {
+        "name": "authz-list authz-list-name",
+        "description": "Specifies the name of AAA method list to use for authorization requests."
+      },
+      {
+        "name": "merge",
+        "description": "(Optional) Merges the new data and services into the existing authorization data and services."
+      },
+      {
+        "name": "parameter-map",
+        "description": "(Optional) Specifies the name of a parameter map to use for web"
+      },
+      {
+        "name": "parameter-map-name",
+        "description": "authentication, as defined by the parameter map type webauth command."
+      },
+      {
+        "name": "priority priority-number",
+        "description": "(Optional) Specifies the priority of the selected authentication method. Allows a higher priority method to interrupt an authentication in progress with a lower priority method. Range: 1 to 254, where 1 is the highest priority and 254 is the lowest. The default priority order is dot1x, mab, then webauth."
+      },
+      {
+        "name": "replace",
+        "description": "(Optional) Replace existing authorization data with the new authorization data."
+      },
+      {
+        "name": "replace-all",
+        "description": "(Optional) Replace all existing authorization data and services with the new data and services. This is the default behavior."
+      },
+      {
+        "name": "retries number",
+        "description": "(Optional) Number of times to retry an authentication method if the initial attempt fails. Range: 1 to 5. Default: 2."
+      },
+      {
+        "name": "retry-time seconds",
+        "description": "Number of seconds between authentication attempts. Range: 0 to 65535. Default: 30."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The authenticate using command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions are executed.",
+    "sourcePage": 2037,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "authentication-restart",
+    "context": null,
+    "detail": "Restart the authentication process after an authentication or authorization failure.",
+    "syntax": "action-number authentication-restart seconds",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Number of seconds to wait before restarting the authentication process after a failure occurs. Range: 1 to 65535."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The authentication-restart command configures an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions are executed.",
+    "sourcePage": 2039,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "authentication display",
+    "context": null,
+    "detail": "Set the configuration display mode for Identity-Based Networking Services.",
+    "syntax": "authentication display {legacy | new-style}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "legacy",
+        "description": "Displays the configuration using the legacy authentication manager style. This is the default mode. new-style Displays the configuration using the Cisco common classification policy language (C3PL) style that supports Identity-Based Networking Services."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the authentication display command to enable the configuration display mode that supports Identity-Based Networking Services.  This command allows you to switch between the two different display modes until you enter a configuration for Identity-Based Networking Services.  After you enter a configuration that is specific to Identity-Based Networking Services, this command is disabled and becomes unavailable.",
+    "sourcePage": 2041,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "authorize",
+    "context": null,
+    "detail": "Initiate the authorization of a subscriber session.",
+    "syntax": "action-number authorize",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The authorize command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions will be executed.",
+    "sourcePage": 2042,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "banner",
+    "context": "parameter-map webauth",
+    "detail": "Display a banner on the web-authentication login web page.",
+    "syntax": "banner [file location:filename | text banner-text]",
+    "noForm": "no banner [file location:filename | text banner-text]",
+    "params": [
+      {
+        "name": "text banner-text",
+        "description": "(Optional) Specifies a text string to use as the banner. You must enter a delimiting character before and after the banner text. The delimiting character can be any character of your choice, such as “c” or “@.”"
+      }
+    ],
+    "modes": ["Parameter map webauth configuration (config-params-parameter-map)"],
+    "usageSummary": "The banner command allows you to configure one of three possible scenarios: • The banner command without any keyword or argument—Displays the default banner using the name of the device: “Cisco Systems, <device’s hostname> Authentication. ” • The banner command with the file filename keyword-argument pair—Displays the banner from the custom HTML file you supply.  The custom HTML file must be stored in the disk or flash of the device.",
+    "sourcePage": 2044,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "class-map type control subscriber",
+    "context": null,
+    "detail": "Create a control class, which defines the conditions under which the actions of a control policy are executed.",
+    "syntax": "class-map type control subscriber {match-all | match-any | match-none} control-class-name",
+    "noForm": "no class-map type control subscriber {match-all | match-any | match-none} control-class-name",
+    "params": [
+      {
+        "name": "match-all",
+        "description": "Specifies that all conditions in the control class must evaluate true."
+      },
+      {
+        "name": "match-any",
+        "description": "Specifies that at least one of the conditions in the control class must evaluate true."
+      },
+      {
+        "name": "match-none",
+        "description": "Specifies that all conditions in the control class must evaluate false. control-class-name Name of the control class."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "A control class defines the conditions that must be met for the actions in a control policy to be executed.  A control class can contain multiple conditions.  Use the match-any, match-all, or match-none keywords to specify which, if any, of the conditions the subscriber session must match for the actions to be executed.",
+    "sourcePage": 2046,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "class",
+    "context": null,
+    "detail": "Associate a control class with one or more actions in a control policy.",
+    "syntax": "priority-number class {control-class-name | always} [do-all | do-until-failure | do-until-success]",
+    "noForm": "no priority-number",
+    "params": [
+      {
+        "name": "priority-number",
+        "description": "Relative priority of the control class within the policy rule. This priority determines the order in which control policies are applied to a session. Range: 1 to 254, where 1 is the highest priority and 254 is the lowest. control-class-name Name of a previously configured control class as defined by the class-map type control subscriber command."
+      },
+      {
+        "name": "always",
+        "description": "Creates a default control class that always evaluates true."
+      },
+      {
+        "name": "do-all",
+        "description": "(Optional) Executes all actions."
+      },
+      {
+        "name": "do-until-failure",
+        "description": "(Optional) Executes actions, in order, until one of the actions fails. This is the default behavior."
+      },
+      {
+        "name": "do-until-success",
+        "description": "(Optional) Executes actions, in order, until one of the actions is successful."
+      }
+    ],
+    "modes": ["Control policy-map class configuration (config-class-control-policymap)"],
+    "usageSummary": "The class command associates the conditions in a control class with one or more actions in a control policy.  A control class defines the conditions that must be met before a set of actions are executed.  The association of a control class and a set of actions is called a control policy rule.",
+    "sourcePage": 2048,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear-authenticated-data-hosts-on-port",
+    "context": null,
+    "detail": "Clear authenticated data hosts on a port after an authentication failure.",
+    "syntax": "action-number clear-authenticated-data-hosts-on-port",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The clear-authenticated-data-hosts-on-port command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions are executed.",
+    "sourcePage": 2050,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear-session",
+    "context": null,
+    "detail": "Clear an active subscriber session.",
+    "syntax": "action-number clear-session",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The clear-session command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions are executed.",
+    "sourcePage": 2052,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "consent email",
+    "context": null,
+    "detail": "Request a user’s e-mail address on the consent login web page.",
+    "syntax": "consent email",
+    "noForm": "no consent email",
+    "params": [],
+    "modes": ["Parameter map webauth configuration (config-params-parameter-map)"],
+    "usageSummary": "Use the consent email command to display a text box on the consent login page prompting the user to enter his or her e-mail address for identification.  The device sends this e-mail address to the authentication, authorization, and accounting (AAA) server instead of sending the client’s MAC address.  The consent feature allows you to provide temporary Internet and corporate access to end users through their wired and wireless networks by presenting a consent web page.",
+    "sourcePage": 2053,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "custom-page",
+    "context": null,
+    "detail": "Display custom web pages during web authentication login.",
+    "syntax": "custom-page {failure | login [expired] | success} device location:filename",
+    "noForm": "no custom-page {failure | login [expired] | success} device location:filename",
+    "params": [
+      {
+        "name": "failure",
+        "description": "Displays the custom web page if the login fails."
+      },
+      {
+        "name": "login",
+        "description": "Displays the custom web page during login."
+      },
+      {
+        "name": "expired",
+        "description": "(Optional) Displays the custom web page if the login expires."
+      },
+      {
+        "name": "success",
+        "description": "Displays the custom web page when the login is successful. location :filename Location and name of the locally stored HTML file to use in place of the default HTML file for the specified condition."
+      }
+    ],
+    "modes": ["Parameter map webauth configuration (config-params-parameter-map)"],
+    "usageSummary": "Use the custom-page command to display custom web pages during web authentication login.  To enable custom web pages: • You must specify all four custom HTML files.  If fewer than four files are specified, the internal default HTML pages are used.",
+    "sourcePage": 2054,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "deactivate",
+    "context": null,
+    "detail": "Deactivate a control policy or service template on a subscriber session.",
+    "syntax": "action-number deactivate {policy type control subscriber control-policy-name | service-template template-name}",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      },
+      {
+        "name": "policy type control subscriber",
+        "description": "Specifies the name of the control policy to deactivate on the session,"
+      },
+      {
+        "name": "control-policy-name",
+        "description": "as defined by the policy-map type control subscriber command."
+      },
+      {
+        "name": "service-template template-name",
+        "description": "Specifies the name of the service template to deactivate on the session, as defined by the service-template command."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The deactivate command defines an action in a control policy.  This command uninstalls all control policies and policy attributes that have been applied on the session.  Control policies determine the actions taken in response to specified events and conditions.",
+    "sourcePage": 2056,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug access-session",
+    "context": null,
+    "detail": "Display debugging information about Session Aware Networking sessions.",
+    "syntax": "debug access-session [feature feature-name] {all | detail | errors | events | sync}",
+    "noForm": "no debug access-session [feature feature-name] {all | detail | errors | events | sync}",
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all debugging information for Session Aware Networking."
+      },
+      {
+        "name": "detail",
+        "description": "Displays detailed debugging information."
+      },
+      {
+        "name": "errors",
+        "description": "Displays debugging information about errors."
+      },
+      {
+        "name": "events",
+        "description": "Displays debugging information about events."
+      },
+      {
+        "name": "sync",
+        "description": "Displays debugging information about stateful switchovers (SSOs) or In Service Software Upgrades (ISSUs)."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the debug access-session command to troubleshoot Session Aware Networking sessions.  Related Commands Command Description debug Displays debugging information about the Authentication Manager.  authentication debug dot1x Displays 802.",
+    "sourcePage": 2058,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "description",
+    "context": "service template",
+    "detail": "Add a description to a service template.",
+    "syntax": "description description",
+    "noForm": "no description description",
+    "params": [
+      {
+        "name": "description",
+        "description": "Description of the service template."
+      }
+    ],
+    "modes": ["Service template configuration (config-service-template)"],
+    "usageSummary": "Use the description command to provide additional information about the service template when you display the service template configuration.",
+    "sourcePage": 2059,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dot1x pae",
+    "context": "template",
+    "detail": "Set the Port Access Entity (PAE) type using an interface template.",
+    "syntax": "dot1x pae [supplicant | authenticator]",
+    "noForm": "no dot1x pae",
+    "params": [
+      {
+        "name": "supplicant",
+        "description": "(Optional) The interface acts only as a supplicant and will not respond to messages that are meant for an authenticator."
+      },
+      {
+        "name": "authenticator",
+        "description": "(Optional) The interface acts only as an authenticator and will not respond to any messages meant for a supplicant."
+      }
+    ],
+    "modes": ["Template configuration (config-template)"],
+    "usageSummary": null,
+    "sourcePage": 2060,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "err-disable",
+    "context": null,
+    "detail": "Disable a port after a security violation occurs.",
+    "syntax": "action-number err-disable",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The err-disable command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the policy can execute the actions.",
+    "sourcePage": 2061,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "event",
+    "context": null,
+    "detail": "Specify the type of event that triggers actions in a control policy if conditions are met.",
+    "syntax": "event event-name [match-all | match-first]",
+    "noForm": "no event event-name [match-all | match-first]",
+    "params": [
+      {
+        "name": "match-all",
+        "description": "(Optional) Evaluates all control classes. This is the default behavior. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2062 Security event match-first (Optional) Evaluates only the first control class."
+      }
+    ],
+    "modes": ["Control policy-map event configuration (config-event-control-policymap)"],
+    "usageSummary": "The event command configures an event condition in a control policy.  After the specified event occurs, the system evaluates the control classes.  Control classes specify the conditions that must be met to execute the actions in the control policy.",
+    "sourcePage": 2062,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "guest-lan",
+    "context": null,
+    "detail": "Configure the wireless guest LAN.",
+    "syntax": "guest-lan profile-name [lan-id]",
+    "noForm": "no guest-lan profile-name [lan-id]",
+    "params": [
+      {
+        "name": "profile-name",
+        "description": "Specifies the wireless guest profile name."
+      },
+      {
+        "name": "lan-id",
+        "description": "(Optional) Specifies the guest LAN identifier. The range is from 1 to 5."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the guest-lan command to specify a wireless guest profile.  This wireless guest profile is used in the tunnel type capwap command to configure a a CAPWAP tunnel within a service template and configure wired guest access for guest users of an enterprise network.",
+    "sourcePage": 2065,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "inactivity-timer",
+    "context": null,
+    "detail": "Enable an inactivity timeout for subscriber sessions.",
+    "syntax": "inactivity-timer minutes [probe]",
+    "noForm": "no inactivity-timer",
+    "params": [
+      {
+        "name": "probe",
+        "description": "(Optional) Enables address resolution protocol (ARP) probes. These probes are sent before terminating the session."
+      }
+    ],
+    "modes": ["Service template configuration (config-service-template)"],
+    "usageSummary": "Use the inactivity-timer command to set the maximum amount of time that a subscriber session can exist with no activity or data from the end client.  If this timer expires before there is any activity or data, the session is cleared.  The probe keyword enables ARP probes.",
+    "sourcePage": 2066,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip dhcp snooping trust",
+    "context": null,
+    "detail": "Configure an interface or template as trusted for DHCP snooping.",
+    "syntax": "ip dhcp snooping trust",
+    "noForm": "no ip dhcp snooping trust",
+    "params": [],
+    "modes": [
+      "Interface configuration mode (config-if)",
+      "Template configuration mode (config-temp)"
+    ],
+    "usageSummary": null,
+    "sourcePage": 2068,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "Keepalive",
+    "context": "template",
+    "detail": "Enable keepalive timer for interface templates.",
+    "syntax": "keepalive seconds",
+    "noForm": "no keepalive seconds",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Sets the keepalive timer in seconds. The range is from 0 to 32767. Default is 10."
+      }
+    ],
+    "modes": ["Template configuration (config-template)"],
+    "usageSummary": null,
+    "sourcePage": 2069,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "key-wrap enable",
+    "context": null,
+    "detail": "Enable Advanced Encryption Standard (AES) key wrap on a RADIUS server.",
+    "syntax": "key-wrap enable",
+    "noForm": "no key-wrap enable",
+    "params": [],
+    "modes": ["Server group configuration (config-sg-radius)"],
+    "usageSummary": "Use the key-wrap enable command to enable AES key-wrap functionality.  The AES key-wrap feature makes the shared secret between the controller and the RADIUS server more secure.  AES key wrap is designed for Federal Information Processing Standards (FIPS) customers and requires a key-wrap compliant RADIUS authentication server.",
+    "sourcePage": 2070,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "linksec policy",
+    "context": "service template",
+    "detail": "Set a data link layer security policy.",
+    "syntax": "linksec policy {must-not-secure | must-secure | should-secure}",
+    "noForm": "no linksec policy",
+    "params": [
+      {
+        "name": "must-not-secure",
+        "description": "Specifies that the session must not be secured with Media Access Control Security (MACsec) standard."
+      },
+      {
+        "name": "must-secure",
+        "description": "Specifies that the device port must be authorized only if a secure MACsec session is established."
+      },
+      {
+        "name": "should-secure",
+        "description": "Specifies that the link security policy has optionally secured sessions. If an attempt to establish a MACsec session fails, an authorization failure message is not sent."
+      }
+    ],
+    "modes": ["Service template configuration (config-service-template)"],
+    "usageSummary": "Configure the link layer security policy within a service template and its associated policy action.",
+    "sourcePage": 2071,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mac-delimiter",
+    "context": null,
+    "detail": "Specify the MAC delimiter for RADIUS compatibility mode.",
+    "syntax": "mac-delimiter {colon | hyphen | none | single-hyphen}",
+    "noForm": "no mac-delimiter {colon | hyphen | none | single-hyphen}",
+    "params": [
+      {
+        "name": "colon",
+        "description": "Sets the delimiter to a colon, in the format xx:xx:xx:xx:xx:xx."
+      },
+      {
+        "name": "hyphen",
+        "description": "Sets the delimiter to a hyphen (-), in the format xx-xx-xx-xx-xx-xx."
+      },
+      {
+        "name": "none",
+        "description": "Sets the delimiter to none, in the format xxxxxxxxxxxx. This is the default value. single-hyphen Sets the delimiter to a single hyphen, in the format xxxxxx-xxxxxx."
+      }
+    ],
+    "modes": ["Server group configuration (config-sg-radius)"],
+    "usageSummary": "Use the mac-delimiter command to set the delimiter that is used in MAC addresses that are sent to the RADIUS authentication server.",
+    "sourcePage": 2072,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match activated-service-template",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on the service template activated on a session.",
+    "syntax": "match activated-service-template template-name no-match activated-service-template template-name",
+    "noForm": "no {match | no-match} activated-service-template template-name",
+    "params": [
+      {
+        "name": "template-name",
+        "description": "Name of a configured service template as defined by the service-template command."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match activated-service-template command configures a match condition in a control class based on the service template applied to a session.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true for the actions of the control policy to be executed.",
+    "sourcePage": 2073,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match authorization-failure",
+    "context": null,
+    "detail": "Create a condition that returns true, based on the type of authorization failure of a session.",
+    "syntax": "match authorization-failure {domain-change-failed | linksec-failed | tunnel-return}",
+    "noForm": "no match authorization-failure {domain-change-failed | linksec-failed | tunnel-return}",
+    "params": [
+      {
+        "name": "linksec-failed",
+        "description": "Specifies that the data link security has failed."
+      },
+      {
+        "name": "tunnel-return",
+        "description": "Specifies that the Converged Guest Access (CGA) tunnel authorization has failed."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match authorization-failed command configures a match condition in a control class based on the type of authorization failure that is configured for a session.  Authorization failure can be either a data link layer security failure or a domain change failure.  A control class can contain multiple conditions, that are evaluated as either true or false.",
+    "sourcePage": 2075,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match authorization-status",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on a session’s authorization status.",
+    "syntax": "match authorization-status {authorized | unauthorized} no-match authorization-status {authorized | unauthorized}",
+    "noForm": "no {match | no-match} authorization-status {authorized | unauthorized}",
+    "params": [
+      {
+        "name": "authorized",
+        "description": "Specifies that the subscriber has been authenticated. unauthorized Specifies that the subscriber has not been authenticated."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match authorization-status command configures a match condition in a control class based on the session’s authorization status.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2076,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match authorizing-method-priority",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on the priority of the authorization method that resulted in authorization.",
+    "syntax": "match authorizing-method-priority {eq | gt | lt} priority-value no-match authorizing-method-priority {eq | gt | lt} priority-value",
+    "noForm": "no {match | no-match} authorizing-method-priority {eq | gt | lt} priority-value",
+    "params": [
+      {
+        "name": "eq",
+        "description": "Specifies that the current priority value is equal to priority-value."
+      },
+      {
+        "name": "gt",
+        "description": "Specifies that the current priority value is greater than priority-value. Note The higher the number, the lower the priority."
+      },
+      {
+        "name": "lt",
+        "description": "Specifies that the current priority value is less than priority-value. Note The lower the number, the higher the priority. priority-value Priority value to match. Range: 1 to 254, where 1 is the highest priority and 254 is the lowest."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match authorizing-method-priority command configures a match condition in a control class based on the priority of the authentication method that resulted in authorization.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2077,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match client-type",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on an event’s device type.",
+    "syntax": "match client-type {data | switch | video | voice} no-match client-type {data | switch | video | voice}",
+    "noForm": "no {match | no-match} client-type {data | switch | video | voice}",
+    "params": [
+      {
+        "name": "data",
+        "description": "Specifies a data device. switch Specifies a switch device."
+      },
+      {
+        "name": "video",
+        "description": "Specifies a video device."
+      },
+      {
+        "name": "voice",
+        "description": "Specifies a voice device."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match client-type command configures a match condition in a control class based on an event’s device type.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2079,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match current-method-priority",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on the priority of the current authentication method.",
+    "syntax": "match current-method-priority {eq | gt | lt} priority-value no-match current-method-priority {eq | gt | lt} priority-value",
+    "noForm": "no {match | no-match}current-method-priority {eq | gt | lt} priority-value",
+    "params": [
+      {
+        "name": "eq",
+        "description": "Specifies that the current priority value is equal to priority-value."
+      },
+      {
+        "name": "gt",
+        "description": "Specifies that the current priority value is greater than priority-value. The higher the value, the lower the priority. Note The higher the number, the lower the priority."
+      },
+      {
+        "name": "lt",
+        "description": "Specifies that the current priority value is less than priority-value. The lower the value, the higher the priority. Note The lower the number, the higher the priority. priority-value Priority value to match. Range: 1 to 254, where 1 is the highest priority and 254 is the lowest."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match current-method-priority command configures a match condition in a control class based on the priority of the authentication method.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2080,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match ip-address",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on an event’s source IPv4 address.",
+    "syntax": "match ip-address ip-address no-match ip-address ip-address",
+    "noForm": "no {match | no-match} ip-address ip-address",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IPv4 address to match."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match ip-address command configures a match condition in a control class based on an event’s IP address.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2082,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match ipv6-address",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on an event’s source IPv6 address.",
+    "syntax": "match ipv6-address ipv6-address subnet-mask no-match ipv6-address ipv6-address subnet-mask",
+    "noForm": "no {match | no-match} ipv6-address ipv6-address subnet-mask",
+    "params": [],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match ipv6-address command configures a match condition in a control class based on the subscriber’s IPv6 address.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2083,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match mac-address",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on an event’s MAC address.",
+    "syntax": "match mac-address mac-address no-match mac-address mac-address",
+    "noForm": "no {match | no-match}mac-address mac-address",
+    "params": [
+      {
+        "name": "mac-address",
+        "description": "MAC address to match."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match mac-address command configures a match condition in a control class based on an event’s MAC address.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2084,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match method",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on the authentication method of an event.",
+    "syntax": "match method {dot1x | mab | webauth} no-match method {dot1x | mab | webauth}",
+    "noForm": "no {match | no-match} method {dot1x | mab | webauth}",
+    "params": [
+      {
+        "name": "dot1x",
+        "description": "Specifies the IEEE 802.1X authentication method."
+      },
+      {
+        "name": "mab",
+        "description": "Specifies the MAC authentication bypass (MAB) method. webauth Specifies the web authentication method."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match method command configures a match condition in a control class based on the authentication method.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2085,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match port-type",
+    "context": "class-map filter",
+    "detail": "Create a condition that evaluates true based on an event’s interface type.",
+    "syntax": "match port-type {l2-port | l3-port | dot11-port} no-match port-type {l2-port | l3-port | dot11-port}",
+    "noForm": "no {match | no-match} port-type {l2-port | l3-port | dot11-port}",
+    "params": [
+      {
+        "name": "l2-port",
+        "description": "Specifies the Layer 2 interface."
+      },
+      {
+        "name": "l3-port",
+        "description": "Specifies the Layer 3 interface."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match port-type command configures a match condition in a control class based on the interface type.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2087,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match result-type",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on the specified authentication result.",
+    "syntax": "match result-type [method {dot1x | mab | webauth}] result-type no-match result-type [method {dot1x | mab | webauth}] result-type",
+    "noForm": "no {match | no-match} result-type [method {dot1x | mab | webauth}] result-type",
+    "params": [
+      {
+        "name": "method",
+        "description": "(Optional) Matches results for the specified authentication method only. If you do not specify a method, the policy matches the method associated with the current event."
+      },
+      {
+        "name": "dot1x",
+        "description": "(Optional) Specifies the IEEE 802.1X authentication method."
+      },
+      {
+        "name": "mab",
+        "description": "(Optional) Specifies the MAC authentication bypass (MAB) method. webauth (Optional) Specifies the web authentication method. result-type Type of authentication result. Valid keywords for result-type are: • aaa-timeout—authentication, authorization, and accounting (AAA) server timed out. • agent-not-found— The agent for the authentication method was not detected. • authoritative—Authorization failed. • method-timeout—The authentication method timed out. • none—No result. • success—Authentication was successful."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match result-type command configures a match condition in a control class based on the result of the authentication request.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2088,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match service-template",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on an event’s service template.",
+    "syntax": "match service-template template-name no-match service-template template-name",
+    "noForm": "no {match | no-match} service-template template-name",
+    "params": [
+      {
+        "name": "template-name",
+        "description": "Name of a configured service template as defined by the service-template command."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match service-template command configures a match condition in a control class based on an event’s service template.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2090,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match tag",
+    "context": "class-map filter",
+    "detail": "Create a condition that evaluates true based on the tag associated with an event.",
+    "syntax": "match tag tag-name no-match tag tag-name",
+    "noForm": "no {match | no-match} tag tag-name",
+    "params": [
+      {
+        "name": "tag-name",
+        "description": "Tag name, as defined by the tag command in a service template."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match tag command configures a match condition in a control class based on an event’s tag.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2092,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match username",
+    "context": null,
+    "detail": "Create a condition that evaluates true based on an event’s username.",
+    "syntax": "match username username no-match username username",
+    "noForm": "no {match | no-match} username username",
+    "params": [
+      {
+        "name": "username",
+        "description": "Username."
+      }
+    ],
+    "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
+    "usageSummary": "The match username command configures a match condition in a control class based on the username.  A control class can contain multiple conditions, each of which will evaluate as either true or false.  The control class defines whether all, any, or none of the conditions must evaluate true to execute the actions of the control policy.",
+    "sourcePage": 2093,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "max-http-conns",
+    "context": null,
+    "detail": "Limit the number of HTTP connections for each web authentication client.",
+    "syntax": "max-http-conns number",
+    "noForm": "no max-http-conns number",
+    "params": [
+      {
+        "name": "number",
+        "description": "Maximum number of concurrent HTTP client connections allowed. Range: 1 to 200. Default: 30."
+      }
+    ],
+    "modes": ["Parameter map configuration (config-params-parameter-map)"],
+    "usageSummary": "Use the max-http-conns command to set the maximum number of HTTP connections allowed for each web authentication client.  If a new value is configured that is less than the previously configured value while the current number of connections exceeds the new maximum value, the HTTP server will not abort any of the current connections.  However, the server will not accept new connections until the current number of connections falls below the new configured value.",
+    "sourcePage": 2094,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "parameter-map type webauth",
+    "context": null,
+    "detail": "Define a parameter map for web authentication.",
+    "syntax": "parameter-map type webauth {parameter-map-name | global}",
+    "noForm": "no parameter-map type webauth {parameter-map-name | global}",
+    "params": [
+      {
+        "name": "global",
+        "description": "Defines global parameters for web authentication."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the parameter-map type webauth command to define a parameter map for web authentication.  A parameter map allows you to specify parameters that control the behavior of actions configured under a policy map with the authenticate using webauth command.  A global parameter map contains system-wide parameters.",
+    "sourcePage": 2095,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "pause reauthentication",
+    "context": null,
+    "detail": "Pause the reauthentication process after an authentication failure.",
+    "syntax": "action-number pause reauthentication",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The pause reauthentication command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions are executed.",
+    "sourcePage": 2097,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "peer neighbor-route",
+    "context": null,
+    "detail": "Create neighbor route to a peer.",
+    "syntax": "peer neighbor-route This command has no arguments or keywords.",
+    "noForm": "no peer neighbor-route",
+    "params": [],
+    "modes": ["Template configuration(config-template)"],
+    "usageSummary": null,
+    "sourcePage": 2098,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "policy-map type control subscriber",
+    "context": null,
+    "detail": "Define a control policy for subscriber sessions.",
+    "syntax": "policy-map type control subscriber control-policy-name",
+    "noForm": "no policy-map type control subscriber control-policy-name",
+    "params": [
+      {
+        "name": "control-policy-name",
+        "description": "Name of the control policy."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Control policies define the actions taken in response to specified events and conditions.  A control policy consists of one or more control policy rules.  A control policy rule associates a control class with one or more actions.",
+    "sourcePage": 2099,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "protect",
+    "context": "policy-map action",
+    "detail": "Silently drop violating packets after a security violation on a port.",
+    "syntax": "action-number protect",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The protect command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions are executed.",
+    "sourcePage": 2101,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redirect",
+    "context": "parameter-map webauth",
+    "detail": "Redirect users to a particular URL during web authentication login.",
+    "syntax": "redirect { {for-login | on-failure | on-success} url | portal {ipv4 ipv4-address | ipv6 ipv6-address}}",
+    "noForm": "no redirect {for-login | on-failure | on-success | portal {ipv4 | ipv6}}",
+    "params": [
+      {
+        "name": "for-login",
+        "description": "Sends users to this URL for login."
+      },
+      {
+        "name": "on-failure",
+        "description": "Sends users to this URL if the login fails."
+      },
+      {
+        "name": "on-success",
+        "description": "Sends users to this URL if the login is successful."
+      },
+      {
+        "name": "url",
+        "description": "Valid URL."
+      },
+      {
+        "name": "portal",
+        "description": "Sends users to this external web server to access the customized login web pages."
+      },
+      {
+        "name": "ipv4",
+        "description": "Specifies the IPv4 address of the portal. ipv4-address"
+      },
+      {
+        "name": "ipv6",
+        "description": "Specifies the IPv6 address of the portal. ipv6-address"
+      }
+    ],
+    "modes": ["Parameter-map webauth configuration (config-params-parameter-map)"],
+    "usageSummary": "Use the redirect command to redirect users to custom web pages stored on an external server during the authentication process.  The device redirects the client to the specified portal IP address after it intercepts the initial HTTP request.  The device also intercepts the login form sent by the client so it can extract the username and password and authenticates the user.",
+    "sourcePage": 2102,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redirect url",
+    "context": null,
+    "detail": "Redirect clients to a particular URL.",
+    "syntax": "redirect url url [match access-list-name [one-time-redirect | redirect-on-no-match]]",
+    "noForm": "no redirect url url [match access-list-name [one-time-redirect | redirect-on-no-match]]",
+    "params": [
+      {
+        "name": "url",
+        "description": "Valid URL. match access-list-name (Optional) Specifies the name of an access control list to match."
+      },
+      {
+        "name": "one-time-redirect",
+        "description": "(Optional) Redirects traffic matching the access list only once. redirect-on-no-match (Optional) Redirects traffic not matching the access list."
+      }
+    ],
+    "modes": ["Service template configuration (config-service-template)"],
+    "usageSummary": "Use the redirect url command to redirect clients to a particular URL when the service template is activated on a subscriber session.",
+    "sourcePage": 2104,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "replace",
+    "context": null,
+    "detail": "Clear the existing session and create a new session after a security violation on a port.",
+    "syntax": "action-number replace",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The replace command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions are executed.",
+    "sourcePage": 2105,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "restrict",
+    "context": null,
+    "detail": "Drop violating packets and generate a syslog message after a security violation on a port.",
+    "syntax": "action-number restrict",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The restrict command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions are executed.",
+    "sourcePage": 2106,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "resume reauthentication",
+    "context": null,
+    "detail": "Resume the reauthentication process after an authentication failure.",
+    "syntax": "action-number resume reauthentication",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The resume reauthentication command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions are executed.",
+    "sourcePage": 2107,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "service-policy type control subscriber",
+    "context": null,
+    "detail": "Apply a control policy to an interface.",
+    "syntax": "service-policy type control subscriber control-policy-name",
+    "noForm": "no service-policy type control subscriber control-policy-name",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "A control policy is activated by applying it to one or more interfaces.  Control policies apply to all sessions hosted on the interface.  Only one control policy may be applied to a given interface.",
+    "sourcePage": 2108,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "service-template",
+    "context": null,
+    "detail": "Define a template that contains a set of service policy attributes to apply to subscriber sessions.",
+    "syntax": "service-template template-name",
+    "noForm": "no service-template template-name",
+    "params": [
+      {
+        "name": "template-name",
+        "description": "Alphanumeric name that identifies the service template."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the service-template command to group attributes that can be applied to subscriber sessions that share the same characteristics.  More than one template can be defined but only one template can be associated with a single subscriber session.",
+    "sourcePage": 2109,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set-timer",
+    "context": "policy-map action",
+    "detail": "Start a named policy timer for a subscriber session.",
+    "syntax": "action-number set-timer timer-name seconds",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "timer-name",
+        "description": "Name of the policy timer, up to 15 characters. This is an arbitrary name defined for this action."
+      },
+      {
+        "name": "seconds",
+        "description": "Timer interval, in seconds. Range: 1 to 65535."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The set-timer command configures an action in a control policy.  This command starts the named policy timer.  After the named timer expires, the system generates the timer-expiry event.",
+    "sourcePage": 2110,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show access-session",
+    "context": null,
+    "detail": "Display information about Session Aware Networking sessions.",
+    "syntax": "show access-session [[database] [handle handle-number | [method method] [interface interface-type interface-number] | mac mac-address | session-id session-id] | history [min-uptime seconds] | registrations | statistics] [details]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "database",
+        "description": "(Optional) Displays session data stored in the session database. This allows you to see information like the VLAN ID which is not cached internally. A warning message displays if data stored in the session database does not match the internally cached data."
+      },
+      {
+        "name": "handle handle-number",
+        "description": "(Optional) Displays information about the specified context handle number. Range: 1 to 4294967295."
+      },
+      {
+        "name": "method method",
+        "description": "(Optional) Displays information about subscriber sessions using one of the following authentication methods: • dot1x—IEEE 802.1X authentication method. • mab—MAC authentication bypass (MAB) method. • webauth—Web authentication method. If you specify a method, you can also specify an interface."
+      },
+      {
+        "name": "interface interface-type",
+        "description": "(Optional) Displays information about subscriber sessions that match"
+      },
+      {
+        "name": "interface-number",
+        "description": "the specified client interface type. To display the valid keywords and arguments for interfaces, use the question mark (?) online help function."
+      },
+      {
+        "name": "mac mac-address",
+        "description": "(Optional) Displays information about subscriber sessions with the specified client MAC address."
+      },
+      {
+        "name": "session-id session-id",
+        "description": "(Optional) Displays information about subscriber sessions with the specified client session identifier."
+      },
+      {
+        "name": "history",
+        "description": "(Optional) Displays session history."
+      },
+      {
+        "name": "min-uptime seconds",
+        "description": "(Optional) Displays session history for sessions that have been up for the specified number of seconds. Range: 1 to 4294967295."
+      },
+      {
+        "name": "registrations",
+        "description": "(Optional) Displays information about all registered session manager clients including the registered authentication methods."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays information about authentication session statistics."
+      },
+      {
+        "name": "details",
+        "description": "(Optional) Displays detailed information about each session instead of displaying a single-line summary. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2112 Security show access-session"
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "If you enter the show access-session command without any keywords or arguments, the information displays for all sessions on the switch.  When you specify an identifier, information displays for only those sessions that match the identifier.",
+    "sourcePage": 2112,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show class-map type control subscriber",
+    "context": null,
+    "detail": "Display information about session aware networking control classes.",
+    "syntax": "show class-map type control subscriber {all | name control-class-name}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays output for all control classes. name control-class-name Displays output for the named control class."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Control policies define the actions taken in response to specified events and conditions.  Use the show class-map type control subscriber command to display information about configured control classes, including the number of times each match condition within the class has been executed.",
+    "sourcePage": 2117,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show policy-map type control subscriber",
+    "context": null,
+    "detail": "Display information about session aware networking control policies.",
+    "syntax": "show policy-map type control subscriber {all | name control-policy-name}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays output for all control policies. name control-policy-name Displays output for the named control policy."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Control policies define the actions taken in response to specified events and conditions.  Use the show policy-map type control subscriber command to display information about configured control policies, including the number of times each policy-rule within the policy map has been executed.",
+    "sourcePage": 2120,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show service-template",
+    "context": null,
+    "detail": "Display information about configured service templates.",
+    "syntax": "show service-template [template-name]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "template-name",
+        "description": "(Optional) Name of the service template."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Service templates define service policy attributes that can be applied to subscriber sessions.  Use the show service-template command to display information about configured service templates.  Using this command without the service-template argument displays a summary of all configured service templates.",
+    "sourcePage": 2122,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "source template",
+    "context": "template",
+    "detail": "Source the configurations from a template other than the configured template.",
+    "syntax": "source template template-name",
+    "noForm": "no source template template-name",
+    "params": [
+      {
+        "name": "template-name",
+        "description": "String that identifies the source template."
+      }
+    ],
+    "modes": ["Template configuration (config-template)"],
+    "usageSummary": "Use this command to source configurations from a template that is different than the configured template.",
+    "sourcePage": 2123,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "spanning tree portfast",
+    "context": "template",
+    "detail": "Enable PortFast mode where the interface is immediately put into the forwarding state upon linkup without waiting for the timer to expire using an interface template.",
+    "syntax": "spanning-tree portfast {disable | trunk}",
+    "noForm": "no spanning-tree portfast",
+    "params": [
+      {
+        "name": "trunk",
+        "description": "Enables PortFast on the interface in the trunk mode."
+      }
+    ],
+    "modes": ["Template configuration (config-template)"],
+    "usageSummary": "Use this command only with interfaces that connect to end stations; otherwise, an accidental topology loop could cause a data-packet loop and disrupt the device and network operation.  An interface with PortFast mode enabled is moved directly to the spanning-tree forwarding state when a linkup occurs, without waiting for the standard forward-time delay.",
+    "sourcePage": 2124,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "storm-control",
+    "context": "template",
+    "detail": "Enable broadcast, multicast, or unicast storm control on a port or to specify the action when a storm occurs on a port using an interface template.",
+    "syntax": "storm-control { {broadcast | multicast | unicast} level [ bps | pps] rising-threshold [falling-threshold] | action {shutdown | trap}}",
+    "noForm": "no storm-control { {broadcast | multicast | unicast} level | action {shutdown | trap}}",
+    "params": [
+      {
+        "name": "broadcast",
+        "description": "Enables broadcast storm control on the port."
+      },
+      {
+        "name": "multicast",
+        "description": "Enables multicast storm control on the port."
+      },
+      {
+        "name": "unicast",
+        "description": "Enables unicast storm control on the port."
+      },
+      {
+        "name": "level rising-threshold",
+        "description": "Defines the rising and falling suppression levels. falling-threshold • rising-threshold falling-threshold—Rising and falling suppression level as a percent of the total bandwidth (up to two decimal places). The valid values are from 0 to 100. When the value specified for a level is reached, the flooding of storm packets is blocked. • If you enter the level as a bits per second (bps) or packets per second (pps), the range is from 0 to 10000000000."
+      },
+      {
+        "name": "bps",
+        "description": "Defines the rising and falling suppression levels in bits per second."
+      },
+      {
+        "name": "pps",
+        "description": "Defines the rising and falling suppression levels in packets per second."
+      },
+      {
+        "name": "action",
+        "description": "Specifies the action to take when a storm occurs on a port. The default action is to filter traffic."
+      },
+      {
+        "name": "shutdown",
+        "description": "Disables the port during a storm."
+      },
+      {
+        "name": "trap",
+        "description": "Sends a Simple Network Management Protocol (SNMP) trap."
+      }
+    ],
+    "modes": ["Template configuration (config-template)"],
+    "usageSummary": "Use the storm-control command to enable or disable broadcast, multicast, or unicast storm control on a port.  Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 2126,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "subscriber aging",
+    "context": null,
+    "detail": "Enable an inactivity timer for subscriber sessions.",
+    "syntax": "subscriber aging {inactivity-timer seconds [probe] | probe}",
+    "noForm": "no subscriber aging",
+    "params": [
+      {
+        "name": "probe",
+        "description": "Enables an address resolution protocol (ARP) probe."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Use the subscriber aging command to set the maximum amount of time that a subscriber session can exist with no activity or data from the end client.  If this timer expires before there is any activity or data, the session is cleared.  The following example shows how to set the inactivity timer to 60 seconds on Ten Gigabit Ethernet interface 1/0/2: interface TenGigabitEthernet 1/0/2 subscriber aging inactivity-timer 60 probe service-policy type control subscriber POLICY_1 Related Commands inactivity-timer Enables an inactivity timeout for subscriber sessions.",
+    "sourcePage": 2128,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "subscriber mac-filtering security-mode",
+    "context": null,
+    "detail": "Specify the RADIUS compatibility mode for MAC filtering.",
+    "syntax": "subscriber mac-filtering security-mode {mac | none | shared-secret}",
+    "noForm": "no subscriber mac-filtering security-mode {mac | none | shared-secret}",
+    "params": [
+      {
+        "name": "mac",
+        "description": "Sends the MAC address as the password."
+      },
+      {
+        "name": "none",
+        "description": "Does not send the password attribute. This is the default value. shared-secret Sends the shared-secret as the password."
+      }
+    ],
+    "modes": ["Server group configuration (config-sg-radius)"],
+    "usageSummary": "Use the subscriber mac-filtering security-mode command to set the type of security used for MAC filtering in RADIUS compatibility mode.  The following example shows how to configure a server group with MAC filtering to send the MAC address as the password: aaa group server radius LAB_RAD key-wrap enable subscriber mac-filtering security-mode mac mac-delimiter colon Related Commands Command Description key-wrap enable Enables AES key wrap.  mac-delimiter Specifies the MAC delimiter for RADIUS compatibility mode.",
+    "sourcePage": 2129,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "subscriber aging",
+    "context": "template",
+    "detail": "Configure the inactivity timeout value of the subscriber.",
+    "syntax": "subscriber aging {inactivity seconds | probe}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "probe",
+        "description": "Sets Address Resolution Protocol (ARP) probe."
+      }
+    ],
+    "modes": ["Template configuration(config-template)"],
+    "usageSummary": null,
+    "sourcePage": 2130,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "tag",
+    "context": "service template",
+    "detail": "Associate a user-defined tag with a service template.",
+    "syntax": "tag tag-name",
+    "noForm": "no tag tag-name",
+    "params": [
+      {
+        "name": "tag-name",
+        "description": "Arbitrary text string assigned as the tag name."
+      }
+    ],
+    "modes": ["Service template configuration (config-service-template)"],
+    "usageSummary": "Use the tag command to associate an identifier tag with a service template.  The tag is applied to a session when a control policy activates the service template on the session.  A set of policies can be associated with the tag and if the authentication, authorization, and accounting (AAA) server sends the same tag in response to the authentication response, the policies that are associated with the tag are applied on the host.",
+    "sourcePage": 2131,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "terminate",
+    "context": null,
+    "detail": "Terminate an authentication method on a subscriber session.",
+    "syntax": "action-number terminate {dot1x | mab | webauth}",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "dot1x",
+        "description": "Specifies the IEEE 802.1X authentication method."
+      },
+      {
+        "name": "mab",
+        "description": "Specifies the MAC authentication bypass (MAB) method."
+      },
+      {
+        "name": "webauth",
+        "description": "Specifies the web authentication method."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The terminate command defines an action in a control policy.  Control policies determine the actions taken in response to specified events and conditions.  The control class defines the conditions that must be met before the actions are executed.",
+    "sourcePage": 2132,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "timeout init-state min",
+    "context": null,
+    "detail": "Set the initialize (Init) state timeout for web authentication sessions.",
+    "syntax": "timeout init-state min minutes",
+    "noForm": "no timeout init-state min minutes",
+    "params": [],
+    "modes": ["Parameter-map type webauth configuration (config-params-parameter-map)"],
+    "usageSummary": "Use the timeout init-state min command to limit the number of minutes that a web authentication session can stay in the Init state.  A session remains in the Init state until the user enters his or her username and password credentials.  If the timer expires before the user enters his or her credentials, the session is cleared.",
+    "sourcePage": 2134,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "trust device",
+    "context": "template",
+    "detail": "Set a trust state for a device.",
+    "syntax": "trust device device-name",
+    "noForm": "no trust device device-name",
+    "params": [
+      {
+        "name": "device-name",
+        "description": "Name of the device to be assigned a trust state, which can be one of the following values: • cisco-phone • cts • ip-camera • media-player"
+      }
+    ],
+    "modes": ["Template configuration (config-template)"],
+    "usageSummary": "Use this command to set the trust state of an end device.",
+    "sourcePage": 2135,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "tunnel type capwap",
+    "context": "service-template",
+    "detail": "Configure a Control And Provisioning of Wireless Access Points protocol (CAPWAP) tunnel in a service template.",
+    "syntax": "tunnel type capwap name tunnel-name",
+    "noForm": "no tunnel type capwap name tunnel-name",
+    "params": [
+      {
+        "name": "name",
+        "description": "tunnel-name Specified the name of the CAPWAP tunnel."
+      }
+    ],
+    "modes": ["Service-template configuration (config-service-template)"],
+    "usageSummary": "Use this command to create a CAPWAP tunnel to enable wired guest access through a wireless port.  For wireless access, guests are directed through a Control And Provisioning of Wireless Access Points (CAPWAP) tunnel to the wireless controller in the DMZ (demilitarized zone) and are provided open or web-authenticated access from the wireless controller.  The following example shows how to configure a CAPWAP tunnel: Device(config)# service-template GUEST-TUNNEL Device(config-service-template)# tunnel type capwap name tunnel1 Related Commands Command Description service-template Defines a template that contains a set of service policy attributes to apply to subscriber sessions.",
+    "sourcePage": 2136,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "type",
+    "context": "parameter-map webauth",
+    "detail": "Define the authentication methods supported by a parameter map.",
+    "syntax": "type {authbypass | consent | webauth | webconsent}",
+    "noForm": "no type {authbypass | consent | webauth | webconsent}",
+    "params": [
+      {
+        "name": "consent",
+        "description": "Specifies consent only. Allows default access without prompting users for their username and password credentials. Users instead get a choice of two radio buttons: accept or do not accept. For accounting purposes, the device passes the client’s MAC address to the authentication, authorization, and accounting (AAA) server."
+      },
+      {
+        "name": "webauth",
+        "description": "Specifies web authentication only. Allows access based on the user's privileges. The device sends the username and password to the AAA server for authentication and accounting. This is the default value. webconsent Specifies both web authentication and consent."
+      }
+    ],
+    "modes": ["Parameter-map webauth configuration (config-params-parameter-map)"],
+    "usageSummary": "Use the type command to specify the authentication method to which the parameters in the map apply.  A parameter map defines parameters that control the behavior of actions specified under a policy map.  This command is supported in named parameter maps only.",
+    "sourcePage": 2137,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "unauthorize",
+    "context": null,
+    "detail": "Unauthorize a port and remove any access granted on the basis of previous authorization data.",
+    "syntax": "action-number unauthorize",
+    "noForm": "no action-number",
+    "params": [
+      {
+        "name": "action-number",
+        "description": "Number of the action. Actions are executed sequentially within the policy rule."
+      }
+    ],
+    "modes": ["Control policy-map action configuration (config-action-control-policymap)"],
+    "usageSummary": "The unauthorize command defines an action in a control policy.  This command removes any access that was granted based on previous authorization data, including the user profile and any activated service templates.  Control policies determine the actions taken in response to specified events and conditions.",
+    "sourcePage": 2139,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "virtual-ip",
+    "context": null,
+    "detail": "Specify a virtual IP address for web authentication clients.",
+    "syntax": "virtual-ip {ipv4 ipv4-address | ipv6 ipv6-address}",
+    "noForm": "no virtual-ip {ipv4 | ipv6}",
+    "params": [
+      {
+        "name": "ipv4 ipv4-address",
+        "description": "Specifies the IPv4 address to use as the virtual IP address."
+      },
+      {
+        "name": "ipv6 ipv6-address",
+        "description": "Specifies the IPv6 address to use as the virtual IP address."
+      }
+    ],
+    "modes": ["Parameter-map webauth configuration (config-params-parameter-map)"],
+    "usageSummary": "Use the virtual-ip command to specify the virtual IP address to use for web authentication clients.  If you use default or local custom pages, configuring a virtual IP address will cause a logout web page to be presented to clients after they have been successfully authenticated.  This allows users to logout by clicking a link in the logout page.",
+    "sourcePage": 2140,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vlan",
+    "context": "service template",
+    "detail": "Assign a VLAN to subscriber sessions.",
+    "syntax": "vlan vlan-id",
+    "noForm": "no vlan vlan-id",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "VLAN identifier. Range: 1 to 4094."
+      }
+    ],
+    "modes": ["Service template configuration (config-service-template)"],
+    "usageSummary": "Use the vlan command to assign a VLAN to sessions on which the service template is activated.",
+    "sourcePage": 2141,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "voice vlan",
+    "context": "service template",
+    "detail": "Assign a voice VLAN to subscriber sessions.",
+    "syntax": "voice vlan",
+    "noForm": "no voice vlan",
+    "params": [],
+    "modes": ["Service template configuration (config-service-template)"],
+    "usageSummary": "Use the voice vlan command to assign a voice VLAN to sessions on which the service template is activated.",
+    "sourcePage": 2142,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "watch-list",
+    "context": null,
+    "detail": "Enable a watch list of web authentication clients.",
+    "syntax": "watch-list {add-item {ipv4 ipv4-address | ipv6 ipv6-address} | dynamic-expiry-timeout minutes | enabled} | enabled}",
+    "noForm": "no watch-list {add-item {ipv4 ipv4-address | ipv6 ipv6-address} | dynamic-expiry-timeout minutes",
+    "params": [
+      {
+        "name": "add-item",
+        "description": "Adds an IP address to the watch list."
+      },
+      {
+        "name": "ipv4 ipv4-address",
+        "description": "Specifies the IPv4 address of a client to add to the watch list."
+      },
+      {
+        "name": "ipv6 ipv6-address",
+        "description": "Specifies the IPv6 address of a client to add to the watch list. dynamic-expiry-timeout minutes Sets the duration of time, in minutes, that an entry remains in the watch list. Range: 0 to 2147483647. Default: 30. 0 (zero) keeps the entry in the list permanently."
+      },
+      {
+        "name": "enabled",
+        "description": "Enables a watch list."
+      }
+    ],
+    "modes": ["Parameter-map webauth configuration (config-params-parameter-map)"],
+    "usageSummary": "Use the watch-list command to monitor the connections of specific web authentication clients.  When you enable the watch list, web authentication dynamically adds clients to the watch list after either of the following events occurs: • The client exceeds the maximum number of login attempts allowed, as configured with the ip admission max-login-attempts command.  • The client exceeds the maximum number of open TCP sessions allowed, as configured with the max-http-conns command (default is 30).",
+    "sourcePage": 2143,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  }
+]

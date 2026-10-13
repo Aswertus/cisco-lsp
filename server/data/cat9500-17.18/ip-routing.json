@@ -1,0 +1,2933 @@
+[
+  {
+    "name": "accept-lifetime",
+    "context": null,
+    "detail": "Set the time period during which the authentication key on a key chain is received as valid.",
+    "syntax": "accept-lifetime [ local ] start-time { infinite end-time | duration seconds }",
+    "noForm": "no accept-lifetime",
+    "params": [
+      {
+        "name": "local",
+        "description": "Specifies the time in local timezone."
+      },
+      {
+        "name": "start-time",
+        "description": "Beginning time that the key specified by the key command is valid to be received. The syntax can be either of the following: hh : mm : ss month date year hh : mm : ss date month year • hh: Hours • mm: Minutes • ss: Seconds • month: First three letters of the month • date: Date (1-31) • year: Year (four digits) The default start time and the earliest acceptable date is January 1, 1993."
+      },
+      {
+        "name": "infinite",
+        "description": "Key is valid to be received from the start-time value on."
+      },
+      {
+        "name": "end-time",
+        "description": "Key is valid to be received from the start-time value until the end-timevalue. The syntax is the same as that for the start-timevalue. The end-time value must be after the start-timevalue. The default end time is an infinite time period. duration seconds Length of time (in seconds) that the key is valid to be received. The range is from 1 to 2147483646."
+      }
+    ],
+    "modes": ["Key chain key configuration (config-keychain-key)"],
+    "usageSummary": "Only DRP Agent, Enhanced Interior Gateway Routing Protocol (EIGRP), and Routing Information Protocol ( RIP) Version 2 use key chains.  Specify a start-time value and one of the following values: infinite, end-time, or duration seconds.  We recommend running Network Time Protocol (NTP) or some other time synchronization method if you assign a lifetime to a key.",
+    "sourcePage": 1482,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "address-family ipv4",
+    "context": "EIGRP MTR",
+    "detail": "Configure the Enhanced Interior Gateway Routing Protocol (EIGRP) for Multitopology Routing (MTR).",
+    "syntax": "address-family ipv4 [unicast | multicast | vrf vrf-name] autonomous-system as-number",
+    "noForm": "no address-family ipv4 [unicast | multicast | vrf vrf-name] autonomous-system as-number",
+    "params": [
+      {
+        "name": "unicast",
+        "description": "(Optional) Specifies the unicast subaddress family."
+      },
+      {
+        "name": "multicast",
+        "description": "(Optional) Specifies the multicast subaddress family."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies the name of the virtual routing and forwarding (VRF). autonomous-system as-number Specifies the autonomous system number."
+      }
+    ],
+    "modes": ["Router configuration (config-router)"],
+    "usageSummary": "The address-family ipv4 command is used to enter router address family or subaddress family configuration mode to configure the exchange of address-family and subaddress-family prefixes.",
+    "sourcePage": 1485,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "address-family ipv6",
+    "context": "OSPF",
+    "detail": "Enter the address family configuration mode for configuring routing sessions, such as Open Shortest Path First (OSPF), that uses the standard IPv6 address prefixes.",
+    "syntax": "address-family ipv6 [unicast ][vrf vrf-name ]",
+    "noForm": "no address-family ipv6 [unicast ][vrf vrf-name ]",
+    "params": [
+      {
+        "name": "unicast",
+        "description": "(Optional) Specifies the IPv6 unicast address prefixes."
+      },
+      {
+        "name": "vrf",
+        "description": "(Optional) Specifies all the VPN routing and forwarding (VRF) instance tables or a specific VRF table for an IPv6 address."
+      },
+      {
+        "name": "vrf-name",
+        "description": "(Optional) A specific VRF table for an IPv6 address."
+      }
+    ],
+    "modes": ["Router configuration (config-router)"],
+    "usageSummary": "The address-family ipv6 command places the router in address family configuration mode (prompt: config-router-af), from which you can configure routing sessions that use the standard IPv6 address prefixes.",
+    "sourcePage": 1487,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "address-family l2vpn",
+    "context": null,
+    "detail": "Enter address family configuration mode to configure a routing session using Layer 2 Virtual Private Network (VPN) endpoint provisioning address information.",
+    "syntax": "address-family l2vpn [evpn | vpls]",
+    "noForm": "no address-family l2vpn [evpn | vpls]",
+    "params": [
+      {
+        "name": "evpn",
+        "description": "(Optional) Specifies L2VPN Ethernet Virtual Private Network (EVPN) endpoint provisioning address information."
+      },
+      {
+        "name": "vpls",
+        "description": "(Optional) Specifies L2VPN Virtual Private LAN Service (VPLS) endpoint provisioning address information."
+      }
+    ],
+    "modes": ["Router configuration (config-router)"],
+    "usageSummary": "The address-family l2vpn command places the device in address family configuration mode (prompt: config-router-af), from which you can configure routing sessions that support Layer 2 VPN endpoint provisioning.  BGP support for the Layer 2 VPN address family introduces a BGP-based autodiscovery mechanism to distribute Layer 2 VPN endpoint provisioning information.  BGP uses a separate Layer 2 VPN routing information base (RIB) to store endpoint provisioning information, which is updated each time any Layer 2 virtual forwarding instance (VFI) is configured.",
+    "sourcePage": 1488,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "aggregate-address",
+    "context": null,
+    "detail": "Create an aggregate entry in a Border Gateway Protocol (BGP) database.",
+    "syntax": "aggregate-address address mask [as-set] [as-confed-set] [summary-only] [suppress-map map-name] [advertise-map map-name] [attribute-map map-name] map-name] [advertise-map map-name] [attribute-map map-name]",
+    "noForm": "no aggregate-address address mask [as-set] [as-confed-set] [summary-only] [suppress-map",
+    "params": [
+      {
+        "name": "address",
+        "description": "Aggregate address."
+      },
+      {
+        "name": "mask",
+        "description": "Aggregate mask."
+      },
+      {
+        "name": "as-set",
+        "description": "(Optional) Generates autonomous system set path information."
+      },
+      {
+        "name": "as-confed-set",
+        "description": "(Optional) Generates autonomous confederation set path information."
+      },
+      {
+        "name": "summary-only",
+        "description": "(Optional) Filters all more-specific routes from updates."
+      },
+      {
+        "name": "suppress-map map-name",
+        "description": "(Optional) Specifies the name of the route map used to select the routes to be suppressed."
+      },
+      {
+        "name": "advertise-map map-name",
+        "description": "(Optional) Specifies the name of the route map used to select the routes to create AS_SET origin communities."
+      },
+      {
+        "name": "attribute-map map-name",
+        "description": "(Optional) Specifies the name of the route map used to set the attribute of the aggregate route."
+      }
+    ],
+    "modes": [
+      "Address family configuration (config-router-af) Router configuration (config-router)",
+      "Table 144:"
+    ],
+    "usageSummary": "You can implement aggregate routing in BGP and Multiprotocol BGP (mBGP) either by redistributing an aggregate route into BGP or mBGP, or by using the conditional aggregate routing feature.  Using the aggregate-addresscommand with no keywords will create an aggregate entry in the BGP or mBGP routing table if any more-specific BGP or mBGP routes are available that fall within the specified range.  (A longer prefix that matches the aggregate must exist in the Routing Information Base (RIB).",
+    "sourcePage": 1491,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "area nssa",
+    "context": null,
+    "detail": "Configure a not-so-stubby area ( NSSA).",
+    "syntax": "area nssa commandarea area-id nssa [no-redistribution] [default-information-originate [metric] [metric-type]] [no-summary] [nssa-only] [no-summary] [nssa-only]",
+    "noForm": "no area area-id nssa [no-redistribution] [default-information-originate [metric] [metric-type]]",
+    "params": [
+      {
+        "name": "area-id",
+        "description": "Identifier for the stub area or NSSA. The identifier can be specified as either a decimal value or an IP address."
+      },
+      {
+        "name": "no-redistribution",
+        "description": "(Optional) Used when the router is an NSSA Area Border Router (ABR) and you want the redistribute command to import routes only into the normal areas, but not into the NSSA area."
+      },
+      {
+        "name": "default-information-",
+        "description": "(Optional) Used to generate a Type 7 default into the NSSA area. This"
+      },
+      {
+        "name": "originate",
+        "description": "keyword takes effect only on the NSSA ABR or the NSSA Autonomous System Boundary Router (ASBR)."
+      },
+      {
+        "name": "metric",
+        "description": "(Optional) Specifies the OSPF default metric."
+      },
+      {
+        "name": "metric-type",
+        "description": "(Optional) Specifies the OSPF metric type for default routes."
+      },
+      {
+        "name": "no-summary",
+        "description": "(Optional) Allows an area to be an NSSA but not have summary routes injected into it."
+      },
+      {
+        "name": "nssa-only",
+        "description": "(Optional) Limits the default advertisement to this NSSA area by setting the propagate (P) bit in the type-7 LSA to zero."
+      }
+    ],
+    "modes": [
+      "Router address family topology configuration (config-router-af-topology) Router configuration (config-router)"
+    ],
+    "usageSummary": "To remove the specified area from the software configuration, use the no area area-idcommand (with no other keywords).  That is, the no area area-id command removes all area options, including area authentication, area default-cost, area nssa, area range, area stub, and area virtual-link.  Release 12.",
+    "sourcePage": 1494,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "area virtual-link",
+    "context": null,
+    "detail": "Define an Open Shortest Path First (OSPF) virtual link.",
+    "syntax": "area area-id virtual-link router-id authentication key-chain chain-name [hello-interval seconds] [retransmit-interval seconds] [transmit-delay seconds] [dead-interval seconds] [ttl-security hops hop-count] Table 145:",
+    "noForm": "no area area-id virtual-link router-id authentication key-chain chain-name",
+    "params": [
+      {
+        "name": "area-id",
+        "description": "Area ID assigned to the virtual link. This can be either a decimal value or a valid IPv6 prefix. There is no default."
+      },
+      {
+        "name": "router-id",
+        "description": "Router ID associated with the virtual link neighbor. The router ID appears in the show ip ospf or show ipv6 display command. There is no default."
+      },
+      {
+        "name": "authentication",
+        "description": "Enables virtual link authentication."
+      },
+      {
+        "name": "key-chain",
+        "description": "Configures a key-chain for cryptographic authentication keys."
+      },
+      {
+        "name": "chain-name",
+        "description": "Name of the authentication key that is valid."
+      },
+      {
+        "name": "hello-interval seconds",
+        "description": "(Optional) Specifies the time (in seconds) between the hello packets that the Cisco IOS software sends on an interface. The hello interval is an unsigned integer value to be advertised in the hello packets. The value must be the same for all routers and access servers attached to a common network. The range is from 1 to 8192. The default is 10."
+      },
+      {
+        "name": "retransmit-interval seconds",
+        "description": "(Optional) Specifies the time (in seconds) between link-state advertisement (LSA) retransmissions for adjacencies belonging to the interface. The retransmit interval is the expected round-trip delay between any two routers on the attached network. The value must be greater than the expected round-trip delay. The range is from 1 to 8192. The default is 5."
+      },
+      {
+        "name": "transmit-delay seconds",
+        "description": "(Optional) Specifies the estimated time (in seconds) required to send a link-state update packet on the interface. The integer value that must be greater than zero. LSAs in the update packet have their age incremented by this amount before transmission. The range is from 1 to 8192. The default value is 1. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1496 Routing area virtual-link"
+      },
+      {
+        "name": "dead-interval seconds",
+        "description": "(Optional) Specifies the time (in seconds) that hello packets are not seen before a neighbor declares the router down. The dead interval is an unsigned integer value. The default is four times the hello interval, or 40 seconds. As with the hello interval, this value must be the same for all routers and access servers attached to a common network."
+      },
+      {
+        "name": "ttl-security hops hop-count",
+        "description": "(Optional) Configures Time-to-Live (TTL) security on a virtual link. The hop-count argument range is from 1 to 254."
+      }
+    ],
+    "modes": [
+      "Router address family topology configuration (config-router-af-topology)",
+      "Router configuration (config-router)",
+      "Address family configuration (config-router-af)"
+    ],
+    "usageSummary": "In OSPF, all areas must be connected to a backbone area.  A lost connection to the backbone can be repaired by establishing a virtual link.  The shorter the hello interval, the faster topological changes will be detected, but more routing traffic will ensue.",
+    "sourcePage": 1496,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "auto-summary",
+    "context": "BGP",
+    "detail": "Configure automatic summarization of subnet routes into network-level routes.",
+    "syntax": "auto-summary",
+    "noForm": "no auto-summary",
+    "params": [],
+    "modes": [
+      "Address family configuration (config-router-af)",
+      "Router configuration (config-router)"
+    ],
+    "usageSummary": "BGP automatically summarizes routes to classful network boundaries when this command is enabled.  Route summarization is used to reduce the amount of routing information in routing tables.  Automatic summarization applies to connected, static, and redistributed routes.",
+    "sourcePage": 1499,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "authentication",
+    "context": "BFD",
+    "detail": "Configure authentication in a Bidirectional Forwarding Detection (BFD) template for single hop sessions.",
+    "syntax": "authentication authentication-type keychain keychain-name",
+    "noForm": "no authentication authentication-type keychain keychain-name",
+    "params": [
+      {
+        "name": "authentication-type",
+        "description": "Authentication type. Valid values are md5, meticulous-md5, meticulous-sha1, and sha-1. keychain keychain-name Configures an authentication key chain with the specified name. The maximum number of characters allowed in the name is 32."
+      }
+    ],
+    "modes": ["BFD configuration (config-bfd)"],
+    "usageSummary": "You can configure authentication in single hop templates.  We recommend that you configure authentication to enhance security.  Authentication must be configured on each BFD source-destination pair, and authentication parameters must match on both devices.",
+    "sourcePage": 1502,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd",
+    "context": null,
+    "detail": "To set the baseline Bidirectional Forwarding Detection (BFD) session parameters on an interface, use the bfd interface configuration mode. To remove the baseline BFD session parameters, use the no form of this command",
+    "syntax": "bfd interval milliseconds min_rx milliseconds multiplier multiplier-value",
+    "noForm": "no bfd interval milliseconds min_rx milliseconds multiplier multiplier-value",
+    "params": [
+      {
+        "name": "interval milliseconds",
+        "description": "Specifies the rate, in milliseconds, at which BFD control packets will be sent to BFD peers. The valid range for the milliseconds argument is from 50 to 9999."
+      },
+      {
+        "name": "min_rx milliseconds",
+        "description": "Specifies the rate, in milliseconds, at which BFD control packets will be expected to be received from BFD peers. The valid range for the milliseconds argument is from 50 to 9999."
+      },
+      {
+        "name": "multiplier",
+        "description": "Specifies the number of consecutive BFD control packets that must be missed"
+      },
+      {
+        "name": "multiplier-value",
+        "description": "from a BFD peer before BFD declares that the peer is unavailable and the Layer 3 BFD peer is informed of the failure. The valid range for the multiplier-valueargument is from 3 to 50."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The bfd command can be configured on SVI, Ethernet and port-channel interfaces.  If BFD runs on a port channel interface, BFD has a timer value restriction of 750 * 3 milliseconds.  The bfd interval configuration is not removed when: • an IPv4 address is removed from an interface • an IPv6 address is removed from an interface • IPv6 is disabled from an interface • an interface is shutdown • IPv4 CEF is disabled globally or locally on an interface • IPv6 CEF is disabled globally or locally on an interface The bfd interval configuration is removed when the subinterface on which its is configured is removed.",
+    "sourcePage": 1503,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd all-interfaces",
+    "context": null,
+    "detail": "Enable Bidirectional Forwarding Detection (BFD) for all interfaces participating in the routing process.",
+    "syntax": "bfd all-interfaces",
+    "noForm": "no bfd all-interfaces",
+    "params": [],
+    "modes": ["Router configuration (config-router)"],
+    "usageSummary": "To enable BFD for all interfaces, enter the bfd all-interfaces command in router configuration mode",
+    "sourcePage": 1505,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd check-ctrl-plane-failure",
+    "context": null,
+    "detail": "Enable Bidirectional Forwarding Detection (BFD) control plane failure checking for the Intermediate System-to-Intermediate System (IS-IS) routing protocol.",
+    "syntax": "bfd check-ctrl-plane-failure",
+    "noForm": "no bfd check-ctrl-plane-failure",
+    "params": [],
+    "modes": ["Router configuration (config-router)"],
+    "usageSummary": "The bfd check-ctrl-plane-failure command can be configured for an IS-IS routing process only.  The command is not supported on other protocols.  When a switch restarts, a false BFD session failure can occur, where neighboring routers behave as if a true forwarding failure has occurred.",
+    "sourcePage": 1506,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd echo",
+    "context": null,
+    "detail": "Enable Bidirectional Forwarding Detection (BFD) echo mode.",
+    "syntax": "bfd echo",
+    "noForm": "no bfd echo",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Echo mode is enabled by default.  Entering the no bfd echo command without any keywords turns off the sending of echo packets and signifies that the switch is unwilling to forward echo packets received from BFD neighbor switches.  When echo mode is enabled, the desired minimum echo transmit interval and required minimum transmit interval values are taken from the bfd interval milliseconds min_rx milliseconds parameters, respectively.",
+    "sourcePage": 1507,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd slow-timers",
+    "context": null,
+    "detail": "Configure the Bidirectional Forwarding Detection (BFD) slow timers value.",
+    "syntax": "bfd slow-timers [milliseconds]",
+    "noForm": "no bfd slow-timers",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 1509,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd template",
+    "context": null,
+    "detail": "Create a Bidirectional Forwarding Detection (BFD) template and to enter BFD configuration mode.",
+    "syntax": "bfd template template-name",
+    "noForm": "no bfd template template-name",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Even if you have not created the template by using the bfd-template command, you can configure the name of the template under an interface, but the template is considered invalid until you define the template.  You do not have to reconfigure the template name again.  It becomes valid automatically.",
+    "sourcePage": 1511,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd-template single-hop",
+    "context": null,
+    "detail": "Bind a single hop Bidirectional Forwarding Detection (BFD) template to an interface.",
+    "syntax": "bfd-template single-hop template-name",
+    "noForm": "no bfd-template single-hop template-name",
+    "params": [
+      {
+        "name": "single-hop",
+        "description": "Creates the single-hop BFD template. template-name Template name."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The bfd-template command allows you to create a BFD template and places the device in BFD configuration mode.  The template can be used to specify a set of BFD interval values.  BFD interval values specified as part of the BFD template are not specific to a single interface.",
+    "sourcePage": 1512,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bgp graceful-restart",
+    "context": null,
+    "detail": "Enable the Border Gateway Protocol (BGP) graceful restart capability globally for all BGP neighbors.",
+    "syntax": "bgp graceful-restart [extended | restart-time seconds | stalepath-time seconds] [all]",
+    "noForm": "no bgp graceful-restart",
+    "params": [
+      {
+        "name": "extended",
+        "description": "(Optional) Enables BGP graceful restart extension."
+      },
+      {
+        "name": "restart-time seconds",
+        "description": "(Optional) Sets the maximum time period that the local router will wait for a graceful-restart-capable neighbor to return to normal operation after a restart event occurs. The default value for this argument is 120 seconds. The configurable range of values is from 1 to 3600 seconds."
+      },
+      {
+        "name": "stalepath-time seconds",
+        "description": "(Optional) Sets the maximum time period that the local router will hold stale paths for a restarting peer. All stale paths are deleted after this timer expires. The default value for this argument is 360 seconds. The configurable range of values is from 1 to 3600 seconds"
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Enables BGP graceful restart capability for all address family modes."
+      }
+    ],
+    "modes": [
+      "Address-family configuration (config-router-af)",
+      "Router configuration (config-router)",
+      "Table 147:"
+    ],
+    "usageSummary": "The bgp graceful-restart command is used to enable or disable the graceful restart capability globally for all BGP neighbors in a BGP network.  The graceful restart capability is negotiated between nonstop forwarding (NSF)-capable and NSF-aware peers in OPEN messages during session establishment.  If the graceful restart Command Reference, Cisco IOS XE 17.",
+    "sourcePage": 1513,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear proximity ip bgp",
+    "context": null,
+    "detail": "Reset Border Gateway Protocol (BGP) connections using hard or soft reconfiguration.",
+    "syntax": "clear proximity ip bgp {* | allautonomous-system-numberneighbor-address | peer-group group-name} [in [prefix-filter] | out | slow | soft [in [prefix-filter] | out | slow]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "*",
+        "description": "Specifies that all current BGP sessions will be reset."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Specifies the reset of all address family sessions. autonomous-system-number Number of the autonomous system in which all BGP peer sessions will be reset. Number in the range from 1 to 65535. • In Cisco IOS Release 12.0(32)SY8, 12.0(33)S3, 12.2(33)SRE, 12.2(33)XNE, 12.2(33)SXI1, Cisco IOS XE Release 2.4, and later releases, 4-byte autonomous system numbers are supported in the range from 65536 to 4294967295 in asplain notation and in the range from 1.0 to 65535.65535 in asdot notation. • In Cisco IOS Release 12.0(32)S12, 12.4(24)T, and Cisco IOS XE Release 2.3, 4-byte autonomous system numbers are supported in the range from 1.0 to 65535.65535 in asdot notation only. For more details about autonomous system number formats, see the router bgp command."
+      },
+      {
+        "name": "neighbor-address",
+        "description": "Specifies that only the identified BGP neighbor will be reset. The value for this argument can be an IPv4 or IPv6 address. peer-group group-name Specifies that only the identified BGP peer group will be reset."
+      },
+      {
+        "name": "in",
+        "description": "(Optional) Initiates inbound reconfiguration. If neither the in nor out keywords are specified, both inbound and outbound sessions are reset."
+      },
+      {
+        "name": "prefix-filter",
+        "description": "(Optional) Clears the existing outbound route filter (ORF) prefix list to trigger a new route refresh or soft reconfiguration, which updates the ORF prefix list."
+      },
+      {
+        "name": "out",
+        "description": "(Optional) Initiates inbound or outbound reconfiguration. If neither the in nor out keywords are specified, both inbound and outbound sessions are reset."
+      },
+      {
+        "name": "slow",
+        "description": "(Optional) Clears slow-peer status forcefully and moves it to original update group."
+      },
+      {
+        "name": "soft",
+        "description": "(Optional) Initiates a soft reset. Does not tear down the session."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC (#)",
+      "Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1515 Routing clear proximity ip bgp"
+    ],
+    "usageSummary": "Theclearproximity ip bgp command can be used to initiate a hard reset or soft reconfiguration.  A hard reset tears down and rebuilds the specified peering sessions and rebuilds the BGP routing tables.  A soft reconfiguration uses stored prefix information to reconfigure and activate BGP routing tables without tearing down existing peering sessions.",
+    "sourcePage": 1515,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "default-information originate",
+    "context": "OSPF",
+    "detail": "Generate a default external route into an Open Shortest Path First (OSPF) routing domain.",
+    "syntax": "default-information originate [always] [metric metric-value] [metric-type type-value] [route-map map-name] map-name]",
+    "noForm": "no default-information originate [always] [metric metric-value] [metric-type type-value] [route-map",
+    "params": [
+      {
+        "name": "always",
+        "description": "(Optional) Always advertises the default route regardless of whether the software has a default route. Note The always keyword includes the following exception when the route map is used. When a route map is used, the origination of the default route by OSPF is not bound to the existence of a default route in the routing table and the always keyword is ignored."
+      },
+      {
+        "name": "metric",
+        "description": "metric-value (Optional) Metric used for generating the default route. If you omit a value and do not specify a value using the default-metric router configuration command, the default metric value is 10. The value used is specific to the protocol."
+      },
+      {
+        "name": "metric-type",
+        "description": "(Optional) External link type associated with the default route that is advertised"
+      },
+      {
+        "name": "type-value",
+        "description": "into the OSPF routing domain. It can be one of the following values: • Type 1 external route. • Type 2 external route. The default is type 2 external route. route-map map-name (Optional) The routing process will generate the default route if the route map is satisfied."
+      }
+    ],
+    "modes": [
+      "Router configuration (config-router) Router address family topology configuration (config-router-af-topology)"
+    ],
+    "usageSummary": "Whenever you use the redistribute or the default-information router configuration command to redistribute routes into an OSPF routing domain, the Cisco IOS software automatically becomes an Autonomous System Boundary Router (ASBR).  However, an ASBR does not, by default, generate a default route into the OSPF routing domain.  The software must still have a default route for itself before it generates one, except when you have specified the always keyword.",
+    "sourcePage": 1519,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "default-metric",
+    "context": "BGP",
+    "detail": "Set a default metric for routes redistributed into Border Gateway Protocol (BGP).",
+    "syntax": "default-metric number",
+    "noForm": "no default-metric number",
+    "params": [
+      {
+        "name": "number",
+        "description": "Default metric value applied to the redistributed route. The range of values for this argument is from 1 to 4294967295."
+      }
+    ],
+    "modes": [
+      "Address family configuration (config-router-af)",
+      "Router configuration (config-router)",
+      "Table 149:"
+    ],
+    "usageSummary": "The default-metric command is used to set the metric value for routes redistributed into BGP and can be applied to any external BGP (eBGP) routes received and subsequently advertised internally to iBGP peers.  This value is the Multi Exit Discriminator (MED) that is evaluated by BGP during the best path selection process.  The MED is a non-transitive value that is processed only within the local autonomous system and adjacent autonomous systems.",
+    "sourcePage": 1521,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "distance",
+    "context": "OSPF",
+    "detail": "Define an administrative distance.",
+    "syntax": "distance weight [ip-address wildcard-mask [access-list name]]",
+    "noForm": "no distance weight ip-address wildcard-mask [access-list-name]",
+    "params": [
+      {
+        "name": "weight",
+        "description": "Administrative distance. Range is 10 to 255. Used alone, the weight argument specifies a default administrative distance that the software uses when no other specification exists for a routing information source. Routes with a distance of 255 are not installed in the routing table. The table in the “Usage Guidelines” section lists the default administrative distances."
+      },
+      {
+        "name": "ip-address",
+        "description": "(Optional) IP address in four-part dotted-decimal notation."
+      },
+      {
+        "name": "wildcard-mask",
+        "description": "(Optional) Wildcard mask in four-part, dotted-decimal format. A bit set to 1 in the wildcard-mask argument instructs the software to ignore the corresponding bit in the address value. access-list-name (Optional) Name of an IP access list to be applied to incoming routing updates."
+      }
+    ],
+    "modes": ["Router configuration (config-router)", "VRF configuration (config-vrf)"],
+    "usageSummary": "To use this command, you must be in a user group associated with a task group that includes the appropriate task IDs.  If the user group assignment is preventing you from using a command contact your AAA administrator for assistance.  An administrative distance is an integer from 10 to 255.",
+    "sourcePage": 1523,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "eigrp log-neighbor-changes",
+    "context": null,
+    "detail": "Enable the logging of changes in Enhanced Interior Gateway Routing Protocol (EIGRP) neighbor adjacencies.",
+    "syntax": "eigrp log-neighbor-changes",
+    "noForm": "no eigrp log-neighbor-changes",
+    "params": [],
+    "modes": [
+      "Router configuration (config-router) Address-family configuration (config-router-af) Service-family configuration (config-router-sf)"
+    ],
+    "usageSummary": "This command enables the logging of neighbor adjacency changes to monitor the stability of the routing system and to help detect problems.  Logging is enabled by default.  To disable the logging of neighbor adjacency changes, use the no form of this command.",
+    "sourcePage": 1526,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "eigrp log-neighbor-warnings",
+    "context": null,
+    "detail": "Enable the logging of Enhanced Interior Gateway Routing Protocol (EIGRP) neighbor warning messages.",
+    "syntax": "eigrp log-neighbor-warnings [seconds]",
+    "noForm": "no eigrp log-neighbor-warnings",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "(Optional) The time interval (in seconds) between repeated neighbor warning messages. The range is from 1 to 65535. The default is 10."
+      }
+    ],
+    "modes": [
+      "Router configuration (config-router) Address-family configuration (config-router-af) Service-family configuration (config-router-sf)"
+    ],
+    "usageSummary": "When neighbor warning messages occur, they are logged by default.  With this command, you can disable and enable neighbor warning messages, and you can configure the interval between repeated neighbor warning messages.  To enable the logging of warning messages for an EIGRP address family, use the eigrp log-neighbor-warnings command in address-family configuration mode.",
+    "sourcePage": 1528,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "fast-reroute keep-all-paths",
+    "context": null,
+    "detail": "Create a list of all the candidate repair paths considered when a per-prefix loop-free alternate (LFA) Fast Reroute (FRR) route is computed.",
+    "syntax": "fast-reroute keep-all-paths",
+    "noForm": "no fast-reroute keep-all-paths",
+    "params": [],
+    "modes": ["Router configuration (config-router)"],
+    "usageSummary": "You can use the fast-reroute keep-all-paths command to display all the candidate repair paths that are considered when an LFA FRR repair path is computed.  You can use this list to troubleshoot repair paths without having to enable debugs.  However, this greatly increases memory consumption, and should, therefore, be reserved for testing.",
+    "sourcePage": 1530,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "fast-reroute load-sharing disable",
+    "context": "EIGRP",
+    "detail": "Disable Fast Reroute (FRR) load sharing among Equal Cost Multipath (ECMP) loop-free alternates (LFAs) in an Enhanced Interior Gateway Routing Protocol (EIGRP) network.",
+    "syntax": "fast-reroute load-sharing disable",
+    "noForm": "no fast-reroute load-sharing disable",
+    "params": [],
+    "modes": ["Router address family topology configuration (config-router-af-topology)"],
+    "usageSummary": "Use this command to disable FRR load sharing among ECMP LFAs when FRR can be enabled on a single LFA by using tiebreaking rules.  These rules are used to select the best LFA (repair path) for a primary path in an EIGRP network when many candidate LFAs are available.  However, if a tie-breaking rule cannot be applied to select LFAs, use the no form of this command to restore the device to its default settings.",
+    "sourcePage": 1532,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "fast-reroute per-prefix",
+    "context": "EIGRP",
+    "detail": "Enable Fast Reroute (FRR) per prefix in an Enhanced Interior Gateway Routing Protocol (EIGRP) network.",
+    "syntax": "fast-reroute per-prefix {all | route-map route-map-name}",
+    "noForm": "no fast-reroute per-prefix {all | route-map route-map-name}",
+    "params": [
+      {
+        "name": "all",
+        "description": "Enables FRR for all the available prefixes in the EIGRP network."
+      },
+      {
+        "name": "route-map",
+        "description": "Enables FRR for prefixes that are specified by a route map. route-map-name Name of the route map."
+      }
+    ],
+    "modes": ["Router address family topology configuration (config-router-af-topology)"],
+    "usageSummary": null,
+    "sourcePage": 1534,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "fast-reroute per-prefix enable",
+    "context": "OSPF",
+    "detail": "Configure a per-prefix LFA FRR path that redirects traffic to an alternative next hop other than the primary neighbor.",
+    "syntax": "fast-reroute per-prefix enable [area area-id ]prefix-priority {high | low}",
+    "noForm": "no fast-reroute per-prefix enable [area area-id ]prefix-priority {high | low}",
+    "params": [
+      {
+        "name": "area",
+        "description": "(Optional) Specifies an area in which to enable LFA FRR."
+      },
+      {
+        "name": "area-id",
+        "description": "OSPF area ID expressed as a decimal value, or in IP address format. prefix-priority Specifies the priority of prefixes to be protected."
+      },
+      {
+        "name": "high",
+        "description": "Sets the prefix priority to high."
+      },
+      {
+        "name": "low",
+        "description": "Sets the prefix priority to low."
+      }
+    ],
+    "modes": ["Router configuration (config-router)"],
+    "usageSummary": null,
+    "sourcePage": 1536,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "fast-reroute per-prefix tie-break",
+    "context": "OSPF",
+    "detail": "Configure the tiebreaking policy in selecting in an LFA FRR repair path.",
+    "syntax": "fast-reroute per-prefix tie-break {broadcast-interface-disjoint | downstream | interface-disjoint | linecard-disjoint | node-protecting | primary-path | secondary-path | srlg} [required] {index attribute-priority | lowest-metric index attribute-priority} linecard-disjoint | node-protecting | primary-path | secondary-path | srlg} [required] {index attribute-priority | lowest-metric index attribute-priority}",
+    "noForm": "no fast-reroute per-prefix tie-break {broadcast-interface-disjoint | downstream | interface-disjoint |",
+    "params": [
+      {
+        "name": "downstream",
+        "description": "Configures LFAs whose metric to the protected destination is lower than the metric of the protecting node to the destination."
+      },
+      {
+        "name": "interface-disjoint",
+        "description": "Configures the interface protection attribute."
+      },
+      {
+        "name": "linecard-disjoint",
+        "description": "Configures the linecard protection attribute."
+      },
+      {
+        "name": "node-protecting",
+        "description": "Configures the node-protecting repair path attribute."
+      },
+      {
+        "name": "primary-path",
+        "description": "Configures the equal-cost multipath attribute."
+      },
+      {
+        "name": "secondary-path",
+        "description": "Configures the not-equal-cost multipath attribute."
+      },
+      {
+        "name": "srlg",
+        "description": "Configures the shared risk link group (SRLG) attribute."
+      },
+      {
+        "name": "required",
+        "description": "(Optional) Specifies that the tiebreaker is required."
+      },
+      {
+        "name": "index",
+        "description": "Specifies the tiebreak attribute priority."
+      },
+      {
+        "name": "attribute-priority",
+        "description": "The tiebreak attribute priority number. Valid values are from 1 to 255."
+      },
+      {
+        "name": "lowest-metric",
+        "description": "Configures the lowest metric repair path attribute."
+      }
+    ],
+    "modes": ["Router configuration (config-router)"],
+    "usageSummary": "You must configure the router ospf command before you can configure the fast-reroute per-prefix tie-break command.  You can use the show ip ospf fast-reroute command to display the default, or the current, tiebreak configuration.  The tiebreaker policy is evaluated in the configured or the default order.",
+    "sourcePage": 1538,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "fast-reroute tie-break",
+    "context": "EIGRP",
+    "detail": "Enable EIGRP FRR to select a loop-free alternate (LFA) from among multiple candidate LFAs for a given primary path by configuring a tiebreaking attribute.",
+    "syntax": "fast-reroute tie-break {interface-disjoint | linecard-disjoint | lowest-backup-path-metric | srlg-disjoint} priority-number default fast-reroute tie-break {interface-disjoint | linecard-disjoint | lowest-backup-path-metric | srlg-disjoint}",
+    "noForm": "no fast-reroute tie-break {interface-disjoint | linecard-disjoint | lowest-backup-path-metric | srlg-disjoint}",
+    "params": [
+      {
+        "name": "interface-disjoint",
+        "description": "Enables EIGRP FRR to choose an LFA that does not share the outgoing interface with the primary path. The default priority is 20."
+      },
+      {
+        "name": "linecard-disjoint",
+        "description": "Enables EIGRP FRR to choose an LFA that does not share the line card with the primary path. The default priority is 40. lowest-backup-path-metric Enables EIGRP FRR to choose the LFA with the lowest metric to the protected destination. The default priority is 30."
+      },
+      {
+        "name": "srlg-disjoint",
+        "description": "Enables EIGRP FRR to choose an LFA that does not share any Shared Risk Link Group (SRLG) with the primary path. The default priority is 10."
+      },
+      {
+        "name": "priority-number",
+        "description": "Priority number assigned to the tiebreaking attribute. The range is from 1 to 255."
+      }
+    ],
+    "modes": ["Router address family topology configuration (config-router-af-topology)"],
+    "usageSummary": "Use this command to configure tiebreaking rules when there are multiple LFAs for a given primary path.  EIGRP allows you to use four attributes to configure tiebreaking rules.  Each of the interface-disjoint, linecard-disjoint, lowest-backup-path-metric, and srlg-disjoint keywords specifies an attribute and allows you to configure a tiebreaking rule based on the attribute.",
+    "sourcePage": 1541,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip authentication key-chain eigrp",
+    "context": null,
+    "detail": "Enable authentication of Enhanced Interior Gateway Routing Protocol (EIGRP) packets.",
+    "syntax": "ip authentication key-chain eigrp as-number key-chain",
+    "noForm": "no ip authentication key-chain eigrp as-number key-chain",
+    "params": [
+      {
+        "name": "as-number",
+        "description": "Autonomous system number to which the authentication applies."
+      },
+      {
+        "name": "key-chain",
+        "description": "Name of the authentication key chain."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": null,
+    "sourcePage": 1544,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip authentication mode eigrp",
+    "context": null,
+    "detail": "Specify the type of authentication used in Enhanced Interior Gateway Routing Protocol (EIGRP) packets.",
+    "syntax": "ip authentication mode eigrp as-number md5",
+    "noForm": "no ip authentication mode eigrp as-number md5",
+    "params": [
+      {
+        "name": "as-number",
+        "description": "Autonomous system number."
+      },
+      {
+        "name": "md5",
+        "description": "Keyed Message Digest 5 ( MD5) authentication."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": "Configure authentication to prevent unapproved sources from introducing unauthorized or false routing messages.  When authentication is configured, an MD5 keyed digest is added to each EIGRP packet in the specified autonomous system.",
+    "sourcePage": 1545,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip bandwidth-percent eigrp",
+    "context": null,
+    "detail": "Configure the percentage of bandwidth that may be used by Enhanced Interior Gateway Routing Protocol (EIGRP) on an interface.",
+    "syntax": "ip bandwidth-percent eigrp as-number percent",
+    "noForm": "no ip bandwidth-percent eigrp as-number percent",
+    "params": [
+      {
+        "name": "as-number",
+        "description": "Autonomous system number."
+      },
+      {
+        "name": "percent",
+        "description": "Percent of bandwidth that EIGRP may use."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": "EIGRP will use up to 50 percent of the bandwidth of a link, as defined by the bandwidth interface configuration command.  This command may be used if some other fraction of the bandwidth is desired.",
+    "sourcePage": 1546,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip cef load-sharing algorithm",
+    "context": null,
+    "detail": "Select a Cisco Express Forwarding load-balancing algorithm, use theip cef load-sharing algorithm command in global configuration mode. To return to the default universal load-balancing algorithm.",
+    "syntax": "ip cef load-sharing algorithm {original | [universal [id]]}",
+    "noForm": "no ip cef load-sharing algorithm",
+    "params": [
+      {
+        "name": "original",
+        "description": "Sets the load-balancing algorithm to the original algorithm based on a source and destination hash."
+      },
+      {
+        "name": "universal",
+        "description": "Sets the load-balancing algorithm to the universal algorithm that uses a source IP, destination IP, Layer 3 Protocol, Layer 4 source port, Layer 4 destination port and IPv6 flow label (for IPv6 traffic)."
+      },
+      {
+        "name": "id",
+        "description": "(Optional) Fixed identifier."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The original Cisco Express Forwarding load-balancing algorithm produced distortions in load sharing across multiple devices because of the use of the same algorithm on every device.  When the load-balancing algorithm is set to universal mode, each device on the network can make a different load sharing decision for each source-destination address pair, and that resolves load-balancing distortions.",
+    "sourcePage": 1547,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip community-list",
+    "context": null,
+    "detail": "Configure a BGP community list and to control which routes are permitted or denied based on their community values.",
+    "syntax": "Standard Community Lists ip community-list {standard | standard list-name} {deny | permit} [community-number] [AA:NN] [internet] [local-as] [no-advertise] [no-export] [gshut] Expanded Community Lists ip community-list {expanded | expanded list-name} {deny | permit} regexp",
+    "noForm": "no ip community-list {standard | standard list-name} no ip community-list {expanded | expanded list-name}",
+    "params": [
+      {
+        "name": "standard",
+        "description": "Standard community list number from 1 to 99 to identify one or more permit or deny groups of communities."
+      },
+      {
+        "name": "standard list-name",
+        "description": "Configures a named standard community list."
+      },
+      {
+        "name": "deny",
+        "description": "Denies routes that match the specified community or communities."
+      },
+      {
+        "name": "permit",
+        "description": "Permits routes that match the specified community or communities."
+      },
+      {
+        "name": "community-number",
+        "description": "(Optional) 32-bit number from 1 to 4294967200. A single community can be entered or multiple communities can be entered, each separated by a space. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1548 Routing ip community-list"
+      },
+      {
+        "name": "AA :NN",
+        "description": "(Optional) Autonomous system number and network number entered in the 4-byte new community format. This value is configured with two 2-byte numbers separated by a colon. A number from 1 to 65535 can be entered for each 2-byte number. A single community can be entered or multiple communities can be entered, each separated by a space."
+      },
+      {
+        "name": "internet",
+        "description": "(Optional) Specifies the Internet community. Routes with this community are advertised to all peers (internal and external)."
+      },
+      {
+        "name": "local-as",
+        "description": "(Optional) Specifies the local-as community. Routes with community are advertised to only peers that are part of the local autonomous system or to only peers within a subautonomous system of a confederation. These routes are not advertised to external peers or to other subautonomous systems within a confederation."
+      },
+      {
+        "name": "no-advertise",
+        "description": "(Optional) Specifies the no-advertise community. Routes with this community are not advertised to any peer (internal or external)."
+      },
+      {
+        "name": "no-export",
+        "description": "(Optional) Specifies the no-export community. Routes with this community are advertised to only peers in the same autonomous system or to only other subautonomous systems within a confederation. These routes are not advertised to external peers. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1549 Routing ip community-list"
+      },
+      {
+        "name": "gshut",
+        "description": "(Optional) Specifies the Graceful Shutdown (GSHUT) community."
+      },
+      {
+        "name": "expanded",
+        "description": "Expanded community list number from 100 to 500 to identify one or more permit or deny groups of communities."
+      },
+      {
+        "name": "expanded list-name",
+        "description": "Configures a named expanded community list."
+      },
+      {
+        "name": "regexp",
+        "description": "Regular expression that is used to specify a pattern to match against an input string. Note Regular expressions can be used only with expanded community lists."
+      }
+    ],
+    "modes": ["Global configuration (config)", "Table 151:"],
+    "usageSummary": "The ip community-list command is used to filter BGP routes based on one or more community values.  BGP community values are configured as a 32-bit number (old format) or as a 4-byte number (new format).  The new community format is enabled when the ip bgp-community new-format command is entered in global configuration mode.",
+    "sourcePage": 1548,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip prefix-list",
+    "context": null,
+    "detail": "Create a prefix list or to add a prefix-list entry.",
+    "syntax": "ip prefix-list {list-name [seq number] {deny | permit} network/length [ge ge-length] [le le-length] | description description | sequence-number} le-length]] | description description | sequence-number}",
+    "noForm": "no ip prefix-list {list-name [seq number] [ {deny | permit} network/length [ge ge-length] [le",
+    "params": [
+      {
+        "name": "list-name",
+        "description": "Configures a name to identify the prefix list. Do not use the word “detail” or “summary” as a list name because they are keywords in the show ip prefix-list command."
+      },
+      {
+        "name": "seq",
+        "description": "(Optional) Applies a sequence number to a prefix-list entry."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) Integer from 1 to 4294967294. If a sequence number is not entered when configuring this command, default sequence numbering is applied to the prefix list. The number 5 is applied to the first prefix entry, and subsequent unnumbered entries are incremented by 5."
+      },
+      {
+        "name": "deny",
+        "description": "Denies access for a matching condition."
+      },
+      {
+        "name": "permit",
+        "description": "Permits access for a matching condition."
+      },
+      {
+        "name": "network / length",
+        "description": "Configures the network address and the length of the network mask in bits. The network number can be any valid IP address or prefix. The bit mask can be a number from 1 to 32."
+      },
+      {
+        "name": "ge",
+        "description": "(Optional) Specifies the lesser value of a range (the “from” portion of the range description) by applying the ge-length argument to the range specified. Note The ge keyword represents the greater than or equal to operator."
+      },
+      {
+        "name": "ge-length",
+        "description": "(Optional) Represents the minimum prefix length to be matched."
+      },
+      {
+        "name": "le",
+        "description": "(Optional) Specifies the greater value of a range (the “to” portion of the range description) by applying the le-length argument to the range specified. Note The le keyword represents the less than or equal to operator."
+      },
+      {
+        "name": "le-length",
+        "description": "(Optional) Represents the maximum prefix length to be matched."
+      },
+      {
+        "name": "description",
+        "description": "(Optional) Configures a descriptive name for the prefix list."
+      },
+      {
+        "name": "description",
+        "description": "(Optional) Descriptive name of the prefix list, from 1 to 80 characters in length."
+      },
+      {
+        "name": "sequence-number",
+        "description": "(Optional) Enables or disables the use of sequence numbers for prefix lists."
+      }
+    ],
+    "modes": ["Global configuration (config)", "Table 152:"],
+    "usageSummary": "Use the ip prefix-list command to configure IP prefix filtering.  Prefix lists are configured with permit or deny keywords to either permit or deny a prefix based on a matching condition.  An implicit deny is applied to traffic that does not match any prefix-list entry.",
+    "sourcePage": 1553,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip hello-interval eigrp",
+    "context": null,
+    "detail": "Configure the hello interval for an Enhanced Interior Gateway Routing Protocol (EIGRP) process.",
+    "syntax": "ip hello-interval eigrp as-number seconds",
+    "noForm": "no ip hello-interval eigrp as-number [seconds]",
+    "params": [
+      {
+        "name": "as-number",
+        "description": "Autonomous system number."
+      },
+      {
+        "name": "seconds",
+        "description": "Hello interval (in seconds). The range is from 1 to 65535."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": "The default of 60 seconds applies only to low-speed, NBMA media.  Low speed is considered to be a rate of T1 or slower, as specified with the bandwidth interface configuration command.",
+    "sourcePage": 1556,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip hold-time eigrp",
+    "context": null,
+    "detail": "Configure the hold time for an Enhanced Interior Gateway Routing Protocol (EIGRP) process.",
+    "syntax": "ip hold-time eigrp as-number seconds",
+    "noForm": "no ip hold-time eigrp as-number seconds",
+    "params": [
+      {
+        "name": "as-number",
+        "description": "Autonomous system number."
+      },
+      {
+        "name": "seconds",
+        "description": "Hold time (in seconds). The range is from 1 to 65535."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": "On very congested and large networks, the default hold time might not be sufficient time for all routers and access servers to receive hello packets from their neighbors.  In this case, you may want to increase the hold time.  We recommend that the hold time be at least three times the hello interval.",
+    "sourcePage": 1557,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip load-sharing",
+    "context": null,
+    "detail": "Enable load balancing for Cisco Express Forwarding on an interface.",
+    "syntax": "ip load-sharing { per-destination }",
+    "noForm": "no ip load-sharing",
+    "params": [
+      {
+        "name": "per-destination",
+        "description": "Enables per-destination load balancing for Cisco Express Forwarding on the interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Per-destination load balancing allows the device to use multiple, equal-cost paths to achieve load sharing.  Packets for a given source-destination host pair are guaranteed to take the same path, even if multiple, equal-cost paths are available.  Traffic for different source-destination host pairs tends to take different paths.",
+    "sourcePage": 1558,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip network-broadcast",
+    "context": null,
+    "detail": "To receive and accept the network-prefix-directed broadcast packets, configure the ip network-broadcast command at the interface of the device.",
+    "syntax": "ip network-broadcast",
+    "noForm": null,
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Configure the ip network-broadcast command at the ingress interface before configuring the ip directed-broadcast command at the egress interface.  This ensures that the network-prefix-directed broadcast packets are received and accepted.  The ip network-broadcast command is disabled by default.",
+    "sourcePage": 1559,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip next-hop-self eigrp",
+    "context": null,
+    "detail": "Enable the Enhanced Interior Gateway Routing Protocol (EIGRP) to advertise routes with the local outbound interface address as the next hop.",
+    "syntax": "ip next-hop-self eigrp as-number",
+    "noForm": "no ip next-hop-self eigrp as-number",
+    "params": [
+      {
+        "name": "as-number",
+        "description": "Autonomous system number."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": "EIGRP, by default, sets the next-hop value to the local outbound interface address for routes that it is advertising, even when advertising those routes back out of the same interface on which they were learned.  To change this default, you must use the no ip next-hop-self eigrp interface configuration command to instruct EIGRP to use the received next-hop value when advertising these routes.  Following are some exceptions to this guideline: • If your topology does not require spoke-to-spoke dynamic tunnels, you need not configure the no ip next-hop-self eigrp command.",
+    "sourcePage": 1560,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip ospf database-filter all out",
+    "context": null,
+    "detail": "Filter outgoing link-state advertisements (LSAs) to an Open Shortest Path First (OSPF) interface.",
+    "syntax": "ip ospf database-filter all out [disable]",
+    "noForm": "no ip ospf database-filter all out",
+    "params": [
+      {
+        "name": "disable",
+        "description": "(Optional) Disables the filtering of outgoing LSAs to an OSPF interface; all outgoing LSAs are flooded to the interface. Note This keyword is available only in virtual network interface mode."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)", "Virtual network interface (config-if-vnet)"],
+    "usageSummary": "This command performs the same function that the neighbor database-filter command performs on a neighbor basis.  If the ip ospf database-filter all out command is enabled for a virtual network and you want to disable it, use the disable keyword in virtual network interface configuration mode.",
+    "sourcePage": 1562,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip ospf fast-reroute per-prefix",
+    "context": null,
+    "detail": "Configure an interface as a protecting or a protected interface in a per-prefix LFA repair path.",
+    "syntax": "ip ospf fast-reroute per-prefix {candidate | protection} [disable]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "disable",
+        "description": "(Optional) Specifies that the interface is either protecting or protected."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "If you know from the network topology that an interface cannot be used to reroute traffic, for example, if it goes to a customer site, you can use the ip ospf fast-reroute per-prefix command to disable it from being protecting interface.",
+    "sourcePage": 1563,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip ospf name-lookup",
+    "context": null,
+    "detail": "Configure Open Shortest Path First (OSPF) to look up Domain Name System (DNS) names for use in all OSPF show EXEC command displays.",
+    "syntax": "ip ospf name-lookup noipospfname-lookup",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "This command makes it easier to identify a router because the router is displayed by name rather than by its router ID or neighbor ID.",
+    "sourcePage": 1565,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip split-horizon eigrp",
+    "context": null,
+    "detail": "Enable Enhanced Interior Gateway Routing Protocol (EIGRP) split horizon.",
+    "syntax": "ip split-horizon eigrp as-number",
+    "noForm": "no ip split-horizon eigrp as-number",
+    "params": [
+      {
+        "name": "as-number",
+        "description": "Autonomous system number."
+      }
+    ],
+    "modes": ["Interface configuration (config-if) Virtual network interface (config-if-vnet)"],
+    "usageSummary": "Use the no ip split-horizon eigrp command to disable EIGRP split horizon in your configuration.",
+    "sourcePage": 1566,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip summary-address eigrp",
+    "context": null,
+    "detail": "Configure address summarization for the Enhanced Interior Gateway Routing Protocol (EIGRP) on a specified interface.",
+    "syntax": "ip summary-address eigrp as-number ip-address mask [admin-distance] [leak-map name]",
+    "noForm": "no ip summary-address eigrp as-number ip-address mask",
+    "params": [
+      {
+        "name": "as-number",
+        "description": "Autonomous system number."
+      },
+      {
+        "name": "ip-address",
+        "description": "Summary IP address to apply to an interface."
+      },
+      {
+        "name": "mask",
+        "description": "Subnet mask."
+      },
+      {
+        "name": "admin-distance",
+        "description": "(Optional) Administrative distance. Range: 0 to 255. Note Starting with Cisco IOS XE Release 3.2S, the admin-distance argument was removed. Use the summary-metric command to configure the administrative distance."
+      },
+      {
+        "name": "leak-map name",
+        "description": "(Optional) Specifies the route-map reference that is used to configure the route leaking through the summary."
+      }
+    ],
+    "modes": [
+      "Interface configuration (config-if)",
+      "Virtual network interface configuration (config-if-vnet)"
+    ],
+    "usageSummary": "The ip summary-address eigrp command is used to configure interface-level address summarization.  EIGRP summary routes are given an administrative-distance value of 5.  The administrative-distance metric is used to advertise a summary without installing it in the routing table.",
+    "sourcePage": 1567,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip route static bfd",
+    "context": null,
+    "detail": "Specify static route bidirectional forwarding detection (BFD) neighbors.",
+    "syntax": "ip route static bfd {interface-type interface-number ip-address | vrf vrf-name} [group group-name] [passive] [unassociate] [passive] [unassociate]",
+    "noForm": "no ip route static bfd {interface-type interface-number ip-address | vrf vrf-name} [group group-name]",
+    "params": [
+      {
+        "name": "interface-type interface-number",
+        "description": "Interface type and number."
+      },
+      {
+        "name": "ip-address",
+        "description": "IP address of the gateway, in A.B.C.D format."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "Specifies Virtual Routing and Forwarding (VRF) instance and the destination vrf name."
+      },
+      {
+        "name": "group group-name",
+        "description": "(Optional) Assigns a BFD group. The group-name is a character string of up to 32 characters specifying the BFD group name."
+      },
+      {
+        "name": "unassociate",
+        "description": "(Optional) Unassociates the static route configured for a BFD."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the ip route static bfd command to specify static route BFD neighbors.  All static routes that have the same interface and gateway specified in the configuration share the same BFD session for reachability notification.  All static routes that specify the same values for the interface-type, interface-number, and ip-address arguments will automatically use BFD to determine gateway reachability and take advantage of fast failure detection.",
+    "sourcePage": 1569,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 route static bfd",
+    "context": null,
+    "detail": "Specify static route Bidirectional Forwarding Detection for IPv6 (BFDv6) neighbors.",
+    "syntax": "ipv6 route static bfd [vrf vrf-name] interface-type interface-number ipv6-address [unassociated]",
+    "noForm": "no ipv6 route static bfd",
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Name of the virtual routing and forwarding (VRF) instance by which static routes should be specified."
+      },
+      {
+        "name": "interface-type interface-number",
+        "description": "Interface type and number."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "IPv6 address of the neighbor."
+      },
+      {
+        "name": "unassociated",
+        "description": "(Optional) Moves a static BFD neighbor from associated mode to unassociated mode."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the ipv6 route static bfd command to specify static route neighbors.  All of the static routes that have the same interface and gateway specified in the configuration share the same BFDv6 session for reachability notification.  BFDv6 requires that BFDv6 sessions are initiated on both endpoint routers.",
+    "sourcePage": 1571,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "match tag",
+    "context": null,
+    "detail": "Filter routes that match specific route tags.",
+    "syntax": "match tag {tag-valuetag-value-dotted-decimal} [... tag-value | ... tag-value-dotted-decimal]",
+    "noForm": "no match tag {tag-valuetag-value-dotted-decimal} [... tag-value | ... tag-value-dotted-decimal]",
+    "params": [
+      {
+        "name": "tag-value",
+        "description": "Route tag value, in plain decimals. The valid range is from 0 to 4294967295. tag-value-dotted-decimal Route tag value, in dotted decimals. The valid range is from 0.0.0.0 to 255.255.255.255."
+      }
+    ],
+    "modes": ["Route-map configuration (config-route-map)"],
+    "usageSummary": "Ellipses (... ) in the command syntax indicate that your command input can include multiple values for the tag-value and the tag-value-dotted-decimal arguments.",
+    "sourcePage": 1572,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "metric weights",
+    "context": "EIGRP",
+    "detail": "Tune the Enhanced Interior Gateway Routing Protocol (EIGRP) metric calculations.",
+    "syntax": "Router Configuration metric weights tos k1 k2 k3 k4 k5 Address Family Configuration metric weights tos [k1 [k2 [k3 [k4 [k5 [k6]]]]]]",
+    "noForm": "no metric weights no metric weights",
+    "params": [
+      {
+        "name": "tos",
+        "description": "Type of service. This value must always be zero. k1 k2 k3 k4 k5 k6 (Optional) Constants that convert an EIGRP metric vector into a scalar quantity. Valid values are 0 to 255. Given below are the default values: • k1: 1 • k2: 0 • k3: 1 • k4: 0 • k5: 0 • k6: 0 Note In address family configuration mode, if the values are not specified, default values are configured. The k6 argument is supported only in address family configuration mode."
+      }
+    ],
+    "modes": [
+      "Router configuration (config-router) Address family configuration (config-router-af)"
+    ],
+    "usageSummary": "Use this command to alter the default behavior of EIGRP routing and metric computation and to allow the tuning of the EIGRP metric calculation for a particular type of service (ToS).  If k5 equals 0, the composite EIGRP metric is computed according to the following formula: metric = [k1 * bandwidth + (k2 * bandwidth)/(256 – load) + k3 * delay + K6 * extended metrics] Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 1574,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "neighbor advertisement-interval",
+    "context": null,
+    "detail": "Set the minimum route advertisement interval (MRAI) between the sending of BGP routing updates.",
+    "syntax": "neighbor {ip-addresspeer-group-name} advertisement-interval seconds",
+    "noForm": "no neighbor {ip-addresspeer-group-name} advertisement-interval seconds",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the neighbor."
+      },
+      {
+        "name": "peer-group-name",
+        "description": "Name of a BGP peer group."
+      },
+      {
+        "name": "seconds",
+        "description": "Time (in seconds) is specified by an integer ranging from 0 to 600."
+      }
+    ],
+    "modes": ["Router configuration (config-router)", "Table 153:"],
+    "usageSummary": "When the MRAI is equal to 0 seconds, BGP routing updates are sent as soon as the BGP routing table changes.  If you specify a BGP peer group by using the peer-group-name argument, all the members of the peer group will inherit the characteristic configured with this command.",
+    "sourcePage": 1576,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "neighbor default-originate",
+    "context": null,
+    "detail": "Allow a BGP speaker (the local router) to send the default route 0.0.0.0 to a neighbor for use as a default route.",
+    "syntax": "neighbor {ip-addresspeer-group-name} default-originate [route-map map-name]",
+    "noForm": "no neighbor {ip-addresspeer-group-name} default-originate [route-map map-name]",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the neighbor."
+      },
+      {
+        "name": "peer-group-name",
+        "description": "Name of a BGP peer group."
+      },
+      {
+        "name": "route-map",
+        "description": "map-name (Optional) Name of the route map. The route map allows route 0.0.0.0 to be injected conditionally."
+      }
+    ],
+    "modes": [
+      "Address family configuration (config-router-af)",
+      "Router configuration (config-router)",
+      "Table 154:"
+    ],
+    "usageSummary": "This command does not require the presence of 0. 0. 0.",
+    "sourcePage": 1578,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "neighbor description",
+    "context": null,
+    "detail": "Associate a description with a neighbor.",
+    "syntax": "neighbor {ip-addresspeer-group-name} description text",
+    "noForm": "no neighbor {ip-addresspeer-group-name} description [text]",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the neighbor."
+      },
+      {
+        "name": "peer-group-name",
+        "description": "Name of an EIGRP peer group. This argument is not available in address-family configuration mode."
+      },
+      {
+        "name": "text",
+        "description": "Text (up to 80 characters in length) that describes the neighbor."
+      }
+    ],
+    "modes": [
+      "Router configuration (config-router) Address family configuration (config-router-af)"
+    ],
+    "usageSummary": null,
+    "sourcePage": 1580,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "neighbor ebgp-multihop",
+    "context": null,
+    "detail": "Accept and attempt BGP connections to external peers residing on networks that are not directly connected.",
+    "syntax": "neighbor {ip-addressipv6-addresspeer-group-name} ebgp-multihop [ttl]",
+    "noForm": "no neighbor {ip-addressipv6-addresspeer-group-name} ebgp-multihop",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the BGP-speaking neighbor."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "IPv6 address of the BGP-speaking neighbor."
+      },
+      {
+        "name": "peer-group-name",
+        "description": "Name of a BGP peer group."
+      },
+      {
+        "name": "ttl",
+        "description": "(Optional) Time-to-live in the range from 1 to 255 hops."
+      }
+    ],
+    "modes": ["Router configuration (config-router)", "Table 155:"],
+    "usageSummary": "This feature should be used only under the guidance of Cisco technical support staff.  If you specify a BGP peer group by using the peer-group-name argument, all the members of the peer group will inherit the characteristic configured with this command.  To prevent the creation of loops through oscillating routes, the multihop will not be established if the only route to the multihop peer is the default route (0.",
+    "sourcePage": 1581,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "neighbor maximum-prefix",
+    "context": "BGP",
+    "detail": "Control how many prefixes can be received from a neighbor.",
+    "syntax": "neighbor {ip-addresspeer-group-name} maximum-prefix maximum [threshold] [restart restart-interval] [warning-only]",
+    "noForm": "no neighbor {ip-addresspeer-group-name} maximum-prefix maximum",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the neighbor."
+      },
+      {
+        "name": "peer-group-name",
+        "description": "Name of a Border Gateway Protocol (BGP) peer group."
+      },
+      {
+        "name": "maximum",
+        "description": "Maximum number of prefixes allowed from the specified neighbor. The number of prefixes that can be configured is limited only by the available system resources on a router."
+      },
+      {
+        "name": "threshold",
+        "description": "(Optional) Integer specifying at what percentage of the maximum-prefix limit the router starts to generate a warning message. The range is from 1 to 100; the default is 75."
+      },
+      {
+        "name": "restart",
+        "description": "(Optional) Configures the router that is running BGP to automatically reestablish a peering session that has been disabled because the maximum-prefix limit has been exceeded. The restart timer is configured with the restart-interval argument."
+      },
+      {
+        "name": "restart-interval",
+        "description": "(Optional) Time interval (in minutes) that a peering session is reestablished. The range is from 1 to 65535 minutes."
+      },
+      {
+        "name": "warning-only",
+        "description": "(optional) Allows the router to generate a sys-log message when the maximum-prefix limitis exceeded, instead of terminating the peering session."
+      }
+    ],
+    "modes": ["Router configuration (config-router)", "Table 156:"],
+    "usageSummary": "The neighbor maximum-prefixcommand allows you to configure a maximum number of prefixes that a Border Gateway Protocol (BGP) routing process will accept from the specified peer.  This feature provides a mechanism (in addition to distribute lists, filter lists, and route maps) to control prefixes received from a peer.  When the number of received prefixes exceeds the maximum number configured, BGP disables the peering session (by default).",
+    "sourcePage": 1582,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "neighbor peer-group",
+    "context": "assigning members",
+    "detail": "Configure a BGP neighbor to be a member of a peer group.",
+    "syntax": "neighbor {ip-addressipv6-address} peer-group peer-group-name",
+    "noForm": "no neighbor {ip-addressipv6-address} peer-group peer-group-name",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the BGP neighbor that belongs to the peer group specified by the peer-group-name argument."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "IPv6 address of the BGP neighbor that belongs to the peer group specified by the peer-group-name argument."
+      },
+      {
+        "name": "peer-group-name",
+        "description": "Name of the BGP peer group to which this neighbor belongs."
+      }
+    ],
+    "modes": [
+      "Address family configuration (config-router-af)",
+      "Router configuration (config-router)",
+      "Table 157:"
+    ],
+    "usageSummary": "The neighbor at the IP address indicated inherits all the configured options of the peer group.",
+    "sourcePage": 1584,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "neighbor peer-group",
+    "context": "creating",
+    "detail": "Create a BGP or multiprotocol BGP peer group.",
+    "syntax": "neighbor peer-group-name peer-group",
+    "noForm": "no neighbor peer-group-name peer-group",
+    "params": [
+      {
+        "name": "peer-group-name",
+        "description": "Name of the BGP peer group."
+      }
+    ],
+    "modes": [
+      "Address family configuration (config-router-af)",
+      "Router configuration (config-router)",
+      "Table 158:"
+    ],
+    "usageSummary": "Often in a BGP or multiprotocol BGP speaker, many neighbors are configured with the same update policies (that is, same outbound route maps, distribute lists, filter lists, update source, and so on).  Neighbors with the same update policies can be grouped into peer groups to simplify configuration and make update calculation more efficient.",
+    "sourcePage": 1586,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "neighbor route-map",
+    "context": null,
+    "detail": "Apply a route map to incoming or outgoing routes.",
+    "syntax": "neighbor {ip-addresspeer-group-name | ipv6-address[%]}route-map map-name {in | out}",
+    "noForm": "no neighbor {ip-addresspeer-group-name | ipv6-address[%]}route-map map-name {in | out}",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the neighbor."
+      },
+      {
+        "name": "peer-group-name",
+        "description": "Name of a BGP or multiprotocol BGP peer group."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "IPv6 address of the neighbor."
+      },
+      {
+        "name": "%",
+        "description": "(Optional) IPv6 link-local address identifier. This keyword needs to be added whenever a link-local IPv6 address is used outside the context of its interface."
+      },
+      {
+        "name": "map-name",
+        "description": "Name of a route map."
+      },
+      {
+        "name": "in",
+        "description": "Applies route map to incoming routes."
+      },
+      {
+        "name": "out",
+        "description": "Applies route map to outgoing routes."
+      }
+    ],
+    "modes": ["Router configuration (config-router)", "Table 159:"],
+    "usageSummary": "When specified in address family configuration mode, this command applies a route map to that particular address family only.  When specified in router configuration mode, this command applies a route map to IPv4 or IPv6 unicast routes only.  If an outbound route map is specified, it is proper behavior to only advertise routes that match at least one section of the route map.",
+    "sourcePage": 1589,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "neighbor update-source",
+    "context": null,
+    "detail": "Have the Cisco software allow Border Gateway Protocol (BGP) sessions to use any operational interface for TCP connections.",
+    "syntax": "neighbor {ip-address | ipv6-address[%]peer-group-name}update-source interface-type interface-number neighbor {ip-address | ipv6-address[%]peer-group-name}update-source interface-type interface-number",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IPv4 address of the BGP-speaking neighbor."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "IPv6 address of the BGP-speaking neighbor."
+      },
+      {
+        "name": "%",
+        "description": "(Optional) IPv6 link-local address identifier. This keyword needs to be added whenever a link-local IPv6 address is used outside the context of its interface."
+      },
+      {
+        "name": "peer-group-name",
+        "description": "Name of a BGP peer group."
+      },
+      {
+        "name": "interface-type",
+        "description": "Interface type."
+      },
+      {
+        "name": "interface-number",
+        "description": "Interface number."
+      }
+    ],
+    "modes": ["Router configuration (config-router)", "Table 160:"],
+    "usageSummary": "This command can work in conjunction with the loopback interface feature described in the “Interface Configuration Overview” chapter of the Cisco IOS Interface and Hardware Component Configuration Guide.  If you specify a BGP peer group by using the peer-group-name argument, all the members of the peer group will inherit the characteristic configured with this command.  The neighbor update-source command must be used to enable IPv6 link-local peering for internal or external BGP sessions.",
+    "sourcePage": 1591,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "network",
+    "context": "BGP and multiprotocol BGP",
+    "detail": "Specify the networks to be advertised by the Border Gateway Protocol (BGP) and multiprotocol BGP routing processes.",
+    "syntax": "network {network-number [mask network-mask]nsap-prefix} [route-map map-tag]",
+    "noForm": "no network {network-number [mask network-mask]nsap-prefix} [route-map map-tag]",
+    "params": [
+      {
+        "name": "network-number",
+        "description": "Network that BGP or multiprotocol BGP will advertise."
+      },
+      {
+        "name": "mask network-mask",
+        "description": "(Optional) Network or subnetwork mask with mask address."
+      },
+      {
+        "name": "nsap-prefix",
+        "description": "Network service access point (NSAP) prefix of the Connectionless Network Service (CLNS) network that BGP or multiprotocol BGP will advertise. This argument is used only under NSAP address family configuration mode."
+      },
+      {
+        "name": "route-map map-tag",
+        "description": "(Optional) Identifier of a configured route map. The route map should be examined to filter the networks to be advertised. If not specified, all networks are advertised. If the keyword is specified, but no route map tags are listed, no networks will be advertised."
+      }
+    ],
+    "modes": [
+      "Address family configuration (config-router-af)",
+      "Router configuration (config-router)",
+      "Table 161:"
+    ],
+    "usageSummary": "BGP and multiprotocol BGP networks can be learned from connected routes, from dynamic routing, and from static route sources.  The maximum number of network commands you can use is determined by the resources of the router, such as the configured NVRAM or RAM.",
+    "sourcePage": 1593,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "network",
+    "context": "EIGRP",
+    "detail": "Specify the network for an Enhanced Interior Gateway Routing Protocol (EIGRP) routing process.",
+    "syntax": "network ip-address [wildcard-mask]",
+    "noForm": "no network ip-address [wildcard-mask]",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the directly connected network."
+      },
+      {
+        "name": "wildcard-mask",
+        "description": "(Optional) EIGRP wildcard bits. Wildcard mask indicates a subnetwork, bitwise complement of the subnet mask."
+      }
+    ],
+    "modes": [
+      "Router configuration (config-router) Address-family configuration (config-router-af)"
+    ],
+    "usageSummary": "When the network command is configured for an EIGRP routing process, the router matches one or more local interfaces.  The network command matches only local interfaces that are configured with addresses that are within the same subnet as the address that has been configured with the networkcommand.  The router then establishes neighbors through the matched interfaces.",
+    "sourcePage": 1595,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "nsf",
+    "context": "EIGRP",
+    "detail": "Enable Cisco nonstop forwarding (NSF) operations for the Enhanced Interior Gateway Routing Protocol (EIGRP).",
+    "syntax": "nsf",
+    "noForm": "no nsf",
+    "params": [],
+    "modes": [
+      "Router configuration (config-router) Address family configuration (config-router-af)"
+    ],
+    "usageSummary": "The nsf command is used to enable or disable EIGRP NSF support on an NSF-capable router.  NSF is supported only on platforms that support High Availability.",
+    "sourcePage": 1597,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "offset-list",
+    "context": "EIGRP",
+    "detail": "Add an offset to incoming and outgoing metrics to routes learned via Enhanced Interior Gateway Routing Protocol (EIGRP).",
+    "syntax": "offset-list {access-list-numberaccess-list-name} {in | out} offset [interface-type interface-number]",
+    "noForm": "no offset-list {access-list-numberaccess-list-name} {in | out} offset [interface-type interface-number]",
+    "params": [
+      {
+        "name": "access-list-number |",
+        "description": "Standard access list number or name to be applied. Access list number 0"
+      },
+      {
+        "name": "access-list-name",
+        "description": "indicates all networks (networks, prefixes, or routes). If the offset value is 0, no action is taken."
+      },
+      {
+        "name": "in",
+        "description": "Applies the access list to incoming metrics."
+      },
+      {
+        "name": "out",
+        "description": "Applies the access list to outgoing metrics."
+      },
+      {
+        "name": "offset",
+        "description": "Positive offset to be applied to metrics for networks matching the access list. If the offset is 0, no action is taken."
+      },
+      {
+        "name": "interface-type",
+        "description": "(Optional) Interface type to which the offset list is applied."
+      },
+      {
+        "name": "interface-number",
+        "description": "(Optional) Interface number to which the offset list is applied."
+      }
+    ],
+    "modes": [
+      "Router configuration (config-router) Address family topology configuration (config-router-af-topology)",
+      "Table 162:"
+    ],
+    "usageSummary": "The offset value is added to the routing metric.  An offset list with an interface type and interface number is considered extended and takes precedence over an offset list that is not extended.  Therefore, if an entry passes the extended offset list and the normal offset list, the offset of the extended offset list is added to the metric.",
+    "sourcePage": 1599,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redistribute",
+    "context": "IP",
+    "detail": "Redistribute routes from one routing domain into another routing domain.",
+    "syntax": "redistribute protocol [process-id] {level-1 | level-1-2 | level-2} [autonomous-system-number] [metric {metric-value | transparent}] [metric-type type-value] [match {internal | external 1 | external 2}] [tag tag-value] [route-map map-tag] [subnets] [nssa-only] [metric {metric-value | transparent}] [metric-type type-value] [match {internal | external 1 | external 2}] [tag tag-value] [route-map map-tag] [subnets] [nssa-only]",
+    "noForm": "no redistribute protocol [process-id] {level-1 | level-1-2 | level-2} [autonomous-system-number]",
+    "params": [
+      {
+        "name": "protocol",
+        "description": "Source protocol from which routes are being redistributed. It can be one of the following keywords: application, bgp, connected, eigrp, isis, mobile, ospf, rip, or static [ip]. The static [ip] keyword is used to redistribute IP static routes. The optional ip keyword is used when redistributing into the Intermediate System-to-Intermediate System (IS-IS) protocol. The application keyword is used to redistribute an application from one routing domain to another. You can redistribute more than one application to different routing protocols such as IS-IS, OSPF, Border Gateway Protocol (BGP), Enhanced Interior Gateway Routing Protocol (EIGRP) and Routing Information Protocol (RIP). The connected keyword refers to routes that are established automatically by virtue of having enabled IP on an interface. For routing protocols such as Open Shortest Path First (OSPF) and IS-IS, these routes will be redistributed as external to the autonomous system. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1601 Routing redistribute (IP)"
+      },
+      {
+        "name": "process-id",
+        "description": "(Optional) For the application keyword, this is the name of an application. For the bgp or eigrp keyword, this is an autonomous system number, which is a 16-bit decimal number. For the isis keyword, this is an optional tag value that defines a meaningful name for a routing process. Creating a name for a routing process means that you use names when configuring routing. You can configure a router in two routing domains and redistribute routing information between these two domains. For the ospf keyword, this is an appropriate OSPF process ID from which routes are to be redistributed. This identifies the routing process. This value takes the form of a nonzero decimal number. For the rip keyword, no process-id value is needed. For the application keyword, this is the name of an application. By default, no process ID is defined."
+      },
+      {
+        "name": "level-1",
+        "description": "Specifies that, for IS-IS, Level 1 routes are redistributed into other IP routing protocols independently."
+      },
+      {
+        "name": "level-1-2",
+        "description": "Specifies that, for IS-IS, both Level 1 and Level 2 routes are redistributed into other IP routing protocols."
+      },
+      {
+        "name": "level-2",
+        "description": "Specifies that, for IS-IS, Level 2 routes are redistributed into other IP routing protocols independently."
+      },
+      {
+        "name": "autonomous-system-number",
+        "description": "(Optional) Autonomous system number for the redistributed route. The range is from 1 to 65535. • 4-byte autonomous system numbers are supported in the range from 1.0 to 65535.65535 in asdot notation only. For more details about autonomous system number formats, see the router bgp command."
+      },
+      {
+        "name": "metric metric-value",
+        "description": "(Optional) When redistributing from one OSPF process to another OSPF process on the same router, the metric will be carried through from one process to the other if no metric value is specified. When redistributing other processes to an OSPF process, the default metric is 20 when no metric value is specified. The default value is 0."
+      },
+      {
+        "name": "metric transparent",
+        "description": "(Optional) Causes RIP to use the routing table metric for redistributed routes as the RIP metric. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1602 Routing redistribute (IP)"
+      },
+      {
+        "name": "metric-type type value",
+        "description": "(Optional) For OSPF, specifies the external link type associated with the default route advertised into the OSPF routing domain. It can be one of two values: • 1—Type 1 external route • 2—Type 2 external route If a metric-type is not specified, the Cisco IOS software adopts a Type 2 external route. For IS-IS, it can be one of two values: • internal—IS-IS metric that is < 63. • external—IS-IS metric that is > 64 < 128. The default is internal. match {internal | external1 | external2} (Optional) Specifies the criteria by which OSPF routes are redistributed into other routing domains. It can be one of the following: • internal—Routes that are internal to a specific autonomous system. • external 1—Routes that are external to the autonomous system, but are imported into OSPF as Type 1 external routes. • external 2—Routes that are external to the autonomous system, but are imported into OSPF as Type 2 external routes. The default is internal."
+      },
+      {
+        "name": "tag tag-value",
+        "description": "(Optional) Specifies the 32-bit decimal value attached to each external route. This is not used by OSPF itself. It may be used to communicate information between Autonomous System Boundary Routers (ASBRs). If none is specified, the remote autonomous system number is used for routes from BGP and Exterior Gateway Protocol (EGP); for other protocols, zero (0) is used."
+      },
+      {
+        "name": "route-map",
+        "description": "(Optional) Specifies the route map that should be interrogated to filter the importation of routes from this source routing protocol to the current routing protocol. If not specified, all routes are redistributed. If this keyword is specified, but no route map tags are listed, no routes will be imported."
+      },
+      {
+        "name": "map-tag",
+        "description": "(Optional) Identifier of a configured route map. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1603 Routing redistribute (IP)"
+      },
+      {
+        "name": "subnets",
+        "description": "(Optional) For redistributing routes into OSPF. Note Irrespective of whether the subnets keyword is configured or not, the subnets functionality is enabled by default. This automatic addition results in the redistribution of classless OSPF routes."
+      },
+      {
+        "name": "nssa-only",
+        "description": "(Optional) Sets the nssa-only attribute for all routes redistributed into OSPF."
+      }
+    ],
+    "modes": [
+      "Router configuration (config-router) Address family configuration (config-af) Address family topology configuration (config-router-af-topology)"
+    ],
+    "usageSummary": null,
+    "sourcePage": 1601,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redistribute",
+    "context": "IPv6",
+    "detail": "Redistribute IPv6 routes from one routing domain into another routing domain.",
+    "syntax": "redistribute protocol [process-id ][include-connected {level-1 | level-1-2 | level-2}][as-number][metric metric-value] {metric-type type-value}[nssa-only][tag tag-value][route-map map-tag] metric-value] {metric-type type-value}[nssa-only][tag tag-value][route-map map-tag]",
+    "noForm": "no redistribute protocol [process-id ][include-connected {level-1 | level-1-2 | level-2}][as-number][metric",
+    "params": [
+      {
+        "name": "protocol",
+        "description": "Source protocol from which routes are redistributed. It can be one of the following keywords: bgp, connected, eigrp, isis, lisp, nd, omp, ospf (ospfv3), rip, or static."
+      },
+      {
+        "name": "process-id",
+        "description": "(Optional) For the bgp or eigrp keyword, the process ID is an autonomous system number, which is a 16-bit decimal number. For the isis keyword, the process ID is an optional value that defines a meaningful name for a routing process. You can specify only one Intermediate System-to-Intermediate System (IS-IS) process per router. Creating a name for a routing process means that you use names when configuring routing. For the ospf keyword, the process ID is the number that is assigned administratively when the Open Shortest Path First (OSPF) for the IPv6 routing process is enabled. For the rip keyword, the process ID is an optional value that defines a meaningful name for an IPv6 Routing Information Protocol (RIP) routing process. include-connected (Optional) Allows the target protocol to redistribute routes that are learned by the source protocol and connected prefixes on those interfaces over which the source protocol is running."
+      },
+      {
+        "name": "level-1",
+        "description": "Specifies that for IS-IS, Level 1 routes are redistributed into other IPv6 routing protocols independently."
+      },
+      {
+        "name": "level-1-2",
+        "description": "Specifies that for IS-IS, both Level 1 and Level 2 routes are redistributed into other IPv6 routing protocols."
+      },
+      {
+        "name": "level-2",
+        "description": "Specifies that for IS-IS, Level 2 routes are redistributed into other IPv6 routing protocols independently."
+      },
+      {
+        "name": "as-number",
+        "description": "(Optional) Autonomous system number for the redistributed route."
+      },
+      {
+        "name": "metric",
+        "description": "(Optional) When redistributing from one OSPF process to another OSPF process on"
+      },
+      {
+        "name": "metric-value",
+        "description": "the same router, the metric is carried through from one process to the other if no metric value is specified. When redistributing other processes to an OSPF process, the default metric is 20 when no metric value is specified. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1609 Routing redistribute (IPv6)"
+      },
+      {
+        "name": "metric-type",
+        "description": "(Optional) Specifies the external link type that is associated with the default route that"
+      },
+      {
+        "name": "type-value",
+        "description": "is advertised into the routing domain. It can be one of two values: • 1: Type 1 external route • 2: Type 2 external route If no value is specified for the metric-type keyword, the Cisco IOS software adopts a Type 2 external route."
+      },
+      {
+        "name": "nssa-only",
+        "description": "(Optional) Limits redistributed routes to not-so-stubby area (NSSA)"
+      },
+      {
+        "name": "tag tag-value",
+        "description": "(Optional) Specifies the 32-bit decimal value that is attached to each external route. This is not used by OSPF itself. It might be used to communicate information between Autonomous System Boundary Routers (ASBRs). If none is specified, then the remote autonomous system number is used for routes from the BGP and the Exterior Gateway Protocol (EGP); for other protocols, zero (0) is used."
+      },
+      {
+        "name": "route-map",
+        "description": "(Optional) Specifies the route map that is checked to filter the import of routes from this source routing protocol to the current routing protocol. If the route-map keyword is not specified, all the routes are redistributed. If this keyword is specified, but no route map tags are listed, no routes are imported."
+      },
+      {
+        "name": "map-tag",
+        "description": "(Optional) Identifier of a configured route map."
+      }
+    ],
+    "modes": [
+      "Router configuration (config-router) Address family configuration (config-router-af)"
+    ],
+    "usageSummary": "Changing or disabling a keyword does not affect the state of other keywords.  IS-IS ignores configured redistribution of routes, if any that are configured with the include-connected keyword.  IS-IS advertises a prefix on an interface if either IS-IS is running over the interface or the interface is configured as passive.",
+    "sourcePage": 1609,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redistribute maximum-prefix",
+    "context": "OSPF",
+    "detail": "Limit the number of prefixes that are redistributed into Open Shortest Path First (OSPF) or to generate a warning when the number of prefixes that are redistributed into OSPF reaches a maximum.",
+    "syntax": "redistribute maximum-prefix maximum [percentage][warning-only]",
+    "noForm": "no redistribute",
+    "params": [
+      {
+        "name": "maximum",
+        "description": "Integer from 1 to 4294967295 that specifies the maximum number of IP or IPv6 prefixes that can be redistributed into OSPF. When the warning-only keyword is configured, the maximum value specifies the number of prefixes that can be redistributed into OSPF before the system logs a warning message. Redistribution is not limited. The maximum number of IP or IPv6 prefixes that are allowed to be redistributed into OSPF, or the number of prefixes that are allowed to be redistributed into OSPF before the system logs a warning message, depends on whether the warning-only keyword is present. There is no default value for the maximum argument. If the warning-only keyword is also configured, this value does not limit redistribution; it is simply the number of redistributed prefixes that, when reached, causes a warning message to be logged."
+      },
+      {
+        "name": "percentage",
+        "description": "(Optional) Integer from 1 to 100 that specifies the threshold value, as a percentage, at which a warning message is generated. The default percentage is 75."
+      },
+      {
+        "name": "warning-only",
+        "description": "(Optional) Causes a warning message to be logged when the number of prefixes that are defined by the maximum argument has been exceeded. Additional redistribution is not prevented."
+      }
+    ],
+    "modes": [
+      "Router configuration (config-router) Address family configuration (config-router-af)"
+    ],
+    "usageSummary": "A network can be severely flooded if many IP or IPv6 prefixes are injected into the OSPF, perhaps by redistributing Border Gateway Protocol (BGP) into OSPF.  Limiting the number of redistributed prefixes prevents this potential problem.  When the redistribute maximum-prefix command is configured and the number of redistributed prefixes reaches the maximum value that is configured, no more prefixes are redistributed (unless the warning-only keyword is configured).",
+    "sourcePage": 1612,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rewrite-evpn-rt-asn",
+    "context": null,
+    "detail": "Enable the rewrite of the autonomous system number (ASN) portion of the EVPN route target extended community with the ASN of the target eBGP EVPN peer.",
+    "syntax": "rewrite-evpn-rt-asn",
+    "noForm": "no rewrite-evpn-rt-asn",
+    "params": [],
+    "modes": ["Address-family configuration (config-router-af)"],
+    "usageSummary": "The rewrite-evpn-rt-asn command is required for the route target auto feature to be used to configure EVPN route targets.  Route target auto feature is implemented on all border leaf switches that support BGP EVPN.  The rewrite-evpn-rt-asn command only affects the following: • EVPN address family.",
+    "sourcePage": 1614,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "route-map",
+    "context": null,
+    "detail": "Define conditions for redistributing routes from one routing protocol to another routing protocol, or to enable policy routing.",
+    "syntax": "route-map map-tag [permit | deny] [sequence-number] ordering-seq sequence-name",
+    "noForm": "no route-map map-tag [permit | deny] [sequence-number] ordering-seq sequence-name",
+    "params": [
+      {
+        "name": "map-tag",
+        "description": "Name for the route map."
+      },
+      {
+        "name": "permit",
+        "description": "(Optional) Permits only the routes matching the route map to be forwarded or redistributed."
+      },
+      {
+        "name": "deny",
+        "description": "(Optional) Blocks routes matching the route map from being forwarded or redistributed."
+      },
+      {
+        "name": "sequence-number",
+        "description": "(Optional) Number that indicates the position a new route map will have in the list of route maps already configured with the same name. ordering-seq sequence-name (Optional) Orders the route maps based on the string provided."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the route-map command to enter route-map configuration mode.  Use route maps to redistribute routes, or to subject packets to policy routing.  Both these purposes are described here.",
+    "sourcePage": 1615,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "router-id",
+    "context": null,
+    "detail": "Use a fixed router ID.",
+    "syntax": "router-id ip-address",
+    "noForm": "no router-id ip-address",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "Router ID in IP address format."
+      }
+    ],
+    "modes": ["Router configuration"],
+    "usageSummary": "You can configure an arbitrary value in the IP address format for each router.  However, each router ID must be unique.  If this command is used on an OSPF router process which is already active (has neighbors), the new router-ID is used at the next reload or at a manual OSPF process restart.",
+    "sourcePage": 1618,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "router bgp",
+    "context": null,
+    "detail": "Configure the Border Gateway Protocol (BGP) routing process.",
+    "syntax": "router bgp autonomous-system-number",
+    "noForm": "no router bgp autonomous-system-number",
+    "params": [
+      {
+        "name": "autonomous-system-number",
+        "description": "Number of an autonomous system that identifies the router to other BGP routers and tags the routing information that is passed along. Number in the range from 1 to 65535."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "This command allows you to set up a distributed routing core that automatically guarantees the loop-free exchange of routing information between autonomous systems.  Cisco has implemented the following two methods of representing autonomous system numbers: • Asplain—Decimal value notation where both 2-byte and 4-byte autonomous system numbers are represented by their decimal value.  For example, 65526 is a 2-byte autonomous system number and 234567 is a 4-byte autonomous system number.",
+    "sourcePage": 1619,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "router eigrp",
+    "context": null,
+    "detail": "Configure the EIGRP routing process.",
+    "syntax": "router eigrp {autonomous-system-numbervirtual-instance-name}",
+    "noForm": "no router eigrp {autonomous-system-numbervirtual-instance-name}",
+    "params": [
+      {
+        "name": "autonomous-system-number",
+        "description": "Autonomous system number that identifies the EIGRP services to the other EIGRP address-family routers. It is also used to tag routing information. Valid range is from 1 to 65535."
+      },
+      {
+        "name": "virtual-instance-name",
+        "description": "EIGRP virtual instance name. This name must be unique among all the address-family router processes on a single router, but need not be unique among routers."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Configuring the router eigrp command with the autonomous-system-number argument creates an EIGRP configuration referred to as autonomous system (AS) configuration.  An EIGRP AS configuration creates an EIGRP routing instance that can be used for tagging routing information.  Configuring the router eigrp command with the virtual-instance-name argument creates an EIGRP configuration referred to as EIGRP named configuration.",
+    "sourcePage": 1622,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "router ospf",
+    "context": null,
+    "detail": "Configure an OSPF routing process.",
+    "syntax": "router ospf process-id [vrf vrf-name]",
+    "noForm": "no router ospf process-id [vrf vrf-name]",
+    "params": [
+      {
+        "name": "process-id",
+        "description": "Internally used identification parameter for an OSPF routing process. It is locally assigned, and can be a positive integer. A unique value is assigned for each OSPF routing process."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies the name of the VPN routing and forwarding (VRF) instance to associate with the OSPF VRF processes."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "You can specify multiple OSPF routing processes in each router.  After you enter the router ospf command, you can enter the maximum number of paths.  There can be between 1 and 32 paths.",
+    "sourcePage": 1623,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "router ospfv3",
+    "context": null,
+    "detail": "Enter Open Shortest Path First Version 3 (OSPFv3) through router configuration mode.",
+    "syntax": "router ospfv3 [process-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process-id",
+        "description": "(Optional) Internal identification. The number that is used here is the number assigned administratively when enabling the OSPFv3 routing process. The range is 1-65535."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the router ospfv3 command to enter OSPFv3 router configuration mode.  From this mode, you can enter taddress-family configuration mode for IPv6 or IPv4, and then configure the IPv6 or IPv4 address family.",
+    "sourcePage": 1625,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "send-lifetime",
+    "context": null,
+    "detail": "Set the time period during which an authentication key on a key chain is valid to be sent.",
+    "syntax": "send-lifetime [ local ] start-time { infinite end-time | duration seconds }",
+    "noForm": "no send-lifetime",
+    "params": [
+      {
+        "name": "local",
+        "description": "Specifies the time in local timezone."
+      },
+      {
+        "name": "start-time",
+        "description": "Beginning time that the key specified by the key command is valid to be sent. The syntax can be either of the following: hh : mm : ss month date year hh : mm : ss date month year • hh: Hours • mm: Minutes • ss: Seconds • month: First three letters of the month • date: Date (1-31) • year: Year (four digits) The default start time and the earliest acceptable date is January 1, 1993."
+      },
+      {
+        "name": "infinite",
+        "description": "Key is valid to be sent from the start-time value on."
+      },
+      {
+        "name": "end-time",
+        "description": "Key is valid to be sent from the start-time value until the end-timevalue. The syntax is the same as that for the start-timevalue.The end-time value must be after the start-timevalue. The default end time is an infinite time period."
+      },
+      {
+        "name": "duration seconds",
+        "description": "Length of time (in seconds) that the key is valid to be sent. The range is from 1 to 2147483646."
+      }
+    ],
+    "modes": ["Key chain key configuration (config-keychain-key)"],
+    "usageSummary": "Specify a start-time value and one of the following values: infinite, end-time, or duration seconds.  Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 1626,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set community",
+    "context": null,
+    "detail": "Set the BGP communities attribute.",
+    "syntax": "set community {community-number [additive] [well-known-community] | none}",
+    "noForm": "no set community",
+    "params": [
+      {
+        "name": "community-number",
+        "description": "Specifies that community number. Valid values are from 1 to 4294967200, no-export, or no-advertise."
+      },
+      {
+        "name": "additive",
+        "description": "(Optional) Adds the community to the already existing communities."
+      },
+      {
+        "name": "well-known-community",
+        "description": "(Optional) Well know communities can be specified by using the following keywords: • internet • local-as • no-advertise • no-export"
+      },
+      {
+        "name": "none",
+        "description": "(Optional) Removes the community attribute from the prefixes that pass the route map."
+      }
+    ],
+    "modes": ["Route-map configuration (config-route-map)", "Table 166:"],
+    "usageSummary": "You must have a match clause (even if it points to a “permit everything” list) if you want to set tags.  Use the route-map global configuration command, and the match and set route map configuration commands, to define the conditions for redistributing routes from one routing protocol into another.  Each route-map command has a list of match and set commands associated with it.",
+    "sourcePage": 1629,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set ip next-hop",
+    "context": "BGP",
+    "detail": "Indicate where to output packets that pass a match clause of a route map for policy routing.",
+    "syntax": "set ip next-hop ip-address[...ip-address][peer-address]",
+    "noForm": "no set ip next-hop ip-address[...ip-address][peer-address]",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the next hop to which packets are output. It need not be an adjacent router."
+      },
+      {
+        "name": "peer-address",
+        "description": "(Optional) Sets the next hop to be the BGP peering address."
+      }
+    ],
+    "modes": ["Route-map configuration (config-route-map)"],
+    "usageSummary": "An ellipsis (... ) in the command syntax indicates that your command input can include multiple values for the ip-address argument.  Use the ip policy route-map interface configuration command, the route-map global configuration command, and the match and set route-map configuration commands to define the conditions for policy routing packets.",
+    "sourcePage": 1631,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip bgp",
+    "context": null,
+    "detail": "Display entries in the Border Gateway Protocol (BGP) routing table.",
+    "syntax": "show ip bgp [ip-address [mask [longer-prefixes [injected] | shorter-prefixes [length] | best-path-reason | bestpath | multipaths | subnets] | best-path-reason | bestpath | internal | multipaths] | all | oer-paths | prefix-list name | pending-prefixes | route-map name | version {version-number | recent offset-value}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "(Optional) IP address entered to filter the output to display only a particular host or network in the BGP routing table."
+      },
+      {
+        "name": "mask",
+        "description": "(Optional) Mask to filter or match hosts that are part of the specified network."
+      },
+      {
+        "name": "longer-prefixes",
+        "description": "(Optional) Displays the specified route and all more-specific routes."
+      },
+      {
+        "name": "injected",
+        "description": "(Optional) Displays more-specific prefixes injected into the BGP routing table."
+      },
+      {
+        "name": "shorter-prefixes",
+        "description": "(Optional) Displays the specified route and all less-specific routes."
+      },
+      {
+        "name": "length",
+        "description": "(Optional) The prefix length. The range is a number from 0 to 32."
+      },
+      {
+        "name": "bestpath",
+        "description": "(Optional) Displays the best path for this prefix."
+      },
+      {
+        "name": "best-path-reason",
+        "description": "(Optional) Displays the reason why a path loses to the bestpath. Note If the best-path is yet to be selected, then the output will be 'Best Path Evaluation: No best path'"
+      },
+      {
+        "name": "internal",
+        "description": "(Optional) Displays the internal details for this prefix."
+      },
+      {
+        "name": "multipaths",
+        "description": "(Optional) Displays multipaths for this prefix."
+      },
+      {
+        "name": "subnets",
+        "description": "(Optional) Displays the subnet routes for the specified prefix."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Displays all address family information in the BGP routing table."
+      },
+      {
+        "name": "oer-paths",
+        "description": "(Optional) Displays Optimized Edge Routing (OER) controlled prefixes in the BGP routing table."
+      },
+      {
+        "name": "prefix-list name",
+        "description": "(Optional) Filters the output based on the specified prefix list."
+      },
+      {
+        "name": "pending-prefixes",
+        "description": "(Optional) Displays prefixes that are pending deletion from the BGP routing table."
+      },
+      {
+        "name": "route-map name",
+        "description": "(Optional) Filters the output based on the specified route map. version version-number (Optional) Displays all prefixes with network versions greater than or equal to the specified version number. The range is from 1 to 4294967295."
+      },
+      {
+        "name": "recent offset-value",
+        "description": "(Optional) Displays the offset from the current routing table version. The range is from 1 to 4294967295. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1633 Routing show ip bgp"
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The show ip bgp command is used to display the contents of the BGP routing table.  The output can be filtered to display entries for a specific prefix, prefix length, and prefixes injected through a prefix list, route map, or conditional advertisement.  When changes are made to the network address, the network version number is incremented.",
+    "sourcePage": 1633,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip bgp neighbors",
+    "context": null,
+    "detail": "Display information about Border Gateway Protocol (BGP) and TCP connections to neighbors.",
+    "syntax": "show ip bgp [ipv4 {multicast | unicast} | vpnv4 all | vpnv6 unicast all] neighbors [slowip-address | ipv6-address [advertised-routes | dampened-routes | flap-statistics | paths [reg-exp] | policy [detail] | received prefix-filter | received-routes | routes]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ipv4",
+        "description": "(Optional) Displays peers in the IPv4 address family."
+      },
+      {
+        "name": "multicast",
+        "description": "(Optional) Specifies IPv4 multicast address prefixes."
+      },
+      {
+        "name": "unicast",
+        "description": "(Optional) Specifies IPv4 unicast address prefixes."
+      },
+      {
+        "name": "vpnv4 all",
+        "description": "(Optional) Displays peers in the VPNv4 address family."
+      },
+      {
+        "name": "vpnv6 unicast all",
+        "description": "(Optional) Displays peers in the VPNv6 address family."
+      },
+      {
+        "name": "slow",
+        "description": "(Optional) Displays information about dynamically configured slow peers."
+      },
+      {
+        "name": "ip-address",
+        "description": "(Optional) IP address of the IPv4 neighbor. If this argument is omitted, information about all neighbors is displayed."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "(Optional) IP address of the IPv6 neighbor."
+      },
+      {
+        "name": "advertised-routes",
+        "description": "(Optional) Displays all routes that have been advertised to neighbors."
+      },
+      {
+        "name": "dampened-routes",
+        "description": "(Optional) Displays the dampened routes received from the specified neighbor."
+      },
+      {
+        "name": "flap-statistics",
+        "description": "(Optional) Displays the flap statistics of the routes learned from the specified neighbor (for external BGP peers only)."
+      },
+      {
+        "name": "paths reg-exp",
+        "description": "(Optional) Displays autonomous system paths learned from the specified neighbor. An optional regular expression can be used to filter the output."
+      },
+      {
+        "name": "policy",
+        "description": "(Optional) Displays the policies applied to this neighbor per address family."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed policy information such as route maps, prefix lists, community lists, access control lists (ACLs), and autonomous system path filter lists."
+      },
+      {
+        "name": "received prefix-filter",
+        "description": "(Optional) Displays the prefix list (outbound route filter [ORF]) sent from the specified neighbor."
+      },
+      {
+        "name": "received-routes",
+        "description": "(Optional) Displays all received routes (both accepted and rejected) from the specified neighbor."
+      },
+      {
+        "name": "routes",
+        "description": "(Optional) Displays all routes that are received and accepted. The output displayed when this keyword is entered is a subset of the output displayed by the received-routes keyword. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1645 Routing show ip bgp neighbors"
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "Use the show ip bgp neighbors command to display BGP and TCP connection information for neighbor sessions.  For BGP, this includes detailed neighbor attribute, capability, path, and prefix information.  For TCP, this includes statistics related to BGP neighbor session establishment and maintenance.",
+    "sourcePage": 1645,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip bgp ipv6 unicast",
+    "context": null,
+    "detail": "Display entries in the Internet Protocol version 6 (IPv6) Border Gateway Protocol (BGP) routing table.",
+    "syntax": "show ip bgp ipv6 unicast [ prefix / length ]",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The show ip bgp ipv6 unicast command provides output similar to the show ip bgp command, except that it is IPv6 specific.",
+    "sourcePage": 1660,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip eigrp accounting",
+    "context": null,
+    "detail": "Display prefix accounting information for Enhanced Interior Gateway Routing Protocol (EIGRP) processes.",
+    "syntax": "show ip eigrp accounting [ vrf { vrf-name | * }] [ autonomous-system-number ] accounting",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrfvrf-name",
+        "description": "(Optional) Displays information about the specified VRF."
+      },
+      {
+        "name": "vrf *",
+        "description": "(Optional) Displays information about all VRFs. autonomous-system-number (Optional) Autonomous system number."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command can be used to display information about EIGRP named configurations and EIGRP autonomous-system (AS) configurations.",
+    "sourcePage": 1662,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip eigrp interfaces",
+    "context": null,
+    "detail": "Display information about interfaces that are configured for the Enhanced Interior Gateway Routing Protocol (EIGRP).",
+    "syntax": "show ip eigrp [vrf vrf-name] [autonomous-system-number] interfaces [type number] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Displays information about the specified virtual routing and forwarding (VRF) instance. autonomous-system-number (Optional) Autonomous system number whose output needs to be filtered."
+      },
+      {
+        "name": "type",
+        "description": "(Optional) Interface type. For more information, use the question mark (?) online help function."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) Interface or subinterface number. For more information about the numbering syntax for your networking device, use the question mark (?) online help function."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information about EIGRP interfaces for a specific EIGRP process."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Use the show ip eigrp interfaces command to display active EIGRP interfaces and EIGRP-specific interface settings and statistics.  The optional type number argument and the detail keyword can be entered in any order.  If an interface is specified, only information about that interface is displayed.",
+    "sourcePage": 1664,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip eigrp neighbors",
+    "context": null,
+    "detail": "Display neighbors discovered by the Enhanced Interior Gateway Routing Protocol (EIGRP).",
+    "syntax": "show ip eigrp [vrf vrf-name] [autonomous-system-number] neighbors [static | detail] [interface-type interface-number]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Displays information about the specified VPN Routing and Forwarding (VRF) instance."
+      },
+      {
+        "name": "autonomous-system-number",
+        "description": "(Optional) Autonomous-system-number-specific output is displayed."
+      },
+      {
+        "name": "static",
+        "description": "(Optional) Displays static neighbors."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed neighbor information. interface-type interface-number (Optional) Interface-specific output is displayed."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The show ip eigrp neighbors command can be used to display information about EIGRP named and EIGRP autonomous-system configurations.  Use the show ip eigrp neighbors command to display dynamic and static neighbor states.  You can use this command for also debugging certain types of transport problems.",
+    "sourcePage": 1667,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip eigrp topology",
+    "context": null,
+    "detail": "Display Enhanced Interior Gateway Routing Protocol (EIGRP) topology table entries.",
+    "syntax": "show ip eigrp topology [ network [ mask ] prefix | active | all-links | detail-links | pending | secondary-paths | summary | zero-successors ]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "network",
+        "description": "(Optional) Network address."
+      },
+      {
+        "name": "mask",
+        "description": "(Optional) Network mask."
+      },
+      {
+        "name": "prefix",
+        "description": "(Optional) Network prefix in the format <network>/<length>, for example, 192.168.0.0/16."
+      },
+      {
+        "name": "active",
+        "description": "(Optional) Displays all topology entries that are in the active state."
+      },
+      {
+        "name": "all-links",
+        "description": "(Optional) Displays all the entries in the EIGRP topology table (including nonfeasible successor sources)."
+      },
+      {
+        "name": "detail-links",
+        "description": "(Optional) Displays all the topology entries with additional details."
+      },
+      {
+        "name": "pending",
+        "description": "(Optional) Displays all the entries in the EIGRP topology table that are either waiting for an update from a neighbor or to reply to a neighbor. secondary-paths (Optional) Displays the secondary paths in the topology."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays a summary of the EIGRP topology table."
+      },
+      {
+        "name": "zero-successors",
+        "description": "(Optional) Displays the available routes that have zero successors."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Use the show ip eigrp topology command to display topology entries, feasible and nonfeasible paths, metrics, and states.  This command can be used without any arguments or keywords to display only topology entries with feasible successors and feasible paths.  The all-links keyword displays all the paths, whether feasible or not, and the detail-links keyword displays additional details about these paths.",
+    "sourcePage": 1670,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip eigrp traffic",
+    "context": null,
+    "detail": "Display the number of Enhanced Interior Gateway Routing Protocol (EIGRP) packets sent and received.",
+    "syntax": "show ip eigrp [vrf {vrf-name | *}] [autonomous-system-number] traffic",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Displays information about the specified VRF."
+      },
+      {
+        "name": "vrf *",
+        "description": "(Optional) Displays information about all VRFs."
+      },
+      {
+        "name": "autonomous-system-number",
+        "description": "(Optional) Autonomous system number."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command can be used to display information about EIGRP named configurations and EIGRP autonomous-system (AS) configurations.  This command displays the same information as the show eigrp address-family traffic command.  Cisco recommends using the show eigrp address-family traffic command.",
+    "sourcePage": 1676,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip ospf",
+    "context": null,
+    "detail": "Display general information about Open Shortest Path First (OSPF) routing processes.",
+    "syntax": "show ip ospf [process-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process-id",
+        "description": "(Optional) Process ID. If this argument is included, only information for the specified routing process is included."
+      }
+    ],
+    "modes": ["User EXEC Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1678,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip ospf border-routers",
+    "context": null,
+    "detail": "Display the internal Open Shortest Path First (OSPF) routing table entries to an Area Border Router (ABR) and Autonomous System Boundary Router (ASBR).",
+    "syntax": "show ip ospf border-routers",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1686,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip ospf database",
+    "context": null,
+    "detail": "Display lists of information related to the Open Shortest Path First (OSPF) database for a specific router.",
+    "syntax": "show ip ospf [process-id area-id] database show ip ospf [process-id area-id] database [adv-router [ip-address]] show ip ospf [process-id area-id] database [asbr-summary] [link-state-id] show ip ospf [process-id area-id] database [asbr-summary] [link-state-id] [adv-router [ip-address]] show ip ospf [process-id area-id] database [asbr-summary] [link-state-id] [self-originate] [link-state-id] show ip ospf [process-id area-id] database [database-summary] show ip ospf [process-id] database [external] [link-state-id] show ip ospf [process-id] database [external] [link-state-id] [adv-router [ip-address]] show ip ospf [process-id area-id] database [external] [link-state-id] [self-originate] [link-state-id] show ip ospf [process-id area-id] database [network] [link-state-id] show ip ospf [process-id area-id] database [network] [link-state-id] [adv-router [ip-address]] show ip ospf [process-id area-id] database [network] [link-state-id] [self-originate] [link-state-id] show ip ospf [process-id area-id] database [nssa-external] [link-state-id] show ip ospf [process-id area-id] database [nssa-external] [link-state-id] [adv-router [ip-address]] show ip ospf [process-id area-id] database [nssa-external] [link-state-id] [self-originate] [link-state-id] show ip ospf [process-id area-id] database [router] [link-state-id] show ip ospf [process-id area-id] database [router] [adv-router [ip-address]] show ip ospf [process-id area-id] database [router] [self-originate] [link-state-id] show ip ospf [process-id area-id] database [self-originate] [link-state-id] show ip ospf [process-id area-id] database [summary] [link-state-id] show ip ospf [process-id area-id] database [summary] [link-state-id] [adv-router [ip-address]] show ip ospf [process-id area-id] database [summary] [link-state-id] [self-originate] [link-state-id] show ip ospf [ process-id area-id ] database lsa-summary show ip ospf [ process-id area-id ] database lsa-summary detail show ip ospf [ process-id area-id ] database lsa-summary router-id router-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process-id",
+        "description": "(Optional) Internal identification. It is locally assigned and can be any positive integer. The number used here is the number assigned administratively when enabling the OSPF routing process."
+      },
+      {
+        "name": "area-id",
+        "description": "(Optional) Area number associated with the OSPF address range defined in the network router configuration command used to define the particular area."
+      },
+      {
+        "name": "adv-router [ip-address",
+        "description": "(Optional) Displays all the LSAs of the specified router. If no IP address is included, the information is about the local router itself (in this case, the same as self-originate). Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1687 Routing show ip ospf database"
+      },
+      {
+        "name": "link-state-id",
+        "description": "(Optional) Portion of the Internet environment that is being described by the advertisement. The value entered depends on the advertisement’s LS type. It must be entered in the form of an IP address. When the link state advertisement is describing a network, the link-state-id can take one of two forms: The network’s IP address (as in type 3 summary link advertisements and in autonomous system external link advertisements). A derived address obtained from the link state ID. (Note that masking a network links advertisement’s link state ID with the network’s subnet mask yields the network’s IP address.) When the link state advertisement is describing a router, the link state ID is always the described router’s OSPF router ID. When an autonomous system external advertisement (LS Type = 5) is describing a default route, its link state ID is set to Default Destination (0.0.0.0)."
+      },
+      {
+        "name": "asbr-summary",
+        "description": "(Optional) Displays information only about the autonomous system boundary router summary LSAs."
+      },
+      {
+        "name": "database-summary",
+        "description": "(Optional) Displays how many of each type of LSA for each area there are in the database, and the total."
+      },
+      {
+        "name": "external",
+        "description": "(Optional) Displays information only about the external LSAs."
+      },
+      {
+        "name": "network",
+        "description": "(Optional) Displays information only about the network LSAs."
+      },
+      {
+        "name": "nssa-external",
+        "description": "(Optional) Displays information only about the NSSA external LSAs."
+      },
+      {
+        "name": "router",
+        "description": "(Optional) Displays information only about the router LSAs."
+      },
+      {
+        "name": "self-originate",
+        "description": "(Optional) Displays only self-originated LSAs (from the local router)."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays information only about the summary LSAs."
+      },
+      {
+        "name": "lsa-summary",
+        "description": "Displays the total LSA count per advertising router."
+      },
+      {
+        "name": "lsa-summary detail",
+        "description": "Displays the count of each type of LSAs per advertising router."
+      },
+      {
+        "name": "lsa-summary router-id",
+        "description": "Displays the count of each type of LSAs for the specified advertising router. router-id"
+      }
+    ],
+    "modes": ["EXEC"],
+    "usageSummary": "The various forms of this command deliver information about different OSPF link state advertisements.  Command Reference, Cisco IOS XE 17. 18.",
+    "sourcePage": 1687,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip ospf fast-reroute",
+    "context": null,
+    "detail": "Display information for an OSPF per-prefix LFA FRR configuration.",
+    "syntax": "show ip ospf [process-id] fast-reroute [prefix-summary | remote-lfa tunnels | ti-lfa [tunnels]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process-id",
+        "description": "(Optional) Internal identification. It is locally assigned and can be a positive integer. The number used here is the number assigned administratively when enabling the OSPF routing process."
+      },
+      {
+        "name": "prefix-summary",
+        "description": "(Optional) Displays information about the prefixes protected by the LFA FRR repair paths. remote-lfa tunnels (Optional) Displays information about the tunnel interfaces created by the remote LFA FRR."
+      },
+      {
+        "name": "ti-lfa [tunnels]",
+        "description": "(Optional) Displays information about the topology-independent LFA."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the show ip ospf fast-reroute command to display information about the current tiebreaker policy.  Use the prefix-summary keyword to display the number of prefixes per area, per priority, and how many have repair paths, in absolute numbers and in percentages.  Use the remote-lfa tunnels keyword to display information about the tunnel interfaces created by the remote LFA FRR using the fast-reroute per-prefix remote-lfa tunnel command.",
+    "sourcePage": 1697,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip ospf interface",
+    "context": null,
+    "detail": "Display interface information related to Open Shortest Path First (OSPF).",
+    "syntax": "show ip [ospf] [process-id] interface [type number] [brief] [multicast] [topology {topology-name | base}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process-id",
+        "description": "(Optional) Process ID number. If this argument is included, only information for the specified routing process is included. The range is 1 to 65535."
+      },
+      {
+        "name": "type",
+        "description": "(Optional) Interface type. If the type argument is included, only information for the specified interface type is included."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) Interface number. If the number argument is included, only information for the specified interface number is included."
+      },
+      {
+        "name": "brief",
+        "description": "(Optional) Displays brief overview information for OSPF interfaces, states, addresses and masks, and areas on the device."
+      },
+      {
+        "name": "multicast",
+        "description": "(Optional) Displays multicast information. topology topology-name (Optional) Displays OSPF-related information about the named topology instance."
+      },
+      {
+        "name": "topology base",
+        "description": "(Optional) Displays OSPF-related information about the base topology."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1700,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip ospf neighbor",
+    "context": null,
+    "detail": "Display Open Shortest Path First (OSPF) neighbor information on a per-interface basis.",
+    "syntax": "show ip ospf neighbor [interface-type interface-number] [neighbor-id] [detail] [summary [per-instance]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-type interface-number",
+        "description": "(Optional) Type and number associated with a specific OSPF interface."
+      },
+      {
+        "name": "neighbor-id",
+        "description": "(Optional) Neighbor hostname or IP address in A.B.C.D format."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays all neighbors given in detail (lists all neighbors)."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays total number summary of all neighbors."
+      },
+      {
+        "name": "per-instance",
+        "description": "(Optional) Displays total number of neighbors in each neighbor state. The output is printed for each configured OSPF instance separately."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1703,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip ospf virtual-links",
+    "context": null,
+    "detail": "Display parameters and the current state of Open Shortest Path First (OSPF) virtual links.",
+    "syntax": "show ip ospf virtual-links",
+    "noForm": null,
+    "params": [],
+    "modes": ["EXEC"],
+    "usageSummary": "The information displayed by the showipospfvirtual-links command is useful in debugging OSPF routing operations.",
+    "sourcePage": 1709,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "summary-address",
+    "context": "OSPF",
+    "detail": "Create aggregate addresses for Open Shortest Path First (OSPF).",
+    "syntax": "summary-address commandsummary-address {ip-address mask | prefix mask} [not-advertise] [tag tag] [nssa-only]",
+    "noForm": "no summary-address {ip-address mask | prefix mask} [not-advertise] [tag tag] [nssa-only]",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "Summary address designated for a range of addresses."
+      },
+      {
+        "name": "mask",
+        "description": "IP subnet mask used for the summary route."
+      },
+      {
+        "name": "prefix",
+        "description": "IP route prefix for the destination."
+      },
+      {
+        "name": "not-advertise",
+        "description": "(Optional) Suppresses routes that match the specified prefix/mask pair. This keyword applies to OSPF only."
+      },
+      {
+        "name": "tag",
+        "description": "tag (Optional) Specifies the tag value that can be used as a “match” value for controlling redistribution via route maps. This keyword applies to OSPF only."
+      },
+      {
+        "name": "nssa-only",
+        "description": "(Optional) Sets the nssa-only attribute for the summary route (if any) generated for the specified prefix, which limits the summary to not-so-stubby-area (NSSA) areas."
+      }
+    ],
+    "modes": ["Router configuration"],
+    "usageSummary": "R outes learned from other routing protocols can be summarized.  The metric used to advertise the summary is the lowest metric of all the more specific routes.  This command helps reduce the size of the routing table.",
+    "sourcePage": 1710,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "timers throttle spf",
+    "context": null,
+    "detail": "Turn on Open Shortest Path First ( OSPF) shortest path first (SPF) throttling.",
+    "syntax": "timers throttle spf spf-start spf-hold spf-max-wait",
+    "noForm": "no timers throttle spf spf-start spf-hold spf-max-wait",
+    "params": [
+      {
+        "name": "spf-start",
+        "description": "Initial delay to schedule an SPF calculation after a change, in milliseconds. Range is from 1 to 600000. In OSPF for IPv6, the default value is 5000."
+      },
+      {
+        "name": "spf-hold",
+        "description": "Minimum hold time between two consecutive SPF calculations, in milliseconds. Range is from 1 to 600000. In OSPF for IPv6, the default value is 10,000."
+      },
+      {
+        "name": "spf-max-wait",
+        "description": "Maximum wait time between two consecutive SPF calculations, in milliseconds. Range is from 1 to 600000. In OSPF for IPv6, the default value is 10,000."
+      }
+    ],
+    "modes": [
+      "Address family configuration (config-router-af) Router address family topology configuration (config-router-af-topology) Router configuration (config-router) OSPF for IPv6 router configuration (config-rtr)"
+    ],
+    "usageSummary": "The first wait interval between SPF calculations is the amount of time in milliseconds specified by the spf-startargument.  Each consecutive wait interval is two times the current hold level in milliseconds until the wait time reaches the maximum time in milliseconds as specified by the spf-max-wait argument.  Subsequent wait times remain at the maximum until the values are reset or a link-state advertisement (LSA) is received between SPF calculations.",
+    "sourcePage": 1712,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  },
+  {
+    "name": "topology",
+    "context": "EIGRP",
+    "detail": "Configure an EIGRP process to route IP traffic under the specified topology instance and to enter address-family topology configuration mode.",
+    "syntax": "topology {base | topology-name tid number}",
+    "noForm": "no topology topology-name",
+    "params": [
+      {
+        "name": "base",
+        "description": "Specifies the base topology."
+      },
+      {
+        "name": "topology-name",
+        "description": "Topology name. This value is case-sensitive."
+      },
+      {
+        "name": "tid number",
+        "description": "Specifies the topology ID number. The range is from 1 to 65535."
+      }
+    ],
+    "modes": ["Address-family configuration (config-router-af)"],
+    "usageSummary": "Use this topology command in a Multitopology Routing (MTR) configuration to enable an EIGRP process under the specified topology.  Enter the topology command under address-family configuration mode.  Command configurations can be applied only to the topology instance.",
+    "sourcePage": 1714,
+    "pack": "cat9500-17.18",
+    "platform": "Catalyst 9500 Switches",
+    "release": "17.18.x",
+    "source": "pdf"
+  }
+]
