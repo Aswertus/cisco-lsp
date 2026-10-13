@@ -2,7 +2,16 @@
 // Content audit for a tree about to go public — the path checks in check.sh
 // can't see production data copied *into* a tracked file.
 //
-//   node scripts/public/audit.js <tree-ish>
+//   node scripts/public/audit.js <tree-ish> [<base-tree-ish>]
+//
+// Images can't be read for content, so for every image the audit
+//   - flags embedded metadata (PNG text/EXIF chunks, JPEG EXIF/XMP/IPTC/
+//     comments, GIF comments/XMP, WebP EXIF/XMP) — screenshot tools and
+//     editors write user names, paths and software there;
+//   - fails on image formats it can't inspect for metadata;
+//   - lists every image that is new or changed against <base-tree-ish>
+//     (default: everything) — those must be looked at by a person before
+//     the release (CLAUDE.md, "Repositories & Branch Policy").
 //
 // Flags, in every text file of the tree (UTF-8 or UTF-16):
 //   - IPv4 addresses outside documentation/example ranges (not applied to the
@@ -23,9 +32,10 @@ const path = require('node:path');
 
 const tree = process.argv[2];
 if (!tree) {
-  console.error('usage: audit.js <tree-ish>');
+  console.error('usage: audit.js <tree-ish> [<base-tree-ish>]');
   process.exit(2);
 }
+const base = process.argv[3];
 const root = execFileSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
 const IDENTITY_LOGIN = 'aswertus'; // public GitHub handle, see release.sh
 const git = (...args) => execFileSync('git', args, { cwd: root, maxBuffer: 1 << 28 });
@@ -218,9 +228,134 @@ function denyWords() {
     .map((l) => new RegExp(l, 'i'));
 }
 
+// ---------------------------------------------------------------- images
+// Metadata blocks per format, found by walking the file structure (a byte
+// search would hit random bytes inside the compressed pixel data). Bytes after
+// the format's end marker are flagged too: a cropping tool can leave the
+// uncropped original there ("aCropalypse", CVE-2023-28303, Windows Snipping
+// Tool) — invisible when looking at the image.
+const trailing = (fmt, end, b) =>
+  end < b.length
+    ? [`${fmt}: ${b.length - end} bytes after the end marker (hidden data — re-save the image)`]
+    : [];
+function pngMeta(b) {
+  const found = [];
+  let end = -1;
+  for (let i = 8; i + 8 <= b.length;) {
+    const len = b.readUInt32BE(i);
+    const type = b.toString('latin1', i + 4, i + 8);
+    if (['tEXt', 'zTXt', 'iTXt', 'eXIf'].includes(type)) {
+      const key =
+        type === 'eXIf'
+          ? ''
+          : ` "${b.toString('latin1', i + 8, Math.min(i + 8 + len, i + 8 + 40)).split('\0')[0]}"`;
+      found.push(`PNG ${type}${key}`);
+    }
+    if (type === 'IEND') {
+      end = i + 12 + len;
+      break;
+    }
+    i += 12 + len;
+  }
+  if (end < 0) return [...found, 'PNG structure not understood (no IEND)'];
+  return [...found, ...trailing('PNG', end, b)];
+}
+function jpegMeta(b) {
+  const found = [];
+  let i = 2;
+  let stop = null; // 'sos' | 'eoi' — anything else means the walk lost the structure
+  for (; i + 4 <= b.length && b[i] === 0xff;) {
+    const marker = b[i + 1];
+    if (marker === 0xda || marker === 0xd9) {
+      stop = marker === 0xda ? 'sos' : 'eoi';
+      break; // start of scan / end
+    }
+    const len = b.readUInt16BE(i + 2);
+    const head = b.toString('latin1', i + 4, i + 4 + Math.min(len - 2, 32));
+    if (marker === 0xe1) found.push(head.startsWith('Exif') ? 'JPEG EXIF' : 'JPEG XMP/APP1');
+    else if (marker === 0xed) found.push('JPEG IPTC/Photoshop');
+    else if (marker === 0xfe) found.push('JPEG comment');
+    i += 2 + len;
+  }
+  if (!stop && i + 2 <= b.length && b[i] === 0xff && b[i + 1] === 0xd9) stop = 'eoi';
+  if (!stop) return [...found, 'JPEG structure not understood'];
+  // Inside scan data a literal 0xFF is stuffed as FF 00, so the first FF D9
+  // after the start of scan is the real end of image.
+  const eoi = stop === 'eoi' ? i : b.indexOf(Buffer.from([0xff, 0xd9]), i);
+  if (eoi < 0) return [...found, 'JPEG structure not understood (no end of image)'];
+  return [...found, ...trailing('JPEG', eoi + 2, b)];
+}
+function gifMeta(b) {
+  const found = [];
+  const skipSubBlocks = (i) => {
+    while (i < b.length && b[i] !== 0) i += b[i] + 1;
+    return i + 1;
+  };
+  let i = 13;
+  if (b[10] & 0x80) i += 3 * 2 ** ((b[10] & 7) + 1); // global color table
+  let end = -1;
+  while (i < b.length) {
+    if (b[i] === 0x3b) {
+      end = i + 1; // trailer
+      break;
+    }
+    if (b[i] === 0x2c) {
+      // image descriptor (+ local color table), LZW min code size, data
+      let j = i + 10;
+      if (b[i + 9] & 0x80) j += 3 * 2 ** ((b[i + 9] & 7) + 1);
+      i = skipSubBlocks(j + 1);
+    } else if (b[i] === 0x21) {
+      const label = b[i + 1];
+      if (label === 0xfe) found.push('GIF comment');
+      if (label === 0xff) {
+        const app = b.toString('latin1', i + 3, i + 14);
+        if (!/^(NETSCAPE2\.0|ANIMEXTS1\.0)$/.test(app)) found.push(`GIF application data "${app}"`);
+      }
+      i = skipSubBlocks(i + 2);
+    } else {
+      found.push('GIF structure not understood');
+      return found;
+    }
+  }
+  if (end < 0) return [...found, 'GIF structure not understood (no trailer)'];
+  return [...found, ...trailing('GIF', end, b)];
+}
+function webpMeta(b) {
+  const found = [];
+  for (let i = 12; i + 8 <= b.length;) {
+    const type = b.toString('latin1', i, i + 4);
+    const len = b.readUInt32LE(i + 4);
+    if (type === 'EXIF' || type === 'XMP ') found.push(`WebP ${type.trim()}`);
+    i += 8 + len + (len & 1);
+  }
+  return found;
+}
+const IMAGE = /\.(png|jpe?g|gif|webp|ico|bmp|tiff?|avif|heic)$/i;
+function imageMeta(p, b) {
+  try {
+    if (/\.png$/i.test(p)) return pngMeta(b);
+    if (/\.jpe?g$/i.test(p)) return jpegMeta(b);
+    if (/\.gif$/i.test(p)) return gifMeta(b);
+    if (/\.webp$/i.test(p)) return webpMeta(b);
+  } catch (e) {
+    return [`could not parse (${e.message})`];
+  }
+  return ['format not supported by the metadata check — convert to PNG'];
+}
+
 // ------------------------------------------------------------------ scan
 const isPack = (p) => /^server\/data\/(?!curated\/)[^/]+\/[^/]+\.json$/.test(p);
-const SKIP = (p) => p === 'package-lock.json' || /\.(png|jpe?g|gif|ico|woff2?)$/i.test(p);
+const SKIP = (p) => p === 'package-lock.json' || /\.woff2?$/i.test(p);
+const baseBlobs = new Map(
+  base
+    ? git('ls-tree', '-r', '-z', base)
+        .toString('utf8')
+        .split('\0')
+        .filter(Boolean)
+        .map((e) => [e.split('\t')[1], e.split(' ')[2].split('\t')[0]])
+    : [],
+);
+const reviewImages = [];
 const files = git('ls-tree', '-r', '-z', tree).toString('utf8').split('\0').filter(Boolean);
 
 const { ids, ips: configIps } = configIdentifiers();
@@ -251,6 +386,12 @@ for (const entry of files) {
   const [meta, p] = entry.split('\t');
   const [, type, sha] = meta.split(' ');
   if (type !== 'blob' || SKIP(p)) continue;
+  if (IMAGE.test(p)) {
+    const buf = git('cat-file', 'blob', sha);
+    for (const what of imageMeta(p, buf)) findings.push([p, `image metadata: ${what}`]);
+    if (baseBlobs.get(p) !== sha) reviewImages.push(p);
+    continue;
+  }
   const text = decode(git('cat-file', 'blob', sha));
   if (text === null) continue; // binary
   const pack = isPack(p);
@@ -284,5 +425,11 @@ if (findings.length) {
   for (const [w, what] of findings.slice(0, 200)) console.error(`  ${w}  ${what}`);
   if (findings.length > 200) console.error(`  … and ${findings.length - 200} more`);
   process.exit(1);
+}
+if (reviewImages.length) {
+  console.log(
+    `public-audit: REVIEW ${reviewImages.length} image(s) new/changed since ${base || '(no base)'} — look at each one before releasing:`,
+  );
+  for (const p of reviewImages) console.log(`  ${p}`);
 }
 console.log(`public-audit: OK (${tree})`);

@@ -15,9 +15,21 @@
 // 2. Certificate payloads inside `crypto pki certificate chain` blocks: a
 //    `certificate ...` line is followed by hex dump lines and a terminating
 //    `quit`.
+//
+// 3. Whole-line template lines in config templates — a Jinja statement,
+//    comment or expression (`{% for v in vlans %}`, `{# note #}`,
+//    `{{ include }}`), or a lone placeholder (`<GLOBAL-SETTINGS>`, `$BANNER`,
+//    `${BLOCK}`). They behave like `!` comments: no diagnostics, the formatter
+//    leaves them alone. (Placeholders *inside* a command: lib/placeholders.js.)
 
 const BANNER_OPENER_RE = /^banner\s+[a-z-]+\s+(\S)(\S?)(.*)$/i;
 const CERT_OPENER_RE = /^certificate\s+(?!chain\b)\S/i;
+const TEMPLATE_LINE_RE =
+  /^(?:\{%.*%\}|\{#.*#\}|\{\{.*\}\}|<[^<>\s]+>|\$\{[A-Za-z_]\w*\}|\$[A-Za-z_]\w*)$/;
+
+function isTemplateLine(trimmed) {
+  return TEMPLATE_LINE_RE.test(trimmed);
+}
 
 // Returns isFreeTextLine(line, trimmed): call once per line, in order.
 // - opener line (`banner login ^C`, `certificate ca 01`) → false (it's a
@@ -37,6 +49,7 @@ function createFreeTextTracker() {
       if (/^quit$/i.test(trimmed)) inCert = false;
       return true;
     }
+    if (isTemplateLine(trimmed)) return true;
 
     const banner = BANNER_OPENER_RE.exec(trimmed);
     if (banner) {
@@ -51,4 +64,4 @@ function createFreeTextTracker() {
   };
 }
 
-module.exports = { createFreeTextTracker };
+module.exports = { createFreeTextTracker, isTemplateLine };

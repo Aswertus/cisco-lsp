@@ -1,0 +1,51 @@
+name: ⚠️ False warning or missing command
+description: A valid line is flagged, or a real command is missing from completions/hover.
+labels: [false-positive]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!WARNING]
+        > **Issues are public.** Only include the affected line(s), with hostnames, real IP addresses (use `192.0.2.x`), passwords/hashes, SNMP communities and keys replaced.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What's wrong?
+      options:
+        - A valid line gets a warning or error
+        - A command is missing from completions or hover
+        - Hover documentation is wrong or garbled
+    validations:
+      required: true
+  - type: textarea
+    id: line
+    attributes:
+      label: Affected line(s)
+      description: The line(s), plus the block it's in if that matters (e.g. under `interface ...`).
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: message
+    attributes:
+      label: Warning text (if any)
+      placeholder: e.g. Unknown command "..." — possible typo.
+  - type: input
+    id: platform
+    attributes:
+      label: Platform and IOS / IOS-XE version
+      placeholder: e.g. Catalyst 9300, IOS-XE 17.12.4
+    validations:
+      required: true
+  - type: input
+    id: doc
+    attributes:
+      label: Link to Cisco documentation (optional)
+      description: The command's page in the Command Reference helps a lot.
+  - type: checkboxes
+    id: sanitised
+    attributes:
+      label: Data protection
+      options:
+        - label: My report contains no production hostnames, real IP addresses, passwords/hashes, SNMP communities or keys.
+          required: true

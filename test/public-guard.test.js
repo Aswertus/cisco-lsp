@@ -253,6 +253,61 @@ test('pre-push: an annotated tag must come from release.sh (tagger identity)', (
   assert.equal(out.status, 0, out.stderr);
 });
 
+test('tag-object.sh: the tag release.sh pushes passes the guard, a foreign tagger does not', () => {
+  const r = withRemote();
+  const main = seedMain(r);
+  fs.copyFileSync(
+    path.join(ROOT, 'scripts/public/tag-object.sh'),
+    path.join(r.dir, 'scripts/public/tag-object.sh'),
+  );
+  const tree = r.git('rev-parse', `${main}^{tree}`);
+  const mk = (name, email, commit = main) =>
+    execFileSync('bash', ['scripts/public/tag-object.sh', commit, tree, 'v1.0.0', name, email], {
+      cwd: r.dir,
+      encoding: 'utf8',
+    }).trim();
+  const tagSha = mk(IDENTITY.name, IDENTITY.email);
+  assert.equal(r.git('cat-file', '-t', tagSha), 'tag');
+  assert.equal(r.git('rev-parse', `${tagSha}^{commit}`), main);
+  assert.equal(r.git('tag', '-l'), '', 'no local refs/tags/ entry is created');
+  const out = prePush(r, [['x', tagSha, 'refs/tags/v1.0.0', ZERO]]);
+  assert.equal(out.status, 0, out.stderr);
+  refused(prePush(r, [['x', mk('Me', 'me@example.invalid'), 'refs/tags/v1.0.0', ZERO]]));
+});
+
+test('tag-object.sh: refuses a commit whose content is not the release tree, whatever its subject', () => {
+  const r = withRemote();
+  const main = seedMain(r);
+  fs.copyFileSync(
+    path.join(ROOT, 'scripts/public/tag-object.sh'),
+    path.join(r.dir, 'scripts/public/tag-object.sh'),
+  );
+  // A later PR squash-merged under a reused title, carrying other content.
+  const other = commitFiles(
+    r,
+    { ...CLEAN, 'extra.js': 'x' },
+    {
+      parent: main,
+      message: 'release: v1.0.0 (#2)',
+    },
+  );
+  const out = spawnSync(
+    'bash',
+    [
+      'scripts/public/tag-object.sh',
+      other,
+      r.git('rev-parse', `${main}^{tree}`),
+      'v1.0.0',
+      IDENTITY.name,
+      IDENTITY.email,
+    ],
+    { cwd: r.dir, encoding: 'utf8' },
+  );
+  assert.equal(out.status, 1, out.stderr);
+  assert.match(out.stderr, /does not carry the expected release tree/);
+  assert.equal(out.stdout, '', 'no tag object id is printed');
+});
+
 test('pre-push: guarded even when the public URL is spelled differently', () => {
   const r = withRemote();
   const leak = commitFiles(r, { 'CLAUDE.md': 'x' }, { message: 'wip' });
@@ -402,3 +457,101 @@ test(
     assert.equal(out.status, 2, out.stderr);
   },
 );
+
+// ------------------------------------------------------------ audit: images
+// Minimal synthetic images; the metadata check walks the file structure, so
+// CRCs and pixel data don't need to be valid.
+const pngChunk = (type, data = Buffer.alloc(0)) => {
+  const len = Buffer.alloc(4);
+  len.writeUInt32BE(data.length);
+  return Buffer.concat([len, Buffer.from(type, 'latin1'), data, Buffer.alloc(4)]);
+};
+const png = (...chunks) =>
+  Buffer.concat([
+    Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
+    pngChunk('IHDR', Buffer.alloc(13)),
+    ...chunks,
+    pngChunk('IDAT', Buffer.from('pixels-with-@-and-tEXt-bytes')),
+    pngChunk('IEND'),
+  ]);
+const gif = (...ext) =>
+  Buffer.concat([
+    Buffer.from('GIF89a', 'latin1'),
+    Buffer.from([1, 0, 1, 0, 0, 0, 0]), // 1x1, no global color table
+    ...ext,
+    Buffer.from([0x2c, 0, 0, 0, 0, 1, 0, 1, 0, 0, 2, 2, 0x4c, 0x01, 0]), // image + data
+    Buffer.from([0x3b]),
+  ]);
+const NETSCAPE = Buffer.from([0x21, 0xff, 11, ...Buffer.from('NETSCAPE2.0'), 3, 1, 0, 0, 0]);
+const auditWithBase = (r, tree, base) =>
+  spawnSync('node', ['scripts/public/audit.js', tree, ...(base ? [base] : [])], {
+    cwd: r.dir,
+    encoding: 'utf8',
+  });
+
+test('audit: clean images pass and are listed for visual review', () => {
+  const r = auditRepo();
+  const out = auditWithBase(
+    r,
+    commitFiles(r, { ...CLEAN, 'media/a.png': png(), 'media/b.gif': gif(NETSCAPE) }),
+  );
+  assert.equal(out.status, 0, out.stderr);
+  assert.match(out.stdout, /REVIEW 2 image\(s\)/);
+  assert.match(out.stdout, /media\/a\.png/);
+});
+
+test('audit: only images new or changed against the base are listed', () => {
+  const r = auditRepo();
+  const base = commitFiles(r, { ...CLEAN, 'media/a.png': png() });
+  const next = commitFiles(r, { ...CLEAN, 'media/a.png': png(), 'media/new.png': png() });
+  const out = auditWithBase(r, next, base);
+  assert.equal(out.status, 0, out.stderr);
+  assert.match(out.stdout, /REVIEW 1 image\(s\)/);
+  assert.doesNotMatch(out.stdout, /media\/a\.png/);
+});
+
+for (const [name, file, data] of [
+  [
+    'PNG text chunk (e.g. Software/Author)',
+    'shot.png',
+    png(pngChunk('tEXt', Buffer.from('Author\0someone'))),
+  ],
+  ['PNG EXIF chunk', 'shot.png', png(pngChunk('eXIf', Buffer.from('MM')))],
+  [
+    'JPEG EXIF',
+    'photo.jpg',
+    Buffer.from([0xff, 0xd8, 0xff, 0xe1, 0, 8, ...Buffer.from('Exif\0\0'), 0xff, 0xd9]),
+  ],
+  [
+    'JPEG comment',
+    'photo.jpeg',
+    Buffer.from([0xff, 0xd8, 0xff, 0xfe, 0, 5, ...Buffer.from('hi!'), 0xff, 0xd9]),
+  ],
+  ['GIF comment', 'anim.gif', gif(Buffer.from([0x21, 0xfe, 3, ...Buffer.from('abc'), 0]))],
+  [
+    'GIF XMP application block',
+    'anim.gif',
+    gif(Buffer.from([0x21, 0xff, 11, ...Buffer.from('XMP DataXMP'), 1, 0x3c, 0])),
+  ],
+  ['an uninspectable format (BMP)', 'pic.bmp', Buffer.from('BM-not-checked')],
+  // Hidden data after the end marker (aCropalypse: the uncropped original).
+  [
+    'bytes after PNG IEND',
+    'shot.png',
+    Buffer.concat([png(), Buffer.from('uncropped-original-pixels')]),
+  ],
+  ['a PNG without IEND', 'shot.png', png().subarray(0, -12)],
+  ['bytes after the GIF trailer', 'anim.gif', Buffer.concat([gif(NETSCAPE), Buffer.from('xx')])],
+  [
+    'bytes after JPEG end of image',
+    'photo.jpg',
+    Buffer.from([0xff, 0xd8, 0xff, 0xda, 0, 2, 1, 0xff, 0x00, 2, 0xff, 0xd9, 0x55, 0x55]),
+  ],
+]) {
+  test(`audit: flags ${name}`, () => {
+    const r = auditRepo();
+    const out = auditWithBase(r, commitFiles(r, { ...CLEAN, [`media/${file}`]: data }));
+    assert.equal(out.status, 1, out.stdout);
+    assert.match(out.stderr, /image metadata/);
+  });
+}

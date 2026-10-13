@@ -1,0 +1,28 @@
+name: Lock closed issues
+
+# Locks issues 30 days after they were closed, so finished topics don't collect
+# late "+1" comments that need moderating. New reports go into a new issue.
+# A scheduled trigger only runs from the default branch (main) of the public repo.
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  lock:
+    # Only the public repo has public issues; the private dev repo never runs this.
+    if: github.repository == 'Aswertus/cisco-lsp'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: dessant/lock-threads@89ae32b08ed1a541efecbab17912962a5e38981c # v6.0.2
+        with:
+          process-only: issues
+          issue-inactive-days: 30
+          issue-lock-reason: resolved
+          issue-comment: >
+            This issue was closed a while ago and is now locked. If the problem
+            comes back or you have a related idea, please open a new issue.

@@ -6,19 +6,26 @@ name: Release
 on:
   push:
     tags:
-      - "v*.*.*"
+      - 'v*.*.*'
 
-permissions:
-  contents: write # required for the built-in GITHUB_TOKEN to create the release
+# Each job gets only what it needs (dependency code in `release` must not hold
+# actions: write).
+permissions: {}
 
 jobs:
   release:
     # Only the public release repo publishes; the private dev repo never does.
     if: github.repository == 'Aswertus/cisco-lsp'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # required for the built-in GITHUB_TOKEN to create the release
+    outputs:
+      sha256: ${{ steps.vsix.outputs.sha256 }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false # npm scripts must not find the token in .git/config
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -34,6 +41,15 @@ jobs:
 
       - name: Package extension
         run: npm run package # runs lint+test+build via vscode:prepublish, then `vsce package`
+
+      - name: Record the .vsix checksum
+        id: vsix
+        run: |
+          files=(*.vsix)
+          [ "${#files[@]}" = 1 ] || { echo "::error::expected exactly one .vsix, got: ${files[*]}"; exit 1; }
+          sha=$(sha256sum "${files[0]}" | cut -d' ' -f1)
+          echo "sha256 of ${files[0]}: $sha" # needed for a manual publish.yml run
+          echo "sha256=$sha" >> "$GITHUB_OUTPUT"
 
       - name: Extract release notes from CHANGELOG.md
         run: |
@@ -51,8 +67,28 @@ jobs:
           cat release-notes.md
 
       - name: Publish GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
         with:
           body_path: release-notes.md # your CHANGELOG section …
           generate_release_notes: true # … with GitHub's auto compare link appended
-          files: "*.vsix"
+          files: '*.vsix'
+
+  # A release created with GITHUB_TOKEN never fires `release: published` for
+  # other workflows, so start the store publishing explicitly — on this tag
+  # (publish.yml requires one), with the checksum of the .vsix just released
+  # (publish.yml refuses any other file). Pre-release tags (vX.Y.Z-rc.N) are
+  # never published to the stores.
+  start-publish:
+    needs: release
+    if: github.repository == 'Aswertus/cisco-lsp' && !contains(github.ref_name, '-')
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write # required to start publish.yml
+    steps:
+      - name: Start store publishing (publish.yml)
+        run: >-
+          gh workflow run publish.yml --repo "$GITHUB_REPOSITORY" --ref "$GITHUB_REF_NAME"
+          -f sha256="$VSIX_SHA256"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VSIX_SHA256: ${{ needs.release.outputs.sha256 }}

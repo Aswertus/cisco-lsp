@@ -1,0 +1,22 @@
+name: 💡 Idea
+description: Suggest a new feature or an improvement.
+labels: [idea]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ideas are welcome! This is a spare-time project, so there's no promise of when, or whether, an idea gets built.
+        Please [search existing ideas](https://github.com/Aswertus/cisco-lsp/issues?q=label%3Aidea) first; a 👍 on an existing one helps more than a new issue.
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What should the extension do, and what would it help you with?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example (optional)
+      description: A short, sanitised config example showing where it would help.
+      render: text

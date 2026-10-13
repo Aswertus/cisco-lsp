@@ -1,0 +1,32 @@
+name: 📘 Support a platform or release
+description: Ask for commands of another Cisco platform or IOS / IOS-XE release to be added.
+labels: [platform]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Commands come from Cisco's official **Command Reference** for each platform and release. See [COMMAND_COVERAGE.md](https://github.com/Aswertus/cisco-lsp/blob/main/COMMAND_COVERAGE.md) for what's covered today.
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      placeholder: e.g. Catalyst 9300, ISR 4000, ASR 1000
+    validations:
+      required: true
+  - type: input
+    id: release
+    attributes:
+      label: IOS / IOS-XE release
+      placeholder: e.g. 17.12.x
+    validations:
+      required: true
+  - type: input
+    id: manual
+    attributes:
+      label: Link to the Command Reference on cisco.com
+      description: The PDF or the "Command Reference" landing page for that platform and release.
+  - type: textarea
+    id: missing
+    attributes:
+      label: Commands you're missing today (optional)
+      render: text

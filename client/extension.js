@@ -5,6 +5,8 @@ const https = require('https');
 const path = require('path');
 const { LanguageClient, TransportKind } = require('vscode-languageclient/node');
 const { parseRepo, isNewer } = require('./version');
+// Pure module shared with the server (esbuild bundles it into dist/client.js).
+const { findPlaceholders } = require('../server/lib/placeholders');
 
 let client;
 
@@ -22,6 +24,8 @@ function activate(context) {
     },
     {
       documentSelector: [{ scheme: 'file', language: 'cisco' }],
+      // Forward setting changes (e.g. placeholders.fillCharacters) to the server.
+      synchronize: { configurationSection: 'cisco-ios-lsp' },
     },
   );
 
@@ -35,8 +39,16 @@ function activate(context) {
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration((e) => {
       if (e.affectsConfiguration('cisco-ios-lsp.experimental.autoIndent')) syncAutoIndent();
+      if (e.affectsConfiguration('cisco-ios-lsp.placeholders')) resetPlaceholderDecoration();
     }),
     { dispose: () => autoIndentDisposable?.dispose() },
+  );
+
+  resetPlaceholderDecoration();
+  context.subscriptions.push(
+    vscode.window.onDidChangeVisibleTextEditors(() => decorateVisibleEditors()),
+    vscode.workspace.onDidChangeTextDocument((e) => schedulePlaceholderDecoration(e.document)),
+    { dispose: () => placeholderDecoration?.dispose() },
   );
 
   // Fire-and-forget: never let an update check disrupt activation.
@@ -75,6 +87,88 @@ function syncAutoIndent() {
     autoIndentDisposable.dispose();
     autoIndentDisposable = undefined;
   }
+}
+
+// ---------------------------------------------------------------------------
+// Template placeholder highlighting
+//
+// Highlights <NAME>, $VAR, Jinja and fill-character placeholders (VlanXX,
+// 10.10.X.1) over the whole argument, in the look chosen by
+// cisco-ios-lsp.placeholders.style. Colours are theme colours contributed in
+// package.json (ciscoIosLsp.placeholder*), so users can override them via
+// workbench.colorCustomizations. Detection: server/lib/placeholders.js.
+// ---------------------------------------------------------------------------
+
+const PH_BACKGROUND = {
+  backgroundColor: new vscode.ThemeColor('ciscoIosLsp.placeholderBackground'),
+  borderRadius: '3px',
+};
+const PH_UNDERLINE = {
+  borderStyle: 'none none dotted none',
+  borderWidth: '0 0 2px 0',
+  borderColor: new vscode.ThemeColor('ciscoIosLsp.placeholderUnderline'),
+};
+const PLACEHOLDER_STYLES = {
+  background: PH_BACKGROUND, // A (default)
+  underline: PH_UNDERLINE, // B
+  italic: {
+    color: new vscode.ThemeColor('ciscoIosLsp.placeholderForeground'),
+    fontStyle: 'italic',
+  }, // C
+  backgroundUnderline: { ...PH_BACKGROUND, ...PH_UNDERLINE }, // D
+};
+
+let placeholderDecoration;
+const placeholderTimers = new Map();
+
+function placeholderSettings() {
+  const cfg = vscode.workspace.getConfiguration('cisco-ios-lsp.placeholders');
+  const raw = cfg.get('fillCharacters', 'X');
+  return {
+    style: cfg.get('style', 'background'),
+    fill: Array.isArray(raw) ? raw.join('') : String(raw ?? 'X'),
+  };
+}
+
+// (Re)create the decoration type for the current style, then repaint.
+function resetPlaceholderDecoration() {
+  placeholderDecoration?.dispose();
+  const options = PLACEHOLDER_STYLES[placeholderSettings().style];
+  placeholderDecoration = options
+    ? vscode.window.createTextEditorDecorationType({
+        ...options,
+        rangeBehavior: vscode.DecorationRangeBehavior.ClosedClosed,
+      })
+    : undefined; // style "off"
+  decorateVisibleEditors();
+}
+
+function decorateEditor(editor) {
+  if (!placeholderDecoration || editor.document.languageId !== 'cisco') return;
+  const lines = editor.document.getText().split(/\r?\n/);
+  const ranges = findPlaceholders(lines, placeholderSettings().fill).map(
+    (p) => new vscode.Range(p.line, p.startChar, p.line, p.endChar),
+  );
+  editor.setDecorations(placeholderDecoration, ranges);
+}
+
+function decorateVisibleEditors() {
+  for (const editor of vscode.window.visibleTextEditors) decorateEditor(editor);
+}
+
+function schedulePlaceholderDecoration(document) {
+  if (document.languageId !== 'cisco') return;
+  const key = document.uri.toString();
+  clearTimeout(placeholderTimers.get(key));
+  placeholderTimers.set(
+    key,
+    setTimeout(() => {
+      placeholderTimers.delete(key);
+      for (const editor of vscode.window.visibleTextEditors) {
+        if (editor.document === document) decorateEditor(editor);
+      }
+    }, 150),
+  );
 }
 
 // ---------------------------------------------------------------------------

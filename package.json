@@ -2,13 +2,21 @@
   "name": "cisco-ios-lsp",
   "displayName": "Cisco IOS/IOS-XE IntelliSense",
   "description": "Context-aware completions, hover docs, and diagnostics for Cisco IOS/IOS-XE config files.",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "publisher": "Aswertus",
   "license": "MIT",
   "icon": "images/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/Aswertus/cisco-lsp"
+  },
+  "homepage": "https://github.com/Aswertus/cisco-lsp#readme",
+  "bugs": {
+    "url": "https://github.com/Aswertus/cisco-lsp/issues"
+  },
+  "galleryBanner": {
+    "color": "#1E2A3A",
+    "theme": "dark"
   },
   "engines": {
     "vscode": "^1.75.0"
@@ -81,7 +89,7 @@
             "ip_vrf": {
               "type": "boolean",
               "default": true,
-              "description": "Show 'ip vrf' declarations in the outline."
+              "description": "Show VRF declarations ('vrf definition', 'ip vrf') in the outline."
             },
             "router_bgp": {
               "type": "boolean",
@@ -126,6 +134,37 @@
             "sub_interface": true
           },
           "description": "Per-category toggle for which symbols appear in the outline."
+        },
+        "cisco-ios-lsp.placeholders.style": {
+          "type": "string",
+          "enum": [
+            "background",
+            "underline",
+            "italic",
+            "backgroundUnderline",
+            "off"
+          ],
+          "enumItemLabels": [
+            "A — Soft green background",
+            "B — Green dotted underline",
+            "C — Green italic text",
+            "D — Background + underline",
+            "Off"
+          ],
+          "enumDescriptions": [
+            "Faint tint behind the placeholder; the text keeps its syntax colour (default).",
+            "Quietest look, but closest to how warnings and errors appear.",
+            "Most noticeable; replaces the syntax colour of the placeholder.",
+            "Most distinct look, still clearly not an error.",
+            "No placeholder highlighting (hover note and diagnostics behaviour stay)."
+          ],
+          "default": "background",
+          "markdownDescription": "How template placeholders (`<NAME>`, `$VAR`, `{{ jinja }}`, `VlanXX`, `10.10.X.1`) are highlighted. The highlight covers the whole argument. Colours: `ciscoIosLsp.placeholderBackground` / `placeholderUnderline` / `placeholderForeground` in `workbench.colorCustomizations`."
+        },
+        "cisco-ios-lsp.placeholders.fillCharacters": {
+          "type": "string",
+          "default": "X",
+          "markdownDescription": "Characters that mark a value still to be filled in, e.g. `X` for `VlanXX`, `Gi1/0/X`, `X.X.X.X`. A letter counts as a single letter between non-letters or a run of 2+ capitals not touching other capitals (`VlanXX`, `ACL-XXX`, not `MAX`/`XXL`); a symbol counts in any run (`Vlan##`). `<NAME>`, `$VAR`, `${VAR}` and Jinja are always recognised. Avoid common letters (they hide real names) and `#` (it clashes with prompt lines like `SW1#show run`)."
         }
       }
     },
@@ -135,7 +174,39 @@
         "editor.insertSpaces": true,
         "editor.tabSize": 1
       }
-    }
+    },
+    "colors": [
+      {
+        "id": "ciscoIosLsp.placeholderBackground",
+        "description": "Background of template placeholders (styles A and D).",
+        "defaults": {
+          "dark": "#4EC9782B",
+          "light": "#20964621",
+          "highContrast": "#4EC97840",
+          "highContrastLight": "#20964630"
+        }
+      },
+      {
+        "id": "ciscoIosLsp.placeholderUnderline",
+        "description": "Dotted underline of template placeholders (styles B and D).",
+        "defaults": {
+          "dark": "#4EC978",
+          "light": "#1F9A4D",
+          "highContrast": "#4EC978",
+          "highContrastLight": "#1F9A4D"
+        }
+      },
+      {
+        "id": "ciscoIosLsp.placeholderForeground",
+        "description": "Text colour of template placeholders (style C).",
+        "defaults": {
+          "dark": "#6FCF8A",
+          "light": "#19803F",
+          "highContrast": "#6FCF8A",
+          "highContrastLight": "#19803F"
+        }
+      }
+    ]
   },
   "scripts": {
     "build": "node scripts/build.js",
@@ -144,21 +215,19 @@
     "test": "node --test",
     "format": "prettier --write \"**/*.{js,json,md}\" --ignore-path .gitignore",
     "vscode:prepublish": "npm run lint && npm test && npm run build",
-    "package": "vsce package",
+    "package": "vsce package --readme-path STORE.md",
     "publish:vsce": "vsce publish --packagePath ./*.vsix",
-    "publish:vsce:pre-release": "vsce publish --packagePath ./*.vsix --pre-release",
-    "publish:ovsx": "ovsx publish ./*.vsix",
-    "publish:ovsx:pre-release": "ovsx publish ./*.vsix --pre-release",
+    "publish:ovsx": "ovsx publish ./*.vsix --trusted-publishing",
     "render-icon": "node scripts/render-icon.js",
     "extract-commands": "node scripts/extract-commands.js"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@vscode/vsce": "^3.0.0",
+    "@vscode/vsce": "^4.0.0",
     "esbuild": "^0.28.1",
     "eslint": "^10.6.0",
     "globals": "^17.7.0",
-    "ovsx": "^0.10.12",
+    "ovsx": "^1.2.0",
     "prettier": "^3.0.0",
     "vscode-languageclient": "^9.0.1",
     "vscode-languageserver": "^9.0.1",

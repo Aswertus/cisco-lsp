@@ -6,6 +6,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-10-14
+
+### Added
+
+- Template placeholders are highlighted over the whole argument: `<NAME>`, `$VAR`, `${VAR}`,
+  Jinja (`{{ }}`, `{% %}`, `{# #}`) and fill characters (`VlanXX`, `Gi1/0/X`, `10.10.X.1`,
+  `X.X.X.X`). Choose the look with `cisco-ios-lsp.placeholders.style` (A: background — the
+  default, B: dotted underline, C: italic, D: background + underline, or off) and the fill
+  characters with `cisco-ios-lsp.placeholders.fillCharacters` (default `X`). Colours are
+  themeable (`ciscoIosLsp.placeholderBackground` / `Underline` / `Foreground`). Hovering a
+  placeholder shows "Template placeholder — replace before deploying".
+- `FiveGigabitEthernet` (`Fi`) and `TwoGigabitEthernet` (`Tw`) multigigabit interfaces are
+  recognised and offered as completions.
+
+### Fixed
+
+- Config templates no longer produce false warnings: whole-line template lines (`{% … %}`,
+  `{# … #}`, a lone `<BLOCK>` or `$VAR`) are treated like `!` comments (no diagnostics, the
+  formatter leaves them alone); interface names, commands and object names containing a
+  placeholder aren't reported as unknown or never defined (go-to-definition, find-references
+  and rename still link them); `service-policy output {{ policy_name }}` reads the whole
+  Jinja expression as the name.
+- Outline: `vrf definition` blocks now appear (grouped with `ip vrf` under **vrf**), and
+  their `address-family` entries stay with the VRF instead of showing up under
+  **router bgp**.
+
+### Changed
+
+- New store page for the VS Code Marketplace and Open VSX, with screenshots of each feature,
+  and a reworked README; developer documentation moved to `CONTRIBUTING.md`.
+- Open VSX releases are published via trusted publishing (GitHub Actions OIDC) instead of a
+  stored access token (`ovsx` 1.2; `@vscode/vsce` 4). The Marketplace still uses an access
+  token until its trusted publishing is available.
+- Store publishing now starts automatically after each GitHub Release and publishes exactly
+  the released `.vsix` instead of rebuilding it. Pre-release versions are not published to the
+  stores.
+- Issues on GitHub use forms (bug, false warning or missing command, platform support,
+  idea), and security problems are reported privately (see `SECURITY.md`).
+
 ## [0.5.1] - 2026-07-03
 
 ### Added
@@ -90,14 +129,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     (`clock`, `ntp`, `snmp-server`, `ip ssh/http/pim/msdp`, ...).
   - New block buckets (openers + mode classification + auto-indent + completions):
     `call-home`, `control-plane`, `crypto pki trustpoint`, `crypto pki certificate
-    chain`, the three `telemetry` modes, `transceiver type`, and RADIUS dynamic-author.
+chain`, the three `telemetry` modes, `transceiver type`, and RADIUS dynamic-author.
   - Cross-reference fixes: a LISP `prefix-list NAME` block opener counts as the
     prefix-list's definition, and in `ntp access-group peer ACL` the keyword `peer` is no
     longer mistaken for the ACL name (the ACL itself is now the reference).
 - `scripts/extract-commands.js`: the TOC running-header noise filter only matched the IOS-XE
   `Command Reference, Cisco IOS XE` wording. Classic-IOS "Consolidated Platform Command
   Reference" manuals (e.g. the new 2960-X pack) repeat `Command Reference, Cisco IOS
-  Release` instead, so those header lines leaked through and corrupted 13 TOC entries by
+Release` instead, so those header lines leaked through and corrupted 13 TOC entries by
   gluing onto the next command name. Broadened `NOISE_RE` to match the shared prefix.
 
 ## [0.5.0] - 2026-07-01
@@ -165,6 +204,8 @@ Initial release.
 - Automated releases: pushing a `vX.Y.Z` tag builds and publishes the `.vsix` via GitHub
   Actions.
 
+[0.6.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.0
+[0.5.1]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.5.1
 [0.5.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.5.0
 [0.2.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.2.0
 [0.1.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.1.0

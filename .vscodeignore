@@ -12,8 +12,17 @@ cisco-ios-lsp-plan.md
 scripts/**
 _manuals/**
 _testing/**
+# Any local underscore folder (_dummy/ screenshot imports, ...) never ships.
+_*/**
 images/icon.svg
 images/README.md
+# Store-page/README screenshots are linked from GitHub, not shipped.
+media/**
+CONTRIBUTING.md
+# The store page is STORE.md (packed as the readme via --readme-path); the GitHub README
+# would clash with it.
+README.md
+.publicignore
 **/.DS_Store
 # Sources are bundled into dist/** by scripts/build.js — only dist ships.
 client/**
