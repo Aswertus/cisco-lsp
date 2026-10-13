@@ -164,7 +164,9 @@ function findAtPosition(index, line, character) {
 // first definition line only. Placeholder names (RM-XXX, <POLICY>,
 // {{ policy_name }}) are still linked for F12/rename but never reported:
 // whether they are defined is decided when the template is filled in.
-function computeXrefDiagnostics(index) {
+// `options.unusedObjects === false` (setting cisco-ios-lsp.diagnostics.unusedObjects)
+// drops the "defined but never referenced" hints; never-defined warnings stay.
+function computeXrefDiagnostics(index, options = {}) {
   const diagnostics = [];
   for (const obj of index.objects.values()) {
     if (obj.placeholder) continue;
@@ -180,7 +182,7 @@ function computeXrefDiagnostics(index) {
           source: 'cisco-ios-lsp',
         });
       }
-    } else if (obj.refs.length === 0) {
+    } else if (obj.refs.length === 0 && options.unusedObjects !== false) {
       const def = obj.defs[0];
       diagnostics.push({
         severity: DiagnosticSeverity.Hint,

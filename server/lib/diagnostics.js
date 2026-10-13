@@ -84,8 +84,27 @@ function addDiag(list, line, character, length, message, severity) {
 // the loaded command data (see lib/data.js). Template placeholders
 // (`blockContext.placeholderFill`, see lib/placeholders.js) are values still
 // to be filled in: a command or interface name containing one isn't judged.
-function computeDiagnostics(lines, knownTopLevel, blockContext = {}) {
+//
+// `options` mirrors the cisco-ios-lsp.diagnostics.* settings; omitted keys
+// keep the default behaviour:
+//   unknownCommands  'warning' (default) | 'information' | 'off'
+//   ignoredCommands  lines starting with one of these (whole words, any case)
+//                    are never reported as unknown commands
+//   indentation      false drops the three indentation checks
+function computeDiagnostics(lines, knownTopLevel, blockContext = {}, options = {}) {
   const diagnostics = [];
+  const unknownSeverity =
+    options.unknownCommands === 'off'
+      ? null
+      : options.unknownCommands === 'information'
+        ? DiagnosticSeverity.Information
+        : DiagnosticSeverity.Warning;
+  const ignored = (Array.isArray(options.ignoredCommands) ? options.ignoredCommands : [])
+    .map((c) => (typeof c === 'string' ? c.trim().toLowerCase().split(/\s+/) : []))
+    .filter((words) => words.length && words[0]);
+  const isIgnored = (tokens) =>
+    ignored.some((words) => words.every((w, k) => (tokens[k] || '').toLowerCase() === w));
+  const checkIndentation = options.indentation !== false;
   const placeholders = findPlaceholders(lines, blockContext.placeholderFill);
   const isPlaceholder = (i, character, length) =>
     overlapsPlaceholder(placeholders, {
@@ -96,6 +115,7 @@ function computeDiagnostics(lines, knownTopLevel, blockContext = {}) {
   scanIndentation(
     lines,
     (i, indent, expected) => {
+      if (!checkIndentation) return;
       addDiag(
         diagnostics,
         i,
@@ -106,6 +126,7 @@ function computeDiagnostics(lines, knownTopLevel, blockContext = {}) {
       );
     },
     (i, leadingLength) => {
+      if (!checkIndentation) return;
       addDiag(
         diagnostics,
         i,
@@ -123,10 +144,12 @@ function computeDiagnostics(lines, knownTopLevel, blockContext = {}) {
       //     flush-left block children are sub-mode commands, not top-level,
       //     even though they physically sit at column 0).
       if (
+        unknownSeverity &&
         indent === 0 &&
         !isFlushChild &&
         !knownTopLevel.has(first) &&
-        !isPlaceholder(i, 0, tokens[0].length)
+        !isPlaceholder(i, 0, tokens[0].length) &&
+        !isIgnored(tokens)
       ) {
         addDiag(
           diagnostics,
@@ -134,7 +157,7 @@ function computeDiagnostics(lines, knownTopLevel, blockContext = {}) {
           0,
           tokens[0].length,
           `Unknown command "${tokens[0]}" — possible typo.`,
-          DiagnosticSeverity.Warning,
+          unknownSeverity,
         );
       }
 
@@ -195,6 +218,7 @@ function computeDiagnostics(lines, knownTopLevel, blockContext = {}) {
       openerBlockType: blockContext.openerBlockType,
       isChildCommand: blockContext.isChildCommand,
       onMissingIndent: (i, indentLen, expectedIndent, header) => {
+        if (!checkIndentation) return;
         addDiag(
           diagnostics,
           i,

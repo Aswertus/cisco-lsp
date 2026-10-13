@@ -24,8 +24,10 @@ jobs:
     if: github.repository == 'Aswertus/cisco-lsp' && github.ref_type == 'tag'
     runs-on: ubuntu-latest
     # Marketplace trusted publishing (vsce --oidc) isn't live on the Marketplace
-    # backend yet (2026-10), so this job still uses the VSCE_PAT secret. Azure
-    # DevOps PATs stop working on 2026-12-01 - switch to --oidc before then.
+    # backend yet (2026-10), so this job still uses the VSCE_PAT secret: an Azure
+    # DevOps PAT scoped to the `aswertus` organization (not a global PAT, so the
+    # 2026-12-01 global-PAT retirement doesn't hit it), expiring 2027-10-12.
+    # Renew it, or switch to --oidc, before then.
     permissions:
       contents: read
     steps:
@@ -51,15 +53,15 @@ jobs:
 
       - name: Check the Marketplace token's end of life
         run: |
-          if [[ $(date -u +%F) > 2026-11-14 ]]; then
-            echo "::warning::Azure DevOps PATs (VSCE_PAT) stop working on 2026-12-01. Switch this job to 'vsce publish --oidc' + 'id-token: write' (see CLAUDE.md)."
+          if [[ $(date -u +%F) > 2027-09-11 ]]; then
+            echo "::warning::The Azure DevOps PAT in VSCE_PAT expires on 2027-10-12. Renew it (dev.azure.com → User settings → Personal access tokens) or switch this job to 'vsce publish --oidc' + 'id-token: write' (see CLAUDE.md)."
           fi
 
       - name: Publish to VS Code Marketplace
         run: |
           npm run publish:vsce || {
-            if [[ $(date -u +%F) > 2026-11-30 ]]; then
-              echo "::error::Marketplace publish failed after 2026-12-01 — the Azure DevOps PAT in VSCE_PAT has most likely been retired. Switch to 'vsce publish --oidc' (see CLAUDE.md)."
+            if [[ $(date -u +%F) > 2027-10-11 ]]; then
+              echo "::error::Marketplace publish failed after 2027-10-12 — the Azure DevOps PAT in VSCE_PAT has most likely expired. Renew it or switch to 'vsce publish --oidc' (see CLAUDE.md)."
             fi
             exit 1
           }

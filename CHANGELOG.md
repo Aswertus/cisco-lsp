@@ -6,6 +6,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.1] - 2026-10-14
+
+### Added
+
+- Diagnostics settings: `cisco-ios-lsp.diagnostics.unknownCommands` (`warning`, `information`
+  or `off`), `cisco-ios-lsp.diagnostics.ignoredCommands` (commands never reported as unknown,
+  matched by whole leading words), `cisco-ios-lsp.diagnostics.unusedObjects` and
+  `cisco-ios-lsp.diagnostics.indentation`. All default to the previous behaviour.
+
+### Changed
+
+- Settings are grouped into Diagnostics, Outline, Templates, Updates and Experimental in the
+  Settings editor, with updated descriptions. Setting names are unchanged.
+- Release tooling: `release.sh --tag` refuses to tag a commit with a non-noreply author, and the
+  content audit catches GitHub tokens in the newer stateless format.
+- The Marketplace token warning in the publish workflow follows the token's own expiry date.
+
 ## [0.6.0] - 2026-10-14
 
 ### Added
@@ -204,6 +221,7 @@ Initial release.
 - Automated releases: pushing a `vX.Y.Z` tag builds and publishes the `.vsix` via GitHub
   Actions.
 
+[0.6.1]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.1
 [0.6.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.0
 [0.5.1]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.5.1
 [0.5.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.5.0

@@ -51,7 +51,7 @@ tree=$("$root/scripts/public/build-tree.sh" "$src") || die "could not build the 
 if [ "$mode" = --tag ]; then
   [ -n "$have_main" ] || die "public main does not exist"
   # Tag only what this script would release: public main's content must be
-  # exactly the tree built from private main (a merged release PR — squash or
+  # exactly the tree built from private main (a merged release PR — rebase or
   # merge commit — has it; anything else on public main does not).
   tagobj=$("$root/scripts/public/tag-object.sh" refs/remotes/public/main "$tree" "$tag" "$IDENTITY_NAME" "$IDENTITY_EMAIL") ||
     die "public main is not the merged release/$tag of private $src (merge the PR first; or $src moved since)"
@@ -80,4 +80,4 @@ echo "release: changes going public in $tag:"
 git diff --stat refs/remotes/public/main "$commit"
 git push public "$commit:refs/heads/release/$tag"
 gh pr create -R "$PUBLIC_REPO" --base main --head "release/$tag" --title "release: $tag" \
-  --body "Release $tag. One squashed commit built from the private dev repo by \`scripts/public/release.sh\`; see CHANGELOG.md for what changed. After merging, run \`scripts/public/release.sh $tag --tag\`."
+  --body "Release $tag. One squashed commit built from the private dev repo by \`scripts/public/release.sh\`; see CHANGELOG.md for what changed. Merge with **Rebase and merge** (keeps the noreply author; a squash merge can put a personal address into the public history), then run \`scripts/public/release.sh $tag --tag\`."

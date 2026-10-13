@@ -275,6 +275,77 @@ test('tag-object.sh: the tag release.sh pushes passes the guard, a foreign tagge
   refused(prePush(r, [['x', mk('Me', 'me@example.invalid'), 'refs/tags/v1.0.0', ZERO]]));
 });
 
+test('tag-object.sh: refuses a personal author address unless that exact commit is accepted', () => {
+  const r = withRemote();
+  fs.copyFileSync(
+    path.join(ROOT, 'scripts/public/tag-object.sh'),
+    path.join(r.dir, 'scripts/public/tag-object.sh'),
+  );
+  // A web "Squash and merge": personal author, GitHub's web-flow committer.
+  const personal = ['someone', 'example.invalid'].join('@');
+  const env = {
+    ...process.env,
+    GIT_AUTHOR_NAME: 'Someone',
+    GIT_AUTHOR_EMAIL: personal,
+    GIT_COMMITTER_NAME: 'GitHub',
+    GIT_COMMITTER_EMAIL: 'noreply@github.com',
+  };
+  const other = commitFiles(r, CLEAN);
+  const tree = r.git('rev-parse', `${other}^{tree}`);
+  const merged = execFileSync('git', ['commit-tree', tree, '-m', 'release: v1.0.0 (#1)'], {
+    cwd: r.dir,
+    env,
+    encoding: 'utf8',
+  }).trim();
+  const run = (extraEnv = {}) =>
+    spawnSync(
+      'bash',
+      ['scripts/public/tag-object.sh', merged, tree, 'v1.0.0', IDENTITY.name, IDENTITY.email],
+      { cwd: r.dir, encoding: 'utf8', env: { ...process.env, ...extraEnv } },
+    );
+  const refused = run();
+  assert.equal(refused.status, 1, refused.stderr);
+  assert.match(refused.stderr, /non-noreply author\/committer/);
+  assert.equal(refused.stdout, '');
+  // Another commit's hash doesn't unlock it; this exact one does.
+  assert.equal(run({ ACCEPT_AUTHOR_COMMIT: other }).status, 1);
+  const accepted = run({ ACCEPT_AUTHOR_COMMIT: merged });
+  assert.equal(accepted.status, 0, accepted.stderr);
+  assert.equal(r.git('cat-file', '-t', accepted.stdout.trim()), 'tag');
+});
+
+test('tag-object.sh: an unreadable author/committer refuses instead of skipping the check', () => {
+  const r = withRemote();
+  const main = seedMain(r);
+  fs.copyFileSync(
+    path.join(ROOT, 'scripts/public/tag-object.sh'),
+    path.join(r.dir, 'scripts/public/tag-object.sh'),
+  );
+  // A git whose `log` prints nothing; every other subcommand is the real git.
+  const bin = fs.mkdtempSync(path.join(os.tmpdir(), 'public-guard-bin-'));
+  const realGit = execFileSync('bash', ['-c', 'command -v git'], { encoding: 'utf8' }).trim();
+  fs.writeFileSync(
+    path.join(bin, 'git'),
+    `#!/bin/bash\n[ "$1" = log ] && exit 0\nexec ${realGit} "$@"\n`,
+    { mode: 0o755 },
+  );
+  const out = spawnSync(
+    'bash',
+    [
+      'scripts/public/tag-object.sh',
+      main,
+      r.git('rev-parse', `${main}^{tree}`),
+      'v1.0.0',
+      IDENTITY.name,
+      IDENTITY.email,
+    ],
+    { cwd: r.dir, encoding: 'utf8', env: { ...process.env, PATH: `${bin}:${process.env.PATH}` } },
+  );
+  assert.equal(out.status, 1, out.stderr);
+  assert.match(out.stderr, /cannot read the author\/committer/);
+  assert.equal(out.stdout, '', 'no tag object id is printed');
+});
+
 test('tag-object.sh: refuses a commit whose content is not the release tree, whatever its subject', () => {
   const r = withRemote();
   const main = seedMain(r);
@@ -393,6 +464,18 @@ test('audit: SNMP communities and pre-shared keys are flagged', () => {
   assert.equal(out.status, 1);
   assert.match(out.stderr, /SNMP community/);
   assert.match(out.stderr, /pre-shared key/);
+});
+
+test('audit: GitHub tokens are flagged, including the newer dotted/dashed format', () => {
+  const r = auditRepo();
+  // Built at runtime so the audit of this public file doesn't flag them.
+  const classic = ['ghp', 'A'.repeat(36)].join('_');
+  const stateless = ['ghs', `${'a'.repeat(8)}.${'B'.repeat(12)}-${'c'.repeat(20)}`].join('_');
+  for (const token of [classic, stateless]) {
+    const out = audit(r, commitFiles(r, { ...CLEAN, 'notes.md': `token: ${token}\n` }));
+    assert.equal(out.status, 1, token.slice(0, 4));
+    assert.match(out.stderr, /GitHub token/);
+  }
 });
 
 test('audit: without configs in _testing/ it refuses (exit 2) instead of passing', () => {

@@ -95,3 +95,17 @@ test('ntp access-group: the type keyword is not an ACL name, the ACL is', () => 
   assert.equal(acl.defs.length, 1);
   assert.equal(acl.refs.length, 1);
 });
+
+test('unusedObjects: false drops the never-used hints, keeps never-defined warnings', () => {
+  const index = buildXrefIndex([
+    'class-map match-any CM-UNUSED',
+    ' match dscp ef',
+    'interface Gi1/0/1',
+    ' service-policy input PM-MISSING',
+  ]);
+  const all = computeXrefDiagnostics(index);
+  assert.deepEqual(all.map((d) => d.severity).sort(), [2, 4]);
+  const filtered = computeXrefDiagnostics(index, { unusedObjects: false });
+  assert.deepEqual(filtered.map((d) => d.severity), [2]);
+  assert.deepEqual(computeXrefDiagnostics(index, {}).length, 2, 'default keeps the hints');
+});

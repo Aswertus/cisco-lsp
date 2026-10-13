@@ -147,6 +147,7 @@ connection.onInitialized(() => {
   setImmediate(getData);
   // Until this answers, the default fill (X) applies; a failure only gets logged.
   refreshPlaceholderFill().catch((err) => connection.console.error(String(err)));
+  refreshDiagnosticOptions().catch((err) => connection.console.error(String(err)));
 });
 
 // ---------------------------------------------------------------------------
@@ -170,8 +171,28 @@ async function refreshPlaceholderFill() {
   documents.all().forEach(validate);
 }
 
+// The cisco-ios-lsp.diagnostics.* settings (see computeDiagnostics /
+// computeXrefDiagnostics for the keys); {} = every check with default severity.
+let diagnosticOptions = {};
+
+async function refreshDiagnosticOptions() {
+  if (!hasConfigurationCapability) return;
+  const cfg = (await connection.workspace.getConfiguration('cisco-ios-lsp.diagnostics')) || {};
+  const next = {
+    unknownCommands: cfg.unknownCommands,
+    ignoredCommands: cfg.ignoredCommands,
+    indentation: cfg.indentation,
+    unusedObjects: cfg.unusedObjects,
+  };
+  if (JSON.stringify(next) === JSON.stringify(diagnosticOptions)) return;
+  diagnosticOptions = next;
+  documents.all().forEach(validate);
+}
+
 connection.onDidChangeConfiguration(() => {
-  refreshPlaceholderFill().catch((err) => connection.console.error(String(err)));
+  const log = (err) => connection.console.error(String(err));
+  refreshPlaceholderFill().catch(log);
+  refreshDiagnosticOptions().catch(log);
 });
 
 const placeholderCache = new Map();
@@ -393,12 +414,17 @@ connection.onDocumentSymbol(async (params) => {
 function validate(doc) {
   const data = getData();
   const diagnostics = [
-    ...computeDiagnostics(getLines(doc), data.knownTopLevel, {
-      openerBlockType,
-      isChildCommand: data.isChildCommand,
-      placeholderFill,
-    }),
-    ...computeXrefDiagnostics(getXref(doc)),
+    ...computeDiagnostics(
+      getLines(doc),
+      data.knownTopLevel,
+      {
+        openerBlockType,
+        isChildCommand: data.isChildCommand,
+        placeholderFill,
+      },
+      diagnosticOptions,
+    ),
+    ...computeXrefDiagnostics(getXref(doc), diagnosticOptions),
   ];
   connection.sendDiagnostics({ uri: doc.uri, diagnostics });
 }
