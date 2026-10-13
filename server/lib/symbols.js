@@ -8,8 +8,9 @@
 // header line), so breadcrumbs and sticky scroll track the enclosing block.
 //
 // `enabled` mirrors the cisco-ios-lsp.outline.symbolsList setting keys:
-// command, ip_vrf, router_bgp, address_family, class_map, policy_map,
-// interface, sub_interface (missing keys default to enabled).
+// command, ip_vrf (both `ip vrf` and `vrf definition`), router_bgp,
+// address_family, class_map, policy_map, interface, sub_interface (missing
+// keys default to enabled).
 
 const { SymbolKind } = require('vscode-languageserver/node');
 const { leadingSpaces } = require('./indentation');
@@ -40,6 +41,9 @@ function buildDocumentSymbols(lines, enabled) {
   let base = root;
   let containers = new Map(); // category name → container symbol in `base`
   let lastBgp = null;
+  // The `vrf definition` block the scan is in ({ node, end }; node is null when
+  // ip_vrf is off): its address-families belong to it, never to router bgp.
+  let vrfBlock = null;
   let interfaces = new Map(); // interface name → symbol, for sub-interfaces
 
   const makeSymbol = (name, detail, kind, startLine, endLine) => ({
@@ -100,6 +104,7 @@ function buildDocumentSymbols(lines, enabled) {
         base = node.children;
         containers = new Map();
         lastBgp = null;
+        vrfBlock = null;
         interfaces = new Map();
       }
       continue;
@@ -134,15 +139,23 @@ function buildDocumentSymbols(lines, enabled) {
       adopt(container('router bgp', i, end), node);
       lastBgp = node;
     } else if ((m = /^[ \t]*address-family[ \t]+(\S.*?)\s*$/i.exec(line))) {
-      if (!isOn(enabled, 'address_family')) continue;
+      const inVrf = vrfBlock && i <= vrfBlock.end;
+      if (!isOn(enabled, 'address_family') || (inVrf && !vrfBlock.node)) continue;
       const end = blockEnd(lines, i);
       const node = makeSymbol(m[1], 'address-family', SymbolKind.Field, i, end);
-      if (lastBgp) adopt(lastBgp, node);
+      if (inVrf) adopt(vrfBlock.node, node);
+      else if (lastBgp) adopt(lastBgp, node);
       else adopt(container('router bgp', i, end), node);
+    } else if ((m = /^[ \t]*vrf[ \t]+definition[ \t]+(\S+)/i.exec(line))) {
+      const end = blockEnd(lines, i);
+      vrfBlock = { node: null, end };
+      if (!isOn(enabled, 'ip_vrf')) continue;
+      vrfBlock.node = makeSymbol(m[1], 'vrf definition', SymbolKind.Field, i, end);
+      adopt(container('vrf', i, end), vrfBlock.node);
     } else if ((m = /^[ \t]*ip[ \t]+vrf[ \t]+(?!forwarding\b)(\S.*?)\s*$/i.exec(line))) {
       if (!isOn(enabled, 'ip_vrf')) continue;
       const end = blockEnd(lines, i);
-      adopt(container('ip_vrf', i, end), makeSymbol(m[1], 'ip vrf', SymbolKind.Field, i, end));
+      adopt(container('vrf', i, end), makeSymbol(m[1], 'ip vrf', SymbolKind.Field, i, end));
     } else if ((m = /^[ \t]*class-map[ \t]+(?:type\s+\S+\s+)?(?:match-(?:any|all)\s+)?(\S.*?)\s*$/i.exec(line))) {
       if (!isOn(enabled, 'class_map')) continue;
       const end = blockEnd(lines, i);

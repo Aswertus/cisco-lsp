@@ -1,51 +1,68 @@
 name: Publish
 
+# Publishes the .vsix attached to a GitHub Release to the VS Code Marketplace
+# and Open VSX. Started by release.yml on the release tag (a release created
+# with GITHUB_TOKEN can't trigger `release: published`); a manual run must also
+# pick the release tag under "Use workflow from". The stores get exactly the
+# file attached to the GitHub Release, verified against the sha256 input —
+# nothing is rebuilt here, and no npm install scripts run next to the
+# publishing credentials.
+# Open VSX trusts this file by name (trusted publisher Aswertus/cisco-lsp +
+# publish.yml): renaming it breaks Open VSX publishing.
 on:
   workflow_dispatch:
-  release:
-    types: [published]
+    inputs:
+      sha256:
+        description: SHA-256 of the released .vsix (release.yml passes it; for a manual run copy it from that release run's log)
+        required: true
 
 jobs:
   publish-marketplace:
     name: Publish to VS Code Marketplace
     # Only the public release repo publishes; the private dev repo never does.
-    if: github.repository == 'Aswertus/cisco-lsp'
+    # Only from a release tag — never from a branch.
+    if: github.repository == 'Aswertus/cisco-lsp' && github.ref_type == 'tag'
     runs-on: ubuntu-latest
+    # Marketplace trusted publishing (vsce --oidc) isn't live on the Marketplace
+    # backend yet (2026-10), so this job still uses the VSCE_PAT secret. Azure
+    # DevOps PATs stop working on 2026-12-01 - switch to --oidc before then.
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: "npm"
+          node-version: '22'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
-      - name: Build VSIX
-        run: npm run package
+      - name: Download the released VSIX
+        run: scripts/ci/download-release-vsix.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_SHA256: ${{ inputs.sha256 }}
 
-      - name: Check if pre-release
-        id: check_prerelease
+      - name: Check the Marketplace token's end of life
         run: |
-          VERSION=$(jq -r .version package.json)
-          if [[ "${VERSION}" == *"-"* ]]; then
-            echo "is_prerelease=true" >> $GITHUB_OUTPUT
-            echo "Pre-release version detected: ${VERSION}"
-          else
-            echo "is_prerelease=false" >> $GITHUB_OUTPUT
-            echo "Stable version: ${VERSION}"
+          if [[ $(date -u +%F) > 2026-11-14 ]]; then
+            echo "::warning::Azure DevOps PATs (VSCE_PAT) stop working on 2026-12-01. Switch this job to 'vsce publish --oidc' + 'id-token: write' (see CLAUDE.md)."
           fi
 
       - name: Publish to VS Code Marketplace
         run: |
-          if [[ "${{ steps.check_prerelease.outputs.is_prerelease }}" == "true" ]]; then
-            npm run publish:vsce:pre-release
-          else
-            npm run publish:vsce
-          fi
+          npm run publish:vsce || {
+            if [[ $(date -u +%F) > 2026-11-30 ]]; then
+              echo "::error::Marketplace publish failed after 2026-12-01 — the Azure DevOps PAT in VSCE_PAT has most likely been retired. Switch to 'vsce publish --oidc' (see CLAUDE.md)."
+            fi
+            exit 1
+          }
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         timeout-minutes: 5
@@ -53,43 +70,35 @@ jobs:
   publish-openvsx:
     name: Publish to Open VSX Registry
     # Only the public release repo publishes; the private dev repo never does.
-    if: github.repository == 'Aswertus/cisco-lsp'
+    # Only from a release tag — never from a branch.
+    if: github.repository == 'Aswertus/cisco-lsp' && github.ref_type == 'tag'
     runs-on: ubuntu-latest
+    # Trusted publishing (OIDC): the registry trusts this repo + workflow file,
+    # so no long-lived token is stored as a secret.
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: "npm"
+          node-version: '22'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
-      - name: Build VSIX
-        run: npm run package
-
-      - name: Check if pre-release
-        id: check_prerelease
-        run: |
-          VERSION=$(jq -r .version package.json)
-          if [[ "${VERSION}" == *"-"* ]]; then
-            echo "is_prerelease=true" >> $GITHUB_OUTPUT
-            echo "Pre-release version detected: ${VERSION}"
-          else
-            echo "is_prerelease=false" >> $GITHUB_OUTPUT
-            echo "Stable version: ${VERSION}"
-          fi
+      - name: Download the released VSIX
+        run: scripts/ci/download-release-vsix.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXPECTED_SHA256: ${{ inputs.sha256 }}
 
       - name: Publish to Open VSX Registry
-        run: |
-          if [[ "${{ steps.check_prerelease.outputs.is_prerelease }}" == "true" ]]; then
-            npm run publish:ovsx:pre-release
-          else
-            npm run publish:ovsx
-          fi
-        env:
-          OVSX_PAT: ${{ secrets.OPENVSX_TOKEN }}
+        run: npm run publish:ovsx
         timeout-minutes: 5

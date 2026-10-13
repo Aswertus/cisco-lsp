@@ -11,6 +11,7 @@
 # Production data — the reason this file exists
 _testing/
 _manuals/
+_dummy/
 *.cisco
 *-confg
 *running-config*

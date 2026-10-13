@@ -2,6 +2,7 @@
 
 const { DiagnosticSeverity } = require('vscode-languageserver/node');
 const { scanIndentation } = require('./indentation');
+const { findPlaceholders, overlapsPlaceholder } = require('./placeholders');
 
 // Valid IOS-XE interface type names (lower-cased), incl. common abbreviations.
 const VALID_INTERFACE_TYPES = new Set([
@@ -15,6 +16,11 @@ const VALID_INTERFACE_TYPES = new Set([
   'ten',
   'twentyfivegige',
   'twe',
+  // Multigigabit ports (Cat9300/9400 mGig), e.g. FiveGigabitEthernet1/0/1 = Fi1/0/1.
+  'fivegigabitethernet',
+  'fi',
+  'twogigabitethernet',
+  'tw',
   'fortygigabitethernet',
   'fo',
   'fou',
@@ -75,9 +81,17 @@ function addDiag(list, line, character, length, message, severity) {
 // `blockContext` provides the {openerBlockType, isChildCommand} predicates —
 // see scanIndentation in lib/indentation.js), unknown top-level commands,
 // interface type names, VLAN ranges, IPv4 shape. `knownTopLevel` comes from
-// the loaded command data (see lib/data.js).
+// the loaded command data (see lib/data.js). Template placeholders
+// (`blockContext.placeholderFill`, see lib/placeholders.js) are values still
+// to be filled in: a command or interface name containing one isn't judged.
 function computeDiagnostics(lines, knownTopLevel, blockContext = {}) {
   const diagnostics = [];
+  const placeholders = findPlaceholders(lines, blockContext.placeholderFill);
+  const isPlaceholder = (i, character, length) =>
+    overlapsPlaceholder(placeholders, {
+      start: { line: i, character },
+      end: { line: i, character: character + length },
+    });
 
   scanIndentation(
     lines,
@@ -108,7 +122,12 @@ function computeDiagnostics(lines, knownTopLevel, blockContext = {}) {
       // (1) Unknown top-level command (only flag column-0 commands —
       //     flush-left block children are sub-mode commands, not top-level,
       //     even though they physically sit at column 0).
-      if (indent === 0 && !isFlushChild && !knownTopLevel.has(first)) {
+      if (
+        indent === 0 &&
+        !isFlushChild &&
+        !knownTopLevel.has(first) &&
+        !isPlaceholder(i, 0, tokens[0].length)
+      ) {
         addDiag(
           diagnostics,
           i,
@@ -122,10 +141,14 @@ function computeDiagnostics(lines, knownTopLevel, blockContext = {}) {
       // (2) Invalid interface type name.
       if (first === 'interface' && tokens[1]) {
         const typeName = tokens[1].toLowerCase().match(/^[a-z-]+/)?.[0] || '';
-        if (typeName && !VALID_INTERFACE_TYPES.has(typeName)) {
-          // Search after the "interface" keyword so a type token that also
-          // occurs earlier in the line can't shift the squiggle.
-          const col = line.indexOf(tokens[1], indent + tokens[0].length);
+        // Search after the "interface" keyword so a type token that also
+        // occurs earlier in the line can't shift the squiggle.
+        const col = line.indexOf(tokens[1], indent + tokens[0].length);
+        if (
+          typeName &&
+          !VALID_INTERFACE_TYPES.has(typeName) &&
+          !isPlaceholder(i, col, tokens[1].length)
+        ) {
           addDiag(
             diagnostics,
             i,

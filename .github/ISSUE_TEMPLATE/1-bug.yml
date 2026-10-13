@@ -1,0 +1,43 @@
+name: 🐞 Bug
+description: Something in the extension doesn't work (completions, hover, formatter, outline, rename, ...).
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Tip: in VS Code, **Help → Report Issue…** (choose this extension) fills in the version details for you.
+
+        > [!WARNING]
+        > **Issues are public.** Never paste a full or production config. Use a minimal snippet and replace hostnames, real IP addresses (use `192.0.2.x`, `198.51.100.x`, `203.0.113.x`), passwords and hashes, SNMP communities and keys.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: snippet
+    attributes:
+      label: Minimal config snippet
+      description: The 3–10 lines needed to reproduce it. Sanitised, see the warning above.
+      render: text
+  - type: input
+    id: ext-version
+    attributes:
+      label: Extension version
+      placeholder: e.g. 0.6.0 (Extensions view → Cisco IOS/IOS-XE IntelliSense)
+    validations:
+      required: true
+  - type: input
+    id: editor
+    attributes:
+      label: Editor and version
+      placeholder: e.g. VS Code 1.105, VSCodium 1.104
+  - type: checkboxes
+    id: sanitised
+    attributes:
+      label: Data protection
+      options:
+        - label: My report contains no production hostnames, real IP addresses, passwords/hashes, SNMP communities or keys.
+          required: true

@@ -6,3 +6,4 @@ _manuals/
 _testing/
 .env
 .env.*
+_dummy/

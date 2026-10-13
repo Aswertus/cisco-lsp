@@ -53,3 +53,54 @@ test('prompt commands become top-level groups', () => {
   assert.equal(syms[0].name, 'configure terminal');
   assert.deepEqual(syms[0].children.map((c) => c.name), ['interface']);
 });
+
+test('vrf definition is a symbol and keeps its own address-family (before or after bgp)', () => {
+  const VRF = [
+    /* 0 */ 'vrf definition MGMT',
+    /* 1 */ ' address-family ipv4',
+    /* 2 */ ' exit-address-family',
+    /* 3 */ 'router bgp 64500',
+    /* 4 */ ' address-family ipv4',
+    /* 5 */ '  network 192.0.2.0 mask 255.255.255.0',
+    /* 6 */ 'vrf definition GUEST',
+    /* 7 */ ' address-family ipv6',
+  ];
+  const byName = new Map(buildDocumentSymbols(VRF, {}).map((s) => [s.name, s]));
+
+  const vrfs = byName.get('vrf').children;
+  assert.deepEqual(
+    vrfs.map((v) => [v.name, v.detail, v.children.map((c) => c.name)]),
+    [
+      ['MGMT', 'vrf definition', ['ipv4']],
+      ['GUEST', 'vrf definition', ['ipv6']],
+    ],
+  );
+  assert.equal(vrfs[0].range.end.line, 2);
+
+  // Only the bgp block's own address-family is under router bgp.
+  const bgpGroup = byName.get('router bgp');
+  assert.deepEqual(
+    bgpGroup.children.map((c) => c.name),
+    ['64500'],
+  );
+  assert.deepEqual(
+    bgpGroup.children[0].children.map((c) => c.name),
+    ['ipv4'],
+  );
+  assert.equal(bgpGroup.range.start.line, 3);
+  assert.equal(bgpGroup.range.end.line, 5);
+});
+
+test('ip vrf and vrf definition share the vrf group and the ip_vrf toggle', () => {
+  const lines = ['ip vrf OLD', ' rd 64500:1', 'vrf definition NEW', ' address-family ipv4'];
+  const byName = new Map(buildDocumentSymbols(lines, {}).map((s) => [s.name, s]));
+  assert.deepEqual(
+    byName.get('vrf').children.map((v) => [v.name, v.detail]),
+    [
+      ['OLD', 'ip vrf'],
+      ['NEW', 'vrf definition'],
+    ],
+  );
+  // Toggled off: no vrf group, and the vrf's address-family doesn't leak elsewhere.
+  assert.deepEqual(buildDocumentSymbols(lines, { ip_vrf: false }), []);
+});

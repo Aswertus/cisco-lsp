@@ -11,6 +11,7 @@
 
 const { DiagnosticSeverity } = require('vscode-languageserver/node');
 const { createFreeTextTracker } = require('./freetext');
+const { findPlaceholders, overlapsPlaceholder } = require('./placeholders');
 
 const KINDS = [
   {
@@ -64,31 +65,50 @@ const KINDS = [
   },
 ];
 
-function nameSpan(m) {
-  const name = m[1];
-  const startChar = m.index + m[0].length - name.length;
-  return { name, startChar, endChar: startChar + name.length };
+// `m` matched the masked line (same columns); the name is read from the
+// original line so masking never leaks into names, rename edits or messages.
+function nameSpan(m, line) {
+  const startChar = m.index + m[0].length - m[1].length;
+  const endChar = startChar + m[1].length;
+  return { name: line.slice(startChar, endChar), startChar, endChar };
 }
 
+// Jinja expressions may contain spaces (`service-policy output {{ policy_name }}`):
+// mask their inner whitespace, column-preserving, so `(\S+)` captures the
+// whole expression as one name instead of just `{{`.
+const maskTemplateExpressions = (line) =>
+  line.replace(/\{\{.*?\}\}/g, (m) => m.replace(/\s/g, '\u0001'));
+
 // Returns:
-//   objects     — Map "<kind>\0<name>" → { kind, name, defs: [span], refs: [span] }
-//                 (span = { line, startChar, endChar })
+//   objects     — Map "<kind>\0<name>" → { kind, name, defs: [span], refs: [span],
+//                 placeholder } (span = { line, startChar, endChar }; placeholder:
+//                 the name is a template placeholder — see lib/placeholders.js)
 //   occurrences — flat list of { kind, name, line, startChar, endChar, isDef }
 //                 for position lookup
-function buildXrefIndex(lines) {
+// options.placeholderFill: the fill characters setting (default "X").
+function buildXrefIndex(lines, options = {}) {
   const objects = new Map();
   const occurrences = [];
+  const placeholders = findPlaceholders(lines, options.placeholderFill);
 
   const record = (kind, span, lineNo, isDef) => {
     const key = `${kind} ${span.name}`;
     let obj = objects.get(key);
     if (!obj) {
-      obj = { kind, name: span.name, defs: [], refs: [] };
+      obj = { kind, name: span.name, defs: [], refs: [], placeholder: false };
       objects.set(key, obj);
     }
     const entry = { line: lineNo, startChar: span.startChar, endChar: span.endChar };
     (isDef ? obj.defs : obj.refs).push(entry);
     occurrences.push({ kind, name: span.name, isDef, ...entry });
+    if (
+      overlapsPlaceholder(placeholders, {
+        start: { line: lineNo, character: span.startChar },
+        end: { line: lineNo, character: span.endChar },
+      })
+    ) {
+      obj.placeholder = true;
+    }
   };
 
   const isFreeTextLine = createFreeTextTracker();
@@ -100,22 +120,23 @@ function buildXrefIndex(lines) {
     // (a banner mentioning "access-group X" is prose, not config).
     if (isFreeTextLine(line, trimmed)) return;
     if (trimmed === '' || trimmed.startsWith('!') || trimmed.startsWith('#')) return;
+    const masked = maskTemplateExpressions(line);
 
     for (const { kind, defs, refs } of KINDS) {
       // Multi-line definitions (route-map blocks, prefix-list/access-list
       // entry lines) legitimately repeat — every one counts as a def site.
       const defSpans = [];
       for (const defRe of defs) {
-        const m = defRe.exec(line);
+        const m = defRe.exec(masked);
         if (m) {
-          const span = nameSpan(m);
+          const span = nameSpan(m, line);
           defSpans.push(span.startChar);
           record(kind, span, lineNo, true);
         }
       }
       for (const refRe of refs) {
-        for (const m of line.matchAll(refRe)) {
-          const span = nameSpan(m);
+        for (const m of masked.matchAll(refRe)) {
+          const span = nameSpan(m, line);
           // A ref pattern re-matching the def already recorded on this line
           // (e.g. /route-map (\S+)/ on a `route-map RM permit 10` header).
           if (defSpans.includes(span.startChar)) continue;
@@ -140,10 +161,13 @@ function findAtPosition(index, line, character) {
 // Warnings for references to names never defined in this file, hints for
 // definitions never referenced. Partial configs are common, so undefined
 // refs stay Warning (not Error) and unused defs are a low-key Hint on the
-// first definition line only.
+// first definition line only. Placeholder names (RM-XXX, <POLICY>,
+// {{ policy_name }}) are still linked for F12/rename but never reported:
+// whether they are defined is decided when the template is filled in.
 function computeXrefDiagnostics(index) {
   const diagnostics = [];
   for (const obj of index.objects.values()) {
+    if (obj.placeholder) continue;
     if (obj.defs.length === 0) {
       for (const ref of obj.refs) {
         diagnostics.push({

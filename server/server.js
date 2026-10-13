@@ -7,6 +7,7 @@
 //   lib/indentation.js  shared indentation scan (diagnostics + formatter)
 //   lib/diagnostics.js  all per-file checks
 //   lib/docs.js         hover / completion-resolve Markdown
+//   lib/placeholders.js template placeholders (hover note, no diagnostics on them)
 
 const {
   createConnection,
@@ -26,6 +27,7 @@ const { computeFormattingEdits, computeFoldingRanges } = require('./lib/indentat
 const { buildDocMarkdown, findHoverRecords } = require('./lib/docs');
 const { buildXrefIndex, findAtPosition, computeXrefDiagnostics } = require('./lib/xref');
 const { buildDocumentSymbols } = require('./lib/symbols');
+const { findPlaceholders, placeholderAt } = require('./lib/placeholders');
 
 const connection = createConnection(ProposedFeatures.all);
 const documents = new TextDocuments(TextDocument);
@@ -36,6 +38,8 @@ const INTERFACE_TYPES = [
   { label: 'FastEthernet', detail: 'physical — 100M (alias: fa)' },
   { label: 'TenGigabitEthernet', detail: 'physical — 10G (alias: te)' },
   { label: 'TwentyFiveGigE', detail: 'physical — 25G (alias: twe)' },
+  { label: 'FiveGigabitEthernet', detail: 'physical — 5G multigigabit (alias: fi)' },
+  { label: 'TwoGigabitEthernet', detail: 'physical — 2.5G multigigabit (alias: tw)' },
   { label: 'FortyGigabitEthernet', detail: 'physical — 40G (alias: fo)' },
   { label: 'HundredGigE', detail: 'physical — 100G (alias: hu)' },
   { label: 'Port-channel', detail: 'logical — LAG bundle (alias: po)' },
@@ -96,7 +100,7 @@ const xrefCache = new Map();
 function getXref(doc) {
   const cached = xrefCache.get(doc.uri);
   if (cached && cached.version === doc.version) return cached.index;
-  const index = buildXrefIndex(getLines(doc));
+  const index = buildXrefIndex(getLines(doc), { placeholderFill });
   xrefCache.set(doc.uri, { version: doc.version, index });
   return index;
 }
@@ -141,7 +145,44 @@ connection.onInitialize((params) => {
 // setImmediate so the `initialized` notification itself isn't blocked either.
 connection.onInitialized(() => {
   setImmediate(getData);
+  // Until this answers, the default fill (X) applies; a failure only gets logged.
+  refreshPlaceholderFill().catch((err) => connection.console.error(String(err)));
 });
+
+// ---------------------------------------------------------------------------
+// Template placeholders (lib/placeholders.js)
+// ---------------------------------------------------------------------------
+
+// The cisco-ios-lsp.placeholders.fillCharacters setting, kept current so the
+// synchronous paths (diagnostics, xref) can use it. A change re-checks every
+// open document (the client forwards changes via synchronize.configurationSection).
+let placeholderFill = 'X';
+
+async function refreshPlaceholderFill() {
+  if (!hasConfigurationCapability) return;
+  const cfg = await connection.workspace.getConfiguration('cisco-ios-lsp.placeholders');
+  const raw = cfg?.fillCharacters;
+  const next = Array.isArray(raw) ? raw.join('') : typeof raw === 'string' ? raw : 'X';
+  if (next === placeholderFill) return;
+  placeholderFill = next;
+  placeholderCache.clear();
+  xrefCache.clear();
+  documents.all().forEach(validate);
+}
+
+connection.onDidChangeConfiguration(() => {
+  refreshPlaceholderFill().catch((err) => connection.console.error(String(err)));
+});
+
+const placeholderCache = new Map();
+
+function getPlaceholders(doc) {
+  const cached = placeholderCache.get(doc.uri);
+  if (cached && cached.version === doc.version) return cached.found;
+  const found = findPlaceholders(getLines(doc), placeholderFill);
+  placeholderCache.set(doc.uri, { version: doc.version, found });
+  return found;
+}
 
 // ---------------------------------------------------------------------------
 // Completion
@@ -220,6 +261,21 @@ connection.onCompletionResolve((item) => {
 connection.onHover((params) => {
   const doc = documents.get(params.textDocument.uri);
   if (!doc) return null;
+
+  // A template placeholder gets a short note instead of command documentation.
+  const ph = placeholderAt(getPlaceholders(doc), params.position.line, params.position.character);
+  if (ph) {
+    return {
+      contents: {
+        kind: MarkupKind.Markdown,
+        value: `**Template placeholder** — \`${ph.text.replace(/`/g, "'")}\`\n\nReplace before deploying this config.`,
+      },
+      range: {
+        start: { line: ph.line, character: ph.startChar },
+        end: { line: ph.line, character: ph.endChar },
+      },
+    };
+  }
 
   const line = getLines(doc)[params.position.line] ?? '';
   let tokens = line.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -340,6 +396,7 @@ function validate(doc) {
     ...computeDiagnostics(getLines(doc), data.knownTopLevel, {
       openerBlockType,
       isChildCommand: data.isChildCommand,
+      placeholderFill,
     }),
     ...computeXrefDiagnostics(getXref(doc)),
   ];
@@ -381,6 +438,7 @@ documents.onDidClose((e) => {
   debounceTimers.delete(e.document.uri);
   lineCache.delete(e.document.uri);
   xrefCache.delete(e.document.uri);
+  placeholderCache.delete(e.document.uri);
   connection.sendDiagnostics({ uri: e.document.uri, diagnostics: [] });
 });
 
