@@ -107,3 +107,45 @@ test('without blockContext the diagnostics behave as before (no flush recovery)'
   const out = diags(['interface GigabitEthernet1/0/1', 'no shutdown']);
   assert.deepEqual(out, []);
 });
+
+// ------------------------------------------------- settings (diagnostics.*)
+const SAMPLE = [
+  'interfacs GigabitEthernet1/0/1', // unknown command
+  'platform qos queue-config x', // unknown command, ignorable
+  'interface GigabitEthernet1/0/1',
+  '  description a',
+  ' shutdown', // inconsistent indentation (shallower than its sibling)
+  'vlan 5000', // out of range: never affected by these settings
+];
+const withOpts = (options) => computeDiagnostics(SAMPLE, KNOWN, {}, options);
+const messages = (list) => list.map((d) => d.message.split(' ')[0] + '@' + d.range.start.line);
+
+test('without options every check runs as before', () => {
+  assert.deepEqual(messages(withOpts()), messages(computeDiagnostics(SAMPLE, KNOWN)));
+  assert.equal(withOpts().length, 4);
+});
+
+test('unknownCommands: information lowers the severity, off drops them', () => {
+  const info = withOpts({ unknownCommands: 'information' }).filter((d) => /^Unknown command/.test(d.message));
+  assert.equal(info.length, 2);
+  assert.ok(info.every((d) => d.severity === 3)); // DiagnosticSeverity.Information
+  const off = withOpts({ unknownCommands: 'off' });
+  assert.ok(!off.some((d) => /^Unknown command/.test(d.message)));
+  assert.ok(off.some((d) => /VLAN 5000/.test(d.message)), 'other checks stay');
+});
+
+test('ignoredCommands matches whole leading words, case-insensitive', () => {
+  const out = (list) => withOpts({ ignoredCommands: list }).filter((d) => /^Unknown command/.test(d.message));
+  assert.deepEqual(messages(out(['platform qos'])), ['Unknown@0']);
+  assert.deepEqual(messages(out(['  PLATFORM   QOS  queue-config '])), ['Unknown@0']);
+  assert.equal(out(['platform']).length, 1, 'a single word ignores every line starting with it');
+  assert.equal(out(['platform q']).length, 2, 'partial words do not match');
+  assert.equal(out(['', '   ']).length, 2, 'blank entries are ignored, not match-all');
+  assert.equal(out('platform').length, 2, 'a non-array value is ignored');
+});
+
+test('indentation: false drops only the indentation checks', () => {
+  const out = withOpts({ indentation: false });
+  assert.ok(!out.some((d) => /indentation|not indented/i.test(d.message)));
+  assert.equal(out.length, 3);
+});

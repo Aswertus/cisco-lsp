@@ -99,8 +99,8 @@ After installing a build:
 ## Releases
 
 Releases are cut by the maintainer: `scripts/public/release.sh vX.Y.Z` opens a release PR
-on this repository; after it is merged, `scripts/public/release.sh vX.Y.Z --tag` tags
-`main`. The tag triggers [`release.yml`](.github/workflows/release.yml), which builds the
+on this repository; after it is merged with **Rebase and merge** (keeps the noreply author),
+`scripts/public/release.sh vX.Y.Z --tag` tags `main`. The tag triggers [`release.yml`](.github/workflows/release.yml), which builds the
 `.vsix` and publishes a GitHub Release with it attached, then starts
 [`publish.yml`](.github/workflows/publish.yml), which publishes that exact `.vsix` to the
 VS Code Marketplace and Open VSX. Pre-release versions (`X.Y.Z-rc.N`) are not published to

@@ -78,7 +78,9 @@ function decode(buf) {
 // ------------------------------------------------------------- fixed patterns
 const PATTERNS = [
   ['private key', /-----BEGIN [A-Z ]*PRIVATE KEY-----/],
-  ['GitHub token', /\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{30,}|\bgithub_pat_[A-Za-z0-9_]{30,}/],
+  // `.`/`-`/`_` too: GitHub's newer stateless installation tokens (ghs_..., ~520
+  // chars) aren't plain alphanumerics.
+  ['GitHub token', /\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9_.-]{30,}|\bgithub_pat_[A-Za-z0-9_]{30,}/],
   ['GitLab token', /\bglpat-[A-Za-z0-9_-]{20,}/],
   ['Slack token', /\bxox[abprs]-[A-Za-z0-9-]{10,}/],
   ['AWS key', /\bAKIA[0-9A-Z]{16}\b/],

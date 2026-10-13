@@ -45,7 +45,9 @@ Problems are underlined as you type and listed in the **Problems** panel:
 - inconsistent indentation, mixed tabs and spaces, and block sub-commands typed without
   indentation
 
-Banner text and certificate data are never flagged.
+Banner text and certificate data are never flagged. Each check can be tuned in the settings:
+report unknown commands as information or not at all, list commands your platform needs in
+`ignoredCommands`, or turn off the unused-object hints and the indentation checks.
 
 ![Diagnostics in the editor and the Problems panel](https://raw.githubusercontent.com/Aswertus/cisco-lsp/main/media/diagnostics.png)
 
@@ -96,12 +98,16 @@ characters (for example `X` and `N`).
 
 | Setting                                           | Default      | What it does                                                                                                    |
 | ------------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------- |
+| `cisco-ios-lsp.diagnostics.unknownCommands`       | `warning`    | Report commands not in the loaded Cisco command references as `warning`, `information`, or `off`.               |
+| `cisco-ios-lsp.diagnostics.ignoredCommands`       | `[]`         | Commands never reported as unknown, e.g. `["platform qos"]` (whole leading words, any case).                    |
+| `cisco-ios-lsp.diagnostics.unusedObjects`         | `true`       | Hint when a class-map, policy-map, ACL, route-map, prefix-list or VRF is defined but never used.                |
+| `cisco-ios-lsp.diagnostics.indentation`           | `true`       | Report indentation problems (format on save still fixes them).                                                  |
 | `cisco-ios-lsp.outline.showSymbolsInOutlinePanel` | `false`      | Show the config structure in the Outline panel and breadcrumbs.                                                 |
 | `cisco-ios-lsp.outline.symbolsList`               | all on       | Choose which kinds of blocks appear in the outline.                                                             |
-| `cisco-ios-lsp.checkForUpdates`                   | `true`       | Check GitHub Releases for a newer version on startup.                                                           |
-| `cisco-ios-lsp.experimental.autoIndent`           | `false`      | Indent the next line after a block-opening command such as `interface X`.                                       |
 | `cisco-ios-lsp.placeholders.style`                | `background` | How template placeholders are highlighted: `background`, `underline`, `italic`, `backgroundUnderline` or `off`. |
 | `cisco-ios-lsp.placeholders.fillCharacters`       | `X`          | Characters that stand for "fill in later", e.g. `XN` for `VlanXX` and `10.10.N.1`.                              |
+| `cisco-ios-lsp.checkForUpdates`                   | `true`       | For `.vsix` installs: check GitHub Releases for a newer version on startup.                                     |
+| `cisco-ios-lsp.experimental.autoIndent`           | `false`      | Indent the next line after a block-opening command such as `interface X`.                                       |
 
 Format on save uses VS Code's own `editor.formatOnSave` setting and is on by default for
 Cisco config files.

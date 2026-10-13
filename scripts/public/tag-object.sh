@@ -15,5 +15,21 @@ commit=$(git rev-parse --verify --quiet "${1:?commit}^{commit}") || die "not a c
 expected=${2:?expected tree} tag=${3:?tag} name=${4:?tagger name} email=${5:?tagger email}
 [ "$(git rev-parse "$commit^{tree}")" = "$(git rev-parse --verify --quiet "$expected^{tree}" || echo none)" ] ||
   die "$commit does not carry the expected release tree $expected"
+# The tagged commit is public forever (tags can't be moved or deleted): its
+# author and committer must be GitHub noreply addresses. A web "Squash and
+# merge" by an account without "Keep my email addresses private" puts the
+# personal address there — merge release PRs with "Rebase and merge". One
+# already-public commit can be accepted explicitly by its full hash:
+# ACCEPT_AUTHOR_COMMIT=<sha> (never by putting an address in this public file).
+# Read both addresses first: a failed or empty read must refuse, not skip the check.
+ids=$(git log -1 --format='%ae%n%ce' "$commit") || die "cannot read the author/committer of $commit"
+[ "$(grep -c . <<<"$ids")" -eq 2 ] || die "cannot read the author/committer of $commit"
+while read -r who; do
+  case $who in
+    *@users.noreply.github.com | noreply@github.com) ;;
+    *) [ "${ACCEPT_AUTHOR_COMMIT:-}" = "$commit" ] ||
+      die "$commit has a non-noreply author/committer address — it would be tagged publicly forever (merge with 'Rebase and merge'; see the comment above)" ;;
+  esac
+done <<<"$ids"
 printf 'object %s\ntype commit\ntag %s\ntagger %s <%s> %s +0000\n\nrelease: %s\n' \
   "$commit" "$tag" "$name" "$email" "$(date +%s)" "$tag" | git mktag
