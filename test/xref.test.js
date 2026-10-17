@@ -109,3 +109,34 @@ test('unusedObjects: false drops the never-used hints, keeps never-defined warni
   assert.deepEqual(filtered.map((d) => d.severity), [2]);
   assert.deepEqual(computeXrefDiagnostics(index, {}).length, 2, 'default keeps the hints');
 });
+
+test('vrf: routing, multicast, LISP and service commands count as uses; descriptions do not', () => {
+  const lines = [
+    'vrf definition BLUE',
+    ' address-family ipv4',
+    'ip route vrf BLUE 0.0.0.0 0.0.0.0 192.0.2.1',
+    'ipv6 route vrf BLUE ::/0 2001:db8::1',
+    'ip multicast-routing vrf BLUE',
+    'ip pim vrf BLUE rp-address 192.0.2.10',
+    'ntp server vrf BLUE 192.0.2.123',
+    'ip name-server vrf BLUE 192.0.2.53',
+    'ip domain lookup vrf BLUE',
+    'router lisp',
+    ' instance-id 4099',
+    '  service ipv4',
+    '   eid-table vrf BLUE',
+    'interface Gi1/0/1',
+    ' description uplink in vrf RED',
+  ];
+  const index = buildXrefIndex(lines);
+  const blue = [...index.objects.values()].find((o) => o.kind === 'vrf' && o.name === 'BLUE');
+  assert.deepEqual(
+    blue.refs.map((r) => r.line),
+    [2, 3, 4, 5, 6, 7, 8, 12],
+  );
+  assert.ok(
+    ![...index.objects.values()].some((o) => o.kind === 'vrf' && o.name === 'RED'),
+    'free text in a description is no reference',
+  );
+  assert.deepEqual(computeXrefDiagnostics(index), [], 'BLUE is used, nothing undefined');
+});

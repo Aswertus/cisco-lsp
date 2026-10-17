@@ -219,7 +219,11 @@
       },
       {
         "name": "misc",
-        "description": "(Optional) Displays miscellaneous LACP debug messages. packet (Optional) Displays the receiving and transmitting LACP control packets."
+        "description": "(Optional) Displays miscellaneous LACP debug messages."
+      },
+      {
+        "name": "packet",
+        "description": "(Optional) Displays the receiving and transmitting LACP control packets."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -515,7 +519,11 @@
       },
       {
         "name": "error",
-        "description": "(Optional) Displays error condition debug messages. rpc {events | messages} (Optional) Displays UDLD remote procedure call (RPC) debug messages. The keywords have these meanings: • events—Displays UDLD RPC events. • messages—Displays UDLD RPC messages."
+        "description": "(Optional) Displays error condition debug messages."
+      },
+      {
+        "name": "rpc {events | messages}",
+        "description": "(Optional) Displays UDLD remote procedure call (RPC) debug messages. The keywords have these meanings: • events—Displays UDLD RPC events. • messages—Displays UDLD RPC messages."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -620,7 +628,12 @@
     "detail": "Enable a link-state group.",
     "syntax": "link state track [{number}]",
     "noForm": "no link state track [{number}]",
-    "params": [],
+    "params": [
+      {
+        "name": "number",
+        "description": "(Optional) Specifies the number of the link-state group. The range is 1 to 2. The default is 1."
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": "This command is supported only on the LAN Base image.  Use the link state group command to create and configure the link-state group.  You then can use this command to enable the link-state group.",
     "sourcePage": 147,
@@ -679,7 +692,12 @@
     "detail": "Set the PAgP timer expiration.",
     "syntax": "pagp timer time",
     "noForm": "no pagp timer",
-    "params": [],
+    "params": [
+      {
+        "name": "time",
+        "description": "Specifies the number of seconds after which PAgP informational packets are timed-out. The range is 45 to 90."
+      }
+    ],
     "modes": ["Interface configuration"],
     "usageSummary": "This command is available for all interfaces configured as part of a PAgP port channel.  This example shows how to set the PAgP timer expiration to 50 seconds: Switch(config-if)# pagp timer 50 Consolidated Platform Command Reference, Cisco IOS Release 15.",
     "sourcePage": 151,
@@ -729,7 +747,11 @@
     "params": [
       {
         "name": "vlan-id",
-        "description": "The REP administrative VLAN. This is a 48-bit static MAC address. segment segment-id Configures the administrative VLAN for the specified segment. The segment ID range is from 1 to 1024."
+        "description": "The REP administrative VLAN. This is a 48-bit static MAC address."
+      },
+      {
+        "name": "segment segment-id",
+        "description": "Configures the administrative VLAN for the specified segment. The segment ID range is from 1 to 1024."
       }
     ],
     "modes": ["Global configuration (config)"],
@@ -749,7 +771,11 @@
     "params": [
       {
         "name": "id port-id",
-        "description": "Specifies the VLAN blocking alternate port by entering the unique port ID, which is automatically generated when REP is enabled. The REP port ID is a 16-character hexadecimal value. neighbor-offset Identifies the VLAN blocking alternate port by entering the offset number of a neighbor. The range is from -256 to +256; a value of 0 is invalid."
+        "description": "Specifies the VLAN blocking alternate port by entering the unique port ID, which is automatically generated when REP is enabled. The REP port ID is a 16-character hexadecimal value."
+      },
+      {
+        "name": "neighbor-offset",
+        "description": "Identifies the VLAN blocking alternate port by entering the offset number of a neighbor. The range is from -256 to +256; a value of 0 is invalid."
       },
       {
         "name": "preferred",
@@ -782,7 +808,12 @@
     "detail": "Configure the Resilient Ethernet Protocol (REP) link status layer (LSL) age-out timer value.",
     "syntax": "rep lsl-age-timer milliseconds",
     "noForm": "no rep lsl-age-timer milliseconds",
-    "params": [],
+    "params": [
+      {
+        "name": "milliseconds",
+        "description": "REP LSL age-out timer value in milliseconds (ms). The range is from 120 ms to 10000 ms in multiples of 40 ms."
+      }
+    ],
     "modes": ["Interface configuration (config-if)"],
     "usageSummary": "The rep lsl-age-timer command is used to configure the REP LSL age-out timer value.  While configuring REP configurable timers, we recommend that you configure the REP LSL number of retries first and then configure the REP LSL age-out timer value.  The following example shows how to configure REP LSL age-out timer value.",
     "sourcePage": 156,
@@ -797,7 +828,12 @@
     "detail": "Configure a waiting period after a segment port failure and recovery before Resilient Ethernet Protocol (REP) VLAN load balancing is triggered.",
     "syntax": "rep preempt delay seconds",
     "noForm": "no rep preempt delay",
-    "params": [],
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Number of seconds to delay REP preemption. The range is from 15 to 300 seconds. The default is manual preemption without delay."
+      }
+    ],
     "modes": ["Interface configuration (config-if)"],
     "usageSummary": "You must enter this command on the REP primary edge port.  You must enter this command and configure a preempt time delay for VLAN load balancing to automatically trigger after a link failure and recovery.  If VLAN load balancing is configured, after a segment port failure and recovery, the REP primary edge port starts a delay timer before VLAN load balancing occurs.",
     "sourcePage": 157,
@@ -839,7 +875,11 @@
       },
       {
         "name": "edge",
-        "description": "(Optional) Configures the port as an edge port. Each segment has only two edge ports. no-neighbor (Optional) Specifies the segment edge as one with no external REP neighbor."
+        "description": "(Optional) Configures the port as an edge port. Each segment has only two edge ports."
+      },
+      {
+        "name": "no-neighbor",
+        "description": "(Optional) Specifies the segment edge as one with no external REP neighbor."
       },
       {
         "name": "primary",
@@ -847,11 +887,7 @@
       },
       {
         "name": "preferred",
-        "description": "(Optional) Specifies that the port is the preferred alternate port or the preferred port for VLAN load balancing."
-      },
-      {
-        "name": "Note",
-        "description": "Configuring a port as a preferred port does not guarantee that it becomes the alternate port; it merely gives it a slight edge among equal contenders. The alternate port is usually a previously failed port."
+        "description": "(Optional) Specifies that the port is the preferred alternate port or the preferred port for VLAN load balancing. Note Configuring a port as a preferred port does not guarantee that it becomes the alternate port; it merely gives it a slight edge among equal contenders. The alternate port is usually a previously failed port."
       }
     ],
     "modes": ["Interface configuration (config-if)"],
@@ -871,7 +907,11 @@
     "params": [
       {
         "name": "interface interface-id",
-        "description": "Specifies a physical interface or port channel to receive STCNs. segment segment-id-list Specifies one REP segment or a list of segments to receive STCNs. The segment range is from 1 to 1024. You can also configure a sequence of segments (for example 3 to 5, 77, 100)."
+        "description": "Specifies a physical interface or port channel to receive STCNs."
+      },
+      {
+        "name": "segment segment-id-list",
+        "description": "Specifies one REP segment or a list of segments to receive STCNs. The segment range is from 1 to 1024. You can also configure a sequence of segments (for example 3 to 5, 77, 100)."
       }
     ],
     "modes": ["Interface configuration (config-if)"],
@@ -1018,6 +1058,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 24."
+      },
+      {
         "name": "counters",
         "description": "Displays traffic information."
       },
@@ -1048,7 +1092,16 @@
     "detail": "Display platform-dependent backup information used in a Flex Links configuration.",
     "syntax": "show platform backup interface [{interface-id | dummyQ}]",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) Backup information for all interfaces or the specified interface. The interface can be a physical interface or a port channel."
+      },
+      {
+        "name": "dummyQ",
+        "description": "(Optional) Displays dummy queue information."
+      }
+    ],
     "modes": ["Privileged EXEC"],
     "usageSummary": "Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  Do not use this command unless a technical support representative asks you to do so.  Consolidated Platform Command Reference, Cisco IOS Release 15.",
     "sourcePage": 173,
@@ -1333,6 +1386,10 @@
     "syntax": "spanning-tree [vlan vlan-id] cost cost",
     "noForm": "no spanning-tree cost",
     "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies the VLAN range associated with the spanning-tree instance. The range of VLAN IDs is 1 to 4094."
+      },
       {
         "name": "cost",
         "description": "The path cost; valid values are from 1 to 200000000."
@@ -1742,7 +1799,12 @@
     "detail": "Configure an interface priority when two bridges tie for position as the root bridge.",
     "syntax": "spanning-tree [{vlan vlan-id}] port-priority port-priority",
     "noForm": "no spanning-tree [{vlan vlan-id}] port-priority",
-    "params": [],
+    "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies the VLAN range associated with the spanning-tree instance. The range is 1 to 4094. port-priority The port priority in increments of sixteen. The range is 0 to 240. The default is 128."
+      }
+    ],
     "modes": ["Interface configuration"],
     "usageSummary": "The priority you set breaks the tie.",
     "sourcePage": 215,
@@ -1760,7 +1822,11 @@
     "params": [
       {
         "name": "bdpufilter default",
-        "description": "Enables BDPU filtering on PortFast edge-enabled interfaces and prevents the switch interface connect to end stations from sending or receiving BPDUs. bdpuguard default Enables the BDPU guard feature on PortFast edge-enabled interfaces and places the interfaces that receive BPDUs in an error-disabled state."
+        "description": "Enables BDPU filtering on PortFast edge-enabled interfaces and prevents the switch interface connect to end stations from sending or receiving BPDUs."
+      },
+      {
+        "name": "bdpuguard default",
+        "description": "Enables the BDPU guard feature on PortFast edge-enabled interfaces and places the interfaces that receive BPDUs in an error-disabled state."
       },
       {
         "name": "default",
@@ -1781,7 +1847,16 @@
     "detail": "Enable PortFast edge mode where the interface is immediately put into the forwarding state upon linkup without waiting for the timer to expire.",
     "syntax": "spanning-tree portfast edge [{disable | trunk}]",
     "noForm": "no spanning-tree portfast edge",
-    "params": [],
+    "params": [
+      {
+        "name": "disable",
+        "description": "(Optional) Disables PortFast edge on the interface."
+      },
+      {
+        "name": "trunk",
+        "description": "(Optional) Enables PortFast edge mode on the interface."
+      }
+    ],
     "modes": ["Interface configuration"],
     "usageSummary": "You can enable this feature when the switch is operating in the per-VLAN spanning-tree plus (PVST+), Rapid PVST+, or the multiple spanning-tree (MST) mode.  This feature affects all VLANs on the interface.  Use this command only on interfaces that connect to end stations; otherwise, an accidental topology loop could cause a data-packet loop and disrupt the switch and network operation.",
     "sourcePage": 218,
@@ -1867,7 +1942,11 @@
       },
       {
         "name": "root secondary",
-        "description": "(Optional) Specifies this switch to act as the root switch should the primary root fail. diameter net -diameter (Optional) Specifies the maximum number of switches between any two points of attachment of end stations. The range is 2 through 7."
+        "description": "(Optional) Specifies this switch to act as the root switch should the primary root fail."
+      },
+      {
+        "name": "diameter net -diameter",
+        "description": "(Optional) Specifies the maximum number of switches between any two points of attachment of end stations. The range is 2 through 7."
       }
     ],
     "modes": ["Global configuration"],

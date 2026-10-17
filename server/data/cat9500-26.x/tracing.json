@@ -8,7 +8,7 @@
     "params": [
       {
         "name": "process",
-        "description": "Process whose tracing level is being set. Options include: • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • dbm—The Database Manager process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • host-manager—The Host Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • license-manager—The License Manager process. • logger—The Logging Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • smd—The Session Manager process. • table-manager—The Table Manager Server. • wireless—The wireless controller module process. • wireshark—The Embedded Packet Capture (EPC) Wireshark process. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 2314 System Management set platform software trace"
+        "description": "Process whose tracing level is being set. Options include: • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • dbm—The Database Manager process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • host-manager—The Host Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • license-manager—The License Manager process. • logger—The Logging Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • smd—The Session Manager process. • table-manager—The Table Manager Server. • wireless—The wireless controller module process. • wireshark—The Embedded Packet Capture (EPC) Wireshark process."
       },
       {
         "name": "slot",
@@ -16,7 +16,7 @@
       },
       {
         "name": "module",
-        "description": "Module within the process for which the tracing level is set. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 2315 System Management set platform software trace"
+        "description": "Module within the process for which the tracing level is set."
       },
       {
         "name": "trace-level",
@@ -40,7 +40,7 @@
     "params": [
       {
         "name": "process",
-        "description": "Process whose tracing level is being set. Options include: • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • cmm—The CMM process. • dbm—The Database Manager process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • geo—The Geo Manager process. • host-manager—The Host Manager process. • interface-manager—The Interface Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • license-manager—The License Manager process. • logger—The Logging Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • sif—The Stack Interface (SIF) Manager process. • smd—The Session Manager process. • stack-mgr—The Stack Manager process. • table-manager—The Table Manager Server. • thread-test—The Multithread Manager process. • virt-manager—The Virtualization Manager process. • wireless—The wireless controller module process. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 2318 System Management show platform software trace level"
+        "description": "Process whose tracing level is being set. Options include: • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • cmm—The CMM process. • dbm—The Database Manager process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • geo—The Geo Manager process. • host-manager—The Host Manager process. • interface-manager—The Interface Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • license-manager—The License Manager process. • logger—The Logging Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • sif—The Stack Interface (SIF) Manager process. • smd—The Session Manager process. • stack-mgr—The Stack Manager process. • table-manager—The Table Manager Server. • thread-test—The Multithread Manager process. • virt-manager—The Virtualization Manager process. • wireless—The wireless controller module process."
       },
       {
         "name": "slot",
@@ -556,7 +556,11 @@
       },
       {
         "name": "internal",
-        "description": "Selects all logs. start{ last { n {days | hours | minutes | Shows logs collected between the specified start and end seconds} | clear | boot} | timestamp ts}[end{ times. last { n {days | hours | minutes | seconds} | clear | boot} | timestamp ts}]"
+        "description": "Selects all logs."
+      },
+      {
+        "name": "start{ last { n {days | hours | minutes |",
+        "description": "Shows logs collected between the specified start and end seconds} | clear | boot} | timestamp ts}[end{ times. last { n {days | hours | minutes | seconds} | clear | boot} | timestamp ts}]"
       },
       {
         "name": "level level",
@@ -600,7 +604,11 @@
     "params": [
       {
         "name": "end timestamp ts",
-        "description": "Shows logs up to the specified timestamp. start{ last { n {days | hours | minutes | Shows logs collected between the specified start and end seconds} | clear | boot} | timestamp ts}[end{ times. last { n {days | hours | minutes | seconds} | clear | boot} | timestamp ts}]"
+        "description": "Shows logs up to the specified timestamp."
+      },
+      {
+        "name": "start{ last { n {days | hours | minutes |",
+        "description": "Shows logs collected between the specified start and end seconds} | clear | boot} | timestamp ts}[end{ times. last { n {days | hours | minutes | seconds} | clear | boot} | timestamp ts}]"
       },
       {
         "name": "level level",

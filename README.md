@@ -122,6 +122,12 @@ is used, disable one extension: disable `Y-Ysss.cisco-config-highlight` to use t
 extension's grammar and all its features, or disable this one to fall back to the original
 highlighting and outline only.
 
+If you keep both, turn off the other extension's own checks
+(`"cisco-config-highlight.diagnostics.enabled": false`, ideally in your user settings). They
+don't know template placeholders, so a line like `ip address XX.XX.XX.XX 255.255.255.0` gets
+an "Invalid IPv4 address" error from them; this extension already runs the same checks and
+leaves placeholders alone.
+
 ### Icon theme (Material Icon Theme)
 
 [`PKief.material-icon-theme`](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)

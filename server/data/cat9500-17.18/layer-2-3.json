@@ -276,7 +276,11 @@
       },
       {
         "name": "misc",
-        "description": "(Optional) Displays miscellaneous LACP debug messages. packet (Optional) Displays the receiving and transmitting LACP control packets."
+        "description": "(Optional) Displays miscellaneous LACP debug messages."
+      },
+      {
+        "name": "packet",
+        "description": "(Optional) Displays the receiving and transmitting LACP control packets."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -492,7 +496,7 @@
       },
       {
         "name": "uplinkfast",
-        "description": "Displays UplinkFast-event debug messages. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 938 Layer 2/3 debug spanning-tree"
+        "description": "Displays UplinkFast-event debug messages."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -512,7 +516,11 @@
     "params": [
       {
         "name": "instance-id",
-        "description": "Instance to which the specified VLANs are mapped. The range is from 0 to 4094. vlans vlan-range Specifies the number of the VLANs to be mapped to the specified instance. The range is from 1 to 4094."
+        "description": "Instance to which the specified VLANs are mapped. The range is from 0 to 4094."
+      },
+      {
+        "name": "vlans vlan-range",
+        "description": "Specifies the number of the VLANs to be mapped to the specified instance. The range is from 1 to 4094."
       }
     ],
     "modes": ["MST configuration mode (config-mst)"],
@@ -552,7 +560,11 @@
     "params": [
       {
         "name": "drop-threshold",
-        "description": "(Optional) Sets a drop threshold for the maximum rate of Layer 2 protocol packets per second to be received before an interface drops packets. shutdown-threshold (Optional) Sets a shutdown threshold for the maximum rate of Layer 2 protocol packets per second to be received before an interface is shut down."
+        "description": "(Optional) Sets a drop threshold for the maximum rate of Layer 2 protocol packets per second to be received before an interface drops packets."
+      },
+      {
+        "name": "shutdown-threshold",
+        "description": "(Optional) Sets a shutdown threshold for the maximum rate of Layer 2 protocol packets per second to be received before an interface is shut down."
       },
       {
         "name": "value",
@@ -669,6 +681,10 @@
     "syntax": "lacp rate {normal | fast}",
     "noForm": "no lacp rate",
     "params": [
+      {
+        "name": "normal",
+        "description": "Specifies that LACP control packets are ingressed at the normal rate, every 30 seconds after the link is bundled."
+      },
       {
         "name": "fast",
         "description": "Specifies that LACP control packets are ingressed at the fast rate, once every 1 second."
@@ -1068,7 +1084,7 @@
       },
       {
         "name": "vlan-dst-ip",
-        "description": "Specifies load distribution based on the VLAN ID and destination IP address. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 970 Layer 2/3 port-channel load-balance"
+        "description": "Specifies load distribution based on the VLAN ID and destination IP address."
       },
       {
         "name": "vlan-dst-mixed-ip-port",
@@ -1076,7 +1092,11 @@
       },
       {
         "name": "vlan-src-dst-ip",
-        "description": "Specifies load distribution based on the VLAN ID, source and destination IP address. vlan-src-dst-mixed-ip-port Specifies load distribution based on the VLAN ID, source and destination IP address, and TCP/UDP port number."
+        "description": "Specifies load distribution based on the VLAN ID, source and destination IP address."
+      },
+      {
+        "name": "vlan-src-dst-mixed-ip-port",
+        "description": "Specifies load distribution based on the VLAN ID, source and destination IP address, and TCP/UDP port number."
       },
       {
         "name": "vlan-src-ip",
@@ -1104,11 +1124,27 @@
     "params": [
       {
         "name": "dst-ip",
-        "description": "Specifies load distribution based on the destination host IP address. dst-mac Specifies load distribution based on the destination host MAC address. Packets to the same destination are sent on the same port, but packets to different destinations are sent on different ports in the channel. dst-port Specifies load distribution based on the destination TCP/UDP (Layer 4) port number for both IPv4 and IPv6. ipv6-label Specifies load distribution based on the source MAC address and IPv6 flow label. This keyword is supported only on Cisco Catalyst 9500 Series Switches. l3-proto Specifies load distribution based on the source MAC address and Layer 3 protocols. This keyword is supported only on Cisco Catalyst 9500 Series Switches."
+        "description": "Specifies load distribution based on the destination host IP address."
+      },
+      {
+        "name": "dst-mac",
+        "description": "Specifies load distribution based on the destination host MAC address. Packets to the same destination are sent on the same port, but packets to different destinations are sent on different ports in the channel."
+      },
+      {
+        "name": "dst-port",
+        "description": "Specifies load distribution based on the destination TCP/UDP (Layer 4) port number for both IPv4 and IPv6."
+      },
+      {
+        "name": "ipv6-label",
+        "description": "Specifies load distribution based on the source MAC address and IPv6 flow label. This keyword is supported only on Cisco Catalyst 9500 Series Switches. l3-proto Specifies load distribution based on the source MAC address and Layer 3 protocols. This keyword is supported only on Cisco Catalyst 9500 Series Switches."
       },
       {
         "name": "src-ip",
-        "description": "Specifies load distribution based on the source host IP address. src-mac Specifies load distribution based on the source MAC address. Packets from different hosts use different ports in the channel, but packets from the same host use the same port. src-port Specifies load distribution based on the TCP/UDP (Layer 4) port number."
+        "description": "Specifies load distribution based on the source host IP address."
+      },
+      {
+        "name": "src-mac",
+        "description": "Specifies load distribution based on the source MAC address. Packets from different hosts use different ports in the channel, but packets from the same host use the same port. src-port Specifies load distribution based on the TCP/UDP (Layer 4) port number."
       }
     ],
     "modes": ["Global configuration"],
@@ -1306,7 +1342,11 @@
     "params": [
       {
         "name": "id port-id",
-        "description": "Specifies the VLAN blocking alternate port by entering the unique port ID, which is automatically generated when REP is enabled. The REP port ID is a 16-character hexadecimal value. neighbor-offset VLAN blocking alternate port by entering the offset number of a neighbor. The range is from -256 to +256. A value of 0 is invalid."
+        "description": "Specifies the VLAN blocking alternate port by entering the unique port ID, which is automatically generated when REP is enabled. The REP port ID is a 16-character hexadecimal value."
+      },
+      {
+        "name": "neighbor-offset",
+        "description": "VLAN blocking alternate port by entering the offset number of a neighbor. The range is from -256 to +256. A value of 0 is invalid."
       },
       {
         "name": "preferred",
@@ -1339,7 +1379,12 @@
     "detail": "Configure the Resilient Ethernet Protocol (REP) link status layer (LSL) age-out timer value.",
     "syntax": "rep lsl-age-timer milliseconds",
     "noForm": "no rep lsl-age-timer milliseconds",
-    "params": [],
+    "params": [
+      {
+        "name": "milliseconds",
+        "description": "REP LSL age-out timer value, in milliseconds (ms). The range is from 120 to 10000 in multiples of 40."
+      }
+    ],
     "modes": ["Interface configuration"],
     "usageSummary": "While configuring REP configurable timers, we recommend that you configure the REP LSL number of retries first and then configure the REP LSL age-out timer value.",
     "sourcePage": 986,
@@ -1374,7 +1419,12 @@
     "detail": "Configure a waiting period after a segment port failure and recovery before Resilient Ethernet Protocol (REP) VLAN load balancing is triggered.",
     "syntax": "rep preempt delay seconds",
     "noForm": "no rep preempt delay",
-    "params": [],
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Number of seconds to delay REP preemption. The range is from 15 to 300 seconds. The default is manual preemption without delay."
+      }
+    ],
     "modes": ["Interface configuration"],
     "usageSummary": "Enter this command on the REP primary edge port.  Enter this command and configure a preempt time delay for VLAN load balancing to be automatically triggered after a link failure and recovery.  If VLAN load balancing is configured after a segment port failure and recovery, the REP primary edge port starts a delay timer before VLAN load balancing occurs.",
     "sourcePage": 988,
@@ -1416,7 +1466,11 @@
       },
       {
         "name": "edge",
-        "description": "(Optional) Configures the port as an edge port. Each segment has only two edge ports. no-neighbor (Optional) Specifies the segment edge as one with no external REP neighbor."
+        "description": "(Optional) Configures the port as an edge port. Each segment has only two edge ports."
+      },
+      {
+        "name": "no-neighbor",
+        "description": "(Optional) Specifies the segment edge as one with no external REP neighbor."
       },
       {
         "name": "primary",
@@ -1444,7 +1498,11 @@
     "params": [
       {
         "name": "interface interface-id",
-        "description": "Specifies a physical interface or port channel to receive STCNs. segment segment-id-list Specifies one REP segment or a list of REP segments to receive STCNs. The segment range is from 1 to 1024. You can also configure a sequence of segments, for example, 3 to 5, 77, 100."
+        "description": "Specifies a physical interface or port channel to receive STCNs."
+      },
+      {
+        "name": "segment segment-id-list",
+        "description": "Specifies one REP segment or a list of REP segments to receive STCNs. The segment range is from 1 to 1024. You can also configure a sequence of segments, for example, 3 to 5, 77, 100."
       }
     ],
     "modes": ["Interface configuration"],
@@ -1528,7 +1586,12 @@
     "detail": "To display information about IEEE 802.1Q tunnel ports, use the show dot1q-tunnel in EXEC mode.",
     "syntax": "show dot1q-tunnel [interface interface-id]",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Specifies the interface for which to display IEEE 802.1Q tunneling information. Valid interfaces include physical ports and port channels."
+      }
+    ],
     "modes": ["User EXEC", "Privileged EXEC"],
     "usageSummary": null,
     "sourcePage": 997,
@@ -1608,6 +1671,10 @@
     "syntax": "show l2protocol-tunnel [interface interface-id] summary",
     "noForm": null,
     "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Specifies the interface for which protocol tunneling information appears. Valid interfaces are physical ports and port channels. The port-channel range is 1 to 128."
+      },
       {
         "name": "summary",
         "description": "(Optional) Displays only Layer 2 protocol summary information."
@@ -1740,6 +1807,10 @@
     "syntax": "show pagp [channel-group-number] {counters | dual-active | internal | neighbor}",
     "noForm": null,
     "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 128."
+      },
       {
         "name": "counters",
         "description": "Displays traffic information."
@@ -2169,7 +2240,7 @@
       },
       {
         "name": "id",
-        "description": "(Optional) Identifies the spanning tree bridge. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1030 Layer 2/3 show spanning-tree"
+        "description": "(Optional) Identifies the spanning tree bridge."
       },
       {
         "name": "port-channel number",
@@ -2281,7 +2352,7 @@
       },
       {
         "name": "PROTECTION_GROUP",
-        "description": "(Optional) Displays UDLD operational status of the Protection-group controller. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1039 Layer 2/3 show udld"
+        "description": "(Optional) Displays UDLD operational status of the Protection-group controller."
       },
       {
         "name": "Port-channel",
@@ -2768,7 +2839,11 @@
     "params": [
       {
         "name": "instance",
-        "description": "Instance identification number; valid values are from 0 to 4094. priority priority Specifies the bridge priority; see the “Usage Guidelines” section for valid values and additional information."
+        "description": "Instance identification number; valid values are from 0 to 4094."
+      },
+      {
+        "name": "priority priority",
+        "description": "Specifies the bridge priority; see the “Usage Guidelines” section for valid values and additional information."
       }
     ],
     "modes": ["Global configuration (config)"],
@@ -2980,7 +3055,12 @@
     "detail": "Enable UplinkFast.",
     "syntax": "spanning-tree uplinkfast [ max-update-rate packets-per-second ]",
     "noForm": "no spanning-tree uplinkfast [max-update-rate]",
-    "params": [],
+    "params": [
+      {
+        "name": "max-update-rate packets-per-second",
+        "description": "(Optional) Specifies the maximum rate (in packets per second) at which update packets are sent. The range is from 0 to 32000."
+      }
+    ],
     "modes": ["Global configuration (config)"],
     "usageSummary": "Use the spanning-tree uplinkfast max-update-rate command to enable UplinkFast (if it is not already enabled) and change the rate at which update packets are sent.  Use the no form of this command to return to the default rate.",
     "sourcePage": 1083,
@@ -2998,7 +3078,11 @@
     "params": [
       {
         "name": "vlan id",
-        "description": "VLAN identification number. The range is from 1 to 4094. forward-time seconds (Optional) Sets the STP forward delay time. The range is from 4 to 30 seconds."
+        "description": "VLAN identification number. The range is from 1 to 4094."
+      },
+      {
+        "name": "forward-time seconds",
+        "description": "(Optional) Sets the STP forward delay time. The range is from 4 to 30 seconds."
       },
       {
         "name": "hello-time seconds",
@@ -3165,12 +3249,20 @@
     "noForm": "no switchport trunk {allowed vlan | native vlan[tag] | pruning vlan}",
     "params": [
       {
+        "name": "allowed vlan vlan-list",
+        "description": "Sets the list of allowed VLANs that can receive and send traffic on this interface in tagged format when in trunking mode. See the Usage Guidelines for the vlan-list choices."
+      },
+      {
         "name": "native vlan vlan-id",
         "description": "Sets the native VLAN for sending and receiving untagged traffic when the interface is in IEEE 802.1Q trunking mode. The range is 1 to 4094."
       },
       {
         "name": "native vlan tag",
-        "description": "Enables native VLAN tagging on a particular trunk port. pruning vlan vlan-list Sets the list of VLANs that are eligible for VTP pruning when in trunking mode. See the Usage Guidelines for the vlan-list choices."
+        "description": "Enables native VLAN tagging on a particular trunk port."
+      },
+      {
+        "name": "pruning vlan vlan-list",
+        "description": "Sets the list of VLANs that are eligible for VTP pruning when in trunking mode. See the Usage Guidelines for the vlan-list choices."
       }
     ],
     "modes": ["Interface configuration"],
@@ -3202,7 +3294,11 @@
       },
       {
         "name": "untagged",
-        "description": "Configures the telephone to send untagged voice traffic. This is the default for the telephone. name vlan_name (Optional) Specifies the VLAN name to be used for voice traffic. You can enter up to 128 characters."
+        "description": "Configures the telephone to send untagged voice traffic. This is the default for the telephone."
+      },
+      {
+        "name": "name vlan_name",
+        "description": "(Optional) Specifies the VLAN name to be used for voice traffic. You can enter up to 128 characters."
       }
     ],
     "modes": ["Interface configuration"],

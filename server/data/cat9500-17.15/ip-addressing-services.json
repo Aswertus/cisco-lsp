@@ -16,7 +16,11 @@
       },
       {
         "name": "global",
-        "description": "(Optional) Specifies the global VRF instance. dest-ip-address (Optional) Destination IP address. Specifying this argument clears NHRP mapping entries for the specified destination IP address."
+        "description": "(Optional) Specifies the global VRF instance."
+      },
+      {
+        "name": "dest-ip-address",
+        "description": "(Optional) Destination IP address. Specifying this argument clears NHRP mapping entries for the specified destination IP address."
       },
       {
         "name": "dest-mask",
@@ -28,7 +32,11 @@
       },
       {
         "name": "interface",
-        "description": "(Optional) Clears the NHRP mapping entries for all interfaces. tunnel number (Optional) Removes the specified interface from the NHRP cache."
+        "description": "(Optional) Clears the NHRP mapping entries for all interfaces."
+      },
+      {
+        "name": "tunnel number",
+        "description": "(Optional) Removes the specified interface from the NHRP cache."
       },
       {
         "name": "stats",
@@ -231,7 +239,11 @@
       },
       {
         "name": "group-name | group-address",
-        "description": "(Optional) IPv6 address or name of the multicast group. source-address | source-name (Optional) IPv6 address or name of the source."
+        "description": "(Optional) IPv6 address or name of the multicast group."
+      },
+      {
+        "name": "source-address | source-name",
+        "description": "(Optional) IPv6 address or name of the source."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -274,8 +286,8 @@
     "noForm": null,
     "params": [
       {
-        "name": "vrf",
-        "description": "vrf-name (Optional) Specifies a virtual routing and forwarding (VRF) configuration."
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies a virtual routing and forwarding (VRF) configuration."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -554,7 +566,11 @@
     "params": [
       {
         "name": "vrf vrf-name",
-        "description": "(Optional) Specifies a virtual routing and forwarding (VRF) configuration. group-name | group-address (Optional) IPv6 address or name of the multicast group."
+        "description": "(Optional) Specifies a virtual routing and forwarding (VRF) configuration."
+      },
+      {
+        "name": "group-name | group-address",
+        "description": "(Optional) IPv6 address or name of the multicast group."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -701,7 +717,11 @@
       },
       {
         "name": "condition",
-        "description": "(Optional) Enables NHRP conditional debugging operations. interface tunnel number (Optional) Enables debugging operations for the tunnel interface."
+        "description": "(Optional) Enables NHRP conditional debugging operations."
+      },
+      {
+        "name": "interface tunnel number",
+        "description": "(Optional) Enables debugging operations for the tunnel interface."
       },
       {
         "name": "nbma",
@@ -1010,7 +1030,7 @@
       },
       {
         "name": "pool name",
-        "description": "Specifies the name of the pool from which global IP addresses are allocated dynamically. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 531 IP Addressing Services ip nat inside source"
+        "description": "Specifies the name of the pool from which global IP addresses are allocated dynamically."
       },
       {
         "name": "no-payload",
@@ -1089,6 +1109,10 @@
     "noForm": "no ip nat outside source { list { access-list-number access-list-name } } pool pool-name no ip nat outside source static global-ip local-ip [ vrf name ] [add-route] [extendable] no ip nat outside source static { tcp | udp } global-ip global-port local-ip local-port no ip nat outside source static network global-network local-network mask [ vrf",
     "params": [
       {
+        "name": "list access-list-number",
+        "description": "Specifies the number of a standard IP access list. Packets with source addresses that pass the access list are translated using global addresses from the named pool."
+      },
+      {
         "name": "list access-list-name",
         "description": "Specifies the name of a standard IP access list. Packets with source addresses that pass the access list are translated using global addresses from the named pool."
       },
@@ -1110,7 +1134,7 @@
       },
       {
         "name": "global-ip",
-        "description": "Globally unique IP address assigned to a host on the outside network by its owner. The address was allocated from the globally routable network space. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 536 IP Addressing Services ip nat outside source"
+        "description": "Globally unique IP address assigned to a host on the outside network by its owner. The address was allocated from the globally routable network space."
       },
       {
         "name": "local-ip",
@@ -1222,11 +1246,19 @@
       },
       {
         "name": "all-vrf",
-        "description": "(Optional) Subjects each VPN routing and forwarding (VRF) instance to the specific NAT limit. host ip-address (Optional) Specifies an IP address subject to the NAT limit."
+        "description": "(Optional) Subjects each VPN routing and forwarding (VRF) instance to the specific NAT limit."
+      },
+      {
+        "name": "host ip-address",
+        "description": "(Optional) Specifies an IP address subject to the NAT limit."
       },
       {
         "name": "list list-name",
-        "description": "(Optional) Specifies an access control list (ACL) subject to the NAT limit. list list-number (Optional) Specifies an access control list (ACL) subject to the NAT limit. The range is from 1 to 99."
+        "description": "(Optional) Specifies an access control list (ACL) subject to the NAT limit."
+      },
+      {
+        "name": "list list-number",
+        "description": "(Optional) Specifies an access control list (ACL) subject to the NAT limit. The range is from 1 to 99."
       },
       {
         "name": "vrf name",
@@ -1529,7 +1561,11 @@
       },
       {
         "name": "poll",
-        "description": "(Optional) Enables IP connected host polling. point-to-point (Optional) Enables point to point connection."
+        "description": "(Optional) Enables IP connected host polling."
+      },
+      {
+        "name": "point-to-point",
+        "description": "(Optional) Enables point to point connection."
       }
     ],
     "modes": ["Interface configuration (config-if) Subinterface configuration (config-subif)"],
@@ -1589,7 +1625,11 @@
       },
       {
         "name": "group-list access-list",
-        "description": "(Optional) Specifies the access list that determines which web caches are allowed to participate in the service group. The access-list argument specifies either the number or the name of a standard or extended access list. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 555 IP Addressing Services ip wccp password [0 | 7] password (Optional) Specifies the message digest algorithm 5 (MD5) authentication for messages received from the service group. Messages that are not accepted by the authentication are discarded. The encryption type can be 0 or 7, with 0 specifying not yet encrypted and 7 for proprietary. The password argument can be up to eight characters in length."
+        "description": "(Optional) Specifies the access list that determines which web caches are allowed to participate in the service group. The access-list argument specifies either the number or the name of a standard or extended access list."
+      },
+      {
+        "name": "password [0 | 7] password",
+        "description": "(Optional) Specifies the message digest algorithm 5 (MD5) authentication for messages received from the service group. Messages that are not accepted by the authentication are discarded. The encryption type can be 0 or 7, with 0 specifying not yet encrypted and 7 for proprietary. The password argument can be up to eight characters in length."
       }
     ],
     "modes": ["Global configuration (config)"],
@@ -2146,6 +2186,10 @@
     "noForm": "no ipv6 mld snooping { last-listener-query-count | last-listener-query-interval |",
     "params": [
       {
+        "name": "last-listener-query-count count",
+        "description": "Sets the number of MASQs that the switch sends before aging out an MLD client. The range is 1 to 7; the default is 2."
+      },
+      {
         "name": "last-listener-query-interval",
         "description": "Sets the maximum response time that the switch waits after sending out a"
       },
@@ -2159,7 +2203,11 @@
       },
       {
         "name": "tcn query solicit",
-        "description": "Enables topology change notification (TCN) solicitation, which means that VLANs flood all IPv6 multicast traffic for the configured number of queries before sending multicast data to only those ports requesting to receive it. The default is for TCN to be disabled. tcn flood query count count When TCN is enabled, specifies the number of TCN queries to be sent. The range is from 1 to 10. The default is 2."
+        "description": "Enables topology change notification (TCN) solicitation, which means that VLANs flood all IPv6 multicast traffic for the configured number of queries before sending multicast data to only those ports requesting to receive it. The default is for TCN to be disabled."
+      },
+      {
+        "name": "tcn flood query count count",
+        "description": "When TCN is enabled, specifies the number of TCN queries to be sent. The range is from 1 to 10. The default is 2."
       }
     ],
     "modes": ["Global configuration"],
@@ -2199,7 +2247,11 @@
       },
       {
         "name": "interval",
-        "description": "MASQ before deleting a port from the multicast group. The range is 100 to 32,768 thousands of a second. The default is 1000 (1 second). mrouterinterface interface_id Specifies the multicast router VLAN ID, and specify the interface to the multicast router. The interface can be a physical interface or a port channel. The port-channel range is 1 to 48."
+        "description": "MASQ before deleting a port from the multicast group. The range is 100 to 32,768 thousands of a second. The default is 1000 (1 second)."
+      },
+      {
+        "name": "mrouterinterface interface_id",
+        "description": "Specifies the multicast router VLAN ID, and specify the interface to the multicast router. The interface can be a physical interface or a port channel. The port-channel range is 1 to 48."
       },
       {
         "name": "robustness-variable value",
@@ -2723,7 +2775,11 @@
       },
       {
         "name": "ipv6-address",
-        "description": "The IPv6 address of a router to be a PIM RP. The ipv6-addressargument must be in the form documented in RFC 2373 where the address is specified in hexadecimal using 16-bit values between colons. group-access-list (Optional) Name of an access list that defines for which multicast groups the RP should be used. If the access list contains any group address ranges that overlap the assigned source-specific multicast (SSM) group address range (FF3x::/96), a warning message is displayed, and the overlapping ranges are ignored. If no access list is specified, the specified RP is used for all valid multicast non-SSM address ranges. To support embedded RP, the router configured as the RP must use a configured access list that permits the embedded RP group ranges derived from the embedded RP address. Note that the embedded RP group ranges need not include all the scopes (for example, 3 through 7)."
+        "description": "The IPv6 address of a router to be a PIM RP. The ipv6-addressargument must be in the form documented in RFC 2373 where the address is specified in hexadecimal using 16-bit values between colons."
+      },
+      {
+        "name": "group-access-list",
+        "description": "(Optional) Name of an access list that defines for which multicast groups the RP should be used. If the access list contains any group address ranges that overlap the assigned source-specific multicast (SSM) group address range (FF3x::/96), a warning message is displayed, and the overlapping ranges are ignored. If no access list is specified, the specified RP is used for all valid multicast non-SSM address ranges. To support embedded RP, the router configured as the RP must use a configured access list that permits the embedded RP group ranges derived from the embedded RP address. Note that the embedded RP group ranges need not include all the scopes (for example, 3 through 7)."
       },
       {
         "name": "bidir",
@@ -2791,7 +2847,11 @@
     "params": [
       {
         "name": "list-name",
-        "description": "Name of the prefix list. • Cannot be the same name as an existing access list. • Cannot be the name “detail” or “summary” because they are keywords in the show ipv6 prefix-list command. seq seq-number (Optional) Sequence number of the prefix list entry being configured."
+        "description": "Name of the prefix list. • Cannot be the same name as an existing access list. • Cannot be the name “detail” or “summary” because they are keywords in the show ipv6 prefix-list command."
+      },
+      {
+        "name": "seq seq-number",
+        "description": "(Optional) Sequence number of the prefix list entry being configured."
       },
       {
         "name": "deny",
@@ -2836,7 +2896,12 @@
     "detail": "Apply IPv6 source guard policy on an interface.",
     "syntax": "ipv6 source-guard attach-policy[source-guard-policy ]",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "source-guard-policy",
+        "description": "(Optional) User-defined name of the source guard policy. The policy name can be a symbolic string (such as Engineering) or an integer (such as 0)."
+      }
+    ],
     "modes": ["Interface configuration (config-if)"],
     "usageSummary": "If no policy is specified using the source-guard-policy argument, then the default source-guard policy is applied.  A dependency exists between IPv6 source guard and IPv6 snooping.  Whenever IPv6 source guard is configured, when the ipv6 source-guard attach-policy command is entered, it verifies that snooping is enabled and issues a warning if it is not.",
     "sourcePage": 632,
@@ -3174,7 +3239,11 @@
       },
       {
         "name": "redundancy",
-        "description": "(Optional) Displays information about NHS redundancy stacks. cluster number (Optional) Displays redundancy cluster information."
+        "description": "(Optional) Displays information about NHS redundancy stacks."
+      },
+      {
+        "name": "cluster number",
+        "description": "(Optional) Displays redundancy cluster information."
       },
       {
         "name": "preempted",
@@ -3281,7 +3350,7 @@
       },
       {
         "name": "view",
-        "description": "(Optional) Displays other members of a particular service group, or all service groups, that have or have not been detected. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 651 IP Addressing Services show ip wccp"
+        "description": "(Optional) Displays other members of a particular service group, or all service groups, that have or have not been detected."
       }
     ],
     "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
@@ -3758,6 +3827,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies a virtual routing and forwarding (VRF) configuration."
+      },
+      {
         "name": "type number",
         "description": "(Optional) Interface type and number."
       }
@@ -3927,7 +4000,11 @@
       },
       {
         "name": "group-name | group-address",
-        "description": "(Optional) IPv6 address or name of the multicast group. source-address | source-name (Optional) IPv6 address or name of the source."
+        "description": "(Optional) IPv6 address or name of the multicast group."
+      },
+      {
+        "name": "source-address | source-name",
+        "description": "(Optional) IPv6 address or name of the source."
       },
       {
         "name": "summary",
@@ -3983,7 +4060,11 @@
       },
       {
         "name": "interface- type",
-        "description": "(Optional) Specifies the Interface type. interface- number (Optional) Specifies the Interface number."
+        "description": "(Optional) Specifies the Interface type."
+      },
+      {
+        "name": "interface- number",
+        "description": "(Optional) Specifies the Interface number."
       }
     ],
     "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
@@ -4007,7 +4088,11 @@
       },
       {
         "name": "interface -type",
-        "description": "(Optional) Specifies the Interface type. interface -number (Optional) Specifies the Interface number."
+        "description": "(Optional) Specifies the Interface type."
+      },
+      {
+        "name": "interface -number",
+        "description": "(Optional) Specifies the Interface number."
       }
     ],
     "modes": ["User EXEC (>) Privileged EXEC (#)"],
@@ -4042,7 +4127,11 @@
     "params": [
       {
         "name": "interface-type",
-        "description": "(Optional) Specifies the type of the interface from which IPv6 neighbor information is to be displayed. interface-number (Optional) Specifies the number of the interface from which IPv6 neighbor information is to be displayed."
+        "description": "(Optional) Specifies the type of the interface from which IPv6 neighbor information is to be displayed."
+      },
+      {
+        "name": "interface-number",
+        "description": "(Optional) Specifies the number of the interface from which IPv6 neighbor information is to be displayed."
       },
       {
         "name": "ipv6-address",
@@ -4396,7 +4485,11 @@
     "params": [
       {
         "name": "process-id",
-        "description": "(Optional) OSPF process ID for which you want traffic statistics (for example, queue statistics, statistics for each interface under the OSPF process, and per OSPF process statistics). interface-type interface-number (Optional) Type and number associated with a specific OSPF interface."
+        "description": "(Optional) OSPF process ID for which you want traffic statistics (for example, queue statistics, statistics for each interface under the OSPF process, and per OSPF process statistics)."
+      },
+      {
+        "name": "interface-type interface-number",
+        "description": "(Optional) Type and number associated with a specific OSPF interface."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -4511,7 +4604,11 @@
     "params": [
       {
         "name": "vrf vrf-name",
-        "description": "(Optional) Specifies a virtual routing and forwarding (VRF) configuration. group-name | group-address (Optional) IPv6 address or name of the multicast group."
+        "description": "(Optional) Specifies a virtual routing and forwarding (VRF) configuration."
+      },
+      {
+        "name": "group-name | group-address",
+        "description": "(Optional) IPv6 address or name of the multicast group."
       },
       {
         "name": "group-range | group-mask",
@@ -4553,6 +4650,10 @@
     "syntax": "show ipv6 pim [vrf vrf-name] interface [state-on] [state-off] [type number]",
     "noForm": null,
     "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies a virtual routing and forwarding (VRF) configuration."
+      },
       {
         "name": "state-on",
         "description": "(Optional) Displays interfaces with PIM enabled."
@@ -4635,7 +4736,11 @@
       },
       {
         "name": "detail",
-        "description": "(Optional) Displays the additional addresses of the neighbors learned, if any, through the routable address hello option. interface-type interface-number (Optional) Interface type and number."
+        "description": "(Optional) Displays the additional addresses of the neighbors learned, if any, through the routable address hello option."
+      },
+      {
+        "name": "interface-type interface-number",
+        "description": "(Optional) Interface type and number."
       },
       {
         "name": "count",
@@ -4663,7 +4768,11 @@
       },
       {
         "name": "config",
-        "description": "(Optional) The client. Displays the range lists configured on the router. rp-address | rp-name (Optional) The address of a Protocol Independent Multicast (PIM) rendezvous point (RP)."
+        "description": "(Optional) The client. Displays the range lists configured on the router."
+      },
+      {
+        "name": "rp-address | rp-name",
+        "description": "(Optional) The address of a Protocol Independent Multicast (PIM) rendezvous point (RP)."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -4687,7 +4796,11 @@
       },
       {
         "name": "group-name | group-address",
-        "description": "(Optional) IPv6 address or name of the multicast group. source-address | source-name (Optional) IPv6 address or name of the source."
+        "description": "(Optional) IPv6 address or name of the multicast group."
+      },
+      {
+        "name": "source-address | source-name",
+        "description": "(Optional) IPv6 address or name of the source."
       },
       {
         "name": "link-local",
@@ -4714,8 +4827,8 @@
     "noForm": null,
     "params": [
       {
-        "name": "vrf",
-        "description": "vrf-name (Optional) Specifies a virtual routing and forwarding (VRF) configuration."
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies a virtual routing and forwarding (VRF) configuration."
       }
     ],
     "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
@@ -4772,6 +4885,10 @@
     "syntax": "show ipv6 prefix-list [detail | summary] [list-name] show ipv6 prefix-list list-name ipv6-prefix/prefix-length [longer | first-match] show ipv6 prefix-list list-name seq seq-num",
     "noForm": null,
     "params": [
+      {
+        "name": "detail | summary",
+        "description": "(Optional) Displays detailed or summarized information about all IPv6 prefix lists."
+      },
       {
         "name": "list-name",
         "description": "(Optional) The name of a specific IPv6 prefix list."
@@ -4874,7 +4991,11 @@
       },
       {
         "name": "/prefix-length",
-        "description": "(Optional) The length of the IPv6 prefix. A decimal value that indicates how many of the high-order contiguous bits of the address comprise the prefix (the network portion of the address). A slash mark must precede the decimal value. longer-prefixes (Optional) Displays output for longer prefix entries."
+        "description": "(Optional) The length of the IPv6 prefix. A decimal value that indicates how many of the high-order contiguous bits of the address comprise the prefix (the network portion of the address). A slash mark must precede the decimal value."
+      },
+      {
+        "name": "longer-prefixes",
+        "description": "(Optional) Displays output for longer prefix entries."
       },
       {
         "name": "protocol",
@@ -4950,7 +5071,11 @@
     "params": [
       {
         "name": "interface -type",
-        "description": "(Optional) Specifies the Interface type. interface -number (Optional) Specifies the Interface number."
+        "description": "(Optional) Specifies the Interface type."
+      },
+      {
+        "name": "interface -number",
+        "description": "(Optional) Specifies the Interface number."
       },
       {
         "name": "conflicts",
@@ -4980,6 +5105,14 @@
     "syntax": "show ipv6 rpf {source-vrf [access-list] | vrf receiver-vrf {source-vrf [access-list] | select}}",
     "noForm": null,
     "params": [
+      {
+        "name": "source-vrf",
+        "description": "Name or address of the virtual routing and forwarding (VRF) on which lookups are to be performed. receiver-vrf Name or address of the VRF in which the lookups originate."
+      },
+      {
+        "name": "access-list",
+        "description": "Name or address of access control list (ACL) to be applied to the group-based VRF selection policy."
+      },
       {
         "name": "vrf",
         "description": "Displays information about the VRF instance."
@@ -5040,8 +5173,16 @@
     "noForm": null,
     "params": [
       {
+        "name": "ipv6-address",
+        "description": "(Optional) Provides routing information for a specific IPv6 address. This argument must be in the form documented in RFC 2373 where the address is specified in hexadecimal using 16-bit values between colons."
+      },
+      {
         "name": "ipv6-prefix",
-        "description": "(Optional) Provides routing information for a specific IPv6 network. This argument must be in the form documented in RFC 2373 where the address is specified in hexadecimal using 16-bit values between colons. /prefix-length (Optional) The length of the IPv6 prefix. A decimal value that indicates how many of the high-order contiguous bits of the address comprise the prefix (the network portion of the address). A slash mark must precede the decimal value."
+        "description": "(Optional) Provides routing information for a specific IPv6 network. This argument must be in the form documented in RFC 2373 where the address is specified in hexadecimal using 16-bit values between colons."
+      },
+      {
+        "name": "/prefix-length",
+        "description": "(Optional) The length of the IPv6 prefix. A decimal value that indicates how many of the high-order contiguous bits of the address comprise the prefix (the network portion of the address). A slash mark must precede the decimal value."
       },
       {
         "name": "interface",
@@ -5342,7 +5483,12 @@
     "detail": "Configure the device to take over as primary virtual router for a Virtual Router Redundancy Protocol (VRRP) group if it has higher priority than the current primary virtual router.",
     "syntax": "preempt [delay minimum seconds]",
     "noForm": "no preempt",
-    "params": [],
+    "params": [
+      {
+        "name": "delay minimum seconds",
+        "description": "(Optional) Number of seconds that the device will delay before issuing an advertisement claiming primary ownership. The default delay is 0 seconds."
+      }
+    ],
     "modes": ["VRRP configuration (config-if-vrrp)"],
     "usageSummary": "By default, the device being configured with this command will take over as primary virtual router for the group if it has a higher priority than the current primary virtual router.  You can configure a delay, which will cause the VRRP device to wait the specified number of seconds before issuing an advertisement claiming primary ownership.",
     "sourcePage": 825,

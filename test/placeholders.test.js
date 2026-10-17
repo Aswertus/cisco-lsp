@@ -184,3 +184,34 @@ test('multigigabit interfaces are recognised', () => {
     [],
   );
 });
+
+test('placeholders: fill letters are case-sensitive — lower case only when configured', () => {
+  const lines = [
+    ' ip address XX.XX.XX.XX 255.255.255.0',
+    ' ip address xx.xx.xx.xx 255.255.255.0',
+    ' ip address x.x.x.x 255.255.255.0',
+    'interface Gi1/0/xx',
+  ];
+  // Default "X": capitals only.
+  assert.deepEqual(texts(lines, 'X'), ['XX.XX.XX.XX']);
+  // "x": lower case only.
+  assert.deepEqual(texts(lines, 'x'), ['xx.xx.xx.xx', 'x.x.x.x', 'Gi1/0/xx']);
+  // "Xx": both.
+  assert.deepEqual(texts(lines, 'Xx'), ['XX.XX.XX.XX', 'xx.xx.xx.xx', 'x.x.x.x', 'Gi1/0/xx']);
+});
+
+test('placeholders: lower-case runs must not touch other letters', () => {
+  assert.deepEqual(
+    texts(
+      [
+        'interface Vlanxx', // glued to a word
+        'dot1x system-auth-control',
+        ' description 2 x 10G to core',
+        'username xxadmin privilege 15',
+        ' switchport access vlan xx',
+      ],
+      'x',
+    ),
+    ['xx'],
+  );
+});

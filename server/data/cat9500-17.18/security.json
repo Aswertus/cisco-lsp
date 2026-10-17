@@ -87,7 +87,15 @@
       },
       {
         "name": "default",
-        "description": "Specifies the accounting methods that follow as the default list for accounting services. start-stop Sends a start accounting notice at the beginning of a process and a stop accounting notice at the end of a process. The start accounting record is sent in the background. The requested user process begins regardless of whether or not the start accounting notice was received by the accounting server. broadcast Enables accounting records to be sent to multiple AAA servers and sends accounting records to the first server in each group. If the first server is unavailable, the device uses the list of backup servers to identify the first server."
+        "description": "Specifies the accounting methods that follow as the default list for accounting services."
+      },
+      {
+        "name": "start-stop",
+        "description": "Sends a start accounting notice at the beginning of a process and a stop accounting notice at the end of a process. The start accounting record is sent in the background. The requested user process begins regardless of whether or not the start accounting notice was received by the accounting server."
+      },
+      {
+        "name": "broadcast",
+        "description": "Enables accounting records to be sent to multiple AAA servers and sends accounting records to the first server in each group. If the first server is unavailable, the device uses the list of backup servers to identify the first server."
       },
       {
         "name": "group",
@@ -119,7 +127,15 @@
       },
       {
         "name": "default",
-        "description": "Uses the accounting methods that follow as the default list for accounting services. start-stop Sends a start accounting notice at the beginning of a process and a stop accounting notice at the end of a process. The start accounting record is sent in the background. The requested-user process begins regardless of whether or not the start accounting notice was received by the accounting server. broadcast Enables accounting records to be sent to multiple AAA servers and send accounting records to the first server in each group. If the first server is unavailable, the switch uses the list of backup servers to identify the first server."
+        "description": "Uses the accounting methods that follow as the default list for accounting services."
+      },
+      {
+        "name": "start-stop",
+        "description": "Sends a start accounting notice at the beginning of a process and a stop accounting notice at the end of a process. The start accounting record is sent in the background. The requested-user process begins regardless of whether or not the start accounting notice was received by the accounting server."
+      },
+      {
+        "name": "broadcast",
+        "description": "Enables accounting records to be sent to multiple AAA servers and send accounting records to the first server in each group. If the first server is unavailable, the switch uses the list of backup servers to identify the first server."
       },
       {
         "name": "group",
@@ -239,7 +255,7 @@
       },
       {
         "name": "method1 [method2...]",
-        "description": "(Optional) An authorization method or multiple authorization methods to be used for authorization. A method may be any one of the keywords listed in the table below. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1732 Security aaa authorization"
+        "description": "(Optional) An authorization method or multiple authorization methods to be used for authorization. A method may be any one of the keywords listed in the table below."
       }
     ],
     "modes": ["Global configuration (config)"],
@@ -547,7 +563,7 @@
       },
       {
         "name": "messages",
-        "description": "Clears the device-tracking message history. Events are displayed in the show device-tracking messages privileged EXEC command. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1755 Security clear device-tracking database"
+        "description": "Clears the device-tracking message history. Events are displayed in the show device-tracking messages privileged EXEC command."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -691,7 +707,15 @@
     "params": [
       {
         "name": "any",
-        "description": "Denies any source or destination MAC addres host src-MAC-addr | src-MAC-addr mask Defines a host MAC address and optional sub matches the defined address, non-IP traffic fro host dst-MAC-addr | dst-MAC-addr mask Defines a destination MAC address and optio a packet matches the defined address, non-IP"
+        "description": "Denies any source or destination MAC addres"
+      },
+      {
+        "name": "host src-MAC-addr | src-MAC-addr mask",
+        "description": "Defines a host MAC address and optional sub matches the defined address, non-IP traffic fro"
+      },
+      {
+        "name": "host dst-MAC-addr | dst-MAC-addr mask",
+        "description": "Defines a destination MAC address and optio a packet matches the defined address, non-IP"
       },
       {
         "name": "type mask",
@@ -739,7 +763,7 @@
       },
       {
         "name": "lavc-sca",
-        "description": "(Optional) Specifies EtherType DEC-LAVC-S Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1767 Security deny (MAC access-list configuration)"
+        "description": "(Optional) Specifies EtherType DEC-LAVC-S Security deny (MAC access-list configuration)"
       },
       {
         "name": "lsap lsap-number mask",
@@ -887,7 +911,7 @@
       },
       {
         "name": "logging",
-        "description": "Enables generation of logs for binding entry events. device-tracking binding Configures the maximum number of entries for a binding table. Enter a value"
+        "description": "Enables generation of logs for binding entry events."
       },
       {
         "name": "max-entries",
@@ -899,7 +923,7 @@
       },
       {
         "name": "]",
-        "description": "• mac-limit no_of_entries: Configures the maximum number of entries allowed per MAC address. Enter a value between 1 and 100000. By default, a limit is not set. • port-limit no_of_entriesConfigures the maximum number of entries allowed per interface. Enter a value between 1 and 100000. By default, a limit is not set. • vlan-limit no_of_entries: Configures the maximum number of entries allowed per VLAN. Enter a value between 1 and 100000. By default, a limit is not set. The no form of the command resets the max-entries value to 200000 and sets the mac-limit, port-limit, vlan-limit to \"no limit\". Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1779 Security device-tracking binding"
+        "description": "• mac-limit no_of_entries: Configures the maximum number of entries allowed per MAC address. Enter a value between 1 and 100000. By default, a limit is not set. • port-limit no_of_entriesConfigures the maximum number of entries allowed per interface. Enter a value between 1 and 100000. By default, a limit is not set. • vlan-limit no_of_entries: Configures the maximum number of entries allowed per VLAN. Enter a value between 1 and 100000. By default, a limit is not set. The no form of the command resets the max-entries value to 200000 and sets the mac-limit, port-limit, vlan-limit to \"no limit\"."
       },
       {
         "name": "reachable-lifetime {",
@@ -911,7 +935,7 @@
       },
       {
         "name": "| infinite }",
-        "description": "STALE state, or, to disable the timer. If a timer is configured, either one of these events may occur before timer expiry - incoming packets are received from the host, or there are no incoming packets from the host. If an incoming packet is received, the timer is stopped and the entry transitions to a new state. If no incoming packets are received and the timer expires, then the entry is removed from the binding table. If the timer is disabled or turned off, the entry can remain in the STALE state, indefinitely. If polling is enabled, a final attempt is made to probe the host at stale timer expiry. Note If polling is enabled, polling occurs when the reachable lifetime timer expires (3 times), and then a final attempt at stale timer expiry as well. The time required to poll an entry after expiry of reachable lifetime, is subtracted from the stale lifetime. Configure one of these options: • seconds: Configure a value for the stale-lifetime timer. Enter a value between 1 and 86400 seconds. The default value is 86400 seconds (24 hours). • infinite: Disables the timer for the STALE state. This means that a timer is not started when an entry enters the STALE state. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1780 Security device-tracking binding device-tracking binding Creates a static binding entry in the binding table. You can also specify how static vlan vlan_id { ipv4_add binding entries are maintained in the binding table. ipv6_add ipv6_prefix } Note"
+        "description": "STALE state, or, to disable the timer. If a timer is configured, either one of these events may occur before timer expiry - incoming packets are received from the host, or there are no incoming packets from the host. If an incoming packet is received, the timer is stopped and the entry transitions to a new state. If no incoming packets are received and the timer expires, then the entry is removed from the binding table. If the timer is disabled or turned off, the entry can remain in the STALE state, indefinitely. If polling is enabled, a final attempt is made to probe the host at stale timer expiry. Note If polling is enabled, polling occurs when the reachable lifetime timer expires (3 times), and then a final attempt at stale timer expiry as well. The time required to poll an entry after expiry of reachable lifetime, is subtracted from the stale lifetime. Configure one of these options: • seconds: Configure a value for the stale-lifetime timer. Enter a value between 1 and 86400 seconds. The default value is 86400 seconds (24 hours). • infinite: Disables the timer for the STALE state. This means that a timer is not started when an entry enters the STALE state. vlan vlan_id { ipv4_add binding entries are maintained in the binding table. ipv6_add ipv6_prefix } Note"
       },
       {
         "name": "[ interface",
@@ -919,7 +943,11 @@
       },
       {
         "name": "inteface_type_no ]",
-        "description": "[ not apply to static binding entires. There is no limit to the number of static entries 48-bit-hardware-address you can create. ] [ reachable-lifetime { seconds | default | • Enter an IP address or prefix: infinite } | tracking {"
+        "description": "[ not apply to static binding entires. There is no limit to the number of static entries 48-bit-hardware-address you can create. ] [ reachable-lifetime"
+      },
+      {
+        "name": "{ seconds | default |",
+        "description": "• Enter an IP address or prefix: infinite } | tracking {"
       },
       {
         "name": "default | disable |",
@@ -931,7 +959,7 @@
       },
       {
         "name": "infinite } ] ]",
-        "description": "• interface inteface_type_no: Enter an interface type and number. Use the question mark (?) online help function to display the types of interfaces available on the device. • (Optional) 48-bit-hardware-address: Enter a MAC address. If you do not configure a MAC address for the binding entry, any MAC address is allowed. • (Optional) reachable-lifetime {seconds | default | infinite }: Configures the reachable lifetime settings for a static binding entry in the REACHABLE state. If you want to configure a reachable lifetime for a static binding entry, you must specify the MAC address for the entry. If you do not configure a value, the same value as configured for device-tracking binding reachable-lifetime applies. seconds: Configure a value for the reachable-lifetime timer. Enter a value between 1 and 86400 seconds. The default value is 300 seconds (5 minutes). default: Uses the same value as configured for dynamic entries in the binding table. infinite: Disables the timer for the REACHABLE state. This means that a timer is not started when a static binding entry enters the REACHABLE state. • (Optional) tracking {default | disable | enable}: Configures polling related settings for a static binding entry. default:Polling is disabled. disable: Disables polling for a static binding entry. enable: Enables polling for a static binding entry. When you enable tracking, you also have the option to configure a retry-interval. This is a multiplicative factor or \"base value\", for the backoff algorithm. The backoff algorithm determines the wait time between the 3 polling attempts that occur after reachable lifetime expiry. Enter a value between 1 and 3600 seconds. The default value is one. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1781 Security device-tracking binding"
+        "description": "• interface inteface_type_no: Enter an interface type and number. Use the question mark (?) online help function to display the types of interfaces available on the device. • (Optional) 48-bit-hardware-address: Enter a MAC address. If you do not configure a MAC address for the binding entry, any MAC address is allowed. • (Optional) reachable-lifetime {seconds | default | infinite }: Configures the reachable lifetime settings for a static binding entry in the REACHABLE state. If you want to configure a reachable lifetime for a static binding entry, you must specify the MAC address for the entry. If you do not configure a value, the same value as configured for device-tracking binding reachable-lifetime applies. seconds: Configure a value for the reachable-lifetime timer. Enter a value between 1 and 86400 seconds. The default value is 300 seconds (5 minutes). default: Uses the same value as configured for dynamic entries in the binding table. infinite: Disables the timer for the REACHABLE state. This means that a timer is not started when a static binding entry enters the REACHABLE state. • (Optional) tracking {default | disable | enable}: Configures polling related settings for a static binding entry. default:Polling is disabled. disable: Disables polling for a static binding entry. enable: Enables polling for a static binding entry. When you enable tracking, you also have the option to configure a retry-interval. This is a multiplicative factor or \"base value\", for the backoff algorithm. The backoff algorithm determines the wait time between the 3 polling attempts that occur after reachable lifetime expiry. Enter a value between 1 and 3600 seconds. The default value is one."
       }
     ],
     "modes": ["Global configuration [Device(config)# ]"],
@@ -1003,7 +1031,7 @@
       },
       {
         "name": "fallback",
-        "description": "Causes the source address of an ARP probe to be sourced ipv4_and_fallback_source_maskip_prefix_mask in the following order of preference: • The first preference is to set the source address to the VLAN SVI, if an SVI is configured. • The second preference is to locate an IP-MAC binding entry in device-tracking table, from same subnet and use that as the source address. • The third and last preference is to compute the source address from the client's IPv4 address and the mask provided. The source MAC address is taken from the MAC address of the switchport facing the client. If you configure the fallback keyword, you must also specify an IP address and mask. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1815 Security device-tracking tracking"
+        "description": "Causes the source address of an ARP probe to be sourced ipv4_and_fallback_source_maskip_prefix_mask in the following order of preference: • The first preference is to set the source address to the VLAN SVI, if an SVI is configured. • The second preference is to locate an IP-MAC binding entry in device-tracking table, from same subnet and use that as the source address. • The third and last preference is to compute the source address from the client's IPv4 address and the mask provided. The source MAC address is taken from the MAC address of the switchport facing the client. If you configure the fallback keyword, you must also specify an IP address and mask."
       },
       {
         "name": "override",
@@ -1028,7 +1056,12 @@
     "detail": "To convert legacy IP Device Tracking (IPDT) and IPv6 Snooping commands to SISF commands, configure the device-tracking upgrade-cli command in global configuration mode. To revert to legacy commands, enter the no form of the command.",
     "syntax": "device-tracking upgrade-cli [ force | revert ]",
     "noForm": "no device-tracking upgrade-cli [ force | revert ]",
-    "params": [],
+    "params": [
+      {
+        "name": "force",
+        "description": "Skips the confirmation step and converts legacy IPDT and IPv6 Snooping commands to SISF commands. revert Reverts to legacy IPDT and IPv6 Snooping commands."
+      }
+    ],
     "modes": ["Global configuration [Device(config)# ]"],
     "usageSummary": null,
     "sourcePage": 1819,
@@ -1189,7 +1222,11 @@
     "params": [
       {
         "name": "supplicant",
-        "description": "The interface acts only as a supplicant and will not respond to messages that are meant for an authenticator. authenticator The interface acts only as an authenticator and will not respond to any messages meant for a supplicant."
+        "description": "The interface acts only as a supplicant and will not respond to messages that are meant for an authenticator."
+      },
+      {
+        "name": "authenticator",
+        "description": "The interface acts only as an authenticator and will not respond to any messages meant for a supplicant."
       }
     ],
     "modes": ["Interface configuration (config-if)"],
@@ -1299,7 +1336,7 @@
       },
       {
         "name": "start-period seconds",
-        "description": "Configures the interval, in seconds, between two successive EAPOL-Start frames when they are being retransmitted. The range is from 1 to 65535. The default is 30. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1834 Security dot1x timeout"
+        "description": "Configures the interval, in seconds, between two successive EAPOL-Start frames when they are being retransmitted. The range is from 1 to 65535. The default is 30."
       },
       {
         "name": "supp-timeout seconds",
@@ -1327,7 +1364,11 @@
     "params": [
       {
         "name": "acct dscp_acct_value",
-        "description": "Configures RADIUS DSCP marking value for accounting. The valid range is from 1 to 63. The default value is 0. auth dscp_auth_value Configures RADIUS DSCP marking value for authentication. The valid range is from 1 to 63. The default value is 0."
+        "description": "Configures RADIUS DSCP marking value for accounting. The valid range is from 1 to 63. The default value is 0."
+      },
+      {
+        "name": "auth dscp_auth_value",
+        "description": "Configures RADIUS DSCP marking value for authentication. The valid range is from 1 to 63. The default value is 0."
       }
     ],
     "modes": [
@@ -1539,7 +1580,7 @@
       },
       {
         "name": "role-based",
-        "description": "Specifies a role-based IP access list. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1847 Security ip access-list"
+        "description": "Specifies a role-based IP access list."
       },
       {
         "name": "fqdn",
@@ -1726,7 +1767,7 @@
       },
       {
         "name": "usbflash0:url",
-        "description": "Specifies the database URL for storing entries using USB flash. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1855 Security ip dhcp snooping database"
+        "description": "Specifies the database URL for storing entries using USB flash."
       },
       {
         "name": "write-delay seconds",
@@ -2120,7 +2161,11 @@
       },
       {
         "name": "gcm-aes-256",
-        "description": "Configures cipher suite for deriving SAK with 256-bit encryption. gcm-aes-xpn-128 Configures cipher suite for deriving SAK with 128-bit encryption for Extended Packet Numbering (XPN). gcm-aes-xpn-256 Configures cipher suite for deriving SAK with 256-bit encryption for XPN."
+        "description": "Configures cipher suite for deriving SAK with 256-bit encryption."
+      },
+      {
+        "name": "gcm-aes-xpn-128",
+        "description": "Configures cipher suite for deriving SAK with 128-bit encryption for Extended Packet Numbering (XPN). gcm-aes-xpn-256 Configures cipher suite for deriving SAK with 256-bit encryption for XPN."
       }
     ],
     "modes": ["MKA-policy configuration (config-mka-policy)"],
@@ -2137,7 +2182,16 @@
     "detail": "Control the behavior of unencrypted packets.",
     "syntax": "macsec access-control { must-secure | should-secure }",
     "noForm": "no macsec access-control { must-secure | should-secure }",
-    "params": [],
+    "params": [
+      {
+        "name": "must-secure",
+        "description": "Does not allow unencrypted packets from physical interfaces or subinterfaces to be transmitted or received. All such packets are dropped, except for MACsec Key Agreement (MKA) control packets. This is the default option."
+      },
+      {
+        "name": "should-secure",
+        "description": "Allows unencrypted packets from the physical interfaces or subinterfaces to be transmitted or received."
+      }
+    ],
     "modes": ["Interface configuration (config-if)"],
     "usageSummary": "The must-secure option is enabled by default for MACsec on subinterfaces when the macsec command is configured on an interface.  The should-secure option can be configured only at the interface level and not the subinterface level.  If MACsec is enabled only on selected subinterfaces, configure the should-secure option on the corresponding interface.",
     "sourcePage": 1881,
@@ -2283,7 +2337,15 @@
     "params": [
       {
         "name": "any",
-        "description": "Denies any source or destination MAC address. host src-MAC-addr | src-MAC-addr mask Specifies a host MAC address and optional subnet mask. defined address, non-IP traffic from that address is denied host dst-MAC-addr | dst-MAC-addr mask Specifies a destination MAC address and optional subnet matches the defined address, non-IP traffic to that addres"
+        "description": "Denies any source or destination MAC address."
+      },
+      {
+        "name": "host src-MAC-addr | src-MAC-addr mask",
+        "description": "Specifies a host MAC address and optional subnet mask. defined address, non-IP traffic from that address is denied"
+      },
+      {
+        "name": "host dst-MAC-addr | dst-MAC-addr mask",
+        "description": "Specifies a destination MAC address and optional subnet matches the defined address, non-IP traffic to that addres"
       },
       {
         "name": "type mask",
@@ -2331,7 +2393,7 @@
       },
       {
         "name": "lavc-sca",
-        "description": "(Optional) Specifies EtherType DEC-LAVC-SCA. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1890 Security permit (MAC access-list configuration)"
+        "description": "(Optional) Specifies EtherType DEC-LAVC-SCA. Security permit (MAC access-list configuration)"
       },
       {
         "name": "lsap lsap-number mask",
@@ -2435,7 +2497,7 @@
       },
       {
         "name": "retransmit value",
-        "description": "(Optional) Specifies the number of times a RADIUS request is resent when the server is not responding or responding slowly. The range is 1 to 100. This setting overrides the radius-server retransmit global configuration command setting. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1894 Security radius server"
+        "description": "(Optional) Specifies the number of times a RADIUS request is resent when the server is not responding or responding slowly. The range is 1 to 100. This setting overrides the radius-server retransmit global configuration command setting."
       },
       {
         "name": "timeout seconds",
@@ -2459,7 +2521,11 @@
     "params": [
       {
         "name": "acct dscp_acct_value",
-        "description": "Configures RADIUS DSCP marking value for accounting. The valid range is from 1 to 63. The default value is 0. auth dscp_auth_value Configures RADIUS DSCP marking value for authentication. The valid range is from 1 to 63. The default value is 0."
+        "description": "Configures RADIUS DSCP marking value for accounting. The valid range is from 1 to 63. The default value is 0."
+      },
+      {
+        "name": "auth dscp_auth_value",
+        "description": "Configures RADIUS DSCP marking value for authentication. The valid range is from 1 to 63. The default value is 0."
       }
     ],
     "modes": ["Global configuration (config)"],
@@ -2477,6 +2543,10 @@
     "syntax": "radius-server dead-criteria [time seconds] [tries number-of-tries]",
     "noForm": "no radius-server dead-criteria [time seconds | tries number-of-tries]",
     "params": [
+      {
+        "name": "time seconds",
+        "description": "(Optional) Minimum amount of time, in seconds, that must elapse from the time that the device last received a valid packet from the RADIUS server to the time the server is marked as dead. If a packet has not been received since the device booted, and there is a timeout, the time criterion will be treated as though it has been met. You can configure the time to be from 1 through 120 seconds. • If the seconds argument is not configured, the number of seconds will range from 10 to 60 seconds, depending on the transaction rate of the server. Note Both the time criterion and the tries criterion must be met for the server to be marked as dead."
+      },
       {
         "name": "tries",
         "description": "(Optional) Number of consecutive timeouts that must occur on the device before the RADIUS number-of-tries server is marked as dead. If the server performs both authentication and accounting, both types of packets will be included in the number. Improperly constructed packets will be counted as though they were timeouts. All transmissions, including the initial transmit and all retransmits, will be counted. You can configure the number of timeouts to be from 1 through 100. • If the number-of-tries argument is not configured, the number of consecutive timeouts will range from 10 to 100, depending on the transaction rate of the server and the number of configured retransmissions. Note Both the time criterion and the tries criterion must be met for the server to be marked as dead."
@@ -2666,7 +2736,11 @@
     "params": [
       {
         "name": "ip-address",
-        "description": "IP address of the private RADIUS server host. auth-port port-number (Optional) User Datagram Protocol (UDP) destination port for authentication requests. The default value is 1645. acct-port port-number Optional) UDP destination port for accounting requests. The default value is 1646."
+        "description": "IP address of the private RADIUS server host."
+      },
+      {
+        "name": "auth-port port-number",
+        "description": "(Optional) User Datagram Protocol (UDP) destination port for authentication requests. The default value is 1645. acct-port port-number Optional) UDP destination port for accounting requests. The default value is 1646."
       },
       {
         "name": "non-standard",
@@ -2714,11 +2788,23 @@
       },
       {
         "name": "nat",
-        "description": "(Optional) Specifies the port Network Address Translation (NAT) address of the remote device. This address is sent to the TACACS+ server. single-connection (Optional) Maintains a single TCP connection between the router and the TACACS+ server."
+        "description": "(Optional) Specifies the port Network Address Translation (NAT) address of the remote device. This address is sent to the TACACS+ server."
+      },
+      {
+        "name": "single-connection",
+        "description": "(Optional) Maintains a single TCP connection between the router and the TACACS+ server."
       },
       {
         "name": "timeout seconds",
-        "description": "(Optional) Specifies a timeout value for the server response. This value overrides the global timeout value set with the tacacs-server timeout command for this server only. port port-number (Optional) Specifies a server port number. This option overrides the default, which is port 49. key [0|7] string (Optional) Specifies an authentication and encryption key. This key must match the key used by the TACACS+ daemon. Specifying this key overrides the key set by the global tacacs-server key command for this server only. If no number or 0 is entered, the string that is entered is considered to be plain text. If 7 is entered, the string that is entered is considered to be encrypted text."
+        "description": "(Optional) Specifies a timeout value for the server response. This value overrides the global timeout value set with the tacacs-server timeout command for this server only."
+      },
+      {
+        "name": "port port-number",
+        "description": "(Optional) Specifies a server port number. This option overrides the default, which is port 49."
+      },
+      {
+        "name": "key [0|7] string",
+        "description": "(Optional) Specifies an authentication and encryption key. This key must match the key used by the TACACS+ daemon. Specifying this key overrides the key set by the global tacacs-server key command for this server only. If no number or 0 is entered, the string that is entered is considered to be plain text. If 7 is entered, the string that is entered is considered to be encrypted text."
       }
     ],
     "modes": ["TACACS+ server-group configuration (config-sg-tacacs+)"],
@@ -2965,7 +3051,11 @@
       },
       {
         "name": "cache",
-        "description": "(Optional) Displays Session Manager cache information event-logging (Optional) Displays event logs."
+        "description": "(Optional) Displays Session Manager cache information"
+      },
+      {
+        "name": "event-logging",
+        "description": "(Optional) Displays event logs."
       },
       {
         "name": "fqdn",
@@ -2989,11 +3079,15 @@
       },
       {
         "name": "session-id",
-        "description": "(Optional) Displays information about subscriber sessions with the specified client session identifier. registrations (Optional) Displays information about all registered session manager clients including the registered authentication methods."
+        "description": "(Optional) Displays information about subscriber sessions with the specified client session identifier."
+      },
+      {
+        "name": "registrations",
+        "description": "(Optional) Displays information about all registered session manager clients including the registered authentication methods."
       },
       {
         "name": "statistics",
-        "description": "(Optional) Displays information about authentication session statistics. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1928 Security show access-session"
+        "description": "(Optional) Displays information about authentication session statistics."
       },
       {
         "name": "details",
@@ -3077,11 +3171,23 @@
       },
       {
         "name": "details",
-        "description": "(Optional) Shows detailed information. interface type number (Optional) Specifies a particular interface type and number for which Auth Manager information is to be displayed."
+        "description": "(Optional) Shows detailed information."
+      },
+      {
+        "name": "interface type number",
+        "description": "(Optional) Specifies a particular interface type and number for which Auth Manager information is to be displayed."
       },
       {
         "name": "mac mac-address",
-        "description": "(Optional) Specifies the particular MAC address for which you want to display information. method method-name (Optional) Specifies the particular authentication method for which Auth Manager information is to be displayed. If you specify a method (dot1x, mab, or webauth), you may also specify an interface. session-id session-id (Optional) Specifies the particular session for which Auth Manager information is to be displayed."
+        "description": "(Optional) Specifies the particular MAC address for which you want to display information."
+      },
+      {
+        "name": "method method-name",
+        "description": "(Optional) Specifies the particular authentication method for which Auth Manager information is to be displayed. If you specify a method (dot1x, mab, or webauth), you may also specify an interface."
+      },
+      {
+        "name": "session-id session-id",
+        "description": "(Optional) Specifies the particular session for which Auth Manager information is to be displayed."
       }
     ],
     "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
@@ -3132,6 +3238,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "interface inteface_type_no",
+        "description": "Displays message capture policy information for the interface you specify. Enter an interface type and number. Use the question mark (?) online help function to display the types of interfaces on the device."
+      },
+      {
         "name": "vlan vlan_id",
         "description": "Displays message capture policy information for the VLAN ID you specify. The valid value range is from 1 to 4095."
       }
@@ -3153,7 +3263,11 @@
     "params": [
       {
         "name": "all",
-        "description": "Displays information for all interfaces and VLANs on the device where a policy is attached. interface inteface_type_no Displays information for the specified interface. Enter an interface type and number. Use the question mark (?) online help function to display the types of interfaces on the device."
+        "description": "Displays information for all interfaces and VLANs on the device where a policy is attached."
+      },
+      {
+        "name": "interface inteface_type_no",
+        "description": "Displays information for the specified interface. Enter an interface type and number. Use the question mark (?) online help function to display the types of interfaces on the device."
       },
       {
         "name": "vlan vlan_id",
@@ -3283,7 +3397,11 @@
     "params": [
       {
         "name": "details",
-        "description": "Displays information about the policy targets and policy parameters of all device-tracking policies on the device interface interface_type_no Displays all policies applied to the the specified interface. Enter an interface type and number. Use the question mark (?) online help function to display the types of interfaces on the device."
+        "description": "Displays information about the policy targets and policy parameters of all device-tracking policies on the device"
+      },
+      {
+        "name": "interface interface_type_no",
+        "description": "Displays all policies applied to the the specified interface. Enter an interface type and number. Use the question mark (?) online help function to display the types of interfaces on the device."
       },
       {
         "name": "vlan vlanid",
@@ -3304,7 +3422,12 @@
     "detail": "To display information about a particular policy, enter the show device-tracking policy command in privileged EXEC mode. Displayed information includes the list of targets to which the policy is applied, and policy parameters.",
     "syntax": "show device-tracking policy policy_name",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "policy_name",
+        "description": "Enter the name of the policy."
+      }
+    ],
     "modes": ["Privileged EXEC (#)"],
     "usageSummary": null,
     "sourcePage": 1956,
@@ -3671,7 +3794,7 @@
       },
       {
         "name": "level pps",
-        "description": "Specifies the rising and falling suppression levels as a rate in packets per second at which traffic is received on the port. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1987 Security storm-control"
+        "description": "Specifies the rising and falling suppression levels as a rate in packets per second at which traffic is received on the port."
       },
       {
         "name": "pps",
@@ -3711,7 +3834,15 @@
       },
       {
         "name": "type",
-        "description": "Sets the aging type. absolute Sets absolute aging type. All the secure addresses on this port age out exactly after the time (minutes) specified and are removed from the secure address list. inactivity Sets the inactivity aging type. The secure addresses on this port age out only if there is no data traffic from the secure source address for the specified time period."
+        "description": "Sets the aging type."
+      },
+      {
+        "name": "absolute",
+        "description": "Sets absolute aging type. All the secure addresses on this port age out exactly after the time (minutes) specified and are removed from the secure address list."
+      },
+      {
+        "name": "inactivity",
+        "description": "Sets the inactivity aging type. The secure addresses on this port age out only if there is no data traffic from the secure source address for the specified time period."
       }
     ],
     "modes": ["Interface configuration (config-if)"],
@@ -3730,12 +3861,28 @@
     "noForm": "no switchport port-security mac-address {mac-address [vlan {vlan-id {access | voice}}] | sticky",
     "params": [
       {
+        "name": "mac-address",
+        "description": "A secure MAC address for the interface by entering a 48-bit MAC address. You can add additional secure MAC addresses up to the maximum value configured."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) On a trunk port only, specifies the VLAN ID and the MAC address. If no VLAN ID is specified, the native VLAN is used."
+      },
+      {
+        "name": "vlan access",
+        "description": "(Optional) On an access port only, specifies the VLAN as an access VLAN."
+      },
+      {
         "name": "vlan voice",
         "description": "(Optional) On an access port only, specifies the VLAN as a voice VLAN. Note The voice keyword is available only if voice VLAN is configured on a port and if that port is not the access VLAN."
       },
       {
         "name": "sticky",
-        "description": "Enables the interface for sticky learning. When sticky learning is enabled, the interface adds all secure MAC addresses that are dynamically learned to the running configuration and converts these addresses to sticky secure MAC addresses. mac-address (Optional) A MAC address to specify a sticky secure MAC address."
+        "description": "Enables the interface for sticky learning. When sticky learning is enabled, the interface adds all secure MAC addresses that are dynamically learned to the running configuration and converts these addresses to sticky secure MAC addresses."
+      },
+      {
+        "name": "mac-address",
+        "description": "(Optional) A MAC address to specify a sticky secure MAC address."
       }
     ],
     "modes": ["Interface configuration (config-if)"],
@@ -3759,7 +3906,15 @@
       },
       {
         "name": "vlan",
-        "description": "(Optional) For trunk ports, sets the maximum number of secure MAC addresses on a VLAN or range of VLANs. If the vlan keyword is not entered, the default value is used. vlan-list (Optional) Range of VLANs separated by a hyphen or a series of VLANs separated by commas. For nonspecified VLANs, the per-VLAN maximum value is used. access (Optional) On an access port only, specifies the VLAN as an access VLAN."
+        "description": "(Optional) For trunk ports, sets the maximum number of secure MAC addresses on a VLAN or range of VLANs. If the vlan keyword is not entered, the default value is used."
+      },
+      {
+        "name": "vlan-list",
+        "description": "(Optional) Range of VLANs separated by a hyphen or a series of VLANs separated by commas. For nonspecified VLANs, the per-VLAN maximum value is used."
+      },
+      {
+        "name": "access",
+        "description": "(Optional) On an access port only, specifies the VLAN as an access VLAN."
       },
       {
         "name": "voice",
@@ -3839,7 +3994,11 @@
       },
       {
         "name": "idletimeout idle-timeout-value",
-        "description": "(Optional) Configures the DTLS idle timeout value. [ip | ipv6] {radius/tacacs source-interface (Optional) Configures IP or IPv6 source parameters. interface-name |vrf forwarding forwarding-table-name}"
+        "description": "(Optional) Configures the DTLS idle timeout value."
+      },
+      {
+        "name": "[ip | ipv6] {radius/tacacs source-interface",
+        "description": "(Optional) Configures IP or IPv6 source parameters. interface-name |vrf forwarding forwarding-table-name}"
       },
       {
         "name": "RADIUS server mode",
@@ -3859,7 +4018,7 @@
       },
       {
         "name": "trustpoint name}",
-        "description": "and the server. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2000 Security tls"
+        "description": "and the server."
       },
       {
         "name": "watchdoginterval interval",
@@ -4022,7 +4181,11 @@
       },
       {
         "name": "algorithm-type",
-        "description": "(Optional) Specifies the algorithm to use for hashing the plaintext secret for the user. • md5: Encodes the password using the MD5 algorithm. • scrypt: Encodes the password using the SCRYPT hashing algorithm. • sha256: Encodes the password using the PBKDF2 hashing algorithm. • secret: Specifies the secret for the user. • masked-secret: Masks the secret input and converts to the selected encryption. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2008 Security username autocommand command (Optional) Causes the specified autocommandcommand to be issued automatically after the user logs in. When the specified autocommand command is complete, the session is terminated. Because the command can be of any length and can contain embedded spaces, commands using the autocommand keyword must be the last option on the line."
+        "description": "(Optional) Specifies the algorithm to use for hashing the plaintext secret for the user. • md5: Encodes the password using the MD5 algorithm. • scrypt: Encodes the password using the SCRYPT hashing algorithm. • sha256: Encodes the password using the PBKDF2 hashing algorithm. • secret: Specifies the secret for the user. • masked-secret: Masks the secret input and converts to the selected encryption."
+      },
+      {
+        "name": "autocommand command",
+        "description": "(Optional) Causes the specified autocommandcommand to be issued automatically after the user logs in. When the specified autocommand command is complete, the session is terminated. Because the command can be of any length and can contain embedded spaces, commands using the autocommand keyword must be the last option on the line."
       },
       {
         "name": "callback-dialstring",
@@ -4030,7 +4193,11 @@
       },
       {
         "name": "telephone-number",
-        "description": "Circuit-terminating Equipment (DCE) device; for asynchronous callback only. callback-line line-number (Optional) Specifies relative number of the terminal line (or the first line in a contiguous group) on which you enable a specific username for callback; for asynchronous callback only. Numbering begins with zero."
+        "description": "Circuit-terminating Equipment (DCE) device; for asynchronous callback only."
+      },
+      {
+        "name": "callback-line line-number",
+        "description": "(Optional) Specifies relative number of the terminal line (or the first line in a contiguous group) on which you enable a specific username for callback; for asynchronous callback only. Numbering begins with zero."
       },
       {
         "name": "ending-line-number",
@@ -4046,7 +4213,11 @@
       },
       {
         "name": "rotary-group-number",
-        "description": "enable a specific username for callback; for asynchronous callback only. The next available line in the rotary group is selected. Range: 1 to 100. common-criteria-policy (Optional) Specifies the name of the common criteria policy."
+        "description": "enable a specific username for callback; for asynchronous callback only. The next available line in the rotary group is selected. Range: 1 to 100."
+      },
+      {
+        "name": "common-criteria-policy",
+        "description": "(Optional) Specifies the name of the common criteria policy."
       },
       {
         "name": "dnis",
@@ -4078,7 +4249,7 @@
       },
       {
         "name": "password",
-        "description": "Password that the user enters. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2009 Security username"
+        "description": "Password that the user enters."
       },
       {
         "name": "encryption-type",
@@ -4205,7 +4376,11 @@
     "params": [
       {
         "name": "group-name",
-        "description": "Name of the VLAN group. The group name may contain up to 32 characters and must begin with a letter. vlan-list vlan-list Specifies one or more VLANs to be added to the VLAN group. The vlan-list argument can be a single VLAN ID, a list of VLAN IDs, or VLAN ID range. Multiple entries are separated by a hyphen (-) or a comma (,)."
+        "description": "Name of the VLAN group. The group name may contain up to 32 characters and must begin with a letter."
+      },
+      {
+        "name": "vlan-list vlan-list",
+        "description": "Specifies one or more VLANs to be added to the VLAN group. The vlan-list argument can be a single VLAN ID, a list of VLAN IDs, or VLAN ID range. Multiple entries are separated by a hyphen (-) or a comma (,)."
       }
     ],
     "modes": ["Global configuration (config)"],

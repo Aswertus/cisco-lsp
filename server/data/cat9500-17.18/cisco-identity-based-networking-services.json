@@ -24,7 +24,11 @@
       },
       {
         "name": "group",
-        "description": "Specifies one or more server groups to use for accounting services. Server groups are applied in the specified order. server-group-name Named subset of RADIUS or TACACS+ servers as defined by the aaa group server radius command or aaa group server tacacs+ command."
+        "description": "Specifies one or more server groups to use for accounting services. Server groups are applied in the specified order."
+      },
+      {
+        "name": "server-group-name",
+        "description": "Named subset of RADIUS or TACACS+ servers as defined by the aaa group server radius command or aaa group server tacacs+ command."
       },
       {
         "name": "radius",
@@ -179,7 +183,11 @@
       },
       {
         "name": "force-authorized",
-        "description": "Disables IEEE 802.1X on the interface and causes the port to change to the authorized state without requiring any authentication exchange. The port transmits and receives normal traffic without 802.1X-based authentication of the client. This is the default value. force-unauthorized Denies all access through this interface by forcing the port to change to the unauthorized state, ignoring all attempts by the client to authenticate."
+        "description": "Disables IEEE 802.1X on the interface and causes the port to change to the authorized state without requiring any authentication exchange. The port transmits and receives normal traffic without 802.1X-based authentication of the client. This is the default value."
+      },
+      {
+        "name": "force-unauthorized",
+        "description": "Denies all access through this interface by forcing the port to change to the unauthorized state, ignoring all attempts by the client to authenticate."
       }
     ],
     "modes": ["Interface configuration (config-if)"],
@@ -231,7 +239,11 @@
       },
       {
         "name": "single-host",
-        "description": "Sets single host mode as the host mode on the interface. interface-template sticky Sets the interface as sticky so that the interface template is retained even when the link is down or the device is disconnected."
+        "description": "Sets single host mode as the host mode on the interface."
+      },
+      {
+        "name": "interface-template sticky",
+        "description": "Sets the interface as sticky so that the interface template is retained even when the link is down or the device is disconnected."
       },
       {
         "name": "port-control",
@@ -427,7 +439,11 @@
     "params": [
       {
         "name": "legacy",
-        "description": "Displays the configuration using the legacy authentication manager style. This is the default mode. new-style Displays the configuration using the Cisco common classification policy language (C3PL) style that supports Identity-Based Networking Services."
+        "description": "Displays the configuration using the legacy authentication manager style. This is the default mode."
+      },
+      {
+        "name": "new-style",
+        "description": "Displays the configuration using the Cisco common classification policy language (C3PL) style that supports Identity-Based Networking Services."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -465,6 +481,10 @@
     "syntax": "banner [file location:filename | text banner-text]",
     "noForm": "no banner [file location:filename | text banner-text]",
     "params": [
+      {
+        "name": "file location:filename",
+        "description": "(Optional) Specifies a file that contains the banner to display on the web authentication login page."
+      },
       {
         "name": "text banner-text",
         "description": "(Optional) Specifies a text string to use as the banner. You must enter a delimiting character before and after the banner text. The delimiting character can be any character of your choice, such as “c” or “@.”"
@@ -515,7 +535,11 @@
     "params": [
       {
         "name": "priority-number",
-        "description": "Relative priority of the control class within the policy rule. This priority determines the order in which control policies are applied to a session. Range: 1 to 254, where 1 is the highest priority and 254 is the lowest. control-class-name Name of a previously configured control class as defined by the class-map type control subscriber command."
+        "description": "Relative priority of the control class within the policy rule. This priority determines the order in which control policies are applied to a session. Range: 1 to 254, where 1 is the highest priority and 254 is the lowest."
+      },
+      {
+        "name": "control-class-name",
+        "description": "Name of a previously configured control class as defined by the class-map type control subscriber command."
       },
       {
         "name": "always",
@@ -618,7 +642,11 @@
       },
       {
         "name": "success",
-        "description": "Displays the custom web page when the login is successful. location :filename Location and name of the locally stored HTML file to use in place of the default HTML file for the specified condition."
+        "description": "Displays the custom web page when the login is successful."
+      },
+      {
+        "name": "location :filename",
+        "description": "Location and name of the locally stored HTML file to use in place of the default HTML file for the specified condition."
       }
     ],
     "modes": ["Parameter map webauth configuration (config-params-parameter-map)"],
@@ -668,6 +696,10 @@
     "syntax": "debug access-session [feature feature-name] {all | detail | errors | events | sync}",
     "noForm": "no debug access-session [feature feature-name] {all | detail | errors | events | sync}",
     "params": [
+      {
+        "name": "feature feature-name",
+        "description": "(Optional) Displays debugging information about specific features. To display the valid feature names, use the question mark (?) online help function."
+      },
       {
         "name": "all",
         "description": "Displays all debugging information for Session Aware Networking."
@@ -769,8 +801,16 @@
     "noForm": "no event event-name [match-all | match-first]",
     "params": [
       {
+        "name": "event-name",
+        "description": "Event type that triggers actions after conditions in the control class are met. Valid keywords are: • aaa-available—A previously unreachable authentication, authorization, and accounting (AAA) server is available. • absolute-timeout—Absolute timer has expired on the session. This timer is configured with the absolute-timer command. • agent-found—Agent for authentication method is successfully detected. • authentication-failure—Session authentication has failed. • authentication-success—Session is successfully authenticated. • authorization-failure—Port authorization has failed. • inactivity-timeout—Inactivity timer has expired for the session. This timer is configured with the inactivity-timer command. • remote-authentication-failure—Remote session authentication failed. • remote-authentication-success—Remote session successfully authenticated. • session-started—Port-up event resulted in creating a session. This event is triggered when a new MAC address is detected on the relevant interface. • tag-added—A service template tag was added. This tag is specified with the tag (service-template) command. • tag-removed—A service template tag was removed. • template-activated—A service template is activated on the session. • template-activation-failed—Activating a service template on the session failed. • template-deactivated—A service template is deactivated on the session. • template-deactivation-failed—Deactivating a service template on the session failed. • timer-expiry—A timer that was started on the session expired. This timer is started with the set-timer command. • violation—Session violation detected."
+      },
+      {
         "name": "match-all",
-        "description": "(Optional) Evaluates all control classes. This is the default behavior. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2062 Security event match-first (Optional) Evaluates only the first control class."
+        "description": "(Optional) Evaluates all control classes. This is the default behavior."
+      },
+      {
+        "name": "match-first",
+        "description": "(Optional) Evaluates only the first control class."
       }
     ],
     "modes": ["Control policy-map event configuration (config-event-control-policymap)"],
@@ -812,6 +852,10 @@
     "syntax": "inactivity-timer minutes [probe]",
     "noForm": "no inactivity-timer",
     "params": [
+      {
+        "name": "minutes",
+        "description": "Maximum number of minutes that a session can be inactive. Range: 0 to 65535. Default: 0, which disables the timer."
+      },
       {
         "name": "probe",
         "description": "(Optional) Enables address resolution protocol (ARP) probes. These probes are sent before terminating the session."
@@ -1202,7 +1246,11 @@
       },
       {
         "name": "mab",
-        "description": "(Optional) Specifies the MAC authentication bypass (MAB) method. webauth (Optional) Specifies the web authentication method. result-type Type of authentication result. Valid keywords for result-type are: • aaa-timeout—authentication, authorization, and accounting (AAA) server timed out. • agent-not-found— The agent for the authentication method was not detected. • authoritative—Authorization failed. • method-timeout—The authentication method timed out. • none—No result. • success—Authentication was successful."
+        "description": "(Optional) Specifies the MAC authentication bypass (MAB) method."
+      },
+      {
+        "name": "webauth",
+        "description": "(Optional) Specifies the web authentication method. result-type Type of authentication result. Valid keywords for result-type are: • aaa-timeout—authentication, authorization, and accounting (AAA) server timed out. • agent-not-found— The agent for the authentication method was not detected. • authoritative—Authorization failed. • method-timeout—The authentication method timed out. • none—No result. • success—Authentication was successful."
       }
     ],
     "modes": ["Control class-map filter configuration (config-filter-control-classmap)"],
@@ -1441,11 +1489,19 @@
     "params": [
       {
         "name": "url",
-        "description": "Valid URL. match access-list-name (Optional) Specifies the name of an access control list to match."
+        "description": "Valid URL."
+      },
+      {
+        "name": "match access-list-name",
+        "description": "(Optional) Specifies the name of an access control list to match."
       },
       {
         "name": "one-time-redirect",
-        "description": "(Optional) Redirects traffic matching the access list only once. redirect-on-no-match (Optional) Redirects traffic not matching the access list."
+        "description": "(Optional) Redirects traffic matching the access list only once."
+      },
+      {
+        "name": "redirect-on-no-match",
+        "description": "(Optional) Redirects traffic not matching the access list."
       }
     ],
     "modes": ["Service template configuration (config-service-template)"],
@@ -1522,7 +1578,12 @@
     "detail": "Apply a control policy to an interface.",
     "syntax": "service-policy type control subscriber control-policy-name",
     "noForm": "no service-policy type control subscriber control-policy-name",
-    "params": [],
+    "params": [
+      {
+        "name": "control-policy-name",
+        "description": "Name of a previously configured control policy, as defined with the policy-map type control subscriber command. Use the question mark (?) online help function to display a list of all configured control policies."
+      }
+    ],
     "modes": ["Interface configuration (config-if)"],
     "usageSummary": "A control policy is activated by applying it to one or more interfaces.  Control policies apply to all sessions hosted on the interface.  Only one control policy may be applied to a given interface.",
     "sourcePage": 2108,
@@ -1628,7 +1689,7 @@
       },
       {
         "name": "details",
-        "description": "(Optional) Displays detailed information about each session instead of displaying a single-line summary. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 2112 Security show access-session"
+        "description": "(Optional) Displays detailed information about each session instead of displaying a single-line summary."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -1799,6 +1860,10 @@
     "noForm": "no subscriber aging",
     "params": [
       {
+        "name": "inactivity-timer seconds",
+        "description": "Maximum amount of time, in seconds, that a session can be inactive. Range: 1 to 65535. Default: 0, which sets the timer to disabled."
+      },
+      {
         "name": "probe",
         "description": "Enables an address resolution protocol (ARP) probe."
       }
@@ -1909,7 +1974,12 @@
     "detail": "Set the initialize (Init) state timeout for web authentication sessions.",
     "syntax": "timeout init-state min minutes",
     "noForm": "no timeout init-state min minutes",
-    "params": [],
+    "params": [
+      {
+        "name": "minutes",
+        "description": "Maximum duration of Init state, in minutes. Range: 1 to 65535. Default: 2."
+      }
+    ],
     "modes": ["Parameter-map type webauth configuration (config-params-parameter-map)"],
     "usageSummary": "Use the timeout init-state min command to limit the number of minutes that a web authentication session can stay in the Init state.  A session remains in the Init state until the user enters his or her username and password credentials.  If the timer expires before the user enters his or her credentials, the session is cleared.",
     "sourcePage": 2134,
@@ -2078,7 +2148,11 @@
       },
       {
         "name": "ipv6 ipv6-address",
-        "description": "Specifies the IPv6 address of a client to add to the watch list. dynamic-expiry-timeout minutes Sets the duration of time, in minutes, that an entry remains in the watch list. Range: 0 to 2147483647. Default: 30. 0 (zero) keeps the entry in the list permanently."
+        "description": "Specifies the IPv6 address of a client to add to the watch list."
+      },
+      {
+        "name": "dynamic-expiry-timeout minutes",
+        "description": "Sets the duration of time, in minutes, that an entry remains in the watch list. Range: 0 to 2147483647. Default: 30. 0 (zero) keeps the entry in the list permanently."
       },
       {
         "name": "enabled",

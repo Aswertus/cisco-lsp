@@ -20,7 +20,11 @@
       },
       {
         "name": "end-time",
-        "description": "Key is valid to be received from the start-time value until the end-timevalue. The syntax is the same as that for the start-timevalue. The end-time value must be after the start-timevalue. The default end time is an infinite time period. duration seconds Length of time (in seconds) that the key is valid to be received. The range is from 1 to 2147483646."
+        "description": "Key is valid to be received from the start-time value until the end-timevalue. The syntax is the same as that for the start-timevalue. The end-time value must be after the start-timevalue. The default end time is an infinite time period."
+      },
+      {
+        "name": "duration seconds",
+        "description": "Length of time (in seconds) that the key is valid to be received. The range is from 1 to 2147483646."
       }
     ],
     "modes": ["Key chain key configuration (config-keychain-key)"],
@@ -249,7 +253,7 @@
       },
       {
         "name": "transmit-delay seconds",
-        "description": "(Optional) Specifies the estimated time (in seconds) required to send a link-state update packet on the interface. The integer value that must be greater than zero. LSAs in the update packet have their age incremented by this amount before transmission. The range is from 1 to 8192. The default value is 1. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1500 Routing area virtual-link"
+        "description": "(Optional) Specifies the estimated time (in seconds) required to send a link-state update packet on the interface. The integer value that must be greater than zero. LSAs in the update packet have their age incremented by this amount before transmission. The range is from 1 to 8192. The default value is 1."
       },
       {
         "name": "dead-interval seconds",
@@ -299,7 +303,11 @@
     "params": [
       {
         "name": "authentication-type",
-        "description": "Authentication type. Valid values are md5, meticulous-md5, meticulous-sha1, and sha-1. keychain keychain-name Configures an authentication key chain with the specified name. The maximum number of characters allowed in the name is 32."
+        "description": "Authentication type. Valid values are md5, meticulous-md5, meticulous-sha1, and sha-1."
+      },
+      {
+        "name": "keychain keychain-name",
+        "description": "Configures an authentication key chain with the specified name. The maximum number of characters allowed in the name is 32."
       }
     ],
     "modes": ["BFD configuration (config-bfd)"],
@@ -486,7 +494,11 @@
       },
       {
         "name": "all",
-        "description": "(Optional) Specifies the reset of all address family sessions. autonomous-system-number Number of the autonomous system in which all BGP peer sessions will be reset. Number in the range from 1 to 65535. • In Cisco IOS Release 12.0(32)SY8, 12.0(33)S3, 12.2(33)SRE, 12.2(33)XNE, 12.2(33)SXI1, Cisco IOS XE Release 2.4, and later releases, 4-byte autonomous system numbers are supported in the range from 65536 to 4294967295 in asplain notation and in the range from 1.0 to 65535.65535 in asdot notation. • In Cisco IOS Release 12.0(32)S12, 12.4(24)T, and Cisco IOS XE Release 2.3, 4-byte autonomous system numbers are supported in the range from 1.0 to 65535.65535 in asdot notation only. For more details about autonomous system number formats, see the router bgp command."
+        "description": "(Optional) Specifies the reset of all address family sessions."
+      },
+      {
+        "name": "autonomous-system-number",
+        "description": "Number of the autonomous system in which all BGP peer sessions will be reset. Number in the range from 1 to 65535. • In Cisco IOS Release 12.0(32)SY8, 12.0(33)S3, 12.2(33)SRE, 12.2(33)XNE, 12.2(33)SXI1, Cisco IOS XE Release 2.4, and later releases, 4-byte autonomous system numbers are supported in the range from 65536 to 4294967295 in asplain notation and in the range from 1.0 to 65535.65535 in asdot notation. • In Cisco IOS Release 12.0(32)S12, 12.4(24)T, and Cisco IOS XE Release 2.3, 4-byte autonomous system numbers are supported in the range from 1.0 to 65535.65535 in asdot notation only. For more details about autonomous system number formats, see the router bgp command."
       },
       {
         "name": "neighbor-address",
@@ -545,7 +557,11 @@
       },
       {
         "name": "type-value",
-        "description": "into the OSPF routing domain. It can be one of the following values: • Type 1 external route. • Type 2 external route. The default is type 2 external route. route-map map-name (Optional) The routing process will generate the default route if the route map is satisfied."
+        "description": "into the OSPF routing domain. It can be one of the following values: • Type 1 external route. • Type 2 external route. The default is type 2 external route."
+      },
+      {
+        "name": "route-map map-name",
+        "description": "(Optional) The routing process will generate the default route if the route map is satisfied."
       }
     ],
     "modes": [
@@ -599,7 +615,11 @@
       },
       {
         "name": "wildcard-mask",
-        "description": "(Optional) Wildcard mask in four-part, dotted-decimal format. A bit set to 1 in the wildcard-mask argument instructs the software to ignore the corresponding bit in the address value. access-list-name (Optional) Name of an IP access list to be applied to incoming routing updates."
+        "description": "(Optional) Wildcard mask in four-part, dotted-decimal format. A bit set to 1 in the wildcard-mask argument instructs the software to ignore the corresponding bit in the address value."
+      },
+      {
+        "name": "access-list-name",
+        "description": "(Optional) Name of an IP access list to be applied to incoming routing updates."
       }
     ],
     "modes": ["Router configuration (config-router)", "VRF configuration (config-vrf)"],
@@ -808,7 +828,11 @@
       },
       {
         "name": "linecard-disjoint",
-        "description": "Enables EIGRP FRR to choose an LFA that does not share the line card with the primary path. The default priority is 40. lowest-backup-path-metric Enables EIGRP FRR to choose the LFA with the lowest metric to the protected destination. The default priority is 30."
+        "description": "Enables EIGRP FRR to choose an LFA that does not share the line card with the primary path. The default priority is 40."
+      },
+      {
+        "name": "lowest-backup-path-metric",
+        "description": "Enables EIGRP FRR to choose the LFA with the lowest metric to the protected destination. The default priority is 30."
       },
       {
         "name": "srlg-disjoint",
@@ -952,7 +976,7 @@
       },
       {
         "name": "community-number",
-        "description": "(Optional) 32-bit number from 1 to 4294967200. A single community can be entered or multiple communities can be entered, each separated by a space. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1552 Routing ip community-list"
+        "description": "(Optional) 32-bit number from 1 to 4294967200. A single community can be entered or multiple communities can be entered, each separated by a space."
       },
       {
         "name": "AA :NN",
@@ -972,7 +996,7 @@
       },
       {
         "name": "no-export",
-        "description": "(Optional) Specifies the no-export community. Routes with this community are advertised to only peers in the same autonomous system or to only other subautonomous systems within a confederation. These routes are not advertised to external peers. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1553 Routing ip community-list"
+        "description": "(Optional) Specifies the no-export community. Routes with this community are advertised to only peers in the same autonomous system or to only other subautonomous systems within a confederation. These routes are not advertised to external peers."
       },
       {
         "name": "gshut",
@@ -1198,6 +1222,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "protection",
+        "description": "Specifies that the interface is protected, that is, routes pointing to this interface can have a repair path."
+      },
+      {
         "name": "disable",
         "description": "(Optional) Specifies that the interface is either protecting or protected."
       }
@@ -1361,7 +1389,11 @@
     "params": [
       {
         "name": "tag-value",
-        "description": "Route tag value, in plain decimals. The valid range is from 0 to 4294967295. tag-value-dotted-decimal Route tag value, in dotted decimals. The valid range is from 0.0.0.0 to 255.255.255.255."
+        "description": "Route tag value, in plain decimals. The valid range is from 0 to 4294967295."
+      },
+      {
+        "name": "tag-value-dotted-decimal",
+        "description": "Route tag value, in dotted decimals. The valid range is from 0.0.0.0 to 255.255.255.255."
       }
     ],
     "modes": ["Route-map configuration (config-route-map)"],
@@ -1381,7 +1413,11 @@
     "params": [
       {
         "name": "tos",
-        "description": "Type of service. This value must always be zero. k1 k2 k3 k4 k5 k6 (Optional) Constants that convert an EIGRP metric vector into a scalar quantity. Valid values are 0 to 255. Given below are the default values: • k1: 1 • k2: 0 • k3: 1 • k4: 0 • k5: 0 • k6: 0 Note In address family configuration mode, if the values are not specified, default values are configured. The k6 argument is supported only in address family configuration mode."
+        "description": "Type of service. This value must always be zero."
+      },
+      {
+        "name": "k1 k2 k3 k4 k5 k6",
+        "description": "(Optional) Constants that convert an EIGRP metric vector into a scalar quantity. Valid values are 0 to 255. Given below are the default values: • k1: 1 • k2: 0 • k3: 1 • k4: 0 • k5: 0 • k6: 0 Note In address family configuration mode, if the values are not specified, default values are configured. The k6 argument is supported only in address family configuration mode."
       }
     ],
     "modes": [
@@ -1835,7 +1871,7 @@
     "params": [
       {
         "name": "protocol",
-        "description": "Source protocol from which routes are being redistributed. It can be one of the following keywords: application, bgp, connected, eigrp, isis, mobile, ospf, rip, or static [ip]. The static [ip] keyword is used to redistribute IP static routes. The optional ip keyword is used when redistributing into the Intermediate System-to-Intermediate System (IS-IS) protocol. The application keyword is used to redistribute an application from one routing domain to another. You can redistribute more than one application to different routing protocols such as IS-IS, OSPF, Border Gateway Protocol (BGP), Enhanced Interior Gateway Routing Protocol (EIGRP) and Routing Information Protocol (RIP). The connected keyword refers to routes that are established automatically by virtue of having enabled IP on an interface. For routing protocols such as Open Shortest Path First (OSPF) and IS-IS, these routes will be redistributed as external to the autonomous system. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1605 Routing redistribute (IP)"
+        "description": "Source protocol from which routes are being redistributed. It can be one of the following keywords: application, bgp, connected, eigrp, isis, mobile, ospf, rip, or static [ip]. The static [ip] keyword is used to redistribute IP static routes. The optional ip keyword is used when redistributing into the Intermediate System-to-Intermediate System (IS-IS) protocol. The application keyword is used to redistribute an application from one routing domain to another. You can redistribute more than one application to different routing protocols such as IS-IS, OSPF, Border Gateway Protocol (BGP), Enhanced Interior Gateway Routing Protocol (EIGRP) and Routing Information Protocol (RIP). The connected keyword refers to routes that are established automatically by virtue of having enabled IP on an interface. For routing protocols such as Open Shortest Path First (OSPF) and IS-IS, these routes will be redistributed as external to the autonomous system. Routing redistribute (IP)"
       },
       {
         "name": "process-id",
@@ -1863,11 +1899,15 @@
       },
       {
         "name": "metric transparent",
-        "description": "(Optional) Causes RIP to use the routing table metric for redistributed routes as the RIP metric. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1606 Routing redistribute (IP)"
+        "description": "(Optional) Causes RIP to use the routing table metric for redistributed routes as the RIP metric. Routing redistribute (IP)"
       },
       {
         "name": "metric-type type value",
-        "description": "(Optional) For OSPF, specifies the external link type associated with the default route advertised into the OSPF routing domain. It can be one of two values: • 1—Type 1 external route • 2—Type 2 external route If a metric-type is not specified, the Cisco IOS software adopts a Type 2 external route. For IS-IS, it can be one of two values: • internal—IS-IS metric that is < 63. • external—IS-IS metric that is > 64 < 128. The default is internal. match {internal | external1 | external2} (Optional) Specifies the criteria by which OSPF routes are redistributed into other routing domains. It can be one of the following: • internal—Routes that are internal to a specific autonomous system. • external 1—Routes that are external to the autonomous system, but are imported into OSPF as Type 1 external routes. • external 2—Routes that are external to the autonomous system, but are imported into OSPF as Type 2 external routes. The default is internal."
+        "description": "(Optional) For OSPF, specifies the external link type associated with the default route advertised into the OSPF routing domain. It can be one of two values: • 1—Type 1 external route • 2—Type 2 external route If a metric-type is not specified, the Cisco IOS software adopts a Type 2 external route. For IS-IS, it can be one of two values: • internal—IS-IS metric that is < 63. • external—IS-IS metric that is > 64 < 128. The default is internal."
+      },
+      {
+        "name": "match {internal | external1 | external2}",
+        "description": "(Optional) Specifies the criteria by which OSPF routes are redistributed into other routing domains. It can be one of the following: • internal—Routes that are internal to a specific autonomous system. • external 1—Routes that are external to the autonomous system, but are imported into OSPF as Type 1 external routes. • external 2—Routes that are external to the autonomous system, but are imported into OSPF as Type 2 external routes. The default is internal."
       },
       {
         "name": "tag tag-value",
@@ -1879,7 +1919,7 @@
       },
       {
         "name": "map-tag",
-        "description": "(Optional) Identifier of a configured route map. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1607 Routing redistribute (IP)"
+        "description": "(Optional) Identifier of a configured route map. Routing redistribute (IP)"
       },
       {
         "name": "subnets",
@@ -1913,7 +1953,11 @@
       },
       {
         "name": "process-id",
-        "description": "(Optional) For the bgp or eigrp keyword, the process ID is an autonomous system number, which is a 16-bit decimal number. For the isis keyword, the process ID is an optional value that defines a meaningful name for a routing process. You can specify only one Intermediate System-to-Intermediate System (IS-IS) process per router. Creating a name for a routing process means that you use names when configuring routing. For the ospf keyword, the process ID is the number that is assigned administratively when the Open Shortest Path First (OSPF) for the IPv6 routing process is enabled. For the rip keyword, the process ID is an optional value that defines a meaningful name for an IPv6 Routing Information Protocol (RIP) routing process. include-connected (Optional) Allows the target protocol to redistribute routes that are learned by the source protocol and connected prefixes on those interfaces over which the source protocol is running."
+        "description": "(Optional) For the bgp or eigrp keyword, the process ID is an autonomous system number, which is a 16-bit decimal number. For the isis keyword, the process ID is an optional value that defines a meaningful name for a routing process. You can specify only one Intermediate System-to-Intermediate System (IS-IS) process per router. Creating a name for a routing process means that you use names when configuring routing. For the ospf keyword, the process ID is the number that is assigned administratively when the Open Shortest Path First (OSPF) for the IPv6 routing process is enabled. For the rip keyword, the process ID is an optional value that defines a meaningful name for an IPv6 Routing Information Protocol (RIP) routing process."
+      },
+      {
+        "name": "include-connected",
+        "description": "(Optional) Allows the target protocol to redistribute routes that are learned by the source protocol and connected prefixes on those interfaces over which the source protocol is running."
       },
       {
         "name": "level-1",
@@ -1937,7 +1981,7 @@
       },
       {
         "name": "metric-value",
-        "description": "the same router, the metric is carried through from one process to the other if no metric value is specified. When redistributing other processes to an OSPF process, the default metric is 20 when no metric value is specified. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1613 Routing redistribute (IPv6)"
+        "description": "the same router, the metric is carried through from one process to the other if no metric value is specified. When redistributing other processes to an OSPF process, the default metric is 20 when no metric value is specified. Routing redistribute (IPv6)"
       },
       {
         "name": "metric-type",
@@ -2040,7 +2084,11 @@
       },
       {
         "name": "sequence-number",
-        "description": "(Optional) Number that indicates the position a new route map will have in the list of route maps already configured with the same name. ordering-seq sequence-name (Optional) Orders the route maps based on the string provided."
+        "description": "(Optional) Number that indicates the position a new route map will have in the list of route maps already configured with the same name."
+      },
+      {
+        "name": "ordering-seq sequence-name",
+        "description": "(Optional) Orders the route maps based on the string provided."
       }
     ],
     "modes": ["Global configuration (config)"],
@@ -2320,11 +2368,15 @@
       },
       {
         "name": "route-map name",
-        "description": "(Optional) Filters the output based on the specified route map. version version-number (Optional) Displays all prefixes with network versions greater than or equal to the specified version number. The range is from 1 to 4294967295."
+        "description": "(Optional) Filters the output based on the specified route map."
+      },
+      {
+        "name": "version version-number",
+        "description": "(Optional) Displays all prefixes with network versions greater than or equal to the specified version number. The range is from 1 to 4294967295."
       },
       {
         "name": "recent offset-value",
-        "description": "(Optional) Displays the offset from the current routing table version. The range is from 1 to 4294967295. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1637 Routing show ip bgp"
+        "description": "(Optional) Displays the offset from the current routing table version. The range is from 1 to 4294967295."
       }
     ],
     "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
@@ -2408,7 +2460,7 @@
       },
       {
         "name": "routes",
-        "description": "(Optional) Displays all routes that are received and accepted. The output displayed when this keyword is entered is a subset of the output displayed by the received-routes keyword. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1649 Routing show ip bgp neighbors"
+        "description": "(Optional) Displays all routes that are received and accepted. The output displayed when this keyword is entered is a subset of the output displayed by the received-routes keyword."
       }
     ],
     "modes": ["User EXEC (>) Privileged EXEC (#)"],
@@ -2425,7 +2477,12 @@
     "detail": "Display entries in the Internet Protocol version 6 (IPv6) Border Gateway Protocol (BGP) routing table.",
     "syntax": "show ip bgp ipv6 unicast [ prefix / length ]",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "prefix /length",
+        "description": "(Optional) IPv6 network number and length of the IPv6 prefix, entered to display a particular network in the IPv6 BGP routing table. • The length is a decimal value that indicates how many of the high-order contiguous bits of the address comprise the prefix (the network portion of the address). A slash mark must precede the decimal value."
+      }
+    ],
     "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
     "usageSummary": "The show ip bgp ipv6 unicast command provides output similar to the show ip bgp command, except that it is IPv6 specific.",
     "sourcePage": 1664,
@@ -2447,7 +2504,11 @@
       },
       {
         "name": "vrf *",
-        "description": "(Optional) Displays information about all VRFs. autonomous-system-number (Optional) Autonomous system number."
+        "description": "(Optional) Displays information about all VRFs."
+      },
+      {
+        "name": "autonomous-system-number",
+        "description": "(Optional) Autonomous system number."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -2467,7 +2528,11 @@
     "params": [
       {
         "name": "vrf vrf-name",
-        "description": "(Optional) Displays information about the specified virtual routing and forwarding (VRF) instance. autonomous-system-number (Optional) Autonomous system number whose output needs to be filtered."
+        "description": "(Optional) Displays information about the specified virtual routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "autonomous-system-number",
+        "description": "(Optional) Autonomous system number whose output needs to be filtered."
       },
       {
         "name": "type",
@@ -2511,7 +2576,11 @@
       },
       {
         "name": "detail",
-        "description": "(Optional) Displays detailed neighbor information. interface-type interface-number (Optional) Interface-specific output is displayed."
+        "description": "(Optional) Displays detailed neighbor information."
+      },
+      {
+        "name": "interface-type interface-number",
+        "description": "(Optional) Interface-specific output is displayed."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -2555,7 +2624,11 @@
       },
       {
         "name": "pending",
-        "description": "(Optional) Displays all the entries in the EIGRP topology table that are either waiting for an update from a neighbor or to reply to a neighbor. secondary-paths (Optional) Displays the secondary paths in the topology."
+        "description": "(Optional) Displays all the entries in the EIGRP topology table that are either waiting for an update from a neighbor or to reply to a neighbor."
+      },
+      {
+        "name": "secondary-paths",
+        "description": "(Optional) Displays the secondary paths in the topology."
       },
       {
         "name": "summary",
@@ -2654,7 +2727,7 @@
       },
       {
         "name": "adv-router [ip-address",
-        "description": "(Optional) Displays all the LSAs of the specified router. If no IP address is included, the information is about the local router itself (in this case, the same as self-originate). Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1691 Routing show ip ospf database"
+        "description": "(Optional) Displays all the LSAs of the specified router. If no IP address is included, the information is about the local router itself (in this case, the same as self-originate)."
       },
       {
         "name": "link-state-id",
@@ -2726,7 +2799,11 @@
       },
       {
         "name": "prefix-summary",
-        "description": "(Optional) Displays information about the prefixes protected by the LFA FRR repair paths. remote-lfa tunnels (Optional) Displays information about the tunnel interfaces created by the remote LFA FRR."
+        "description": "(Optional) Displays information about the prefixes protected by the LFA FRR repair paths."
+      },
+      {
+        "name": "remote-lfa tunnels",
+        "description": "(Optional) Displays information about the tunnel interfaces created by the remote LFA FRR."
       },
       {
         "name": "ti-lfa [tunnels]",
@@ -2766,7 +2843,11 @@
       },
       {
         "name": "multicast",
-        "description": "(Optional) Displays multicast information. topology topology-name (Optional) Displays OSPF-related information about the named topology instance."
+        "description": "(Optional) Displays multicast information."
+      },
+      {
+        "name": "topology topology-name",
+        "description": "(Optional) Displays OSPF-related information about the named topology instance."
       },
       {
         "name": "topology base",

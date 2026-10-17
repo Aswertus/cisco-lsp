@@ -163,11 +163,7 @@ parenthetical, or null); `detail` (the intro sentence, with the "To ... use the 
 Y mode" boilerplate framing trimmed down to just the action, when that exact phrasing
 matches -- phrasing varies enough across entries, e.g. "Configures the ..." instead of "To
 ...", that this is best-effort, not a hard requirement); `syntax` / `noForm`; `params`
-(best-effort -- the two-column Syntax Description table occasionally loses alignment in
-`-layout` output, and a single-parameter entry is sometimes laid out with only one space
-between name and description instead of the usual 2+ space column gap; "This command has no
-arguments or keywords." is recognized and produces an empty `params` array rather than a
-fake parameter); `modes` (can list more than one, blank-line-separated; a handful of
+(see "Syntax Description tables" below); `modes` (can list more than one, blank-line-separated; a handful of
 EXEC-only commands fold their mode directly into `Command Default`, e.g. `Privileged EXEC
 (#)`, instead of a separate `Command Modes` section -- detected and used as a fallback);
 `usageSummary` (first 2-3 sentences, stopped before any `Note` callout or the `Examples`
@@ -216,3 +212,38 @@ Pick a short `packId` slug (e.g. `cat9300-17.12`). The script fully regenerates 
 own `server/data/<packId>/` subdirectory from scratch and never touches another pack's
 files. Re-read this document while reviewing the new pack's output, and update it if the new
 manual reveals a structural variant the cases above don't already cover.
+
+## Syntax Description tables (`params`)
+
+Parsed by `scripts/lib/extract-params.js` (unit-tested in `test/extract-params.test.js`) from
+the section text **with its real columns**: `sectionColumns` blanks the label to spaces instead
+of cutting it off. Rows are told apart by **indentation**, not only by the 2+ space gap
+between name and description — the gap alone lost rows in ~700 commands (2026-10). Quirks
+handled, each with a test:
+
+- **Overflowing name**: a name wider than its column (`name vlan_name` in
+  `switchport voice vlan`) leaves one space before the description. The row still starts in
+  the name column; the description starts where the next (continuation) line starts — but
+  only if the text there begins like a description (capital or `(Optional)`), because
+  bulleted continuations are indented deeper (`logging console`'s `level`).
+- **Page breaks**: the table continues shifted right on the next page (names at column 28
+  instead of 21). A row with a clear gap left of the description column re-anchors the
+  name/description columns. Page furniture in between (footer "Command Reference, Cisco
+  IOS ...", page number, chapter title, running header = command name) is dropped.
+- **`Note` callouts** sit in the description column and stay description text, not a
+  parameter named "Note".
+- **Repeated label**: some entries print "Syntax Description" twice; every occurrence is
+  blanked.
+- **Long names** (more than four words, e.g. `switch {switch_num | active | standby }`) are
+  split at the first wide gap.
+- **Rows that repeat the command** (multi-word commands only): `switchport voice
+vlanvlan_id Specifies ...` (argument glued on in the PDF) yields `vlan_id`; `switchport
+mode access Sets the interface ...` describes the command itself and yields no parameter.
+  Single-word commands are excluded — their parameters are often named like them
+  (`description`, `exporter` → `exporter-name`).
+- A row that can't be split is kept as description text, never turned into a fake parameter;
+  "This command has no arguments or keywords." gives an empty `params`.
+
+When changing the parser, regenerate every pack and diff `params` per command against the
+previous data (names lost, names grown by a word, junk names, footer text in descriptions)
+before committing.

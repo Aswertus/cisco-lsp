@@ -2,7 +2,7 @@
   "name": "cisco-ios-lsp",
   "displayName": "Cisco IOS/IOS-XE IntelliSense",
   "description": "Context-aware completions, hover docs, and diagnostics for Cisco IOS/IOS-XE config files.",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "publisher": "Aswertus",
   "license": "MIT",
   "icon": "images/icon.png",
@@ -213,7 +213,7 @@
           "cisco-ios-lsp.placeholders.fillCharacters": {
             "type": "string",
             "default": "X",
-            "markdownDescription": "Characters that mark a value still to be filled in, e.g. `X` for `VlanXX`, `Gi1/0/X`, `X.X.X.X`. A letter counts as a single letter between non-letters or a run of 2+ capitals not touching other capitals (`VlanXX`, `ACL-XXX`, not `MAX`/`XXL`); a symbol counts in any run (`Vlan##`). `<NAME>`, `$VAR`, `${VAR}` and Jinja are always recognised. Avoid common letters (they hide real names) and `#` (it clashes with prompt lines like `SW1#show run`).",
+            "markdownDescription": "Characters that mark a value still to be filled in, e.g. `X` for `VlanXX`, `Gi1/0/X`, `X.X.X.X`. Letters are case-sensitive: `X` marks only capitals, `x` only lower case (`xx.xx.xx.xx`, `x.x.x.x`), `Xx` both. A capital counts as a single letter between non-letters or a run of 2+ capitals not touching other capitals (`VlanXX`, `ACL-XXX`, not `MAX`/`XXL`); a lower-case letter counts next to `.` `/` `:` or as a run not touching any other letter (not `Vlanxx`). A symbol counts in any run (`Vlan##`). `<NAME>`, `$VAR`, `${VAR}` and Jinja are always recognised. Avoid common letters (they hide real names) and `#` (it clashes with prompt lines like `SW1#show run`).",
             "order": 2
           }
         }

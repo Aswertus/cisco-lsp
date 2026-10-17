@@ -76,7 +76,12 @@
     "detail": "Create a dynamic End Point Identifier (EID) policy and enter the dynamic-eid configuration mode on an xTR.",
     "syntax": "dynamic-eid eid-name",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "eid-name",
+        "description": "If eid-name exists, it enters eid-name configuration mode. Else, a new dynamic-eid policy with name eid-name is created and it enters the dynamic-eid configuration mode."
+      }
+    ],
     "modes": ["LISP EID-table (router-lisp-eid-table)"],
     "usageSummary": "To configure LISP mobility, create a dynamic-EID roaming policy that can be referenced by the lisp mobility interface command.  After you execute the dynamic-eid command, the referenced LISP dynamic-EID policy is created and the device goes to dynamic-EID configuration mode.  In this mode, all attributes that are associated with the referenced LISP dynamic-EID policy can be configured.",
     "sourcePage": 21,
@@ -426,7 +431,15 @@
       },
       {
         "name": "vrf-name",
-        "description": "Name assigned to the VRF. rp-address IP address of a router to be a PIM RP. This is a unicast IP address in four-part dotted-decimal notation. access-list Number or name of an access list that defines the multicast groups for which the RP should be used."
+        "description": "Name assigned to the VRF."
+      },
+      {
+        "name": "rp-address",
+        "description": "IP address of a router to be a PIM RP. This is a unicast IP address in four-part dotted-decimal notation."
+      },
+      {
+        "name": "access-list",
+        "description": "Number or name of an access list that defines the multicast groups for which the RP should be used."
       }
     ],
     "modes": ["Global Configuration (config)"],
@@ -512,7 +525,11 @@
       },
       {
         "name": "weight locator-weight",
-        "description": "Configures the load-balance on the device. Values range from 0 to 100. affinity-id x-dimension[ ,y-dimension] Configures an Affinity ID, which is specified by the x dimension and an optional y dimension values."
+        "description": "Configures the load-balance on the device. Values range from 0 to 100."
+      },
+      {
+        "name": "affinity-id x-dimension[ ,y-dimension]",
+        "description": "Configures an Affinity ID, which is specified by the x dimension and an optional y dimension values."
       }
     ],
     "modes": ["Locator-Set (config-router-lisp-locator-set)"],
@@ -582,7 +599,12 @@
     "detail": "Specify a locator-set and enter the locator-set configuration mode.",
     "syntax": "locator-set loc-set-name",
     "noForm": "no locator-set loc-set-name",
-    "params": [],
+    "params": [
+      {
+        "name": "loc-set-name",
+        "description": "Name of locator-set."
+      }
+    ],
     "modes": ["LISP (router-lisp)"],
     "usageSummary": "You must first define the locator-set before referring to it.",
     "sourcePage": 53,
@@ -652,7 +674,12 @@
     "detail": "Define a named LISP prefix set and to enter the LISP prefix-list configuration mode.",
     "syntax": "prefix-list prefix-list-name",
     "noForm": "no prefix-list prefix-list-name",
-    "params": [],
+    "params": [
+      {
+        "name": "prefix-list",
+        "description": "prefix-list-name Specifies the prefix list to be used and enters the prefix-list configuration mode. Specifies IPv4 EID-prefixes or IPv6 EID-prefixes in the prefix-list mode."
+      }
+    ],
     "modes": ["LISP (router-lisp)"],
     "usageSummary": "Use the prefix-list command to configure an IPV4 or IPv6 prefix list.  This command places the router in prefix-list configuration mode, in which you can define IPv4 prefix list, or IPv6 prefix list.  Use the exit-prefix-list command to exit the prefix-list-configuration mode.",
     "sourcePage": 56,
@@ -896,7 +923,11 @@
     "params": [
       {
         "name": "destination-EID",
-        "description": "(Optional) Specifies the IPv4 destination end point identifier (EID) for which the EID-to-RLOC mapping is displayed. destination-EID-prefix (Optional) Specifies the IPv4 destinationEID prefix (in the form of a.b.c.d/nn) for which to display the mapping."
+        "description": "(Optional) Specifies the IPv4 destination end point identifier (EID) for which the EID-to-RLOC mapping is displayed."
+      },
+      {
+        "name": "destination-EID-prefix",
+        "description": "(Optional) Specifies the IPv4 destinationEID prefix (in the form of a.b.c.d/nn) for which to display the mapping."
       },
       {
         "name": "detail",
@@ -920,7 +951,11 @@
     "params": [
       {
         "name": "destination-EID",
-        "description": "(Optional) Specifies the IPv4 destination end point identifier (EID) for which the EID-to-RLOC mapping is displayed. destination-EID-prefix (Optional) Specifies the IPv4 destination EID prefix (in the form of a.b.c.d/nn) for which to display the mapping."
+        "description": "(Optional) Specifies the IPv4 destination end point identifier (EID) for which the EID-to-RLOC mapping is displayed."
+      },
+      {
+        "name": "destination-EID-prefix",
+        "description": "(Optional) Specifies the IPv4 destination EID prefix (in the form of a.b.c.d/nn) for which to display the mapping."
       },
       {
         "name": "detail",
@@ -964,7 +999,11 @@
       },
       {
         "name": "summary",
-        "description": "(Optional) Displays summary information for each site. silent-host-detection (Optional) Displays the silent host detection registration information on the Map Server Map Resolver (MSMR)."
+        "description": "(Optional) Displays summary information for each site."
+      },
+      {
+        "name": "silent-host-detection",
+        "description": "(Optional) Displays the silent host detection registration information on the Map Server Map Resolver (MSMR)."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -1004,7 +1043,11 @@
       },
       {
         "name": "summary",
-        "description": "(Optional) Displays summary information for each site. silent-host-detection (Optional) Displays the silent host detection registration information on the Map Server Map Resolver (MSMR)."
+        "description": "(Optional) Displays summary information for each site."
+      },
+      {
+        "name": "silent-host-detection",
+        "description": "(Optional) Displays the silent host detection registration information on the Map Server Map Resolver (MSMR)."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -1079,7 +1122,11 @@
     "params": [
       {
         "name": "all",
-        "description": "(Optional) Displays transport session inforamtion for all the sessions. established (Optional) Displays transport session information for established connections."
+        "description": "(Optional) Displays transport session inforamtion for all the sessions."
+      },
+      {
+        "name": "established",
+        "description": "(Optional) Displays transport session information for established connections."
       }
     ],
     "modes": ["Privileged Exec"],
@@ -1099,7 +1146,11 @@
     "params": [
       {
         "name": "locator-address",
-        "description": "The name of locator-set that is set as default. priority priority (Optional) Specifies the priority (value between 0 and 255) assigned to this PETR. A lower value indicates a higher priority."
+        "description": "The name of locator-set that is set as default."
+      },
+      {
+        "name": "priority priority",
+        "description": "(Optional) Specifies the priority (value between 0 and 255) assigned to this PETR. A lower value indicates a higher priority."
       },
       {
         "name": "weight weight",

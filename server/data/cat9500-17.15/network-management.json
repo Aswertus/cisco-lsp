@@ -135,7 +135,11 @@
       },
       {
         "name": "interface",
-        "description": "Configures the input and output interface name as a non-key field for a flow record. For more information, see collect interface. timestamp Configures the absolute time of the first seen or last seen packet in a flow as a non-key field for a flow record. For more information, see collect timestamp absolute."
+        "description": "Configures the input and output interface name as a non-key field for a flow record. For more information, see collect interface."
+      },
+      {
+        "name": "timestamp",
+        "description": "Configures the absolute time of the first seen or last seen packet in a flow as a non-key field for a flow record. For more information, see collect timestamp absolute."
       },
       {
         "name": "transport",
@@ -1038,7 +1042,11 @@
     "params": [
       {
         "name": "monitor-name",
-        "description": "Name of the flow monitor to apply to the interface. sampler sampler-name (Optional) Enables the specified flow sampler for the flow monitor."
+        "description": "Name of the flow monitor to apply to the interface."
+      },
+      {
+        "name": "sampler sampler-name",
+        "description": "(Optional) Enables the specified flow sampler for the flow monitor."
       },
       {
         "name": "input",
@@ -1062,7 +1070,11 @@
     "params": [
       {
         "name": "monitor-name",
-        "description": "Name of the flow monitor to apply to the interface. sampler sampler-name (Optional) Enables the specified flow sampler for the flow monitor."
+        "description": "Name of the flow monitor to apply to the interface."
+      },
+      {
+        "name": "sampler sampler-name",
+        "description": "(Optional) Enables the specified flow sampler for the flow monitor."
       },
       {
         "name": "input",
@@ -1555,7 +1567,11 @@
       },
       {
         "name": "control-plane",
-        "description": "Specifies the control plane as an attachment point. in | out | both Specifies the traffic direction to be captured."
+        "description": "Specifies the control plane as an attachment point."
+      },
+      {
+        "name": "in | out | both",
+        "description": "Specifies the traffic direction to be captured."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -1623,7 +1639,11 @@
     "params": [
       {
         "name": "capture-name",
-        "description": "The name of the capture to be exported. file-location : file-name (Optional) Specifies the location and file name of the capture storage file. Acceptable values for file-location : • flash—On-board flash storage • — USB drive"
+        "description": "The name of the capture to be exported."
+      },
+      {
+        "name": "file-location : file-name",
+        "description": "(Optional) Specifies the location and file name of the capture storage file. Acceptable values for file-location : • flash—On-board flash storage • — USB drive"
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -1683,7 +1703,11 @@
       },
       {
         "name": "duration seconds",
-        "description": "(Optional) Specifies the duration of the capture, in seconds. The range is from 1 to 1000000. packet-length size (Optional) Specifies the packet length, in bytes. If the actual packet is longer than the specified length, only the first set of bytes whose number is denoted by the bytes argument is stored."
+        "description": "(Optional) Specifies the duration of the capture, in seconds. The range is from 1 to 1000000."
+      },
+      {
+        "name": "packet-length size",
+        "description": "(Optional) Specifies the packet length, in bytes. If the actual packet is longer than the specified length, only the first set of bytes whose number is denoted by the bytes argument is stored."
       },
       {
         "name": "packets num",
@@ -1883,7 +1907,7 @@
       },
       {
         "name": "remote",
-        "description": "Specifies the remote VLAN for an RSPAN so 1006 to 4094. The RSPAN VLAN cannot be VLAN 1 (the d for Token Ring and FDDI VLANs). Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1290 Network Management monitor session destination"
+        "description": "Specifies the remote VLAN for an RSPAN so 1006 to 4094. The RSPAN VLAN cannot be VLAN 1 (the d for Token Ring and FDDI VLANs)."
       },
       {
         "name": "vlan vlan-id",
@@ -1951,7 +1975,11 @@
       },
       {
         "name": "-",
-        "description": "(Optional) Specifies a range of interfaces or VLANs. Enter a space before and after the hyphen. both | rx | tx (Optional) Specifies the traffic direction to monitor. If you do not specify a traffic direction, the source interface sends both transmitted and received traffic."
+        "description": "(Optional) Specifies a range of interfaces or VLANs. Enter a space before and after the hyphen."
+      },
+      {
+        "name": "both | rx | tx",
+        "description": "(Optional) Specifies the traffic direction to monitor. If you do not specify a traffic direction, the source interface sends both transmitted and received traffic."
       },
       {
         "name": "remote",
@@ -2145,6 +2173,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "export-ids netflow-v9",
+        "description": "(Optional) Displays the NetFlow Version 9 export fields that can be exported and their IDs."
+      },
+      {
         "name": "name",
         "description": "(Optional) Specifies the name of a flow exporter."
       },
@@ -2250,7 +2282,11 @@
     "params": [
       {
         "name": "name",
-        "description": "(Optional) Specifies the name of a flow record. record-name (Optional) Name of a user-defined flow record that was previously configured."
+        "description": "(Optional) Specifies the name of a flow record."
+      },
+      {
+        "name": "record-name",
+        "description": "(Optional) Name of a user-defined flow record that was previously configured."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -2662,7 +2698,11 @@
     "params": [
       {
         "name": "name",
-        "description": "(Optional) Specifies the name of a sampler. sampler-name (Optional) Name of a sampler that was previously configured."
+        "description": "(Optional) Specifies the name of a sampler."
+      },
+      {
+        "name": "sampler-name",
+        "description": "(Optional) Name of a sampler that was previously configured."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -2745,7 +2785,15 @@
       },
       {
         "name": "encrypted",
-        "description": "(Optional) Specifies that the entered community-string is encrypted text and should be displayed as such by the show running command. community-string Community string that acts like a password and permits access to the SNMP protocol. The maximum length of the community-string argument is 32 alphabetic characters. If the clear keyword was used, community-string is assumed to be clear text. If the encrypted keyword was used, community-string is assumed to be encrypted. If neither was used, community-string is assumed to be clear text. viewview-name (Optional) Specifies the name of a previously defined view. The view defines the objects available to the community."
+        "description": "(Optional) Specifies that the entered community-string is encrypted text and should be displayed as such by the show running command."
+      },
+      {
+        "name": "community-string",
+        "description": "Community string that acts like a password and permits access to the SNMP protocol. The maximum length of the community-string argument is 32 alphabetic characters. If the clear keyword was used, community-string is assumed to be clear text. If the encrypted keyword was used, community-string is assumed to be encrypted. If neither was used, community-string is assumed to be clear text."
+      },
+      {
+        "name": "viewview-name",
+        "description": "(Optional) Specifies the name of a previously defined view. The view defines the objects available to the community."
       },
       {
         "name": "RO",
@@ -2761,7 +2809,11 @@
       },
       {
         "name": "SystemOwner",
-        "description": "(Optional) Provides system-wide access including access to all non-owner SDRs. access-list-name (Optional) Name of an access list of IP addresses allowed to use the community string to gain access to the SNMP agent."
+        "description": "(Optional) Provides system-wide access including access to all non-owner SDRs."
+      },
+      {
+        "name": "access-list-name",
+        "description": "(Optional) Name of an access list of IP addresses allowed to use the community string to gain access to the SNMP agent."
       }
     ],
     "modes": ["Global configuration"],
@@ -2841,7 +2893,7 @@
       },
       {
         "name": "flash",
-        "description": "(Optional) Enables SNMP FLASH notification traps.* Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1340 Network Management snmp-server enable traps"
+        "description": "(Optional) Enables SNMP FLASH notification traps.*"
       },
       {
         "name": "fru-ctrl",
@@ -2929,7 +2981,11 @@
     "params": [
       {
         "name": "newroot",
-        "description": "(Optional) Enables SNMP STP bridge MIB new root traps. topologychange (Optional) Enables SNMP STP bridge MIB topology change traps."
+        "description": "(Optional) Enables SNMP STP bridge MIB new root traps."
+      },
+      {
+        "name": "topologychange",
+        "description": "(Optional) Enables SNMP STP bridge MIB topology change traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -2946,7 +3002,16 @@
     "detail": "Enable data-collection-MIB traps.",
     "syntax": "snmp-server enable traps bulkstat [collection | transfer]",
     "noForm": "no snmp-server enable traps bulkstat [collection | transfer]",
-    "params": [],
+    "params": [
+      {
+        "name": "collection",
+        "description": "(Optional) Enables data-collection-MIB collection traps."
+      },
+      {
+        "name": "transfer",
+        "description": "(Optional) Enables data-collection-MIB transfer traps."
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
     "sourcePage": 1344,
@@ -2962,6 +3027,10 @@
     "syntax": "snmp-server enable traps call-home [message-send-fail | server-fail]",
     "noForm": "no snmp-server enable traps call-home [message-send-fail | server-fail]",
     "params": [
+      {
+        "name": "message-send-fail",
+        "description": "(Optional) Enables SNMP message-send-fail traps."
+      },
       {
         "name": "server-fail",
         "description": "(Optional) Enables SNMP server-fail traps."
@@ -2984,7 +3053,11 @@
     "params": [
       {
         "name": "inconsistency",
-        "description": "(Optional) Enables SNMP CEF Inconsistency traps. peer-fib-state-change (Optional) Enables SNMP CEF Peer FIB State change traps."
+        "description": "(Optional) Enables SNMP CEF Inconsistency traps."
+      },
+      {
+        "name": "peer-fib-state-change",
+        "description": "(Optional) Enables SNMP CEF Peer FIB State change traps."
       },
       {
         "name": "peer-state-change",
@@ -3044,7 +3117,11 @@
       },
       {
         "name": "supply",
-        "description": "(Optional) Enables environmental monitor power-supply traps. temperature (Optional) Enables environmental monitor temperature traps."
+        "description": "(Optional) Enables environmental monitor power-supply traps."
+      },
+      {
+        "name": "temperature",
+        "description": "(Optional) Enables environmental monitor temperature traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -3085,7 +3162,16 @@
     "detail": "Enable SNMP flash notifications.",
     "syntax": "snmp-server enable traps flash [insertion][removal]",
     "noForm": "no snmp-server enable traps flash [insertion][removal]",
-    "params": [],
+    "params": [
+      {
+        "name": "insertion",
+        "description": "(Optional) Enables SNMP flash insertion notifications."
+      },
+      {
+        "name": "removal",
+        "description": "(Optional) Enables SNMP flash removal notifications."
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
     "sourcePage": 1350,
@@ -3103,7 +3189,11 @@
     "params": [
       {
         "name": "errors",
-        "description": "(Optional) Enables IS-IS error traps. state-change (Optional) Enables IS-IS state change traps."
+        "description": "(Optional) Enables IS-IS error traps."
+      },
+      {
+        "name": "state-change",
+        "description": "(Optional) Enables IS-IS state change traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -3127,7 +3217,11 @@
       },
       {
         "name": "move",
-        "description": "(Optional) Enables SNMP MAC move traps. threshold (Optional) Enables SNMP MAC threshold traps."
+        "description": "(Optional) Enables SNMP MAC move traps."
+      },
+      {
+        "name": "threshold",
+        "description": "(Optional) Enables SNMP MAC threshold traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -3163,7 +3257,11 @@
       },
       {
         "name": "rate-limit-time",
-        "description": "(Optional) Specifies window of time in seconds for rate-limit traps. Accepted values are 2 to 60. max-number-of-traps (Optional) Specifies maximum number of rate-limit traps to be sent in window time."
+        "description": "(Optional) Specifies window of time in seconds for rate-limit traps. Accepted values are 2 to 60."
+      },
+      {
+        "name": "max-number-of-traps",
+        "description": "(Optional) Specifies maximum number of rate-limit traps to be sent in window time."
       },
       {
         "name": "retransmit",
@@ -3190,8 +3288,16 @@
     "noForm": "no snmp-server enable traps pim [invalid-pim-message][neighbor-change][rp-mapping-change]",
     "params": [
       {
+        "name": "invalid-pim-message",
+        "description": "(Optional) Enables invalid PIM message traps."
+      },
+      {
         "name": "neighbor-change",
-        "description": "(Optional) Enables PIM neighbor-change traps. rp-mapping-change (Optional) Enables rendezvous point (RP)-mapping change traps."
+        "description": "(Optional) Enables PIM neighbor-change traps."
+      },
+      {
+        "name": "rp-mapping-change",
+        "description": "(Optional) Enables rendezvous point (RP)-mapping change traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -3262,6 +3368,10 @@
     "noForm": "no snmp-server enable traps snmp [authentication ][coldstart ][linkdown ] [linkup",
     "params": [
       {
+        "name": "authentication",
+        "description": "(Optional) Enables authentication traps."
+      },
+      {
         "name": "coldstart",
         "description": "(Optional) Enables cold start traps."
       },
@@ -3319,7 +3429,15 @@
     "params": [
       {
         "name": "inconsistency",
-        "description": "(Optional) Enables SNMP STPX MIB inconsistency update traps. loop-inconsistency (Optional) Enables SNMP STPX MIB loop inconsistency update traps. root-inconsistency (Optional) Enables SNMP STPX MIB root inconsistency update traps."
+        "description": "(Optional) Enables SNMP STPX MIB inconsistency update traps."
+      },
+      {
+        "name": "loop-inconsistency",
+        "description": "(Optional) Enables SNMP STPX MIB loop inconsistency update traps."
+      },
+      {
+        "name": "root-inconsistency",
+        "description": "(Optional) Enables SNMP STPX MIB root inconsistency update traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -3358,6 +3476,10 @@
     "noForm": "no snmp-server enable traps vrfmib [vnet-trunk-down | vnet-trunk-up | vrf-down | vrf-up]",
     "params": [
       {
+        "name": "vnet-trunk-down",
+        "description": "(Optional) Enables vrfmib trunk down traps."
+      },
+      {
         "name": "vnet-trunk-up",
         "description": "(Optional) Enables vrfmib trunk up traps."
       },
@@ -3386,12 +3508,20 @@
     "noForm": "no snmp-server enable traps vstack [addition][failure][lost][operation]",
     "params": [
       {
+        "name": "addition",
+        "description": "(Optional) Enables client added traps."
+      },
+      {
         "name": "failure",
         "description": "(Optional) Enables file upload and download failure traps."
       },
       {
         "name": "lost",
-        "description": "(Optional) Enables client lost trap. operation (Optional) Enables operation mode change traps."
+        "description": "(Optional) Enables client lost trap."
+      },
+      {
+        "name": "operation",
+        "description": "(Optional) Enables operation mode change traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -3495,7 +3625,7 @@
       },
       {
         "name": "write",
-        "description": "(Optional) Specifies a write view for the SNMP group. This view enables you to enter data and configure the contents of the agent. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1364 Network Management snmp-server group"
+        "description": "(Optional) Specifies a write view for the SNMP group. This view enables you to enter data and configure the contents of the agent."
       },
       {
         "name": "write-view",
@@ -3547,11 +3677,35 @@
     "params": [
       {
         "name": "host-addr",
-        "description": "Name or Internet address of the host (the targeted recipient). vrf vrf-instance (Optional) Specifies the virtual private network (VPN) routing instance and name for this host. informs | traps (Optional) Sends SNMP traps or informs to this host. version 1 | 2c | (Optional) Specifies the version of the SNMP used to send the traps. 3 1—SNMPv1. This option is not available with informs. 2c—SNMPv2C. 3—SNMPv3. One of the authorization keywords (see next table row) must follow the Version 3 keyword. auth | noauth auth (Optional)—Enables Message Digest 5 (MD5) and Secure Hash Algorithm (SHA)"
+        "description": "Name or Internet address of the host (the targeted recipient)."
+      },
+      {
+        "name": "vrf vrf-instance",
+        "description": "(Optional) Specifies the virtual private network (VPN) routing instance and name for this host."
+      },
+      {
+        "name": "informs | traps",
+        "description": "(Optional) Sends SNMP traps or informs to this host."
+      },
+      {
+        "name": "version 1 | 2c |",
+        "description": "(Optional) Specifies the version of the SNMP used to send the traps. 3 1—SNMPv1. This option is not available with informs. 2c—SNMPv2C. 3—SNMPv3. One of the authorization keywords (see next table row) must follow the Version 3 keyword."
+      },
+      {
+        "name": "auth | noauth auth",
+        "description": "(Optional)—Enables Message Digest 5 (MD5) and Secure Hash Algorithm (SHA)"
       },
       {
         "name": "| priv",
-        "description": "packet authentication. noauth (Default)—The noAuthNoPriv security level. This is the default if the auth | noauth | priv keyword choice is not specified. priv (Optional)—Enables Data Encryption Standard (DES) packet encryption (also called privacy). community-string Password-like community string sent with the notification operation. Though you can set this string by using the snmp-server host command, we recommend that you define this string by using the snmp-server community global configuration command before using the snmp-server host command. Note The @ symbol is used for delimiting the context information. Avoid using the @ symbol as part of the SNMP community string when configuring this command. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1368 Network Management snmp-server host notification-type (Optional) Type of notification to be sent to the host. If no type is specified, all notifications are sent. The notification type can be one or more of the these keywords: • auth-framework—Sends SNMP CISCO-AUTH-FRAMEWORK-MIB traps. • bridge—Sends SNMP Spanning Tree Protocol (STP) bridge MIB traps. • bulkstat—Sends Data-Collection-MIB Collection notification traps. • call-home—Sends SNMP CISCO-CALLHOME-MIB traps. • cef—Sends SNMP CEF traps. • config—Sends SNMP configuration traps. • config-copy—Sends SNMP config-copy traps. • config-ctid—Sends SNMP config-ctid traps. • copy-config—Sends SNMP copy configuration traps. • cpu—Sends CPU notification traps. • cpu threshold—Sends CPU threshold notification traps. • eigrp—Sends SNMP EIGRP traps. • entity—Sends SNMP entity traps. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1369 Network Management snmp-server host • envmon—Sends environmental monitor traps. • errdisable—Sends SNMP errdisable notification traps. • event-manager—Sends SNMP Embedded Event Manager traps. • flash—Sends SNMP FLASH notifications. • flowmon—Sends SNMP flowmon notification traps. • ipmulticast—Sends SNMP IP multicast routing traps. • ipsla—Sends SNMP IP SLA traps. • isis—Sends IS-IS traps. • license—Sends license traps. • local-auth—Sends SNMP local auth traps. • mac-notification—Sends SNMP MAC notification traps. • ospf—Sends Open Shortest Path First (OSPF) traps. • pim—Sends SNMP Protocol-Independent Multicast (PIM) traps. • port-security—Sends SNMP port-security traps. • power-ethernet—Sends SNMP power Ethernet traps. • snmp—Sends SNMP-type traps. • storm-control—Sends SNMP storm-control traps. • stpx—Sends SNMP STP extended MIB traps. • syslog—Sends SNMP syslog traps. • transceiver—Sends SNMP transceiver traps. • tty—Sends TCP connection traps. • vlan-membership— Sends SNMP VLAN membership traps. • vlancreate—Sends SNMP VLAN-created traps. • vlandelete—Sends SNMP VLAN-deleted traps. • vrfmib—Sends SNMP vrfmib traps. • vstack—Sends SNMP Smart Install traps. • vtp—Sends SNMP VLAN Trunking Protocol (VTP) traps. • wireless—Sends wireless traps."
+        "description": "packet authentication. noauth (Default)—The noAuthNoPriv security level. This is the default if the auth | noauth | priv keyword choice is not specified. priv (Optional)—Enables Data Encryption Standard (DES) packet encryption (also called privacy)."
+      },
+      {
+        "name": "community-string",
+        "description": "Password-like community string sent with the notification operation. Though you can set this string by using the snmp-server host command, we recommend that you define this string by using the snmp-server community global configuration command before using the snmp-server host command. Note The @ symbol is used for delimiting the context information. Avoid using the @ symbol as part of the SNMP community string when configuring this command."
+      },
+      {
+        "name": "notification-type",
+        "description": "(Optional) Type of notification to be sent to the host. If no type is specified, all notifications are sent. The notification type can be one or more of the these keywords: • auth-framework—Sends SNMP CISCO-AUTH-FRAMEWORK-MIB traps. • bridge—Sends SNMP Spanning Tree Protocol (STP) bridge MIB traps. • bulkstat—Sends Data-Collection-MIB Collection notification traps. • call-home—Sends SNMP CISCO-CALLHOME-MIB traps. • cef—Sends SNMP CEF traps. • config—Sends SNMP configuration traps. • config-copy—Sends SNMP config-copy traps. • config-ctid—Sends SNMP config-ctid traps. • copy-config—Sends SNMP copy configuration traps. • cpu—Sends CPU notification traps. • cpu threshold—Sends CPU threshold notification traps. • eigrp—Sends SNMP EIGRP traps. • entity—Sends SNMP entity traps. • envmon—Sends environmental monitor traps. • errdisable—Sends SNMP errdisable notification traps. • event-manager—Sends SNMP Embedded Event Manager traps. • flash—Sends SNMP FLASH notifications. • flowmon—Sends SNMP flowmon notification traps. • ipmulticast—Sends SNMP IP multicast routing traps. • ipsla—Sends SNMP IP SLA traps. • isis—Sends IS-IS traps. • license—Sends license traps. • local-auth—Sends SNMP local auth traps. • mac-notification—Sends SNMP MAC notification traps. • ospf—Sends Open Shortest Path First (OSPF) traps. • pim—Sends SNMP Protocol-Independent Multicast (PIM) traps. • port-security—Sends SNMP port-security traps. • power-ethernet—Sends SNMP power Ethernet traps. • snmp—Sends SNMP-type traps. • storm-control—Sends SNMP storm-control traps. • stpx—Sends SNMP STP extended MIB traps. • syslog—Sends SNMP syslog traps. • transceiver—Sends SNMP transceiver traps. • tty—Sends TCP connection traps. • vlan-membership— Sends SNMP VLAN membership traps. • vlancreate—Sends SNMP VLAN-created traps. • vlandelete—Sends SNMP VLAN-deleted traps. • vrfmib—Sends SNMP vrfmib traps. • vstack—Sends SNMP Smart Install traps. • vtp—Sends SNMP VLAN Trunking Protocol (VTP) traps. • wireless—Sends wireless traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -3654,7 +3808,7 @@
       },
       {
         "name": "ipv6",
-        "description": "(Optional) Specifies an IPv6 named access list to be associated with this SNMP user. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 1374 Network Management snmp-server user"
+        "description": "(Optional) Specifies an IPv6 named access list to be associated with this SNMP user."
       },
       {
         "name": "nacl",
@@ -3843,12 +3997,7 @@
     "detail": "Sets the interface as a nontrunking nontagged single-VLAN Ethernet interface.",
     "syntax": "switchport mode access",
     "noForm": "no switchport mode access",
-    "params": [
-      {
-        "name": "switchport",
-        "description": "mode access Sets the interface as a nontrunking nontagged single-VLAN Ethernet interface."
-      }
-    ],
+    "params": [],
     "modes": ["Template configuration"],
     "usageSummary": null,
     "sourcePage": 1384,
@@ -3865,8 +4014,8 @@
     "noForm": "no switchport voice vlan",
     "params": [
       {
-        "name": "switchport",
-        "description": "voice vlanvlan_id Specifies to forward all voice traffic through the specified VLAN."
+        "name": "vlan_id",
+        "description": "Specifies to forward all voice traffic through the specified VLAN."
       }
     ],
     "modes": ["Template configuration"],

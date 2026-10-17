@@ -126,7 +126,11 @@
       },
       {
         "name": "key",
-        "description": "Specifies the RADIUS key to be used for provisioning. source interface_list (Optional) Specifies the interface type and its identifying parameters as per the displayed list for source address in request packets."
+        "description": "Specifies the RADIUS key to be used for provisioning."
+      },
+      {
+        "name": "source interface_list",
+        "description": "(Optional) Specifies the interface type and its identifying parameters as per the displayed list for source address in request packets."
       }
     ],
     "modes": ["Privileged EXEC (#)", "Supported User Roles Administrator"],
@@ -144,6 +148,10 @@
     "syntax": "cts credentials id cts_id password cts_pwd",
     "noForm": null,
     "params": [
+      {
+        "name": "credentials id cts_id",
+        "description": "Specifies the Cisco TrustSec device ID for this device to use when authenticating with other Cisco TrustSec devices with EAP-FAST. The cts-id variable has a maximum length of 32 characters and is case sensitive."
+      },
       {
         "name": "password cts_pwd",
         "description": "Specifies the password for this device to use when authenticating with other Cisco TrustSec devices with EAP-FAST."
@@ -443,7 +451,11 @@
       },
       {
         "name": "unknown",
-        "description": "Specifies an unknown source or destination group tag. rbacl-name Role-based access control list (RBACL) or SGACL name. Up to 16 SGACLs can be specified in the configuration."
+        "description": "Specifies an unknown source or destination group tag."
+      },
+      {
+        "name": "rbacl-name",
+        "description": "Role-based access control list (RBACL) or SGACL name. Up to 16 SGACLs can be specified in the configuration."
       },
       {
         "name": "ipv4",
@@ -599,7 +611,7 @@
       },
       {
         "name": "both",
-        "description": "(Optional) Specifies that the device is both the speaker and the listener in the bidirectional SXP connection. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 124 Cisco TrustSec cts sxp connection peer"
+        "description": "(Optional) Specifies that the device is both the speaker and the listener in the bidirectional SXP connection."
       }
     ],
     "modes": ["Global configuration (config)"],
@@ -617,6 +629,10 @@
     "syntax": "cts sxp default password {0 unencrypted-pwd | 6 encrypted-key | 7 encrypted-keycleartext-pwd}",
     "noForm": "no cts sxp default password {0 unencrypted-pwd | 6 encrypted-key | 7 encrypted-keycleartext-pwd}",
     "params": [
+      {
+        "name": "0 unencrypted-pwd",
+        "description": "Specifies that an unencrypted CTS-SXP default password follows. The maximum password length is 32 characters."
+      },
       {
         "name": "6 encrypted-key",
         "description": "Specifies that a 6 encryption type password is used as the CTS-SXP default password. The maximum password length is 32 characters."
@@ -1079,7 +1095,11 @@
       },
       {
         "name": "brief",
-        "description": "(Optional) Displays abbreviated status for all CTS interfaces. summary (Optional) Displays a tabular summary of all CTS interfaces with 4 or 5 key status fields for each interface."
+        "description": "(Optional) Displays abbreviated status for all CTS interfaces."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays a tabular summary of all CTS interfaces with 4 or 5 key status fields for each interface."
       }
     ],
     "modes": ["EXEC (>) Privileged EXEC (#)"],
@@ -1203,7 +1223,15 @@
       },
       {
         "name": "to",
-        "description": "(Optional) Displays information about the destination group. unknown (Optional) Displays information about unknown source and destination groups. platform (Optional) Displays information about the platform."
+        "description": "(Optional) Displays information about the destination group."
+      },
+      {
+        "name": "unknown",
+        "description": "(Optional) Displays information about unknown source and destination groups."
+      },
+      {
+        "name": "platform",
+        "description": "(Optional) Displays information about the platform."
       }
     ],
     "modes": ["Privileged EXE (#)"],
@@ -1246,7 +1274,11 @@
       },
       {
         "name": "vrf instance-name",
-        "description": "(Optional) Displays the SXP information for the specified Virtual Routing and Forwarding (VRF) instance name. filter-group {detailed | global | (Optional) Displays filter group information. listener | speaker }"
+        "description": "(Optional) Displays the SXP information for the specified Virtual Routing and Forwarding (VRF) instance name."
+      },
+      {
+        "name": "filter-group {detailed | global |",
+        "description": "(Optional) Displays filter group information. listener | speaker }"
       },
       {
         "name": "filter-list filter-list-name",
@@ -1319,7 +1351,12 @@
     "detail": null,
     "syntax": "Name The name of the interface. ID The interface ID. CTS The status of CTS. Enable Trusted The trusted status of the interface. Propagate The propagation status of the interface. SGT value The value of SGT. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 174 Cisco TrustSec show platform software cts forwarding-manager switch active F0 show platform software cts forwarding-manager switch active F0 To display Security Group Tag (SGT) binding table, use the show platform software cts forwarding-manager switch active F0 command in privileged EXEC mode. show platform software cts forwarding-manager switch active F0",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "F0",
+        "description": "Selects embedded service processor slot 0."
+      }
+    ],
     "modes": ["Privileged EXEC (#)"],
     "usageSummary": null,
     "sourcePage": 171,
@@ -1477,271 +1514,7 @@
       },
       {
         "name": "Command History",
-        "description": "Release Modification Cisco IOS XE Everest 16.5.1a This command was introduced. Example The following is a sample output from the show platform software fed switch active sgacl port command: Device# show platform software fed switch active sgacl port"
-      },
-      {
-        "name": "Port",
-        "description": "Status Port-SGT Trust Propagate IngressCache EgressCache -------------------------------------------------------------------------------"
-      },
-      {
-        "name": "Gi3/0/1",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/2",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/3",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/4",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/5",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/6",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/7",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/8",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/9",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/10",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/11",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/12",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/13",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/14",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/15",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/16",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/17",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/18",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/19",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/20",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/21",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/22",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/23",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/24",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/25",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/26",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/27",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/28",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/29",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/30",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/31",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/32",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/33",
-        "description": "Disabled        0     No      No          No          No"
-      },
-      {
-        "name": "Gi3/0/34",
-        "description": "Disabled 0 No No No No Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 185 Cisco TrustSec show platform software fed switch active sgacl port"
-      },
-      {
-        "name": "Gi3/0/35",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/36",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/37",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/38",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/39",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/40",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/41",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/42",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/43",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/44",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/45",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/46",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/47",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/0/48",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/1/1",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/1/2",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/1/3",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Gi3/1/4",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Te3/1/1",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Te3/1/2",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Te3/1/3",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Te3/1/4",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Te3/1/5",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Te3/1/6",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Te3/1/7",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Te3/1/8",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Fo3/1/1",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Fo3/1/2",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Tw3/1/1",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Tw3/1/2",
-        "description": "Disabled             0        No         No   No   No"
-      },
-      {
-        "name": "Ap3/0/1",
-        "description": "Disabled 0 No No No No Output fields are self-explanatory. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 186 Cisco TrustSec show platform software fed switch active sgacl vlan"
+        "description": "Release Modification Cisco IOS XE Everest 16.5.1a This command was introduced. Example The following is a sample output from the show platform software fed switch active sgacl port command: Device# show platform software fed switch active sgacl port Port Status Port-SGT Trust Propagate IngressCache EgressCache ------------------------------------------------------------------------------- Gi3/0/1 Disabled 0 No No No No Gi3/0/2 Disabled 0 No No No No Gi3/0/3 Disabled 0 No No No No Gi3/0/4 Disabled 0 No No No No Gi3/0/5 Disabled 0 No No No No Gi3/0/6 Disabled 0 No No No No Gi3/0/7 Disabled 0 No No No No Gi3/0/8 Disabled 0 No No No No Gi3/0/9 Disabled 0 No No No No Gi3/0/10 Disabled 0 No No No No Gi3/0/11 Disabled 0 No No No No Gi3/0/12 Disabled 0 No No No No Gi3/0/13 Disabled 0 No No No No Gi3/0/14 Disabled 0 No No No No Gi3/0/15 Disabled 0 No No No No Gi3/0/16 Disabled 0 No No No No Gi3/0/17 Disabled 0 No No No No Gi3/0/18 Disabled 0 No No No No Gi3/0/19 Disabled 0 No No No No Gi3/0/20 Disabled 0 No No No No Gi3/0/21 Disabled 0 No No No No Gi3/0/22 Disabled 0 No No No No Gi3/0/23 Disabled 0 No No No No Gi3/0/24 Disabled 0 No No No No Gi3/0/25 Disabled 0 No No No No Gi3/0/26 Disabled 0 No No No No Gi3/0/27 Disabled 0 No No No No Gi3/0/28 Disabled 0 No No No No Gi3/0/29 Disabled 0 No No No No Gi3/0/30 Disabled 0 No No No No Gi3/0/31 Disabled 0 No No No No Gi3/0/32 Disabled 0 No No No No Gi3/0/33 Disabled 0 No No No No Gi3/0/34 Disabled 0 No No No No Gi3/0/35 Disabled 0 No No No No Gi3/0/36 Disabled 0 No No No No Gi3/0/37 Disabled 0 No No No No Gi3/0/38 Disabled 0 No No No No Gi3/0/39 Disabled 0 No No No No Gi3/0/40 Disabled 0 No No No No Gi3/0/41 Disabled 0 No No No No Gi3/0/42 Disabled 0 No No No No Gi3/0/43 Disabled 0 No No No No Gi3/0/44 Disabled 0 No No No No Gi3/0/45 Disabled 0 No No No No Gi3/0/46 Disabled 0 No No No No Gi3/0/47 Disabled 0 No No No No Gi3/0/48 Disabled 0 No No No No Gi3/1/1 Disabled 0 No No No No Gi3/1/2 Disabled 0 No No No No Gi3/1/3 Disabled 0 No No No No Gi3/1/4 Disabled 0 No No No No Te3/1/1 Disabled 0 No No No No Te3/1/2 Disabled 0 No No No No Te3/1/3 Disabled 0 No No No No Te3/1/4 Disabled 0 No No No No Te3/1/5 Disabled 0 No No No No Te3/1/6 Disabled 0 No No No No Te3/1/7 Disabled 0 No No No No Te3/1/8 Disabled 0 No No No No Fo3/1/1 Disabled 0 No No No No Fo3/1/2 Disabled 0 No No No No Tw3/1/1 Disabled 0 No No No No Tw3/1/2 Disabled 0 No No No No Ap3/0/1 Disabled 0 No No No No Output fields are self-explanatory. Cisco TrustSec show platform software fed switch active sgacl vlan"
       }
     ],
     "modes": [],

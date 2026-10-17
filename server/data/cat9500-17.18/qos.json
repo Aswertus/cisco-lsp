@@ -47,7 +47,11 @@
       },
       {
         "name": "ip-camera",
-        "description": "Specifies a port connected to a Cisco IP camera and automatically configures QoS for video. media-player Specifies a port connected to a CDP-capable Cisco digital media player and automatically configures QoS for video."
+        "description": "Specifies a port connected to a Cisco IP camera and automatically configures QoS for video."
+      },
+      {
+        "name": "media-player",
+        "description": "Specifies a port connected to a CDP-capable Cisco digital media player and automatically configures QoS for video."
       }
     ],
     "modes": ["Interface configuration"],
@@ -67,7 +71,11 @@
     "params": [
       {
         "name": "cisco-phone",
-        "description": "Specifies a port connected to a Cisco IP phone, and automatically configures QoS for VoIP. The QoS labels of incoming packets are trusted only when the telephone is detected. cisco-softphone Specifies a port connected to a device running the Cisco SoftPhone, and automatically configures QoS for VoIP."
+        "description": "Specifies a port connected to a Cisco IP phone, and automatically configures QoS for VoIP. The QoS labels of incoming packets are trusted only when the telephone is detected."
+      },
+      {
+        "name": "cisco-softphone",
+        "description": "Specifies a port connected to a device running the Cisco SoftPhone, and automatically configures QoS for VoIP."
       },
       {
         "name": "trust",
@@ -170,7 +178,7 @@
       },
       {
         "name": "dscp dscp-value",
-        "description": "Specifies the parameters for each DSCP value. You can specify a value in the range 0 to 63 specifying the differentiated services code point value. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1428 QoS match (class-map configuration)"
+        "description": "Specifies the parameters for each DSCP value. You can specify a value in the range 0 to 63 specifying the differentiated services code point value. QoS match (class-map configuration)"
       },
       {
         "name": "ip dscp dscp-list",
@@ -353,7 +361,7 @@
       },
       {
         "name": "percent percentage-of-packets",
-        "description": "A percentage in the range 1 to 100 specifying the maximum percentage of packets that the queue for this class can accumulate. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1439 QoS queue-limit"
+        "description": "A percentage in the range 1 to 100 specifying the maximum percentage of packets that the queue for this class can accumulate."
       },
       {
         "name": "precedence{IP precedence-value{maximum",
@@ -558,7 +566,7 @@
     "params": [
       {
         "name": "cos",
-        "description": "Sets the Layer 2 class of service (CoS) value or user priority of an outgoing packet. You can specify these values: • cos-value—CoS value from 0 to 7. You also can enter a mnemonic name for a commonly used value. • Specify a packet-marking category to set the CoS value of the packet. If you also configure a table map for mapping and converting packet-marking values, this establishes the \"map from\" packet-marking category. Packet-marking category keywords: • cos—Sets a value from the CoS value or user priority. • dscp—Sets a value from packet differentiated services code point (DSCP). • precedence—Sets a value from packet precedence. • qos-group—Sets a value from the QoS group. • (Optional)table table-map-name—Indicates that the values set in a specified table map are used to set the CoS value. Enter the name of the table map used to specify the CoS value. The table map name can be a maximum of 64 alphanumeric characters. If you specify a packet-marking category but do not specify the table map, the default action is to copy the value associated with the packet-marking category as the CoS value. For example, if you enter the set cos precedence command, the precedence (packet-marking category) value is copied and used as the CoS value. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1454 QoS set"
+        "description": "Sets the Layer 2 class of service (CoS) value or user priority of an outgoing packet. You can specify these values: • cos-value—CoS value from 0 to 7. You also can enter a mnemonic name for a commonly used value. • Specify a packet-marking category to set the CoS value of the packet. If you also configure a table map for mapping and converting packet-marking values, this establishes the \"map from\" packet-marking category. Packet-marking category keywords: • cos—Sets a value from the CoS value or user priority. • dscp—Sets a value from packet differentiated services code point (DSCP). • precedence—Sets a value from packet precedence. • qos-group—Sets a value from the QoS group. • (Optional)table table-map-name—Indicates that the values set in a specified table map are used to set the CoS value. Enter the name of the table map used to specify the CoS value. The table map name can be a maximum of 64 alphanumeric characters. If you specify a packet-marking category but do not specify the table map, the default action is to copy the value associated with the packet-marking category as the CoS value. For example, if you enter the set cos precedence command, the precedence (packet-marking category) value is copied and used as the CoS value."
       },
       {
         "name": "dscp",
@@ -566,11 +574,11 @@
       },
       {
         "name": "ip",
-        "description": "Sets IP values to the classified traffic. You can specify these values: • dscp—Specify an IP DSCP value from 0 to 63 or a packet marking category. • precedence—Specify a precedence-bit value in the IP header; valid values are from 0 to 7 or specify a packet marking category. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1455 QoS set"
+        "description": "Sets IP values to the classified traffic. You can specify these values: • dscp—Specify an IP DSCP value from 0 to 63 or a packet marking category. • precedence—Specify a precedence-bit value in the IP header; valid values are from 0 to 7 or specify a packet marking category."
       },
       {
         "name": "precedence",
-        "description": "Sets the precedence value in the packet header. You can specify these values: • precedence-value— Sets the precedence bit in the packet header; valid values are from 0 to 7. You also can enter a mnemonic name for a commonly used value. • Specify a packet marking category to set the precedence value of the packet. • cos—Sets a value from the CoS or user priority. • dscp—Sets a value from packet differentiated services code point (DSCP). • precedence—Sets a value from packet precedence. • qos-group—Sets a value from the QoS group. • (Optional)table table-map-name—Indicates that the values set in a specified table map will be used to set the precedence value. Enter the name of the table map used to specify the precedence value. The table map name can be a maximum of 64 alphanumeric characters. If you specify a packet-marking category but do not specify the table map, the default action is to copy the value associated with the packet-marking category as the precedence value. For example, if you enter the set precedence cos command, the CoS value (packet-marking category) is copied and used as the precedence value. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1456 QoS set"
+        "description": "Sets the precedence value in the packet header. You can specify these values: • precedence-value— Sets the precedence bit in the packet header; valid values are from 0 to 7. You also can enter a mnemonic name for a commonly used value. • Specify a packet marking category to set the precedence value of the packet. • cos—Sets a value from the CoS or user priority. • dscp—Sets a value from packet differentiated services code point (DSCP). • precedence—Sets a value from packet precedence. • qos-group—Sets a value from the QoS group. • (Optional)table table-map-name—Indicates that the values set in a specified table map will be used to set the precedence value. Enter the name of the table map used to specify the precedence value. The table map name can be a maximum of 64 alphanumeric characters. If you specify a packet-marking category but do not specify the table map, the default action is to copy the value associated with the packet-marking category as the precedence value. For example, if you enter the set precedence cos command, the CoS value (packet-marking category) is copied and used as the precedence value."
       },
       {
         "name": "qos-group",
@@ -618,7 +626,11 @@
     "params": [
       {
         "name": "class-map-name",
-        "description": "(Optional) Class map name. type control subscriber (Optional) Displays information about control class maps."
+        "description": "(Optional) Class map name."
+      },
+      {
+        "name": "type control subscriber",
+        "description": "(Optional) Displays information about control class maps."
       },
       {
         "name": "all",
@@ -646,7 +658,7 @@
       },
       {
         "name": "qos",
-        "description": "Displays QoS hardware information. You must choose from the following options: • afd —Displays Approximate Fair Drop (AFD) information in hardware. • dscp-cos—Displays information dscp-cos counters for each port. • leinfo—Displays logical entity information. • policer—Displays QoS policer information in hardware. • queue—Displays queue information in hardware. • resource—Displays hardware resource information. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1462 QoS show platform hardware fed switch"
+        "description": "Displays QoS hardware information. You must choose from the following options: • afd —Displays Approximate Fair Drop (AFD) information in hardware. • dscp-cos—Displays information dscp-cos counters for each port. • leinfo—Displays logical entity information. • policer—Displays QoS policer information in hardware. • queue—Displays queue information in hardware. • resource—Displays hardware resource information."
       },
       {
         "name": "afd {config type |",
@@ -670,7 +682,7 @@
       },
       {
         "name": "policer config",
-        "description": "Displays configuration information related to policers in hardware. You must choose from the following options: • iif_id id—The target interface ID. Valid range is from 1 to 4294967295. • interface type number—Target interface type and ID. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1463 QoS show platform hardware fed switch queue {config {iif_id Displays queue information in hardware. You must choose from the following"
+        "description": "Displays configuration information related to policers in hardware. You must choose from the following options: • iif_id id—The target interface ID. Valid range is from 1 to 4294967295. • interface type number—Target interface type and ID. queue {config {iif_id Displays queue information in hardware. You must choose from the following"
       },
       {
         "name": "id | interface type",
@@ -722,7 +734,7 @@
       },
       {
         "name": "qos qsb",
-        "description": "Displays QoS sub-block software information. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 1467 QoS show platform software fed switch qos qsb qsb {brief | iif_id | brief interface} • all—Displays information for all client. • type—Displays qsb information for the specified target type: • client—Displays QoS qsb information for wireless clients • port—Displays port-specific information • radio—Displays QoS qsb information for wireless radios • ssid—Displays QoS qsb information for wireless networks iif_id—Displays information for the iif_ID interface—Displays QoS qsb information for the specified interface: • Auto-Template—Auto-template interface between 1 and 999. • BDI—Bridge-domain interface between 1 and 16000. • Capwap—CAPWAP interface between 0 and 2147483647. • GigabitEthernet—GigabitEthernet interface between 0 and 9. • InternalInterface—Internal interface between 0 and 9. • Loopback—Loopback interface between 0 and 2147483647. • Null—Null interface 0-0 • Port-Channel—Port-channel interface between 1 and 128. • TenGigabitEthernet—TenGigabitEthernet interface between 0 and 9. • Tunnel—Tunnel interface between 0 and 2147483647. • Vlan—VLAN interface between 1 and 4094."
+        "description": "Displays QoS sub-block software information. qsb {brief | iif_id | brief interface} • all—Displays information for all client. • type—Displays qsb information for the specified target type: • client—Displays QoS qsb information for wireless clients • port—Displays port-specific information • radio—Displays QoS qsb information for wireless radios • ssid—Displays QoS qsb information for wireless networks iif_id—Displays information for the iif_ID interface—Displays QoS qsb information for the specified interface: • Auto-Template—Auto-template interface between 1 and 999. • BDI—Bridge-domain interface between 1 and 16000. • Capwap—CAPWAP interface between 0 and 2147483647. • GigabitEthernet—GigabitEthernet interface between 0 and 9. • InternalInterface—Internal interface between 0 and 9. • Loopback—Loopback interface between 0 and 2147483647. • Null—Null interface 0-0 • Port-Channel—Port-channel interface between 1 and 128. • TenGigabitEthernet—TenGigabitEthernet interface between 0 and 9. • Tunnel—Tunnel interface between 0 and 2147483647. • Vlan—VLAN interface between 1 and 4094."
       }
     ],
     "modes": ["User EXEC", "Privileged EXEC"],
@@ -742,7 +754,11 @@
     "params": [
       {
         "name": "policy-map-name",
-        "description": "(Optional) Name of the policy-map. interface interface-id (Optional) Displays the statistics and the configurations of the input and output policies that are attached to the interface."
+        "description": "(Optional) Name of the policy-map."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Displays the statistics and the configurations of the input and output policies that are attached to the interface."
       }
     ],
     "modes": ["User EXEC", "Privileged EXEC"],

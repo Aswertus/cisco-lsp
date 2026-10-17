@@ -27,6 +27,7 @@
 const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const { extractParams } = require('./lib/extract-params');
 
 const ROOT = path.join(__dirname, '..');
 const DATA_DIR = path.join(ROOT, 'server', 'data');
@@ -288,6 +289,18 @@ function sectionText(chunkText, offsets, label, nextLabels) {
   return chunkText.slice(offsets[label].contentStart, end);
 }
 
+// Like sectionText, but from the start of the label's line with the label
+// blanked to spaces, so every line keeps its absolute column — the parameter
+// table parser (scripts/lib/extract-params.js) tells rows from wrapped text
+// by indentation.
+function sectionColumns(chunkText, offsets, label, nextLabels) {
+  if (offsets[label] == null) return '';
+  const { start, contentStart } = offsets[label];
+  const lineStart = chunkText.lastIndexOf('\n', start - 1) + 1;
+  const rest = sectionText(chunkText, offsets, label, nextLabels);
+  return ' '.repeat(contentStart - lineStart) + rest;
+}
+
 function collapseWs(s) {
   return s.replace(/\s+/g, ' ').trim();
 }
@@ -349,35 +362,6 @@ function extractSyntax(headerText) {
     syntax: collapseWs(syntaxLines.join(' ')) || null,
     noForm: collapseWs(noFormLines.join(' ')) || null,
   };
-}
-
-function extractParams(syntaxDescText) {
-  const lines = syntaxDescText
-    .split('\n')
-    .map((l) => l.trim())
-    .filter((l) => l !== '');
-  if (lines.length === 1 && /^This command has no (?:arguments|keywords)/i.test(lines[0])) {
-    return [];
-  }
-  const params = [];
-  const paramStartRe = /^(\S+(?:\s\S+){0,3}?)\s{2,}(\S.*)$/;
-  // A single-parameter entry is sometimes laid out with just one space
-  // between the name and its description (the usual 2+ space column gap
-  // only shows up when there's a multi-row table to align).
-  const singleParamRe = /^(\S+)\s+(\S.*)$/;
-  for (const line of lines) {
-    const m =
-      paramStartRe.exec(line) ||
-      (params.length === 0 && lines.length === 1 ? singleParamRe.exec(line) : null);
-    if (m) {
-      params.push({ name: m[1].trim(), description: m[2].trim() });
-    } else if (params.length > 0) {
-      params[params.length - 1].description = collapseWs(
-        `${params[params.length - 1].description} ${line}`,
-      );
-    }
-  }
-  return params;
 }
 
 function extractModes(commandModesText) {
@@ -471,7 +455,7 @@ function extractCommand(chunkText, rawName, page) {
 
   const { name, context } = splitNameContext(rawName);
   const { syntax, noForm } = extractSyntax(headerText);
-  const syntaxDescText = sectionText(chunkText, offsets, 'Syntax Description', [
+  const syntaxDescText = sectionColumns(chunkText, offsets, 'Syntax Description', [
     'Command Default',
     'Command Modes',
   ]);
@@ -494,7 +478,7 @@ function extractCommand(chunkText, rawName, page) {
     detail: extractDetail(headerText),
     syntax,
     noForm,
-    params: extractParams(syntaxDescText),
+    params: extractParams(syntaxDescText, name),
     modes,
     usageSummary: summarizeUsage(usageText),
     sourcePage: page,
