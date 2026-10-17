@@ -115,7 +115,11 @@
     "params": [
       {
         "name": "accfwdchange",
-        "description": "Displays debug messages for VLAN manager notification of aggregated access interface spanning-tree forward changes. allowedvlancfgchange Displays debug messages for VLAN manager notification of changes to the allowed VLAN configuration."
+        "description": "Displays debug messages for VLAN manager notification of aggregated access interface spanning-tree forward changes."
+      },
+      {
+        "name": "allowedvlancfgchange",
+        "description": "Displays debug messages for VLAN manager notification of changes to the allowed VLAN configuration."
       },
       {
         "name": "fwdchange",
@@ -443,7 +447,11 @@
     "params": [
       {
         "name": "host",
-        "description": "Configures the interface as a private-VLAN host port. Host ports belong to private-VLAN secondary VLANs and are either community ports or isolated ports, depending on the VLAN to which they belong. promiscuous Configures the interface as a private-VLAN promiscuous port. Promiscuous ports are members of private-VLAN primary VLANs."
+        "description": "Configures the interface as a private-VLAN host port. Host ports belong to private-VLAN secondary VLANs and are either community ports or isolated ports, depending on the VLAN to which they belong."
+      },
+      {
+        "name": "promiscuous",
+        "description": "Configures the interface as a private-VLAN promiscuous port. Promiscuous ports are members of private-VLAN primary VLANs."
       }
     ],
     "modes": ["Interface configuration"],
@@ -490,8 +498,16 @@
     "noForm": "no switchport trunk {allowed vlan | native vlan | pruning vlan}",
     "params": [
       {
+        "name": "allowed vlan vlan-list",
+        "description": "Sets the list of allowed VLANs that can receive and send traffic on this interface in tagged format when in trunking mode. See the Usage Guidelines for the vlan-list choices."
+      },
+      {
         "name": "native vlan vlan-id",
-        "description": "Sets the native VLAN for sending and receiving untagged traffic when the interface is in IEEE 802.1Q trunking mode. The range is 1 to 4094. pruning vlan vlan-list Sets the list of VLANs that are eligible for VTP pruning when in trunking mode. See the Usage Guidelines for the vlan-list choices."
+        "description": "Sets the native VLAN for sending and receiving untagged traffic when the interface is in IEEE 802.1Q trunking mode. The range is 1 to 4094."
+      },
+      {
+        "name": "pruning vlan vlan-list",
+        "description": "Sets the list of VLANs that are eligible for VTP pruning when in trunking mode. See the Usage Guidelines for the vlan-list choices."
       }
     ],
     "modes": ["Interface configuration"],
@@ -586,7 +602,7 @@
       },
       {
         "name": "mst",
-        "description": "(Optional) Sets the mode for the multiple spanning tree (MST) VTP database (only VTP Version 3). Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 2416 VLAN vtp (global configuration)"
+        "description": "(Optional) Sets the mode for the multiple spanning tree (MST) VTP database (only VTP Version 3). VLAN vtp (global configuration)"
       },
       {
         "name": "unknown",

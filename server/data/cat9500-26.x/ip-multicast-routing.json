@@ -20,7 +20,11 @@
       },
       {
         "name": "hostname",
-        "description": "(Optional) Limits the active MFIB traffic counters to the indicated host name. source-address (Optional) Limits the active MFIB traffic counters to the indicated source address."
+        "description": "(Optional) Limits the active MFIB traffic counters to the indicated host name."
+      },
+      {
+        "name": "source-address",
+        "description": "(Optional) Limits the active MFIB traffic counters to the indicated source address."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -251,7 +255,7 @@
       },
       {
         "name": "limit",
-        "description": "(Optional) Displays debugging information about interface limits. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 841 IP Multicast Routing debug ipv6 pim"
+        "description": "(Optional) Displays debugging information about interface limits."
       },
       {
         "name": "Syntax",
@@ -372,7 +376,12 @@
     "detail": "Globally enable Internet Group Management Protocol (IGMP) snooping on the device or to enable it on a per-VLAN basis.",
     "syntax": "ip igmp snooping [vlan vlan-id]",
     "noForm": "no ip igmp snooping [vlan vlan-id]",
-    "params": [],
+    "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Enables IGMP snooping on the specified VLAN. Ranges are 1—1001 and 1006—4094."
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": "When IGMP snooping is enabled globally, it is enabled in all of the existing VLAN interfaces.  When IGMP snooping is globally disabled, it is disabled on all of the existing VLAN interfaces.  VLAN IDs 1002 to 1005 are reserved for Token Ring and FDDI VLANs, and cannot be used in IGMP snooping.",
     "sourcePage": 848,
@@ -388,6 +397,10 @@
     "syntax": "ip igmp snooping [vlan vlan-id] last-member-query-count count",
     "noForm": "no ip igmp snooping [vlan vlan-id] last-member-query-count count",
     "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Sets the count value on a specific VLAN ID. The range is from 1―1001. Do not enter leading zeroes."
+      },
       {
         "name": "count",
         "description": "Interval at which query messages are sent, in milliseconds. The range is from 1―7. The default is 2."
@@ -706,7 +719,7 @@
       },
       {
         "name": "bidir",
-        "description": "(Optional) Specifies that the static group-to-RP mapping be applied to a bidirectional PIM RP. If the command is configured without the bidir keyword, the groups will operate in sparse mode. Note The bidir keyword is available as an optional keyword only if bidirectional PIM has been enabled using the ip pim bidir-enable command. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 867 IP Multicast Routing ip pim rp-address"
+        "description": "(Optional) Specifies that the static group-to-RP mapping be applied to a bidirectional PIM RP. If the command is configured without the bidir keyword, the groups will operate in sparse mode. Note The bidir keyword is available as an optional keyword only if bidirectional PIM has been enabled using the ip pim bidir-enable command."
       },
       {
         "name": "Command History",
@@ -1025,8 +1038,8 @@
     "noForm": null,
     "params": [
       {
-        "name": "vrf",
-        "description": "vrf-name (Optional) Supports the multicast VPN routing and forwarding (VRF) instance."
+        "name": "vrf vrf-name",
+        "description": "(Optional) Supports the multicast VPN routing and forwarding (VRF) instance."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -1078,7 +1091,11 @@
       },
       {
         "name": "querier",
-        "description": "(Optional) Displays the configuration and operation information for the IGMP querier. vlan vlan-id (Optional) Specifies a VLAN; the range is 1 to 1001 and 1006 to 4094."
+        "description": "(Optional) Displays the configuration and operation information for the IGMP querier."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies a VLAN; the range is 1 to 1001 and 1006 to 4094."
       },
       {
         "name": "detail",
@@ -1100,6 +1117,10 @@
     "syntax": "show ip igmp snooping groups [vlan vlan-id ] [[count] | ip_address]",
     "noForm": null,
     "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies a VLAN; the range is 1 to 1001 and 1006 to 4094. Use this option to display the multicast table for a specified multicast VLAN or specific multicast information."
+      },
       {
         "name": "count",
         "description": "(Optional) Displays the total number of entries for the specified command options instead of the actual entries."
@@ -1125,8 +1146,8 @@
     "noForm": null,
     "params": [
       {
-        "name": "vlan",
-        "description": "vlan-id (Optional) Specifies a VLAN; Ranges are from 1―1001 and 1006―4094."
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies a VLAN; Ranges are from 1―1001 and 1006―4094."
       }
     ],
     "modes": ["User EXEC", "Privileged EXEC"],
@@ -1144,6 +1165,10 @@
     "syntax": "show ip igmp snooping querier [vlan vlan-id] [detail ]",
     "noForm": null,
     "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies a VLAN; Ranges are from 1―1001 and 1006―4094."
+      },
       {
         "name": "detail",
         "description": "(Optional) Displays detailed IGMP querier information."
@@ -1174,7 +1199,11 @@
       },
       {
         "name": "active kbps",
-        "description": "(Optional) Displays the rate that active sources are sending to multicast groups, in kilobits per second (kbps). Active sources are those sending at the kbps value or higher. The range is from 1 to 4294967295. The kbps default is 4 kbps. interface type number (Optional) Filters the output to display only mroute table information related to the interface specified for the type number arguments."
+        "description": "(Optional) Displays the rate that active sources are sending to multicast groups, in kilobits per second (kbps). Active sources are those sending at the kbps value or higher. The range is from 1 to 4294967295. The kbps default is 4 kbps."
+      },
+      {
+        "name": "interface type number",
+        "description": "(Optional) Filters the output to display only mroute table information related to the interface specified for the type number arguments."
       },
       {
         "name": "bidirectional",
@@ -1210,7 +1239,7 @@
       },
       {
         "name": "static",
-        "description": "(Optional) Filters the output to display only the static routes in the mroute table. Command Reference, Cisco IOS XE 26.x.x (Catalyst 9500 Switches) 892 IP Multicast Routing show ip mroute"
+        "description": "(Optional) Filters the output to display only the static routes in the mroute table."
       },
       {
         "name": "summary",
@@ -1467,6 +1496,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "switch {switch_num | active | standby }",
+        "description": "The device for which you want to display information. • switch_num—Enter the switch ID. Displays information for the specified switch. • active—Displays information for the active switch. • standby—Displays information for the standby switch, if available."
+      },
+      {
         "name": "vrf vrf-id",
         "description": "(Optional) Specifies the multicast Virtual Routing and Forwarding (VRF) ID."
       },
@@ -1554,6 +1587,10 @@
     "syntax": "show platform software fed switch {switch-number | active | standby} ip multicast df[vrf-id vrf-id | vrf-name vrf-name][df-index]",
     "noForm": null,
     "params": [
+      {
+        "name": "switch {switch_num | active | standby }",
+        "description": "The device for which you want to display information. • switch_num—Enter the switch ID. Displays information for the specified switch. • active—Displays information for the active switch. • standby—Displays information for the standby switch, if available."
+      },
       {
         "name": "vrf-id vrf-id",
         "description": "(Optional) Specifies the multicast Virtual Routing and Forwarding (VRF) ID."

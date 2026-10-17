@@ -61,7 +61,17 @@ const KINDS = [
   {
     kind: 'vrf',
     defs: [/^(?:vrf\s+definition|ip\s+vrf(?!\s+forwarding\b))\s+(\S+)/i],
-    refs: [/\bvrf\s+forwarding\s+(\S+)/gi, /\baddress-family\s+\S+\s+vrf\s+(\S+)/gi],
+    refs: [
+      /\bvrf\s+forwarding\s+(\S+)/gi,
+      /\baddress-family\s+\S+\s+vrf\s+(\S+)/gi,
+      // Command-anchored (start of line), so free text such as
+      // `description uplink in vrf X` never counts as a use.
+      /^\s*ip(?:v6)?\s+(?:route|multicast-routing|pim)\s+vrf\s+(\S+)/gi,
+      /^\s*eid-table\s+vrf\s+(\S+)/gi, // LISP / SD-Access instance
+      /^\s*ntp\s+server\s+vrf\s+(\S+)/gi,
+      /^\s*ip\s+name-server\s+vrf\s+(\S+)/gi,
+      /^\s*ip\s+domain[\s-]lookup\s+vrf\s+(\S+)/gi,
+    ],
   },
 ];
 

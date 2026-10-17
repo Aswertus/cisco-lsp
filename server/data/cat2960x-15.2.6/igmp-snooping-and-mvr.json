@@ -5,7 +5,12 @@
     "detail": "Globally enable Internet Group Management Protocol (IGMP) snooping on the device or to enable it on a per-VLAN basis.",
     "syntax": "ip igmp snooping [vlan vlan-id]",
     "noForm": "no ip igmp snooping [vlan vlan-id]",
-    "params": [],
+    "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Enables IGMP snooping on the specified VLAN. Ranges are 1—1001 and 1006—4094."
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": "When IGMP snooping is enabled globally, it is enabled in all of the existing VLAN interfaces.  When IGMP snooping is globally disabled, it is disabled on all of the existing VLAN interfaces.  VLAN IDs 1002 to 1005 are reserved for Token Ring and FDDI VLANs, and cannot be used in IGMP snooping.",
     "sourcePage": 16,
@@ -21,6 +26,10 @@
     "syntax": "ip igmp snooping [vlan vlan-id] last-member-query-count count",
     "noForm": "no ip igmp snooping [vlan vlan-id] last-member-query-count count",
     "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Sets the count value on a specific VLAN ID. The range is from 1―1001. Do not enter leading zeroes."
+      },
       {
         "name": "count",
         "description": "Interval at which query messages are sent, in milliseconds. The range is from 1―7. The default is 2."
@@ -41,6 +50,10 @@
     "syntax": "ip igmp snooping [vlan vlan-id] last-member-query-interval time",
     "noForm": "no ip igmp snooping [vlan vlan-id] last-member-query-interval time",
     "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Enables IGMP snooping and the leave timer on the specified VLAN. The range is 1 to 1001 and 1006 to 4094."
+      },
       {
         "name": "time",
         "description": "Interval time out in seconds. The range is 100 to 32767 milliseconds."
@@ -133,6 +146,10 @@
     "noForm": "no ip igmp snooping [vlan vlan-id] robustness-variable number",
     "params": [
       {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Enables IGMP snooping and the leave timer on the specified VLAN. The range is 1 to 1001 and 1006 to 4094."
+      },
+      {
         "name": "number",
         "description": "Robustness variable number. The range is 1 to 3."
       }
@@ -174,7 +191,11 @@
     "params": [
       {
         "name": "vlan-id",
-        "description": "Enables IGMP snooping and adds the port in the specified VLAN as the multicast router port. Ranges are 1—1001 and 1006—4094. interface interface-id Specifies the next-hop interface to the multicast router. The interface-id value has these options: • fastethernet interface number—A Fast Ethernet IEEE 802.3 interface. • gigabitethernet interface number—A Gigabit Ethernet IEEE 802.3z interface. • tengigabitethernet interface number—A 10-Gigabit Ethernet IEEE 802.3z interface. • port-channel interface number—A channel interface. The range is 0—48."
+        "description": "Enables IGMP snooping and adds the port in the specified VLAN as the multicast router port. Ranges are 1—1001 and 1006—4094."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "Specifies the next-hop interface to the multicast router. The interface-id value has these options: • fastethernet interface number—A Fast Ethernet IEEE 802.3 interface. • gigabitethernet interface number—A Gigabit Ethernet IEEE 802.3z interface. • tengigabitethernet interface number—A 10-Gigabit Ethernet IEEE 802.3z interface. • port-channel interface number—A channel interface. The range is 0—48."
       },
       {
         "name": "learn",
@@ -325,7 +346,11 @@
       },
       {
         "name": "querier",
-        "description": "(Optional) Displays the configuration and operation information for the IGMP querier. vlan vlan-id (Optional) Specifies a VLAN; the range is 1 to 1001 and 1006 to 4094."
+        "description": "(Optional) Displays the configuration and operation information for the IGMP querier."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies a VLAN; the range is 1 to 1001 and 1006 to 4094."
       },
       {
         "name": "detail",
@@ -347,6 +372,10 @@
     "syntax": "show ip igmp snooping groups [vlan vlan-id ] [ [dynamic | user ] [count] | ip_address]",
     "noForm": null,
     "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies a VLAN; the range is 1 to 1001 and 1006 to 4094. Use this option to display the multicast table for a specified multicast VLAN or specific multicast information."
+      },
       {
         "name": "dynamic",
         "description": "(Optional) Displays IGMP snooping learned group information."
@@ -380,8 +409,8 @@
     "noForm": null,
     "params": [
       {
-        "name": "vlan",
-        "description": "vlan-id (Optional) Specifies a VLAN; Ranges are from 1―1001 and 1006―4094."
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies a VLAN; Ranges are from 1―1001 and 1006―4094."
       }
     ],
     "modes": ["User EXEC", "Privileged EXEC"],
@@ -399,6 +428,10 @@
     "syntax": "show ip igmp snooping querier [vlan vlan-id] [detail ]",
     "noForm": null,
     "params": [
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies a VLAN; Ranges are from 1―1001 and 1006―4094."
+      },
       {
         "name": "detail",
         "description": "(Optional) Displays detailed IGMP querier information."

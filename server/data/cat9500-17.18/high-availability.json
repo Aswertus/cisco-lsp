@@ -91,7 +91,7 @@
       },
       {
         "name": "hh:mm:ss",
-        "description": "Monitoring interval, in hours, minutes, and seconds. Enter the hours from 0 to 24, minutes from 0 to 60, and seconds from 0 to 60. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 199 High Availability diagnostic monitor"
+        "description": "Monitoring interval, in hours, minutes, and seconds. Enter the hours from 0 to 24, minutes from 0 to 60, and seconds from 0 to 60."
       },
       {
         "name": "milliseconds",
@@ -183,7 +183,7 @@
       },
       {
         "name": "on month",
-        "description": "Specifies the schedule of a test-based diagnostic task. Enter the month name, for example, January or Febru lowercase characters). Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 201 High Availability diagnostic schedule module"
+        "description": "Specifies the schedule of a test-based diagnostic task. Enter the month name, for example, January or Febru lowercase characters)."
       },
       {
         "name": "daily hh:mm",
@@ -331,12 +331,7 @@
     "detail": "Enable PAgP dual-active detection.",
     "syntax": "dual-active detection pagp",
     "noForm": "no dual-active detection pagp",
-    "params": [
-      {
-        "name": "dual-active detection pagp",
-        "description": "Enables pagp dual-active detection."
-      }
-    ],
+    "params": [],
     "modes": ["StackWise Virtual configuration (config-stackwise-virtual)"],
     "usageSummary": null,
     "sourcePage": 211,
@@ -351,12 +346,7 @@
     "detail": "Disable automatic recovery reload of a switch.",
     "syntax": "dual-active recovery-reload-disable",
     "noForm": "no dual-active recovery-reload-disable",
-    "params": [
-      {
-        "name": "dual-active recovery-reload-disable",
-        "description": "Disables automatic recovery reload."
-      }
-    ],
+    "params": [],
     "modes": ["StackWise Virtual configuration (config-stackwise-virtual)"],
     "usageSummary": null,
     "sourcePage": 212,
@@ -1120,7 +1110,7 @@
       },
       {
         "name": "uptime",
-        "description": "Displays the time at which the standalone switch or specified stack members start, the reason the standalone switch or specified members restart, and the length of time the standalone switch or specified stack members have been running since they last restarted. Command Reference, Cisco IOS XE 17.18.x (Catalyst 9500 Switches) 246 High Availability show logging onboard switch"
+        "description": "Displays the time at which the standalone switch or specified stack members start, the reason the standalone switch or specified members restart, and the length of time the standalone switch or specified stack members have been running since they last restarted."
       },
       {
         "name": "voltage",
@@ -1136,7 +1126,15 @@
       },
       {
         "name": "summary",
-        "description": "(Optional) Displays the data in the summary file. start hh:mm:ss day month year (Optional) Displays the data from the specified time and date. Enter the time as a 2-digit number for a 24-hour clock. Make sure to use the colons (:), for example, 13:32:45. The range of day is from 1 to 31. The month in upper case or lower case letters. You can enter the full name of the month, such as January or august, or the first three letters of the month, such as jan or Aug. The year is a 4-digit number, such as 2008. The range is from 1970 to 2099. end hh:mm:ss day month year (Optional) Displays the data up to the specified time and date. Enter the time as a 2-digit number for a 24-hour clock. Make sure to use the colons (:), for example, 13:32:45. The range of day is from 1 to 31. The month in upper case or lower case letters. You can enter the full name of the month, such as January or august, or the first three letters of the month, such as jan or Aug. The year is a 4-digit number, such as 2008. The range is from 1970 to 2099."
+        "description": "(Optional) Displays the data in the summary file."
+      },
+      {
+        "name": "start hh:mm:ss day month year",
+        "description": "(Optional) Displays the data from the specified time and date. Enter the time as a 2-digit number for a 24-hour clock. Make sure to use the colons (:), for example, 13:32:45. The range of day is from 1 to 31. The month in upper case or lower case letters. You can enter the full name of the month, such as January or august, or the first three letters of the month, such as jan or Aug. The year is a 4-digit number, such as 2008. The range is from 1970 to 2099."
+      },
+      {
+        "name": "end hh:mm:ss day month year",
+        "description": "(Optional) Displays the data up to the specified time and date. Enter the time as a 2-digit number for a 24-hour clock. Make sure to use the colons (:), for example, 13:32:45. The range of day is from 1 to 31. The month in upper case or lower case letters. You can enter the full name of the month, such as January or august, or the first three letters of the month, such as jan or Aug. The year is a 4-digit number, such as 2008. The range is from 1970 to 2099."
       }
     ],
     "modes": ["Priviledged EXEC (#)"],
@@ -1384,7 +1382,11 @@
       },
       {
         "name": "states",
-        "description": "(Optional) Displays information about the redundancy facility state, such as disabled, initialization, standby or active. switchover history (Optional) Displays information about the redundancy facility switchover history."
+        "description": "(Optional) Displays information about the redundancy facility state, such as disabled, initialization, standby or active."
+      },
+      {
+        "name": "switchover history",
+        "description": "(Optional) Displays information about the redundancy facility switchover history."
       },
       {
         "name": "domain default",
@@ -1536,12 +1538,7 @@
     "detail": "Configure an interface as dual-active-detection link.",
     "syntax": "stackwise-virtual dual-active-detection",
     "noForm": "no stackwise-virtual dual-active-detection",
-    "params": [
-      {
-        "name": "stackwise-virtual dual-active-detection",
-        "description": "Enables Cisco StackWise Virtual dual-active-detection for the specified interface."
-      }
-    ],
+    "params": [],
     "modes": ["Interface configuration (config-if)"],
     "usageSummary": null,
     "sourcePage": 277,
@@ -1557,10 +1554,6 @@
     "syntax": "stackwise-virtual link link-value",
     "noForm": "no stackwise-virtual link link-value",
     "params": [
-      {
-        "name": "stackwise-virtual link",
-        "description": "Associates a interface to StackWise Virtual link."
-      },
       {
         "name": "link value",
         "description": "Domain ID configured for Cisco StackWise Virtual."
@@ -1595,12 +1588,7 @@
     "detail": "Put the system into maintenance mode.",
     "syntax": "start maintenance",
     "noForm": null,
-    "params": [
-      {
-        "name": "start maintenance",
-        "description": "Puts the system into maintenance mode."
-      }
-    ],
+    "params": [],
     "modes": ["Privileged EXEC"],
     "usageSummary": null,
     "sourcePage": 280,
@@ -1630,12 +1618,7 @@
     "detail": "Enable Layer 2 Broadcast, Unicast, Muticast (BUM) traffiic optimization on a StackWise Virtual link.",
     "syntax": "svl l2bum optimization",
     "noForm": "no svl l2bum optimization",
-    "params": [
-      {
-        "name": "svl",
-        "description": "l2bum optimization Enables Layer 2 BUM traffiic optimization on StackWise Virtual link."
-      }
-    ],
+    "params": [],
     "modes": ["Global Configuration (config) #"],
     "usageSummary": null,
     "sourcePage": 282,
@@ -1650,12 +1633,7 @@
     "detail": "To enter the system mode maintenance configuration mode, use the system mode maintenancecommand in the global configuration mode.",
     "syntax": "system mode maintenance",
     "noForm": null,
-    "params": [
-      {
-        "name": "system mode maintenance",
-        "description": "Enters the maintenance configuration mode."
-      }
-    ],
+    "params": [],
     "modes": ["Global configuration (config)"],
     "usageSummary": null,
     "sourcePage": 283,

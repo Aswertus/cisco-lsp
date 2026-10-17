@@ -32,7 +32,11 @@
       },
       {
         "name": "type",
-        "description": "(Optional) Configures the CPL class map. class-map-name Name of the class for the class map. The class name is used for both the class map and to configure a policy for the class in the policy map."
+        "description": "(Optional) Configures the CPL class map."
+      },
+      {
+        "name": "class-map-name",
+        "description": "Name of the class for the class map. The class name is used for both the class map and to configure a policy for the class in the policy map."
       }
     ],
     "modes": ["Global configuration", "Policy map configuration"],
@@ -184,7 +188,16 @@
     "detail": "Define the default class of service (CoS) value of a port or to assign the default CoS to all incoming packets on the port.",
     "syntax": "mls qos cos {default-cos | override}",
     "noForm": "no qos mls cos {default-cos | override}",
-    "params": [],
+    "params": [
+      {
+        "name": "default-cos",
+        "description": "The default CoS value that is assigned to a port. If packets are untagged, the default CoS value becomes the packet CoS value. The CoS range is 0 to 7."
+      },
+      {
+        "name": "override",
+        "description": "Overrides the CoS value of the incoming packets, and apply the default CoS value on the port to all incoming packets."
+      }
+    ],
     "modes": ["Interface configuration"],
     "usageSummary": "You can use the default value to assign a CoS and Differentiated Services Code Point (DSCP) value to all incoming packets that are untagged (if the incoming packet does not have a CoS value).  You also can assign a default CoS and DSCP value to all incoming packets by using the override keyword.  Use the override keyword when all incoming packets on certain ports deserve higher or lower priority than packets entering from other ports.",
     "sourcePage": 372,
@@ -199,7 +212,12 @@
     "detail": "Apply a Differentiated Services Code Point (DSCP)-to-DSCP-mutation map to a DSCP-trusted port.",
     "syntax": "mls qos dscp-mutation dscp-mutation-name",
     "noForm": "no mls qos dscp-mutation dscp-mutation-name",
-    "params": [],
+    "params": [
+      {
+        "name": "dscp-mutation-name",
+        "description": "The name of the DSCP-to-DSCP-mutation map. This map was previously defined with the mls qos map dscp-mutation global configuration command."
+      }
+    ],
     "modes": ["Interface configuration"],
     "usageSummary": "If two quality of service (QoS) domains have different DSCP definitions, use the DSCP-to-DSCP-mutation map to translate one set of DSCP values to match the definition of another domain.  You apply the DSCP-to-DSCP-mutation map to the receiving port (ingress mutation) at the boundary of a QoS administrative domain.  With ingress mutation, the new DSCP value overwrites the one in the packet, and QoS handles the packet with this new value.",
     "sourcePage": 374,
@@ -380,7 +398,11 @@
       },
       {
         "name": "device cisco-phone",
-        "description": "(Optional) Classifies an ingress packet by trusting the CoS or DSCP value sent from the Cisco IP Phone (trusted boundary), depending on the trust setting. device {cts | ip-camera (Optional) Classifies an ingress packet by trusting the CoS or DSCP value for these"
+        "description": "(Optional) Classifies an ingress packet by trusting the CoS or DSCP value sent from the Cisco IP Phone (trusted boundary), depending on the trust setting."
+      },
+      {
+        "name": "device {cts | ip-camera",
+        "description": "(Optional) Classifies an ingress packet by trusting the CoS or DSCP value for these"
       },
       {
         "name": "| media-player}",
@@ -469,7 +491,12 @@
     "detail": "Create or modify a policy map that can be attached to multiple physical ports and to enter policy-map configuration mode.",
     "syntax": "policy-map policy-map-name",
     "noForm": "no policy-map policy-map-name",
-    "params": [],
+    "params": [
+      {
+        "name": "policy-map-name",
+        "description": "The name of the policy map."
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": "After entering the policy-map command, you enter policy-map configuration mode, and these configuration commands are available: • class—Defines the classification match criteria for the specified class map.  • description—Describes the policy map (up to 200 characters).  • exit—Exits policy-map configuration mode and returns you to global configuration mode.",
     "sourcePage": 394,
@@ -484,7 +511,12 @@
     "detail": "Map a port to a queue set.",
     "syntax": "queue-set qset-id",
     "noForm": "no queue-set qset-id",
-    "params": [],
+    "params": [
+      {
+        "name": "qset-id",
+        "description": "Queue-set ID. Each port belongs to a queue set, which defines all the characteristics of the four egress queues per port. The range is 1 to 2."
+      }
+    ],
     "modes": ["Interface configuration"],
     "usageSummary": "For information about automatic generation of the queue-set ID with the auto qos voip command, see the “Usage Guidelines” section for the auto qos voip, on page 346 command.",
     "sourcePage": 396,
@@ -542,7 +574,11 @@
     "params": [
       {
         "name": "class-map-name",
-        "description": "(Optional) Class map name. type control subscriber (Optional) Displays information about control class maps."
+        "description": "(Optional) Class map name."
+      },
+      {
+        "name": "type control subscriber",
+        "description": "(Optional) Displays information about control class maps."
       },
       {
         "name": "all",
@@ -641,7 +677,11 @@
       },
       {
         "name": "dscp-cos",
-        "description": "(Optional) Displays DSCP-to-CoS map. dscp-mutation dscp-mutation-name (Optional) Displays the specified DSCP-to-DSCP-mutation map."
+        "description": "(Optional) Displays DSCP-to-CoS map."
+      },
+      {
+        "name": "dscp-mutation dscp-mutation-name",
+        "description": "(Optional) Displays the specified DSCP-to-DSCP-mutation map."
       },
       {
         "name": "dscp-output-q",
@@ -670,7 +710,12 @@
     "detail": "Display quality of service (QoS) settings for the egress queues.",
     "syntax": "show mls qos queue-set [gset-id]",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "qset-id",
+        "description": "(Optional) Queue set ID. Each port belongs to a queue set, which defines all the characteristics of the four egress queues per port. The range is 1 to 2."
+      }
+    ],
     "modes": ["User EXEC", "Privileged EXEC"],
     "usageSummary": null,
     "sourcePage": 410,
@@ -780,7 +825,11 @@
       },
       {
         "name": "dscp",
-        "description": "(Optional) Classifies an ingress packet by using the packet Differentiated Services Code Point (DSCP) values (most significant 6 bits of 8-bit service-type field). For a non-IP packet, the packet CoS value is used if the packet is tagged. If the packet is untagged, the default port CoS value is used to map CoS to DSCP. ip-precedence (Optional) Classifies an ingress packet by using the packet IP-precedence value (most significant 3 bits of 8-bit service-type field). For a non-IP packet, the packet CoS value is used if the packet is tagged. If the packet is untagged, the port default CoS value is used to map CoS to DSCP."
+        "description": "(Optional) Classifies an ingress packet by using the packet Differentiated Services Code Point (DSCP) values (most significant 6 bits of 8-bit service-type field). For a non-IP packet, the packet CoS value is used if the packet is tagged. If the packet is untagged, the default port CoS value is used to map CoS to DSCP."
+      },
+      {
+        "name": "ip-precedence",
+        "description": "(Optional) Classifies an ingress packet by using the packet IP-precedence value (most significant 3 bits of 8-bit service-type field). For a non-IP packet, the packet CoS value is used if the packet is tagged. If the packet is untagged, the port default CoS value is used to map CoS to DSCP."
       }
     ],
     "modes": ["Policy-map class configuration"],

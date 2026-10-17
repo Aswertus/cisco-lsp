@@ -172,7 +172,11 @@
       },
       {
         "name": "info",
-        "description": "(Optional) Displays PoE-related information debug messages. switch switch-number (Optional) Specifies the stack member. This keyword is supported only on stacking-capable switches."
+        "description": "(Optional) Displays PoE-related information debug messages."
+      },
+      {
+        "name": "switch switch-number",
+        "description": "(Optional) Specifies the stack member. This keyword is supported only on stacking-capable switches."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -189,7 +193,16 @@
     "detail": "Specify the duplex mode of operation for a port.",
     "syntax": "duplex {auto | full | half}",
     "noForm": "no duplex {auto | full | half}",
-    "params": [],
+    "params": [
+      {
+        "name": "auto",
+        "description": "Enables automatic duplex configuration. The port automatically detects whether it should run in full- or half-duplex mode, depending on the attached device mode. full Enables full-duplex mode."
+      },
+      {
+        "name": "half",
+        "description": "Enables half-duplex mode (only for interfaces operating at 10 or 100 Mb/s). You cannot configure half-duplex mode for interfaces operating at 1000 Mb/s, 10,000 Mb/s, 2.5Gb/s, or 5Gb/s."
+      }
+    ],
     "modes": ["Interface configuration"],
     "usageSummary": "For Gigabit Ethernet ports, setting the port to auto has the same effect as specifying full if the attached device does not autonegotiate the duplex parameter.",
     "sourcePage": 298,
@@ -270,7 +283,7 @@
       },
       {
         "name": "security-violation shutdown",
-        "description": "Enables voice aware 802.1x security. vlan Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 301 Interface and Hardware Components errdisable detect cause"
+        "description": "Enables voice aware 802.1x security. vlan"
       },
       {
         "name": "sfp-config-mismatch",
@@ -338,7 +351,7 @@
       },
       {
         "name": "pagp-flap",
-        "description": "Enables the timer to recover from the Port Aggregation Protocol (PAgP)-flap error-disabled state. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 305 Interface and Hardware Components errdisable recovery cause"
+        "description": "Enables the timer to recover from the Port Aggregation Protocol (PAgP)-flap error-disabled state."
       },
       {
         "name": "port-mode-failure",
@@ -398,7 +411,11 @@
       },
       {
         "name": "switch switch-number",
-        "description": "Specifies the switch to be controlled. • switch-number: Switch number. The range is from 1 to 8. slot {switch-number | active | standby} Specifies the switch to be controlled. • switch-number: Switch number. The range is from 1 to 8. • active: Specifies the active switch. • standby: Specifies the standby switch."
+        "description": "Specifies the switch to be controlled. • switch-number: Switch number. The range is from 1 to 8."
+      },
+      {
+        "name": "slot {switch-number | active | standby}",
+        "description": "Specifies the switch to be controlled. • switch-number: Switch number. The range is from 1 to 8. • active: Specifies the active switch. • standby: Specifies the standby switch."
       }
     ],
     "modes": [
@@ -476,7 +493,11 @@
       },
       {
         "name": "switch-number/slot-number/port-number",
-        "description": "802.3z interface. • switch-number — Switch ID. The range is from 1 to 8. • slot-number — Slot number. The range is from 0 to 1. • port-number — Port number. The range is from 1 to 48. Group VI Group VI interface number Enables you to configure a Group VI interface. The range is from 0 to 9."
+        "description": "802.3z interface. • switch-number — Switch ID. The range is from 1 to 8. • slot-number — Slot number. The range is from 0 to 1. • port-number — Port number. The range is from 1 to 48."
+      },
+      {
+        "name": "Group VI Group VI interface number",
+        "description": "Enables you to configure a Group VI interface. The range is from 0 to 9."
       },
       {
         "name": "Internal Interface Internal Interface",
@@ -492,7 +513,7 @@
       },
       {
         "name": "Port-channel interface-number",
-        "description": "Enables you to configure a port-channel interface. The range is from 1 to 128. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 310 Interface and Hardware Components interface"
+        "description": "Enables you to configure a port-channel interface. The range is from 1 to 128."
       },
       {
         "name": "TenGigabitEthernet",
@@ -544,7 +565,11 @@
       },
       {
         "name": "switch-number/slot-number/port-number",
-        "description": "802.3z interface. • switch-number — Switch ID. The range is from 1 to 8. • slot-number — Slot number. The range is from 0 to 1. • port-number — Port number. The range is from 1 to 48. Group VI Group VI interface number Enables you to configure a Group VI interface. The range is from 0 to 9."
+        "description": "802.3z interface. • switch-number — Switch ID. The range is from 1 to 8. • slot-number — Slot number. The range is from 0 to 1. • port-number — Port number. The range is from 1 to 48."
+      },
+      {
+        "name": "Group VI Group VI interface number",
+        "description": "Enables you to configure a Group VI interface. The range is from 0 to 9."
       },
       {
         "name": "Internal Interface Internal Interface",
@@ -560,7 +585,7 @@
       },
       {
         "name": "Port-channel interface-number",
-        "description": "Enables you to configure a port-channel interface. The range is from 1 to 128. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 312 Interface and Hardware Components interface range"
+        "description": "Enables you to configure a port-channel interface. The range is from 1 to 128."
       },
       {
         "name": "TenGigabitEthernet",
@@ -1180,7 +1205,7 @@
       },
       {
         "name": "description",
-        "description": "(Optional) Displays the administrative status and description set for interfaces. Note The output of the show interfaces description command displays information of all the available interfaces whether or not the corresponding network module for these interfaces are connected. These interfaces can be configured if the network module is connected. Run the show interface status command to see which network modules are connected. This is not applicable for Cisco Catalyst 9500 Series High-Performance switches. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 348 Interface and Hardware Components show interfaces"
+        "description": "(Optional) Displays the administrative status and description set for interfaces. Note The output of the show interfaces description command displays information of all the available interfaces whether or not the corresponding network module for these interfaces are connected. These interfaces can be configured if the network module is connected. Run the show interface status command to see which network modules are connected. This is not applicable for Cisco Catalyst 9500 Series High-Performance switches."
       },
       {
         "name": "etherchannel",
@@ -1260,7 +1285,11 @@
       },
       {
         "name": "multicast",
-        "description": "(Optional) Displays interface multicast suppression discard counters. module member-number (Optional) Displays counters for the specified member."
+        "description": "(Optional) Displays interface multicast suppression discard counters."
+      },
+      {
+        "name": "module member-number",
+        "description": "(Optional) Displays counters for the specified member."
       },
       {
         "name": "protocol status",
@@ -1296,7 +1325,11 @@
     "params": [
       {
         "name": "interface-id",
-        "description": "(Optional) ID of the interface. Valid interfaces include physical ports (including type, stack member for stacking-capable switches, module, and port number) and port channels. The port channel range is 1 to 48. module number (Optional) Displays switchport configuration of all interfaces on the switch or specified stack member. The range is 1 to 9. This option is not available if you entered a specific interface ID."
+        "description": "(Optional) ID of the interface. Valid interfaces include physical ports (including type, stack member for stacking-capable switches, module, and port number) and port channels. The port channel range is 1 to 48."
+      },
+      {
+        "name": "module number",
+        "description": "(Optional) Displays switchport configuration of all interfaces on the switch or specified stack member. The range is 1 to 9. This option is not available if you entered a specific interface ID."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -1332,7 +1365,11 @@
       },
       {
         "name": "supported-list",
-        "description": "(Optional) Lists all supported transceivers. threshold-table (Optional) Displays alarm and warning threshold table."
+        "description": "(Optional) Lists all supported transceivers."
+      },
+      {
+        "name": "threshold-table",
+        "description": "(Optional) Displays alarm and warning threshold table."
       }
     ],
     "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
@@ -1412,7 +1449,12 @@
     "detail": "Display inline power messages within a trace buffer.",
     "syntax": "show mgmt-infra trace messages ilpower [switch stack-member-number]",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "switch stack-member-number",
+        "description": "(Optional) Specifies the stack member number for which to display inline power messages within a trace buffer."
+      }
+    ],
     "modes": ["Privileged EXEC (#)"],
     "usageSummary": null,
     "sourcePage": 372,
@@ -1447,7 +1489,12 @@
     "detail": "Display platform manager Power over Ethernet (PoE) messages within a trace buffer.",
     "syntax": "show mgmt-infra trace messages platform-mgr-poe [switch stack-member-number]",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "switch stack-member-number",
+        "description": "(Optional) Specifies the stack member number for which to display messages within a trace buffer."
+      }
+    ],
     "modes": ["Privileged EXEC (#)"],
     "usageSummary": null,
     "sourcePage": 375,
@@ -1463,6 +1510,10 @@
     "syntax": "show network-policy profile [profile-number] [detail]",
     "noForm": null,
     "params": [
+      {
+        "name": "profile-number",
+        "description": "(Optional) Displays the network-policy profile number. If no profile is entered, all network-policy profiles appear."
+      },
       {
         "name": "detail",
         "description": "(Optional) Displays detailed status and statistics information."
@@ -1560,7 +1611,7 @@
       },
       {
         "name": "mpls",
-        "description": "The Multiprotocol Label Switching (MPLS) label parameters. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 381 Interface and Hardware Components show platform hardware fed switch forward interface"
+        "description": "The Multiprotocol Label Switching (MPLS) label parameters."
       },
       {
         "name": "cos",
@@ -1628,7 +1679,7 @@
       },
       {
         "name": "| active | standby",
-        "description": "options : } • switch_num: ID of the switch. • active: Displays information relating to the active switch. • standby: Displays information relating to the standby switch, if available. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 387 Interface and Hardware Components show platform hardware fed switch fwd-asic counters tla"
+        "description": "options : } • switch_num: ID of the switch. • active: Displays information relating to the active switch. • standby: Displays information relating to the standby switch, if available."
       },
       {
         "name": "tlatla_counter",
@@ -1644,7 +1695,7 @@
       },
       {
         "name": "statistics",
-        "description": "Displays the contents of the registers of all non-zero statistical counters. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 388 Interface and Hardware Components show platform hardware fed switch fwd-asic counters tla"
+        "description": "Displays the contents of the registers of all non-zero statistical counters."
       },
       {
         "name": "asci asic_num",
@@ -1750,6 +1801,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "switch{switch-number | active | standby}",
+        "description": "Displays information about the switch. You have the following options: • switch-number. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note This keyword is not supported."
+      },
+      {
         "name": "punt",
         "description": "Specifies the punt informtion."
       },
@@ -1814,6 +1869,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "switch{switch-number|active|standby}",
+        "description": "Displays information about a switch. You have the following options: • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note The standbykeyword is not supported. Note The switchkeyword is not supported on nonstackable devices and on the devices that do not support StackWise Virtual."
+      },
+      {
         "name": "cause-code",
         "description": "Displays the occurrences of cause-code."
       },
@@ -1863,7 +1922,7 @@
       },
       {
         "name": "src_l4",
-        "description": "Displays the occurrences on the Layer 4 source. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 402 Interface and Hardware Components show platform software fed switch punt packet-capture cpu-top-talker"
+        "description": "Displays the occurrences on the Layer 4 source."
       },
       {
         "name": "src_mac",
@@ -1958,8 +2017,8 @@
     "noForm": null,
     "params": [
       {
-        "name": "Syntax Description",
-        "description": "chunk                           (Optional) Displays chunk memory information for the specified process."
+        "name": "chunk",
+        "description": "(Optional) Displays chunk memory information for the specified process."
       },
       {
         "name": "database",
@@ -1967,7 +2026,7 @@
       },
       {
         "name": "messaging",
-        "description": "(Optional) Displays messaging memory information for the specified process. The information displayed is for internal debugging purposes only. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 410 Interface and Hardware Components show platform software memory process Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 411 Interface and Hardware Components show platform software memory Level that is being set. Options include: • bt-logger—The Binary-Tracing Logger process. • btrace-manager—The Btrace Manager process. • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • cmm—The CMM process. • dbm—The Database Manager process. • dmiauthd—The DMI Authentication Daemon process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • geo—The Geo Manager process. • gnmi—The GNMI process. • host-manager—The Host Manager process. • interface-manager—The Interface Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • iox-manager—The IOx Manager process. • license-manager—The License Manager process. • logger—The Logging Manager process. • mdt-pubd—The Model Defined Telemetry Publisher process. • ndbman—The Netconf DataBase Manager process. • nesd—The Network Element Synchronizer Daemon process. • nginx—The Nginx Webserver process. • nif_mgr—The NIF Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • sif—The Stack Interface (SIF) Manager process. • smd—The Session Manager process. • stack-mgr—The Stack Manager process. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 412 Interface and Hardware Components show platform software memory • syncfd—The SyncmDaemon process. • table-manager—The Table Manager Server. • thread-test—The Multithread Manager process. • virt-manager—The Virtualization Manager process."
+        "description": "(Optional) Displays messaging memory information for the specified process. The information displayed is for internal debugging purposes only. process Level that is being set. Options include: • bt-logger—The Binary-Tracing Logger process. • btrace-manager—The Btrace Manager process. • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • cmm—The CMM process. • dbm—The Database Manager process. • dmiauthd—The DMI Authentication Daemon process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • geo—The Geo Manager process. • gnmi—The GNMI process. • host-manager—The Host Manager process. • interface-manager—The Interface Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • iox-manager—The IOx Manager process. • license-manager—The License Manager process. • logger—The Logging Manager process. • mdt-pubd—The Model Defined Telemetry Publisher process. • ndbman—The Netconf DataBase Manager process. • nesd—The Network Element Synchronizer Daemon process. • nginx—The Nginx Webserver process. • nif_mgr—The NIF Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • sif—The Stack Interface (SIF) Manager process. • smd—The Session Manager process. • stack-mgr—The Stack Manager process. • syncfd—The SyncmDaemon process. • table-manager—The Table Manager Server. • thread-test—The Multithread Manager process. • virt-manager—The Virtualization Manager process."
       },
       {
         "name": "slot",
@@ -1990,6 +2049,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "switch switch-number",
+        "description": "Displays information about the switch. Valid values for switch-number argument are from 0 to 9."
+      },
+      {
         "name": "active",
         "description": "Displays information about the active instance of the switch."
       },
@@ -2011,7 +2074,11 @@
       },
       {
         "name": "name process-name",
-        "description": "(Optional) Displays information about the specified process. Enter the process name. process-id process-ID (Optional) Displays information about the specified process ID. Enter the process ID."
+        "description": "(Optional) Displays information about the specified process. Enter the process name."
+      },
+      {
+        "name": "process-id process-ID",
+        "description": "(Optional) Displays information about the specified process ID. Enter the process ID."
       },
       {
         "name": "sort",
@@ -2629,7 +2696,11 @@
       },
       {
         "name": "ipc",
-        "description": "(Optional) Displays IPC related information. ipmulticast (Optional) Displays IP multicast related information."
+        "description": "(Optional) Displays IPC related information."
+      },
+      {
+        "name": "ipmulticast",
+        "description": "(Optional) Displays IP multicast related information."
       },
       {
         "name": "ipsec",
@@ -2657,11 +2728,19 @@
       },
       {
         "name": "page",
-        "description": "(Optional) Displays the command output on a single page at a time. Use the Return key to display the next line of output or use the space bar to display the next page of information. If not used, the output scrolls (that is, it does not stop for page breaks). Press the Ctrl-C keys to stop the command output. password (Optional) Leaves passwords and other security information in the output. If not used, passwords and other security-sensitive information in the output are replaced with the label \"<removed>\"."
+        "description": "(Optional) Displays the command output on a single page at a time. Use the Return key to display the next line of output or use the space bar to display the next page of information. If not used, the output scrolls (that is, it does not stop for page breaks). Press the Ctrl-C keys to stop the command output."
+      },
+      {
+        "name": "password",
+        "description": "(Optional) Leaves passwords and other security information in the output. If not used, passwords and other security-sensitive information in the output are replaced with the label \"<removed>\"."
       },
       {
         "name": "rsvp",
-        "description": "(Optional) Displays IP RSVP related information. subscriber (Optional) Displays subscriber related information."
+        "description": "(Optional) Displays IP RSVP related information."
+      },
+      {
+        "name": "subscriber",
+        "description": "(Optional) Displays subscriber related information."
       },
       {
         "name": "vrrp",
@@ -2744,7 +2823,7 @@
       },
       {
         "name": "mdt",
-        "description": "(Optional) Displays the Multicast Distribution Tree (MDT) related information for an address family. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 451 Interface and Hardware Components show tech-support bgp"
+        "description": "(Optional) Displays the Multicast Distribution Tree (MDT) related information for an address family."
       },
       {
         "name": "mvpn",
@@ -2938,7 +3017,12 @@
     "detail": "Set the global maximum packet size or MTU size for switched packets on Gigabit Ethernet and 10-Gigabit Ethernet ports.",
     "syntax": "system mtu bytes",
     "noForm": "no system mtu",
-    "params": [],
+    "params": [
+      {
+        "name": "bytes",
+        "description": "The global MTU size in bytes. The default is 1500 bytes; the range for: • Cisco Catalyst 9500 Series Switches is 1500 to 9198 bytes • Cisco Catalyst 9500 Series Switches - High Performance and Cisco Catalyst 9500X Series Switches is 1500 to 9216 bytes"
+      }
+    ],
     "modes": ["Global configuration (config)"],
     "usageSummary": "You can verify your setting by entering the show system mtu privileged EXEC command.  The switch does not support the MTU on a per-interface basis.  If you enter a value that is outside the allowed range for the specific type of interface, the value is not accepted.",
     "sourcePage": 476,
@@ -2960,7 +3044,11 @@
       },
       {
         "name": "cos cos-value",
-        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5. dscp dscp-value (Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
+        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5."
+      },
+      {
+        "name": "dscp dscp-value",
+        "description": "(Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
       },
       {
         "name": "dot1p",
@@ -2996,7 +3084,11 @@
       },
       {
         "name": "cos cos-value",
-        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5. dscp dscp-value (Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
+        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5."
+      },
+      {
+        "name": "dscp dscp-value",
+        "description": "(Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
       },
       {
         "name": "dot1p",

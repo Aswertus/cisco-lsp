@@ -132,7 +132,11 @@
       },
       {
         "name": "long",
-        "description": "Enables collecting the total number of bytes or packets from the flow using a 64-bit counter. After collection the counter resets to 0. permanent Enables collecting the total number of bytes or packets from the flow using a 64-bit counter. After collection the counter does not reset."
+        "description": "Enables collecting the total number of bytes or packets from the flow using a 64-bit counter. After collection the counter resets to 0."
+      },
+      {
+        "name": "permanent",
+        "description": "Enables collecting the total number of bytes or packets from the flow using a 64-bit counter. After collection the counter does not reset."
       }
     ],
     "modes": ["Flow record configuration"],
@@ -164,7 +168,12 @@
     "detail": "Configure the input interface name as a non-key field for a flow record.",
     "syntax": "collect interface input",
     "noForm": "no collect interface input",
-    "params": [],
+    "params": [
+      {
+        "name": "input",
+        "description": "Configures the input interface name as a non-key field and enables collecting the input interface from the flows."
+      }
+    ],
     "modes": ["Flow record configuration"],
     "usageSummary": "The NetFlow Lite collect commands are used to configure non-key fields for the flow monitor record and to enable capturing the values in the fields for the flow created with the record.  The values in non-key fields are added to flows to provide additional information about the traffic in the flows.  A change in the value of a non-key field does not create a new flow.",
     "sourcePage": 247,
@@ -900,6 +909,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "export-ids netflow-v9",
+        "description": "(Optional) Displays the NetFlow Version 9 export fields that can be exported and their IDs."
+      },
+      {
         "name": "name",
         "description": "(Optional) Specifies the name of a flow exporter."
       },
@@ -1005,7 +1018,11 @@
     "params": [
       {
         "name": "name",
-        "description": "(Optional) Specifies the name of a flow record. record-name (Optional) Name of a user-defined flow record that was previously configured."
+        "description": "(Optional) Specifies the name of a flow record."
+      },
+      {
+        "name": "record-name",
+        "description": "(Optional) Name of a user-defined flow record that was previously configured."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -1025,7 +1042,11 @@
     "params": [
       {
         "name": "name",
-        "description": "(Optional) Specifies the name of a sampler. sampler-name (Optional) Name of a sampler that was previously configured."
+        "description": "(Optional) Specifies the name of a sampler."
+      },
+      {
+        "name": "sampler-name",
+        "description": "(Optional) Name of a sampler that was previously configured."
       }
     ],
     "modes": ["Privileged EXEC"],

@@ -95,7 +95,11 @@
     "params": [
       {
         "name": "all",
-        "description": "Applies to all stack members. stack-member-number The stack member. The range is 1 to 8."
+        "description": "Applies to all stack members."
+      },
+      {
+        "name": "stack-member-number",
+        "description": "The stack member. The range is 1 to 8."
       },
       {
         "name": "LINE",
@@ -147,7 +151,11 @@
       },
       {
         "name": "mismatch",
-        "description": "Displays configured non-baseline features that are causing a mismatch. switch switch-number (Optional) Displays configured non-baseline features that are causing a mismatch for the specified switch. The range is 1 to 8."
+        "description": "Displays configured non-baseline features that are causing a mismatch."
+      },
+      {
+        "name": "switch switch-number",
+        "description": "(Optional) Displays configured non-baseline features that are causing a mismatch for the specified switch. The range is 1 to 8."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -171,7 +179,11 @@
       },
       {
         "name": "independent",
-        "description": "Displays switch-level independent features. feature-id feature-id (Optional) Displays switch-level independent, system-level interdependent or port-level independent features with the specified feature ID."
+        "description": "Displays switch-level independent features."
+      },
+      {
+        "name": "feature-id feature-id",
+        "description": "(Optional) Displays switch-level independent, system-level interdependent or port-level independent features with the specified feature ID."
       },
       {
         "name": "interdependent",
@@ -239,7 +251,11 @@
       },
       {
         "name": "sdp",
-        "description": "(Optional) Displays Stack Discovery Protocol (SDP) information. reverse (Optional) Displays trace information in reverse chronological order (from recent to older chronological sequence)."
+        "description": "(Optional) Displays Stack Discovery Protocol (SDP) information."
+      },
+      {
+        "name": "reverse",
+        "description": "(Optional) Displays trace information in reverse chronological order (from recent to older chronological sequence)."
       },
       {
         "name": "state",
@@ -265,6 +281,10 @@
     "syntax": "show switch [{stack-member-number | detail | neighbors | stack-ports | stack-ring speed}] Note This command is supported only on Catalyst 2960-X switches running the LAN Base image.",
     "noForm": null,
     "params": [
+      {
+        "name": "stack-member-number",
+        "description": "(Optional) Number of the stack member. The range is 1 to 8."
+      },
       {
         "name": "detail",
         "description": "(Optional) Displays detailed information about the stack ring."
@@ -303,7 +323,11 @@
     "params": [
       {
         "name": "0",
-        "description": "(Optional) Continues using the MAC address of the current active switch after a new active switch takes over. time-value (Optional) Time period in minutes before the stack MAC address changes to that of the new active switch. The range is 1 to 60 minutes. When no value is entered, the default is 4 minutes. We recommend that you configure an explicit value for this command."
+        "description": "(Optional) Continues using the MAC address of the current active switch after a new active switch takes over."
+      },
+      {
+        "name": "time-value",
+        "description": "(Optional) Time period in minutes before the stack MAC address changes to that of the new active switch. The range is 1 to 60 minutes. When no value is entered, the default is 4 minutes. We recommend that you configure an explicit value for this command."
       }
     ],
     "modes": ["Global configuration (config)"],

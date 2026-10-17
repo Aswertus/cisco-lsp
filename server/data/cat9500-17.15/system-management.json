@@ -188,7 +188,15 @@
       },
       {
         "name": "mac mac-address",
-        "description": "MAC address of the receiver. group-ip {ipv4 address | ipv6 address} IPv4 or IPv6 address of the igmp-debug or pim group. ip {ipv4 address | ipv6 address} IPv4 or IPv6 address of the mld-snooping or igmp-snooping group."
+        "description": "MAC address of the receiver."
+      },
+      {
+        "name": "group-ip {ipv4 address | ipv6 address}",
+        "description": "IPv4 or IPv6 address of the igmp-debug or pim group."
+      },
+      {
+        "name": "ip {ipv4 address | ipv6 address}",
+        "description": "IPv4 or IPv6 address of the mld-snooping or igmp-snooping group."
       },
       {
         "name": "vlan vlan-id",
@@ -340,6 +348,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use flash: for the system board flash device; use usbflash0: for USB memory sticks."
+      },
+      {
         "name": "/file-url",
         "description": "(Optional) Path (directory) and directory name that contain the contents you want to display. Separate each directory name with a space."
       }
@@ -490,7 +502,11 @@
       },
       {
         "name": "file",
-        "description": "Specifies the package to be activated. {bootflash: | flash: | harddisk: | webui:} Specifies the location of the installed package."
+        "description": "Specifies the package to be activated."
+      },
+      {
+        "name": "{bootflash: | flash: | harddisk: | webui:}",
+        "description": "Specifies the location of the installed package."
       },
       {
         "name": "auto-abort-timer timer",
@@ -502,7 +518,11 @@
       },
       {
         "name": "add",
-        "description": "Copies files from a remote location (through FTP or TFTP) to a device and performs SMU compatibility check for the platform and image versions. This keyword runs base compatibility checks to ensure that a specified package is supported on a platform. { bootflash: | flash: |ftp: |harddisk: |http: |https: | Specifies the package to be added. rcp: | scp: | tftp: |webui:} Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2181 System Management install"
+        "description": "Copies files from a remote location (through FTP or TFTP) to a device and performs SMU compatibility check for the platform and image versions. This keyword runs base compatibility checks to ensure that a specified package is supported on a platform."
+      },
+      {
+        "name": "{ bootflash: | flash: |ftp: |harddisk: |http: |https: |",
+        "description": "Specifies the package to be added. rcp: | scp: | tftp: |webui:}"
       },
       {
         "name": "commit",
@@ -602,7 +622,12 @@
     "detail": "Enable the Secure Shell (SSH) bulk data transfer mode.",
     "syntax": "ip ssh bulk-mode [ window-size ]",
     "noForm": "no ip ssh bulk-mode [ window-size ]",
-    "params": [],
+    "params": [
+      {
+        "name": "window-size",
+        "description": "(Optional) The SSH window size. The range is from 131072 to 1073741824. The default is 131072."
+      }
+    ],
     "modes": ["Global configuration (config)"],
     "usageSummary": "SSH bulk mode enables optimizing the throughput performance of procedures that involve the transfer of large amounts of data.  The Secure Copy feature has been enhanced to leverage bulk mode optimizations.  Beginning from Cisco IOS XE Dublin 17.",
     "sourcePage": 2197,
@@ -635,11 +660,19 @@
     "params": [
       {
         "name": "air-network-advantage",
-        "description": "Configures the AIR network advantage license level. addon air-dna-advantage (Optional) Configures the add-on AIR DNA advantage license level. This add-on option is available with the AIR network advantage license, and is the default license."
+        "description": "Configures the AIR network advantage license level."
+      },
+      {
+        "name": "addon air-dna-advantage",
+        "description": "(Optional) Configures the add-on AIR DNA advantage license level. This add-on option is available with the AIR network advantage license, and is the default license."
       },
       {
         "name": "air-network-essentials",
-        "description": "Configures the AIR network essential license level. addon air-dna-essentials (Optional) Configures the add-on AIR DNA essentials license level. This add-on option is available with the AIR network essential license."
+        "description": "Configures the AIR network essential license level."
+      },
+      {
+        "name": "addon air-dna-essentials",
+        "description": "(Optional) Configures the add-on AIR DNA essentials license level. This add-on option is available with the AIR network essential license."
       }
     ],
     "modes": ["Global configuration (Device(config)# )"],
@@ -656,7 +689,16 @@
     "detail": "Boot a new software license on the device.",
     "syntax": "license boot level { network-advantage [ addon dna-advantage ] | network-essentials [ addon dna-essentials ] }",
     "noForm": "no license boot level",
-    "params": [],
+    "params": [
+      {
+        "name": "network-advantage [ addon dna-advantage ]",
+        "description": "Configures the Network Advantage license. Optionally, you can also configure the Digital Networking Architecture (DNA) Advantage license."
+      },
+      {
+        "name": "network-essentials [ addon dna-essentials ]",
+        "description": "Configures the Network Essentials license. Optionally, you can also configure the Digital Networking Architecture (DNA) Essentials license."
+      }
+    ],
     "modes": ["Global configuration (config)"],
     "usageSummary": "The software features available on Cisco Catalyst 9000 Series Switches fall under these base or add-on license levels: Base Licenses: • Network Essentials • Network Advantage—Includes features available with the Network Essentials license and more.  Add-on Licenses: • DNA Essentials • DNA Advantage—Includes features available with the Network Essentials license and more.  Base licenses are permanent or perpetual licenses.",
     "sourcePage": 2201,
@@ -678,7 +720,15 @@
       },
       {
         "name": "enable",
-        "description": "Although visible on the CLI, configuring this keyword has no effect. Smart licensing is always enabled. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2204 System Management license smart (global config) privacy { all | hostname | version } Sets a privacy flag to prevent the sending of the specified data privacy related information. When the flag is disabled, the corresponding information is sent in a message or offline file created by the product instance. Depending on the topology this is sent to one or more components, including CSSM, CSLU, and SSM On-Prem. All data privacy settings are disabled by default. You must configure the option you want to exclude from all communication: • all: All data privacy related information is excluded from any communication. The no form of the command causes all data privacy related information to be sent in a message or offline file. Note The Product ID (PID) and serial number are included in the RUM report regardless of whether data privacy is enabled or not. • hostname: Excludes hostname information from any communication. When hostname privacy is enabled, the UDI of the product instance is displayed on the applicable user interfaces (CSSM, CSLU, and SSM On-Prem). The no form of the command causes hostname information to be sent in a message or offline file. The hostname is displayed on the applicable user interfaces (CSSM, CSLU, and SSM On-Prem). • version: Excludes the Cisco IOS-XE software version running on the product instance and the Smart Agent version from any communication. The no form of the command causes version information to be sent in a message or offline file. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2205 System Management license smart (global config) proxy { address address_hostname | port Configures a proxy for license usage synchronization with"
+        "description": "Although visible on the CLI, configuring this keyword has no effect. Smart licensing is always enabled. System Management license smart (global config)"
+      },
+      {
+        "name": "privacy { all | hostname | version }",
+        "description": "Sets a privacy flag to prevent the sending of the specified data privacy related information. When the flag is disabled, the corresponding information is sent in a message or offline file created by the product instance. Depending on the topology this is sent to one or more components, including CSSM, CSLU, and SSM On-Prem. All data privacy settings are disabled by default. You must configure the option you want to exclude from all communication: • all: All data privacy related information is excluded from any communication. The no form of the command causes all data privacy related information to be sent in a message or offline file. Note The Product ID (PID) and serial number are included in the RUM report regardless of whether data privacy is enabled or not. • hostname: Excludes hostname information from any communication. When hostname privacy is enabled, the UDI of the product instance is displayed on the applicable user interfaces (CSSM, CSLU, and SSM On-Prem). The no form of the command causes hostname information to be sent in a message or offline file. The hostname is displayed on the applicable user interfaces (CSSM, CSLU, and SSM On-Prem). • version: Excludes the Cisco IOS-XE software version running on the product instance and the Smart Agent version from any communication. The no form of the command causes version information to be sent in a message or offline file. System Management"
+      },
+      {
+        "name": "proxy { address address_hostname | port",
+        "description": "Configures a proxy for license usage synchronization with"
       },
       {
         "name": "port }",
@@ -694,7 +744,7 @@
       },
       {
         "name": "| smart }",
-        "description": "to communicate with CSSM. Choose from the following options: • automatic: Sets the transport mode cslu. • callhome: Enables Call Home as the transport mode. • cslu: Enables CSLU as the transport mode. This is the default transport mode. The same keyword applies to both CSLU and SSM On-Prem, but the URLs are different. See cslucslu_or_on-prem_url in the following row. • off: Disables all communication from the product instance. • smart: Enables Smart transport. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2206 System Management license smart (global config) url { url | cslu cslu_url | default | smart smart_url | utility secondary_url } Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2207 System Management license smart (global config) Sets a URL for the configured transport mode. Choose from the following options: • url: If you have configured the transport mode as callhome, configure this option. Enter the CSSM URL exactly as follows: https://tools.cisco.com/its/service/oddce/services/DDCEService The no license smart url url command reverts to the default URL. • cslu cslu_or_on-prem_url: If you have configured the transport mode as cslu, configure this option, with the URL for CSLU or SSM On-Prem, as applicable: • If you are using CSLU, enter the URL as follows: http://<cslu_ip_or_host>:8182/cslu/v1/pi For <cslu_ip_or_host>, enter the hostname or the IP address of the windows host where you have installed CSLU. 8182 is the port number and it is the only port number that CSLU uses. The no license smart url cslu cslu_or_on-prem_url command reverts to http://cslu-local:8182/cslu/v1/pi • If you are using SSM On-Prem, enter the URL as follows: http://<ip>/cslu/v1/pi/<tenant ID> For <ip>, enter the hostname or the IP address of the server where you have installed SSM On-Prem. The <tenantID> must be the default local virtual account ID. Tip You can retrieve the entire URL from SSM On-Prem. In the software configuration guide of the required release (17.3.x onwards), see System Management > Smart Licensing Using Policy > Task Library for Smart Licensing Using Policy > Retrieving the Transport URL (SSM On-Prem UI). The no license smart url cslu cslu_or_on-prem_url command reverts to http://cslu-local:8182/cslu/v1/pi • default: Depends on the configured transport mode. Only the smart and cslu transport modes are supported with this option. If the transport mode is set to cslu, and you configure license smart url default, the CSLU URL is Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2208 System Management license smart (global config) configured automatically (https://cslu-local:8182/cslu/v1/pi). If the transport mode is set to smart, and you configure license smart url default, the Smart URL is configured automatically (https://smartreceiver.cisco.com/licservice/license). • smart smart_url: If you have configured the transport type as smart, configure this option. Enter the URL exactly as follows: https://smartreceiver.cisco.com/licservice/license When you configure this option, the system automatically creates a duplicate of the URL in license smart url url. You can ignore the duplicate entry, no further action is required. The no license smart url smartsmart_url command reverts to the default URL. • utility smart_url: Although available on the CLI, this option is not supported. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2209 System Management license smart (global config) usage { customer-tags { tag1 | tag2 | tag3 Configures usage reporting settings. You can set the | tag4 } tag_value | interval interval_in_days following options: } • customer-tags{tag1|tag2|tag3|tag4}tag_value: Defines strings for inclusion in data models, for telemetry. Up to 4 strings (or tags) may be defined. For tag_value, enter the string value for each tag that you define. • interval interval_in_days: Sets the reporting interval in days. By default the RUM report is sent every 30 days. The valid value range is 1 to 3650. If you set the value to zero, RUM reports are not sent, regardless of what the applied policy specifies - this applies to topologies where CSLU or CSSM may be on the receiving end. If you set a value that is greater than zero and the transport type is set to off, then, between the interval_in_days and the policy value for Ongoing reporting frequency(days):, the lower of the two values is applied. For example, if interval_in_days is set to 100, and the value in the in the policy says Ongoing reporting frequency (days):90, RUM reports are sent every 90 days. If you do not set an interval, and the default is effective, the reporting interval is determined entirely by the policy value. For example, if the default value is effective and only unenforced licenses are in use, if the policy states that reporting is not required, then RUM reports are not sent. utility [ customer_info { city city | country Although visible on the CLI, this option is not supported country | postalcode postalcode | state state on any of the Cisco Catalyst Access, Core, and Aggregation | street street } ] Switches."
+        "description": "to communicate with CSSM. Choose from the following options: • automatic: Sets the transport mode cslu. • callhome: Enables Call Home as the transport mode. • cslu: Enables CSLU as the transport mode. This is the default transport mode. The same keyword applies to both CSLU and SSM On-Prem, but the URLs are different. See cslucslu_or_on-prem_url in the following row. • off: Disables all communication from the product instance. • smart: Enables Smart transport. System Management license smart (global config) url { url | cslu cslu_url | default | smart smart_url | utility secondary_url } System Management System Management license smart (global config) configured automatically (https://cslu-local:8182/cslu/v1/pi). If the transport mode is set to smart, and you configure license smart url default, the Smart URL is configured automatically (https://smartreceiver.cisco.com/licservice/license). • smart smart_url: If you have configured the transport type as smart, configure this option. Enter the URL exactly as follows: https://smartreceiver.cisco.com/licservice/license When you configure this option, the system automatically creates a duplicate of the URL in license smart url url. You can ignore the duplicate entry, no further action is required. The no license smart url smartsmart_url command reverts to the default URL. • utility smart_url: Although available on the CLI, this option is not supported. System Management"
       }
     ],
     "modes": ["Global config (Device(config)# )"],
@@ -750,7 +800,7 @@
       },
       {
         "name": "return",
-        "description": "Returns an authorization code back to the license pool in CSSM. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2216 System Management license smart (privileged EXEC)"
+        "description": "Returns an authorization code back to the license pool in CSSM. System Management license smart (privileged EXEC)"
       },
       {
         "name": "offline",
@@ -794,7 +844,7 @@
       },
       {
         "name": "| rum-id rum-ID |",
-        "description": "specify one of these options: unreported } { file • all: Saves all RUM reports. file_path } • days days: Saves RUM report for the last n number of days (excluding the current day). Enter a number. The valid range is 0 to 4294967295. For example, if you enter 3, RUM reports of the last three days are saved. • rum-Id rum-ID: Saves a specified RUM ID. The valid value range is 0 to 18446744073709551615. • unreported: Saves all unreported RUM reports. file filepath_filename: Saves the specified usage information to a file. Specify the absolute path to the file, including the filename. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2217 System Management license smart (privileged EXEC) sync { all | local } Synchronizes with CSSM or CSLU, or SSM On-Prem, to send and receive any pending data. This includes uploading pending RUM reports, downloading the ACK response, any pending authorization codes, trust codes, and policies for the product instance. Specify the product instance by entering one of these options: • all: Performs synchronization for all the product instances in a High Availability or stacking set-up. If you choose this option, the product instance also sends the list of all the UDIs in the synchronization request. • local: Performs synchronization only for the active product instance sending the request, that is, its own UDI. This is the default option."
+        "description": "specify one of these options: unreported } { file • all: Saves all RUM reports. file_path } • days days: Saves RUM report for the last n number of days (excluding the current day). Enter a number. The valid range is 0 to 4294967295. For example, if you enter 3, RUM reports of the last three days are saved. • rum-Id rum-ID: Saves a specified RUM ID. The valid value range is 0 to 18446744073709551615. • unreported: Saves all unreported RUM reports. file filepath_filename: Saves the specified usage information to a file. Specify the absolute path to the file, including the filename. System Management"
       },
       {
         "name": "trust idtoken",
@@ -889,6 +939,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "multiband",
+        "description": "Specifies the path loss measurement request for calibrating clients on the associated 802.11a or 802.11b/g radio."
+      },
+      {
         "name": "uniband",
         "description": "Specifies the path loss measurement request for calibrating clients on the associated 802.11a/b/g radio."
       }
@@ -910,7 +964,11 @@
     "params": [
       {
         "name": "receive",
-        "description": "Specifies that the switch processes MAC address-table move update messages. transmit Specifies that the switch sends MAC address-table move update messages to other switches in the network if the primary link goes down and the standby link comes up."
+        "description": "Specifies that the switch processes MAC address-table move update messages."
+      },
+      {
+        "name": "transmit",
+        "description": "Specifies that the switch sends MAC address-table move update messages to other switches in the network if the primary link goes down and the standby link comes up."
       }
     ],
     "modes": ["Global configuration"],
@@ -1129,7 +1187,11 @@
     "params": [
       {
         "name": "filesystem:",
-        "description": "Alias for a file system. Use usbflash0: for USB memory sticks. /directory-url... Path (directory) and name of the empty directories to remove. Separate each directory name with a space."
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/directory-url...",
+        "description": "Path (directory) and name of the empty directories to remove. Separate each directory name with a space."
       }
     ],
     "modes": ["Boot loader"],
@@ -1438,7 +1500,11 @@
       },
       {
         "name": "configuration",
-        "description": "Displays the configuration resulting from the power xps privileged EXEC commands. The XPS configuration is stored in the XPS. Enter the show env xps configuration command to retrieve the non-default configuration. port [all | number ] Displays the configuration and status of all ports or the specified XPS port. Port numbers are from 1 to 9."
+        "description": "Displays the configuration resulting from the power xps privileged EXEC commands. The XPS configuration is stored in the XPS. Enter the show env xps configuration command to retrieve the non-default configuration."
+      },
+      {
+        "name": "port [all | number ]",
+        "description": "Displays the configuration and status of all ports or the specified XPS port. Port numbers are from 1 to 9."
       },
       {
         "name": "power",
@@ -1542,7 +1608,11 @@
       },
       {
         "name": "package",
-        "description": "Displays metadata information about the package, including description, restart information, components in the package, and so on. {bootflash: | flash: | harddisk: |webui:} Specifies the location of the install package."
+        "description": "Displays metadata information about the package, including description, restart information, components in the package, and so on."
+      },
+      {
+        "name": "{bootflash: | flash: | harddisk: |webui:}",
+        "description": "Specifies the location of the install package."
       },
       {
         "name": "rollback",
@@ -1668,6 +1738,14 @@
     "noForm": null,
     "params": [
       {
+        "name": "feature { license_name | all }",
+        "description": "Displays RUM report information based on the license name. Specify a particular license name to display all RUM reports for that license, or use the all keyword to display all RUM reports available on the product instance."
+      },
+      {
+        "name": "id { rum_id | all }",
+        "description": "Displays RUM report information based on the RUM report ID. Specify a report ID to display information for a single report, or use the all keyword to display all RUM reports available on the product instance."
+      },
+      {
         "name": "detail",
         "description": "Displays detailed RUM report information. You can use this to display detailed information by license name and detailed information by RUM report ID."
       },
@@ -1727,7 +1805,15 @@
       },
       {
         "name": "rum { feature {",
-        "description": "Displays information about Resource Utilization Measurement reports (RUM license_name | all } | id { reports) on the product instance, including report IDs, the current processing rum_id | all } } [ detail ] [ state of a report, error information (if any), and an option save the displayed"
+        "description": "Displays information about Resource Utilization Measurement reports (RUM"
+      },
+      {
+        "name": "license_name | all } | id {",
+        "description": "reports) on the product instance, including report IDs, the current processing"
+      },
+      {
+        "name": "rum_id | all } } [ detail ] [",
+        "description": "state of a report, error information (if any), and an option save the displayed"
       },
       {
         "name": "save path ]",
@@ -1857,7 +1943,15 @@
       },
       {
         "name": "detail",
-        "description": "(Optional) Displays detailed data. start hour day month year (Optional) Specifies the start time to display data. end hour day month year (Optional) Specifies the end time to display data."
+        "description": "(Optional) Displays detailed data."
+      },
+      {
+        "name": "start hour day month year",
+        "description": "(Optional) Specifies the start time to display data."
+      },
+      {
+        "name": "end hour day month year",
+        "description": "(Optional) Specifies the end time to display data."
       },
       {
         "name": "summary",
@@ -1945,7 +2039,7 @@
       },
       {
         "name": "notification threshold",
-        "description": "Displays the Counter-Addressable Memory (CAM) table utilization notification status. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2341 System Management show mac address-table"
+        "description": "Displays the Counter-Addressable Memory (CAM) table utilization notification status."
       }
     ],
     "modes": ["Privileged EXEC (#)"],
@@ -2253,7 +2347,12 @@
     "detail": "Display the contents of the current running configuration file or the configuration for a specific module, Layer 2 VLAN, class map, interface, map class, policy map, or virtual circuit (VC) class.",
     "syntax": "show running-config [options]",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "options",
+        "description": "(Optional) Keywords used to customize output. You can enter more than one keyword. • aaa [accounting | attribute | authentication | authorization | diameter | group | ldap | miscellaneous | radius-server | server | tacacs-server | user-name | username]: Displays AAA configurations. • all: Expands the output to include the commands that are configured with default parameters. If the all keyword is not used, the output does not display commands configured with default parameters. • bridge-domain {id | parameterized vlan}: Displays the running configuration for bridge domains. • brief: Displays the configuration without certification data and encrypted filter details. • class-map [name] [linenum]: Displays class map information. • cts [interface | policy-server | rbm-rbac | server | sxp] : Displays Cisco TrustSec configurations. • deprecated: Displays deprecated configuration along with the running configuration. • eap {method | profiles}: Displays EAP method configurations and profiles. • flow {exporter | monitor | record}: Displays global flow configuration commands. • full: Displays the full configuration. • identity {policy | profile}: Displays identity profile or policy information. • interface type number: Displays interface-specific configuration information. If you use the interface keyword, you must specify the interface type and the interface number (for example, interface GigabitEthernet 1/0/1). Use the show run interface ? command to determine the interfaces available on your system. • ip dhcp pool [name]: Displays IPv4 DHCP pool configuration. • ipv6 dhcp pool [name]: Displays IPv6 DHCP pool configuration. • linenum [brief | full | partition]: Displays line numbers in the output. • map-class [atm | dialer | frame-relay] [name]: Displays map class information. • mdns-sd [gateway | location-group | service-definition | service-list | service-peer | service-policy]: Displays Multicast DNS Service Discovery (mDNS-SD) configurations. • partition {access-list | class-map | common | global-cdp | interface | ip-as-path | ip-community | ip-prefix-list | ip-static-routes | line | policy-map | route-map | router | snmp | tacacs}: Displays the configuration corresponding to a partition. • policy-map [name] [linenum]: Displays policy map information. • switch number: Displays configuration for the specified switch. • view [full]: Enables the display of a full running configuration. This is for view-based users who typically can only view the configuration commands that they are entitled to access for that particular view. • vlan [vlan-id]: Displays the specific VLAN information; valid values are from 1 to 4094. • vrf [vrf-name]: Displays the Virtual routing and forwarding (VRF)-aware configuration module number ."
+      }
+    ],
     "modes": ["Privileged EXEC (#)"],
     "usageSummary": "The show running-config command is technically a command alias (substitute or replacement syntax) of the more system:running-config command.  Although the use of more commands is recommended (because of their uniform structure across platforms and their expandable syntax), the show running-config command remains enabled to accommodate its widespread use, and to allow typing shortcuts such as show run.  The show running-config interface command is useful when there are multiple interfaces and you want to look at the configuration of a specific interface.",
     "sourcePage": 2365,
@@ -2601,7 +2700,12 @@
     "detail": "Configure the difference between the yellow and red temperature thresholds that determines the value of yellow threshold.",
     "syntax": "system env temperature threshold yellow value",
     "noForm": "no system env temperature threshold yellow value",
-    "params": [],
+    "params": [
+      {
+        "name": "value",
+        "description": "Specifies the difference between the yellow and red threshold values (in Celsius). The range is 10 to 25."
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": "You cannot configure the green and red thresholds but can configure the yellow threshold.  Use the system env temperature threshold yellow value global configuration command to specify the difference between the yellow and red thresholds and to configure the yellow threshold.  For example, if the red threshold is 66 degrees C and you want to configure the yellow threshold as 51 degrees C, set the difference between the thresholds as 15 by using the system env temperature threshold yellow 15 command.",
     "sourcePage": 2419,
@@ -2655,7 +2759,7 @@
       },
       {
         "name": "Usage Guidelines",
-        "description": "You can specify multiple filenames by repeating the tftp-server command. The system sends a copy of the system image contained in ROM or one of the system images contained in Flash memory to any client that issues a TFTP Read Request with this filename. If the specified filename1 or filename2 argument exists in Flash memory, a copy of the Flash image is sent. On systems that contain a complete image in ROM, the system sends the ROM image if the specified filename1 or filename2 argument is not found in Flash memory. Command Reference, Cisco IOS XE 17.15.x (Catalyst 9500 Switches) 2421 System Management tftp-server Images that run from ROM cannot be loaded over the network. Therefore, it does not make sense to use TFTP to offer the ROMs on these images. If a USB is configured as a TFTP server, it is recommended that all corresponding configurations be removed before physically removing or disabling the USB. The usb option will not be available once the USB is disabled or physically removed."
+        "description": "You can specify multiple filenames by repeating the tftp-server command. The system sends a copy of the system image contained in ROM or one of the system images contained in Flash memory to any client that issues a TFTP Read Request with this filename. If the specified filename1 or filename2 argument exists in Flash memory, a copy of the Flash image is sent. On systems that contain a complete image in ROM, the system sends the ROM image if the specified filename1 or filename2 argument is not found in Flash memory. Images that run from ROM cannot be loaded over the network. Therefore, it does not make sense to use TFTP to offer the ROMs on these images. If a USB is configured as a TFTP server, it is recommended that all corresponding configurations be removed before physically removing or disabling the USB. The usb option will not be available once the USB is disabled or physically removed."
       }
     ],
     "modes": ["Global Configuration"],
@@ -2732,7 +2836,12 @@
     "detail": "Display the contents of one or more files.",
     "syntax": "type filesystem:/file-url...",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use flash: for the system board flash device; use usbflash0: for USB memory sticks. /file-url... Path (directory) and name of the files to display. Separate each filename with a space."
+      }
+    ],
     "modes": ["Boot loader"],
     "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appear sequentially.",
     "sourcePage": 2428,

@@ -152,7 +152,11 @@
       },
       {
         "name": "-",
-        "description": "(Optional) Specifies a range of interfaces or VLANs. Enter a space before and after the hyphen. both | rx | tx (Optional) Specifies the traffic direction to monitor. If you do not specify a traffic direction, the source interface sends both transmitted and received traffic."
+        "description": "(Optional) Specifies a range of interfaces or VLANs. Enter a space before and after the hyphen."
+      },
+      {
+        "name": "both | rx | tx",
+        "description": "(Optional) Specifies the traffic direction to monitor. If you do not specify a traffic direction, the source interface sends both transmitted and received traffic."
       },
       {
         "name": "remote",
@@ -196,11 +200,7 @@
       },
       {
         "name": "range list",
-        "description": "(Optional) Displays a range of SPAN sessions, where list is the range of valid sessions. The range is either a single session or a range of sessions described by two numbers, the lower one first, separated by a hyphen. Do not enter any spaces between comma-separated parameters or in hyphen-specified ranges."
-      },
-      {
-        "name": "Note",
-        "description": "This keyword is available only in privileged EXEC mode."
+        "description": "(Optional) Displays a range of SPAN sessions, where list is the range of valid sessions. The range is either a single session or a range of sessions described by two numbers, the lower one first, separated by a hyphen. Do not enter any spaces between comma-separated parameters or in hyphen-specified ranges. Note This keyword is available only in privileged EXEC mode."
       },
       {
         "name": "remote",
@@ -352,7 +352,11 @@
     "params": [
       {
         "name": "newroot",
-        "description": "(Optional) Enables SNMP STP bridge MIB new root traps. topologychange (Optional) Enables SNMP STP bridge MIB topology change traps."
+        "description": "(Optional) Enables SNMP STP bridge MIB new root traps."
+      },
+      {
+        "name": "topologychange",
+        "description": "(Optional) Enables SNMP STP bridge MIB topology change traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -404,7 +408,11 @@
       },
       {
         "name": "supply",
-        "description": "(Optional) Enables environmental monitor power-supply traps. temperature (Optional) Enables environmental monitor temperature traps."
+        "description": "(Optional) Enables environmental monitor power-supply traps."
+      },
+      {
+        "name": "temperature",
+        "description": "(Optional) Enables environmental monitor temperature traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -445,7 +453,16 @@
     "detail": "Enable SNMP flash notifications.",
     "syntax": "snmp-server enable traps flash [insertion][removal]",
     "noForm": "no snmp-server enable traps flash [insertion][removal]",
-    "params": [],
+    "params": [
+      {
+        "name": "insertion",
+        "description": "(Optional) Enables SNMP flash insertion notifications."
+      },
+      {
+        "name": "removal",
+        "description": "(Optional) Enables SNMP flash removal notifications."
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": "Specify the host (NMS) that receives the traps by using the snmp-server host global configuration command.  If no trap types are specified, all trap types are sent.",
     "sourcePage": 323,
@@ -467,7 +484,11 @@
       },
       {
         "name": "move",
-        "description": "(Optional) Enables SNMP MAC move traps. threshold (Optional) Enables SNMP MAC threshold traps."
+        "description": "(Optional) Enables SNMP MAC move traps."
+      },
+      {
+        "name": "threshold",
+        "description": "(Optional) Enables SNMP MAC threshold traps."
       }
     ],
     "modes": ["Global configuration"],
@@ -524,6 +545,10 @@
     "syntax": "snmp-server enable traps snmp [authentication ][coldstart ][linkdown ] [linkup ][warmstart] ][warmstart]",
     "noForm": "no snmp-server enable traps snmp [authentication ][coldstart ][linkdown ] [linkup",
     "params": [
+      {
+        "name": "authentication",
+        "description": "(Optional) Enables authentication traps."
+      },
       {
         "name": "coldstart",
         "description": "(Optional) Enables cold start traps."
@@ -582,7 +607,15 @@
     "params": [
       {
         "name": "inconsistency",
-        "description": "(Optional) Enables SNMP STPX MIB inconsistency update traps. loop-inconsistency (Optional) Enables SNMP STPX MIB loop inconsistency update traps. root-inconsistency (Optional) Enables SNMP STPX MIB root inconsistency update traps."
+        "description": "(Optional) Enables SNMP STPX MIB inconsistency update traps."
+      },
+      {
+        "name": "loop-inconsistency",
+        "description": "(Optional) Enables SNMP STPX MIB loop inconsistency update traps."
+      },
+      {
+        "name": "root-inconsistency",
+        "description": "(Optional) Enables SNMP STPX MIB root inconsistency update traps."
       }
     ],
     "modes": ["Global configuration"],

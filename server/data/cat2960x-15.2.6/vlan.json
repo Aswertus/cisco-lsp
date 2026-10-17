@@ -170,7 +170,11 @@
     "params": [
       {
         "name": "accfwdchange",
-        "description": "Displays debug messages for VLAN manager notification of aggregated access interface spanning-tree forward changes. allowedvlancfgchange Displays debug messages for VLAN manager notification of changes to the allowed VLAN configuration."
+        "description": "Displays debug messages for VLAN manager notification of aggregated access interface spanning-tree forward changes."
+      },
+      {
+        "name": "allowedvlancfgchange",
+        "description": "Displays debug messages for VLAN manager notification of changes to the allowed VLAN configuration."
       },
       {
         "name": "fwdchange",
@@ -445,8 +449,16 @@
     "noForm": "no switchport trunk {allowed vlan | native vlan | pruning vlan}",
     "params": [
       {
+        "name": "allowed vlan vlan-list",
+        "description": "Sets the list of allowed VLANs that can receive and send traffic on this interface in tagged format when in trunking mode. See the Usage Guidelines for the vlan-list choices."
+      },
+      {
         "name": "native vlan vlan-id",
-        "description": "Sets the native VLAN for sending and receiving untagged traffic when the interface is in IEEE 802.1Q trunking mode. The range is 1 to 4094. pruning vlan vlan-list Sets the list of VLANs that are eligible for VTP pruning when in trunking mode. See the Usage Guidelines for the vlan-list choices."
+        "description": "Sets the native VLAN for sending and receiving untagged traffic when the interface is in IEEE 802.1Q trunking mode. The range is 1 to 4094."
+      },
+      {
+        "name": "pruning vlan vlan-list",
+        "description": "Sets the list of VLANs that are eligible for VTP pruning when in trunking mode. See the Usage Guidelines for the vlan-list choices."
       }
     ],
     "modes": ["Interface configuration"],
@@ -478,7 +490,11 @@
       },
       {
         "name": "untagged",
-        "description": "Configures the telephone to send untagged voice traffic. This is the default for the telephone. name vlan_name (Optional) Specifies the VLAN name to be used for voice traffic. You can enter up to 128 characters."
+        "description": "Configures the telephone to send untagged voice traffic. This is the default for the telephone."
+      },
+      {
+        "name": "name vlan_name",
+        "description": "(Optional) Specifies the VLAN name to be used for voice traffic. You can enter up to 128 characters."
       }
     ],
     "modes": ["Interface configuration"],
@@ -515,7 +531,12 @@
     "detail": "Change the reconfirmation interval for the VLAN Query Protocol (VQP) client.",
     "syntax": "vmps reconfirm interval",
     "noForm": "no vmps reconfirm",
-    "params": [],
+    "params": [
+      {
+        "name": "interval",
+        "description": "Reconfirmation interval for VQP client queries to the VLAN Membership Policy Server (VMPS) to reconfirm dynamic VLAN assignments. The range is 1 to 120 minutes."
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": "You can verify your setting by entering the show vmps privileged EXEC command and examining information in the Reconfirm Interval row.",
     "sourcePage": 744,

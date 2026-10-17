@@ -468,7 +468,11 @@
       },
       {
         "name": "encapsulation mpls",
-        "description": "Specifies Multiprotocol Label Switching (MPLS) as the data encapsulation method. template template-name (Optional) Specifies the template to be used for encapsulation and protocol configuration. The maximum size is 32 characters."
+        "description": "Specifies Multiprotocol Label Switching (MPLS) as the data encapsulation method."
+      },
+      {
+        "name": "template template-name",
+        "description": "(Optional) Specifies the template to be used for encapsulation and protocol configuration. The maximum size is 32 characters."
       },
       {
         "name": "group group-name",
@@ -1174,7 +1178,11 @@
       },
       {
         "name": "interface-type",
-        "description": "Interface type. interface-number Port, connector, or interface card number. The numbers are assigned at the factory at the time of installation or when added to a system. This number can be displayed with the show interfaces command."
+        "description": "Interface type."
+      },
+      {
+        "name": "interface-number",
+        "description": "Port, connector, or interface card number. The numbers are assigned at the factory at the time of installation or when added to a system. This number can be displayed with the show interfaces command."
       },
       {
         "name": "dynamic",

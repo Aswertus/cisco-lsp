@@ -24,7 +24,11 @@
       },
       {
         "name": "/no-set-boot",
-        "description": "Stops the setting of the BOOT environment variable from being altered to point to the new software image after it is successfully downloaded. /no-version-check Downloads the software image without verifying its version compatibility with the image that is running on the switch. On a switch stack, downloads the software image without checking the compatibility of the stack protocol version on the image and on the stack. This feature is supported only on the LAN Base image."
+        "description": "Stops the setting of the BOOT environment variable from being altered to point to the new software image after it is successfully downloaded."
+      },
+      {
+        "name": "/no-version-check",
+        "description": "Downloads the software image without verifying its version compatibility with the image that is running on the switch. On a switch stack, downloads the software image without checking the compatibility of the stack protocol version on the image and on the stack. This feature is supported only on the LAN Base image."
       },
       {
         "name": "/overwrite",
@@ -108,7 +112,11 @@
     "params": [
       {
         "name": "enable",
-        "description": "Enables AVC with DNS-AS on the DNS-AS client. trusted-domains[domaindomain-name] Enter the domain name you would like to add to the list of trusted domains for the DNS-AS client. All remaining domains are ignored and will follow default forwarding behavior. You can enter up to 50 domains. You can use regular expressions to match the domain name."
+        "description": "Enables AVC with DNS-AS on the DNS-AS client."
+      },
+      {
+        "name": "trusted-domains[domaindomain-name]",
+        "description": "Enter the domain name you would like to add to the list of trusted domains for the DNS-AS client. All remaining domains are ignored and will follow default forwarding behavior. You can enter up to 50 domains. You can use regular expressions to match the domain name."
       }
     ],
     "modes": ["Global configuration mode", "Trusted domain configuration mode"],
@@ -369,7 +377,11 @@
       },
       {
         "name": "address mac-addr",
-        "description": "(Optional) Deletes the specified dynamic MAC address. interface interface-id (Optional) Deletes all dynamic MAC addresses on the specified physical port or port channel."
+        "description": "(Optional) Deletes the specified dynamic MAC address."
+      },
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Deletes all dynamic MAC addresses on the specified physical port or port channel."
       },
       {
         "name": "vlan vlan-id",
@@ -427,7 +439,11 @@
     "params": [
       {
         "name": "mac-address",
-        "description": "The MAC address of the cluster command switch. member number (Optional) Specifies the number of a configured cluster member switch. The range is 0 to 15."
+        "description": "The MAC address of the cluster command switch."
+      },
+      {
+        "name": "member number",
+        "description": "(Optional) Specifies the number of a configured cluster member switch. The range is 0 to 15."
       },
       {
         "name": "name name",
@@ -471,7 +487,11 @@
     "params": [
       {
         "name": "name",
-        "description": "The name of the cluster up to 31 characters. Valid characters include only alphanumerics, dashes, and underscores. command-switch-member-number (Optional) A member number that is assigned to the cluster command switch of the cluster. The range is 0 to 15."
+        "description": "The name of the cluster up to 31 characters. Valid characters include only alphanumerics, dashes, and underscores."
+      },
+      {
+        "name": "command-switch-member-number",
+        "description": "(Optional) A member number that is assigned to the cluster command switch of the cluster. The range is 0 to 15."
       }
     ],
     "modes": ["Global configuration"],
@@ -715,6 +735,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use flash: for the system board flash device; use usbflash0: for USB memory sticks."
+      },
+      {
         "name": "/file-url",
         "description": "(Optional) Path (directory) and directory name that contain the contents you want to display. Separate each directory name with a space."
       }
@@ -810,6 +834,10 @@
     "noForm": "no license {accept end user agreement force |boot level addon addon-license-level {dna-essentials",
     "params": [
       {
+        "name": "accept end user agreement force",
+        "description": "Enables acceptance of the end-user license agreement (EULA)."
+      },
+      {
         "name": "boot level addon addon-license-level",
         "description": "Enter the add-on license level you want to enable on the switch. • dna-essentials • dna-advantage"
       }
@@ -868,7 +896,12 @@
     "detail": "Limit messages logged to the console according to severity.",
     "syntax": "logging console level",
     "noForm": "no logging console",
-    "params": [],
+    "params": [
+      {
+        "name": "level",
+        "description": "The severity level of messages logged to the console. The severity levels are: • Emergencies—System is unusable (severity=0) • Alerts—Immediate action needed (severity=1) • Critical—Critical conditions (severity=2) • Errors—Error conditions (severity=3) • Warnings—Warning conditions (severity=4) • Notifications—Normal but significant conditions (severity=5) • Informational—Informational messages (severity=6) • Debugging—Debugging messages (severity=7) • Discriminator—Establish MD-Console association • Filtered—Enable filtered logging • Guaranteed—Guarantee console messages • XML—Enable logging in XML"
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": null,
     "sourcePage": 624,
@@ -894,7 +927,11 @@
       },
       {
         "name": "min-file-size",
-        "description": "(Optional) The minimum logging file size. The range is 1024 to 2147483647. The default is 2048 bytes. max-file-size | type (Optional) Either the logging severity level or the logging type. The severity range is 0 to 7."
+        "description": "(Optional) The minimum logging file size. The range is 1024 to 2147483647. The default is 2048 bytes."
+      },
+      {
+        "name": "max-file-size | type",
+        "description": "(Optional) Either the logging severity level or the logging type. The severity range is 0 to 7."
       }
     ],
     "modes": ["Global configuration"],
@@ -951,7 +988,12 @@
     "detail": "Limit messages logged to the terminal lines according to severity.",
     "syntax": "logging monitor level",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "level",
+        "description": "The severity level of messages logged to the terminal lines. The severity levels are: • Emergencies—System is unusable (severity=0) • Alerts—Immediate action needed (severity=1) • Critical—Critical conditions (severity=2) • Errors—Error conditions (severity=3) • Warnings—Warning conditions (severity=4) • Notifications—Normal but significant conditions (severity=5) • Informational—Informational messages (severity=6) • Debugging—Debugging messages (severity=7)"
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": null,
     "sourcePage": 628,
@@ -1275,7 +1317,11 @@
     "params": [
       {
         "name": "filesystem:",
-        "description": "Alias for a file system. Use usbflash0: for USB memory sticks. /directory-url... Path (directory) and name of the empty directories to remove. Separate each directory name with a space."
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/directory-url...",
+        "description": "Path (directory) and name of the empty directories to remove. Separate each directory name with a space."
       }
     ],
     "modes": ["Boot loader"],
@@ -1328,6 +1374,10 @@
     "syntax": "show avc dns-as client[{binding-table[ | detail] | | name-server brief | | rate-limiter-table | | statistics | status | trusted domains}]",
     "noForm": null,
     "params": [
+      {
+        "name": "binding-table[detail]",
+        "description": "Displays AVC with DNS-AS metadata for the list of trusted domains and resolved entries. You can filter the output by application name, domain name, and so on. The optional detail keyword displays the same information, in a different format."
+      },
       {
         "name": "name-server brief",
         "description": "Displays information about the DNS server to which the metadata request was sent."
@@ -1534,6 +1584,10 @@
     "noForm": null,
     "params": [
       {
+        "name": "module [switch number]",
+        "description": "(Optional) Displays OBFL information about the specified switches. Uses the switch number parameter to specify the switch number, which is the stack member number. If the switch is a standalone switch, the switch number is 1. If the switch is in a stack, the range is 1 to 8, depending on the switch member numbers in the stack. For more information about this parameter, see the “Usage Guidelines” section for this command."
+      },
+      {
         "name": "clilog",
         "description": "Displays the OBFL CLI commands that were entered on the standalone switch or specified stack members."
       },
@@ -1579,7 +1633,11 @@
       },
       {
         "name": "month year",
-        "description": "see the “Usage Guidelines” section. end hh:mm:ss day month (Optional) Displays the data from the specified time and date. For more information,"
+        "description": "see the “Usage Guidelines” section."
+      },
+      {
+        "name": "end hh:mm:ss day month",
+        "description": "(Optional) Displays the data from the specified time and date. For more information,"
       },
       {
         "name": "year",
@@ -1777,7 +1835,11 @@
       },
       {
         "name": "user",
-        "description": "(Optional) Displays only the user-entered static addresses. vlan vlan_num (Optional) Displays information for a specific VLAN only; valid values are from 1 to 4094."
+        "description": "(Optional) Displays only the user-entered static addresses."
+      },
+      {
+        "name": "vlan vlan_num",
+        "description": "(Optional) Displays information for a specific VLAN only; valid values are from 1 to 4094."
       },
       {
         "name": "Command History",
@@ -1785,19 +1847,7 @@
       },
       {
         "name": "Usage Guidelines",
-        "description": "For the MAC address table entries that are used by the routed ports, the routed port name is displayed in the \"vlan\" column, not the internal VLAN number. Example This example shows how to display multicast MAC address table information for a specific VLAN: Switch# show mac-address-table multicast vlan 1 Multicast Entries"
-      },
-      {
-        "name": "vlan",
-        "description": "mac address type ports -------+---------------+-------+-------------------------------------------"
-      },
-      {
-        "name": "1",
-        "description": "ffff.ffff.ffff system Switch,Fa6/15 Switch# This example shows how to display the number of multicast MAC entries for all VLANs: Switch# show mac-address-table multicast count MAC Entries for all vlans:"
-      },
-      {
-        "name": "Multicast MAC Address Count:",
-        "description": "141 Total Multicast MAC Addresses Available: 16384 Switch# Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 681 System Management"
+        "description": "For the MAC address table entries that are used by the routed ports, the routed port name is displayed in the \"vlan\" column, not the internal VLAN number. Example This example shows how to display multicast MAC address table information for a specific VLAN: Switch# show mac-address-table multicast vlan 1 Multicast Entries vlan mac address type ports -------+---------------+-------+------------------------------------------- 1 ffff.ffff.ffff system Switch,Fa6/15 Switch# This example shows how to display the number of multicast MAC entries for all VLANs: Switch# show mac-address-table multicast count MAC Entries for all vlans: Multicast MAC Address Count: 141 Total Multicast MAC Addresses Available: 16384 Switch# Consolidated Platform Command Reference, Cisco IOS Release 15.2(6)E (Catalyst 2960-X Switches) 681 System Management"
       }
     ],
     "modes": [],
@@ -2154,7 +2204,12 @@
     "detail": "Display the contents of one or more files.",
     "syntax": "type filesystem:/file-url...",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use flash: for the system board flash device; use usbflash0: for USB memory sticks. /file-url... Path (directory) and name of the files to display. Separate each filename with a space."
+      }
+    ],
     "modes": ["Boot loader"],
     "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appear sequentially.",
     "sourcePage": 698,

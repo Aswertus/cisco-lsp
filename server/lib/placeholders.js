@@ -28,17 +28,21 @@ function placeholderRegex(fill = 'X') {
     '(?<![\\w$])\\$\\{[A-Za-z_]\\w*\\}',
     '(?<![\\w$])\\$[A-Za-z_]\\w*',
   ];
+  // Letters are case-sensitive: "X" marks only capitals, "x" only lower case,
+  // "Xx" both — the user decides, nothing is widened automatically.
   for (const ch of new Set(String(fill).replace(/\s/g, ''))) {
-    if (/[a-z]/i.test(ch)) {
-      const up = reEscape(ch.toUpperCase());
-      const lo = reEscape(ch.toLowerCase());
+    if (/[A-Z]/.test(ch)) {
       // Single capital not glued to a letter/digit before it: Gi1/0/X, 10.10.X.1
       // (but not dot1X / 802.1X).
-      parts.push(`(?<![A-Za-z0-9])${up}(?![A-Za-z])`);
+      parts.push(`(?<![A-Za-z0-9])${ch}(?![A-Za-z])`);
+      parts.push(`(?<![A-Z])${ch}{2,}(?![A-Z])`); // XX.. not touching other capitals: VlanXX
+    } else if (/[a-z]/.test(ch)) {
       // Single lower-case letter only in address context (next to . / :):
       // x.x.x.x — not the "x" in dot1x or in "2 x 10G".
-      parts.push(`(?<![A-Za-z0-9])${lo}(?=[./:])|(?<=[./:])${lo}(?![A-Za-z0-9])`);
-      parts.push(`(?<![A-Z])${up}{2,}(?![A-Z])`); // XX.. not touching other capitals: VlanXX
+      parts.push(`(?<![A-Za-z0-9])${ch}(?=[./:])|(?<=[./:])${ch}(?![A-Za-z0-9])`);
+      // Lower-case runs must not touch any letter (lower case is everywhere in
+      // real words): xx.xx.xx.xx, Gi1/0/xx, vlan xx — not Vlanxx or xxadmin.
+      parts.push(`(?<![A-Za-z])${ch}{2,}(?![A-Za-z])`);
     } else {
       parts.push(`${reEscape(ch)}+`); // symbols: any run (Vlan##)
     }

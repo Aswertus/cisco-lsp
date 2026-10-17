@@ -47,7 +47,11 @@
       },
       {
         "name": "ip-camera",
-        "description": "Identifies this port as connected to a Cisco IP camera and automatically configures QoS for video. media-player Identifies this port as connected to a CDP-capable Cisco digital media player and automatically configures QoS for video."
+        "description": "Identifies this port as connected to a Cisco IP camera and automatically configures QoS for video."
+      },
+      {
+        "name": "media-player",
+        "description": "Identifies this port as connected to a CDP-capable Cisco digital media player and automatically configures QoS for video."
       }
     ],
     "modes": ["Interface configuration"],
@@ -67,7 +71,11 @@
     "params": [
       {
         "name": "cisco-phone",
-        "description": "Identifies this port as connected to a Cisco IP Phone, and automatically configures QoS for VoIP. The QoS labels of incoming packets are trusted only when the telephone is detected. cisco-softphone Identifies this port as connected to a device running the Cisco SoftPhone, and automatically configures QoS for VoIP."
+        "description": "Identifies this port as connected to a Cisco IP Phone, and automatically configures QoS for VoIP. The QoS labels of incoming packets are trusted only when the telephone is detected."
+      },
+      {
+        "name": "cisco-softphone",
+        "description": "Identifies this port as connected to a device running the Cisco SoftPhone, and automatically configures QoS for VoIP."
       },
       {
         "name": "trust",

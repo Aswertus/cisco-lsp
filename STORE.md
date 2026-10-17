@@ -116,7 +116,9 @@ Cisco config files.
 
 If you also have `Y-Ysss.cisco-config-highlight` installed, both work together: they share
 the same language ID and highlighting scopes, so your theme looks the same. Disable either
-one to choose which highlighting is used.
+one to choose which highlighting is used. If you keep both, set
+`"cisco-config-highlight.diagnostics.enabled": false`: its checks don't know template
+placeholders and report values like `XX.XX.XX.XX` as invalid addresses.
 
 ---
 

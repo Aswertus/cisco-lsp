@@ -6,6 +6,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.2] - 2026-10-17
+
+### Changed
+
+- Placeholder fill letters are case-sensitive: the default `X` now marks only capitals
+  (`VlanXX`, `X.X.X.X`). Lower-case placeholders like `xx.xx.xx.xx` or `x.x.x.x` are marked
+  only when `x` is added to `cisco-ios-lsp.placeholders.fillCharacters` (e.g. `Xx` for
+  both). Lower-case runs must not touch other letters, so words like `Vlanxx` or `xxadmin`
+  are never placeholders.
+- README and store page: when `Y-Ysss.cisco-config-highlight` is installed too, turn off its
+  diagnostics — they report placeholders such as `XX.XX.XX.XX` as invalid addresses.
+- Release workflows use `actions/checkout` v7 and `actions/setup-node` v7 (Node.js 24; v4 ran
+  on the deprecated Node.js 20), pinned to commits, without the npm cache in jobs that hold
+  publishing credentials.
+
+### Fixed
+
+- Hover documentation shows the complete parameter list: about 700 commands had lost rows of
+  their Cisco "Syntax Description" table — a parameter name wider than its column
+  (`switchport voice vlan`'s `name vlan_name`), tables continued after a page break, long
+  names, or rows that repeat the command — while "Note" callouts, sample output and page
+  footers no longer show up as parameters or inside descriptions. Regenerated from the same
+  Cisco manuals; command names are unchanged.
+- A VRF used in `ip route vrf`, `ipv6 route vrf`, `ip pim vrf`, `ip multicast-routing vrf`,
+  `eid-table vrf` (LISP / SD-Access), `ntp server vrf`, `ip name-server vrf` or
+  `ip domain lookup vrf` counts as used: no false "defined but never used" hint, and
+  go-to-definition, find-references and rename include these places. Free text such as a
+  `description` mentioning a VRF never counts.
+
 ## [0.6.1] - 2026-10-14
 
 ### Added
@@ -221,6 +250,7 @@ Initial release.
 - Automated releases: pushing a `vX.Y.Z` tag builds and publishes the `.vsix` via GitHub
   Actions.
 
+[0.6.2]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.2
 [0.6.1]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.1
 [0.6.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.0
 [0.5.1]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.5.1

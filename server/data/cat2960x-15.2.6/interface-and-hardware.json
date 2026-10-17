@@ -176,7 +176,16 @@
     "detail": "Specify the duplex mode of operation for a port.",
     "syntax": "duplex {auto | full | half}",
     "noForm": "no duplex {auto | full | half}",
-    "params": [],
+    "params": [
+      {
+        "name": "auto",
+        "description": "Enables automatic duplex configuration. The port automatically detects whether it should run in full- or half-duplex mode, depending on the attached device mode. full Enables full-duplex mode."
+      },
+      {
+        "name": "half",
+        "description": "Enables half-duplex mode (only for interfaces operating at 10 or 100 Mb/s). You cannot configure half-duplex mode for interfaces operating at 1000 or 10,000 Mb/s."
+      }
+    ],
     "modes": ["Interface configuration"],
     "usageSummary": "For Fast Ethernet ports, setting the port to auto has the same effect as specifying half if the attached device does not autonegotiate the duplex parameter.  For Gigabit Ethernet ports, setting the port to auto has the same effect as specifying full if the attached device does not autonegotiate the duplex parameter.",
     "sourcePage": 56,
@@ -214,19 +223,11 @@
       },
       {
         "name": "gbic-invalid",
-        "description": "Enables error detection for an invalid Gigabit Interface Converter (GBIC) module."
-      },
-      {
-        "name": "Note",
-        "description": "This error refers to an invalid small form-factor pluggable (SFP) module."
+        "description": "Enables error detection for an invalid Gigabit Interface Converter (GBIC) module. Note This error refers to an invalid small form-factor pluggable (SFP) module."
       },
       {
         "name": "inline-power",
-        "description": "Enables error detection for the Power over Ethernet (PoE) error-disabled cause."
-      },
-      {
-        "name": "Note",
-        "description": "This keyword is supported only on switches with PoE ports."
+        "description": "Enables error detection for the Power over Ethernet (PoE) error-disabled cause. Note This keyword is supported only on switches with PoE ports."
       },
       {
         "name": "link-flap",
@@ -313,11 +314,7 @@
       },
       {
         "name": "gbic-invalid",
-        "description": "Enables the timer to recover from an invalid Gigabit Interface Converter (GBIC) module error-disabled state."
-      },
-      {
-        "name": "Note",
-        "description": "This error refers to an invalid small form-factor pluggable (SFP) error-disabled state."
+        "description": "Enables the timer to recover from an invalid Gigabit Interface Converter (GBIC) module error-disabled state. Note This error refers to an invalid small form-factor pluggable (SFP) error-disabled state."
       },
       {
         "name": "inline-power",
@@ -405,7 +402,12 @@
     "detail": "Specify the time to recover from an error-disabled state.",
     "syntax": "errdisable recovery interval timer-interval",
     "noForm": "no errdisable recovery interval timer-interval",
-    "params": [],
+    "params": [
+      {
+        "name": "timer-interval",
+        "description": "Time to recover from the error-disabled state. The range is 30 to 86400 seconds. The same interval is applied to all causes. The default interval is 300 seconds."
+      }
+    ],
     "modes": ["Global configuration"],
     "usageSummary": "The error-disabled recovery timer is initialized at a random differential from the configured interval value.  The difference between the actual timeout value and the configured value can be up to 15 percent of the configured interval.  You can verify your settings by entering the show errdisable recovery privileged EXEC command.",
     "sourcePage": 65,
@@ -585,7 +587,12 @@
     "detail": "Override the amount of power specified by the IEEE classification for a powered device.",
     "syntax": "power inline consumption [default] wattage",
     "noForm": "no power inline consumption [default]",
-    "params": [],
+    "params": [
+      {
+        "name": "default",
+        "description": "The default keyword appears only in the global configuration. The command has the same effect with or without the keyword. wattage Specifies the power that the switch budgets for the port. The range is 4000 to 15400 mW."
+      }
+    ],
     "modes": ["Global configuration", "Interface configuration"],
     "usageSummary": "This command is supported only on the LAN Base image.  When Cisco powered devices are connected to PoE ports, the switch uses Cisco Discovery Protocol (CDP) to determine the CDP-specific power consumption of the devices, which is the amount of power to allocate based on the CDP messages.  The switch adjusts the power budget accordingly.",
     "sourcePage": 75,
@@ -757,11 +764,7 @@
       },
       {
         "name": "accounting",
-        "description": "(Optional) Displays accounting information on the interface, including active protocols and input and output packets and octets."
-      },
-      {
-        "name": "Note",
-        "description": "The display shows only packets processed in software; hardware-switched packets do not appear."
+        "description": "(Optional) Displays accounting information on the interface, including active protocols and input and output packets and octets. Note The display shows only packets processed in software; hardware-switched packets do not appear."
       },
       {
         "name": "capabilities",
@@ -845,11 +848,7 @@
       },
       {
         "name": "module",
-        "description": "(Optional) Displays counters for the specified stack member. stack-member-number The range is 1 to 8."
-      },
-      {
-        "name": "Note",
-        "description": "In this command, the module keyword refers to the stack member number. The module number that is part of the interface ID is always zero."
+        "description": "(Optional) Displays counters for the specified stack member. stack-member-number The range is 1 to 8. Note In this command, the module keyword refers to the stack member number. The module number that is part of the interface ID is always zero."
       },
       {
         "name": "protocol status",
@@ -889,7 +888,11 @@
       },
       {
         "name": "detail",
-        "description": "(Optional) Displays detailed backup information for the specified interface or all interfaces on the switch or the stack. module number (Optional) Displays switchport configuration of all interfaces on the switch or specified stack member. The range is 1 to 8. This option is not available if you entered a specific interface ID."
+        "description": "(Optional) Displays detailed backup information for the specified interface or all interfaces on the switch or the stack."
+      },
+      {
+        "name": "module number",
+        "description": "(Optional) Displays switchport configuration of all interfaces on the switch or specified stack member. The range is 1 to 8. This option is not available if you entered a specific interface ID."
       }
     ],
     "modes": ["Privileged EXEC"],
@@ -925,7 +928,11 @@
       },
       {
         "name": "supported-list",
-        "description": "(Optional) Lists all supported transceivers. threshold-table (Optional) Displays alarm and warning threshold table."
+        "description": "(Optional) Lists all supported transceivers."
+      },
+      {
+        "name": "threshold-table",
+        "description": "(Optional) Displays alarm and warning threshold table."
       }
     ],
     "modes": ["User EXEC", "Privileged EXEC"],
@@ -957,7 +964,12 @@
     "detail": "Display the network-policy profiles.",
     "syntax": "show network-policy profile [profile-number]",
     "noForm": null,
-    "params": [],
+    "params": [
+      {
+        "name": "profile-number",
+        "description": "(Optional) Displays the network-policy profile number. If no profile is entered, all network-policy profiles appear."
+      }
+    ],
     "modes": ["Privileged EXEC"],
     "usageSummary": null,
     "sourcePage": 102,
@@ -1074,7 +1086,11 @@
       },
       {
         "name": "primary vlan vlan-id",
-        "description": "(Optional) VLAN ID of the primary VLAN. The range is 1 to 4094. multicast fast-convergence (Optional) Configures multicast fast convergence on the backup interface."
+        "description": "(Optional) VLAN ID of the primary VLAN. The range is 1 to 4094."
+      },
+      {
+        "name": "multicast fast-convergence",
+        "description": "(Optional) Configures multicast fast convergence on the backup interface."
       },
       {
         "name": "preemption",
@@ -1120,10 +1136,6 @@
     "syntax": "switchport block {multicast | unicast}",
     "noForm": "no switchport block {multicast | unicast}",
     "params": [
-      {
-        "name": "Note",
-        "description": "Only pure Layer 2 multicast traffic is blocked. Multicast packets that contain IPv4 or IPv6 information in the header are not blocked."
-      },
       {
         "name": "unicast",
         "description": "Specifies that unknown unicast traffic should be blocked."
@@ -1178,7 +1190,11 @@
       },
       {
         "name": "cos cos-value",
-        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5. dscp dscp-value (Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
+        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5."
+      },
+      {
+        "name": "dscp dscp-value",
+        "description": "(Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
       },
       {
         "name": "dot1p",
@@ -1214,7 +1230,11 @@
       },
       {
         "name": "cos cos-value",
-        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5. dscp dscp-value (Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
+        "description": "(Optional) Specifies the Layer 2 priority class of service (CoS) for the configured VLAN. The range is 0 to 7; the default is 5."
+      },
+      {
+        "name": "dscp dscp-value",
+        "description": "(Optional) Specifies the differentiated services code point (DSCP) value for the configured VLAN. The range is 0 to 63; the default is 46."
       },
       {
         "name": "dot1p",

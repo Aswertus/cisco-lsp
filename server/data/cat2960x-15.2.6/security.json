@@ -12,7 +12,15 @@
       },
       {
         "name": "default",
-        "description": "Specifies the accounting methods that follow as the default list for accounting services. start-stop Sends a start accounting notice at the beginning of a process and a stop accounting notice at the end of a process. The start accounting record is sent in the background. The requested user process begins regardless of whether or not the start accounting notice was received by the accounting server. broadcast Enables accounting records to be sent to multiple AAA servers and sends accounting records to the first server in each group. If the first server is unavailable, the switch uses the list of backup servers to identify the first server."
+        "description": "Specifies the accounting methods that follow as the default list for accounting services."
+      },
+      {
+        "name": "start-stop",
+        "description": "Sends a start accounting notice at the beginning of a process and a stop accounting notice at the end of a process. The start accounting record is sent in the background. The requested user process begins regardless of whether or not the start accounting notice was received by the accounting server."
+      },
+      {
+        "name": "broadcast",
+        "description": "Enables accounting records to be sent to multiple AAA servers and sends accounting records to the first server in each group. If the first server is unavailable, the switch uses the list of backup servers to identify the first server."
       },
       {
         "name": "group",
@@ -48,7 +56,15 @@
       },
       {
         "name": "default",
-        "description": "Uses the accounting methods that follow as the default list for accounting services. start-stop Sends a start accounting notice at the beginning of a process and a stop accounting notice at the end of a process. The start accounting record is sent in the background. The requested-user process begins regardless of whether or not the start accounting notice was received by the accounting server. broadcast Enables accounting records to be sent to multiple AAA servers and send accounting records to the first server in each group. If the first server is unavailable, the switch uses the list of backup servers to identify the first server."
+        "description": "Uses the accounting methods that follow as the default list for accounting services."
+      },
+      {
+        "name": "start-stop",
+        "description": "Sends a start accounting notice at the beginning of a process and a stop accounting notice at the end of a process. The start accounting record is sent in the background. The requested-user process begins regardless of whether or not the start accounting notice was received by the accounting server."
+      },
+      {
+        "name": "broadcast",
+        "description": "Enables accounting records to be sent to multiple AAA servers and send accounting records to the first server in each group. If the first server is unavailable, the switch uses the list of backup servers to identify the first server."
       },
       {
         "name": "group",
@@ -84,11 +100,7 @@
       },
       {
         "name": "method1",
-        "description": "Specifies the server authentication. Enter the group radius keywords to use the list of all RADIUS servers for authentication."
-      },
-      {
-        "name": "Note",
-        "description": "Though other keywords are visible in the command-line help strings, only the default and group radius keywords are supported."
+        "description": "Specifies the server authentication. Enter the group radius keywords to use the list of all RADIUS servers for authentication. Note Though other keywords are visible in the command-line help strings, only the default and group radius keywords are supported."
       }
     ],
     "modes": ["Global configuration"],
@@ -396,7 +408,15 @@
     "params": [
       {
         "name": "any",
-        "description": "Denies any source or destination MAC address. host src-MAC-addr | src-MAC-addr mask Defines a host MAC address and optional subnet mask. If the source address for a packet matches the defined address, non-IP traffic from that address is denied. host dst-MAC-addr | dst-MAC-addr mask Defines a destination MAC address and optional subnet mask. If the destination address for a packet matches the defined address, non-IP traffic to that address is denied."
+        "description": "Denies any source or destination MAC address."
+      },
+      {
+        "name": "host src-MAC-addr | src-MAC-addr mask",
+        "description": "Defines a host MAC address and optional subnet mask. If the source address for a packet matches the defined address, non-IP traffic from that address is denied."
+      },
+      {
+        "name": "host dst-MAC-addr | dst-MAC-addr mask",
+        "description": "Defines a destination MAC address and optional subnet mask. If the destination address for a packet matches the defined address, non-IP traffic to that address is denied."
       },
       {
         "name": "type mask",
@@ -596,7 +616,11 @@
     "params": [
       {
         "name": "supplicant",
-        "description": "The interface acts only as a supplicant and will not respond to messages that are meant for an authenticator. authenticator The interface acts only as an authenticator and will not respond to any messages meant for a supplicant."
+        "description": "The interface acts only as a supplicant and will not respond to messages that are meant for an authenticator."
+      },
+      {
+        "name": "authenticator",
+        "description": "The interface acts only as an authenticator and will not respond to any messages meant for a supplicant."
       }
     ],
     "modes": ["Interface configuration"],
@@ -807,7 +831,12 @@
     "detail": "Configure IP device tracking parameters on a Layer 2 access port.",
     "syntax": "ip device tracking maximum number",
     "noForm": "no ip device tracking maximum",
-    "params": [],
+    "params": [
+      {
+        "name": "number",
+        "description": "Number of bindings created in the IP device tracking table for a port. The range is 0 (disabled) to 65535."
+      }
+    ],
     "modes": ["Interface configuration mode"],
     "usageSummary": "To remove the maximum value, use the no ip device tracking maximum command.  To disable IP device tracking, use the ip device tracking maximum 0 command.",
     "sourcePage": 468,
@@ -1166,7 +1195,15 @@
     "params": [
       {
         "name": "any",
-        "description": "Denies any source or destination MAC address. host src-MAC-addr | src-MAC-addr mask Specifies a host MAC address and optional subnet mask. If the source address for a packet matches the defined address, non-IP traffic from that address is denied. host dst-MAC-addr | dst-MAC-addr mask Specifies a destination MAC address and optional subnet mask. If the destination address for a packet matches the defined address, non-IP traffic to that address is denied."
+        "description": "Denies any source or destination MAC address."
+      },
+      {
+        "name": "host src-MAC-addr | src-MAC-addr mask",
+        "description": "Specifies a host MAC address and optional subnet mask. If the source address for a packet matches the defined address, non-IP traffic from that address is denied."
+      },
+      {
+        "name": "host dst-MAC-addr | dst-MAC-addr mask",
+        "description": "Specifies a destination MAC address and optional subnet mask. If the destination address for a packet matches the defined address, non-IP traffic to that address is denied."
       },
       {
         "name": "type mask",
@@ -1310,11 +1347,7 @@
       },
       {
         "name": "key string",
-        "description": "(Optional) Specify the authentication and encryption key for all RADIUS communication between the switch and the RADIUS daemon."
-      },
-      {
-        "name": "Note",
-        "description": "The key is a text string that must match the encryption key used on the RADIUS server. Always configure the key as the last item in this command. Leading spaces are ignored, but spaces within and at the end of the key are used. If there are spaces in your key, do not enclose the key in quotation marks unless the quotation marks are part of the key."
+        "description": "(Optional) Specify the authentication and encryption key for all RADIUS communication between the switch and the RADIUS daemon. Note The key is a text string that must match the encryption key used on the RADIUS server. Always configure the key as the last item in this command. Leading spaces are ignored, but spaces within and at the end of the key are used. If there are spaces in your key, do not enclose the key in quotation marks unless the quotation marks are part of the key."
       },
       {
         "name": "automate tester name",
@@ -1506,11 +1539,23 @@
     "params": [
       {
         "name": "handle handle-id",
-        "description": "(Optional) Specifies the particular handle for which Auth Manager information is to be displayed. interface type number (Optional) Specifies a particular interface type and number for which Auth Manager information is to be displayed."
+        "description": "(Optional) Specifies the particular handle for which Auth Manager information is to be displayed."
+      },
+      {
+        "name": "interface type number",
+        "description": "(Optional) Specifies a particular interface type and number for which Auth Manager information is to be displayed."
       },
       {
         "name": "mac mac-address",
-        "description": "(Optional) Specifies the particular MAC address for which you want to display information. method method-name (Optional) Specifies the particular authentication method for which Auth Manager information is to be displayed. If you specify a method (dot1x, mab, or webauth), you may also specify an interface. session-id session-id (Optional) Specifies the particular session for which Auth Manager information is to be displayed."
+        "description": "(Optional) Specifies the particular MAC address for which you want to display information."
+      },
+      {
+        "name": "method method-name",
+        "description": "(Optional) Specifies the particular authentication method for which Auth Manager information is to be displayed. If you specify a method (dot1x, mab, or webauth), you may also specify an interface."
+      },
+      {
+        "name": "session-id session-id",
+        "description": "(Optional) Specifies the particular session for which Auth Manager information is to be displayed."
       }
     ],
     "modes": ["User EXEC"],
@@ -1751,7 +1796,15 @@
       },
       {
         "name": "type",
-        "description": "Sets the aging type. absolute Sets absolute aging type. All the secure addresses on this port age out exactly after the time (minutes) specified and are removed from the secure address list. inactivity Sets the inactivity aging type. The secure addresses on this port age out only if there is no data traffic from the secure source address for the specified time period."
+        "description": "Sets the aging type."
+      },
+      {
+        "name": "absolute",
+        "description": "Sets absolute aging type. All the secure addresses on this port age out exactly after the time (minutes) specified and are removed from the secure address list."
+      },
+      {
+        "name": "inactivity",
+        "description": "Sets the inactivity aging type. The secure addresses on this port age out only if there is no data traffic from the secure source address for the specified time period."
       }
     ],
     "modes": ["Interface configuration"],
@@ -1770,16 +1823,28 @@
     "noForm": "no switchport port-security mac-address {mac-address [{vlan {vlan-id {access | voice}}}] | sticky",
     "params": [
       {
-        "name": "vlan voice",
-        "description": "(Optional) On an access port only, specifies the VLAN as a voice VLAN."
+        "name": "mac-address",
+        "description": "A secure MAC address for the interface by entering a 48-bit MAC address. You can add additional secure MAC addresses up to the maximum value configured."
       },
       {
-        "name": "Note",
-        "description": "The voice keyword is available only if voice VLAN is configured on a port and if that port is not the access VLAN."
+        "name": "vlan vlan-id",
+        "description": "(Optional) On a trunk port only, specifies the VLAN ID and the MAC address. If no VLAN ID is specified, the native VLAN is used."
+      },
+      {
+        "name": "vlan access",
+        "description": "(Optional) On an access port only, specifies the VLAN as an access VLAN."
+      },
+      {
+        "name": "vlan voice",
+        "description": "(Optional) On an access port only, specifies the VLAN as a voice VLAN. Note The voice keyword is available only if voice VLAN is configured on a port and if that port is not the access VLAN."
       },
       {
         "name": "sticky",
-        "description": "Enables the interface for sticky learning. When sticky learning is enabled, the interface adds all secure MAC addresses that are dynamically learned to the running configuration and converts these addresses to sticky secure MAC addresses. mac-address (Optional) A MAC address to specify a sticky secure MAC address."
+        "description": "Enables the interface for sticky learning. When sticky learning is enabled, the interface adds all secure MAC addresses that are dynamically learned to the running configuration and converts these addresses to sticky secure MAC addresses."
+      },
+      {
+        "name": "mac-address",
+        "description": "(Optional) A MAC address to specify a sticky secure MAC address."
       }
     ],
     "modes": ["Interface configuration"],
@@ -1803,15 +1868,19 @@
       },
       {
         "name": "vlan",
-        "description": "(Optional) For trunk ports, sets the maximum number of secure MAC addresses on a VLAN or range of VLANs. If the vlan keyword is not entered, the default value is used. vlan-list (Optional) Range of VLANs separated by a hyphen or a series of VLANs separated by commas. For nonspecified VLANs, the per-VLAN maximum value is used. access (Optional) On an access port only, specifies the VLAN as an access VLAN."
+        "description": "(Optional) For trunk ports, sets the maximum number of secure MAC addresses on a VLAN or range of VLANs. If the vlan keyword is not entered, the default value is used."
+      },
+      {
+        "name": "vlan-list",
+        "description": "(Optional) Range of VLANs separated by a hyphen or a series of VLANs separated by commas. For nonspecified VLANs, the per-VLAN maximum value is used."
+      },
+      {
+        "name": "access",
+        "description": "(Optional) On an access port only, specifies the VLAN as an access VLAN."
       },
       {
         "name": "voice",
-        "description": "(Optional) On an access port only, specifies the VLAN as a voice VLAN."
-      },
-      {
-        "name": "Note",
-        "description": "The voice keyword is available only if voice VLAN is configured on a port and if that port is not the access VLAN."
+        "description": "(Optional) On an access port only, specifies the VLAN as a voice VLAN. Note The voice keyword is available only if voice VLAN is configured on a port and if that port is not the access VLAN."
       }
     ],
     "modes": ["Interface configuration"],
