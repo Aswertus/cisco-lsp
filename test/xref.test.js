@@ -63,9 +63,10 @@ test('undefined references warn, unused definitions hint', () => {
   ]);
 
   const unused = diags.filter((d) => /never referenced/.test(d.message));
-  assert.deepEqual(unused.map((d) => d.message), [
-    'route-map "RM" is defined but never referenced in this file.',
-  ]);
+  assert.deepEqual(
+    unused.map((d) => d.message),
+    ['route-map "RM" is defined but never referenced in this file.'],
+  );
 });
 
 test('LISP prefix-list block opener counts as a definition', () => {
@@ -106,7 +107,10 @@ test('unusedObjects: false drops the never-used hints, keeps never-defined warni
   const all = computeXrefDiagnostics(index);
   assert.deepEqual(all.map((d) => d.severity).sort(), [2, 4]);
   const filtered = computeXrefDiagnostics(index, { unusedObjects: false });
-  assert.deepEqual(filtered.map((d) => d.severity), [2]);
+  assert.deepEqual(
+    filtered.map((d) => d.severity),
+    [2],
+  );
   assert.deepEqual(computeXrefDiagnostics(index, {}).length, 2, 'default keeps the hints');
 });
 

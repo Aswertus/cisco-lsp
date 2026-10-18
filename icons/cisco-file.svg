@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><mask id="arrows"><rect width="32" height="32" fill="#fff"/><path fill="#000" transform="translate(5 5) scale(0.9167)" d="M6.99 11 3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/></mask></defs><rect x="2" y="2" width="28" height="28" rx="6" fill="#00897b" mask="url(#arrows)"/></svg>

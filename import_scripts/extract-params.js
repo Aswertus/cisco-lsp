@@ -2,7 +2,7 @@
 
 // Parameters of a command's "Syntax Description" table, from `pdftotext
 // -layout` text that keeps its real columns (see sectionColumns in
-// scripts/extract-commands.js — the label itself is blanked to spaces, not
+// import_scripts/extract-commands.js — the label itself is blanked to spaces, not
 // cut off, so every line's indentation is an absolute column).
 //
 // The table has a name column and a description column. A row starts in the

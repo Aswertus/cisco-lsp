@@ -3,12 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const { CompletionItemKind } = require('vscode-languageserver/node');
+const { buildPackIndex, selectPacks } = require('./platform');
 
 // ---------------------------------------------------------------------------
 // Command data — loaded from <dataDir>/commands.json (merged at build time by
 // scripts/build.js) or, in the source layout, <dataDir>/<packId>/*.json
-// (PDF-derived, see scripts/extract-commands.js and
-// scripts/EXTRACTION_NOTES.md) plus <dataDir>/curated/curated.json
+// (PDF-derived, see import_scripts/extract-commands.js and
+// import_scripts/EXTRACTION_NOTES.md) plus <dataDir>/curated/curated.json
 // (hand-maintained; see the reconciliation notes in that Phase's commit for
 // why each entry stays hand-written).
 // ---------------------------------------------------------------------------
@@ -194,7 +195,9 @@ const KNOWN_TOP_LEVEL_BASE = new Set([
 // onInitialize) so a large completion list (the `global` bucket alone can
 // hold 300+ entries) doesn't serialize a rich Markdown doc for every item on
 // every keystroke-triggered request.
-function toCommandCompletionItems(commands) {
+// `data` carries the narrowing family so the resolve handler can look the
+// record up in the same view the item came from.
+function toCommandCompletionItems(commands, family) {
   const seen = new Set();
   const items = [];
   for (const c of commands) {
@@ -205,10 +208,45 @@ function toCommandCompletionItems(commands) {
       label: c.name,
       kind: CompletionItemKind.Keyword,
       detail: c.detail || c.syntax || undefined,
-      data: key,
+      data: { key, family },
     });
   }
   return items;
+}
+
+// The three family-narrowable indexes over one set of command records.
+function buildIndexes(commands, family) {
+  const commandsByBlock = new Map();
+  for (const command of commands) {
+    const block = classifyModesToBlock(command.modes);
+    if (!commandsByBlock.has(block)) commandsByBlock.set(block, []);
+    commandsByBlock.get(block).push(command);
+  }
+
+  const commandsByName = new Map();
+  for (const command of commands) {
+    const key = command.name.toLowerCase();
+    if (!commandsByName.has(key)) commandsByName.set(key, []);
+    commandsByName.get(key).push(command);
+  }
+
+  const completionItemsByBlock = new Map();
+  for (const [block, cmds] of commandsByBlock) {
+    completionItemsByBlock.set(block, toCommandCompletionItems(cmds, family));
+  }
+  completionItemsByBlock.set(
+    'top-level',
+    toCommandCompletionItems(
+      [...(commandsByBlock.get('global') || []), ...(commandsByBlock.get('exec') || [])],
+      family,
+    ),
+  );
+
+  const knownTopLevel = new Set(KNOWN_TOP_LEVEL_BASE);
+  for (const command of commands) {
+    knownTopLevel.add(command.name.split(/\s+/)[0].toLowerCase());
+  }
+  return { commandsByName, completionItemsByBlock, knownTopLevel };
 }
 
 // Loads the command data and builds every derived index in one go:
@@ -221,41 +259,16 @@ function toCommandCompletionItems(commands) {
 //                             'top-level' merging `global` + `exec` (see the
 //                             comment at the completion handler)
 //   knownTopLevel           — KNOWN_TOP_LEVEL_BASE + each command's first word
+//   packIndex               — platform families and their packs (buildPackIndex)
+//   topLevelPacks           — first word → ids of the packs documenting it
+//   forFamily(family)       — the same indexes narrowed to one family's packs
+//                             (curated records included), cached per family
 function buildData(dataDir, log) {
   const allCommands = loadCommands(dataDir, log);
 
-  const commandsByBlock = new Map();
-  for (const command of allCommands) {
-    const block = classifyModesToBlock(command.modes);
-    if (!commandsByBlock.has(block)) commandsByBlock.set(block, []);
-    commandsByBlock.get(block).push(command);
-  }
-
-  const commandsByName = new Map();
-  for (const command of allCommands) {
-    const key = command.name.toLowerCase();
-    if (!commandsByName.has(key)) commandsByName.set(key, []);
-    commandsByName.get(key).push(command);
-  }
-
   const maxCommandWords = Math.max(1, ...allCommands.map((c) => c.name.split(/\s+/).length));
 
-  const completionItemsByBlock = new Map();
-  for (const [block, commands] of commandsByBlock) {
-    completionItemsByBlock.set(block, toCommandCompletionItems(commands));
-  }
-  completionItemsByBlock.set(
-    'top-level',
-    toCommandCompletionItems([
-      ...(commandsByBlock.get('global') || []),
-      ...(commandsByBlock.get('exec') || []),
-    ]),
-  );
-
-  const knownTopLevel = new Set(KNOWN_TOP_LEVEL_BASE);
-  for (const command of allCommands) {
-    knownTopLevel.add(command.name.split(/\s+/)[0].toLowerCase());
-  }
+  const { commandsByName, completionItemsByBlock, knownTopLevel } = buildIndexes(allCommands, null);
 
   // Per-block command-name sets, feeding the flush-left indentation
   // recovery's evidence check (lib/indentation.js): a column-0 line right
@@ -282,8 +295,50 @@ function buildData(dataDir, log) {
     return false;
   };
 
+  // First word -> pack ids documenting a command starting with it (null = curated).
+  const packIndex = buildPackIndex(allCommands);
+  const topLevelPacks = new Map();
+  for (const command of allCommands) {
+    const word = command.name.split(/\s+/)[0].toLowerCase();
+    if (!topLevelPacks.has(word)) topLevelPacks.set(word, new Set());
+    topLevelPacks.get(word).add(command.pack || null);
+  }
+
+  const unnarrowed = {
+    family: null,
+    familyPacks: null,
+    commandsByName,
+    completionItemsByBlock,
+    knownTopLevel,
+    knownElsewhere: new Map(),
+  };
+  const views = new Map([['null', unnarrowed]]);
+  const forFamily = (family) => {
+    const key = String(family);
+    if (views.has(key)) return views.get(key);
+    const { familyPacks } = selectPacks(packIndex, family, null);
+    const subset = allCommands.filter((c) => !c.pack || familyPacks.has(c.pack));
+    const idx = buildIndexes(subset, family);
+    const knownElsewhere = new Map();
+    for (const [word, ids] of topLevelPacks) {
+      if (idx.knownTopLevel.has(word)) continue;
+      const names = new Set();
+      for (const id of ids) {
+        const pack = id && packIndex.packs.get(id);
+        if (pack) names.add(pack.platform);
+      }
+      knownElsewhere.set(word, [...names].join(', '));
+    }
+    const view = { family, familyPacks, ...idx, knownElsewhere };
+    views.set(key, view);
+    return view;
+  };
+
   return {
     commandCount: allCommands.length,
+    packIndex,
+    topLevelPacks,
+    forFamily,
     commandsByName,
     maxCommandWords,
     completionItemsByBlock,

@@ -1,6 +1,6 @@
 # PDF extraction methodology
 
-How `scripts/extract-commands.js` turns a Cisco IOS/IOS-XE command-reference PDF into the
+How `import_scripts/extract-commands.js` turns a Cisco IOS/IOS-XE command-reference PDF into the
 per-chapter JSON files under `server/data/<packId>/`. Written while ingesting the first pack
 (`cat9500-17.15`, the Catalyst 9500 IOS XE 17.15.x Command Reference, 2,592 pages, 1,315
 real commands). Cisco generates this whole manual family from a shared DITA Open Toolkit
@@ -38,6 +38,25 @@ one is reliable:
 Find the TOC's end / first chapter body's start by searching for the **second** occurrence
 of the first chapter's exact title line (the first is the TOC entry, the second is the real
 heading where body content begins).
+
+**Manuals without any front-matter TOC** (first seen: `cat3850-16.12`, the Catalyst 3850
+IOS XE Gibraltar 16.12.x reference, which goes straight from the legal page into chapter 1;
+its chapter openers' `• <command>, on page <n>` bullet lists exist for the first chapter
+only): the script falls back to the **PDF bookmark outline**, read with
+`pdftohtml -xml -i -l 1 -stdout` (the outline is printed whatever the page range; `-l 1`
+keeps it to a second) and parsed by `import_scripts/outline-toc.js` (unit-tested in
+`test/outline-toc.test.js`). The outline carries the same chapter → command tree as a master
+TOC — the already-ingested 9500 17.15 manual's outline has 1,326 items for 1,325 TOC
+entries — but its nesting is sloppy: a chapter's `<outline>` holds its commands _and the
+next chapter's title_, whose own `<outline>` opens one level deeper, so depth grows by one
+per chapter. The parser rebuilds the tree from the rule that does hold (an item's parent is
+the nearest preceding item exactly one level up), takes every item with childless children
+as a chapter and those children as its entries, and drops single-letter items (the back-of-
+book index). Conceptual chapters ("Using the Command-Line Interface") come through with
+their subsection titles as entries and are skipped by the usual 0-valid-records rule. With
+no TOC region to cut off, the body is the whole text. Outline page numbers are physical PDF
+pages (what a viewer shows), not the printed folio — so `sourcePage` means that for such a
+pack.
 
 ## 3. Parsing the master TOC into `(chapter, command, page)` triples
 
@@ -200,12 +219,12 @@ section's heading and content.
 
 These known-limitation entries total well under 1% of the 1,315-command pack and were
 judged not worth the risk of broader regressions chasing a fully general fix (see the
-sequence of rejected attempts in `scripts/extract-commands.js`'s comments for specifics).
+sequence of rejected attempts in `import_scripts/extract-commands.js`'s comments for specifics).
 
 ## 8. Adding a future manual
 
 ```
-node scripts/extract-commands.js <pdf-path> --pack <packId> [--platform "<name>"] [--release "<ver>"]
+node import_scripts/extract-commands.js <pdf-path> --pack <packId> [--platform "<name>"] [--release "<ver>"]
 ```
 
 Pick a short `packId` slug (e.g. `cat9300-17.12`). The script fully regenerates that pack's
@@ -215,7 +234,7 @@ manual reveals a structural variant the cases above don't already cover.
 
 ## Syntax Description tables (`params`)
 
-Parsed by `scripts/lib/extract-params.js` (unit-tested in `test/extract-params.test.js`) from
+Parsed by `import_scripts/extract-params.js` (unit-tested in `test/extract-params.test.js`) from
 the section text **with its real columns**: `sectionColumns` blanks the label to spaces instead
 of cutting it off. Rows are told apart by **indentation**, not only by the 2+ space gap
 between name and description — the gap alone lost rows in ~700 commands (2026-10). Quirks

@@ -1,0 +1,161 @@
+[
+  {
+    "name": "set platform software trace",
+    "context": null,
+    "detail": "Set the trace level for a specific module within a process.",
+    "syntax": "set platform software trace process slot module trace-level",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process",
+        "description": "Process whose tracing level is being set. Options include: • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • dbm—The Database Manager process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • host-manager—The Host Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • license-manager—The License Manager process. • logger—The Logging Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • smd—The Session Manager process. • table-manager—The Table Manager Server. • wireshark—The Embedded Packet Capture (EPC) Wireshark process."
+      },
+      {
+        "name": "slot",
+        "description": "Hardware slot where the process for which the trace level is set, is running. Options include: • number—Number of the SIP slot of the hardware module where the trace level is set. For instance, if you want to specify the SIP in SIP slot 2 of the switch, enter 2. • SIP-slot / SPA-bay—Number of the SIP switch slot and the number of the shared port adapter (SPA) bay of that SIP. For instance, if you want to specify the SPA in bay 2 of the SIP in switch slot 3, enter 3/2. • F0—The Embedded-Service-Processor in slot 0. • FP active—The active Embedded-Service-Processor. • R0—The route processor in slot 0. • RP active—The active route processor. • switch <number> —The switch with its number specified. • switch active—The active switch. • switch standby—The standby switch."
+      },
+      {
+        "name": "module",
+        "description": "Module within the process for which the tracing level is set."
+      },
+      {
+        "name": "trace-level",
+        "description": "Trace level. Options include: • debug—Debug level tracing. A debug-level trace message is a non-urgent message providing a large amount of detail about the module. • emergency—Emergency level tracing. An emergency-level trace message is a message indicating that the system is unusable. • error—Error level tracing. An error-level tracing message is a message indicating a system error. • info—Information level tracing. An information-level tracing message is a non-urgent message providing information about the system. • noise—Noise level tracing. The noise level is always equal to the highest tracing level possible and always generates every possible tracing message. The noise level is always equal to the highest-level tracing message possible for a module, even if future enhancements to this command introduce options that allow users to set higher tracing levels. • notice—The message is regarding a significant issue, but the switch is still working normally. • verbose—Verbose level tracing. All possible tracing messages are sent when the trace level is set to verbose. • warning—Warning messages."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The module options vary by process and by hardware-module.  Use the ? option when entering this command to see which module options are available with each keyword sequence.  Use the show platform software trace message command to view trace messages.",
+    "sourcePage": 1336,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software trace filter-binary",
+    "context": null,
+    "detail": "Display the most recent trace information for a specific module.",
+    "syntax": "show platform software trace filter-binarymodules [context mac-address]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "contextmac-address",
+        "description": "Represents the context used to filter. Additionally, you can filter based on module names and trace levels. The context keyword accepts either a MAC address or any other argument based on which a trace is tagged."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "This command collates and sorts all the logs present in the /tmp/... / across all the processes relevant to the module.  The trace logs of all the processes relevant to the specified module are printed to the console.",
+    "sourcePage": 1340,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software trace message",
+    "context": null,
+    "detail": "Display the trace messages for a process.",
+    "syntax": "show platform software trace message process slot",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process",
+        "description": "Tracing level that is being set. Options include: • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • cmm—The CMM process. • dbm—The Database Manager process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • geo—The Geo Manager process. • host-manager—The Host Manager process. • interface-manager—The Interface Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • license-manager—The License Manager process. • logger—The Logging Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • sif—The Stack Interface (SIF) Manager process. • smd—The Session Manager process. • stack-mgr—The Stack Manager process. • table-manager—The Table Manager Server. • thread-test—The Multithread Manager process. • virt-manager—The Virtualization Manager process."
+      },
+      {
+        "name": "slot",
+        "description": "Hardware slot where the process for which the trace level is set, is running. Options include: • number—Number of the SIP slot of the hardware module where the trace level is set. For instance, if you want to specify the SIP in SIP slot 2 of the switch, enter 2. • SIP-slot / SPA-bay—Number of the SIP switch slot and the number of the shared port adapter (SPA) bay of that SIP. For instance, if you want to specify the SPA in bay 2 of the SIP in switch slot 3, enter 3/2. • F0—The Embedded Service Processor slot 0. • FP active—The active Embedded Service Processor. • R0—The route processor in slot 0. • RP active—The active route processor. • switch <number> —The switch, with its number specified. • switch active—The active switch. • switch standby—The standby switch. • number—Number of the SIP slot of the hardware module where the trace level is set. For instance, if you want to specify the SIP in SIP slot 2 of the switch, enter 2. • SIP-slot / SPA-bay—Number of the SIP switch slot and the number of the shared port adapter (SPA) bay of that SIP. For instance, if you want to specify the SPA in bay 2 of the SIP in switch slot 3, enter 3/2. • F0—The Embedded Service Processor in slot 0. • FP active—The active Embedded Service Processor. • R0—The route processor in slot 0. • RP active—The active route processor."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1341,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software trace level",
+    "context": null,
+    "detail": "View the trace levels for all the modules under a specific process.",
+    "syntax": "show platform software trace level process slot",
+    "noForm": null,
+    "params": [
+      {
+        "name": "process",
+        "description": "Process whose tracing level is being set. Options include: • chassis-manager—The Chassis Manager process. • cli-agent—The CLI Agent process. • cmm—The CMM process. • dbm—The Database Manager process. • emd—The Environmental Monitoring process. • fed—The Forwarding Engine Driver process. • forwarding-manager—The Forwarding Manager process. • geo—The Geo Manager process. • host-manager—The Host Manager process. • interface-manager—The Interface Manager process. • iomd—The Input/Output Module daemon (IOMd) process. • ios—The IOS process. • license-manager—The License Manager process. • logger—The Logging Manager process. • platform-mgr—The Platform Manager process. • pluggable-services—The Pluggable Services process. • replication-mgr—The Replication Manager process. • shell-manager—The Shell Manager process. • sif—The Stack Interface (SIF) Manager process. • smd—The Session Manager process. • stack-mgr—The Stack Manager process. • table-manager—The Table Manager Server. • thread-test—The Multithread Manager process. • virt-manager—The Virtualization Manager process."
+      },
+      {
+        "name": "slot",
+        "description": "Hardware slot where the process for which the trace level is set, is running. Options include: • number—Number of the SIP slot of the hardware module where the trace level is set. For instance, if you want to specify the SIP in SIP slot 2 of the switch, enter 2. • SIP-slot / SPA-bay—Number of the SIP switch slot and the number of the shared port adapter (SPA) bay of that SIP. For instance, if you want to specify the SPA in bay 2 of the SIP in switch slot 3, enter 3/2. • F0—The Embedded Service Processor in slot 0. • F1—The Embedded Service Processor in slot 1. • FP active—The active Embedded Service Processor. • R0—The route processor in slot 0. • RP active—The active route processor. • switch <number> —The switch, with its number specified. • switch active—The active switch. • switch standby—The standby switch. • number—Number of the SIP slot of the hardware module where the trace level is set. For instance, if you want to specify the SIP in SIP slot 2 of the switch, enter 2. • SIP-slot / SPA-bay—Number of the SIP switch slot and the number of the shared port adapter (SPA) bay of that SIP. For instance, if you want to specify the SPA in bay 2 of the SIP in switch slot 3, enter 3/2. • F0—The Embedded Service Processor in slot 0. • FP active—The active Embedded Service Processor. • R0—The route processor in slot 0. • RP active—The active route processor."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1344,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software trace archive",
+    "context": null,
+    "detail": "Archive all the trace logs relevant to all the processes running on a system since the last reload on the switch and to save this in the specified location.",
+    "syntax": "request platform software trace archive [last number-of-days [days [target location]] | target location]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "last number-of-days",
+        "description": "Specifies the number of days for which the trace files have to be archived."
+      },
+      {
+        "name": "target location",
+        "description": "Specifies the location and name of the archive file."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "This archive file can be copied from the system, using the tftp or scp commands.",
+    "sourcePage": 1347,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software trace rotate all",
+    "context": null,
+    "detail": "Rotate all the current in-memory trace logs into the crashinfo partition and start a new in-memory trace log for each process.",
+    "syntax": "request platform software trace rotate all",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The trace log files are for read-only purpose.  Do not edit the contents of the file.  If there is a requirement to delete the contents of the file to view certain set of logs, use this command to start a new trace log file.",
+    "sourcePage": 1348,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software trace filter-binary",
+    "context": null,
+    "detail": "Collate and sort all the archived logs present in the tracelogs subdirectory.",
+    "syntax": "request platform software trace filter-binary modules [context mac-address]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "context mac-address",
+        "description": "Represents the context used to filter. Additionally, you can filter based on module names and trace levels. The context keyword accepts either a MAC address or any other argument based on which a trace is tagged."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "This command collates and sorts all the archived logs present in the tracelogs subdirectory, across all the processes relevant to the module.  This command also generates a file named collated_log_{system time} with the same content, in the /crashinfo/tracelogs directory.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 1349,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

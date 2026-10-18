@@ -57,7 +57,13 @@ if [ "$mode" = --tag ]; then
     die "public main is not the merged release/$tag of private $src (merge the PR first; or $src moved since)"
   git push public "$tagobj:refs/tags/$tag"
   git push public --delete "release/$tag" 2>/dev/null || true
-  echo "release: tagged $tag on public main — release.yml builds the GitHub Release, publish.yml the stores."
+  # Mark the private commit this release was built from, in its own tag
+  # namespace (never the public vX.Y.Z name — see the --no-tags fetch above):
+  # dev-vX.Y.Z on private $src, pushed to origin only. Dev builds shared
+  # before a release carry dev-vX.Y.Z-rc.N the same way (see CONTRIBUTING.md).
+  git tag -f "dev-$tag" "$src"
+  git push origin "refs/tags/dev-$tag"
+  echo "release: tagged $tag on public main (dev-$tag on private $src) — release.yml builds the GitHub Release, publish.yml the stores."
   exit 0
 fi
 

@@ -10,6 +10,7 @@ cspell.json
 CLAUDE.md
 cisco-ios-lsp-plan.md
 scripts/**
+import_scripts/**
 _manuals/**
 _testing/**
 # Any local underscore folder (_dummy/ screenshot imports, ...) never ships.
@@ -31,3 +32,7 @@ test/**
 node_modules/**
 package-lock.json
 *.vsix
+build/**
+# Alternative icon and its notes stay in the repo only.
+icons/cisco-file-outline.svg
+icons/README.md

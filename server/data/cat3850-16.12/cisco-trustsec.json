@@ -1,0 +1,726 @@
+[
+  {
+    "name": "cts authorization list",
+    "context": null,
+    "detail": "Specify a list of authentication, authorization, and accounting (AAA) servers to be used by the TrustSec seed device.",
+    "syntax": "cts authorization list server_list",
+    "noForm": "no cts authorization list server_list",
+    "params": [
+      {
+        "name": "server_list",
+        "description": "Cisco TrustSec AAA server group."
+      }
+    ],
+    "modes": ["Global configuration (config)", "Supported User Roles Administrator"],
+    "usageSummary": "This command is only for the seed device.  Non-seed devices obtain the TrustSec AAA server list from their TrustSec authenticator peer as a component of their TrustSec environment data.  The following example displays an AAA configuration of a TrustSec seed device: Device# cts credentials id Device1 password Cisco123 Device# configure terminal Device(config)# aaa new-model Device(config)# aaa authentication dot1x default group radius Device(config)# aaa authorization network MLIST group radius Device(config)# cts authorization list MLIST Device(config)# aaa accounting dot1x default start-stop group radius Device(config)# radius-server host 10.",
+    "sourcePage": 18,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts credentials",
+    "context": null,
+    "detail": "Use the cts credentials command in privileged EXEC mode to specify the TrustSec ID and password of the network device. Use the clear cts credentials command to delete the credentials.",
+    "syntax": "cts credentials id cts_id password cts_pwd",
+    "noForm": null,
+    "params": [
+      {
+        "name": "credentials id cts_id",
+        "description": "Specifies the Cisco TrustSec device ID for this device to use when authenticating with other Cisco TrustSec devices with EAP-FAST. The cts-id variable has a maximum length of 32 characters and is case sensitive."
+      },
+      {
+        "name": "password cts_pwd",
+        "description": "Specifies the password for this device to use when authenticating with other Cisco TrustSec devices with EAP-FAST."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)", "Supported User Roles Administrator"],
+    "usageSummary": "The cts credentials command specifies the Cisco TrustSec device ID and password for this device to use when authenticating with other Cisco TrustSec devices with EAP-FAST.  The Cisco TrustSec credentials state retrieval is not performed by the nonvolatile generation process (NVGEN) because the Cisco TrustSec credential information is saved in the keystore, and not in the startup configuration.  The device can be assigned a Cisco TrustSec identity by the Cisco Secure Access Control Server (ACS), or a new password auto-generated when prompted to do so by the ACS.",
+    "sourcePage": 19,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts refresh",
+    "context": null,
+    "detail": "Refresh the TrustSec peer authorization policy of all or specific Cisco TrustSec peers, or to refresh the SGACL policies downloaded to the device by the authentication server.",
+    "syntax": "cts refresh {peer [peer_id] | sgt [{sgt_number | default | unknown}]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "peer Peer-ID",
+        "description": "(Optional) If a peer-id is specified, only policies related to the specified peer connection are refreshed."
+      },
+      {
+        "name": "sgt sgt_number",
+        "description": "(Optional) Performs an immediate refresh of the SGACL policies from the authentication server. If an SGT number is specified, only policies related to that SGT are refreshed."
+      },
+      {
+        "name": "default",
+        "description": "(Optional) Refreshes the default SGACL policy."
+      },
+      {
+        "name": "unknown",
+        "description": "(Optional) Refreshes the unknown SGACL policy."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)", "Supported User Roles Administrator"],
+    "usageSummary": "To refresh the Peer Authorization Policy on all TrustSec peers, enter cts policy refresh without specifying a peer ID.  The peer authorization policy is initially downloaded from the Cisco ACS at the end of the EAP-FAST NDAC authentication success.  The Cisco ACS is configured to refresh the peer authorization policy, but the cts policy refresh command can force immediate refresh of the policy before the Cisco ACS timer expires.",
+    "sourcePage": 21,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts rekey",
+    "context": null,
+    "detail": "Regenerate the Pairwise Master Key used by the Security Association Protocol (SAP).",
+    "syntax": "cts rekey interface type slot/port",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface",
+        "description": "type slot/port Specifies the Cisco TrustSec interface on which to regenerate the SAP key."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)", "Supported User Roles Administrator"],
+    "usageSummary": "SAP Pair-wise Master Key key (PMK) refresh ordinarily occurs automatically, triggered by combinations of network events and non-configurable internal timers related to dot1X authentication.  The ability to manually refresh encryption keys is often part of network administration security requirements.  To manually force a PMK refresh, use the cts rekey command.",
+    "sourcePage": 23,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based enforcement",
+    "context": null,
+    "detail": "Enable role-based access control globally and on specific Layer 3 interfaces using Cisco TrustSec.",
+    "syntax": "cts role-based enforcement",
+    "noForm": "no cts role-based enforcement",
+    "params": [],
+    "modes": ["Global configuration (config)", "Interface configuration (config-if)"],
+    "usageSummary": "The cts role-based enforcement command in global configuration mode enables role-based access control globally.  Once role-based access control is enabled globally, it is automatically enabled on every Layer 3 interface on the device.  To disable role-based access control on specific Layer 3 interfaces, use the no form of the command in interface configuration mode.",
+    "sourcePage": 24,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based l2-vrf",
+    "context": null,
+    "detail": "Select a virtual routing and forwarding (VRF) instance for Layer 2 VLANs.",
+    "syntax": "cts role-based l2-vrf vrf-name vlan-list {all vlan-ID} [{,}] [{-}]",
+    "noForm": "no cts role-based l2-vrf vrf-name vlan-list {all vlan-ID} [{,}] [{-}]",
+    "params": [
+      {
+        "name": "vrf-name",
+        "description": "Name of the VRF instance."
+      },
+      {
+        "name": "vlan-list",
+        "description": "Specifies the list of VLANs to be assigned to a VRF instance."
+      },
+      {
+        "name": "all",
+        "description": "Specifies all VLANs."
+      },
+      {
+        "name": "vlan-ID",
+        "description": "VLAN ID. Valid values are from 1 to 4094."
+      },
+      {
+        "name": ",",
+        "description": "(Optional) Specifies another VLAN separated by a comma."
+      },
+      {
+        "name": "-",
+        "description": "(Optional) Specifies a range of VLANs separated by a hyphen."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The vlan-list argument can be a single VLAN ID, a list of comma-separated VLAN IDs, or hyphen-separated VLAN ID ranges.  The all keyword is equivalent to the full range of VLANs supported by the network device.  The all keyword is not preserved in the nonvolatile generation (NVGEN) process.",
+    "sourcePage": 25,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based monitor",
+    "context": null,
+    "detail": "Enable role-based (security-group) access list monitoring.",
+    "syntax": "cts role-based monitor {all | permissions {default [{ipv4 | ipv6}] | from {sgt | unknown} to {sgt | unknown} [{ipv4 | ipv6}]}} | unknown} [{ipv4 | ipv6}]}}",
+    "noForm": "no cts role-based monitor {all | permissions {default [{ipv4 | ipv6}] | from {sgt | unknown} to {sgt",
+    "params": [
+      {
+        "name": "all",
+        "description": "Monitors permissions for all source tags to all destination tags."
+      },
+      {
+        "name": "permissions",
+        "description": "Monitors permissions from a source tags to a destination tags."
+      },
+      {
+        "name": "default",
+        "description": "Monitors the default permission list."
+      },
+      {
+        "name": "ipv4",
+        "description": "(Optional) Specifies the IPv4 protocol."
+      },
+      {
+        "name": "ipv6",
+        "description": "(Optional) Specifies the IPv6 protocol."
+      },
+      {
+        "name": "from",
+        "description": "Specifies the source group tag for filtered traffic."
+      },
+      {
+        "name": "sgt",
+        "description": "Security Group Tag (SGT). Valid values are from 2 to 65519."
+      },
+      {
+        "name": "unknown",
+        "description": "Specifies an unknown source or destination group tag (DST)."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the cts role-based monitor all command to enable the global monitor mode.  If the cts role-based monitor all command is configured, the output of the show cts role-based permissions command displays monitor mode for all configured policies as true.  The following examples shows how to configure SGACL monitor from a source tag to a destination tag: Device(config)# cts role-based monitor permissions from 10 to 11 Related Commands Command Description show cts role-based permissions Displays the SGACL permission list.",
+    "sourcePage": 27,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based permissions",
+    "context": null,
+    "detail": "Enable permissions from a source group to a destination group.",
+    "syntax": "cts role-based permissions {default | from {sgt | unknown}to {sgt | unknown}}{rbacl-name | ipv4 | ipv6} ipv4 | ipv6}",
+    "noForm": "no cts role-based permissions {default | from {sgt | unknown}to {sgt | unknown}}{rbacl-name |",
+    "params": [
+      {
+        "name": "default",
+        "description": "Specifies the default permissions list. Every cell (an SGT pair) for which, security group access control list (SGACL) permission is not configured statically or dynamically falls under the default category."
+      },
+      {
+        "name": "from",
+        "description": "Specifies the source group tag of the filtered traffic."
+      },
+      {
+        "name": "sgt",
+        "description": "Security Group Tag (SGT). Valid values are from 2 to 65519."
+      },
+      {
+        "name": "unknown",
+        "description": "Specifies an unknown source or destination group tag."
+      },
+      {
+        "name": "rbacl-name",
+        "description": "Role-based access control list (RBACL) or SGACL name. Up to 16 SGACLs can be specified in the configuration."
+      },
+      {
+        "name": "ipv4",
+        "description": "Specifies the IPv4 protocol."
+      },
+      {
+        "name": "ipv6",
+        "description": "Specifies the IPv6 protocol."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the cts role-based permissions command to define, replace, or delete the list of SGACLs for a given source group tag (SGT), destination group tag (DGT) pair.  This policy is in effect as long as there is no dynamic policy for the same DGT or SGT.  The cts role-based permissions default command defines, replaces, or deletes the list of SGACLs of the default policy as long as there is no dynamic policy for the same DGT.",
+    "sourcePage": 28,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts role-based sgt-map",
+    "context": null,
+    "detail": "Manually map a source IP address to a Security Group Tag (SGT) on either a host or a VRF.",
+    "syntax": "cts role-based sgt-map {ipv4_netaddress|ipv6_netaddress|ipv4_netaddress/prefix|ipv6_netaddress/prefix} sgt sgt-number cts role-based sgt-map host {ipv4_hostaddress|ipv6_hostaddress} sgt sgt-number cts role-based sgt-map vlan-list [{vlan_ids|all}] sgt sgt-number cts role-based sgt-map vrf instance_name {ipv4_netaddress|ipv6_netaddress|ipv4_netaddress/prefix|ipv6_netaddress/prefix|host {ipv4_hostaddress|ipv6_hostaddress}} sgt sgt-number",
+    "noForm": "no cts role-based sgt-map",
+    "params": [
+      {
+        "name": "ipv4_netaddress |",
+        "description": "Specifies the network to be associated with an SGT. Enter IPv4 address"
+      },
+      {
+        "name": "ipv6_netaddress",
+        "description": "in dot decimal notation; IPv6 in colon hexadecimal notation."
+      },
+      {
+        "name": "ipv4_netaddress/prefix |",
+        "description": "Maps the SGT to all hosts of the specified subnet address (IPv4 or"
+      },
+      {
+        "name": "ipv6_netaddress/prefix",
+        "description": "IPv6). IPv4 is specified in dot decimal CIDR notation, IPv6 in colon hexadecimal notation"
+      },
+      {
+        "name": "host {ipv4_hostaddress |",
+        "description": "Binds the specified host IP address with the SGT. Enter the IPv4"
+      },
+      {
+        "name": "ipv6_hostaddress}",
+        "description": "address in dot decimal notation; IPv6 in colon hexadecimal notation."
+      },
+      {
+        "name": "vlan-list {vlan_ids | all}",
+        "description": "Specifies VLAN IDs. • (Optional) vlan_ids: Individual VLAN IDs are separated by commas, a range of IDs specified with a hyphen. • (Optional) all: Specifies all VLAN IDs."
+      },
+      {
+        "name": "vrf instance_name",
+        "description": "Specifies a VRF instance, previously created on the device."
+      },
+      {
+        "name": "sgt sgt-number",
+        "description": "Specifies the SGT number from 0 to 65,535."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "If you do not have a Cisco Identity Services Engine, Cisco Secure ACS, dynamic Address Resolution Protocol (ARP) inspection, Dynamic Host Control Protocol (DHCP) snooping, or Host Tracking available on your Command Reference, Cisco IOS XE Gibraltar 16. 12. x (Catalyst 3850 Switches) 28 Cisco TrustSec cts role-based sgt-map device to automatically map SGTs to source IP addresses, you can manually map an SGT to the following with the cts role-based sgt-map command: • A single host IPv4 or IPv6 address • All hosts of an IPv4 or IPv6 network or subnetwork • VRFs • Single or multiple VLANs The cts role-based sgt-map command binds the specified SGT with packets that fall within the specified network address.",
+    "sourcePage": 30,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp connection peer",
+    "context": null,
+    "detail": "Enter the Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) peer IP address, to specify if a password is used for the peer connection, to specify the global hold-time period for a listener or speaker device, and to specify if the connection is bidirectional.",
+    "syntax": "cts sxp connection peer ipv4-address {source | password} {default | none} mode {local | peer} [{[[{listener | speaker}] [{hold-time minimum-time maximum-time | vrf vrf-name}]] | both [vrf vrf-name]}] cts sxp connection peer ipv4-address {source | password} {default | none} mode {local | peer} [{[[{listener | speaker}] [{hold-time minimum-time maximum-time | vrf vrf-name}]] | both [vrf vrf-name]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ipv4-address",
+        "description": "SXP peer IPv4 address."
+      },
+      {
+        "name": "source",
+        "description": "Specifies the source IPv4 address."
+      },
+      {
+        "name": "password",
+        "description": "Specifies that an SXP password is used for the peer connection."
+      },
+      {
+        "name": "default",
+        "description": "Specifies that the default SXP password is used."
+      },
+      {
+        "name": "none",
+        "description": "Specifies no password is used."
+      },
+      {
+        "name": "mode",
+        "description": "Specifies either the local or peer SXP connection mode."
+      },
+      {
+        "name": "local",
+        "description": "Specifies that the SXP connection mode refers to the local device."
+      },
+      {
+        "name": "peer",
+        "description": "Specifies that the SXP connection mode refers to the peer device."
+      },
+      {
+        "name": "listener",
+        "description": "(Optional) Specifies that the device is the listener in the connection."
+      },
+      {
+        "name": "speaker",
+        "description": "(Optional) Specifies that the device is the speaker in the connection."
+      },
+      {
+        "name": "hold-time minimum-time",
+        "description": "(Optional) Specifies the hold-time period, in seconds, for the device. The range"
+      },
+      {
+        "name": "maximum-time",
+        "description": "for minimum and maximum time is from 0 to 65535. A maximum-time value is required only when you use the following keywords: peer speaker and local listener. In other instances, only a minimum-time value is required. Note If both minimum and maximum times are required, the maximum-time value must be greater than or equal to the minimum-time value."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies the virtual routing and forwarding (VRF) instance name to the peer."
+      },
+      {
+        "name": "both",
+        "description": "(Optional) Specifies that the device is both the speaker and the listener in the bidirectional SXP connection."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "When a CTS-SXP connection to a peer is configured with the cts sxp connection peer command, only the connection mode can be changed.  The vrf keyword is optional.  If a VRF name is not provided or a VRF name is provided with the default keyword, then the connection is set up in the default routing or forwarding domain.",
+    "sourcePage": 32,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp default password",
+    "context": null,
+    "detail": "Specify the Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) default password.",
+    "syntax": "cts sxp default password {0 unencrypted-pwd | 6 encrypted-key | 7 encrypted-keycleartext-pwd}",
+    "noForm": "no cts sxp default password {0 unencrypted-pwd | 6 encrypted-key | 7 encrypted-keycleartext-pwd}",
+    "params": [
+      {
+        "name": "0 unencrypted-pwd",
+        "description": "Specifies that an unencrypted CTS-SXP default password follows. The maximum password length is 32 characters."
+      },
+      {
+        "name": "6 encrypted-key",
+        "description": "Specifies that a 6 encryption type password is used as the CTS-SXP default password. The maximum password length is 32 characters."
+      },
+      {
+        "name": "7 encrypted-key",
+        "description": "Specifies that a 7 encryption type password is used as the CTS-SXP default password. The maximum password length is 32 characters."
+      },
+      {
+        "name": "cleartext-pwd",
+        "description": "Specifies a cleartext CTS-SXP default password. The maximum password length is 32 characters."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The cts sxp default password command sets the CTS-SXP default password to be optionally used for all CTS-SXP connections configured on the device.  The CTS-SXP password can be cleartext, or encrypted with the 0, 7, 6 encryption type keywords.  If the encryption type is 0, then an unencrypted cleartext password follows.",
+    "sourcePage": 35,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp default source-ip",
+    "context": null,
+    "detail": "Configure the Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) source IPv4 address.",
+    "syntax": "cts sxp default source-ip ipv4-address",
+    "noForm": "no cts sxp default source-ip ipv4-address",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "Default source CTS-SXP IPv4 address."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The cts sxp default source-ip command sets the default source IP address that CTS-SXP uses for all new TCP connections where a source IP address is not specified.  Preexisting TCP connections are not affected when this command is entered.",
+    "sourcePage": 37,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp filter-enable",
+    "context": null,
+    "detail": "Enable filtering after creating filter lists and filter groups.",
+    "syntax": "cts sxp filter-enable",
+    "noForm": "no cts sxp filter-enable",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "This command can be used at any time to enable or disable filtering.  Configured filter lists and filter groups can be used to implement filtering only after filtering is enabled.  The filter action will only filter bindings that are exchanged after filtering is enabled; there won’t be any effect on the bindings that were exchanged before filtering was enabled.",
+    "sourcePage": 39,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp filter-group",
+    "context": null,
+    "detail": "Create a filter group for grouping a set of peers and applying a filter list to them.",
+    "syntax": "cts sxp filter-group {listener | speaker}{filter-group-name | global filter-list-name}",
+    "noForm": "no cts sxp filter-group {listener | speaker}{filter-group-name | global filter-list-name}",
+    "params": [
+      {
+        "name": "listener",
+        "description": "Creates a filter group for a set of listeners."
+      },
+      {
+        "name": "speaker",
+        "description": "Creates a filter group for a set of speakers."
+      },
+      {
+        "name": "global",
+        "description": "Groups all speakers or listeners on the device."
+      },
+      {
+        "name": "filter-group-name",
+        "description": "Name of the filter group."
+      },
+      {
+        "name": "filter-list-name",
+        "description": "Name of the filter list."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Issuing this command, places the device in the filter group configuration mode.  From this mode, you can specify the devices to be grouped and apply a filter list to the filter group.  The command format to add devices or peers to the group is a follows: peer ipv4 peer-IP In a single command, you can add one peer.",
+    "sourcePage": 40,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp filter-list",
+    "context": null,
+    "detail": "Create a SXP filter list to hold a set of filter rules for filtering IP-SGT bindings.",
+    "syntax": "cts sxp filter-list filter-list-name",
+    "noForm": "no cts sxp filter-list filter-list-name",
+    "params": [
+      {
+        "name": "filter-list-name",
+        "description": "Name of the filter-list."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Issuing this command, places the device in the filter list configuration mode.  From this mode, you can specify rules for the filter lists.  A filter rule can be based on SGT or IP Prefixes or a combination of both SGT and IP Prefixes.",
+    "sourcePage": 42,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp log binding-changes",
+    "context": null,
+    "detail": "Enable logging for IP-to-Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) binding changes.",
+    "syntax": "cts sxp log binding-changes",
+    "noForm": "no cts sxp log binding-changes",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The cts sxp log binding-changes command enables logging for IP-to-SGT binding changes.  SXP syslogs (sev 5 syslogs) are generated whenever IP address-to-SGT binding occurs (add, delete, change).  These changes are learned and propagated on the SXP connection.",
+    "sourcePage": 44,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp reconciliation period",
+    "context": null,
+    "detail": "Change the Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) reconciliation period.",
+    "syntax": "cts sxp reconciliation period seconds",
+    "noForm": "no cts sxp reconciliation period seconds",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "CTS-SXP reconciliation timer in seconds. The range is from 0 to 64000. The default is 120."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "After a peer terminates a CTS-SXP connection, an internal delete hold-down timer starts.  If the peer reconnects before the delete hold-down timer expires, then the CTS-SXP reconciliation timer starts.  While the CTS-SXP reconciliation period timer is active, the CTS-SXP software retains the SGT mapping entries learned from the previous connection and removes invalid entries.",
+    "sourcePage": 45,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cts sxp retry period",
+    "context": null,
+    "detail": "Change the Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) retry period timer.",
+    "syntax": "cts sxpretry period seconds",
+    "noForm": "no cts sxpretry period seconds",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "CTS-SXP retry timer in seconds. The range is from 0 to 64000. The default is 120."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The retry timer is triggered if there is at least one CTS-SXP connection that is not up.  A new CTS-SXP connection is attempted when this timer expires.  A zero value results in no retry being attempted.",
+    "sourcePage": 46,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "propagate sgt",
+    "context": "cts manual",
+    "detail": "Enable Security Group Tag (SGT) propagation at Layer 2 on Cisco TrustSec Security (CTS) interfaces.",
+    "syntax": "propagate sgt",
+    "noForm": null,
+    "params": [],
+    "modes": ["CTS manual interface configuration mode (config-if-cts-manual)"],
+    "usageSummary": "SGT processing propagation allows a CTS-capable interface to accept and transmit a CTS Meta Data (CMD) based L2 SGT tag.  The no propagate sgt command can be used to disable SGT propagation on an interface in situations where a peer device is not capable of receiving an SGT, and as a result, the SGT tag cannot be put in the L2 header.",
+    "sourcePage": 47,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts credentials",
+    "context": null,
+    "detail": "Display the Cisco TrustSec (CTS) device ID.",
+    "syntax": "show cts credentials",
+    "noForm": null,
+    "params": [
+      {
+        "name": "This",
+        "description": "command has no commands or keywords."
+      }
+    ],
+    "modes": ["Privileged EXEC (#) User EXEC (>)"],
+    "usageSummary": null,
+    "sourcePage": 49,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts interface",
+    "context": null,
+    "detail": "Display Cisco TrustSec (CTS) configuration statistics for an interface(s).",
+    "syntax": "show cts interface [{GigabitEthernet port | Vlan number | brief | summary}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "port",
+        "description": "(Optional) Gigabit Ethernet interface number. A verbose status output for this interface is returned."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) VLAN interface number from 1 to 4095."
+      },
+      {
+        "name": "brief",
+        "description": "(Optional) Displays abbreviated status for all CTS interfaces."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays a tabular summary of all CTS interfaces with 4 or 5 key status fields for each interface."
+      }
+    ],
+    "modes": ["EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "Use the show cts interface command without keywords to display verbose status for all CTS interfaces.",
+    "sourcePage": 50,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts role-based permissions",
+    "context": null,
+    "detail": "Display the role-based (security group) access control permission list.",
+    "syntax": "show cts role-based permissions [{default [{details | ipv4 [details] | ipv6 [details]}] | from {{sgt | unknown }[{ipv4 | ipv6 | to {{sgt | unknown}[{details | ipv4 [details] | ipv6 [details]}]}}}] | ipv4 | ipv6 | platform | to {sgt | unknown}[{ipv4 | ipv6}]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "default",
+        "description": "(Optional) Displays information about the default permission list."
+      },
+      {
+        "name": "details",
+        "description": "(Optional) Displays attached access control list (ACL) details."
+      },
+      {
+        "name": "ipv4",
+        "description": "(Optional) Displays information about the IPv4 protocol."
+      },
+      {
+        "name": "ipv6",
+        "description": "(Optional) Displays information about the IPv6 protocol."
+      },
+      {
+        "name": "from",
+        "description": "(Optional) Displays information about the source group."
+      },
+      {
+        "name": "sgt",
+        "description": "(Optional) Security Group Tag. Valid values are from 2 to 65519."
+      },
+      {
+        "name": "to",
+        "description": "(Optional) Displays information about the destination group."
+      },
+      {
+        "name": "unknown",
+        "description": "(Optional) Displays information about unknown source and destination groups."
+      },
+      {
+        "name": "platform",
+        "description": "(Optional) Displays information about the platform."
+      }
+    ],
+    "modes": ["Privileged EXE (#)"],
+    "usageSummary": "This command displays the content of the SGACL permission matrix.  You can specify the source security group tag (SGT) by using the from keyword and the destination SGT by using the to keyword.  When both these keywords are specified RBACLs of a single cell are displayed.",
+    "sourcePage": 52,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts server-list",
+    "context": null,
+    "detail": "Display the list of RADIUS servers available to Cisco TrustSec (CTS) seed and nonseed devices.",
+    "syntax": "show cts server-list",
+    "noForm": null,
+    "params": [
+      {
+        "name": "This",
+        "description": "command has no commands or keywords."
+      }
+    ],
+    "modes": ["Privileged EXEC (#) User EXEC (>)"],
+    "usageSummary": "This command is useful for gathering CTS RADIUS server address and status information.",
+    "sourcePage": 54,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cts sxp",
+    "context": null,
+    "detail": "Display Cisco TrustSec Security Group Tag (SGT) Exchange Protocol (CTS-SXP) connection or source IP-to-SGT mapping information.",
+    "syntax": "show cts sxp {connections [{brief | vrf instance-name}] | filter-group [{detailed | global | listener | speaker }] | filter-list filter-list-name | sgt-map [{brief | vrf instance-name}]} [{brief | vrf instance-name}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "connections",
+        "description": "Displays Cisco TrustSec SXP connections information."
+      },
+      {
+        "name": "brief",
+        "description": "(Optional) Displays an abbreviation of the SXP information."
+      },
+      {
+        "name": "vrf instance-name",
+        "description": "(Optional) Displays the SXP information for the specified Virtual Routing and Forwarding (VRF) instance name."
+      },
+      {
+        "name": "filter-group {detailed | global |",
+        "description": "(Optional) Displays filter group information. listener | speaker }"
+      },
+      {
+        "name": "filter-list filter-list-name",
+        "description": "(Optional) Displays filter list information."
+      },
+      {
+        "name": "sgt-map",
+        "description": "(Optional) Displays the IP-to-SGT mappings received through SXP."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 55,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

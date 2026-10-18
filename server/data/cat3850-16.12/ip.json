@@ -1,0 +1,1308 @@
+[
+  {
+    "name": "clear ip nhrp",
+    "context": null,
+    "detail": "Clear all dynamic entries from the Next Hop Resolution Protocol (NHRP) cache.",
+    "syntax": "clear ip nhrp[{vrf {vrf-name | global}}] [{dest-ip-address [{dest-mask}] | tunnel number | counters [{interface tunnel number}] | stats [{tunnel number [{vrf {vrf-name | global}}]}]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf",
+        "description": "(Optional) Deletes entries from the NHRP cache for the specified virtual routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "vrf-name",
+        "description": "(Optional) Name of the VRF address family to which the command is applied."
+      },
+      {
+        "name": "global",
+        "description": "(Optional) Specifies the global VRF instance."
+      },
+      {
+        "name": "dest-ip-address",
+        "description": "(Optional) Destination IP address. Specifying this argument clears NHRP mapping entries for the specified destination IP address."
+      },
+      {
+        "name": "dest-mask",
+        "description": "(Optional) Destination network mask."
+      },
+      {
+        "name": "counters",
+        "description": "(Optional) Clears the NHRP counters."
+      },
+      {
+        "name": "interface",
+        "description": "(Optional) Clears the NHRP mapping entries for all interfaces."
+      },
+      {
+        "name": "tunnel number",
+        "description": "(Optional) Removes the specified interface from the NHRP cache."
+      },
+      {
+        "name": "stats",
+        "description": "(Optional) Clears all IPv4 statistic information for all interfaces."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The clear ip nhrp command does not clear any static (configured) IP-to-NBMA address mappings from the NHRP cache.",
+    "sourcePage": 215,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug nhrp",
+    "context": null,
+    "detail": "Enable Next Hop Resolution Protocol (NHRP) debugging.",
+    "syntax": "debug nhrp [{attribute | cache | condition {interface tunnel number | peer {nbma {ipv4-nbma-address nbma-name ipv6-nbma-address} } | umatched | vrf vrf-name} | detail | error | extension | group | packet | rate}] {ipv4-nbma-address nbma-name ipv6-nbma-address} } unmatched | vrf vrf-name} | detail | error | extension | group | packet | rate }]",
+    "noForm": "no debug nhrp [{attribute | cache | condition {interface tunnel number | peer {nbma",
+    "params": [
+      {
+        "name": "attribute",
+        "description": "(Optional) Enables NHRP attribute debugging operations."
+      },
+      {
+        "name": "cache",
+        "description": "(Optional) Enables NHRP cache debugging operations."
+      },
+      {
+        "name": "condition",
+        "description": "(Optional) Enables NHRP conditional debugging operations."
+      },
+      {
+        "name": "interface tunnel number",
+        "description": "(Optional) Enables debugging operations for the tunnel interface."
+      },
+      {
+        "name": "nbma",
+        "description": "(Optional) Enables debugging operations for the non-broadcast multiple access (NBMA) network."
+      },
+      {
+        "name": "ipv4-nbma-address",
+        "description": "(Optional) Enables debugging operations based on the IPv4 address of the NBMA network."
+      },
+      {
+        "name": "nbma-name",
+        "description": "(Optional) NBMA network name."
+      },
+      {
+        "name": "IPv6-address",
+        "description": "(Optional) Enables debugging operations based on the IPv6 address of the NBMA network. Note The IPv6-address argument is not supported in Cisco IOS XE Denali 16.3.1."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Enables debugging operations for the virtual routing and forwarding instance."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed logs of NHRP debugs."
+      },
+      {
+        "name": "error",
+        "description": "(Optional) Enables NHRP error debugging operations."
+      },
+      {
+        "name": "extension",
+        "description": "(Optional) Enables NHRP extension processing debugging operations."
+      },
+      {
+        "name": "group",
+        "description": "(Optional) Enables NHRP group debugging operations."
+      },
+      {
+        "name": "packet",
+        "description": "(Optional) Enables NHRP activity debugging."
+      },
+      {
+        "name": "rate",
+        "description": "(Optional) Enables NHRP rate limiting."
+      },
+      {
+        "name": "routing",
+        "description": "(Optional) Enables NHRP routing debugging operations."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Note In Cisco IOS XE Denali 16. 3. 1, this command supports only IPv4; the IPv6-nbma-address argument although available on the switch, will not work if configured.",
+    "sourcePage": 216,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "fhrp delay",
+    "context": null,
+    "detail": "Specify the delay period for the initialization of First Hop Redundancy Protocol (FHRP) clients.",
+    "syntax": "fhrp delay {[minimum] [reload] seconds}",
+    "noForm": "no fhrp delay {[minimum] [reload] seconds}",
+    "params": [
+      {
+        "name": "minimum",
+        "description": "(Optional) Configures the delay period after an interface becomes available."
+      },
+      {
+        "name": "reload",
+        "description": "(Optional) Configures the delay period after the device reloads."
+      },
+      {
+        "name": "seconds",
+        "description": "Delay period in seconds. The range is from 0 to 3600."
+      }
+    ],
+    "modes": [
+      "Interface configuration (config-if)",
+      "Examples This example shows how to specify the delay period for the initialization of FHRP clients:",
+      "Device(config-if)# fhrp delay minimum 90",
+      "Related Commands Command Description",
+      "show fhrp Displays First Hop Redundancy Protocol (FHRP) information.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 216 IP Addressing Services fhrp version vrrp v3"
+    ],
+    "usageSummary": null,
+    "sourcePage": 218,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "fhrp version vrrp v3",
+    "context": null,
+    "detail": "Enable Virtual Router Redundancy Protocol version 3 (VRRPv3) and Virtual Router Redundancy Service (VRRS) configuration on a device.",
+    "syntax": "fhrp version vrrp v3",
+    "noForm": "no fhrp version vrrp v3",
+    "params": [],
+    "modes": [
+      "Global configuration (config)",
+      "Usage Guidelines When VRRPv3 is in use, VRRP version 2 (VRRPv2) is unavailable.",
+      "Examples In the following example, a tracking process is configured to track the state of an IPv6 object using a VRRPv3 group. VRRP on GigabitEthernet interface 0/0/0 then registers with the tracking process to be informed of any changes to the IPv6 object on the VRRPv3 group. If the IPv6 object state on serial interface VRRPv3 goes down, then the priority of the VRRP group is reduced by 20:",
+      "Device(config)# fhrp version vrrp v3 Device(config)# interface GigabitEthernet 0/0/0 Device(config-if)# vrrp 1 address-family ipv6 Device(config-if-vrrp)# track 1 decrement 20",
+      "Related Commands Command Description",
+      "track (VRRP) Enables an object to be tracked using a VRRPv3 group.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 217 IP Addressing Services"
+    ],
+    "usageSummary": "When VRRPv3 is in use, VRRP version 2 (VRRPv2) is unavailable.",
+    "sourcePage": 219,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "glbp authentication",
+    "context": null,
+    "detail": "Configure an authentication string for the Gateway Load Balancing Protocol (GLBP).",
+    "syntax": "glbp group-numberauthentication {text string | md5 {key-string [{0 | 7}] key | key-chain name-of-chain}} name-of-chain}}",
+    "noForm": "no glbp group-number authentication {text string | md5 {key-string [{0 | 7}] key | key-chain",
+    "params": [
+      {
+        "name": "group-number",
+        "description": "GLBP group number in the range from 0 to 1023."
+      },
+      {
+        "name": "text",
+        "description": "string Specifies an authentication string. The number of characters in the command plus the text string must not exceed 255 characters."
+      },
+      {
+        "name": "md5",
+        "description": "Message Digest 5 (MD5) authentication."
+      },
+      {
+        "name": "key-string key",
+        "description": "Specifies the secret key for MD5 authentication. The key string cannot exceed 100 characters in length. We recommend using at least 16 characters."
+      },
+      {
+        "name": "0",
+        "description": "(Optional) Unencrypted key. If no prefix is specified, the key is unencrypted."
+      },
+      {
+        "name": "7",
+        "description": "(Optional) Encrypted key."
+      },
+      {
+        "name": "key-chain name-of-chain",
+        "description": "Identifies a group of authentication keys."
+      }
+    ],
+    "modes": [
+      "Interface configuration (config-if)",
+      "Usage Guidelines The same authentication method must be configured on all the devices that are configured to be members of the same GLBP group, to ensure interoperation. A device will ignore all GLBP messages that contain the wrong authentication information. If password encryption is configured with the service password-encryption command, the software saves the key string in the configuration as encrypted text.",
+      "Examples The following example configures stringxyz as the authentication string required to allow GLBP devices in group 10 to interoperate:",
+      "Device(config)# interface GigabitEthernet 1/0/1 Device(config-if)# glbp 10 authentication text stringxyz",
+      "In the following example, GLBP queries the key chain “AuthenticateGLBP” to obtain the current live key and key ID for the specified key chain:",
+      "Device(config)# key chain AuthenticateGLBP Device(config-keychain)# key 1 Device(config-keychain-key)# key-string ThisIsASecretKey Device(config-keychain-key)# exit",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 218 IP Addressing Services glbp authentication",
+      "Device(config-keychain)# exit Device(config)# interface GigabitEthernet 1/0/1 Device(config-if)# ip address 10.0.0.1 255.255.255.0 Device(config-if)# glbp 2 authentication md5 key-chain AuthenticateGLBP",
+      "Related Commands Command Description",
+      "glbp ip Enables GLBP.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 219 IP Addressing Services"
+    ],
+    "usageSummary": "The same authentication method must be configured on all the devices that are configured to be members of the same GLBP group, to ensure interoperation.  A device will ignore all GLBP messages that contain the wrong authentication information.  If password encryption is configured with the service password-encryption command, the software saves the key string in the configuration as encrypted text.",
+    "sourcePage": 220,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "glbp forwarder preempt",
+    "context": null,
+    "detail": "Configure a device to take over as active virtual forwarder (AVF) for a Gateway Load Balancing Protocol (GLBP) group if the current AVF falls below its low weighting threshold.",
+    "syntax": "glbp group forwarder preempt [delay minimum seconds]",
+    "noForm": "no glbp group forwarder preempt [delay minimum]",
+    "params": [
+      {
+        "name": "group",
+        "description": "GLBP group number in the range from 0 to 1023."
+      },
+      {
+        "name": "delay minimum seconds",
+        "description": "(Optional) Specifies a minimum number of seconds that the device will delay before taking over the role of AVF. The range is from 0 to 3600 seconds with a default delay of 30 seconds."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 222,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "glbp ip",
+    "context": null,
+    "detail": "Activate the Gateway Load Balancing Protocol (GLBP).",
+    "syntax": "glbp group ip [ip-address [secondary]]",
+    "noForm": "no glbp group ip [ip-address [secondary]]",
+    "params": [
+      {
+        "name": "group",
+        "description": "GLBP group number in the range from 0 to 1023."
+      },
+      {
+        "name": "ip-address",
+        "description": "(Optional) Virtual IP address for the GLBP group. The IP address must be in the same subnet as the interface IP address."
+      },
+      {
+        "name": "secondary",
+        "description": "(Optional) Indicates that the IP address is a secondary GLBP virtual address."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The glbp ip command activates GLBP on the configured interface.  If an IP address is specified, that address is used as the designated virtual IP address for the GLBP group.  If no IP address is specified, the designated address is learned from another device configured to be in the same GLBP group.",
+    "sourcePage": 223,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "glbp load-balancing",
+    "context": null,
+    "detail": "Specify the load-balancing method used by the active virtual gateway (AVG) of the Gateway Load Balancing Protocol (GLBP).",
+    "syntax": "glbp group load-balancing [{host-dependent | round-robin | weighted}]",
+    "noForm": "no glbp group load-balancing",
+    "params": [
+      {
+        "name": "group",
+        "description": "GLBP group number in the range from 0 to 1023."
+      },
+      {
+        "name": "host-dependent",
+        "description": "(Optional) Specifies a load balancing method based on the MAC address of a host where the same forwarder is always used for a particular host while the number of GLBP group members remains unchanged."
+      },
+      {
+        "name": "round-robin",
+        "description": "(Optional) Specifies a load balancing method where each virtual forwarder in turn is included in address resolution replies for the virtual IP address. This method is the default."
+      },
+      {
+        "name": "weighted",
+        "description": "(Optional) Specifies a load balancing method that is dependent on the weighting value advertised by the gateway."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Use the host-dependent method of GLBP load balancing when you need each host to always use the same device.  Use the weighted method of GLBP load balancing when you need unequal load balancing because devices in the GLBP group have different forwarding capacities.",
+    "sourcePage": 225,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "glbp name",
+    "context": null,
+    "detail": "Enable IP redundancy by assigning a name to the Gateway Load Balancing Protocol (GLBP) group.",
+    "syntax": "glbp group-number name group-name",
+    "noForm": "no glbp group-number name group-name",
+    "params": [
+      {
+        "name": "group-number",
+        "description": "GLBP group number. Range is from 0 to 1023."
+      },
+      {
+        "name": "group-name",
+        "description": "GLBP group name specified as a character string. Maximum number of characters is 255."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The GLBP redundancy client must be configured with the same GLBP group name so that the redundancy client and the GLBP group can be connected.",
+    "sourcePage": 226,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "glbp preempt",
+    "context": null,
+    "detail": "Configure the gateway to take over as active virtual gateway (AVG) for a Gateway Load Balancing Protocol (GLBP) group if it has higher priority than the current AVG.",
+    "syntax": "glbp group preempt [delay minimum seconds]",
+    "noForm": "no glbp group preempt [delay minimum]",
+    "params": [
+      {
+        "name": "group",
+        "description": "GLBP group number in the range from 0 to 1023."
+      },
+      {
+        "name": "delay minimum seconds",
+        "description": "(Optional) Specifies a minimum number of seconds that the device will delay before taking over the role of AVG. The range is from 0 to 3600 seconds with a default delay of 30 seconds."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 228,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "glbp priority",
+    "context": null,
+    "detail": "Set the priority level of the gateway within a Gateway Load Balancing Protocol (GLBP) group.",
+    "syntax": "glbp group priority level",
+    "noForm": "no glbp group priority level",
+    "params": [
+      {
+        "name": "group",
+        "description": "GLBP group number in the range from 0 to 1023."
+      },
+      {
+        "name": "level",
+        "description": "Priority of the gateway within the GLBP group. The range is from 1 to 255. The default is 100."
+      }
+    ],
+    "modes": [
+      "Interface configuration (config-if)",
+      "Usage Guidelines Use this command to control which virtual gateway becomes the active virtual gateway (AVG). After the priorities of several different virtual gateways are compared, the gateway with the numerically higher priority is elected as the AVG. If two virtual gateways have equal priority, the gateway with the higher IP address is selected.",
+      "Examples The following example shows a virtual gateway being configured with a priority of 254:",
+      "Device(config-if)# glbp 10 priority 254",
+      "Related Commands Command Description",
+      "glbp ip Enables GLBP.",
+      "glbp preempt Configures a device to take over as the AVG for a GLBP group if it has higher priority than the current AVG.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 227 IP Addressing Services"
+    ],
+    "usageSummary": "Use this command to control which virtual gateway becomes the active virtual gateway (AVG).  After the priorities of several different virtual gateways are compared, the gateway with the numerically higher priority is elected as the AVG.  If two virtual gateways have equal priority, the gateway with the higher IP address is selected.",
+    "sourcePage": 229,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "glbp timers",
+    "context": null,
+    "detail": "Configure the time between hello packets sent by the Gateway Load Balancing Protocol (GLBP) gateway and the time that the virtual gateway and virtual forwarder information is considered valid.",
+    "syntax": "glbp group timers {hellotime{holdtime | msec holdtime} | msec { holdtime | msec holdtime} | redirect time-interval-to-redirect | timeout} holdtime} | redirect time-interval-to-redirect | timeout}",
+    "noForm": "no glbp group timers {hellotime{holdtime | msec holdtime} | msec { holdtime | msec",
+    "params": [
+      {
+        "name": "group",
+        "description": "GLBP group number in the range from 0 to 1023."
+      },
+      {
+        "name": "msec",
+        "description": "(Optional) Specifies that the following (hellotime or holdtime) argument value will be expressed in milliseconds rather than seconds."
+      },
+      {
+        "name": "hellotime",
+        "description": "Hello interval. The default is 3 seconds (3000 milliseconds)."
+      },
+      {
+        "name": "holdtime",
+        "description": "Time before the virtual gateway and virtual forwarder information contained in the hello packet is considered invalid. The default is 10 seconds (10,000 milliseconds)."
+      },
+      {
+        "name": "redirect",
+        "description": "Specifies time interval during which the active virtual gateway (AVG) for a Gateway Load Balancing Protocol (GLBP) group continues to redirect clients to a secondary active virtual forwarder (AVF) and time-out values for failed forwarders."
+      },
+      {
+        "name": "time-interval-to-redirect",
+        "description": "The redirect timer interval in the range from 0 to 3600 seconds. The default is 600 seconds (10 minutes). Note The zero value for the time-interval-to-redirect argument cannot be removed from the range of acceptable values because preexisting configurations of Cisco IOS software already using the zero value could be negatively affected during an upgrade. However, be advised that a zero setting is not recommended andtime-interval-to-redirect, if used, results in a redirect timer that never expires. If the redirect timer does not expire, then when a device fails, new hosts continue to be assigned to the failed device instead of being redirected to the backup."
+      },
+      {
+        "name": "timeout",
+        "description": "The time interval, in the range from 600 to 64,800 seconds, before the secondary virtual forwarder becomes unavailable. The default is 14,400 seconds (4 hours)."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Devices on which timer values are not configured can learn timer values from the active virtual gateway (AVG).  The timers configured on the AVG always override any other timer settings.  All devices in a GLBP group should use the same timer values.",
+    "sourcePage": 230,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "glbp weighting",
+    "context": null,
+    "detail": "Specify the initial weighting value of the Gateway Load Balancing Protocol (GLBP) gateway.",
+    "syntax": "glbp group weighting maximum [lower lower] [upper upper]",
+    "noForm": "no glbp group weighting",
+    "params": [
+      {
+        "name": "group",
+        "description": "GLBP group number in the range from 0 to 1023."
+      },
+      {
+        "name": "maximum",
+        "description": "Maximum weighting value in the range from 1 to 254. Default value is 100."
+      },
+      {
+        "name": "lower",
+        "description": "lower (Optional) Specifies a lower weighting value in the range from 1 to the specified maximum weighting value. Default value is 1."
+      },
+      {
+        "name": "upper",
+        "description": "upper (Optional) Specifies an upper weighting value in the range from the lower weighting to the maximum weighting value. The default value is the specified maximum weighting value."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The weighting value of a virtual gateway is a measure of the forwarding capacity of the gateway.  If a tracked interface on the device fails, the weighting value of the device may fall from the maximum value to below the lower threshold, causing the device to give up its role as a virtual forwarder.  When the weighting value of the device rises above the upper threshold, the device can resume its active virtual forwarder role.",
+    "sourcePage": 232,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "glbp weighting track",
+    "context": null,
+    "detail": "Specify a tracking object where the Gateway Load Balancing Protocol (GLBP) weighting changes based on the availability of the object being tracked.",
+    "syntax": "glbp group weighting track object-number [decrement value]",
+    "noForm": "no glbp group weighting track object-number [decrement value]",
+    "params": [
+      {
+        "name": "group",
+        "description": "GLBP group number in the range from 0 to 1023."
+      },
+      {
+        "name": "object-number",
+        "description": "Object number representing an item to be tracked. The valid range is 1 to 1000. Use the track command to configure the tracked object."
+      },
+      {
+        "name": "decrement value",
+        "description": "(Optional) Specifies an amount by which the GLBP weighting for the device is decremented (or incremented) when the interface goes down (or comes back up). The value range is from 1 to 254, with a default value of 10."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "This command ties the weighting of the GLBP gateway to the availability of its interfaces.  It is useful for tracking interfaces that are not configured for GLBP.  When a tracked interface goes down, the GLBP gateway weighting decreases by 10.",
+    "sourcePage": 233,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip address dhcp",
+    "context": null,
+    "detail": "Acquire an IP address on an interface from the DHCP.",
+    "syntax": "ip address dhcp [client-id interface-type number] [hostname hostname]",
+    "noForm": "no ip address dhcp [client-id interface-type number] [hostname hostname]",
+    "params": [
+      {
+        "name": "client-id",
+        "description": "(Optional) Specifies the client identifier. By default, the client identifier is an ASCII value. The client-id interface-type number option sets the client identifier to the hexadecimal MAC address of the named interface."
+      },
+      {
+        "name": "interface-type",
+        "description": "(Optional) Interface type. For more information, use the question mark (?) online help function."
+      },
+      {
+        "name": "number",
+        "description": "(Optional) Interface or subinterface number. For more information about the numbering syntax for your networking device, use the question mark (?) online help function."
+      },
+      {
+        "name": "hostname",
+        "description": "(Optional) Specifies the hostname."
+      },
+      {
+        "name": "hostname",
+        "description": "(Optional) Name of the host to be placed in the DHCP option 12 field. This name need not be the same as the hostname entered in global configuration mode."
+      }
+    ],
+    "modes": [
+      "Interface configuration (config-if)",
+      "Usage Guidelines The ip address dhcp command allows any interface to dynamically learn its IP address by using the DHCP protocol. It is especially useful on Ethernet interfaces that dynamically connect to an Internet service provider (ISP). Once assigned a dynamic address, the interface can be used with the Port Address Translation (PAT) of Cisco IOS Network Address Translation (NAT) to provide Internet access to a privately addressed network attached to the device. The ip address dhcp command also works with ATM point-to-point interfaces and will accept any encapsulation type. However, for ATM multipoint interfaces you must specify Inverse ARP via the protocol ip inarp interface configuration command and use only the aa15snap encapsulation type. Some ISPs require that the DHCPDISCOVER message have a specific hostname and client identifier that is the MAC address of the interface. The most typical usage of the ip address dhcp client-id interface-type number hostname hostname command is when interface-type is the Ethernet interface where the command is configured and interface-type number is the hostname provided by the ISP. A client identifier (DHCP option 61) can be a hexadecimal or an ASCII value. By default, the client identifier is an ASCII value. The client-id interface-type number option overrides the default and forces the use of the hexadecimal MAC address of the named interface. If a Cisco device is configured to obtain its IP address from a DHCP server, it sends a DHCPDISCOVER message to provide information about itself to the DHCP server on the network. If you use the ip address dhcp command with or without any of the optional keywords, the DHCP option 12 field (hostname option) is included in the DISCOVER message. By default, the hostname specified in option 12 will be the globally configured hostname of the device. However, you can use the ip address dhcp hostname",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 233 IP Addressing Services ip address dhcp",
+      "hostname command to place a different name in the DHCP option 12 field than the globally configured hostname of the device. The no ip address dhcp command removes any IP address that was acquired, thus sending a DHCPRELEASE message. You might need to experiment with different configurations to determine the one required by your DHCP server. The table below shows the possible configuration methods and the information placed in the DISCOVER message for each method.",
+      "Table 18: Configuration Method and Resulting Contents of the DISCOVER Message",
+      "Configuration Method Contents of DISCOVER Messages",
+      "ip address dhcp The DISCOVER message contains “cisco- mac-address -Eth1” in the client ID field. The mac-address is the MAC address of the Ethernet 1 interface and contains the default hostname of the device in the option 12 field.",
+      "ip address dhcp hostname The DISCOVER message contains “cisco- mac-address -Eth1” in the hostname client ID field. The mac-address is the MAC address of the Ethernet 1 interface, and contains hostname in the option 12 field.",
+      "ip address dhcp client-id ethernet The DISCOVER message contains the MAC address of the Ethernet 1 1 interface in the client ID field and contains the default hostname of the device in the option 12 field.",
+      "ip address dhcp client-id ethernet The DISCOVER message contains the MAC address of the Ethernet 1 1 hostname hostname interface in the client ID field and contains hostname in the option 12 field.",
+      "Examples In the examples that follow, the command ip address dhcp is entered for Ethernet interface 1. The DISCOVER message sent by a device configured as shown in the following example would contain “cisco- mac-address -Eth1” in the client-ID field, and the value abc in the option 12 field.",
+      "hostname abc ! interface GigabitEthernet 1/0/1 ip address dhcp",
+      "The DISCOVER message sent by a device configured as shown in the following example would contain “cisco- mac-address -Eth1” in the client-ID field, and the value def in the option 12 field.",
+      "hostname abc ! interface GigabitEthernet 1/0/1 ip address dhcp hostname def",
+      "The DISCOVER message sent by a device configured as shown in the following example would contain the MAC address of Ethernet interface 1 in the client-id field, and the value abc in the option 12 field.",
+      "hostname abc !",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 234 IP Addressing Services ip address dhcp",
+      "interface Ethernet 1 ip address dhcp client-id GigabitEthernet 1/0/1",
+      "The DISCOVER message sent by a device configured as shown in the following example would contain the MAC address of Ethernet interface 1 in the client-id field, and the value def in the option 12 field.",
+      "hostname abc ! interface Ethernet 1 ip address dhcp client-id GigabitEthernet 1/0/1 hostname def",
+      "Related Commands Command Description",
+      "ip dhcp pool Configures a DHCP address pool on a Cisco IOS DHCP server and enters DHCP pool configuration mode.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 235 IP Addressing Services"
+    ],
+    "usageSummary": "The ip address dhcp command allows any interface to dynamically learn its IP address by using the DHCP protocol.  It is especially useful on Ethernet interfaces that dynamically connect to an Internet service provider (ISP).  Once assigned a dynamic address, the interface can be used with the Port Address Translation (PAT) of Cisco IOS Network Address Translation (NAT) to provide Internet access to a privately addressed network attached to the device.",
+    "sourcePage": 235,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip address pool",
+    "context": "DHCP",
+    "detail": "Enable the IP address of an interface to be automatically configured when a Dynamic Host Configuration Protocol (DHCP) pool is populated with a subnet from IP Control Protocol (IPCP) negotiation.",
+    "syntax": "ip address pool name",
+    "noForm": "no ip address pool",
+    "params": [
+      {
+        "name": "name",
+        "description": "Name of the DHCP pool. The IP address of the interface will be automatically configured from the DHCP pool specified in name."
+      }
+    ],
+    "modes": [
+      "Interface configuration",
+      "Usage Guidelines Use this command to automatically configure the IP address of a LAN interface when there are DHCP clients on the attached LAN that should be serviced by the DHCP pool on the device. The DHCP pool obtains its subnet dynamically through IPCP subnet negotiation.",
+      "Examples The following example specifies that the IP address of GigabitEthernet interface 1/0/1 will be automatically configured from the address pool named abc:",
+      "ip dhcp pool abc import all origin ipcp ! interface GigabitEthernet 1/0/1 ip address pool abc",
+      "Related Commands Command Description",
+      "show ip interface Displays the usability status of interfaces configured for IP.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 236 IP Addressing Services ip address"
+    ],
+    "usageSummary": "Use this command to automatically configure the IP address of a LAN interface when there are DHCP clients on the attached LAN that should be serviced by the DHCP pool on the device.  The DHCP pool obtains its subnet dynamically through IPCP subnet negotiation.",
+    "sourcePage": 238,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip address",
+    "context": null,
+    "detail": "Set a primary or secondary IP address for an interface.",
+    "syntax": "ip address ip-address mask [secondary [vrf vrf-name]]",
+    "noForm": "no ip address ip-address mask [secondary [vrf vrf-name]]",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address."
+      },
+      {
+        "name": "mask",
+        "description": "Mask for the associated IP subnet."
+      },
+      {
+        "name": "secondary",
+        "description": "(Optional) Specifies that the configured address is a secondary IP address. If this keyword is omitted, the configured address is the primary IP address. Note If the secondary address is used for a VRF table configuration with the vrf keyword, the vrf keyword must be specified also."
+      },
+      {
+        "name": "vrf",
+        "description": "(Optional) Name of the VRF table. The vrf-name argument specifies the VRF name of the ingress interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "An interface can have one primary IP address and multiple secondary IP addresses.  Packets generated by the Cisco IOS software always use the primary IP address.  Therefore, all devices and access servers on a segment should share the same primary network number.",
+    "sourcePage": 239,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip http server",
+    "context": null,
+    "detail": "Enable the HTTP server on your IP or IPv6 system, including the Cisco web browser user interface, enter the ip http server command in global configuration mode. To disable the HTTP server.",
+    "syntax": "ip http server",
+    "noForm": "no ip http server",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The command enables both IPv4 and IPv6 access to the HTTP server.  However, an access list configured with the ip http access-class command is applied only to IPv4 traffic.  IPv6 traffic filtering is not supported.",
+    "sourcePage": 242,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip http secure-server",
+    "context": null,
+    "detail": "Enable a secure HTTP (HTTPS) server, enter the ip http secure-server command in global configuration mode. To disable the HTTPS server.",
+    "syntax": "ip http secure-server",
+    "noForm": "no ip http secure-server",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The HTTPS server uses the Secure Sockets Layer (SSL) version 3. 0 protocol.  Caution When enabling an HTTPS server, you should always disable the standard HTTP server to prevent unsecured connections to the same services.",
+    "sourcePage": 244,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip nhrp map",
+    "context": null,
+    "detail": "Statically configure the IP-to-nonbroadcast multiaccess (NBMA) address mapping of IP destinations connected to an NBMA network.",
+    "syntax": "ip nhrp map ip-address {ip-nbma-address | destination-mask [{ip-nbma-address ipv6-nbma-address}] ipv6-nbma-address} ipv6-nbma-address}",
+    "noForm": "no ip nhrp map ip-address {ip-nbma-address | destination-mask [{ip-nbma-address ipv6-nbma-address}]",
+    "params": [
+      {
+        "name": "ip-address",
+        "description": "IP address of the destinations reachable through the NBMA network. This address is mapped to the NBMA address."
+      },
+      {
+        "name": "ip-nbma-address",
+        "description": "NBMA address that is directly reachable through the NBMA network. The address format varies depending on the medium; for example, ATM has a Network Service Access Point (NSAP) address, Ethernet has a MAC address, and Switched Multimegabit Data Service (SMDS) has an E.164 address. This address is mapped to the IP address."
+      },
+      {
+        "name": "destination-mask",
+        "description": "Destination address mask. ipv6-nbma-address IPv6 NBMA address. Note This argument is not supported in Cisco IOS XE Denali 16.3.1."
+      }
+    ],
+    "modes": ["Interface configuration(config-if)"],
+    "usageSummary": "In Cisco IOS XE Denali 16. 3. 1, NHRP supports only hub-to-spoke communication; spoke-to-spoke communication is not supported.",
+    "sourcePage": 246,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip nhrp map multicast",
+    "context": null,
+    "detail": "Configure nonbroadcast multiaccess (NBMA) addresses used as destinations for broadcast or multicast packets to be sent over a tunnel network.",
+    "syntax": "ip nhrp map multicast {ip-nbma-address ipv6-nbma-address | dynamic}",
+    "noForm": "no ip nhrp map multicast {ip-nbma-address ipv6-nbma-address | dynamic}",
+    "params": [
+      {
+        "name": "ip-nbma-address",
+        "description": "NBMA address that is directly reachable through the NBMA network. The address format varies depending on the medium that you are using. ipv6-nbma-address IPv6 NBMA address. Note This argument is not supported in Cisco IOS XE Denali 16.3.1."
+      },
+      {
+        "name": "dynamic",
+        "description": "Dynamically learns destinations from client registrations on the hub."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Note In Cisco IOS XE Denali 16. 3. 1, this command supports only IPv4; the ipv6-nbma-address argument although available on the switch, will not work if configured.",
+    "sourcePage": 248,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip nhrp network-id",
+    "context": null,
+    "detail": "Enable the Next Hop Resolution Protocol (NHRP) on an interface.",
+    "syntax": "ip nhrp network-id number",
+    "noForm": "no ip nhrp network-id [{number}]",
+    "params": [
+      {
+        "name": "number",
+        "description": "Globally unique, 32-bit network identifier from a nonbroadcast multiaccess (NBMA) network. The range is from 1 to 4294967295."
+      }
+    ],
+    "modes": ["Interface configuration (config)"],
+    "usageSummary": "In general, all NHRP stations within one logical NBMA network must be configured with the same network identifier.",
+    "sourcePage": 250,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip nhrp nhs",
+    "context": null,
+    "detail": "Specify the address of one or more Next Hop Resolution Protocol (NHRP) servers.",
+    "syntax": "ip nhrp nhs {nhs-address [nbma {nbma-address FQDN-string}] [multicast] [priority value] [cluster value] | cluster value max-connections value | dynamic nbma {nbma-address FQDN-string} [multicast] [priority value] [cluster value] | fallback seconds} [cluster value] | cluster value max-connections value | dynamic nbma {nbma-address FQDN-string} [multicast] [priority value] [cluster value] | fallback seconds}",
+    "noForm": "no ip nhrp nhs {nhs-address [nbma {nbma-address FQDN-string}] [multicast] [priority value]",
+    "params": [
+      {
+        "name": "nhs-address",
+        "description": "Address of the next-hop server being specified."
+      },
+      {
+        "name": "nbma",
+        "description": "(Optional) Specifies the nonbroadcast multiple access (NBMA) address or FQDN."
+      },
+      {
+        "name": "nbma-address",
+        "description": "NBMA address."
+      },
+      {
+        "name": "FQDN-string",
+        "description": "Next hop server (NHS) fully qualified domain name (FQDN) string."
+      },
+      {
+        "name": "multicast",
+        "description": "(Optional) Specifies the use of NBMA mapping for broadcasts and multicasts."
+      },
+      {
+        "name": "priority value",
+        "description": "(Optional) Assigns a priority to hubs to control the order in which spokes select hubs to establish tunnels. The range is from 0 to 255; 0 is the highest and 255 is the lowest priority."
+      },
+      {
+        "name": "cluster value",
+        "description": "(Optional) Specifies NHS groups. The range is from 0 to 10."
+      },
+      {
+        "name": "max-connections value",
+        "description": "Specifies the number of NHS elements from each NHS group that needs to be active. The range is from 0 to 255."
+      },
+      {
+        "name": "dynamic",
+        "description": "Configures the spoke to learn the NHS protocol address dynamically."
+      },
+      {
+        "name": "fallback seconds",
+        "description": "Specifies the duration, in seconds, for which the spoke must wait before falling back to an NHS of higher priority upon recovery."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Use the ip nhrp nhs command to specify the address of a next hop server and the networks it serves.  Normally, NHRP consults the network layer forwarding table to determine how to forward NHRP packets.  When next hop servers are configured, these next hop addresses override the forwarding path that would otherwise be used for NHRP traffic.",
+    "sourcePage": 251,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 address-validate",
+    "context": null,
+    "detail": "Enable IPv6 address validation.",
+    "syntax": "ipv6 address-validate",
+    "noForm": "no ipv6 address-validate",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The ipv6 address-validate command is used to validate whether the interface identifiers in an assigned IPv6 address are a part of the reserved IPv6 interface identifiers range, as specified in RFC5453.  If the interface identifiers of the assigned IPv6 address are a part of the reserved range, a new IPv6 address is assigned.  Only auto-configured addresses or addresses configured by DHCPv6 are validated.",
+    "sourcePage": 253,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 nd cache expire",
+    "context": null,
+    "detail": "Configure the duration of time before an IPv6 neighbor discovery cache entry expires.",
+    "syntax": "ipv6 nd cache expire expire-time-in-seconds [refresh]",
+    "noForm": "no ipv6 nd cache expire expire-time-in-seconds [refresh]",
+    "params": [
+      {
+        "name": "expire-time-in-seconds",
+        "description": "The time range is from 1 through 65536 seconds. The default is 14400 seconds or 4 hours."
+      },
+      {
+        "name": "refresh",
+        "description": "(Optional) Automatically refreshes the neighbor discovery cache entry."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "By default, a neighbor discovery cache entry is expired and deleted if it remains in the STALE state for 14,400 seconds or 4 hours.  The ipv6 nd cache expire command allows the expiry time to vary and to trigger auto refresh of an expired entry before the entry is deleted.  When the refresh keyword is used, a neighbor discovery cache entry is auto refreshed.",
+    "sourcePage": 254,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 nd na glean",
+    "context": null,
+    "detail": "Configure the neighbor discovery to glean an entry from an unsolicited neighbor advertisement.",
+    "syntax": "ipv6 nd na glean",
+    "noForm": "no ipv6 nd na glean",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "IPv6 nodes may emit a multicast unsolicited neighbor advertisement packet following the successful completion of duplicate address detection (DAD).  By default, other IPv6 nodes ignore these unsolicited neighbor advertisement packets.  The ipv6 nd na glean command configures the router to create a neighbor advertisement entry on receipt of an unsolicited neighbor advertisement packet (assuming no such entry already exists and the neighbor advertisement has the link-layer address option).",
+    "sourcePage": 256,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 nd nud retry",
+    "context": null,
+    "detail": "Configure the number of times the neighbor unreachability detection process resends neighbor solicitations.",
+    "syntax": "ipv6 nd nud retry base interval max-attempts {final-wait-time}",
+    "noForm": "no ipv6 nd nud retry base interval max-attempts {final-wait-time}",
+    "params": [
+      {
+        "name": "base",
+        "description": "The neighbor unreachability detection process base value."
+      },
+      {
+        "name": "interval",
+        "description": "The time interval, in milliseconds, between retries. The range is from 1000 to 32000. max-attempts The maximum number of retry attempts, depending on the base value. The range is from 1 to 128. final-wait-time The waiting time, in milliseconds, on the last probe. The range is from 1000 to 32000."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "When a device runs neighbor unreachability detection to resolve the neighbor detection entry for a neighbor again, it sends three neighbor solicitation packets 1 second apart.  In certain situations, for example, spanning-tree events, or high-traffic events, or end-host reloads), three neighbor solicitation packets that are sent at an interval of 1 second may not be sufficient.  To help maintain the neighbor cache in such situations, use the ipv6 nd nud retry command to configure exponential timers for neighbor solicitation retransmits.",
+    "sourcePage": 257,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "key chain",
+    "context": null,
+    "detail": "Define an authentication key chain needed to enable authentication for routing protocols and enter key-chain configuration mode.",
+    "syntax": "key chain name-of-chain",
+    "noForm": "no key chain name-of-chain",
+    "params": [
+      {
+        "name": "name-of-chain",
+        "description": "Name of a key chain. A key chain must have at least one key and can have up to 2147483647 keys."
+      }
+    ],
+    "modes": [
+      "Global configuration (config)",
+      "Usage Guidelines You must configure a key chain with keys to enable authentication. Although you can identify multiple key chains, we recommend using one key chain per interface per routing protocol. Upon specifying the key chain command, you enter key chain configuration mode.",
+      "Examples The following example shows how to specify key chain:",
+      "Device(config-keychain-key)# key-string chestnut",
+      "Related Commands Command Description",
+      "accept-lifetime Sets the time period during which the authentication key on a key chain is received as valid.",
+      "key Identifies an authentication key on a key chain.",
+      "key-string (authentication) Specifies the authentication string for a key.",
+      "send-lifetime Sets the time period during which an authentication key on a key chain is valid to be sent.",
+      "show key chain Displays authentication key information.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 257 IP Addressing Services"
+    ],
+    "usageSummary": "You must configure a key chain with keys to enable authentication.  Although you can identify multiple key chains, we recommend using one key chain per interface per routing protocol.  Upon specifying the key chain command, you enter key chain configuration mode.",
+    "sourcePage": 259,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "key-string",
+    "context": "authentication",
+    "detail": "Specify the authentication string for a key.",
+    "syntax": "key-string key-string text",
+    "noForm": "no key-string text",
+    "params": [
+      {
+        "name": "text",
+        "description": "Authentication string that must be sent and received in the packets using the routing protocol being authenticated. The string can contain from 1 to 80 uppercase and lowercase alphanumeric characters."
+      }
+    ],
+    "modes": [
+      "Key chain key configuration (config-keychain-key)",
+      "Examples The following example shows how to specify the authentication string for a key:",
+      "Device(config-keychain-key)# key-string key1",
+      "Related Commands Command Description",
+      "accept-lifetime Sets the time period during which the authentication key on a key chain is received as valid.",
+      "key Identifies an authentication key on a key chain.",
+      "key chain Defines an authentication key-chain needed to enable authentication for routing protocols.",
+      "send-lifetime Sets the time period during which an authentication key on a key chain is valid to be sent.",
+      "show key chain Displays authentication key information.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 258 IP Addressing Services key"
+    ],
+    "usageSummary": null,
+    "sourcePage": 260,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "key",
+    "context": null,
+    "detail": "Identify an authentication key on a key chain.",
+    "syntax": "key key-id",
+    "noForm": "no key key-id",
+    "params": [
+      {
+        "name": "key-id",
+        "description": "Identification number of an authentication key on a key chain. The range of keys is from 0 to 2147483647. The key identification numbers need not be consecutive."
+      }
+    ],
+    "modes": [
+      "Key-chain configuration (config-keychain)",
+      "Usage Guidelines It is useful to have multiple keys on a key chain so that the software can sequence through the keys as they become invalid after time, based on the accept-lifetime and send-lifetime key chain key command settings. Each key has its own key identifier, which is stored locally. The combination of the key identifier and the interface associated with the message uniquely identifies the authentication algorithm and Message Digest 5 (MD5) authentication key in use. Only one authentication packet is sent, regardless of the number of valid keys. The software starts looking at the lowest key identifier number and uses the first valid key. If the last key expires, authentication will continue and an error message will be generated. To disable authentication, you must manually delete the last valid key. To remove all keys, remove the key chain by using the no key chain command.",
+      "Examples The following example shows how to specify a key to identify authentication on a key-chain:",
+      "Device(config-keychain)# key 1",
+      "Related Commands Command Description",
+      "accept-lifetime Sets the time period during which the authentication key on a key chain is received as valid.",
+      "key chain Defines an authentication key chain needed to enable authentication for routing protocols.",
+      "key-string (authentication) Specifies the authentication string for a key.",
+      "send-lifetime Sets the time period during which an authentication key on a key chain is valid to be sent.",
+      "show key chain Displays authentication key information.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 259 IP Addressing Services"
+    ],
+    "usageSummary": "It is useful to have multiple keys on a key chain so that the software can sequence through the keys as they become invalid after time, based on the accept-lifetime and send-lifetime key chain key command settings.  Each key has its own key identifier, which is stored locally.  The combination of the key identifier and the interface associated with the message uniquely identifies the authentication algorithm and Message Digest 5 (MD5) authentication key in use.",
+    "sourcePage": 261,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show glbp",
+    "context": null,
+    "detail": "Display Gateway Load Balancing Protocol (GLBP) information.",
+    "syntax": "capability [interface-type interface-number] interface-type interface-number [group-number] [state] [brief]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "capability",
+        "description": "(Optional) Displays the GLBP capability interfaces."
+      },
+      {
+        "name": "interface-type interface-number",
+        "description": "(Optional) Interface type and number for which output is displayed."
+      },
+      {
+        "name": "group-number",
+        "description": "(Optional) GLBP group number in the range from 0 to 1023."
+      },
+      {
+        "name": "state",
+        "description": "(Optional) State of the GLBP device, one of the following: active, disabled, init, listen, and standby."
+      },
+      {
+        "name": "brief",
+        "description": "(Optional) Summarizes each virtual gateway or virtual forwarder with a single line of output."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the show glbp command to display information about GLBP groups on a device.  The brief keyword displays a single line of information about each virtual gateway or virtual forwarder.  The capability keyword displays all GLBP-capable interfaces.",
+    "sourcePage": 262,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip nhrp nhs",
+    "context": null,
+    "detail": "To display Next Hop Resolution Protocol (NHRP) next hop server (NHS) information, use the show ip nhrp nhscommand in user EXEC or privileged EXEC mode.",
+    "syntax": "show ip nhrp nhs [{interface}] [detail] [{redundancy [{cluster number | preempted | running | waiting}]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface",
+        "description": "(Optional) Displays NHS information currently configured on the interface. See the table below for types, number ranges, and descriptions."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed NHS information."
+      },
+      {
+        "name": "redundancy",
+        "description": "(Optional) Displays information about NHS redundancy stacks."
+      },
+      {
+        "name": "cluster number",
+        "description": "(Optional) Displays redundancy cluster information."
+      },
+      {
+        "name": "preempted",
+        "description": "(Optional) Displays information about NHS that failed to become active and is preempted."
+      },
+      {
+        "name": "running",
+        "description": "(Optional) Displays NHSs that are currently in Responding or Expecting replies states."
+      },
+      {
+        "name": "waiting",
+        "description": "(Optional) Displays NHSs awaiting to be scheduled."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The table below lists the valid types, number ranges, and descriptions for the optional interfaceargument.",
+    "sourcePage": 265,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show key chain",
+    "context": null,
+    "detail": "Display the keychain.",
+    "syntax": "show key chain [name-of-chain]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "name-of-chain",
+        "description": "(Optional) Name of the key chain to display, as named in the key chain command."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC (#)",
+      "Examples The following is sample output from the show key chain command: show key chain Device# show key chain",
+      "Key-chain AuthenticationGLBP: key 1 -- text \"Thisisasecretkey\" accept lifetime (always valid) - (always valid) [valid now] send lifetime (always valid) - (always valid) [valid now] Key-chain glbp2: key 100 -- text \"abc123\" accept lifetime (always valid) - (always valid) [valid now] send lifetime (always valid) - (always valid) [valid now]",
+      "Related Commands Command Description",
+      "key-string Specifies the authentication string for a key.",
+      "send-lifetime Sets the time period during which an authentication key on a key chain is valid to be sent.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 265 IP Addressing Services"
+    ],
+    "usageSummary": null,
+    "sourcePage": 267,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show track",
+    "context": null,
+    "detail": "Display information about objects that are tracked by the tracking process.",
+    "syntax": "show track [{object-number [brief] | application [brief] | interface [brief] | ip[route [brief] | [sla [brief]] | ipv6 [route [brief]] | list [route [brief]] | resolution [ip | ipv6] | stub-object [brief] | summary | timers}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "object-number",
+        "description": "(Optional) Object number that represents the object to be tracked. The range is from 1 to 1000."
+      },
+      {
+        "name": "brief",
+        "description": "(Optional) Displays a single line of information related to the preceding argument or keyword."
+      },
+      {
+        "name": "application",
+        "description": "(Optional) Displays tracked application objects."
+      },
+      {
+        "name": "interface",
+        "description": "(Optional) Displays tracked interface objects."
+      },
+      {
+        "name": "ip route",
+        "description": "(Optional) Displays tracked IP route objects."
+      },
+      {
+        "name": "ip sla",
+        "description": "(Optional) Displays tracked IP SLA objects."
+      },
+      {
+        "name": "ipv6 route",
+        "description": "(Optional) Displays tracked IPv6 route objects."
+      },
+      {
+        "name": "list",
+        "description": "(Optional) Displays the list of boolean objects."
+      },
+      {
+        "name": "resolution",
+        "description": "(Optional) Displays resolution of tracked parameters."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays the summary of the specified object."
+      },
+      {
+        "name": "timers",
+        "description": "(Optional) Displays polling interval timers."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use this command to display information about objects that are tracked by the tracking process.  When no arguments or keywords are specified, information for all objects is displayed.  A maximum of 1000 objects can be tracked.",
+    "sourcePage": 268,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "track",
+    "context": null,
+    "detail": "Configure an interface to be tracked where the Gateway Load Balancing Protocol (GLBP) weighting changes based on the state of the interface.",
+    "syntax": "track object-number interface type number {line-protocol | ip routing | ipv6 routing}",
+    "noForm": "no track object-number interface type number {line-protocol | ip routing | ipv6 routing}",
+    "params": [
+      {
+        "name": "object-number",
+        "description": "Object number in the range from 1 to 1000 representing the interface to be tracked. interface type number Interface type and number to be tracked."
+      },
+      {
+        "name": "line-protocol",
+        "description": "Tracks whether the interface is up."
+      },
+      {
+        "name": "ip routing",
+        "description": "Tracks whether IP routing is enabled, an IP address is configured on the interface, and the interface state is up, before reporting to GLBP that the interface is up."
+      },
+      {
+        "name": "ipv6 routing",
+        "description": "Tracks whether IPv6 routing is enabled, an IP address is configured on the interface, and the interface state is up, before reporting to GLBP that the interface is up."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the track command in conjunction with the glbp weighting and glbp weighting track commands to configure parameters for an interface to be tracked.  If a tracked interface on a GLBP device goes down, the weighting for that device is reduced.  If the weighting falls below a specified minimum, the device will lose its ability to act as an active GLBP virtual forwarder.",
+    "sourcePage": 270,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vrrp",
+    "context": null,
+    "detail": "Create a Virtual Router Redundancy Protocol version 3 (VRRPv3) group and enter VRRPv3 group configuration mode.",
+    "syntax": "vrrp group-id address-family {ipv4 | ipv6}",
+    "noForm": "no vrrp group-id address-family {ipv4 | ipv6}",
+    "params": [
+      {
+        "name": "group-id",
+        "description": "Virtual router group number. The range is from 1 to 255."
+      },
+      {
+        "name": "address-family",
+        "description": "Specifies the address-family for this VRRP group."
+      },
+      {
+        "name": "ipv4",
+        "description": "(Optional) Specifies IPv4 address."
+      },
+      {
+        "name": "ipv6",
+        "description": "(Optional) Specifies IPv6 address."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 272,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vrrp description",
+    "context": null,
+    "detail": "Assign a description to the Virtual Router Redundancy Protocol (VRRP) group.",
+    "syntax": "description text",
+    "noForm": "no description",
+    "params": [
+      {
+        "name": "text",
+        "description": "Text (up to 80 characters) that describes the purpose or use of the group."
+      }
+    ],
+    "modes": ["VRRP configuration (config-if-vrrp)"],
+    "usageSummary": null,
+    "sourcePage": 273,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vrrp preempt",
+    "context": null,
+    "detail": "Configure the device to take over as the current primary virtual router for a Virtual Router Redundancy Protocol (VRRP) group if it has higher priority than the current primary virtual router.",
+    "syntax": "preempt [delay minimum seconds]",
+    "noForm": "no preempt",
+    "params": [
+      {
+        "name": "delay minimum seconds",
+        "description": "(Optional) Number of seconds that the device will delay before issuing an advertisement claiming primary ownership. The default delay is 0 seconds."
+      }
+    ],
+    "modes": ["VRRP configuration (config-if-vrrp)"],
+    "usageSummary": "By default, the device being configured with this command will take over as primary virtual router for the group if it has a higher priority than the current primary virtual router.  You can configure a delay, which will cause the VRRP device to wait the specified number of seconds before issuing an advertisement claiming primary ownership.",
+    "sourcePage": 274,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vrrp priority",
+    "context": null,
+    "detail": "Set the priority level of the device within a Virtual Router Redundancy Protocol (VRRP) group.",
+    "syntax": "priority level",
+    "noForm": "no priority level",
+    "params": [
+      {
+        "name": "level",
+        "description": "Priority of the device within the VRRP group. The range is from 1 to 254. The default is 100."
+      }
+    ],
+    "modes": ["VRRP configuration (config-if-vrrp)"],
+    "usageSummary": "Use this command to control which device becomes the primary virtual router.",
+    "sourcePage": 275,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vrrp timers advertise",
+    "context": null,
+    "detail": "Configure the interval between successive advertisements by the primary virtual router in a Virtual Router Redundancy Protocol (VRRP) group.",
+    "syntax": "timers advertise [msec] interval",
+    "noForm": "no timers advertise [msec] interval",
+    "params": [
+      {
+        "name": "group",
+        "description": "Virtual router group number. The group number range is from 1 to 255."
+      },
+      {
+        "name": "msec",
+        "description": "(Optional) Changes the unit of the advertisement time from seconds to milliseconds. Without this keyword, the advertisement interval is in seconds."
+      },
+      {
+        "name": "interval",
+        "description": "Time interval between successive advertisements by the primary virtual router. The unit of the interval is in seconds, unless the msec keyword is specified. The default is 1 second. The valid range is 1 to 255 seconds. When the msec keyword is specified, the valid range is 50 to 999 milliseconds."
+      }
+    ],
+    "modes": ["VRRP configuration (config-if-vrrp)"],
+    "usageSummary": "The advertisements being sent by the primary virtual router communicate the state and priority of the current primary virtual router.  The vrrp timers advertise command configures the time between successive advertisement packets and the time before other routers declare the primary router to be down.  Routers or access servers on which timer values are not configured can learn timer values from the primary router.",
+    "sourcePage": 276,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "vrrs leader",
+    "context": null,
+    "detail": "Specify a leader’s name to be registered with Virtual Router Redundancy Service (VRRS).",
+    "syntax": "vrrs leader vrrs-leader-name",
+    "noForm": "no vrrs leader vrrs-leader-name",
+    "params": [
+      {
+        "name": "vrrs-leader-name",
+        "description": "Name of VRRS Tag to lead."
+      }
+    ],
+    "modes": ["VRRP configuration (config-if-vrrp)"],
+    "usageSummary": null,
+    "sourcePage": 278,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

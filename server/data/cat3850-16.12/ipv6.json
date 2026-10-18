@@ -1,0 +1,73 @@
+[
+  {
+    "name": "ipv6 dhcp server vrf enable",
+    "context": null,
+    "detail": "Enable the DHCP for IPv6 server VRF-aware feature.",
+    "syntax": "ipv6 dhcp server vrf enable",
+    "noForm": "no ipv6 dhcp server vrf enable",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The ipv6 dhcp server option vpn command allows the DHCPv6 server VRF-aware feature to be enabled globally on a device.",
+    "sourcePage": 360,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 flow monitor",
+    "context": null,
+    "detail": "This command activates a previously created flow monitor by assigning it to the interface to analyze incoming or outgoing traffic. To activate a previously created flow monitor, use the ipv6 flow monitor command. To de-activate a flow monitor, use the no form of the command.",
+    "syntax": "ipv6 flow monitor ipv6-monitor-name [sampler ipv6-sampler-name] {input | output}",
+    "noForm": "no ipv6 flow monitor ipv6-monitor-name [sampler ipv6-sampler-name] {input | output}",
+    "params": [
+      {
+        "name": "ipv6-monitor-name",
+        "description": "Activates a previously created flow monitor by assigning it to the interface to analyze incoming or outgoing traffic."
+      },
+      {
+        "name": "sampler ipv6-sampler-name",
+        "description": "Applies the flow monitor sampler."
+      },
+      {
+        "name": "input",
+        "description": "Applies the flow monitor on input traffic."
+      },
+      {
+        "name": "output",
+        "description": "Applies the flow monitor on output traffic."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You cannot attach a NetFlow monitor to a port channel interface.  If both service module interfaces are part of an EtherChannel, you should attach the monitor to both physical interfaces.  This example shows how to apply a flow monitor to an interface: Device(config)# interface gigabitethernet 1/1/2 Device(config-if)# ip flow monitor FLOW-MONITOR-1 input Device(config-if)# ip flow monitor FLOW-MONITOR-2 output Device(config-if)# end Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 361,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ipv6 dhcp binding",
+    "context": null,
+    "detail": "Display automatic client bindings from the Dynamic Host Configuration Protocol (DHCP) for IPv6 server binding table.",
+    "syntax": "show ipv6 dhcp binding [ipv6-address] [vrf vrf-name]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ipv6-address",
+        "description": "(Optional) The address of a DHCP for IPv6 client."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Specifies a virtual routing and forwarding (VRF) configuration."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The show ipv6 dhcp binding command displays all automatic client bindings from the DHCP for IPv6 server binding table if the ipv6-address argument is not specified.  When the ipv6-address argument is specified, only the binding for the specified client is displayed.  If the vrf vrf-namekeyword and argument combination is specified, all bindings that belong to the specified VRF are displayed.",
+    "sourcePage": 362,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

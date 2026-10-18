@@ -40,7 +40,10 @@ test('column-0 line right after a block header stays in that block (unindented t
   // Deliberate: only a column-0 NON-block line resets to global, so pasted
   // session transcripts (where sub-commands are not indented) still get
   // block-aware completions.
-  assert.equal(detectBlock(['interface GigabitEthernet1/0/1', 'ip address 10.0.0.1'], 1), 'interface');
+  assert.equal(
+    detectBlock(['interface GigabitEthernet1/0/1', 'ip address 10.0.0.1'], 1),
+    'interface',
+  );
 });
 
 test('blank and comment lines are skipped when walking up to the header', () => {

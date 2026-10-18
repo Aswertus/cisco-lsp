@@ -47,7 +47,7 @@ jobs:
       - name: Record the .vsix checksum
         id: vsix
         run: |
-          files=(*.vsix)
+          files=(build/*.vsix)
           [ "${#files[@]}" = 1 ] || { echo "::error::expected exactly one .vsix, got: ${files[*]}"; exit 1; }
           sha=$(sha256sum "${files[0]}" | cut -d' ' -f1)
           echo "sha256 of ${files[0]}: $sha" # needed for a manual publish.yml run
@@ -73,7 +73,7 @@ jobs:
         with:
           body_path: release-notes.md # your CHANGELOG section …
           generate_release_notes: true # … with GitHub's auto compare link appended
-          files: '*.vsix'
+          files: 'build/*.vsix'
 
   # A release created with GITHUB_TOKEN never fires `release: published` for
   # other workflows, so start the store publishing explicitly — on this tag

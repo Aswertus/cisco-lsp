@@ -2,6 +2,7 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
+const { DiagnosticSeverity } = require('vscode-languageserver/node');
 
 const { computeDiagnostics, isValidIpv4 } = require('../server/lib/diagnostics');
 const { openerBlockType } = require('../server/lib/blocks');
@@ -16,7 +17,11 @@ function spans(list) {
 }
 
 test('unknown top-level command is flagged at column 0, sub-mode lines are not', () => {
-  const out = diags(['interfacs GigabitEthernet1/0/1', 'interface GigabitEthernet1/0/1', ' bogus-subcommand x']);
+  const out = diags([
+    'interfacs GigabitEthernet1/0/1',
+    'interface GigabitEthernet1/0/1',
+    ' bogus-subcommand x',
+  ]);
   assert.equal(out.length, 1);
   assert.match(out[0].message, /interfacs/);
   assert.deepEqual(spans(out), [[0, 0, 'interfacs'.length]]);
@@ -126,16 +131,22 @@ test('without options every check runs as before', () => {
 });
 
 test('unknownCommands: information lowers the severity, off drops them', () => {
-  const info = withOpts({ unknownCommands: 'information' }).filter((d) => /^Unknown command/.test(d.message));
+  const info = withOpts({ unknownCommands: 'information' }).filter((d) =>
+    /^Unknown command/.test(d.message),
+  );
   assert.equal(info.length, 2);
   assert.ok(info.every((d) => d.severity === 3)); // DiagnosticSeverity.Information
   const off = withOpts({ unknownCommands: 'off' });
   assert.ok(!off.some((d) => /^Unknown command/.test(d.message)));
-  assert.ok(off.some((d) => /VLAN 5000/.test(d.message)), 'other checks stay');
+  assert.ok(
+    off.some((d) => /VLAN 5000/.test(d.message)),
+    'other checks stay',
+  );
 });
 
 test('ignoredCommands matches whole leading words, case-insensitive', () => {
-  const out = (list) => withOpts({ ignoredCommands: list }).filter((d) => /^Unknown command/.test(d.message));
+  const out = (list) =>
+    withOpts({ ignoredCommands: list }).filter((d) => /^Unknown command/.test(d.message));
   assert.deepEqual(messages(out(['platform qos'])), ['Unknown@0']);
   assert.deepEqual(messages(out(['  PLATFORM   QOS  queue-config '])), ['Unknown@0']);
   assert.equal(out(['platform']).length, 1, 'a single word ignores every line starting with it');
@@ -148,4 +159,36 @@ test('indentation: false drops only the indentation checks', () => {
   const out = withOpts({ indentation: false });
   assert.ok(!out.some((d) => /indentation|not indented/i.test(d.message)));
   assert.equal(out.length, 3);
+});
+
+test('a command documented only for another platform is a hint, not a warning', () => {
+  const out = computeDiagnostics(
+    ['mls qos'],
+    KNOWN,
+    {},
+    { knownElsewhere: new Map([['mls', 'Catalyst 2960-X Switches']]) },
+  );
+  assert.equal(out.length, 1);
+  assert.equal(out[0].severity, DiagnosticSeverity.Hint);
+  assert.match(out[0].message, /documented for Catalyst 2960-X Switches/);
+});
+test('the hint respects unknownCommands off and ignoredCommands', () => {
+  const opts = { knownElsewhere: new Map([['mls', 'X']]) };
+  assert.equal(
+    computeDiagnostics(['mls qos'], KNOWN, {}, { ...opts, unknownCommands: 'off' }).length,
+    0,
+  );
+  assert.equal(
+    computeDiagnostics(['mls qos'], KNOWN, {}, { ...opts, ignoredCommands: ['mls'] }).length,
+    0,
+  );
+});
+test('a word known nowhere is still the usual warning', () => {
+  const out = computeDiagnostics(
+    ['bogus x'],
+    KNOWN,
+    {},
+    { knownElsewhere: new Map([['mls', 'X']]) },
+  );
+  assert.equal(out[0].severity, DiagnosticSeverity.Warning);
 });

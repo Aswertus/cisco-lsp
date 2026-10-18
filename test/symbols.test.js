@@ -30,28 +30,43 @@ test('block symbols span their whole block, grouped by category', () => {
   assert.equal(gi.selectionRange.end.line, 0);
 
   // Sub-interface nests under its parent interface.
-  assert.deepEqual(gi.children.map((c) => c.name), ['GigabitEthernet0/1.10']);
+  assert.deepEqual(
+    gi.children.map((c) => c.name),
+    ['GigabitEthernet0/1.10'],
+  );
 
   // address-family nests under the router bgp entry.
   const bgp = byName.get('router bgp').children[0];
   assert.equal(bgp.name, '65000');
-  assert.deepEqual(bgp.children.map((c) => c.name), ['ipv4']);
+  assert.deepEqual(
+    bgp.children.map((c) => c.name),
+    ['ipv4'],
+  );
   assert.equal(bgp.range.end.line, 7);
 
   // class-map label omits the match-any prefix.
-  assert.deepEqual(byName.get('class-map').children.map((c) => c.name), ['VOICE']);
+  assert.deepEqual(
+    byName.get('class-map').children.map((c) => c.name),
+    ['VOICE'],
+  );
 });
 
 test('per-category toggles suppress matching symbols', () => {
   const syms = buildDocumentSymbols(CONFIG, { interface: false, sub_interface: false });
-  assert.deepEqual(syms.map((s) => s.name), ['router bgp', 'class-map']);
+  assert.deepEqual(
+    syms.map((s) => s.name),
+    ['router bgp', 'class-map'],
+  );
 });
 
 test('prompt commands become top-level groups', () => {
   const syms = buildDocumentSymbols(['SW1#configure terminal', 'interface Gi0/1', ' shutdown'], {});
   assert.equal(syms.length, 1);
   assert.equal(syms[0].name, 'configure terminal');
-  assert.deepEqual(syms[0].children.map((c) => c.name), ['interface']);
+  assert.deepEqual(
+    syms[0].children.map((c) => c.name),
+    ['interface'],
+  );
 });
 
 test('vrf definition is a symbol and keeps its own address-family (before or after bgp)', () => {
