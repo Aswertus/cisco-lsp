@@ -3,7 +3,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 
-const { extractParams } = require('../scripts/lib/extract-params');
+const { extractParams } = require('../import_scripts/extract-params');
 
 // Layouts as `pdftotext -layout` prints them (the section label is blanked
 // to spaces, so columns are absolute).

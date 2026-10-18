@@ -3,8 +3,8 @@
 This summarizes the Cisco IOS/IOS-XE commands this extension recognizes for completions,
 hover docs, and diagnostics. Each section below is generated from a Cisco command-reference
 manual dropped into `_manuals/` and extracted with `npm run extract-commands -- <pdf>
---pack <packId> --platform <name> --release <ver>` (see `scripts/extract-commands.js` /
-`scripts/EXTRACTION_NOTES.md`) -- do not hand-edit the text between an
+--pack <packId> --platform <name> --release <ver>` (see `import_scripts/extract-commands.js` /
+`import_scripts/EXTRACTION_NOTES.md`) -- do not hand-edit the text between an
 `AUTO-GENERATED:<packId>` marker pair, it is overwritten on every re-run of that pack.
 
 <!-- AUTO-GENERATED:cat9500-17.15:START -->
@@ -108,6 +108,36 @@ manual dropped into `_manuals/` and extracted with `npm run extract-commands -- 
 | VLAN                            | 24    | `client vlan`, `clear vmps statistics`, `clear vtp counters`, `debug platform vlan`                                                       |
 
 <!-- AUTO-GENERATED:cat2960x-15.2.6:END -->
+
+<!-- AUTO-GENERATED:cat3850-16.12:START -->
+
+## Catalyst 3850 Switches 16.12.x
+
+**729 commands** across 19 chapters (pack `cat3850-16.12`):
+
+| Chapter                                      | Count | Examples                                                                                                                                                  |
+| -------------------------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Cisco TrustSec Commands                      | 24    | `cts authorization list`, `cts credentials`, `cts refresh`, `cts rekey`                                                                                   |
+| Interface and Hardware Commands              | 67    | `debug ilpower`, `debug interface`, `debug lldp packets`, `debug platform poe`                                                                            |
+| IP Commands                                  | 41    | `clear ip nhrp`, `debug nhrp`, `fhrp delay`, `fhrp version vrrp v3`                                                                                       |
+| IP Multicast Routing Commands                | 53    | `cache-memory-max`, `clear ip mfib counters`, `clear ip mroute`, `ip igmp explicit-tracking`                                                              |
+| IPv6 Commands                                | 3     | `ipv6 dhcp server vrf enable`, `ipv6 flow monitor`, `show ipv6 dhcp binding`                                                                              |
+| Layer 2/3 Commands                           | 48    | `channel-group`, `channel-protocol`, `clear lacp`, `clear pagp`                                                                                           |
+| MPLS Commands                                | 7     | `mpls ip default-route`, `mpls ip`, `mpls ip`, `mpls label protocol`                                                                                      |
+| Multicast VPN Commands                       | 9     | `ip multicast-routing`, `ip multicast mrinfo-filter`, `mdt data`, `mdt default`                                                                           |
+| Flexible NetFlow Commands                    | 55    | `cache`, `clear flow exporter`, `clear flow monitor`, `collect`                                                                                           |
+| Network Management Commands                  | 75    | `debug event manager auto-deploy`, `default`, `description`, `destination`                                                                                |
+| Network Powered Lighting Commands            | 42    | `clear coap database`, `clear macro auto configuration`, `coap endpoint`, `debug coap`                                                                    |
+| QoS Commands                                 | 21    | `auto qos classify`, `auto qos trust`, `auto qos video`, `auto qos voip`                                                                                  |
+| Bidirectional Forwarding Detection Commands  | 10    | `authentication`, `bfd`, `bfd all-interfaces`, `bfd check-ctrl-plane-failure`                                                                             |
+| IP Unicast Routing Commands                  | 4     | `ip cef load-sharing algorithm`, `ip load-sharing`, `show ip bgp neighbors`, `show tech-support bgp`                                                      |
+| Security Commands                            | 113   | `aaa accounting`, `aaa accounting dot1x`, `aaa accounting identity`, `aaa authentication dot1x`                                                           |
+| Stack Manager and High Availability Commands | 37    | `debug platform stack-manager`, `domain id`, `dual-active recovery-reload-disable`, `dual-active detection pagp`                                          |
+| System Management Commands                   | 92    | `arp`, `boot`, `cat`, `clear location`                                                                                                                    |
+| Tracing                                      | 7     | `set platform software trace`, `show platform software trace filter-binary`, `show platform software trace message`, `show platform software trace level` |
+| VLAN Commands                                | 21    | `client vlan`, `clear vtp counters`, `debug platform vlan`, `debug sw-vlan`                                                                               |
+
+<!-- AUTO-GENERATED:cat3850-16.12:END -->
 
 ## Curated additions
 

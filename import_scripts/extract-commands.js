@@ -11,11 +11,11 @@
 // parenthetical disambiguator) as a standalone line, and uses a fixed set of
 // section labels (Syntax Description, Command Default, Command Modes,
 // Command History, Usage Guidelines, Examples). See
-// scripts/EXTRACTION_NOTES.md for the full reverse-engineering writeup this
+// import_scripts/EXTRACTION_NOTES.md for the full reverse-engineering writeup this
 // script implements.
 //
 // Usage:
-//   node scripts/extract-commands.js <pdf-path> --pack <packId>
+//   node import_scripts/extract-commands.js <pdf-path> --pack <packId>
 //       [--platform "Catalyst 9500"] [--release "17.15.x"]
 //
 // Output: one server/data/<packId>/<chapterId>.json per command chapter
@@ -27,13 +27,14 @@
 const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const { extractParams } = require('./lib/extract-params');
+const { extractParams } = require('./extract-params');
+const { readOutlineToc } = require('./outline-toc');
 
 const ROOT = path.join(__dirname, '..');
 const DATA_DIR = path.join(ROOT, 'server', 'data');
 
 // Chapter counts externally verified against the real PDF for this pack
-// (see scripts/EXTRACTION_NOTES.md). The raw TOC lists 1,325 entries, but 10
+// (see import_scripts/EXTRACTION_NOTES.md). The raw TOC lists 1,325 entries, but 10
 // of those are not real commands (1 stray cross-reference bullet miscounted
 // as a VLAN-chapter entry, plus 9 conceptual/non-command subsections mixed
 // into otherwise-real chapters, e.g. "Information About Tracing") -- see the
@@ -70,7 +71,7 @@ const args = parseArgs(process.argv.slice(2));
 const pdfPath = args._[0];
 if (!pdfPath || !args.pack) {
   console.error(
-    'Usage: node scripts/extract-commands.js <pdf-path> --pack <packId> [--platform <name>] [--release <ver>]',
+    'Usage: node import_scripts/extract-commands.js <pdf-path> --pack <packId> [--platform <name>] [--release <ver>]',
   );
   process.exit(1);
 }
@@ -100,11 +101,12 @@ const CHAPTER_RE = /^CHAPTER\s+\d+\s+(.*?)\s+\d+\s*$/;
 const ROMAN_FOOTER_RE = /^[ivxlcdm]+$/;
 const COMMAND_LINE_RE = /^\s*(\S.*?)\s+(\d+)\s*$/;
 
+// Returns null when the manual has no front-matter TOC at all (the Catalyst
+// 3850 16.12 reference goes straight from the legal page into chapter 1); the
+// PDF's bookmark outline then serves as the TOC — see readOutlineToc.
 function findTocBounds() {
   const startIdx = lines.findIndex((l) => l.trim() === 'CONTENTS');
-  if (startIdx === -1) {
-    throw new Error('Could not find a "CONTENTS" line -- unexpected document structure.');
-  }
+  if (startIdx === -1) return null;
 
   let firstChapterTitle = null;
   for (let i = startIdx + 1; i < lines.length; i++) {
@@ -291,7 +293,7 @@ function sectionText(chunkText, offsets, label, nextLabels) {
 
 // Like sectionText, but from the start of the label's line with the label
 // blanked to spaces, so every line keeps its absolute column — the parameter
-// table parser (scripts/lib/extract-params.js) tells rows from wrapped text
+// table parser (import_scripts/extract-params.js) tells rows from wrapped text
 // by indentation.
 function sectionColumns(chunkText, offsets, label, nextLabels) {
   if (offsets[label] == null) return '';
@@ -387,7 +389,7 @@ function looksLikeModeText(s) {
   return /^(Privileged EXEC|User EXEC|EXEC)\b.*\([^()]*\)\s*$/.test(s.trim());
 }
 
-// KNOWN LIMITATION (documented in scripts/EXTRACTION_NOTES.md): in a
+// KNOWN LIMITATION (documented in import_scripts/EXTRACTION_NOTES.md): in a
 // handful of cases, a command whose body straddles a page break right where
 // a duplicate-name sibling entry begins can have its chunk boundary land on
 // a false running-header match instead of the sibling's real anchor,
@@ -554,8 +556,8 @@ function updateCommandCoverage(chapterSummary, packId, platform, release, grandT
 This summarizes the Cisco IOS/IOS-XE commands this extension recognizes for completions,
 hover docs, and diagnostics. Each section below is generated from a Cisco command-reference
 manual dropped into \`_manuals/\` and extracted with \`npm run extract-commands -- <pdf>
---pack <packId> --platform <name> --release <ver>\` (see \`scripts/extract-commands.js\` /
-\`scripts/EXTRACTION_NOTES.md\`) -- do not hand-edit the text between an
+--pack <packId> --platform <name> --release <ver>\` (see \`import_scripts/extract-commands.js\` /
+\`import_scripts/EXTRACTION_NOTES.md\`) -- do not hand-edit the text between an
 \`AUTO-GENERATED:<packId>\` marker pair, it is overwritten on every re-run of that pack.
 
 ${section}
@@ -901,11 +903,27 @@ function updateGrammar() {
 // ---------------------------------------------------------------------------
 
 function main() {
-  const { startIdx, endIdx } = findTocBounds();
-  const chapters = parseToc(startIdx, endIdx);
-  const bodyText = lines.slice(endIdx).join('\n');
-
-  console.log(`Found ${chapters.length} chapters in the master TOC.`);
+  const tocBounds = findTocBounds();
+  let chapters;
+  let bodyText;
+  if (tocBounds) {
+    chapters = parseToc(tocBounds.startIdx, tocBounds.endIdx);
+    bodyText = lines.slice(tocBounds.endIdx).join('\n');
+    console.log(`Found ${chapters.length} chapters in the master TOC.`);
+  } else {
+    console.log('No "CONTENTS" page -- reading the PDF bookmark outline instead.');
+    chapters = readOutlineToc(pdfPath);
+    if (chapters.length === 0) {
+      throw new Error(
+        'Neither a "CONTENTS" page nor a bookmark outline found -- unexpected document structure.',
+      );
+    }
+    // No TOC region to skip: the body is the whole text. The outline's
+    // "Using the Command-Line Interface" chapter lists conceptual sections,
+    // which find no command body and skip the chapter, as with a master TOC.
+    bodyText = lines.join('\n');
+    console.log(`Found ${chapters.length} chapters in the bookmark outline.`);
+  }
 
   // Flatten in document order for sequential anchor matching.
   const flat = [];
@@ -929,10 +947,16 @@ function main() {
     }
   });
 
+  // List them by chapter here as well: the per-chapter notes below only name
+  // the missing entries of chapters that are written, so entries of a skipped
+  // (conceptual) chapter would otherwise never be shown, and the reviewer has
+  // to see that they are subsection titles, not real commands.
   if (notFound.length > 0) {
-    console.log(
-      `Note: ${notFound.length} TOC entries had no body anchor found (see chapter results below).`,
-    );
+    console.log(`Note: ${notFound.length} TOC entries had no body anchor found:`);
+    chapters.forEach((ch, chapterIdx) => {
+      const names = notFound.filter((i) => i.chapterIdx === chapterIdx).map((i) => i.name);
+      if (names.length) console.log(`  ${ch.title}: ${names.join(' | ')}`);
+    });
   }
 
   // Determine chunk end for each found anchor = next found anchor's start.
@@ -1015,6 +1039,16 @@ function main() {
     );
   }
   console.log(`\nTotal commands written: ${grandTotal}`);
+
+  // Every chapter skipped (0 records each) passes the per-chapter ratio gate
+  // by construction -- a TOC that resolved to no anchors at all (e.g. a
+  // bookmark outline parsed into the wrong items) must still fail loudly.
+  if (grandTotal === 0) {
+    errors.push(
+      'No command was extracted from any chapter -- the TOC/outline did not match the body. ' +
+        'Nothing is usable; see import_scripts/EXTRACTION_NOTES.md.',
+    );
+  }
 
   const known = KNOWN_GOOD_COUNTS[packId];
   if (known) {

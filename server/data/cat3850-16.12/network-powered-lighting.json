@@ -1,0 +1,988 @@
+[
+  {
+    "name": "clear coap database",
+    "context": null,
+    "detail": "Clear the CoAP database.",
+    "syntax": "clear coap database",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 653,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear macro auto configuration",
+    "context": null,
+    "detail": "Remove the macro applied configuration from the interfaces.",
+    "syntax": "Note Before executing the clear macro auto configuration command, you must disable Auto SmartPorts on the switch. clear macro auto configuration{all | interface [interface-id]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Removes macro applied configuration from all the interfaces."
+      },
+      {
+        "name": "interface [interface-id]",
+        "description": "Removes macro applied configuration from an interface."
+      }
+    ],
+    "modes": ["User EXEC (>)"],
+    "usageSummary": "Use the command to remove configuration applied by macros from all the interfaces or a particular interface on the switch.  You can verify your settings by entering the show macro auto interface command in privileged EXEC mode.",
+    "sourcePage": 654,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "coap endpoint",
+    "context": "coap-proxy configuration",
+    "detail": "Configure the COAP Proxy to support multiple IPv4/IPv6 static-endpoints.",
+    "syntax": "coap endpoint {ipv4 | ipv6}[ip-address]",
+    "noForm": "no coap endpoint {ipv4 | ipv6}[ip-address]",
+    "params": [
+      {
+        "name": "ipv4 ip-address",
+        "description": "Specifies IPv4 static endpoint."
+      },
+      {
+        "name": "ipv6 ip-address",
+        "description": "Specifies IPv6 static endpoint."
+      }
+    ],
+    "modes": ["coap-proxy configuration (config-coap-proxy)"],
+    "usageSummary": null,
+    "sourcePage": 655,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug coap",
+    "context": null,
+    "detail": "Enable debugging of the coap configurations.",
+    "syntax": "debug coap {all | database | errors | events | packet | trace | warnings}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all coap debug messages."
+      },
+      {
+        "name": "database",
+        "description": "Displays coap database debug messages."
+      },
+      {
+        "name": "errors",
+        "description": "Displays coap error debug messages."
+      },
+      {
+        "name": "events",
+        "description": "Displays coap event debug messages."
+      },
+      {
+        "name": "packet",
+        "description": "Displays coap packet debug messages."
+      },
+      {
+        "name": "trace",
+        "description": "Displays coap trace debug messages."
+      },
+      {
+        "name": "warnings",
+        "description": "Displats coap warning debug messages"
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 656,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "device classifier",
+    "context": null,
+    "detail": "Enable the device classifier.",
+    "syntax": "device classifier",
+    "noForm": "no device classifier",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the no device classifier command, in global configuration mode, to disable the device classifier.  You cannot disable the device classifier while it is being used by features such as Auto SmartPorts (ASP).",
+    "sourcePage": 657,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "list",
+    "context": "coap-proxy configuration",
+    "detail": "Restrict the IP address range where the lights and their resources can be learnt.",
+    "syntax": "list {ipv4 | ipv6}[list-name]",
+    "noForm": "no list {ipv4 | ipv6}[list-name]",
+    "params": [
+      {
+        "name": "ipv4 list-name",
+        "description": "Specifies IPv4 list name."
+      },
+      {
+        "name": "ipv6 list-name",
+        "description": "Specifies IPv6 list name."
+      }
+    ],
+    "modes": ["coap-proxy configuration (config-coap-proxy)"],
+    "usageSummary": "To access coap-proxy configuration mode, enter the coap proxy command in global configuration mode.",
+    "sourcePage": 658,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro",
+    "context": null,
+    "detail": "Apply a macro to an interface or to apply and debug a macro on an interface.",
+    "syntax": "macro {apply | trace}macro-name [parameter {value}][parameter {value}][parameter {value}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "apply",
+        "description": "Applies a macro to an interface."
+      },
+      {
+        "name": "trace",
+        "description": "Applies a macro to an interface and then debugs it."
+      },
+      {
+        "name": "macro-name",
+        "description": "Specifies the name of the macro."
+      },
+      {
+        "name": "parameter value",
+        "description": "(Optional) Specifies unique parameter values that are specific to the interface. You can enter up to three keyword-value pairs. Parameter keyword matching is case sensitive. All matching occurrences of the keyword are replaced with the corresponding value."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You can use the macro apply macro-name command to apply and show the macros running on an interface.  You can use the macro trace macro-name command to apply and then debug the macro to find any syntax or configuration errors.  If a command fails because of a syntax error or a configuration error when you apply a macro, the macro continues to apply the remaining commands to the interface.",
+    "sourcePage": 659,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto",
+    "context": null,
+    "detail": "Configure and apply a global macro using the CLI.",
+    "syntax": "macro auto {apply | config} macro-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "apply",
+        "description": "Applies the macro."
+      },
+      {
+        "name": "config",
+        "description": "Enters the macro parameters."
+      },
+      {
+        "name": "macro-name",
+        "description": "Specifies the macro name."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "To remove the macro from the switch, enter the no forms of the macro commands.  If you enter the macro auto config macro-name command, you are prompted to enter values for all the macro parameters.  Use the exact text string when entering the macro-name.",
+    "sourcePage": 662,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto apply",
+    "context": "Cisco IOS shell scripting capability",
+    "detail": "Configure and apply a global macro using the Cisco IOS shell scripting capability.",
+    "syntax": "macro auto apply macro-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "apply",
+        "description": "Applies the macro."
+      },
+      {
+        "name": "macro-name",
+        "description": "Specifies the macro name."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "To remove the macro from the switch, enter the no forms of the macro commands.  Use the exact text string when entering the macro-name.  The entries are case sensitive.",
+    "sourcePage": 665,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto config",
+    "context": "Cisco IOS shell scripting capability",
+    "detail": "Configure and apply a global macro.",
+    "syntax": "macro auto config macro-name [parameter=value [parameter=value]...]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "config",
+        "description": "Enters the macro parameters."
+      },
+      {
+        "name": "macro-name",
+        "description": "Specifies the macro name."
+      },
+      {
+        "name": "parameter=value [parameter=value]",
+        "description": "parameter=value—Replaces values for global macro parameter"
+      },
+      {
+        "name": "...",
+        "description": "values. Enter values in the form of name value pair separated by a space: <name1>=<value1> [<name2>=<value2>...]"
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "To remove the macro from the switch, enter the no forms of the macro commands.  If you enter the macro auto config macro-name command, you are prompted to enter values for all the macro parameters.  Use the exact text string when entering the macro-name and parameters.",
+    "sourcePage": 667,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto control",
+    "context": null,
+    "detail": "Specify when the switch applies an Auto Smartports macro based on the detection method, device type, or trigger (referred to as event trigger control).",
+    "syntax": "macro auto control {detection [cdp] [lldp] [mac-address] | device [ip-camera] [media-player] [phone] [lightweight-ap] [access-point] [router] [switch] | trigger [last-resort]} [phone] [lightweight-ap] [access-point] [router] [switch] | trigger [last-resort]}",
+    "noForm": "no macro auto control {detection [cdp] [lldp] [mac-address] | device [ip-camera] [media-player]",
+    "params": [
+      {
+        "name": "detection [cdp] [lldp] [mac-address]",
+        "description": "detection—Sets one or more of these as an event trigger: • (Optional) cdp—CDP messages • (Optional) lldp—LLDP messages • (Optional) mac-address—User-defined MAC address groups"
+      },
+      {
+        "name": "device [access-point] [ip-camera] [lightweight-ap]",
+        "description": "device—Sets one or more of these"
+      },
+      {
+        "name": "[media-player] [phone] [router] [switch]",
+        "description": "devices as an event trigger: • (Optional) access-point—Autonomous access point • (Optional) ip-camera—Cisco IP video surveillance camera • (Optional) lightweight-ap—Lightweight access point • (Optional) media-player—Digital media player • (Optional) phone—Cisco IP phone • (Optional) router—Cisco router • (Optional) switch—Cisco switch"
+      },
+      {
+        "name": "trigger [last-resort]",
+        "description": "trigger—Sets a specific event trigger. • (Optional) last-resort—Last-resort trigger."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "If you do not set event triggers, the switch uses the device type as the event trigger.  If the switch cannot determine the device type, it uses MAC address groups, MAB messages, 802. 1x authentication messages, and LLDP messages in random order.",
+    "sourcePage": 668,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto execute",
+    "context": null,
+    "detail": "Replace built-in macro default values and to configure mapping from an event trigger to a built-in or user-defined macro.",
+    "syntax": "macro auto execute event trigger {builtin built-in macro | remote url}{parameter=value}{function contents} contents}",
+    "noForm": "no macro auto execute event trigger {builtin built-in macro | remote url}{parameter=value}{function",
+    "params": [
+      {
+        "name": "event trigger",
+        "description": "Defines mapping from an event trigger to a built-in macro. Specifies an event trigger: • CISCO_CUSTOM_EVENT • CISCO_DMP_EVENT • CISCO_IPVSC_EVENT • CISCO_LAST_RESORT_EVENT • CISCO_PHONE_EVENT • CISCO_ROUTER_EVENT • CISCO_SWITCH_EVENT • CISCO_WIRELESS_AP_EVENT • CISCO_WIRELESS_LIGHTWEIGHT_AP_EVENT • WORD—Apply a user-defined event trigger such as a MAC address group"
+      },
+      {
+        "name": "builtin built-in macro",
+        "description": "(Optional) Specifies a builtin built-in macro name: name • CISCO_AP_AUTO_SMARTPORT Specify the parameter value: NATIVE_VLAN=1 • CISCO_DMP_AUTO_SMARTPORT Specify the parameter value: ACCESS_VLAN=1. • CISCO_IPVSC_AUTO_SMARTPORT Specify the parameter value: ACCESS_VLAN=1. • CISCO_LWAP_AUTO_SMARTPORT Specify the parameter value: ACCESS_VLAN=1. • CISCO_PHONE_AUTO_SMARTPORT Specify the parameter values: ACCESS_VLAN=1 and VOICE_VLAN=2. • CISCO_ROUTER_AUTO_SMARTPORT Specify the parameter value: NATIVE_VLAN=1. • CISCO_SWITCH_AUTO_SMARTPORT Specify the parameter value: NATIVE_VLAN=1."
+      },
+      {
+        "name": "parameter=value",
+        "description": "(Optional) parameter=value—Replaces default values for parameter values shown for the bultin-macro name, for example, ACCESS_VLAN=1. Enter new values in the form of name value pair separated by a space: [<name1>=<value1> <name2>=<value2>...]."
+      },
+      {
+        "name": "{function contents}",
+        "description": "(Optional) {function contents}— Specifies a user-defined macro to associate with the trigger. Enter the macro contents within braces. Begin the Cisco IOS shell commands with the left brace and end the command grouping with the right brace."
+      },
+      {
+        "name": "remote url",
+        "description": "(Optional) Specifies a remote server location: • The syntax for the local flash file system on the standalone switch or the stack’s active switch: flash: The syntax for the local flash file system on a stack member: flash member number: The syntax for the FTP: ftp:[[//username[:password]@location]/directory]/filename The syntax for an HTTP server: http://[[username:password]@]{hostname | host-ip}[/directory]/filename The syntax for a secure HTTP server: https://[[username:password]@]{hostname | host-ip}[/directory]/filename The syntax for the NVRAM: nvram://[[username:password]@][/directory]/filename The syntax for the Remote Copy Protocol (RCP): rcp:[[//username@location]/directory]/filename The syntax for the Secure Copy Protocol (SCP): scp:[[//username@location]/directory]/filename The syntax for the TFTP: tftp:[[//location]/directory]/filename"
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the macro auto execute command to replace the built-in macro default values with values that are specific to your switch.  The switch automatically maps from event triggers to built-in macros.  The built-in macros are system-defined macros in the software image.",
+    "sourcePage": 670,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto global control",
+    "context": null,
+    "detail": "Specify when the switch applies an Auto Smartports macro based on the device type or trigger (referred to as event trigger control).",
+    "syntax": "macro auto global control {detection [cdp] [lldp][mac-address] | device [access-point] [ip-camera] [lightweight-ap] [media-player] [phone] [router] [switch] | trigger [last-resort]} [lightweight-ap] [media-player] [phone] [router] [switch] | trigger [last-resort]}",
+    "noForm": "no macro auto global control {detection [cdp] [lldp] [mac-address] | device [access-point] [ip-camera]",
+    "params": [
+      {
+        "name": "detection [cdp] [lldp] [mac-address]",
+        "description": "detection—Sets one or more of these as an event trigger: • (Optional) cdp—CDP messages • (Optional) lldp—LLDP messages • (Optional) mac-address—User-defined MAC address groups"
+      },
+      {
+        "name": "device [access-point] [ip-camera] [lightweight-ap]",
+        "description": "device—Sets one or more of these"
+      },
+      {
+        "name": "[media-player] [phone] [router] [switch]",
+        "description": "devices as an event trigger: • (Optional) access-point—Autonomous access point • (Optional) ip-camera—Cisco IP video surveillance camera • (Optional) lightweight-ap—Lightweight access point • (Optional) media-player—Digital media player • (Optional) phone—Cisco IP phone • (Optional) router—Cisco router • (Optional) switch—Cisco switch"
+      },
+      {
+        "name": "trigger [last-resort]",
+        "description": "trigger—Sets a specific event trigger. • (Optional) last-resort—Last-resort trigger."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "If you do not set event triggers, the switch uses the device type as the event trigger.  If the switch cannot determine the device type, it uses MAC address groups, MAB messages, 802. 1x authentication messages, and LLDP messages in random order.",
+    "sourcePage": 677,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto global processing",
+    "context": null,
+    "detail": "Enable Auto SmartPorts macros on the switch.",
+    "syntax": "macro auto global processing",
+    "noForm": "no macro auto global processing",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the macro auto global processing command to globally enable macros on the switch.  To disable macros on a specific port, use the no macro auto processing command in interface mode.  When using 802.",
+    "sourcePage": 679,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto mac-address-group",
+    "context": null,
+    "detail": "Create an event trigger for devices that do not support Cisco Discovery Protocol (CDP) or Link Layer Discover Protocol (LLDP).",
+    "syntax": "macro auto mac-address-group name {mac-address list list | oui {list list | range start-value size number}} number}}",
+    "noForm": "no macro auto mac-address-group name {mac-address list list | oui {list list | range start-value size",
+    "params": [
+      {
+        "name": "name",
+        "description": "Specifies the group name."
+      },
+      {
+        "name": "ui",
+        "description": "(Optional) Specifies an operationally unique identifier (OUI) list or range. • list—Enter an OUI list in hexadecimal format separated by spaces. • range—Enter the starting OUI hexadecimal value (start-value). • size—Enter the length of the range (number) from 1 to 5 to create a list of sequential addresses."
+      },
+      {
+        "name": "mac-address list list",
+        "description": "(Optional) Configures a list of MAC addresses separated by a space."
+      }
+    ],
+    "modes": ["Group configuration (config-addr-grp-mac)"],
+    "usageSummary": "Use the macro auto mac-address-group command to create an event trigger for devices that do not support CDP or LLDP.  Use the MAC address group as a trigger to map to a built-in or user-defined macro by using the macro auto execute command.  At link-up the switch detects the device type and applies the specified macro.",
+    "sourcePage": 680,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto processing",
+    "context": null,
+    "detail": "Enable Auto SmartPorts macros on an interface.",
+    "syntax": "macro auto processing",
+    "noForm": "no macro auto processing",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Use the macro auto processing command, in interface configuration mode, to enable macros on a specific interface.  To disable macros on a specific interface, use the no macro auto processing command, in interface configuration mode.  A port cannot be a member of an EtherChannel when you apply Auto SmartPorts macros.",
+    "sourcePage": 682,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto sticky",
+    "context": null,
+    "detail": "Configure macros to remain active after a link-down event, referred to as macro persistence.",
+    "syntax": "macro auto sticky",
+    "noForm": "no macro auto sticky",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the macro auto sticky command so that macros remain active after a link-down event.",
+    "sourcePage": 683,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro auto trigger",
+    "context": null,
+    "detail": "Enter the configure-macro-trigger mode and define a trigger for a device that has no built-in trigger and associate the trigger with a device or profile.",
+    "syntax": "macro auto trigger trigger_name {device | exit | no | profile}",
+    "noForm": "no macro auto trigger trigger_name {device | exit | no | profile}",
+    "params": [
+      {
+        "name": "trigger_name",
+        "description": "Specifies a trigger to be associated with the device type or profile name."
+      },
+      {
+        "name": "device",
+        "description": "Specifies a device name to map to the named trigger."
+      },
+      {
+        "name": "exit",
+        "description": "Exits device group configuration mode."
+      },
+      {
+        "name": "no",
+        "description": "Removes any configured device."
+      },
+      {
+        "name": "profile",
+        "description": "Specifies a profile name to map to the named trigger."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "If a device is classified by the Device Classifier, but does not have a built-in trigger defined, use the macro auto trigger command, in global configuration mode, to define a trigger based on a device name or a profile name.  After you enter the command, the switch is in the configure-macro-trigger mode and the device, exit, no, and profile keywords are visible.  In this mode, you can provide a device name or a profile name to map to the trigger.",
+    "sourcePage": 684,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro description",
+    "context": null,
+    "detail": "Enter a description about which macros are applied to an interface.",
+    "syntax": "macro description text",
+    "noForm": "no macro description text",
+    "params": [
+      {
+        "name": "description text",
+        "description": "Enters a description about the macros that are applied to the specified interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Use the description keyword to associate comment text or the macro name with an interface.  When multiple macros are applied on a single interface, the description text is from the last applied macro.  You can verify your settings by entering the show parser macro description command in privileged EXEC mode.",
+    "sourcePage": 685,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro global",
+    "context": null,
+    "detail": "Apply a macro to a switch or to apply and debug a macro on a switch.",
+    "syntax": "macro global {apply | trace} macro-name [parameter {value}][parameter {value}][parameter {value}] parameter",
+    "noForm": null,
+    "params": [
+      {
+        "name": "apply",
+        "description": "Applies a macro to the switch."
+      },
+      {
+        "name": "trace",
+        "description": "Applies a macro to a switch and debugs the macro."
+      },
+      {
+        "name": "macro-name",
+        "description": "Specifies the name of the macro."
+      },
+      {
+        "name": "parameter value",
+        "description": "(Optional) Specifies unique parameter values that are specific to the switch. You can enter up to three keyword-value pairs. Parameter keyword matching is case sensitive. All matching occurrences of the keyword are replaced with the corresponding value."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Note You can delete a global macro-applied configuration on a switch only by entering the no version of each command in the macro.  Use the macro global apply macro-name command to apply the macro to an interface.  Use the macro global trace macro-name command to apply and then debug the macro to find any syntax or configuration errors.",
+    "sourcePage": 686,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "macro global description",
+    "context": null,
+    "detail": "Enter a description about the macros that are applied to a switch.",
+    "syntax": "macro global description text",
+    "noForm": "no macro global description text",
+    "params": [
+      {
+        "name": "description text",
+        "description": "Enters a description about the macros that are applied to the switch."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the description keyword to associate comment text or the macro name with a switch.  When multiple macros are applied on a switch, the description text is from the last applied macro.  You can verify your settings by entering the show parser macro description command in privileged EXEC mode.",
+    "sourcePage": 688,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "max-endpoints",
+    "context": "coap-proxy configuration",
+    "detail": "Specify the maximum number of endpoints that can be learnt on the device.",
+    "syntax": "max-endpoints number",
+    "noForm": "no max-endpoints",
+    "params": [
+      {
+        "name": "number",
+        "description": "Range is from 1 to 500"
+      }
+    ],
+    "modes": ["coap-proxy configuration (config-coap-proxy)"],
+    "usageSummary": "To access coap-proxy configuration mode, enter the coap proxy command in global configuration mode.",
+    "sourcePage": 689,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-dtls",
+    "context": "coap-proxy configuration",
+    "detail": "Configure a Datagram Transport Layer Security (DTLS) port.",
+    "syntax": "port-dtls number",
+    "noForm": "no port-dtls",
+    "params": [
+      {
+        "name": "number",
+        "description": "Range is from 1 to 65000."
+      }
+    ],
+    "modes": ["coap-proxy configuration (config-coap-proxy)"],
+    "usageSummary": "To access coap-proxy configuration mode, enter the coap proxy command in global configuration mode.",
+    "sourcePage": 690,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-unsecure",
+    "context": "coap-proxy configuration",
+    "detail": "Configure a port.",
+    "syntax": "port-unsecure number",
+    "noForm": "no port-dtls",
+    "params": [
+      {
+        "name": "number",
+        "description": "Range is from 1 to 65000."
+      }
+    ],
+    "modes": ["coap-proxy configuration (config-coap-proxy)"],
+    "usageSummary": "To access coap-proxy configuration mode, enter the coap proxy command in global configuration mode.",
+    "sourcePage": 691,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "resource directory",
+    "context": "coap-proxy configuration",
+    "detail": "Unicast upstream resource directory server to which the switch can act as a COAP client.",
+    "syntax": "resource directory {ipv4 | ipv6}[ip-address]",
+    "noForm": "no resource directory",
+    "params": [
+      {
+        "name": "ipv4 ip-address",
+        "description": "Specifies IPv4 address."
+      },
+      {
+        "name": "ipv6 ip-address",
+        "description": "Specifies IPv6 address."
+      }
+    ],
+    "modes": ["coap-proxy configuration (config-coap-proxy)"],
+    "usageSummary": "To access coap-proxy configuration mode, enter the coap proxy command in global configuration mode.",
+    "sourcePage": 692,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "security",
+    "context": "coap-proxy configuration",
+    "detail": "Configure CoAP security features.",
+    "syntax": "security {none [{ipv4 { ip-address ip-mask/prefix} | ipv6{ ip-address ip-mask/prefix} | list{ipv4-list-name ipv6-list-name}}] | dtls {[id-trustpoint {identity-trustpoint label}][verification-trustpoint { verification-trustpoint}] | [{ipv4 { ip-address ip-mask/prefix} | ipv6{ ip-address ip-mask/prefix} | list{ipv4-list-name ipv6-list-name}}]}}",
+    "noForm": "no security",
+    "params": [
+      {
+        "name": "none",
+        "description": "Indicates no security on that port. Note A maximum of five ipv4 and five ipv6 addresses can be associated."
+      },
+      {
+        "name": "dtls",
+        "description": "The DTLS security takes RSA trustpoint and Verification trustpoint which are optional. Without 1.1.0.0 255.255.0.0 Verification trustpoint it does the normal Public Key Exchange. Note A maximum of five ipv4 and five ipv6 addresses can be associated."
+      }
+    ],
+    "modes": ["coap-proxy configuration (config-coap-proxy)"],
+    "usageSummary": "To access coap-proxy configuration mode, enter the coap proxy command in global configuration mode.",
+    "sourcePage": 693,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "shell trigger",
+    "context": null,
+    "detail": "Create an event trigger.",
+    "syntax": "shell trigger identifier description",
+    "noForm": "no shell trigger identifier description",
+    "params": [
+      {
+        "name": "identifier",
+        "description": "Specifies the event trigger identifier. The identifier should have no spaces or hyphens between words."
+      },
+      {
+        "name": "description",
+        "description": "Specifies the event trigger description text."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use this command to create user-defined event triggers for use with the macro auto device and the macro auto execute commands.  To support dynamic device discovery when using IEEE 802. 1x authentication, you need to configure the RADIUS authentication server to support the Cisco attribute-value pair: auto-smart-port=event trigger.",
+    "sourcePage": 694,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show coap dtls endpoints",
+    "context": null,
+    "detail": "Display the CoAP dtls endpoints.",
+    "syntax": "show coap dtls endpoints",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 695,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show coap endpoints",
+    "context": null,
+    "detail": "Display the CoAP endpoints.",
+    "syntax": "show coap endpoints",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 696,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show coap globals",
+    "context": null,
+    "detail": "Display the CoAP globals.",
+    "syntax": "show coap globals",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 697,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show coap resources",
+    "context": null,
+    "detail": "Display the CoAP resources.",
+    "syntax": "show coap resources",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 698,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show coap stats",
+    "context": null,
+    "detail": "Display the CoAP stats.",
+    "syntax": "show coap stats",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 699,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show coap version",
+    "context": null,
+    "detail": "Display the CoAP version.",
+    "syntax": "show coap version",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 700,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show device classifier attached",
+    "context": null,
+    "detail": "Display the devices connected to a switch and their associated properties.",
+    "syntax": "show device classifier attached [{detail | interface interface_id | mac-address mac_address}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detail",
+        "description": "Displays detailed device classifier information."
+      },
+      {
+        "name": "interface interface_id",
+        "description": "Displays information about devices attached to the specified interface."
+      },
+      {
+        "name": "mac mac_address",
+        "description": "Displays device information for the specified endpoint."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Use this command to display the devices connected to a switch.  Use the show device classifier attached command in privileged EXEC mode to display the configurable parameters for a device.",
+    "sourcePage": 701,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show device classifier clients",
+    "context": null,
+    "detail": "Display the clients using the device classifier facility on the switch.",
+    "syntax": "show device classifier clients",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Device classifier (DC) is enabled by default when you enable a client application (for example, Auto SmartPorts) that uses its functionality.  Use the show device classifier clients command to display the clients that are using the DC feature on the switch.  As long as any clients are using the DC, you cannot disable it by using the no device classifier command.",
+    "sourcePage": 703,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show device classifier profile type",
+    "context": null,
+    "detail": "Display all the device types recognized by the device classifier.",
+    "syntax": "show device classifier profile type [{table [{built-in default}] | string filter_string}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "table",
+        "description": "Displays device classification in a table."
+      },
+      {
+        "name": "built-in",
+        "description": "Displays device classification information from the built-in device table."
+      },
+      {
+        "name": "default",
+        "description": "Displays device classification information from the default device table."
+      },
+      {
+        "name": "filter string",
+        "description": "Displays information for devices that match the filter."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "This command displays all the device types recognized by the device classification engine.  The number of available device types is the number of profiles stored on the switch.  Because the number of profiles can be very large, you can use the filter keyword to limit the command output.",
+    "sourcePage": 704,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show macro auto",
+    "context": null,
+    "detail": "Display Auto Smartports macro information.",
+    "syntax": "show macro auto {address-group address-group-name | device [access-point] [ip-camera] [lightweight-ap] [media-player] [phone] [router] [switch] | global [event_trigger] | interface [interface_id]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "address-group [address-group-name]",
+        "description": "Displays address-group information. (Optional) address-group-name—Displays information for the specified address group."
+      },
+      {
+        "name": "device [access-point] [ip-camera] [lightweight-ap]",
+        "description": "Displays device information about one or more"
+      },
+      {
+        "name": "[media-player] [phone] [router] [switch]",
+        "description": "devices. • (Optional) access-point—Autonomous access point • (Optional) ip-camera—Cisco IP video surveillance camera • (Optional) lightweight-ap—Lightweight access point • (Optional) media-player—Digital media player • (Optional) phone—Cisco IP phone • (Optional) router—Cisco router • (Optional) switch—Cisco switch"
+      },
+      {
+        "name": "global [event_trigger]",
+        "description": "Displays Auto Smartports information about the switch. (Optional) event_trigger—Displays information about the specified event trigger."
+      },
+      {
+        "name": "interface [interface_id]",
+        "description": "Displays interface status. (Optional) interface_id—isplays information about the specified interface."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Use this command to display the Auto SmartPorts information for the switch.  Use the show macro auto device command to display the configurable parameters for a device.",
+    "sourcePage": 707,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show parser macro",
+    "context": null,
+    "detail": "Display the parameters for all configured macros or for one macro on the switch.",
+    "syntax": "show parser macro {brief | description [interface interface-id] | name macro-name}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "brief",
+        "description": "(Optional) Displays the name of each macro."
+      },
+      {
+        "name": "description [interface interface-id]",
+        "description": "(Optional) Displays all macro descriptions or the description of a specific interface."
+      },
+      {
+        "name": "name macro-name",
+        "description": "(Optional) Displays information about a single macro identified by the macro name."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 710,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show shell",
+    "context": null,
+    "detail": "Display shell information.",
+    "syntax": "show shell [{enviornment | functions [{brief shell_function}] | triggers}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "environment",
+        "description": "(Optional) Displays shell environment info"
+      },
+      {
+        "name": "functions [brief |shell_function ]",
+        "description": "(Optional) Displays macro information. • brief—Names of the shell functions. • shell_function—Name of a shell func"
+      },
+      {
+        "name": "triggers",
+        "description": "(Optional) Displays event trigger informat"
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "Use this command to display the shell information for the switch.",
+    "sourcePage": 713,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "start",
+    "context": "coap-proxy configuration",
+    "detail": "Start CoAP on the switch.",
+    "syntax": "start",
+    "noForm": null,
+    "params": [],
+    "modes": ["coap-proxy configuration (config-coap-proxy)"],
+    "usageSummary": "To access coap-proxy configuration mode, enter the coap proxy command in global configuration mode.",
+    "sourcePage": 716,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "stop",
+    "context": "coap-proxy configuration",
+    "detail": "Stop CoAP on the switch.",
+    "syntax": "stop",
+    "noForm": null,
+    "params": [],
+    "modes": ["coap-proxy configuration (config-coap-proxy)"],
+    "usageSummary": "To access coap-proxy configuration mode, enter the coap proxy command in global configuration mode.",
+    "sourcePage": 717,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "transport",
+    "context": "coap-proxy configuration",
+    "detail": "Configure transport protocol.",
+    "syntax": "transport{tcp | udp}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "tcp",
+        "description": "Specifies a TCP protocol."
+      },
+      {
+        "name": "udp",
+        "description": "Specifies a UDP protocol."
+      }
+    ],
+    "modes": ["coap-proxy configuration (config-coap-proxy)"],
+    "usageSummary": "To access coap-proxy configuration mode, enter the coap proxy command in global configuration mode.",
+    "sourcePage": 718,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

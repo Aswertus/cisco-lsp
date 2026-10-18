@@ -6,6 +6,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-10-18
+
+### Added
+
+- Platform-aware narrowing: a `!!# cisco-ios-lsp platform <family> [<release>]` comment, or
+  the file's `version` line, selects the command reference; hover, completions and the
+  unknown-command check follow it. A command documented only for another platform gets a
+  Hint instead of a warning, and hovers end with the platform in use.
+- Command data for **Catalyst 3850, IOS XE Gibraltar 16.12.x** (729 commands, pack
+  `cat3850-16.12`). This manual has no table of contents, so the extractor now reads the
+  PDF's bookmark outline when the `CONTENTS` page is missing.
+- A file icon for Cisco config files (`icons/cisco-file.svg`): the network-diagram switch
+  symbol in teal, shown in editor tabs and by icon themes that use language icons (Seti).
+  The README explains how Material Icon Theme users can pick it up.
+
+### Changed
+
+- `npm run package` writes the `.vsix` to `build/` instead of the repository root; the
+  PDF importer moved to `import_scripts/`.
+
+### Fixed
+
+- The update check orders pre-release versions: an installed `X.Y.Z-rc.N` build is now
+  offered the final `X.Y.Z`, and `rc.10` counts as newer than `rc.9`.
+
 ## [0.6.2] - 2026-10-17
 
 ### Changed
@@ -250,6 +275,7 @@ Initial release.
 - Automated releases: pushing a `vX.Y.Z` tag builds and publishes the `.vsix` via GitHub
   Actions.
 
+[0.7.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.7.0
 [0.6.2]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.2
 [0.6.1]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.1
 [0.6.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.0

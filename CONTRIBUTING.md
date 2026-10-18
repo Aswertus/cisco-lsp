@@ -48,15 +48,15 @@ npm run format    # Prettier (printWidth 100, single quotes)
 ## Command data
 
 Completions, hover docs and the known-command checks come from Cisco command-reference PDFs,
-extracted by `scripts/extract-commands.js` into `server/data/<pack>/` (one directory per
+extracted by `import_scripts/extract-commands.js` into `server/data/<pack>/` (one directory per
 manual) — see [COMMAND_COVERAGE.md](COMMAND_COVERAGE.md) for what is covered and
-[scripts/EXTRACTION_NOTES.md](scripts/EXTRACTION_NOTES.md) before changing the extractor.
+[import_scripts/EXTRACTION_NOTES.md](import_scripts/EXTRACTION_NOTES.md) before changing the extractor.
 Commands a manual doesn't contain are added by hand in `server/data/curated/curated.json`.
 
 ## Building a .vsix
 
 ```bash
-npm run package        # → cisco-ios-lsp-<version>.vsix in the repo root
+npm run package        # → build/cisco-ios-lsp-<version>.vsix
 ```
 
 `npm run package` lints, tests and bundles before packaging, so the `.vsix` is fully
@@ -104,7 +104,9 @@ on this repository; after it is merged with **Rebase and merge** (keeps the nore
 `.vsix` and publishes a GitHub Release with it attached, then starts
 [`publish.yml`](.github/workflows/publish.yml), which publishes that exact `.vsix` to the
 VS Code Marketplace and Open VSX. Pre-release versions (`X.Y.Z-rc.N`) are not published to
-the stores. The tag version must match `version` in `package.json`.
+the stores: a release candidate is built with `npm run package` at that version and shared
+as the `build/cisco-ios-lsp-X.Y.Z-rc.N.vsix` file, and the update check treats it as older
+than the final `X.Y.Z`. The tag version must match `version` in `package.json`.
 
 ## AI-assisted development
 

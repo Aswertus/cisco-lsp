@@ -122,7 +122,7 @@ test('formatter round-trip: applying the edits yields a clean, stable file', () 
   assert.deepEqual(mixed, []);
 });
 
-test('flush-left block children are indented, matching the file\'s own indent width', () => {
+test("flush-left block children are indented, matching the file's own indent width", () => {
   const lines = [
     'interface GigabitEthernet0/0',
     'spanning-tree bpdufilter',

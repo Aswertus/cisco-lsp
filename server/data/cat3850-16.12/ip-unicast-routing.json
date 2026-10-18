@@ -1,0 +1,238 @@
+[
+  {
+    "name": "ip cef load-sharing algorithm",
+    "context": null,
+    "detail": "Select a Cisco Express Forwarding load-balancing algorithm, use theip cef load-sharing algorithm command in global configuration mode. To return to the default universal load-balancing algorithm.",
+    "syntax": "ip cef load-sharing algorithm {original | [universal [id]]}",
+    "noForm": "no ip cef load-sharing algorithm",
+    "params": [
+      {
+        "name": "original",
+        "description": "Sets the load-balancing algorithm to the original algorithm based on a source and destination hash."
+      },
+      {
+        "name": "universal",
+        "description": "Sets the load-balancing algorithm to the universal algorithm that uses a source and destination and an ID hash."
+      },
+      {
+        "name": "id",
+        "description": "(Optional) Fixed identifier."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The original Cisco Express Forwarding load-balancing algorithm produced distortions in load sharing across multiple devices because of the use of the same algorithm on every device.  When the load-balancing algorithm is set to universal mode, each device on the network can make a different load sharing decision for each source-destination address pair, and that resolves load-balancing distortions.",
+    "sourcePage": 818,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip load-sharing",
+    "context": null,
+    "detail": "Enable load balancing for Cisco Express Forwarding on an interface.",
+    "syntax": "ip load-sharing {per-packet | per-destination }",
+    "noForm": "no ip load-sharing per-packet",
+    "params": [
+      {
+        "name": "per-packet",
+        "description": "Enables per-packet load balancing for Cisco Express Forwarding on the interface. This functionality and keyword are not supported on all platforms. See \"Usage Guidelines\" for more information."
+      },
+      {
+        "name": "per-destination",
+        "description": "Enables per-destination load balancing for Cisco Express Forwarding on the interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Per-packet load balancing allows the router to send data packets over successive equal-cost paths without regard to individual destination hosts or user sessions.  Path utilization is good, but packets destined for a given destination host might take different paths and might arrive out of order.  Per-destination load balancing allows the device to use multiple, equal-cost paths to achieve load sharing.",
+    "sourcePage": 819,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip bgp neighbors",
+    "context": null,
+    "detail": "Display information about Border Gateway Protocol (BGP) and TCP connections to neighbors.",
+    "syntax": "show ip bgp [{ipv4 {multicast | unicast} | vpnv4 all | vpnv6 unicast all}] neighbors [{slowip-address | ipv6-address [{advertised-routes | dampened-routes | flap-statistics | paths [reg-exp] | policy [detail] | received prefix-filter | received-routes | routes}]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ipv4",
+        "description": "(Optional) Displays peers in the IPv4 address family."
+      },
+      {
+        "name": "multicast",
+        "description": "(Optional) Specifies IPv4 multicast address prefixes."
+      },
+      {
+        "name": "unicast",
+        "description": "(Optional) Specifies IPv4 unicast address prefixes."
+      },
+      {
+        "name": "vpnv4 all",
+        "description": "(Optional) Displays peers in the VPNv4 address family."
+      },
+      {
+        "name": "vpnv6 unicast all",
+        "description": "(Optional) Displays peers in the VPNv6 address family."
+      },
+      {
+        "name": "slow",
+        "description": "(Optional) Displays information about dynamically configured slow peers."
+      },
+      {
+        "name": "ip-address",
+        "description": "(Optional) IP address of the IPv4 neighbor. If this argument is omitted, information about all neighbors is displayed."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "(Optional) IP address of the IPv6 neighbor."
+      },
+      {
+        "name": "advertised-routes",
+        "description": "(Optional) Displays all routes that have been advertised to neighbors."
+      },
+      {
+        "name": "dampened-routes",
+        "description": "(Optional) Displays the dampened routes received from the specified neighbor."
+      },
+      {
+        "name": "flap-statistics",
+        "description": "(Optional) Displays the flap statistics of the routes learned from the specified neighbor (for external BGP peers only)."
+      },
+      {
+        "name": "paths reg-exp",
+        "description": "(Optional) Displays autonomous system paths learned from the specified neighbor. An optional regular expression can be used to filter the output."
+      },
+      {
+        "name": "policy",
+        "description": "(Optional) Displays the policies applied to this neighbor per address family."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed policy information such as route maps, prefix lists, community lists, access control lists (ACLs), and autonomous system path filter lists."
+      },
+      {
+        "name": "received prefix-filter",
+        "description": "(Optional) Displays the prefix list (outbound route filter [ORF]) sent from the specified neighbor."
+      },
+      {
+        "name": "received-routes",
+        "description": "(Optional) Displays all received routes (both accepted and rejected) from the specified neighbor."
+      },
+      {
+        "name": "routes",
+        "description": "(Optional) Displays all routes that are received and accepted. The output displayed when this keyword is entered is a subset of the output displayed by the received-routes keyword."
+      }
+    ],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": "Use the show ip bgp neighbors command to display BGP and TCP connection information for neighbor sessions.  For BGP, this includes detailed neighbor attribute, capability, path, and prefix information.  For TCP, this includes statistics related to BGP neighbor session establishment and maintenance.",
+    "sourcePage": 820,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support bgp",
+    "context": null,
+    "detail": "Automatically run show commands that display BGP related system information.",
+    "syntax": "show tech-support bgp [address-family {all | ipv4 [flowspec | multicast | unicast | [mdt | mvpn] {all | vrf vrf-instance-name} ] |ipv6 [flowspec | multicast | mvpn {all | vrf vrf-instance-name} | unicast] | l2vpn [evpn | vpls] | link-state [link-state] | [nsap | rtfilter] [unicast] | [vpnv4 | vpnv6] [flowspec | multicast | unicast] {all | vrf vrf-instance-name}}] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "address-family",
+        "description": "(Optional) Displays the output for a specified address family."
+      },
+      {
+        "name": "address-family all",
+        "description": "(Optional) Displays the output for all address families."
+      },
+      {
+        "name": "ipv4",
+        "description": "(Optional) Displays the output for IPv4 address family."
+      },
+      {
+        "name": "ipv6",
+        "description": "(Optional) Displays the output for IPv6 address family."
+      },
+      {
+        "name": "l2vpn",
+        "description": "(Optional) Displays the output for L2VPN address family."
+      },
+      {
+        "name": "link-state",
+        "description": "(Optional) Displays the output for Link State address family."
+      },
+      {
+        "name": "nsap",
+        "description": "(Optional) Displays the output for NSAP address family."
+      },
+      {
+        "name": "rtfilter",
+        "description": "(Optional) Displays the output for RT Filter address family."
+      },
+      {
+        "name": "vpnv4",
+        "description": "(Optional) Displays the output for VPNv4 address family."
+      },
+      {
+        "name": "vpnv6",
+        "description": "(Optional) Displays the output for VPNv6 address family."
+      },
+      {
+        "name": "flowspec",
+        "description": "(Optional) Displays the flowspec related information for an address family."
+      },
+      {
+        "name": "multicast",
+        "description": "(Optional) Displays the multicast related information for an address family."
+      },
+      {
+        "name": "unicast",
+        "description": "(Optional) Displays the unicast related information for an address family."
+      },
+      {
+        "name": "mdt",
+        "description": "(Optional) Displays the Multicast Distribution Tree (MDT) related information for an address family."
+      },
+      {
+        "name": "mvpn",
+        "description": "(Optional) Displays the Multicast VPN (MVPN) related information for an address family."
+      },
+      {
+        "name": "vrf",
+        "description": "Displays the information for a VPN Routing/Forwarding instance."
+      },
+      {
+        "name": "evpn",
+        "description": "(Optional) Displays the Ethernet VPN (EVPN) related information for an address family."
+      },
+      {
+        "name": "vpls",
+        "description": "(Optional) Displays the Virtual Private LAN Services (VPLS) related information for an address family."
+      },
+      {
+        "name": "vrf-instance-name",
+        "description": "Specifies the name of the VPN Routing/Forwarding instance."
+      },
+      {
+        "name": "all",
+        "description": "Displays the information about all VPN NLRIs."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays the detailed routes information."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "The show tech-support bgp command is used to display the outputs of various BGP show commands and log them to the show-tech file.  The output from the show tech-support bgp com mand is very long.  To better manage this output, you can redirect the output to a file (for example, show tech-support > filename ) in the local writable storage file system or the remote file system.",
+    "sourcePage": 835,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

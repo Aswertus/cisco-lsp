@@ -1,0 +1,138 @@
+[
+  {
+    "name": "mpls ip default-route",
+    "context": null,
+    "detail": "Enable the distribution of labels associated with the IP default route.",
+    "syntax": "mpls ip default-route",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "Dynamic label switching (that is, distribution of labels based on routing protocols) must be enabled before you can use the mpls ip default-route command.",
+    "sourcePage": 444,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls ip",
+    "context": "global configuration",
+    "detail": "Enable Multiprotocol Label Switching (MPLS) forwarding of IPv4 and IPv6 packets along normally routed paths for the platform.",
+    "syntax": "mpls ip",
+    "noForm": "no mpls ip",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "MPLS forwarding of IPv4 and IPv6 packets along normally routed paths (sometimes called dynamic label switching) is enabled by this command.  For a given interface to perform dynamic label switching, this switching function must be enabled for the interface and for the platform.  The no form of this command stops dynamic label switching for all platform interfaces regardless of the interface configuration; it also stops distribution of labels for dynamic label switching.",
+    "sourcePage": 445,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls ip",
+    "context": "interface configuration",
+    "detail": "Enable Multiprotocol Label Switching (MPLS) forwarding of IPv4 and IPv6 packets along normally routed paths for a particular interface.",
+    "syntax": "mpls ip",
+    "noForm": "no mpls ip",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "MPLS forwarding of IPv4 and IPv6 packets along normally routed paths is sometimes called dynamic label switching.  If dynamic label switching has been enabled for the platform when this command is issued on an interface, label distribution for the interface begins with the periodic transmission of neighbor discovery Hello messages on the interface.  When the outgoing label for a destination routed through the interface is known, packets for the destination are labeled with that outgoing label and forwarded through the interface.",
+    "sourcePage": 446,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls label protocol",
+    "context": "global configuration",
+    "detail": "Specify the Label Distribution Protocol (LDP) for a platform.",
+    "syntax": "mpls label protocol ldp",
+    "noForm": "no mpls label protocol ldp",
+    "params": [
+      {
+        "name": "ldp",
+        "description": "Specifies that LDP is the default label distribution protocol."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "If neither the global mpls label protocol ldp command nor the interface mpls label protocol ldp command is used, all label distribution sessions use LDP.",
+    "sourcePage": 447,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls label protocol",
+    "context": "interface configuration",
+    "detail": "Specify the label distribution protocol for an interface.",
+    "syntax": "mpls label protocol ldp",
+    "noForm": "no mpls label protocol ldp",
+    "params": [
+      {
+        "name": "ldp",
+        "description": "Specifies that the label distribution protocol (LDP) is to be used on the interface."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "To successfully establish a session for label distribution for a link connecting two label switch routers (LSRs), the link interfaces on the LSRs must be configured to use the same label distribution protocol.  If there are multiple links connecting two LSRs, all of the link interfaces connecting the two LSRs must be configured to use the same protocol.",
+    "sourcePage": 448,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mpls label range",
+    "context": null,
+    "detail": "Configure the range of local labels available for use with Multiprotocol Label Switching (MPLS) applications on packet interfaces, use thempls label range command in global configuration mode. To revert to the platform defaults.",
+    "syntax": "mpls label range minimum-value maximum-value [static minimum-static-value maximum-static-value]",
+    "noForm": "no mpls label range",
+    "params": [
+      {
+        "name": "minimum-value",
+        "description": "The value of the smallest label allowed in the label space. The default is 16."
+      },
+      {
+        "name": "maximum-value",
+        "description": "The value of the largest label allowed in the label space. The default is platform-dependent."
+      },
+      {
+        "name": "static",
+        "description": "(Optional) Reserves a block of local labels for static label assignments. If you omit the static keyword and the minimum-static-value maximum-static-value arguments, no labels are reserved for static assignment."
+      },
+      {
+        "name": "minimum-static-value",
+        "description": "(Optional) The minimum value for static label assignments. There is no default value."
+      },
+      {
+        "name": "maximum-static-value",
+        "description": "(Optional) The maximum value for static label assignments. There is no default value."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The labels 0 through 15 are reserved by the IETF (see RFC 3032, MPLS Label Stack Encoding, for details) and cannot be included in the range specified in the mpls label range command.  If you enter a 0 in the command, you will get a message that indicates that the command is an unrecognized command.  The label range defined by thempls label range command is used by all MPLS applications that allocate local labels (for dynamic label switching, MPLS traffic engineering, MPLS Virtual Private Networks (VPNs), and so on).",
+    "sourcePage": 449,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mpls label range",
+    "context": null,
+    "detail": "Display the range of local labels available for use on packet interfaces.",
+    "syntax": "show mpls label range",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can use the mpls label range command to configure a range for local labels that is different from the default range.  The show mpls label range command displays both the label range currently in use and the label range that will be in use following the next switch reload.",
+    "sourcePage": 451,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

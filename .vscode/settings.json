@@ -26,8 +26,7 @@
 
   // Hide noise from the file explorer and global search.
   "files.exclude": {
-    "node_modules": true,
-    "*.vsix": true
+    "node_modules": true
   },
   "search.exclude": {
     "node_modules": true

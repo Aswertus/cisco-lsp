@@ -106,19 +106,19 @@ test('classifyModesToBlocks: telemetry/call-home/PKI/CoA buckets', () => {
     classifyModesToBlocks(['Telemetry subscription configuration (config-mdt-subs)']),
     ['telemetry-subscription'],
   );
-  assert.deepEqual(
-    classifyModesToBlocks(['Telemetry receiver configuration (config-mdt-rcvr)']),
-    ['telemetry-receiver'],
-  );
-  assert.deepEqual(
-    classifyModesToBlocks(['Telemetry transform configuration (config-mdt-xfrm)']),
-    ['telemetry-transform'],
-  );
+  assert.deepEqual(classifyModesToBlocks(['Telemetry receiver configuration (config-mdt-rcvr)']), [
+    'telemetry-receiver',
+  ]);
+  assert.deepEqual(classifyModesToBlocks(['Telemetry transform configuration (config-mdt-xfrm)']), [
+    'telemetry-transform',
+  ]);
   assert.deepEqual(classifyModesToBlocks(['Transceiver type configuration (config-xcvr-type)']), [
     'transceiver',
   ]);
   assert.deepEqual(
-    classifyModesToBlocks(['Dynamic authorization local server configuration (config-locsvr-da-radius)']),
+    classifyModesToBlocks([
+      'Dynamic authorization local server configuration (config-locsvr-da-radius)',
+    ]),
     ['radius-da'],
   );
   // LISP mode lands in the existing router bucket — `router lisp` opens via
@@ -167,9 +167,71 @@ test('client version helpers: isNewer / parseRepo', () => {
   assert.equal(isNewer('0.6.0', '0.5.0'), true);
   assert.equal(isNewer('0.5.0', '0.5.0'), false);
   assert.equal(isNewer('0.5.0', '0.10.0'), false); // numeric, not lexicographic
-  assert.equal(isNewer('1.0.0-beta', '1.0.0'), false); // prerelease suffix ignored
+  assert.equal(isNewer('1.0.0-beta', '1.0.0'), false); // a pre-release is older than the release
+  // Release candidates (dev builds shared before a release): the final
+  // version supersedes every rc, rcs order numerically among themselves.
+  assert.equal(isNewer('0.7.0', '0.7.0-rc.1'), true);
+  assert.equal(isNewer('0.7.0-rc.1', '0.7.0'), false);
+  assert.equal(isNewer('0.7.0-rc.1', '0.6.2'), true);
+  assert.equal(isNewer('0.7.0-rc.2', '0.7.0-rc.1'), true);
+  assert.equal(isNewer('0.7.0-rc.10', '0.7.0-rc.9'), true);
+  assert.equal(isNewer('0.7.0-rc.1', '0.7.0-rc.1'), false);
+  assert.equal(isNewer('0.7.0-rc.1', '0.7.0-beta.3'), true); // alphabetical stage order
   assert.deepEqual(parseRepo('https://github.com/Aswertus/cisco-lsp.git'), {
     owner: 'Aswertus',
     repo: 'cisco-lsp',
   });
+});
+
+const NARROW = {
+  'a-1.0/x.json': JSON.stringify([
+    { name: 'only-a cmd', pack: 'a-1.0', platform: 'Platform A', modes: ['Global configuration'] },
+    { name: 'both', pack: 'a-1.0', platform: 'Platform A', modes: ['Global configuration'] },
+  ]),
+  'b-2.0/y.json': JSON.stringify([
+    { name: 'only-b', pack: 'b-2.0', platform: 'Platform B', modes: ['Global configuration'] },
+    { name: 'both', pack: 'b-2.0', platform: 'Platform B', modes: ['Global configuration'] },
+  ]),
+  'curated/curated.json': JSON.stringify([
+    { name: 'ip route', pack: null, modes: ['Global configuration'] },
+  ]),
+};
+test('forFamily narrows names, completions and known words; curated stays', () => {
+  const data = buildData(makeDataDir(NARROW), silentLog);
+  const v = data.forFamily('a');
+  assert.deepEqual([...v.familyPacks], ['a-1.0']);
+  assert.ok(
+    v.commandsByName.has('only-a cmd') &&
+      v.commandsByName.has('ip route') &&
+      !v.commandsByName.has('only-b'),
+  );
+  assert.equal(v.commandsByName.get('both').length, 1);
+  assert.deepEqual(
+    v.completionItemsByBlock
+      .get('top-level')
+      .map((i) => i.label)
+      .sort(),
+    ['both', 'ip route', 'only-a cmd'],
+  );
+  assert.ok(v.knownTopLevel.has('only-a') && !v.knownTopLevel.has('only-b'));
+  assert.equal(v.knownElsewhere.get('only-b'), 'Platform B');
+  assert.equal(v.knownElsewhere.has('both'), false);
+});
+test('forFamily(null) is the unnarrowed view and views are cached', () => {
+  const data = buildData(makeDataDir(NARROW), silentLog);
+  assert.equal(data.forFamily(null).commandsByName, data.commandsByName);
+  assert.equal(data.forFamily('a'), data.forFamily('a'));
+  assert.equal(data.forFamily(['a', 'b']).commandsByName.get('both').length, 2);
+});
+test('completion items carry { key, family } in data', () => {
+  const data = buildData(makeDataDir(NARROW), silentLog);
+  const item = data
+    .forFamily('a')
+    .completionItemsByBlock.get('top-level')
+    .find((i) => i.label === 'both');
+  assert.deepEqual(item.data, { key: 'both', family: 'a' });
+  assert.deepEqual(
+    data.completionItemsByBlock.get('top-level').find((i) => i.label === 'both').data,
+    { key: 'both', family: null },
+  );
 });

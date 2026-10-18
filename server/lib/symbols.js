@@ -68,8 +68,7 @@ function buildDocumentSymbols(lines, enabled) {
   const grow = (parent, range) => {
     if (
       range.end.line > parent.range.end.line ||
-      (range.end.line === parent.range.end.line &&
-        range.end.character > parent.range.end.character)
+      (range.end.line === parent.range.end.line && range.end.character > parent.range.end.character)
     ) {
       parent.range = { start: parent.range.start, end: range.end };
     }
@@ -156,7 +155,11 @@ function buildDocumentSymbols(lines, enabled) {
       if (!isOn(enabled, 'ip_vrf')) continue;
       const end = blockEnd(lines, i);
       adopt(container('vrf', i, end), makeSymbol(m[1], 'ip vrf', SymbolKind.Field, i, end));
-    } else if ((m = /^[ \t]*class-map[ \t]+(?:type\s+\S+\s+)?(?:match-(?:any|all)\s+)?(\S.*?)\s*$/i.exec(line))) {
+    } else if (
+      (m = /^[ \t]*class-map[ \t]+(?:type\s+\S+\s+)?(?:match-(?:any|all)\s+)?(\S.*?)\s*$/i.exec(
+        line,
+      ))
+    ) {
       if (!isOn(enabled, 'class_map')) continue;
       const end = blockEnd(lines, i);
       adopt(

@@ -90,6 +90,10 @@ function addDiag(list, line, character, length, message, severity) {
 //   unknownCommands  'warning' (default) | 'information' | 'off'
 //   ignoredCommands  lines starting with one of these (whole words, any case)
 //                    are never reported as unknown commands
+//   knownElsewhere   Map<word, label>: a first word unknown on this platform but
+//                    documented for another (label, e.g. a platform name) gets a
+//                    Hint instead of the unknown-command warning; unknownCommands
+//                    'off' and ignoredCommands still apply
 //   indentation      false drops the three indentation checks
 function computeDiagnostics(lines, knownTopLevel, blockContext = {}, options = {}) {
   const diagnostics = [];
@@ -104,6 +108,7 @@ function computeDiagnostics(lines, knownTopLevel, blockContext = {}, options = {
     .filter((words) => words.length && words[0]);
   const isIgnored = (tokens) =>
     ignored.some((words) => words.every((w, k) => (tokens[k] || '').toLowerCase() === w));
+  const knownElsewhere = options.knownElsewhere instanceof Map ? options.knownElsewhere : new Map();
   const checkIndentation = options.indentation !== false;
   const placeholders = findPlaceholders(lines, blockContext.placeholderFill);
   const isPlaceholder = (i, character, length) =>
@@ -151,13 +156,16 @@ function computeDiagnostics(lines, knownTopLevel, blockContext = {}, options = {
         !isPlaceholder(i, 0, tokens[0].length) &&
         !isIgnored(tokens)
       ) {
+        const elsewhere = knownElsewhere.get(first);
         addDiag(
           diagnostics,
           i,
           0,
           tokens[0].length,
-          `Unknown command "${tokens[0]}" — possible typo.`,
-          unknownSeverity,
+          elsewhere === undefined
+            ? `Unknown command "${tokens[0]}" — possible typo.`
+            : `"${tokens[0]}" is not in the loaded references for this platform (documented for ${elsewhere}).`,
+          elsewhere === undefined ? unknownSeverity : DiagnosticSeverity.Hint,
         );
       }
 

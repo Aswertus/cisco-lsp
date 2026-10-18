@@ -8,6 +8,7 @@
 //   lib/diagnostics.js  all per-file checks
 //   lib/docs.js         hover / completion-resolve Markdown
 //   lib/placeholders.js template placeholders (hover note, no diagnostics on them)
+//   lib/platform.js     platform directive / version-line detection, pack selection
 
 const {
   createConnection,
@@ -24,7 +25,18 @@ const { buildData } = require('./lib/data');
 const { detectBlock, openerBlockType } = require('./lib/blocks');
 const { computeDiagnostics } = require('./lib/diagnostics');
 const { computeFormattingEdits, computeFoldingRanges } = require('./lib/indentation');
-const { buildDocMarkdown, findHoverRecords } = require('./lib/docs');
+const {
+  buildDocMarkdown,
+  findHoverRecords,
+  orderHoverRecords,
+  platformFooter,
+} = require('./lib/docs');
+const {
+  detectPlatform,
+  selectPacks,
+  completeDirective,
+  parseDirective,
+} = require('./lib/platform');
 const { buildXrefIndex, findAtPosition, computeXrefDiagnostics } = require('./lib/xref');
 const { buildDocumentSymbols } = require('./lib/symbols');
 const { findPlaceholders, placeholderAt } = require('./lib/placeholders');
@@ -105,6 +117,25 @@ function getXref(doc) {
   return index;
 }
 
+// Platform (family + release) in effect for a document, with the pack
+// selection and narrowed command view derived from it, cached the same way.
+// No directive and no usable version line → null family → unnarrowed view.
+const platformCache = new Map();
+
+function getPlatform(doc) {
+  const cached = platformCache.get(doc.uri);
+  if (cached && cached.version === doc.version) return cached.result;
+  const data = getData();
+  const platform = detectPlatform(getLines(doc), data.packIndex);
+  const selection = platform.family
+    ? selectPacks(data.packIndex, platform.family, platform.release)
+    : { familyPacks: null, preferredPack: null };
+  const view = data.forFamily(platform.family);
+  const result = { platform, selection, view };
+  platformCache.set(doc.uri, { version: doc.version, result });
+  return result;
+}
+
 // ---------------------------------------------------------------------------
 // LSP lifecycle
 // ---------------------------------------------------------------------------
@@ -126,8 +157,9 @@ connection.onInitialize((params) => {
     capabilities: {
       textDocumentSync: TextDocumentSyncKind.Incremental,
       completionProvider: {
-        // Auto-trigger after a space (next-token) and on '.' is not relevant here.
-        triggerCharacters: [' '],
+        // Auto-trigger after a space (next-token); '#' opens the `!!#` directive
+        // completion (any other '#' line gets an empty result, see onCompletion).
+        triggerCharacters: [' ', '#'],
         resolveProvider: true,
       },
       hoverProvider: true,
@@ -228,6 +260,12 @@ function completionList(items, line, startChar, endChar) {
   };
 }
 
+// Platform selection of the most recent completion request. A resolve request
+// carries only the item (no document), but VS Code resolves items of the list
+// it just received, so the last request's selection is the right one; the
+// family check in onCompletionResolve guards against a stale value.
+let lastCompletionSelection = null;
+
 connection.onCompletion((params) => {
   const doc = documents.get(params.textDocument.uri);
   if (!doc) return [];
@@ -245,6 +283,21 @@ connection.onCompletion((params) => {
   const typed = prefix.slice(commandStart);
   const cursor = params.position.character;
 
+  // Platform directive lines (`!!# cisco-ios-lsp ...`) have their own vocabulary.
+  // A `#` typed anywhere else (`banner motd #`) must not open the command list.
+  const directive = completeDirective(prefix, getData().packIndex);
+  if (directive) {
+    const items = directive.items.map((e) => ({
+      label: e.label,
+      kind: CompletionItemKind.Keyword,
+      detail: e.detail,
+      // editRange clients ignore insertText and use textEditText ?? label.
+      ...(e.insertText ? { insertText: e.insertText, textEditText: e.insertText } : {}),
+    }));
+    return completionList(items, lineIndex, directive.tokenStart, cursor);
+  }
+  if (params.context?.triggerCharacter === '#') return [];
+
   // Special case: right after `interface ` → offer interface types, replacing
   // only the partial type token, not the whole line.
   if (/^interface\s+\S*$/i.test(typed)) {
@@ -261,7 +314,9 @@ connection.onCompletion((params) => {
   // sub-modes from their headers. A recognised block whose bucket holds no
   // commands in the loaded packs (possible for the rarer sub-modes) also
   // falls back to top-level — an empty popup helps nobody.
-  const { completionItemsByBlock } = getData();
+  const { view, selection, platform } = getPlatform(doc);
+  lastCompletionSelection = { family: platform.family ?? null, selection };
+  const { completionItemsByBlock } = view;
   const bucketItems = block === 'global' ? null : completionItemsByBlock.get(block);
   const items = bucketItems?.length ? bucketItems : completionItemsByBlock.get('top-level');
   return completionList(items, lineIndex, commandStart, cursor);
@@ -269,9 +324,23 @@ connection.onCompletion((params) => {
 
 connection.onCompletionResolve((item) => {
   if (!item.data) return item;
-  const records = getData().commandsByName.get(item.data);
+  const { key, family } = item.data;
+  const records = getData().forFamily(family).commandsByName.get(key);
   if (!records) return item;
-  item.documentation = { kind: MarkupKind.Markdown, value: buildDocMarkdown(records) };
+  // Narrow to the platform like hover does (no footer in completion docs).
+  let value;
+  if (family == null) {
+    value = buildDocMarkdown(records);
+  } else {
+    const last = lastCompletionSelection;
+    const selection =
+      last && JSON.stringify(last.family) === JSON.stringify(family)
+        ? last.selection
+        : selectPacks(getData().packIndex, family, null);
+    const ordered = orderHoverRecords(records, selection);
+    value = buildDocMarkdown(ordered.records, { labelled: ordered.labelled });
+  }
+  item.documentation = { kind: MarkupKind.Markdown, value };
   return item;
 });
 
@@ -299,15 +368,49 @@ connection.onHover((params) => {
   }
 
   const line = getLines(doc)[params.position.line] ?? '';
+  const { platform, selection, view } = getPlatform(doc);
+  const { packIndex } = getData();
+  const footerFor = () =>
+    selection.preferredPack
+      ? platformFooter(platform, packIndex, selection.preferredPack)
+      : undefined;
+
+  // Directive line: the active one shows the platform in effect, any other
+  // (duplicate, invalid) shows why it was ignored.
+  if (parseDirective(line)) {
+    let value;
+    if (platform.source === 'directive' && platform.line === params.position.line) {
+      value = footerFor();
+    } else {
+      value = platform.diagnostics.find(
+        (d) => d.range.start.line === params.position.line,
+      )?.message;
+    }
+    return value ? { contents: { kind: MarkupKind.Markdown, value } } : null;
+  }
+
   let tokens = line.trim().toLowerCase().split(/\s+/).filter(Boolean);
   if (tokens.length === 0) return null;
   if (tokens[0] === 'no' && tokens.length > 1) tokens = tokens.slice(1);
 
-  const records = findHoverRecords(tokens, getData());
+  // All packs are searched (the fallback for commands documented elsewhere
+  // needs them); ordering and the footer apply the platform selection.
+  // The file's own platform is searched first so another platform's longer
+  // command name cannot shadow it.
+  const data = getData();
+  const records =
+    findHoverRecords(tokens, {
+      commandsByName: view.commandsByName,
+      maxCommandWords: data.maxCommandWords,
+    }) ?? findHoverRecords(tokens, data);
   if (!records) return null;
+  const ordered = orderHoverRecords(records, selection);
 
   return {
-    contents: { kind: MarkupKind.Markdown, value: buildDocMarkdown(records) },
+    contents: {
+      kind: MarkupKind.Markdown,
+      value: buildDocMarkdown(ordered.records, { labelled: ordered.labelled, footer: footerFor() }),
+    },
   };
 });
 
@@ -413,18 +516,20 @@ connection.onDocumentSymbol(async (params) => {
 
 function validate(doc) {
   const data = getData();
+  const { platform, view } = getPlatform(doc);
   const diagnostics = [
     ...computeDiagnostics(
       getLines(doc),
-      data.knownTopLevel,
+      view.knownTopLevel,
       {
         openerBlockType,
         isChildCommand: data.isChildCommand,
         placeholderFill,
       },
-      diagnosticOptions,
+      { ...diagnosticOptions, knownElsewhere: view.knownElsewhere },
     ),
     ...computeXrefDiagnostics(getXref(doc), diagnosticOptions),
+    ...platform.diagnostics,
   ];
   connection.sendDiagnostics({ uri: doc.uri, diagnostics });
 }
@@ -464,6 +569,7 @@ documents.onDidClose((e) => {
   debounceTimers.delete(e.document.uri);
   lineCache.delete(e.document.uri);
   xrefCache.delete(e.document.uri);
+  platformCache.delete(e.document.uri);
   placeholderCache.delete(e.document.uri);
   connection.sendDiagnostics({ uri: e.document.uri, diagnostics: [] });
 });

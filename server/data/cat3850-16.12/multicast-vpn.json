@@ -1,0 +1,193 @@
+[
+  {
+    "name": "ip multicast-routing",
+    "context": null,
+    "detail": "Enable IP multicast routing.",
+    "syntax": "ip multicast-routing [vrf vrf-name]",
+    "noForm": "no ip multicast-routing [vrf vrf-name]",
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Enables IP multicast routing for the Multicast VPN routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      }
+    ],
+    "modes": ["Global configuration (config)."],
+    "usageSummary": "When IP multicast routing is disabled, the Cisco IOS software does not forward any multicast packets.",
+    "sourcePage": 454,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip multicast mrinfo-filter",
+    "context": null,
+    "detail": "Filter multicast router information (mrinfo) request packets.",
+    "syntax": "ip multicast [vrf vrf-name] mrinfo-filter access-list",
+    "noForm": "no ip multicast [vrf vrf-name] mrinfo-filter",
+    "params": [
+      {
+        "name": "vrf",
+        "description": "(Optional) Supports the multicast VPN routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "vrf-name",
+        "description": "(Optional) Name assigned to the VRF."
+      },
+      {
+        "name": "access-list",
+        "description": "IP standard numbered or named access list that determines which networks or hosts can query the local multicast device with the mrinfo command."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The ip multicast mrinfo-filtercommand filters the mrinfo request packets from all of the sources denied by the specified access list.  That is, if the access list denies a source, that source's mrinfo requests are filtered.  mrinfo requests from any sources permitted by the ACL are allowed to proceed.",
+    "sourcePage": 455,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mdt data",
+    "context": null,
+    "detail": "Specify a range of addresses to be used in the data multicast distribution tree (MDT) pool.",
+    "syntax": "mdt data threshold kb/s",
+    "noForm": "no mdt data threshold kb/s",
+    "params": [
+      {
+        "name": "threshold kb/s",
+        "description": "(Optional) Defines the bandwidth threshold value in kilobits per second (kb/s). The range is from 1 to 4294967."
+      }
+    ],
+    "modes": ["VRF address family configuration (config-vrf-af)", "VRF configuration (config-vrf)"],
+    "usageSummary": "A data MDT can include a maximum of 256 multicast groups per MVPN.  Multicast groups used to create the data MDT are dynamically chosen from a pool of configured IP addresses.  Use the mdt data command to specify a range of addresses to be used in the data MDT pool.",
+    "sourcePage": 456,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mdt default",
+    "context": null,
+    "detail": "Configure a default multicast distribution tree (MDT) group for a Virtual Private Network (VPN) routing and forwarding (VRF) instance.",
+    "syntax": "mdt defaultgroup-address",
+    "noForm": "no mdt defaultgroup-address",
+    "params": [
+      {
+        "name": "group-address",
+        "description": "IP address of the default MDT group. This address serves as an identifier for the community in that provider edge (PE) devices configured with the same group address become members of the group, allowing them to receive packets sent by each other."
+      }
+    ],
+    "modes": ["VRF address family configuration (config-vrf-af) VRF configuration (config-vrf)"],
+    "usageSummary": "The default MDT group must be the same group configured on all PE devices that belong to the same VPN.  If Source Specific Multicast (SSM) is used as the protocol for the default MDT, the source IP address will be the address used to source the Border Gateway Protocol (BGP) sessions.  A tunnel interface is created as a result of this command.",
+    "sourcePage": 458,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mdt log-reuse",
+    "context": null,
+    "detail": "Enable the recording of data multicast distribution tree (MDT) reuse.",
+    "syntax": "mdt log-reuse",
+    "noForm": "no mdt log-reuse",
+    "params": [],
+    "modes": ["VRF address family configuration (config-vrf-af) VRF configuration (config-vrf)"],
+    "usageSummary": "The mdt log-reuse command generates a syslog message whenever a data MDT is reused.  You can access the mdt log-reusecommand by using the ip vrf global configuration command.  You can also access the mdt log-reuse command by using the vrf definition global configuration command followed by the address-family ipv4 VRF configuration command.",
+    "sourcePage": 460,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim mdt bgp",
+    "context": null,
+    "detail": "Show details about the Border Gateway Protocol (BGP) advertisement of the route distinguisher (RD) for the multicast distribution tree (MDT) default group.",
+    "syntax": "show ip pim [vrf vrf-name] mdt bgp",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Displays information about the BGP advertisement of the RD for the MDT default group associated with Multicast Virtual Private Network (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      }
+    ],
+    "modes": ["User EXEC Privileged EXEC"],
+    "usageSummary": "Use this command to show detailed BGP advertisement of the RD for the MDT default group.",
+    "sourcePage": 461,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim mdt history",
+    "context": null,
+    "detail": "To display information about the history of data multicast distribution tree (MDT) groups that have been reused, use the show ip pim mdt historycommand in privileged EXEC mode.",
+    "syntax": "show ip pim vrf vrf-name mdt history interval minutes",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf",
+        "description": "vrf-name Displays the history of data MDT groups that have been reused for the Multicast VPN (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      },
+      {
+        "name": "interval minutes",
+        "description": "Specifies the interval (in minutes) for which to display information about the history of data MDT groups that have been reused. The range is from 1 to 71512 minutes (7 weeks)."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The output of the show ip pim mdt history command displays the history of reused MDT data groups for the interval specified with the interval keyword and minutes argument.  The interval is from the past to the present, that is, from the time specified for the minutes argument to the time at which the command is issued.",
+    "sourcePage": 462,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim mdt receive",
+    "context": null,
+    "detail": "To display the data multicast distribution tree (MDT) group mappings received from other provider edge (PE) routers, use the show ip pim mdt receivecommand in privileged EXEC mode.",
+    "syntax": "show ip pim vrf vrf-name mdt receive [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf",
+        "description": "vrf-name Displays the data MDT group mappings for the Multicast VPN (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Provides a detailed description of the data MDT advertisements received."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "When a router wants to switch over from the default MDT to a data MDT, it advertises the VRF source, the group pair, and the global multicast address over which the traffic will be sent.  If the remote router wants to receive this data, then it will join this global address multicast group.",
+    "sourcePage": 463,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show ip pim mdt send",
+    "context": null,
+    "detail": "Display the data multicast distribution tree (MDT) groups in use.",
+    "syntax": "show ip pim vrf vrf-name mdt send",
+    "noForm": null,
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "Displays the data MDT groups in use by the Multicast VPN (MVPN) routing and forwarding (MVRF) instance specified for the vrf-name argument."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command to show the data MDT groups in use by a specified MVRF.",
+    "sourcePage": 465,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

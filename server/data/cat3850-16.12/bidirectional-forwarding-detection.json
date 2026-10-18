@@ -1,0 +1,221 @@
+[
+  {
+    "name": "authentication",
+    "context": "BFD",
+    "detail": "Configure authentication in a Bidirectional Forwarding Detection (BFD) template for single hop sessions.",
+    "syntax": "authentication authentication-type keychain keychain-name",
+    "noForm": "no authentication authentication-type keychain keychain-name",
+    "params": [
+      {
+        "name": "authentication-type",
+        "description": "Authentication type. Valid values are md5, meticulous-md5, meticulous-sha1, and sha-1."
+      },
+      {
+        "name": "keychain keychain-name",
+        "description": "Configures an authentication key chain with the specified name. The maximum number of characters allowed in the name is 32."
+      }
+    ],
+    "modes": ["BFD configuration (config-bfd)"],
+    "usageSummary": "You can configure authentication in single hop templates.  We recommend that you configure authentication to enhance security.  Authentication must be configured on each BFD source-destination pair, and authentication parameters must match on both devices.",
+    "sourcePage": 802,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd",
+    "context": null,
+    "detail": "To set the baseline Bidirectional Forwarding Detection (BFD) session parameters on an interface, use the bfd interface configuration mode. To remove the baseline BFD session parameters, use the no form of this command",
+    "syntax": "bfd interval milliseconds min_rx milliseconds multiplier multiplier-value",
+    "noForm": "no bfd interval milliseconds min_rx milliseconds multiplier multiplier-value",
+    "params": [
+      {
+        "name": "interval milliseconds",
+        "description": "Specifies the rate, in milliseconds, at which BFD control packets will be sent to BFD peers. The valid range for the milliseconds argument is from 50 to 9999."
+      },
+      {
+        "name": "min_rx milliseconds",
+        "description": "Specifies the rate, in milliseconds, at which BFD control packets will be expected to be received from BFD peers. The valid range for the milliseconds argument is from 50 to 9999."
+      },
+      {
+        "name": "multiplier",
+        "description": "Specifies the number of consecutive BFD control packets that must be missed"
+      },
+      {
+        "name": "multiplier-value",
+        "description": "from a BFD peer before BFD declares that the peer is unavailable and the Layer 3 BFD peer is informed of the failure. The valid range for the multiplier-valueargument is from 3 to 50."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The bfd command can be configured on SVI, Ethernet and port-channel interfaces.  If BFD runs on a port channel interface, BFD has a timer value restriction of 250 * 3 milliseconds.  The bfd interval configuration is not removed when: • an IPv4 address is removed from an interface • an IPv6 address is removed from an interface • IPv6 is disabled from an interface • an interface is shutdown • IPv4 CEF is disabled globally or locally on an interface • IPv6 CEF is disabled globally or locally on an interface The bfd interval configuration is removed when the subinterface on which its is configured is removed.",
+    "sourcePage": 803,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd all-interfaces",
+    "context": null,
+    "detail": "Enable Bidirectional Forwarding Detection (BFD) for all interfaces participating in the routing process.",
+    "syntax": "bfd all-interfaces",
+    "noForm": "no bfd all-interfaces",
+    "params": [],
+    "modes": ["Router configuration (config-router)"],
+    "usageSummary": "To enable BFD for all interfaces, enter the bfd all-interfaces command in router configuration mode",
+    "sourcePage": 805,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd check-ctrl-plane-failure",
+    "context": null,
+    "detail": "Enable Bidirectional Forwarding Detection (BFD) control plane failure checking for the Intermediate System-to-Intermediate System (IS-IS) routing protocol.",
+    "syntax": "bfd check-ctrl-plane-failure",
+    "noForm": "no bfd check-ctrl-plane-failure",
+    "params": [],
+    "modes": ["Router configuration (config-router)"],
+    "usageSummary": "The bfd check-ctrl-plane-failure command can be configured for an IS-IS routing process only.  The command is not supported on other protocols.  When a switch restarts, a false BFD session failure can occur, where neighboring routers behave as if a true forwarding failure has occurred.",
+    "sourcePage": 806,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd echo",
+    "context": null,
+    "detail": "Enable Bidirectional Forwarding Detection (BFD) echo mode.",
+    "syntax": "bfd echo",
+    "noForm": "no bfd echo",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Echo mode is enabled by default.  Entering the no bfd echo command without any keywords turns off the sending of echo packets and signifies that the switch is unwilling to forward echo packets received from BFD neighbor switches.  When echo mode is enabled, the desired minimum echo transmit interval and required minimum transmit interval values are taken from the bfd interval milliseconds min_rx milliseconds parameters, respectively.",
+    "sourcePage": 807,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd slow-timers",
+    "context": null,
+    "detail": "Configure the Bidirectional Forwarding Detection (BFD) slow timers value.",
+    "syntax": "bfd slow-timers [milliseconds]",
+    "noForm": "no bfd slow-timers",
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": null,
+    "sourcePage": 809,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd template",
+    "context": null,
+    "detail": "Create a Bidirectional Forwarding Detection (BFD) template and to enter BFD configuration mode.",
+    "syntax": "bfd template template-name",
+    "noForm": "no bfd template template-name",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Even if you have not created the template by using the bfd-template command, you can configure the name of the template under an interface, but the template is considered invalid until you define the template.  You do not have to reconfigure the template name again.  It becomes valid automatically.",
+    "sourcePage": 811,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "bfd-template single-hop",
+    "context": null,
+    "detail": "Bind a single hop Bidirectional Forwarding Detection (BFD) template to an interface.",
+    "syntax": "bfd-template single-hop template-name",
+    "noForm": "no bfd-template single-hop template-name",
+    "params": [
+      {
+        "name": "single-hop",
+        "description": "Creates the single-hop BFD template. template-name Template name."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The bfd-template command allows you to create a BFD template and places the device in BFD configuration mode.  The template can be used to specify a set of BFD interval values.  BFD interval values specified as part of the BFD template are not specific to a single interface.",
+    "sourcePage": 812,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ip route static bfd",
+    "context": null,
+    "detail": "Specify static route bidirectional forwarding detection (BFD) neighbors.",
+    "syntax": "ip route static bfd {interface-type interface-number ip-address | vrf vrf-name} [group group-name] [passive] [unassociate] [passive] [unassociate]",
+    "noForm": "no ip route static bfd {interface-type interface-number ip-address | vrf vrf-name} [group group-name]",
+    "params": [
+      {
+        "name": "interface-type interface-number",
+        "description": "Interface type and number."
+      },
+      {
+        "name": "ip-address",
+        "description": "IP address of the gateway, in A.B.C.D format."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "Specifies Virtual Routing and Forwarding (VRF) instance and the destination vrf name."
+      },
+      {
+        "name": "group group-name",
+        "description": "(Optional) Assigns a BFD group. The group-name is a character string of up to 32 characters specifying the BFD group name."
+      },
+      {
+        "name": "unassociate",
+        "description": "(Optional) Unassociates the static route configured for a BFD."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the ip route static bfd command to specify static route BFD neighbors.  All static routes that have the same interface and gateway specified in the configuration share the same BFD session for reachability notification.  All static routes that specify the same values for the interface-type, interface-number, and ip-address arguments will automatically use BFD to determine gateway reachability and take advantage of fast failure detection.",
+    "sourcePage": 813,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "ipv6 route static bfd",
+    "context": null,
+    "detail": "Specify static route Bidirectional Forwarding Detection for IPv6 (BFDv6) neighbors.",
+    "syntax": "ipv6 route static bfd [vrf vrf-name] interface-type interface-number ipv6-address [unassociated]",
+    "noForm": "no ipv6 route static bfd",
+    "params": [
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Name of the virtual routing and forwarding (VRF) instance by which static routes should be specified."
+      },
+      {
+        "name": "interface-type interface-number",
+        "description": "Interface type and number."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "IPv6 address of the neighbor."
+      },
+      {
+        "name": "unassociated",
+        "description": "(Optional) Moves a static BFD neighbor from associated mode to unassociated mode."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the ipv6 route static bfd command to specify static route neighbors.  All of the static routes that have the same interface and gateway specified in the configuration share the same BFDv6 session for reachability notification.  BFDv6 requires that BFDv6 sessions are initiated on both endpoint routers.",
+    "sourcePage": 815,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

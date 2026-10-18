@@ -64,5 +64,6 @@ id_ed25519*
 
 # Build output and packages (released as assets, not committed)
 *.vsix
+build/
 dist/
 node_modules/

@@ -1,0 +1,2551 @@
+[
+  {
+    "name": "arp",
+    "context": null,
+    "detail": "Display the contents of the Address Resolution Protocol (ARP) table.",
+    "syntax": "arp [ip_address]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ip_address",
+        "description": "(Optional) Shows the ARP table or the mapping for a specific IP address."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "The ARP table contains the IP-address-to-MAC-address mappings.",
+    "sourcePage": 1158,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "boot",
+    "context": null,
+    "detail": "Load and boot an executable image and display the command-line interface (CLI).",
+    "syntax": "boot [-post | -n | -p | flag] filesystem:/file-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "-post",
+        "description": "(Optional) Run the loaded image with an extended or comprehensive power-on self-test (POST). Using this keyword causes POST to take longer to complete."
+      },
+      {
+        "name": "-n",
+        "description": "(Optional) Pause for the Cisco IOS Debugger immediately after launching."
+      },
+      {
+        "name": "-p",
+        "description": "(Optional) Pause for the JTAG Debugger right after loading the image."
+      },
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use flash: for the system board flash device; use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/file-url",
+        "description": "Path (directory) and name of a bootable image. Separate image names with a semicolon."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "When you enter the boot command without any arguments, the device attempts to automatically boot the system by using the information in the BOOT environment variable, if any.  If you supply an image name for the file-url variable, the boot command attempts to boot the specified image.  When you specify boot loader boot command options, they are executed immediately and apply only to the current boot loader session.",
+    "sourcePage": 1159,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "cat",
+    "context": null,
+    "detail": "Display the contents of one or more files.",
+    "syntax": "cat filesystem:/file-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/file-url",
+        "description": "Specifies the path (directory) and name of the files to display. Separate each filename with a space."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appears sequentially.",
+    "sourcePage": 1160,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear location",
+    "context": null,
+    "detail": "Clear a specific radio frequency identification (RFID) tag or all of the RFID tags information in the entire database.",
+    "syntax": "clear location [mac-address mac-address | rfid]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "mac-address mac-address",
+        "description": "MAC address of a specific RFID tag."
+      },
+      {
+        "name": "rfid",
+        "description": "Specifies all of the RFID tags in the database."
+      }
+    ],
+    "modes": ["User EXEC Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1161,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear location statistics",
+    "context": null,
+    "detail": "Clear radio-frequency identification (RFID) statistics.",
+    "syntax": "clear location statistics",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1162,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "copy",
+    "context": null,
+    "detail": "Copy a file from a source to a destination.",
+    "syntax": "copy filesystem:/source-file-url filesystem:/destination-file-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/source-file-url",
+        "description": "Path (directory) and filename (source) to be copied. /destination-file-url Path (directory) and filename of the destination."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  Directory names are limited to 127 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.  Filenames are limited to 127 characters; the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.",
+    "sourcePage": 1163,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "copy startup-config tftp:",
+    "context": null,
+    "detail": "Copy the configuration settings from a switch to a TFTP server.",
+    "syntax": "copy startup-config tftp: remote host {ip-address}/{name}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "remote",
+        "description": "host {ip-address}/{name} Host name or IP-address of Remote host."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "To copy your current configurations from the switch, run the command copy startup-config tftp: and follow the instructions.  The configurations are copied onto the TFTP server.  Then, login to another switch and run the command copy tftp: startup-config and follow the instructions.",
+    "sourcePage": 1164,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "copy tftp: startup-config",
+    "context": null,
+    "detail": "Copy the configuration settings from a TFTP server onto a new switch.",
+    "syntax": "copy tftp: startup-config remote host {ip-address}/{name}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "remote",
+        "description": "host {ip-address}/{name} Host name or IP-address of Remote host."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "After the configurations are copied, to save your configurations, use write memory command and then either reload the switch or run the copy startup-config running-config command.",
+    "sourcePage": 1165,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform condition feature multicast controlplane",
+    "context": null,
+    "detail": "Enable radioactive tracing for the Internet Group Management Protocol (IGMP) and Multicast Listener Discovery (MLD) snooping features.",
+    "syntax": "debug platform condition feature multicast controlplane {{igmp-debug | pim} group-ip {ipv4 address | ipv6 address} | {mld-snooping | igmp-snooping} mac mac-address ip {ipv4 address | ipv6 address} vlan vlan-id } level {debug | error | info | verbose | warning} | ipv6 address} | {mld-snooping | igmp-snooping} mac mac-address ip {ipv4 address | ipv6 address} vlan vlan-id } level {debug | error | info | verbose | warning}",
+    "noForm": "no debug platform condition feature multicast controlplane {{igmp-debug | pim} group-ip {ipv4 address",
+    "params": [
+      {
+        "name": "igmp-debug",
+        "description": "Enables IGMP control radioactive tracing."
+      },
+      {
+        "name": "pim",
+        "description": "Enables Protocol Independent Multicast (PIM) control radioactive tracing."
+      },
+      {
+        "name": "mld-snooping",
+        "description": "Enables MLD snooping control radioactive tracing."
+      },
+      {
+        "name": "igmp-snooping",
+        "description": "Enables IGMP snooping control radioactive tracing."
+      },
+      {
+        "name": "mac mac-address",
+        "description": "MAC address of the receiver."
+      },
+      {
+        "name": "group-ip {ipv4 address | ipv6 address}",
+        "description": "IPv4 or IPv6 address of the igmp-debug or pim group."
+      },
+      {
+        "name": "ip {ipv4 address | ipv6 address}",
+        "description": "IPv4 or IPv6 address of the mld-snooping or igmp-snooping group."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "VLAN ID. The range is from 1 to 4094."
+      },
+      {
+        "name": "level",
+        "description": "Enables debug severity levels."
+      },
+      {
+        "name": "debug",
+        "description": "Enables debugging level."
+      },
+      {
+        "name": "error",
+        "description": "Enables error debugging."
+      },
+      {
+        "name": "info",
+        "description": "Enables information debugging."
+      },
+      {
+        "name": "verbose",
+        "description": "Enables detailed debugging."
+      },
+      {
+        "name": "warning",
+        "description": "Enables warning debugging."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC (#)",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 1164 System Management debug platform condition feature multicast controlplane"
+    ],
+    "usageSummary": null,
+    "sourcePage": 1166,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform condition mac",
+    "context": null,
+    "detail": "Enable radioactive tracing for MAC learning.",
+    "syntax": "debug platform condition mac {mac-address {control-plane | egress | ingress} | access-list access-list name {egress | ingress}} name {egress | ingress}}",
+    "noForm": "no debug platform condition mac {mac-address {control-plane | egress | ingress} | access-list access-list",
+    "params": [
+      {
+        "name": "mac mac-address",
+        "description": "Filters output on the basis of the specified MAC address."
+      },
+      {
+        "name": "access-list access-list name",
+        "description": "Filters output on the basis of the specified access list."
+      },
+      {
+        "name": "control-plane",
+        "description": "Displays messages about the control plane routines."
+      },
+      {
+        "name": "egress",
+        "description": "Filters output on the basis of outgoing packets."
+      },
+      {
+        "name": "ingress",
+        "description": "Filters output on the basis of incoming packets."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1168,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform rep",
+    "context": null,
+    "detail": "Enable debugging of Resilient Ethernet Protocol (REP) functions.",
+    "syntax": "debug platform rep {all | error | event | packet | verbose}",
+    "noForm": "no debug platform rep {all | error | event | packet | verbose}",
+    "params": [
+      {
+        "name": "all",
+        "description": "Enables all REP debugging functions."
+      },
+      {
+        "name": "error",
+        "description": "Enables REP error debugging."
+      },
+      {
+        "name": "event",
+        "description": "Enables REP event debugging."
+      },
+      {
+        "name": "packet",
+        "description": "Enables REP packet debugging."
+      },
+      {
+        "name": "verbose",
+        "description": "Enables REP verbose debugging."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1169,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug voice diagnostics mac-address",
+    "context": null,
+    "detail": "Enable debugging of voice diagnostics for voice clients.",
+    "syntax": "debug voice diagnostics mac-address mac-address1 verbose mac-address mac-address2 verbose nodebug voice diagnostics mac-address mac-address1 verbose mac-address mac-address2 verbose",
+    "noForm": null,
+    "params": [
+      {
+        "name": "voice",
+        "description": "diagnostics Configures voice debugging for voice clients. mac-address mac-address1 mac-address mac-address2 Specifies MAC addresses of the voice clients."
+      },
+      {
+        "name": "verbose",
+        "description": "Enables verbose mode for voice diagnostics."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1170,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "delete",
+    "context": null,
+    "detail": "Delete one or more files from the specified file system.",
+    "syntax": "delete filesystem:/file-url...",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  The device prompts you for confirmation before deleting each file.",
+    "sourcePage": 1171,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dir",
+    "context": null,
+    "detail": "Display the list of files and directories on the specified file system.",
+    "syntax": "dir filesystem:/file-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use flash: for the system board flash device; use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/file-url",
+        "description": "(Optional) Path (directory) and directory name that contain the contents you want to display. Separate each directory name with a space."
+      }
+    ],
+    "modes": ["Boot Loader", "Privileged EXEC"],
+    "usageSummary": "Directory names are case sensitive.",
+    "sourcePage": 1172,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "emergency-install",
+    "context": null,
+    "detail": "Perform an emergency installation on your system.",
+    "syntax": "emergency-install url://<url>",
+    "noForm": null,
+    "params": [
+      {
+        "name": "<url>",
+        "description": "URL and name of the file containing the emergency installation bundle image."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "The boot flash is erased during the installation operation.",
+    "sourcePage": 1174,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "exit",
+    "context": null,
+    "detail": "Return to the previous mode or exit from the CLI EXEC mode.",
+    "syntax": "exit",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC", "Global configuration"],
+    "usageSummary": null,
+    "sourcePage": 1176,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "factory-reset",
+    "context": null,
+    "detail": "Remove all the customer specific data that has been added on the device since the time of shipping from the factory.",
+    "syntax": "factory-reset {all|config|boot-vars}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Removes all the data from the device, including configuration data, crash information, log files, boot variables, core files, IOS images including the current boot image."
+      },
+      {
+        "name": "config",
+        "description": "Removes all the configuration data, including user data, startup, and running configuration. boot-vars Resets boot variables."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "No system configuration is required to use the factory-reset command.  Use the command with all options enabled.  The factory-reset command erases IOS images, boot variables, configuration data and all user data.",
+    "sourcePage": 1177,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "flash_init",
+    "context": null,
+    "detail": "Initialize the flash: file system.",
+    "syntax": "flash_init",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "During the normal boot process, the flash: file system is automatically initialized.  Use this command to manually initialize the flash: file system.  For example, you use this command during the recovery procedure for a lost or forgotten password.",
+    "sourcePage": 1178,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "help",
+    "context": null,
+    "detail": "Display the available commands.",
+    "syntax": "help",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": null,
+    "sourcePage": 1179,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "install",
+    "context": null,
+    "detail": "Install Software Maintenance Upgrade (SMU) packages.",
+    "syntax": "install {abort | activate | file {bootflash: | flash: | harddisk: | webui:} [{auto-abort-timer timer timer prompt-level {all | none}}] | add file {bootflash: | flash: | ftp: | harddisk: | http: | https: | pram: | rcp: | scp: | tftp: | webui:} [{activate [{auto-abort-timer timer prompt-level {all | none}commit}]}] | commit | auto-abort-timer stop | deactivate file {bootflash: | flash: | harddisk: | webui:} | label id{description description | label-name name} | remove {file {bootflash: | flash: | harddisk: | webui:} | inactive } | rollback to {base | committed | id {install-ID } | label {label-name}}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "abort",
+        "description": "Terminates the current install operation."
+      },
+      {
+        "name": "activate",
+        "description": "Validates whether the SMU is added through the install add command. This keyword runs a compatibility check, updates package status, and if the package can be restarted, it triggers post-install scripts to restart the necessary processes, or triggers a reload for non-restartable packages."
+      },
+      {
+        "name": "file",
+        "description": "Specifies the package to be activated."
+      },
+      {
+        "name": "{bootflash: | flash: | harddisk: | webui:}",
+        "description": "Specifies the location of the installed package."
+      },
+      {
+        "name": "auto-abort-timer timer",
+        "description": "(Optional) Installs an automatic timer to terminate the installation."
+      },
+      {
+        "name": "prompt-level {all | none}",
+        "description": "(Optional) Prompts the user about installation activities. For example, the activate keyword, automatically triggers a reload for packages that require a reload. Before activating the package, a message will prompt users as to whether they want to continue. The all keyword allows you to enable prompts. The none keyword disables prompts."
+      },
+      {
+        "name": "add",
+        "description": "Copies files from a remote location (via FTP, TFTP) to a device and performs Software Maintenance Upgrade (SMU) compatibility check for the platform and image versions. This keyword runs base compatibility checks to ensure that a specified package is supported on a platform. It also adds an entry in the package file, so that the status can be monitored and maintained."
+      },
+      {
+        "name": "{ bootflash: | flash: |ftp: |harddisk: |http: |https: |",
+        "description": "Specifies the package to be added. pram: |rcp: | scp: | tftp: |webui:}"
+      },
+      {
+        "name": "commit",
+        "description": "Makes SMU changes persistent over reloads. You can do a commit after activating a package, while the system is up, or after the first reload. If a package is activated, but not committed, it remains active after the first reload, but not after the second reload."
+      },
+      {
+        "name": "auto-abort-timer stop",
+        "description": "Stops the automatic timer for installation."
+      },
+      {
+        "name": "deactivate",
+        "description": "Deactivates an installed package. Deactivating a package also updates the package status and triggers a process restart or a reload."
+      },
+      {
+        "name": "label id",
+        "description": "Specifies the id of the install point to label."
+      },
+      {
+        "name": "description",
+        "description": "Adds a description to specified install point."
+      },
+      {
+        "name": "label-name name",
+        "description": "Adds a description to specified install point."
+      },
+      {
+        "name": "remove",
+        "description": "Remove installed packages. The package file is removed from the file system. The remove keyword can only be used on packages that are currently inactive."
+      },
+      {
+        "name": "inactive",
+        "description": "Removes all inactive packages from the device."
+      },
+      {
+        "name": "rollback",
+        "description": "Rollbacks the data model interface (DMI) package (DMP) SMU to the base version, the last committed version, or a known commit ID."
+      },
+      {
+        "name": "to base",
+        "description": "Returns to the base image."
+      },
+      {
+        "name": "committed",
+        "description": "Returns to the installation state when the last commit operation was performed."
+      },
+      {
+        "name": "id install-ID",
+        "description": "Returns to the specific install point ID. Valid values are from 1 to 4294967295."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "An SMU is a package that can be installed on a system to provide a patch fix or security resolution to a released image.  This package contain a minimal set of files for patching the release along with some metadata that describes the contents of the package.  Packages must be added prior to activating the SMU.",
+    "sourcePage": 1180,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "l2 traceroute",
+    "context": null,
+    "detail": "Enable the Layer 2 traceroute server.",
+    "syntax": "l2 traceroute",
+    "noForm": "no l2 traceroute",
+    "params": [],
+    "modes": ["Global configuration (config#)"],
+    "usageSummary": "Layer 2 traceroute is enabled by default and opens a listening socket on User Datagram Protocol (UDP) port 2228.  To close the UDP port 2228 and disable Layer 2 traceroute, use the no l2 traceroute command in global configuration mode.  The following example shows how to configure Layer 2 traceroute using the l2 traceroute command.",
+    "sourcePage": 1184,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "license boot level",
+    "context": null,
+    "detail": "Boot a new software license on the device.",
+    "syntax": "license boot level base-license-level addon addon-license-level",
+    "noForm": "no license boot level",
+    "params": [
+      {
+        "name": "base-license-level",
+        "description": "Level at which the switch is booted, for example, ipservice Base licenses that are available are: • LAN Base • IP Base • IP Service addon-license-level Additional licenses that can be subscribed for a fixed term of three, five, or seven years. Add-on licenses that are available are: • Digital Networking Architecture (DNA) Essentials • DNA Advantage (includes DNA Essentials)"
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "Use the license boot level command for these purposes: • Downgrade or upgrade licenses • Enable or disable an evaluation or extension license • Clear an upgrade license This command forces the licensing infrastructure to boot the configured license level instead of the license hierarchy maintained by the licensing infrastructure for a given module: • When the switch reloads, the licensing infrastructure checks the configuration in the startup configuration for licenses, if any.  If there is a license in the configuration, the switch boots with that license.  If there is no license, the licensing infrastructure follows the image hierarchy to check for licenses.",
+    "sourcePage": 1185,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "license smart conversion start",
+    "context": null,
+    "detail": "Migrate all the installed traditional licenses from the device to Cisco Smart Software Manager (CSSM).",
+    "syntax": "license smart conversion start",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "On executing the license smart conversion start command, the device converts the traditional license and sends the migration data to CSSM.  CSSM creates license entitlements, which is deposited in the user account.",
+    "sourcePage": 1187,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "license smart conversion stop",
+    "context": null,
+    "detail": "Cancel license conversion if network failure occurs.",
+    "syntax": "license smart conversion stop",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1188,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "license smart deregister",
+    "context": null,
+    "detail": "Cancel device registration from Cisco Smart Software Manager (CSSM).",
+    "syntax": "license smart deregister",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the license smart deregister command for these purposes: • When your device is taken off the inventory • When your device is shipped elsewhere for redeployment • When your device is returned to Cisco for replacement using the return merchandise authorization (RMA) process",
+    "sourcePage": 1189,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "license smart register idtoken",
+    "context": null,
+    "detail": "Register a device with the token generated from Cisco Smart Software Manager (CSSM).",
+    "syntax": "license smart register idtoken token_ID {force}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "token_ID",
+        "description": "Device with the token generated from CSSM."
+      },
+      {
+        "name": "force",
+        "description": "Forcefully registers your device irrespective of whether the device is registered or not."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1190,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "license smart renew",
+    "context": null,
+    "detail": "Manually renew your device's ID or authorization with Cisco Smart Software Manager (CSSM).",
+    "syntax": "license smart renew {auth | id}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "auth",
+        "description": "Renews your authorization."
+      },
+      {
+        "name": "id",
+        "description": "Renews your ID."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Authorization periods are renewed by the smart licensing system every 30 days.  As long as the license is in an Authorized or Out of compliance state, the authorization period is renewed.  The grace period starts when an authorization period expires.",
+    "sourcePage": 1191,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "location",
+    "context": null,
+    "detail": "Configure location information for an endpoint.",
+    "syntax": "location {admin-tag string | civic-location identifier {hostid} | civic-location identifier {hostid} | elin-location {string |identifier id} | geo-location identifier {hostid} | prefer{cdp weight priority-value|lldp-med weight priority-value|static config weight priority-value} elin-location {string |identifier id} | geo-location identifier {hostid} | prefer{cdp weight priority-value|lldp-med weight priority-value|static config weight priority-value}",
+    "noForm": "no location {admin-tag string | civic-location identifier {hostid} | civic-location identifier {hostid} |",
+    "params": [
+      {
+        "name": "admin-tagstring",
+        "description": "Configures administrative tag or site information. Site or location information in alphanumeric format."
+      },
+      {
+        "name": "civic-location",
+        "description": "Configures civic location information."
+      },
+      {
+        "name": "identifier",
+        "description": "Specifies the name of the civic location, emergency, or geographical location."
+      },
+      {
+        "name": "host",
+        "description": "Defines the host civic or geo-spatial location."
+      },
+      {
+        "name": "id",
+        "description": "Name of the civic, emergency, or geographical location. Note The identifier for the civic location in the LLDP-MED switch TLV is limited to 250 bytes or less. To avoid error messages about available buffer space during switch configuration, be sure that the total length of all civic-location information specified for each civic-location identifier does not exceed 250 bytes."
+      },
+      {
+        "name": "elin-location",
+        "description": "Configures emergency location information (ELIN)."
+      },
+      {
+        "name": "geo-location",
+        "description": "Configures geo-spatial location information."
+      },
+      {
+        "name": "prefer",
+        "description": "Sets location information source priority."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "After entering the location civic-location identifier global configuration command, you enter civic location configuration mode.  After entering the location geo-location identifier global configuration command, you enter geo location configuration mode.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 1192,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "location plm calibrating",
+    "context": null,
+    "detail": "Configure path loss measurement (CCX S60) request for calibrating clients.",
+    "syntax": "location plm calibrating {multiband | uniband}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "multiband",
+        "description": "Specifies the path loss measurement request for calibrating clients on the associated 802.11a or 802.11b/g radio."
+      },
+      {
+        "name": "uniband",
+        "description": "Specifies the path loss measurement request for calibrating clients on the associated 802.11a/b/g radio."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The uniband is useful for single radio clients (even if the radio is a dual band and can operate in the 2. 4-GHz and the 5-GHz bands).  The multiband is useful for multiple radio clients.",
+    "sourcePage": 1195,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mac address-table move update",
+    "context": null,
+    "detail": "Enable the MAC address table move update feature.",
+    "syntax": "mac address-table move update {receive | transmit}",
+    "noForm": "no mac address-table move update {receive | transmit}",
+    "params": [
+      {
+        "name": "receive",
+        "description": "Specifies that the switch processes MAC address-table move update messages."
+      },
+      {
+        "name": "transmit",
+        "description": "Specifies that the switch sends MAC address-table move update messages to other switches in the network if the primary link goes down and the standby link comes up."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The MAC address-table move update feature allows the switch to provide rapid bidirectional convergence if a primary (forwarding) link goes down and the standby link begins forwarding traffic.  You can configure the access switch to send the MAC address-table move update messages if the primary link goes down and the standby link comes up.  You can configure the uplink switches to receive and process the MAC address-table move update messages.",
+    "sourcePage": 1196,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mgmt_init",
+    "context": null,
+    "detail": "Initialize the Ethernet management port.",
+    "syntax": "mgmt_init",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "Use the mgmt_init command only during debugging of the Ethernet management port.",
+    "sourcePage": 1197,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mkdir",
+    "context": null,
+    "detail": "Create one or more directories on the specified file system.",
+    "syntax": "mkdir filesystem:/directory-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks. /directory-url... Name of the directories to create. Separate each directory name with a space."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Directory names are case sensitive.  Directory names are limited to 127 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.",
+    "sourcePage": 1198,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "more",
+    "context": null,
+    "detail": "Display the contents of one or more files.",
+    "syntax": "more filesystem:/file-url...",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appears sequentially.",
+    "sourcePage": 1199,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "no debug all",
+    "context": null,
+    "detail": "Disable debugging on a switch.",
+    "syntax": null,
+    "noForm": "no debug all",
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1200,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rename",
+    "context": null,
+    "detail": "Rename a file.",
+    "syntax": "rename filesystem:/source-file-url filesystem:/destination-file-url",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/source-file-url",
+        "description": "Original path (directory) and filename. /destination-file-url New path (directory) and filename."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  Directory names are limited to 127 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.  Filenames are limited to 127 characters; the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.",
+    "sourcePage": 1201,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request consent-token accept-response shell-access",
+    "context": null,
+    "detail": "Submit the Consent Token response to a previously generated challenge.",
+    "syntax": "request consent-token accept-response shell-access response-string",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Syntax",
+        "description": "Description"
+      },
+      {
+        "name": "response-string",
+        "description": "Specifies the character string representing the response."
+      }
+    ],
+    "modes": ["Privileged EXEC mode (#)"],
+    "usageSummary": "You must enter the response string within 30 minutes of challenge generation.  If it is not entered, the challenge expires and a new challenge must be requested.",
+    "sourcePage": 1202,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request consent-token generate-challenge shell-access",
+    "context": null,
+    "detail": "Generate a Consent Token challenge for system shell access.",
+    "syntax": "request consent-token generate-challenge shell-access auth-timeout time-validity-slot",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Syntax",
+        "description": "Description"
+      },
+      {
+        "name": "auth-timeout time-validity-slot",
+        "description": "Specifies the time slot in minutes for which shell-access is requested."
+      }
+    ],
+    "modes": ["Privileged EXEC mode (#)"],
+    "usageSummary": "When the requested time-slot for system shell expires, the session gets terminated automatically.  The maximum authorization timeout for system shell access is seven days.",
+    "sourcePage": 1203,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request consent-token terminate-auth",
+    "context": null,
+    "detail": "Terminate the Consent Token based authorization to system shell.",
+    "syntax": "request consent-token terminate-auth",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC mode (#)"],
+    "usageSummary": "In system shell access scenario, exiting the shell does not terminate authorization until the authorization timeout occurs.  We recommend that you force terminate system shell authorization by explicitly issuing the request consent-token terminate-auth command once the purpose of system shell access is complete.  If the current authentication is terminated using the request consent-token terminate-auth command, the user will have to repeat the authentication process to gain access to system shell.",
+    "sourcePage": 1204,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software console attach switch",
+    "context": null,
+    "detail": "Start a session on a member switch.",
+    "syntax": "Note On stacking switches (Catalyst 3650/3850/9200/9300 switches), this command can only be used to start a session on the standby console. On Catalyst 9500 switches, this command is supported only in a stackwise virtual setup. You cannot start a session on member switches. By default, all consoles are already active, so a request to start a session on the active console will result in an error. request platform software console attach switch { switch-number | active | standby } { 0/0 | R0 }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "active",
+        "description": "Specifies the active switch. Note This argument is not supported on Catalyst 9500 switches."
+      },
+      {
+        "name": "standby",
+        "description": "Specifies the standby switch."
+      },
+      {
+        "name": "0/0",
+        "description": "Specifies that the SPA-Inter-Processor slot is 0, and bay is 0. Note Do not use this option with stacking switches. It will result in an error."
+      },
+      {
+        "name": "R0",
+        "description": "Specifies that the Route-Processor slot is 0."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "To start a session on the standby switch, you must first enable it in the configuration.",
+    "sourcePage": 1205,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package clean",
+    "context": null,
+    "detail": "Remove media files that are not required.",
+    "syntax": "request platform software package clean [{file URL | pattern URL | switch switch-ID {file URL | pattern URL }}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "file URL",
+        "description": "(Optional) Specifies the URL to the file. The URL contains the file system, directories, and the filename."
+      },
+      {
+        "name": "pattern URL",
+        "description": "(Optional) Specifies the pattern to clean one or more matching paths."
+      },
+      {
+        "name": "switch switch-ID",
+        "description": "(Optional) Specifies the switch for provisioning."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1207,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package copy",
+    "context": null,
+    "detail": "Copy a Cisco IOS XE image file.",
+    "syntax": "request platform software package copy switch switch-ID file file-URL to file-URL",
+    "noForm": null,
+    "params": [
+      {
+        "name": "file file-URL",
+        "description": "URL to the consolidated package or sub-package."
+      },
+      {
+        "name": "to",
+        "description": "Specifies the destination URL to where the files are to be copied."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1209,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package describe file",
+    "context": null,
+    "detail": "To gather descriptive information about an individual module or a Cisco IOS-XE image file, use the request platform software package describe filecommand in privileged EXEC or diagnostic mode.",
+    "syntax": "request platform software package describe file URL [detail] [verbose]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "URL",
+        "description": "Specifies the URL to the file. The URL contains the file system, directories, and the filename."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Specifies detailed output."
+      },
+      {
+        "name": "verbose",
+        "description": "(Optional) Displays verbose information, meaning that all information about the file is displayed on the console."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command can only be used to gather information on individual module and Cisco IOS-XE image files.  Using this command to collect information on any other file will generate output, but the generated output is useless.  The output of this command can be used for the following functions: • To confirm the individual module files that are part of a Cisco IOS-XE image.",
+    "sourcePage": 1210,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package expand",
+    "context": null,
+    "detail": "Extract the individual modules from a Cisco IOS-XE image.",
+    "syntax": "request platform software package expand {file source-URL | switch switch-ID file source-URL}[ to destination-URL] [auto-copy ] [force] [overwrite] [retain-source-file] [verbose] [wipe]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "source-URL",
+        "description": "Specifies the URL to the Cisco IOS-XE file that stores the contents that will be extracted."
+      },
+      {
+        "name": "switch switch-ID",
+        "description": "Specifies the switch ID."
+      },
+      {
+        "name": "to destination-URL",
+        "description": "(Optional) Specifies the destination URL where the files that were extracted from the Cisco IOS-XE file are left after the operation is complete. If this option is not entered, the Cisco IOS-XE image file contents are extracted onto the same directory where the Cisco IOS-XE image file is currently stored."
+      },
+      {
+        "name": "auto-copy",
+        "description": "(Optional) Copies packages to provisioning directory."
+      },
+      {
+        "name": "force",
+        "description": "(Optional) Specifies that the operation will be forced, meaning that the upgrade will proceed despite any warning messages."
+      },
+      {
+        "name": "over-write",
+        "description": "(Optional) Overwrites non-identical packages and unused provisioning files."
+      },
+      {
+        "name": "retain-to-source",
+        "description": "(Optional) Retains the source file after expansion."
+      },
+      {
+        "name": "verbose",
+        "description": "(Optional) Displays verbose information, meaning all output that can be displayed on the console during the process will be displayed."
+      },
+      {
+        "name": "wipe",
+        "description": "(Optional) Erases all content on the destination snapshot directory before extracting the files and placing them on the snapshot directory."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command only extracts individual module files and a provisioning file from the Cisco IOS-XE image.  Additional configuration is needed to configure the router to boot using the provisioning files and run using the individual modules.  When this command is used, copies of each module and the provisioning file within the Cisco IOS-XE image are copied and placed on the destination directory.",
+    "sourcePage": 1216,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package install auto-upgrade",
+    "context": null,
+    "detail": "Initiate automatic upgrade of software on all incompatible switches.",
+    "syntax": "request platform software package install auto-upgrade",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1218,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package install commit",
+    "context": null,
+    "detail": "Cancel the rollback timer and commit a software upgrade.",
+    "syntax": "request platform software package install switch switch-IDcommit [verbose]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "verbose",
+        "description": "(Optional) Displays verbose information, meaning all information that can be displayed on the console during the process will be displayed."
+      }
+    ],
+    "modes": [
+      "Privileged EXEC (#)",
+      "Release Modification",
+      "Cisco IOS XE Denali 16.1.1 This command was introduced.",
+      "Usage Guidelines This command is entered after the request platform software package install switch switch-ID file auto-rollback command is used to begin an individual sub-package or a consolidated package upgrade. When the auto-rollback minutes option is used, a rollback timer that cancels the upgrade after the number of specified minutescancels the upgrade if the request platform software package install switch switch-ID commit command is not entered to commit the upgrade. The rollback timer expires and the upgrade does not complete; and the device continues running the previous sub-package or consolidated package.",
+      "Examples The following example shows how to commit an upgrade: Device# request platform software package install switch all commit",
+      "Related Commands Command Description",
+      "request platform software package install file Upgrades a consolidated package or sub-package.",
+      "request platform software package install rollback Rolls back a previous software upgrade.",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 1217 System Management"
+    ],
+    "usageSummary": "This command is entered after the request platform software package install switch switch-ID file auto-rollback command is used to begin an individual sub-package or a consolidated package upgrade.  When the auto-rollback minutes option is used, a rollback timer that cancels the upgrade after the number of specified minutescancels the upgrade if the request platform software package install switch switch-ID commit command is not entered to commit the upgrade.  The rollback timer expires and the upgrade does not complete; and the device continues running the previous sub-package or consolidated package.",
+    "sourcePage": 1219,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package install file",
+    "context": null,
+    "detail": "Upgrade a consolidated package or an individual sub-package.",
+    "syntax": "request platform software package install switch switch-ID file file-URL [auto-rollback minutes] [interface-module-delay seconds] [provisioning-file provisioning-file-URL] [slot slot-number] [bay bay-number] [auto-copy] [force] [ignore-compact-check] [mdr] [new] [on-reboot] [retain-source-file] [verbose]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-ID",
+        "description": "Specifies the switch for provisioning."
+      },
+      {
+        "name": "file-URL",
+        "description": "URL to the consolidated package or sub-package."
+      },
+      {
+        "name": "auto-rollback minutes",
+        "description": "(Optional) Specifies the setting of a rollback timer, and sets the number of minutes on the rollback timer before the rollback timer expires."
+      },
+      {
+        "name": "interface-module-delay seconds",
+        "description": "(Optional) Specifies the interface module restart timeout delay."
+      },
+      {
+        "name": "provisioning-file",
+        "description": "(Optional) Specifies the URL to the provisioning file. A provisioning file"
+      },
+      {
+        "name": "provisioning-file-URL",
+        "description": "is used for booting only when a device is booted using individual sub-packages."
+      },
+      {
+        "name": "slot slot-number",
+        "description": "(Optional) Specifies the device slot number where a shared port adapter interface processor (SIP) can be installed."
+      },
+      {
+        "name": "bay bay-number",
+        "description": "(Optional) Specifies the shared port adapter (SPA) bay number within a SIP."
+      },
+      {
+        "name": "auto-copy",
+        "description": "(Optional) Specifies that the device will automatically copy packages to provisioning directory."
+      },
+      {
+        "name": "force",
+        "description": "(Optional) Specifies that the operation will be forced, meaning that the upgrade will proceed despite any warning messages."
+      },
+      {
+        "name": "ignore-compact-check",
+        "description": "(Optional) Specifies that the compatibility check is ignored."
+      },
+      {
+        "name": "mdr",
+        "description": "(Optional) Specifies that minimal disruptive restart is used."
+      },
+      {
+        "name": "new",
+        "description": "(Optional) Creates a new package provisioning file."
+      },
+      {
+        "name": "on-reboot",
+        "description": "(Optional) Specifies that the installation will not be completed until the next RP reboot."
+      },
+      {
+        "name": "retain-source-file",
+        "description": "(Optional) Retains the source file after installation."
+      },
+      {
+        "name": "verbose",
+        "description": "(Optional) Displays verbose information, meaning all output that can be displayed on the console during the process will be displayed."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command is used to upgrade consolidated packages and individual sub-packages.  When the auto-rollback minutes option is used, the request platform software package install switch switch-ID commit command must be entered before the rollback timer expires to complete the upgrade.  If this command is not entered, the device rolls back to the previous software version.",
+    "sourcePage": 1220,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package install rollback",
+    "context": null,
+    "detail": "Roll back a previous software upgrade.",
+    "syntax": "request platform software package install switch switch-ID rollback [{as-booted | provisioning-file provisioning-file-URL}] [auto-copy] [force] [ignore-compact-check] [new] [on-reboot] [retain-source-file] [verbose]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-ID",
+        "description": "Specifies the switch for provisioning."
+      },
+      {
+        "name": "as-booted",
+        "description": "(Optional) Specifies that the software update will not occur, and that the device will instead boot using the same procedure that it used during the last reboot."
+      },
+      {
+        "name": "provisioning-file",
+        "description": "(Optional) Specifies that the software update will not occur, and that the"
+      },
+      {
+        "name": "provisioning-file-URL",
+        "description": "device will instead boot using the specified provisioning file."
+      },
+      {
+        "name": "auto-copy",
+        "description": "(Optional) Specifies that the device will automatically copy packages to provisioning directory."
+      },
+      {
+        "name": "force",
+        "description": "(Optional) Specifies that the operation will be forced, meaning that the upgrade will proceed despite any warning messages."
+      },
+      {
+        "name": "ignore-compact-check",
+        "description": "(Optional) Specifies that the compatibility check is ignored."
+      },
+      {
+        "name": "new",
+        "description": "(Optional) Creates a new package provisioning file."
+      },
+      {
+        "name": "on-reboot",
+        "description": "(Optional) Specifies that the installation will not be completed until the next reboot."
+      },
+      {
+        "name": "retain-source-file",
+        "description": "(Optional) Retains the source file after installation,"
+      },
+      {
+        "name": "verbose",
+        "description": "(Optional) Displays verbose information, meaning all output that can be displayed on the console during the process will be displayed."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command rolls back a configuration that has an active rollback timer.  Active rollback timers are used when the auto-rollback option is entered when software is being upgraded using the request platform software package install filecommand.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 1223,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package install snapshot",
+    "context": null,
+    "detail": "Create a snapshot directory that contains all the files extracted from a consolidated package.",
+    "syntax": "request platform software package install switch switch-ID snapshot to URL [as snapshot-provisioning-filename] [force] [verbose] [wipe]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-ID",
+        "description": "Specifies the switch for provisioning."
+      },
+      {
+        "name": "snapshot to URL",
+        "description": "Creates a directory and extracts all files from the consolidated package into that directory. The directory is named in the command-line as part of the URL_FS. If the URL_FSis specified as a file system, the files in the consolidated package will be extracted onto the file system and not a directory on the file system."
+      },
+      {
+        "name": "as",
+        "description": "(Optional) Renames the provisioning file in the snapshot directory. snapshot-provisioning-filename If this option is not used, the existing provisioning filename of the provisioning file in the consolidated package is used."
+      },
+      {
+        "name": "wipe",
+        "description": "(Optional) Erases all content on the destination snapshot directory before extracting files and placing them on the snapshot directory."
+      },
+      {
+        "name": "force",
+        "description": "(Optional) Specifies that the operation will be forced; meaning that the upgrade will proceed despite any warning messages."
+      },
+      {
+        "name": "verbose",
+        "description": "(Optional) Displays verbose information, meaning all output is displayed on the console during the provisioning process."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command is used to create a directory at the destination device and extract the individual sub-packages in a consolidated package to that directory.  The request platform software package expand command is the only other command that can be used to extract individual sub-packages from a consolidated package.",
+    "sourcePage": 1225,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package verify",
+    "context": null,
+    "detail": "Verify the In-Service Software Upgrade (ISSU) software package compatibility.",
+    "syntax": "request platform software package verify switch switch-ID file file-URL [bay bay-number] [slot slot-number] [auto-copy] [force] [mdr]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "file-URL",
+        "description": "URL to the consolidated package or sub-package."
+      },
+      {
+        "name": "bay bay-number",
+        "description": "(Optional) Specifies the shared port adapter (SPA) bay number within a SIP."
+      },
+      {
+        "name": "slot slot-number",
+        "description": "(Optional) Specifies the device slot number where a shared port adapter interface processor (SIP) can be installed."
+      },
+      {
+        "name": "auto-copy",
+        "description": "(Optional) Specifies that the device will automatically copy packages to provisioning directory."
+      },
+      {
+        "name": "force",
+        "description": "(Optional) Specifies that the operation will be forced, meaning that the upgrade will proceed despite any warning messages."
+      },
+      {
+        "name": "mdr",
+        "description": "(Optional) Specifies that minimal disruptive restart is used."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1227,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "request platform software package uninstall",
+    "context": null,
+    "detail": "Uninstall a software package.",
+    "syntax": "request platform software package uninstall switch switch-ID file file-URL [bay bay-number] [slot slot-number] [auto-copy] [force] [mdr]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "file-URL",
+        "description": "URL to the consolidated package or sub-package."
+      },
+      {
+        "name": "bay bay-number",
+        "description": "(Optional) Specifies the shared port adapter (SPA) bay number within a SIP."
+      },
+      {
+        "name": "slot slot-number",
+        "description": "(Optional) Specifies the device slot number where a shared port adapter interface processor (SIP) can be installed."
+      },
+      {
+        "name": "auto-copy",
+        "description": "(Optional) Specifies that the device will automatically copy packages to provisioning directory."
+      },
+      {
+        "name": "force",
+        "description": "(Optional) Specifies that the operation will be forced, meaning that the upgrade will proceed despite any warning messages."
+      },
+      {
+        "name": "mdr",
+        "description": "(Optional) Specifies that minimal disruptive restart is used."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1228,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "reset",
+    "context": null,
+    "detail": "Perform a hard reset on the system.",
+    "syntax": "reset",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": null,
+    "sourcePage": 1229,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rmdir",
+    "context": null,
+    "detail": "Remove one or more empty directories from the specified file system.",
+    "syntax": "rmdir filesystem:/directory-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use usbflash0: for USB memory sticks."
+      },
+      {
+        "name": "/directory-url...",
+        "description": "Path (directory) and name of the empty directories to remove. Separate each directory name with a space."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Directory names are case sensitive and limited to 45 characters between the slashes (/); the name cannot contain control characters, spaces, deletes, slashes, quotes, semicolons, or colons.  Before removing a directory, you must first delete all of the files in the directory.  The device prompts you for confirmation before deleting each directory.",
+    "sourcePage": 1230,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "sdm prefer",
+    "context": null,
+    "detail": "Specify the SDM template for use on the switch.",
+    "syntax": "sdm prefer {advanced}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "advanced",
+        "description": "Supports advanced features such as NetFlow."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "In a device stack, all stack members must use the same SDM template that is stored on the active device.  When a new device is added to a stack, the SDM configuration that is stored on the active device overrides the template configured on an individual device.",
+    "sourcePage": 1231,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set",
+    "context": null,
+    "detail": "Set or display environment variables.",
+    "syntax": "set variable value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "variable",
+        "description": "Use one of the following keywords for variable and the appropriate value for value: value MANUAL_BOOT—Decides whether the device automatically or manually boots. Valid values are 1/Yes and 0/No. If it is set to 0 or No, the boot loader attempts to automatically boot the system. If it is set to anything else, you must manually boot the device from the boot loader mode. BOOT filesystem:/file-url—Identifies a semicolon-separated list of executable files to try to load and execute when automatically booting. If the BOOT environment variable is not set, the system attempts to load and execute the first executable image it can find by using a recursive, depth-first search through the flash: file system. If the BOOT variable is set but the specified images cannot be loaded, the system attempts to boot the first bootable file that it can find in the flash: file system. ENABLE_BREAK—Allows the automatic boot process to be interrupted when the user presses the Break key on the console. Valid values are 1, Yes, On, 0, No, and Off. If set to 1, Yes, or On, you can interrupt the automatic boot process by pressing the Break key on the console after the flash: file system has initialized. HELPER filesystem:/file-url—Identifies a semicolon-separated list of loadable files to dynamically load during the boot loader initialization. Helper files extend or patch the functionality of the boot loader. PS1 prompt—Specifies a string that is used as the command-line prompt in boot loader mode. CONFIG_FILE flash: /file-url—Specifies the filename that Cisco IOS uses to read and write a nonvolatile copy of the system configuration. BAUD rate—Specifies the number of bits per second (b/s) that is used for the baud rate for the console. The Cisco IOS software inherits the baud rate setting from the boot loader and continues to use this value unless the configuration file specifies another setting. The range is from 0 to 128000 b/s. Valid values are 50, 75, 110, 150, 300, 600, 1200, 1800, 2000, 2400, 3600, 4800, 7200, 9600, 14400, 19200, 28800, 38400, 56000, 57600, 115200, and 128000. The most commonly used values are 300, 1200, 2400, 9600, 19200, 57600, and 115200. SWITCH_NUMBER stack-member-number—Changes the member number of a stack member. SWITCH_PRIORITY priority-number—Changes the priority value of a stack member."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Environment variables are case sensitive and must be entered as documented.  Environment variables that have values are stored in flash memory outside of the flash: file system.  Under typical circumstances, it is not necessary to alter the setting of the environment variables.",
+    "sourcePage": 1232,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show avc client",
+    "context": null,
+    "detail": "Display information about top number of applications.",
+    "syntax": "show avc client client-mac top n application [aggregate | upstream | downstream]",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1235,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show cable-diagnostics tdr",
+    "context": null,
+    "detail": "Display the Time Domain Reflector (TDR) results.",
+    "syntax": "show cable-diagnostics tdr interface interface-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "Specifies the interface on which TDR is run."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "TDR is supported only on 10/100/100 copper Ethernet ports.  It is not supported on 10-Gigabit Ethernet ports and small form-factor pluggable (SFP) module ports.",
+    "sourcePage": 1236,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show debug",
+    "context": null,
+    "detail": "Display all the debug commands available on a switch.",
+    "syntax": "show debug show debug condition Condition identifier | All conditions",
+    "noForm": null,
+    "params": [
+      {
+        "name": "All conditions",
+        "description": "Shows all conditional debugging options available."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Because debugging output is assigned high priority in the CPU process, it can render the system unusable.  For this reason, use debug commands only to troubleshoot specific problems or during troubleshooting sessions with Cisco technical support staff.  Moreover, it is best to use debug commands during periods of lower network traffic and fewer users.",
+    "sourcePage": 1238,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show env",
+    "context": null,
+    "detail": "Display fan, temperature, and power information for the switch (standalone switch, active switch, or standby switch).",
+    "syntax": "show env { all | fan | power [all | switch [switch-number]] | stack [stack-number ] | temperature [status] }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays fan, temperature and power environmental status."
+      },
+      {
+        "name": "fan",
+        "description": "Displays the switch fan status."
+      },
+      {
+        "name": "power",
+        "description": "Displays the power supply status."
+      },
+      {
+        "name": "all",
+        "description": "(Optional) Displays the status for all power supplies."
+      },
+      {
+        "name": "switch switch-number",
+        "description": "(Optional) Displays the power supply status for a specific switch."
+      },
+      {
+        "name": "stack switch-number",
+        "description": "(Optional) Displays all environmental status for each switch in the stack or for a specified switch. The range is 1 to 9, depending on the switch member numbers in the stack."
+      },
+      {
+        "name": "temperature",
+        "description": "Displays the switch temperature status."
+      },
+      {
+        "name": "status",
+        "description": "(Optional) Displays the temperature status and threshold values."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "Use the show env stack [switch-number] command to display information about any switch in the stack from any member switch.  Use the show env temperature status command to display the switch temperature states and threshold levels.",
+    "sourcePage": 1239,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show env xps",
+    "context": null,
+    "detail": "Display budgeting, configuration, power, and system power information for the Cisco eXpandable Power System (XPS) 2200.",
+    "syntax": "show env xps { budgeting | configuration | port [ all | number ] | power | system | thermal | upgrade | version }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "budgeting",
+        "description": "Displays XPS power budgeting, the allocated and budgeted power of all switches in the power stack."
+      },
+      {
+        "name": "configuration",
+        "description": "Displays the configuration resulting from the power xps privileged EXEC commands. The XPS configuration is stored in the XPS. Enter the show env xps configuration command to retrieve the non-default configuration."
+      },
+      {
+        "name": "port [all | number ]",
+        "description": "Displays the configuration and status of all ports or the specified XPS port. Port numbers are from 1 to 9."
+      },
+      {
+        "name": "power",
+        "description": "Displays the status of the XPS power supplies."
+      },
+      {
+        "name": "system",
+        "description": "Displays the XPS system status."
+      },
+      {
+        "name": "thermal",
+        "description": "Displays the XPS thermal status."
+      },
+      {
+        "name": "upgrade",
+        "description": "Displays the XPS upgrade status."
+      },
+      {
+        "name": "version",
+        "description": "Displays the XPS version details."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the show env xps privileged EXEC command to display the information for XPS 2200.",
+    "sourcePage": 1241,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show flow monitor",
+    "context": null,
+    "detail": "Display the status and statistics for a Flexible NetFlow flow monitor.",
+    "syntax": "show flow monitor [{broker [{detail | picture}] | [name] monitor-name [{cache [format {csv | record | table} | aggregate | filter | sort]}] | provisioning | statistics}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "broker",
+        "description": "(Optional) Displays information about the state of the broker for the flow monitor"
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information about the flow monitor broker."
+      },
+      {
+        "name": "picture",
+        "description": "(Optional) Displays a picture of the broker state."
+      },
+      {
+        "name": "name",
+        "description": "(Optional) Specifies the name of a flow monitor."
+      },
+      {
+        "name": "monitor-name",
+        "description": "(Optional) Name of a flow monitor that was previously configured."
+      },
+      {
+        "name": "cache",
+        "description": "(Optional) Displays the contents of the cache for the flow monitor."
+      },
+      {
+        "name": "format",
+        "description": "(Optional) Specifies the use of one of the format options for formatting the display output."
+      },
+      {
+        "name": "aggregate",
+        "description": "(Optional) Displays an aggregate of the given fields."
+      },
+      {
+        "name": "filter",
+        "description": "(Optional) Filters and displays only matching flow records."
+      },
+      {
+        "name": "sort",
+        "description": "(Optional) Sorts the resulting flow records in the required order."
+      },
+      {
+        "name": "csv",
+        "description": "(Optional) Displays the flow monitor cache contents in comma-separated variables (CSV) format."
+      },
+      {
+        "name": "record",
+        "description": "(Optional) Displays the flow monitor cache contents in record format."
+      },
+      {
+        "name": "table",
+        "description": "(Optional) Displays the flow monitor cache contents in table format."
+      },
+      {
+        "name": "provisioning",
+        "description": "(Optional) Displays the flow monitor provisioning information."
+      },
+      {
+        "name": "statistics",
+        "description": "(Optional) Displays the statistics for the flow monitor."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The cache keyword uses the record format by default.  The uppercase field names in the display output of the show flowmonitor monitor-name cache command are key fields that Flexible NetFlow uses to differentiate flows.  The lowercase field names in the display output of the show flow monitor monitor-name cache command are nonkey fields from which Flexible NetFlow collects values as additional data for the cache.",
+    "sourcePage": 1245,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show install",
+    "context": null,
+    "detail": "Display information about install packages.",
+    "syntax": "show install {active | committed | inactive | log | package {bootflash: | flash: | webui:} | rollback | summary | uncommitted}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "active",
+        "description": "Displays information about active packages."
+      },
+      {
+        "name": "committed",
+        "description": "Displays package activations that are persistent."
+      },
+      {
+        "name": "inactive",
+        "description": "Displays inactive packages."
+      },
+      {
+        "name": "log",
+        "description": "Displays entries stored in the logging installation buffer."
+      },
+      {
+        "name": "package",
+        "description": "Displays metadata information about the package, including description, restart information, components in the package, and so on."
+      },
+      {
+        "name": "{bootflash: | flash: | harddisk: |webui:}",
+        "description": "Specifies the location of the install package."
+      },
+      {
+        "name": "rollback",
+        "description": "Displays the software set associated with a saved installation."
+      },
+      {
+        "name": "summary",
+        "description": "Displays information about the list of active, inactive, committed, and superseded packages."
+      },
+      {
+        "name": "uncommitted",
+        "description": "Displays package activations that are nonpersistent."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Use the show commands to view the status of the install package.",
+    "sourcePage": 1250,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license all",
+    "context": null,
+    "detail": "Display the entitlements information.",
+    "syntax": "show license all",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The command also displays whether smart licensing is enabled, all associated licensing certificates, compliance status, and so on.",
+    "sourcePage": 1252,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license status",
+    "context": null,
+    "detail": "Display the compliance status of a license.",
+    "syntax": "show license status",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1256,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license summary",
+    "context": null,
+    "detail": "Display a summary of all active licenses.",
+    "syntax": "show license summary",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1259,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license tech support",
+    "context": null,
+    "detail": "Display detailed licensing information, which the technical support team can use for troubleshooting.",
+    "syntax": "show license tech support",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1263,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license udi",
+    "context": null,
+    "detail": "Display the Unique Device Identifier (UDI).",
+    "syntax": "show license udi",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1267,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show license usage",
+    "context": null,
+    "detail": "Display license usage information.",
+    "syntax": "show license usage",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1268,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show location",
+    "context": null,
+    "detail": "Display location information.",
+    "syntax": "show location {detail mac-addr | plm | statistics| summary rfid | rfid {client | config | detail MAC-addr | summary}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "detail mac-addr",
+        "description": "Displays detailed location information with the RSSI table for a particular client."
+      },
+      {
+        "name": "plm",
+        "description": "Displays location path loss measurement (CCX S60) configuration."
+      },
+      {
+        "name": "statistics",
+        "description": "Displays location-based system statistics."
+      },
+      {
+        "name": "summary",
+        "description": "Displays location-based system summary information."
+      },
+      {
+        "name": "rfid",
+        "description": "Displays the RFID tag tracking information."
+      },
+      {
+        "name": "client",
+        "description": "Displays the summary of RFID tags that are clients."
+      },
+      {
+        "name": "config",
+        "description": "Displays the configuration options for RFID tag tracking."
+      },
+      {
+        "name": "detail MAC-addr",
+        "description": "Displays the detailed information for one rfid tag."
+      },
+      {
+        "name": "summary",
+        "description": "Displays summary information for all known rfid tags."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1269,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show location ap-detect",
+    "context": null,
+    "detail": "Display the location information detected by specified access point.",
+    "syntax": "show location ap-detect {all | client | rfid | rogue-ap | rogue-client} ap-name",
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays information of the client, RFID, rogue access point, and rogue client."
+      },
+      {
+        "name": "client",
+        "description": "Displays the client information."
+      },
+      {
+        "name": "rfid",
+        "description": "Displays RFID information."
+      },
+      {
+        "name": "rogue-ap",
+        "description": "Displays rogue access point information."
+      },
+      {
+        "name": "rogue-client",
+        "description": "Displays rogue client information."
+      },
+      {
+        "name": "ap-name",
+        "description": "Specified access point name."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1270,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show logging onboard switch uptime",
+    "context": null,
+    "detail": "Display a history of all reset reasons for all modules or switches in a system.",
+    "syntax": "show logging onboard switch { switch-number | active | standby } uptime [[[continuous | detail][start hour day month [year][end hour day month year]]] |summary]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Specifies a switch. Enter the switch number."
+      },
+      {
+        "name": "active",
+        "description": "Specifies the active instance."
+      },
+      {
+        "name": "standby",
+        "description": "Specifies the standby instance."
+      },
+      {
+        "name": "continuous",
+        "description": "(Optional) Displays continuous data."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed data."
+      },
+      {
+        "name": "start hour day month year",
+        "description": "(Optional) Specifies the start time to display data."
+      },
+      {
+        "name": "end hour day month year",
+        "description": "(Optional) Specifies the end time to display data."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays summary data."
+      }
+    ],
+    "modes": ["Privileged EXEC(#)"],
+    "usageSummary": null,
+    "sourcePage": 1272,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show mac address-table move update",
+    "context": null,
+    "detail": "Display the MAC address-table move update information on the device.",
+    "syntax": "show mac address-table move update",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": null,
+    "sourcePage": 1275,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform integrity",
+    "context": null,
+    "detail": "Display checksum record for the boot stages.",
+    "syntax": "show platform integrity [sign [nonce <nonce>]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "sign",
+        "description": "(Optional) Show signature"
+      },
+      {
+        "name": "nonce",
+        "description": "(Optional) Enter a nonce value"
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1276,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch punt cause",
+    "context": null,
+    "detail": "Display information about why the packets received on an interface are punted to the Router Processor (RP).",
+    "syntax": "show platform software fed switch {switch-number | active | standby} punt{cause_id | clear | summary}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch-number |",
+        "description": "Displays information about the switch. You have the following options: active | standby} • switch-number. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note This keyword is not supported."
+      },
+      {
+        "name": "cause_id",
+        "description": "Specifies the ID of the cause for which the details have to be displayed."
+      },
+      {
+        "name": "clear",
+        "description": "Clears the statistics for all the causes. Clearing the causes might result in inconsistent statistics."
+      },
+      {
+        "name": "summary",
+        "description": "Displays a high-level overview of the punt reason."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "None",
+    "sourcePage": 1277,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed switch punt cpuq",
+    "context": null,
+    "detail": "Display information about the punt traffic on CPU queues.",
+    "syntax": "show platform software fed switch {switch-number | active | standby} punt cpuq {cpuq_id | all | brief | clear | rates}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch-number active standby}",
+        "description": "Displays information about the switch. You have the following options: • switch-number. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note This keyword is not supported."
+      },
+      {
+        "name": "punt",
+        "description": "Displays the punt informtion."
+      },
+      {
+        "name": "cpuq",
+        "description": "Displays information about the CPU receive queue."
+      },
+      {
+        "name": "cpuq_id",
+        "description": "Specifies details specific to a particular CPU queue."
+      },
+      {
+        "name": "all",
+        "description": "Displays the statistics for all the CPU queues."
+      },
+      {
+        "name": "brief",
+        "description": "Displays summarized statistics for all the queues like details about punt packets received and dropped."
+      },
+      {
+        "name": "clear",
+        "description": "Clears the statistics for all the CPU queues. Clearing the CPU queue might result in inconsistent statistics."
+      },
+      {
+        "name": "rates",
+        "description": "Displays the rate at which the packets are punted."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "None Command Reference, Cisco IOS XE Gibraltar 16. 12.",
+    "sourcePage": 1279,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform sudi certificate",
+    "context": null,
+    "detail": "Display checksum record for the specific SUDI.",
+    "syntax": "show platform sudi certificate [sign [nonce <nonce>]]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "sign",
+        "description": "(Optional) Show signature"
+      },
+      {
+        "name": "nonce",
+        "description": "(Optional) Enter a nonce value"
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1282,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show sdm prefer",
+    "context": null,
+    "detail": "Display information about the templates that can be used to maximize system resources for a particular feature.",
+    "syntax": "show sdm prefer [advanced]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "advanced",
+        "description": "(Optional) Displays information on the advanced template."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If you did not reload the switch after entering the sdm prefer global configuration command, the show sdm prefer privileged EXEC command displays the template currently in use and not the newly configured template.  The numbers displayed for each template represent an approximate maximum number for each feature resource.  The actual number might vary, depending on the actual number of other features configured.",
+    "sourcePage": 1284,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support license",
+    "context": null,
+    "detail": "Display the debug output.",
+    "syntax": "show tech-support license",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1286,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform evpn_vxlan",
+    "context": null,
+    "detail": "Display Ethernet VPN (EVPN)-Virtual eXtensible LAN (VXLAN)-related platform information for use by technical support.",
+    "syntax": "show tech-support platform evpn_vxlan switch switch-number",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch switch-number",
+        "description": "Displays information for the specified switch. Valid values are from 1 to 9."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support platform evpn_vxlan switch 1 | redirect flash:filename) in the local writable storage file system or remote file system.",
+    "sourcePage": 1288,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform fabric",
+    "context": null,
+    "detail": "Display information about the switch fabric.",
+    "syntax": "show tech-support platform fabric [{display-cli | vrf vrf-name {ipv4 display-cli | ipv6 display-cli | source instance-id instance-id {ipv4 ip-address/ip-prefix | ipv6 ipv6-address/ipv6-prefix | mac mac-address} {dest instance-id instance-id} {ipv4 ip-address/ip-prefix | ipv6 ipv6-address/ipv6-prefix | mac mac-address} [{display-cli}]}}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "display-cli",
+        "description": "(Optional) Displays the list of show commands available in the output of this command."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "(Optional) Displays fabric-related information for the specified virtual routing and forwarding (VRF) instance."
+      },
+      {
+        "name": "ipv4 ip-address/ip-prefix",
+        "description": "(Optional) Displays fabric-related information for the source or destination IP VRF."
+      },
+      {
+        "name": "ipv6 ipv6-address/ipv6-prefix",
+        "description": "(Optional) Displays fabric-related information for the source or destination IPv6 VRF."
+      },
+      {
+        "name": "source",
+        "description": "(Optional) Displays fabric-related information for the source VRF."
+      },
+      {
+        "name": "instance-id instance-id",
+        "description": "(Optional) Displays information about the endpoint identifier (EID) of the source."
+      },
+      {
+        "name": "mac mac-address",
+        "description": "(Optional) Displays fabric-related information for the source and destination MAC VRF for Layer 2 extension deployments."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support platform fabric | redirect flash:filename) in the local writable storage file system or remote file system.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 1290,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform igmp_snooping",
+    "context": null,
+    "detail": "Display Internet Group Management Protocol (IGMP) snooping information about a group.",
+    "syntax": "show tech-support platform igmp_snooping [{Group_ipAddr ipv4-address | [{vlan vlan-ID}]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Group_ipAddr",
+        "description": "(Optional) Displays snooping information about the specified group address."
+      },
+      {
+        "name": "ipv4-address",
+        "description": "(Optional) IPv4 address of the group."
+      },
+      {
+        "name": "vlan vlan-ID",
+        "description": "(Optional) Displays IGMP snooping VLAN information. Valid values are from 1 to 4094."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1294,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform mld_snooping",
+    "context": null,
+    "detail": "Display Multicast Listener Discovery (MLD) snooping information about a group.",
+    "syntax": "show tech-support platform mld_snooping [{Group_ipv6Addr ipv6-address }][{vlan vlan-ID}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Group_ipv6Addr",
+        "description": "(Optional) Displays snooping information about the specified group address."
+      },
+      {
+        "name": "ipv6-address",
+        "description": "(Optional) IPv6 address of the group."
+      },
+      {
+        "name": "vlan vlan-ID",
+        "description": "(Optional) Displays MLD snooping VLAN information. Valid values are from 1 to 4094."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support platform mld_snooping | redirect flash:filename) in the local writable storage file system or remote file system.",
+    "sourcePage": 1297,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform layer3",
+    "context": null,
+    "detail": "Display Layer 3 platform forwarding information.",
+    "syntax": "show tech-support platform layer3 {multicast Group_ipAddr ipv4-address switch switch-number srcIP ipv4-address | unicast {dstIP ipv4-address srcIP ipv4-address | vrf vrf-name destIP ipv4-address srcIP ipv4-address}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "multicast",
+        "description": "Displays multicast information."
+      },
+      {
+        "name": "Group_ipv6Addr ipv4-address",
+        "description": "Displays information about the specified multicast group address."
+      },
+      {
+        "name": "switch switch-number",
+        "description": "Displays information about the specified switch. Valid values are from 1 to 9."
+      },
+      {
+        "name": "srcIP ipv4-address",
+        "description": "Displays information about the specified source address."
+      },
+      {
+        "name": "unicast",
+        "description": "Displays unicast-related information."
+      },
+      {
+        "name": "dstIP ipv4-address",
+        "description": "Displays information about the specified destination address."
+      },
+      {
+        "name": "vrf vrf-name",
+        "description": "Displays unicast-related virtual routing and forwarding (VRF) information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of this command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support platform layer3 multicast group 224. 1.",
+    "sourcePage": 1304,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support port",
+    "context": null,
+    "detail": "Display port-related information for use by technical support.",
+    "syntax": "show tech-support port",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of the show tech-support port command is very long.  To better manage this output, you can redirect the output to an external file (for example, show tech-support port | redirect flash:filename) in the local writable storage file system or remote file system.  The output of this command displays the following commands: • show clock • show version • show module • show inventory • show interface status • show interface counters • show interface counters errors • show interfaces • show interfaces capabilities • show controllers • show controllers utilization • show idprom interface • show controller ethernet-controller phy detail • show switch • show platform software fed switch active port summary • show platform software fed switch ifm interfaces ethernet • show platform software fed switch ifm mappings • show platform software fed switch ifm mappings lpn Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 1312,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support platform",
+    "context": null,
+    "detail": "Display detailed information about a platform for use by technical support.",
+    "syntax": "show tech-support platform",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "This command is used for platform-specific debugging.  The output provides detailed information about a platform, such as CPU usage, Ternary Content Addressable Memory (TCAM) usage, capacity, and memory usage.  The output of the show tech-support platform command is very long.",
+    "sourcePage": 1315,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show version",
+    "context": null,
+    "detail": "Display information about the currently loaded software along with hardware and device information.",
+    "syntax": "show version",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC (>) Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1319,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "system env temperature threshold yellow",
+    "context": null,
+    "detail": "Configure the difference between the yellow and red temperature thresholds that determines the value of yellow threshold.",
+    "syntax": "system env temperature threshold yellow value",
+    "noForm": "no system env temperature threshold yellow value",
+    "params": [
+      {
+        "name": "value",
+        "description": "Specifies the difference between the yellow and red threshold values (in Celsius). The range is 10 to 25."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "You cannot configure the green and red thresholds but can configure the yellow threshold.  Use the system env temperature threshold yellow value global configuration command to specify the difference between the yellow and red thresholds and to configure the yellow threshold.  For example, if the red threshold is 66 degrees C and you want to configure the yellow threshold as 51 degrees C, set the difference between the thresholds as 15 by using the system env temperature threshold yellow 15 command.",
+    "sourcePage": 1322,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "test cable-diagnostics tdr",
+    "context": null,
+    "detail": "Run the Time Domain Reflector (TDR) feature on an interface.",
+    "syntax": "test cable-diagnostics tdr interface interface-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "The interface on which to run TDR."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "TDR is supported only on 10/100/100 copper Ethernet ports.  It is not supported on 10-Gigabit Ethernet ports or small form-factor pluggable (SFP) module ports.  After you run TDR by using the test cable-diagnostics tdr interface interface-id command, use the show cable-diagnostics tdr interface interface-id privileged EXEC command to display the results.",
+    "sourcePage": 1324,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "traceroute mac",
+    "context": null,
+    "detail": "Display the Layer 2 path taken by the packets from the specified source MAC address to the specified destination MAC address.",
+    "syntax": "traceroute mac [interface interface-id] source-mac-address [interface interface-id] destination-mac-address [vlan vlan-id] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Specifies an interface on the source or destination device."
+      },
+      {
+        "name": "source-mac-address",
+        "description": "The MAC address of the source device in hexadecimal format. destination-mac-address The MAC address of the destination device in hexadecimal format."
+      },
+      {
+        "name": "vlan vlan-id",
+        "description": "(Optional) Specifies the VLAN on which to trace the Layer 2 path that the packets take from the source device to the destination device. Valid VLAN IDs are 1 to 4094."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Specifies that detailed information appears."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "For Layer 2 traceroute to function properly, Cisco Discovery Protocol (CDP) must be enabled on all of the devicees in the network.  Do not disable CDP.  When the device detects a device in the Layer 2 path that does not support Layer 2 traceroute, the device continues to send Layer 2 trace queries and lets them time out.",
+    "sourcePage": 1325,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "traceroute mac ip",
+    "context": null,
+    "detail": "Display the Layer 2 path taken by the packets from the specified source IP address or hostname to the specified destination IP address or hostname.",
+    "syntax": "traceroute mac ip {source-ip-address source-hostname} {destination-ip-address destination-hostname} [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "source-ip-address",
+        "description": "The IP address of the source device as a 32-bit quantity in dotted-decimal format."
+      },
+      {
+        "name": "source-hostname",
+        "description": "The IP hostname of the source device. destination-ip-address The IP address of the destination device as a 32-bit quantity in dotted-decimal format. destination-hostname The IP hostname of the destination device."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Specifies that detailed information appears."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "For Layer 2 traceroute to function properly, Cisco Discovery Protocol (CDP) must be enabled on each device in the network.  Do not disable CDP.  When the device detects a device in the Layer 2 path that does not support Layer 2 traceroute, the device continues to send Layer 2 trace queries and lets them time out.",
+    "sourcePage": 1328,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "type",
+    "context": null,
+    "detail": "Display the contents of one or more files.",
+    "syntax": "type filesystem:/file-url...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "filesystem:",
+        "description": "Alias for a file system. Use flash: for the system board flash device; use usbflash0: for USB memory sticks. /file-url... Path (directory) and name of the files to display. Separate each filename with a space."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Filenames and directory names are case sensitive.  If you specify a list of files, the contents of each file appear sequentially.",
+    "sourcePage": 1330,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "unset",
+    "context": null,
+    "detail": "Reset one or more environment variables.",
+    "syntax": "unset variable...",
+    "noForm": null,
+    "params": [
+      {
+        "name": "variable",
+        "description": "Use one of these keywords for variable: MANUAL_BOOT—Specifies whether the device automatically or manually boots. BOOT—Resets the list of executable files to try to load and execute when automatically booting. If the BOOT environment variable is not set, the system attempts to load and execute the first executable image it can find by using a recursive, depth-first search through the flash: file system. If the BOOT variable is set but the specified images cannot be loaded, the system attempts to boot the first bootable file that it can find in the flash: file system. ENABLE_BREAK—Specifies whether the automatic boot process can be interrupted by using the Break key on the console after the flash: file system has been initialized. HELPER—Identifies the semicolon-separated list of loadable files to dynamically load during the boot loader initialization. Helper files extend or patch the functionality of the boot loader. PS1—Specifies the string that is used as the command-line prompt in boot loader mode. CONFIG_FILE—Resets the filename that Cisco IOS uses to read and write a nonvolatile copy of the system configuration. BAUD—Resets the rate in bits per second (b/s) used for the console. The Cisco IOS software inherits the baud rate setting from the boot loader and continues to use this value unless the configuration file specifies another setting."
+      }
+    ],
+    "modes": ["Boot loader"],
+    "usageSummary": "Under typical circumstances, it is not necessary to alter the setting of the environment variables.  The MANUAL_BOOT environment variable can also be reset by using the no boot manual global configuration command.  The BOOT environment variable can also be reset by using the no boot system global configuration command.",
+    "sourcePage": 1331,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "version",
+    "context": null,
+    "detail": "Display the boot loader version.",
+    "syntax": "version",
+    "noForm": null,
+    "params": [],
+    "modes": ["Boot loader"],
+    "usageSummary": null,
+    "sourcePage": 1333,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

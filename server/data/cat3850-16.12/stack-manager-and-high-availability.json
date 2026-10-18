@@ -1,0 +1,1003 @@
+[
+  {
+    "name": "debug platform stack-manager",
+    "context": null,
+    "detail": "Enable debugging of the stack manager software.",
+    "syntax": "debug platform stack-manager {level1 | level2 | level3 | sdp | serviceability | sim | ssm | trace} [{switch switch-number}] [{switch switch-number}]",
+    "noForm": "no debug platform stack-manager {level1 | level2 | level3 | sdp | serviceability | sim | ssm | trace}",
+    "params": [
+      {
+        "name": "level1",
+        "description": "Enables level 1 debug logs."
+      },
+      {
+        "name": "level2",
+        "description": "Enables level 2 debug logs."
+      },
+      {
+        "name": "level3",
+        "description": "Enables level 3 debug logs."
+      },
+      {
+        "name": "sdp",
+        "description": "Displays the Stack Discovery Protocol (SDP) debug messages."
+      },
+      {
+        "name": "serviceability",
+        "description": "Displays stack manager serviceability debug messages."
+      },
+      {
+        "name": "sim",
+        "description": "Displays the stack information module debug messages."
+      },
+      {
+        "name": "ssm",
+        "description": "Displays the stack state-machine debug messages."
+      },
+      {
+        "name": "trace",
+        "description": "Traces the stack manager entry and exit debug messages."
+      },
+      {
+        "name": "switch switch-number",
+        "description": "(Optional) Specifies the stack member number to enable debugging on. The range is 1 to 9."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "This command is supported only on stacking-capable switches.  The undebug platform stack-manager command is the same as the no debug platform stack-manager command.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 1091,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "domain id",
+    "context": null,
+    "detail": "Configure Cisco StackWise Virtual domain ID on a switch.",
+    "syntax": "domain id",
+    "noForm": "no domain id",
+    "params": [
+      {
+        "name": "domain",
+        "description": "Associates StackWise Virtual configuration with a specific domain."
+      },
+      {
+        "name": "id",
+        "description": "Value of the domain ID. The range is from 1 to 255. The default is one."
+      }
+    ],
+    "modes": ["StackWise Virtual configuration (config-stackwise-virtual)"],
+    "usageSummary": "This command is optional.  You must enable Stackwise Virtual, using the stackwise-virtual command, before configuring the domain ID.",
+    "sourcePage": 1092,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dual-active recovery-reload-disable",
+    "context": null,
+    "detail": "Disable automatic recovery reload of a switch.",
+    "syntax": "dual-active recovery-reload-disable",
+    "noForm": "no dual-active recovery-reload-disable",
+    "params": [],
+    "modes": ["StackWise Virtual configuration (config-stackwise-virtual)"],
+    "usageSummary": null,
+    "sourcePage": 1093,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "dual-active detection pagp",
+    "context": null,
+    "detail": "Enable PAgP dual-active detection.",
+    "syntax": "dual-active detection pagp",
+    "noForm": "no dual-active detection pagp",
+    "params": [],
+    "modes": ["StackWise Virtual configuration (config-stackwise-virtual)"],
+    "usageSummary": null,
+    "sourcePage": 1094,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mode sso",
+    "context": null,
+    "detail": "Set the redundancy mode to stateful switchover (SSO).",
+    "syntax": "mode sso",
+    "noForm": null,
+    "params": [],
+    "modes": ["Redundancy configuration"],
+    "usageSummary": "The mode sso command can be entered only from within redundancy configuration mode.  Follow these guidelines when configuring your system to SSO mode: • You must use identical Cisco IOS images on the switches in the stack to support SSO mode.  Redundancy may not work due to differences between the Cisco IOS releases.",
+    "sourcePage": 1095,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "main-cpu",
+    "context": null,
+    "detail": "Enter the redundancy main configuration submode and enable the standby switch.",
+    "syntax": "main-cpu",
+    "noForm": null,
+    "params": [],
+    "modes": ["Redundancy configuration (config-red)"],
+    "usageSummary": "From the redundancy main configuration submode, use the standby console enable command to enable the standby switch.  This example shows how to enter the redundancy main configuration submode and enable the standby switch: Device(config)# redundancy Device(config-red)# main-cpu Device(config-r-mc)# standby console enable Device# Command Reference, Cisco IOS XE Gibraltar 16. 12.",
+    "sourcePage": 1096,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "policy config-sync prc reload",
+    "context": null,
+    "detail": "Reload the standby switch if a parser return code (PRC) failure occurs during configuration synchronization.",
+    "syntax": "policy config-sync {bulk | lbl} prc reload",
+    "noForm": "no policy config-sync {bulk | lbl} prc reload",
+    "params": [
+      {
+        "name": "bulk",
+        "description": "Specifies bulk configuration mode."
+      },
+      {
+        "name": "lbl",
+        "description": "Specifies line-by-line (lbl) configuration mode."
+      }
+    ],
+    "modes": ["Redundancy configuration (config-red)"],
+    "usageSummary": null,
+    "sourcePage": 1097,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "mode sso",
+    "context": null,
+    "detail": "Set the redundancy mode to stateful switchover (SSO).",
+    "syntax": "mode sso",
+    "noForm": null,
+    "params": [],
+    "modes": ["Redundancy configuration"],
+    "usageSummary": "The mode sso command can be entered only from within redundancy configuration mode.  Follow these guidelines when configuring your system to SSO mode: • You must use identical Cisco IOS images on the switches in the stack to support SSO mode.  Redundancy may not work due to differences between the Cisco IOS releases.",
+    "sourcePage": 1098,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "policy config-sync prc reload",
+    "context": null,
+    "detail": "Reload the standby switch if a parser return code (PRC) failure occurs during configuration synchronization.",
+    "syntax": "policy config-sync {bulk | lbl} prc reload",
+    "noForm": "no policy config-sync {bulk | lbl} prc reload",
+    "params": [
+      {
+        "name": "bulk",
+        "description": "Specifies bulk configuration mode."
+      },
+      {
+        "name": "lbl",
+        "description": "Specifies line-by-line (lbl) configuration mode."
+      }
+    ],
+    "modes": ["Redundancy configuration (config-red)"],
+    "usageSummary": null,
+    "sourcePage": 1099,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redundancy config-sync mismatched-commands",
+    "context": null,
+    "detail": "Allow the standby switch to join the stack if a configuration mismatch occurs between the active and standby switches.",
+    "syntax": "redundancy config-sync {ignore | validate} mismatched-commands",
+    "noForm": null,
+    "params": [
+      {
+        "name": "ignore",
+        "description": "Ignores the mismatched command list."
+      },
+      {
+        "name": "validate",
+        "description": "Revalidates the mismatched command list with the modified running-configuration."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If the command syntax check in the running configuration of the active switch fails while the standby switch is booting, use the redundancy config-sync mismatched-commands command to display the Mismatched Command List (MCL) on the active switch and to reboot the standby switch.  The following is a log entry example for mismatched commands: 00:06:31: Config Sync: Bulk-sync failure due to Servicing Incompatibility.  Please check full list of mismatched commands via: show redundancy config-sync failures mcl 00:06:31: Config Sync: Starting lines from MCL file: interface GigabitEthernet7/7 ! <submode> \"interface\" - ip address 192.",
+    "sourcePage": 1100,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redundancy",
+    "context": null,
+    "detail": "Enter redundancy configuration mode.",
+    "syntax": "redundancy",
+    "noForm": null,
+    "params": [],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The redundancy configuration mode is used to enter the main CPU submode, which is used to enable the standby switch.  To enter the main CPU submode, use the main-cpu command while in redundancy configuration mode.  From the main CPU submode, use the standby console enable command to enable the standby switch.",
+    "sourcePage": 1102,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redundancy force-switchover",
+    "context": null,
+    "detail": "Force a switchover from the active switch to the standby switch.",
+    "syntax": "redundancy force-switchover",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the redundancy force-switchover command to manually switch over to the redundant switch.  The redundant switch becomes the new active switch that runs the Cisco IOS image, and the modules are reset to their default settings.  The old active switch reboots with the new image and joins the stack.",
+    "sourcePage": 1103,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "redundancy reload",
+    "context": null,
+    "detail": "Force a reload of one or all of the switches in the stack.",
+    "syntax": "redundancy reload {peer | shelf}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "peer",
+        "description": "Reloads the peer unit."
+      },
+      {
+        "name": "shelf",
+        "description": "Reboots all switches in the stack."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Before using this command, see the “Performing a Software Upgrade” section of the Stacking Configuration Guide (Catalyst 3850 Switches) for additional information.  Use the redundancy reload shelf command to reboot all the switches in the stack.  This example shows how to manually reload all switches in the stack: Device# redundancy reload shelf Device# Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 1104,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "reload",
+    "context": null,
+    "detail": "Reload the stack member and to apply a configuration change.",
+    "syntax": "reload [{/noverify | /verify}] [{LINE | at | cancel | in | slot stack-member-number | standby-cpu}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/noverify",
+        "description": "(Optional) Specifies to not verify the file signature before the reload."
+      },
+      {
+        "name": "/verify",
+        "description": "(Optional) Verifies the file signature before the reload."
+      },
+      {
+        "name": "LINE",
+        "description": "(Optional) Reason for the reload."
+      },
+      {
+        "name": "at",
+        "description": "(Optional) Specifies the time in hh:mm for the reload to occur."
+      },
+      {
+        "name": "cancel",
+        "description": "(Optional) Cancels the pending reload."
+      },
+      {
+        "name": "in",
+        "description": "(Optional) Specifies a time interval for reloads to occur."
+      },
+      {
+        "name": "slot",
+        "description": "(Optional) Saves the changes on the specified stack member and then restarts it."
+      },
+      {
+        "name": "stack-member-number",
+        "description": "(Optional) Stack member number on which to save the changes. The range is 1 to 9."
+      },
+      {
+        "name": "standby-cpu",
+        "description": "(Optional) Reloads the standby route processor (RP)."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If there is more than one switch in the switch stack, and you enter the reload slot stack-member-number command, you are not prompted to save the configuration.",
+    "sourcePage": 1105,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "reload",
+    "context": null,
+    "detail": null,
+    "syntax": "This example shows how to reload a single-switch switch stack (there is only one member switch): Device# reload slot 3 System configuration has been modified. Save? [yes/no]: y Proceed to reload the whole Stack? [confirm] y Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 1104 Stack Manager and High Availability reload reload To reload the stack member and to apply a configuration change, use the reload command in privileged EXEC mode. reload [{/noverify | /verify}] [{LINE | at | cancel | in | slot stack-member-number | standby-cpu}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "/noverify",
+        "description": "(Optional) Specifies to not verify the file signature before the reload."
+      },
+      {
+        "name": "/verify",
+        "description": "(Optional) Verifies the file signature before the reload."
+      },
+      {
+        "name": "LINE",
+        "description": "(Optional) Reason for the reload."
+      },
+      {
+        "name": "at",
+        "description": "(Optional) Specifies the time in hh:mm for the reload to occur."
+      },
+      {
+        "name": "cancel",
+        "description": "(Optional) Cancels the pending reload."
+      },
+      {
+        "name": "in",
+        "description": "(Optional) Specifies a time interval for reloads to occur."
+      },
+      {
+        "name": "slot",
+        "description": "(Optional) Saves the changes on the specified stack member and then restarts it."
+      },
+      {
+        "name": "stack-member-number",
+        "description": "(Optional) Stack member number on which to save the changes. The range is 1 to 9."
+      },
+      {
+        "name": "standby-cpu",
+        "description": "(Optional) Reloads the standby route processor (RP)."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If there is more than one switch in the switch stack, and you enter the reload slot stack-member-number command, you are not prompted to save the configuration.",
+    "sourcePage": 1107,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "session",
+    "context": null,
+    "detail": "To access the diagnostic shell of a specific stack member or to access the Cisco IOS prompt of the standby device use the session command in privileged EXEC mode on the active device.",
+    "syntax": "session {standby ios | switch [{stack-member-number}]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "standby ios",
+        "description": "Accesses the Cisco IOS prompt of the standby Device. Note You cannot configure the standby Device using this command."
+      },
+      {
+        "name": "switch",
+        "description": "Accesses the diagnostic shell of a stack member."
+      },
+      {
+        "name": "stack-member-number",
+        "description": "(Optional) Stack member number to access from the active switch. The range is 1 to 9."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "When you access the Cisco IOS prompt on the standby Device, -stby is appended to the system prompt.  You cannot configure the standby Device at the Device-stby> prompt.  When you access the diagnostic shell of a stack member, (diag) is appended to the system prompt.",
+    "sourcePage": 1109,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "session",
+    "context": null,
+    "detail": "To access the diagnostic shell of a specific stack member or to access the Cisco IOS prompt of the standby device use the session command in privileged EXEC mode on the active device.",
+    "syntax": "session {standby ios | switch [{stack-member-number}]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "standby ios",
+        "description": "Accesses the Cisco IOS prompt of the standby Device. Note You cannot configure the standby Device using this command."
+      },
+      {
+        "name": "switch",
+        "description": "Accesses the diagnostic shell of a stack member."
+      },
+      {
+        "name": "stack-member-number",
+        "description": "(Optional) Stack member number to access from the active switch. The range is 1 to 9."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "When you access the Cisco IOS prompt on the standby Device, -stby is appended to the system prompt.  You cannot configure the standby Device at the Device-stby> prompt.  When you access the diagnostic shell of a stack member, (diag) is appended to the system prompt.",
+    "sourcePage": 1110,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set platform software fed switch",
+    "context": null,
+    "detail": "Set the packet cache count per SVL port.",
+    "syntax": "set platform software fed switch{switch-number | active | standby}{F0 | F1 active}fss pak-cache count",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch",
+        "description": "Specifies information about the switch. You have the following options: {switch-number|active|standby} • switch-number. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available."
+      },
+      {
+        "name": "F0",
+        "description": "Specifies information about the Embedded Service Processor slot 0."
+      },
+      {
+        "name": "FP active",
+        "description": "Specifies information about the active Embedded Service Processor."
+      },
+      {
+        "name": "pak-cache count",
+        "description": "Specifies the packet cache count. The range is 10 to 600.The default is 10."
+      }
+    ],
+    "modes": ["User EXEC(>)", "Privileged EXEC (#)"],
+    "usageSummary": "None",
+    "sourcePage": 1111,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "set platform software nif-mgr switch",
+    "context": null,
+    "detail": "Set the packet cache count per SVL port.",
+    "syntax": "set platform software nif-mgr switch {switch-number | active | standby }R0 pak-cache count",
+    "noForm": null,
+    "params": [
+      {
+        "name": "R0",
+        "description": "Specifies information about the Route Processor (RP) slot 0."
+      },
+      {
+        "name": "pak-cache count",
+        "description": "Specifies the packet cache count. The range is 10 to 600.The default is 10."
+      }
+    ],
+    "modes": ["User EXEC(>)", "Privileged EXEC (#)"],
+    "usageSummary": "None",
+    "sourcePage": 1112,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed",
+    "context": null,
+    "detail": "Display the per port SDP/LMP control packet exchange history between FED and Network Interface Manager (NIF Mgr) software processes.",
+    "syntax": "show platform software fed switch {switch-number | active | standby} fss {counters |interface-counters interface {interface-type interface-number} |lmp-packets interface {interface-type interface-number} |sdp-packets",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch-number",
+        "description": "Displays information about the switch. You have the following options: |active|standby} • switch-number. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note This keyword is not supported."
+      },
+      {
+        "name": "fss",
+        "description": "Specifies information about Front Side Stacking (FSS)."
+      },
+      {
+        "name": "counters",
+        "description": "Displays the number of TX and RX packets of SDP, LMP, OOB1/2, EMP and LOOPBACK types."
+      },
+      {
+        "name": "interface-counters",
+        "description": "Displays the number of TX and RX packets for all the interfaces. You can filter the output to display for a particular SVL interface using the interface-counters interface {interface-type interface-number} command."
+      },
+      {
+        "name": "lmp-packets",
+        "description": "Displays details of LMP packet transactions between FED and NIF Manager for all the SVL interfaces. You can filter the output to display for a particular SVL interface using the lmp-packets interface {interface-type interface-number} command."
+      },
+      {
+        "name": "sdp-packets",
+        "description": "Displays details of SDP packets transmitted between FED and NIF Manager for all the SVL interfaces."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "By default, the output of show platform software fed switch active fss sdp-packets command displays a packet cache count of 10.  You can set the packet cache count per port to a maximum of 600 using the set platform software fed switch command.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 1113,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software nif-mgr switch",
+    "context": null,
+    "detail": "Display the control packet exchange history between the Network Interface Manager software process (NIF Mgr) and the StackWise Virtual Link (SVL) interfaces.",
+    "syntax": "show platform software nif-mgr switch {switch-number | active | standby} R0{counters [lpn lpn-index] | packets [lpn lpn-index ] | switch-info} show platform software nif-mgr switch {switch-number | active | standby} R0counters{slotslot-number }{port port-number }packets{slotslot-number }{port port-number }{switch-info}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch {switch-number |",
+        "description": "Displays information about the switch. You have the following options: active | standby} • switch-number. • active —Displays information relating to the active switch. • standby—Displays information relating to the standby switch, if available. Note This keyword is not supported."
+      },
+      {
+        "name": "R0",
+        "description": "Displays information about the Route Processor (RP) slot 0."
+      },
+      {
+        "name": "counters",
+        "description": "Displays the number of TX and RX packets of LMP and SDP type."
+      },
+      {
+        "name": "lpn lpn-index",
+        "description": "Specifies the local port number (LPN). The range is 1 to 96. Use the show platform software nif-mgr switch active R0 switch-info command for information about lpn-index."
+      },
+      {
+        "name": "packets",
+        "description": "Displays the details of TX and RX packets of LMP and SDP type."
+      },
+      {
+        "name": "switch-info",
+        "description": "Displays information about NIF Manager operational database."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The output of the show platform software nif-mgr switch active R0 counters command displays counters for LMP and SDP packets that are transmitted.  The output of the show platform software nif-mgr switch active R0 switch-info command displays the SVL links details and the protocol flap count on each of the links.  • LMP to FED Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 1116,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform stack-manager",
+    "context": null,
+    "detail": "Display platform-dependent switch-stack information.",
+    "syntax": "show platform stack-manager {oir-states | sdp-counters | sif-counters} switch stack-member-number",
+    "noForm": null,
+    "params": [
+      {
+        "name": "oir-states",
+        "description": "Displays Online Insertion and Removal (OIR) state information"
+      },
+      {
+        "name": "sdp-counters",
+        "description": "Displays Stack Discovery Protocol (SDP) counter information."
+      },
+      {
+        "name": "sif-counters",
+        "description": "Displays Stack Interface (SIF) counter information."
+      },
+      {
+        "name": "switch",
+        "description": "Specifies the stack member for which to display stack-manager information. stack-member-number"
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use the show platform stack-manager command to collect data and statistics for the switch stack.  Use this command only when you are working directly with your technical support representative while troubleshooting a problem.  Do not use this command unless your technical support representative asks you to do so.",
+    "sourcePage": 1121,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show redundancy config-sync",
+    "context": null,
+    "detail": "Display a configuration synchronization failure or the ignored mismatched command list (MCL), if any.",
+    "syntax": "show redundancy config-sync {failures {bem | mcl | prc} | ignored failures mcl}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "failures",
+        "description": "Displays MCL entries or best effort method (BEM)/Parser Return Code (PRC) failures."
+      },
+      {
+        "name": "bem",
+        "description": "Displays a BEM failed command list, and forces the standby switch to reboot."
+      },
+      {
+        "name": "mcl",
+        "description": "Displays commands that exist in the switch’s running configuration but are not supported by the image on the standby switch, and forces the standby switch to reboot."
+      },
+      {
+        "name": "prc",
+        "description": "Displays a PRC failed command list and forces the standby switch to reboot."
+      },
+      {
+        "name": "ignored failures mcl",
+        "description": "Displays the ignored MCL failures."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "When two versions of Cisco IOS images are involved, the command sets supported by two images might differ.  If any of those mismatched commands are executed on the active switch, the standby switch might not recognize those commands, which causes a configuration mismatch condition.  If the syntax check for the command fails on the standby switch during a bulk synchronization, the command is moved into the MCL and the standby switch is reset.",
+    "sourcePage": 1122,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show redundancy",
+    "context": null,
+    "detail": "To display redundancy facility information, use the show redundancy command in privileged EXEC mode",
+    "syntax": "show redundancy [{clients | config-sync | counters | history [{reload | reverse}] | slaves[slave-name] {clients | counters} | states | switchover history [domain default]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "clients",
+        "description": "(Optional) Displays information about the redundancy facility client."
+      },
+      {
+        "name": "config-sync",
+        "description": "(Optional) Displays a configuration synchronization failure or the ignored mismatched command list. For more information, see show redundancy config-sync, on page 1120."
+      },
+      {
+        "name": "counters",
+        "description": "(Optional) Displays information about the redundancy facility counter."
+      },
+      {
+        "name": "history",
+        "description": "(Optional) Displays a log of past status and related information for the redundancy facility."
+      },
+      {
+        "name": "history reload",
+        "description": "(Optional) Displays a log of past reload information for the redundancy facility."
+      },
+      {
+        "name": "history reverse",
+        "description": "(Optional) Displays a reverse log of past status and related information for the redundancy facility."
+      },
+      {
+        "name": "slaves",
+        "description": "(Optional) Displays all subordinates in the redundancy facility."
+      },
+      {
+        "name": "slave-name",
+        "description": "(Optional) The name of the redundancy facility subordinate to display specific information for. Enter additional keywords to display all clients or counters in the specified subordinate."
+      },
+      {
+        "name": "clients",
+        "description": "Displays all redundancy facility clients in the specified subordinates."
+      },
+      {
+        "name": "counters",
+        "description": "Displays all counters in the specified subordinate."
+      },
+      {
+        "name": "states",
+        "description": "(Optional) Displays information about the redundancy facility state, such as disabled, initialization, standby or active."
+      },
+      {
+        "name": "switchover history",
+        "description": "(Optional) Displays information about the redundancy facility switchover history."
+      },
+      {
+        "name": "domain default",
+        "description": "(Optional) Displays the default domain as the domain to display switchover history for."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1124,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show stackwise-virtual",
+    "context": null,
+    "detail": "Display your Cisco StackWise Virtual configuration information.",
+    "syntax": "show stackwise-virtual {[switch [switch number <1-2>] {link | bandwidth | neighbors | dual-active-detection}}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch number",
+        "description": "(Optional) Displays information of a particular switch in the stack."
+      },
+      {
+        "name": "link",
+        "description": "Displays Stackwise Virtual link information."
+      },
+      {
+        "name": "bandwidth",
+        "description": "Displays bandwidth availability for StackWise Virtual."
+      },
+      {
+        "name": "neighbors",
+        "description": "Displays Stackwise Virtual neighbors."
+      },
+      {
+        "name": "dual-active-detection",
+        "description": "Displays Stackwise-Virtual dual-active-detection information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 1128,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show switch",
+    "context": null,
+    "detail": "Display information that is related to the stack member or the switch stack.",
+    "syntax": "show switch [{stack-member-number | detail | neighbors | stack-ports [{summary}]}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "stack-member-number",
+        "description": "(Optional) Number of the stack member. The range is 1 to 9."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed information about the stack ring."
+      },
+      {
+        "name": "neighbors",
+        "description": "(Optional) Displays the neighbors of the entire switch stack."
+      },
+      {
+        "name": "stack-ports",
+        "description": "(Optional) Displays port information for the entire switch stack."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays the stack cable length, the stack link status, and the loopback status."
+      }
+    ],
+    "modes": ["User EXEC (>)", "Privileged EXEC (#)"],
+    "usageSummary": "This command displays these states: • Initializing—A switch has been just added to the stack and it has not completed the basic initialization to go to the ready state.  • HA Sync in Progress—After the standby is elected, the corresponding switch remains in this state until the synchronization is completed.  • Syncing—A switch that is added to an already existing stack remains in this state until the switch add sequence is complete.",
+    "sourcePage": 1130,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show redundancy config-sync",
+    "context": null,
+    "detail": "Display a configuration synchronization failure or the ignored mismatched command list (MCL), if any.",
+    "syntax": "show redundancy config-sync {failures {bem | mcl | prc} | ignored failures mcl}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "failures",
+        "description": "Displays MCL entries or best effort method (BEM)/Parser Return Code (PRC) failures."
+      },
+      {
+        "name": "bem",
+        "description": "Displays a BEM failed command list, and forces the standby switch to reboot."
+      },
+      {
+        "name": "mcl",
+        "description": "Displays commands that exist in the switch’s running configuration but are not supported by the image on the standby switch, and forces the standby switch to reboot."
+      },
+      {
+        "name": "prc",
+        "description": "Displays a PRC failed command list and forces the standby switch to reboot."
+      },
+      {
+        "name": "ignored failures mcl",
+        "description": "Displays the ignored MCL failures."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "When two versions of Cisco IOS images are involved, the command sets supported by two images might differ.  If any of those mismatched commands are executed on the active switch, the standby switch might not recognize those commands, which causes a configuration mismatch condition.  If the syntax check for the command fails on the standby switch during a bulk synchronization, the command is moved into the MCL and the standby switch is reset.",
+    "sourcePage": 1134,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show tech-support stack",
+    "context": null,
+    "detail": "Display all switch stack-related information for use by technical support.",
+    "syntax": "show tech-support stack",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "The show tech-support stack command captures the snapshot of stacking states and information for debug issues.  Use this command, when a stacking issues (such as stack cable issue, silent reload, switch not becoming ready, stack crash, and so on) occur.  The output of the show tech-support stack command is very long.",
+    "sourcePage": 1136,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "stack-mac update force",
+    "context": null,
+    "detail": "Update the stack MAC address to the MAC address of the active switch.",
+    "syntax": "stack-mac update force",
+    "noForm": null,
+    "params": [],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "By default, the stack MAC address is not changed to the MAC address of the new active switch during a high availability (HA) failover.  Use the stack-mac update force command to force the stack MAC address to change to the MAC address of the new active switch.  If the switch with the same MAC address as the stack MAC address is currently a member of the stack, the stack-mac update force command has no effect.",
+    "sourcePage": 1141,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "stackwise-virtual",
+    "context": null,
+    "detail": "Enable Cisco StackWise Virtual on a switch.",
+    "syntax": "stackwise-virtual",
+    "noForm": "no stackwise-virtual",
+    "params": [
+      {
+        "name": "stackwise-virtual",
+        "description": "Enables Cisco StackWise Virtual."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "After disabling Cisco StackWise Virtual, the switches must be reloaded to unstack them.",
+    "sourcePage": 1142,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "stackwise-virtual link",
+    "context": null,
+    "detail": "Associate an interface with configured StackWise Virtual link.",
+    "syntax": "stackwise-virtual link link-value",
+    "noForm": "no stackwise-virtual link link-value",
+    "params": [
+      {
+        "name": "link value",
+        "description": "Domain ID configured for Cisco StackWise Virtual."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)."],
+    "usageSummary": null,
+    "sourcePage": 1143,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "stackwise-virtual dual-active-detection",
+    "context": null,
+    "detail": "Configure an interface as dual-active-detection link.",
+    "syntax": "stackwise-virtual dual-active-detection",
+    "noForm": "no stackwise-virtual dual-active-detection",
+    "params": [],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": null,
+    "sourcePage": 1144,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "standby console enable",
+    "context": null,
+    "detail": "Enable access to the standby console switch.",
+    "syntax": "standby console enable",
+    "noForm": "no standby console enable",
+    "params": [],
+    "modes": ["Redundancy main configuration submode"],
+    "usageSummary": "This command is used to collect and review specific data about the standby console.  The command is useful primarily for Cisco technical support representatives troubleshooting the switch.  This example shows how to enter the redundancy main configuration submode and enable access to the standby console switch: Device(config)# redundancy Device(config-red)# main-cpu Device(config-r-mc)# standby console enable Device(config-r-mc)# Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 1145,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switch stack port",
+    "context": null,
+    "detail": "Disable or enable the specified stack port on the member.",
+    "syntax": "switch stack-member-number stack port port-number {disable | enable}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "disable",
+        "description": "Disables the specified port."
+      },
+      {
+        "name": "enable",
+        "description": "Enables the specified port."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "A stack is in the full-ring state when all members are connected through the stack ports and are in the ready state.  The stack is in the partial-ring state when the following occurs: • All members are connected through their stack ports but some are not in the ready state.  • Some members are not connected through the stack ports.",
+    "sourcePage": 1146,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switch priority",
+    "context": null,
+    "detail": "Change the stack member priority value.",
+    "syntax": "switch stack-member-number priority new-priority-value",
+    "noForm": null,
+    "params": [
+      {
+        "name": "new-priority-value",
+        "description": "New stack member priority value. The range is 1 to 15."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "The new priority value is a factor when a new active switch is elected.  When you change the priority value, the active switch is not changed immediately.",
+    "sourcePage": 1147,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switch provision",
+    "context": null,
+    "detail": "Supply a configuration to a new switch before it joins the switch stack.",
+    "syntax": "switch stack-member-number provision type",
+    "noForm": "no switch stack-member-number provision",
+    "params": [
+      {
+        "name": "type",
+        "description": "Switch type of the new switch before it joins the stack."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "For type, enter the model number of a supported switch that is listed in the command-line help strings.  To avoid receiving an error message, you must remove the specified switch from the switch stack before using the no form of this command to delete a provisioned configuration.  To change the switch type, you must also remove the specified switch from the switch stack.",
+    "sourcePage": 1148,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switch renumber",
+    "context": null,
+    "detail": "Change the stack member number.",
+    "syntax": "switch current-stack-member-number renumber new-stack-member-number",
+    "noForm": null,
+    "params": [
+      {
+        "name": "new-stack-member-number",
+        "description": "New stack member number for the stack member. The range is 1 to 9."
+      }
+    ],
+    "modes": ["User EXEC Privileged EXEC"],
+    "usageSummary": "If another stack member is already using the member number that you just specified, the active switch assigns the lowest available number when you reload the stack member.",
+    "sourcePage": 1151,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]

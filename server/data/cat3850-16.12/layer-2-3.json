@@ -1,0 +1,1442 @@
+[
+  {
+    "name": "channel-group",
+    "context": null,
+    "detail": "Assign an Ethernet port to an EtherChannel group, or to enable an EtherChannel mode, or both.",
+    "syntax": "channel-group { auto | channel-group-number mode {active | auto [non-silent] | desirable [non-silent] | on | passive}}",
+    "noForm": "no channel-group",
+    "params": [
+      {
+        "name": "auto",
+        "description": "Enables auto-LAG feature on individual port interface. By default, the auto-LAG feature is enabled on the port."
+      },
+      {
+        "name": "channel-group-number",
+        "description": "Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "mode",
+        "description": "Specifies the EtherChannel mode."
+      },
+      {
+        "name": "active",
+        "description": "Unconditionally enables Link Aggregation Control Protocol (LACP)."
+      },
+      {
+        "name": "auto",
+        "description": "Enables the Port Aggregation Protocol (PAgP) only if a PAgP device is detected."
+      },
+      {
+        "name": "non-silent",
+        "description": "(Optional) Configures the interface for nonsilent operation when connected to a partner that is PAgP-capable. Use in PAgP mode with the auto or desirable keyword when traffic is expected from the other device."
+      },
+      {
+        "name": "desirable",
+        "description": "Unconditionally enables PAgP."
+      },
+      {
+        "name": "on",
+        "description": "Enables the on mode."
+      },
+      {
+        "name": "passive",
+        "description": "Enables LACP only if a LACP device is detected."
+      }
+    ],
+    "modes": [
+      "Interface configuration",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 367 Layer 2/3 channel-group"
+    ],
+    "usageSummary": "For Layer 2 EtherChannels, the channel-group command automatically creates the port-channel interface when the channel group gets its first physical port.  You do not have to use the interface port-channel command in global configuration mode to manually create a port-channel interface.  If you create the port-channel interface first, the channel-group-number can be the same as the port-channel-number, or you can use a new number.",
+    "sourcePage": 369,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "channel-protocol",
+    "context": null,
+    "detail": "Restrict the protocol used on a port to manage channeling.",
+    "syntax": "channel-protocol {lacp | pagp}",
+    "noForm": "no channel-protocol",
+    "params": [
+      {
+        "name": "lacp",
+        "description": "Configures an EtherChannel with the Link Aggregation Control Protocol (LACP). pagp Configures an EtherChannel with the Port Aggregation Protocol (PAgP)."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the channel-protocol command only to restrict a channel to LACP or PAgP.  If you set the protocol by using the channel-protocol command, the setting is not overridden by the channel-group interface configuration command.  You must use the channel-group interface configuration command to configure the EtherChannel parameters.",
+    "sourcePage": 372,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear lacp",
+    "context": null,
+    "detail": "Clear Link Aggregation Control Protocol (LACP) channel-group counters.",
+    "syntax": "clear lacp [channel-group-number] counters",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "counters",
+        "description": "Clears traffic counters."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can clear all counters by using the clear lacp counters command, or you can clear only the counters for the specified channel group by using the clear lacp channel-group-number counters command.  This example shows how to clear all channel-group information: Device# clear lacp counters This example shows how to clear LACP traffic counters for group 4: Device# clear lacp 4 counters You can verify that the information was deleted by entering the show lacp counters or the show lacp channel-group-number counters privileged EXEC command.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 373,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear pagp",
+    "context": null,
+    "detail": "Clear the Port Aggregation Protocol (PAgP) channel-group information.",
+    "syntax": "clear pagp [channel-group-number] counters",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "counters",
+        "description": "Clears traffic counters."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can clear all counters by using the clear pagp counters command, or you can clear only the counters for the specified channel group by using the clear pagp channel-group-number counters command.  This example shows how to clear all channel-group information: Device# clear pagp counters This example shows how to clear PAgP traffic counters for group 10: Device# clear pagp 10 counters You can verify that the information was deleted by entering the show pagp privileged EXEC command.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 374,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear spanning-tree counters",
+    "context": null,
+    "detail": "Clear the spanning-tree counters.",
+    "syntax": "clear spanning-tree counters [interface interface-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Clears all spanning-tree counters on the specified include physical ports, VLANs, and port channels. The VLAN range is 1 to 4094. The port-channel range is 1 to 128."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If the interface-id value is not specified, spanning-tree counters are cleared for all interfaces.  This example shows how to clear spanning-tree counters for all interfaces: Device# clear spanning-tree counters Command Reference, Cisco IOS XE Gibraltar 16. 12.",
+    "sourcePage": 375,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "clear spanning-tree detected-protocols",
+    "context": null,
+    "detail": "Restart the protocol migration process and force renegotiation with neighboring devices on the interface.",
+    "syntax": "clear spanning-tree detected-protocols [interface interface-id]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "(Optional) Restarts the protocol migration process on the specified in channels. The VLAN range is 1 to 4094. The port-channel range is 1 to 128."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "A device running the rapid per-VLAN spanning-tree plus (rapid-PVST+) protocol or the Multiple Spanning Tree Protocol (MSTP) supports a built-in protocol migration method that enables it to interoperate with legacy IEEE 802. 1D devices.  If a rapid-PVST+ or an MSTP device receives a legacy IEEE 802.",
+    "sourcePage": 376,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug etherchannel",
+    "context": null,
+    "detail": "Enable debugging of EtherChannels.",
+    "syntax": "debug etherchannel [{all | detail | error | event | idb }]",
+    "noForm": "no debug etherchannel [{all | detail | error | event | idb }]",
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all EtherChannel debug messages."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed EtherChannel debug messages."
+      },
+      {
+        "name": "error",
+        "description": "(Optional) Displays EtherChannel error debug messages."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Displays EtherChannel event messages."
+      },
+      {
+        "name": "idb",
+        "description": "(Optional) Displays PAgP interface descriptor block debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug etherchannel command is the same as the no debug etherchannel command.",
+    "sourcePage": 377,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug lacp",
+    "context": null,
+    "detail": "Enable debugging of Link Aggregation Control Protocol (LACP) activity.",
+    "syntax": "debug lacp [{all | event | fsm | misc | packet}]",
+    "noForm": "no debug lacp [{all | event | fsm | misc | packet}]",
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all LACP debug messages."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Displays LACP event debug messages."
+      },
+      {
+        "name": "fsm",
+        "description": "(Optional) Displays messages about changes within the LACP finite state machine."
+      },
+      {
+        "name": "misc",
+        "description": "(Optional) Displays miscellaneous LACP debug messages."
+      },
+      {
+        "name": "packet",
+        "description": "(Optional) Displays the receiving and transmitting LACP control packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug etherchannel command is the same as the no debug etherchannel command.  When you enable debugging on a stack, it is enabled only on the active switch.  To enable debugging on the standby switch , start a session from the active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 378,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug pagp",
+    "context": null,
+    "detail": "Enable debugging of Port Aggregation Protocol (PAgP) activity.",
+    "syntax": "debug pagp [{all | dual-active | event | fsm | misc | packet}]",
+    "noForm": "no debug pagp [{all | dual-active | event | fsm | misc | packet}]",
+    "params": [
+      {
+        "name": "all",
+        "description": "(Optional) Displays all PAgP debug messages."
+      },
+      {
+        "name": "dual-active",
+        "description": "(Optional) Displays dual-active detection messages."
+      },
+      {
+        "name": "event",
+        "description": "(Optional) Displays PAgP event debug messages."
+      },
+      {
+        "name": "fsm",
+        "description": "(Optional) Displays messages about changes within the PAgP finite state machine."
+      },
+      {
+        "name": "misc",
+        "description": "(Optional) Displays miscellaneous PAgP debug messages."
+      },
+      {
+        "name": "packet",
+        "description": "(Optional) Displays the receiving and transmitting PAgP control packets."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug pagp command is the same as the no debug pagp command.  When you enable debugging on a stack, it is enabled only on the active switch.  To enable debugging on the standby switch , start a session from the active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 379,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform pm",
+    "context": null,
+    "detail": "Enable debugging of the platform-dependent port manager software module.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all port manager debug messages."
+      },
+      {
+        "name": "counters",
+        "description": "Displays counters for remote procedure call (RPC) debug messages."
+      },
+      {
+        "name": "errdisable",
+        "description": "Displays error-disabled-related events debug messages."
+      },
+      {
+        "name": "if-numbers",
+        "description": "Displays interface-number translation event debug messages."
+      },
+      {
+        "name": "link-status",
+        "description": "Displays interface link-detection event debug messages."
+      },
+      {
+        "name": "platform",
+        "description": "Displays port manager function event debug messages."
+      },
+      {
+        "name": "pm-vectors",
+        "description": "Displays port manager vector-related event debug messages."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays vector-function details."
+      },
+      {
+        "name": "vlans",
+        "description": "Displays VLAN creation and deletion event debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug platform pm command is the same as the no debug platform pm command.  When you enable debugging on a stack, it is enabled only on the active switch.  To enable debugging on the standby switch , start a session from the active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 380,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug platform udld",
+    "context": null,
+    "detail": "Enable debugging of the platform-dependent UniDirectional Link Detection (UDLD) software.",
+    "syntax": null,
+    "noForm": null,
+    "params": [
+      {
+        "name": "error",
+        "description": "(Optional) Displays error condition debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug platform udld command is the same as the no debug platform udld command.  Command Reference, Cisco IOS XE Gibraltar 16. 12.",
+    "sourcePage": 381,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "debug spanning-tree",
+    "context": null,
+    "detail": "Enable debugging of spanning-tree activities.",
+    "syntax": "debug spanning-tree {all | backbonefast | bpdu | bpdu-opt | config | etherchannel | events | exceptions | general | ha | mstp | pvst+ | root | snmp | synchronization | switch | uplinkfast} exceptions | general | mstp | pvst+ | root | snmp | synchronization | switch | uplinkfast}",
+    "noForm": "no debug spanning-tree {all | backbonefast | bpdu | bpdu-opt | config | etherchannel | events |",
+    "params": [
+      {
+        "name": "all",
+        "description": "Displays all spanning-tree debug messages."
+      },
+      {
+        "name": "backbonefast",
+        "description": "Displays BackboneFast-event debug messages."
+      },
+      {
+        "name": "bpdu",
+        "description": "Displays spanning-tree bridge protocol data unit (BPDU) debug messages."
+      },
+      {
+        "name": "bpdu-opt",
+        "description": "Displays optimized BPDU handling debug messages."
+      },
+      {
+        "name": "config",
+        "description": "Displays spanning-tree configuration change debug messages."
+      },
+      {
+        "name": "etherchannel",
+        "description": "Displays EtherChannel-support debug messages."
+      },
+      {
+        "name": "events",
+        "description": "Displays spanning-tree topology event debug messages."
+      },
+      {
+        "name": "exceptions",
+        "description": "Displays spanning-tree exception debug messages."
+      },
+      {
+        "name": "general",
+        "description": "Displays general spanning-tree activity debug messages."
+      },
+      {
+        "name": "ha",
+        "description": "Displays high-availability spanning-tree debug messages."
+      },
+      {
+        "name": "mstp",
+        "description": "Debugs Multiple Spanning Tree Protocol (MSTP) events."
+      },
+      {
+        "name": "pvst+",
+        "description": "Displays per-VLAN spanning-tree plus (PVST+) event debug messages."
+      },
+      {
+        "name": "root",
+        "description": "Displays spanning-tree root-event debug messages."
+      },
+      {
+        "name": "snmp",
+        "description": "Displays spanning-tree Simple Network Management Protocol (SNMP) handling debug messages."
+      },
+      {
+        "name": "switch",
+        "description": "Displays device shim command debug messages. This shim is the software module that is the interface between the generic Spanning Tree Protocol (STP) code and the platform-specific code of various device platforms."
+      },
+      {
+        "name": "synchronization",
+        "description": "Displays the spanning-tree synchronization event debug messages."
+      },
+      {
+        "name": "uplinkfast",
+        "description": "Displays UplinkFast-event debug messages."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "The undebug spanning-tree command is the same as the no debug spanning-tree command.  When you enable debugging on a stack, it is enabled only on the active switch.  To enable debugging on the standby switch , start a session from the active switch by using the session switch-number command in privileged EXEC mode.",
+    "sourcePage": 382,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "interface port-channel",
+    "context": null,
+    "detail": "Access or create a port channel.",
+    "syntax": "interface port-channel port-channel-number",
+    "noForm": "no interface port-channel",
+    "params": [
+      {
+        "name": "port-channel-number",
+        "description": "Channel group number. The range is 1 to 128."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "For Layer 2 EtherChannels, you do not have to create a port-channel interface before assigning physical ports to a channel group.  Instead, you can use the channel-group interface configuration command, which automatically creates the port-channel interface when the channel group obtains its first physical port.  If you create the port-channel interface first, the channel-group-number can be the same as the port-channel-number, or you can use a new number.",
+    "sourcePage": 384,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp max-bundle",
+    "context": null,
+    "detail": "Define the maximum number of active LACP ports allowed in a port channel.",
+    "syntax": "lacp max-bundle max_bundle_number",
+    "noForm": "no lacp max-bundle",
+    "params": [
+      {
+        "name": "max_bundle_number",
+        "description": "The maximum number of active LACP ports in the port channel. The range is 1 to 8. The default is 8."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "An LACP channel group can have up to 16 Ethernet ports of the same type.  Up to eight ports can be active, and up to eight ports can be in hot-standby mode.  When there are more than eight ports in an LACP channel group, the device on the controlling end of the link uses port priorities to determine which ports are bundled into the channel and which ports are put in hot-standby mode.",
+    "sourcePage": 385,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp port-priority",
+    "context": null,
+    "detail": "Configure the port priority for the Link Aggregation Control Protocol (LACP).",
+    "syntax": "lacp port-priority priority",
+    "noForm": "no lacp port-priority",
+    "params": [
+      {
+        "name": "priority",
+        "description": "Port priority for LACP. The range is 1 to 65535."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The lacp port-priority interface configuration command determines which ports are bundled and which ports are put in hot-standby mode when there are more than eight ports in an LACP channel group.  An LACP channel group can have up to 16 Ethernet ports of the same type.  Up to eight ports can be active, and up to eight ports can be in standby mode.",
+    "sourcePage": 386,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp rate",
+    "context": null,
+    "detail": "Set the rate at which Link Aggregation Control Protocol (LACP) control packets are ingressed to an LACP-supported interface.",
+    "syntax": "lacp rate {normal | fast}",
+    "noForm": "no lacp rate",
+    "params": [
+      {
+        "name": "normal",
+        "description": "Specifies that LACP control packets are ingressed at the normal rate, every 30 seconds after the link is bundled."
+      },
+      {
+        "name": "fast",
+        "description": "Specifies that LACP control packets are ingressed at the fast rate, once every 1 second."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Use this command to modify the duration of LACP timeout.  The LACP timeout value on Cisco switch is three times the LACP rate configured on the interface.  Using the lacp ratecommand, you can select the LACP timeout value for a switch to be either 90 seconds or 3 seconds.",
+    "sourcePage": 387,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "lacp system-priority",
+    "context": null,
+    "detail": "Configure the system priority for the Link Aggregation Control Protocol (LACP).",
+    "syntax": "lacp system-priority priority",
+    "noForm": "no lacp system-priority",
+    "params": [
+      {
+        "name": "priority",
+        "description": "System priority for LACP. The range is 1 to 65535."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "The lacp system-priority command determines which device in an LACP link controls port priorities.  An LACP channel group can have up to 16 Ethernet ports of the same type.  Up to eight ports can be active, and up to eight ports can be in standby mode.",
+    "sourcePage": 388,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "pagp learn-method",
+    "context": null,
+    "detail": "Learn the source address of incoming packets received from an EtherChannel port.",
+    "syntax": "pagp learn-method {aggregation-port | physical-port}",
+    "noForm": "no pagp learn-method",
+    "params": [
+      {
+        "name": "aggregation-port",
+        "description": "Specifies address learning on the logical port channel. The device sends packets to the source using any port in the EtherChannel. This setting is the default. With aggregation-port learning, it is not important on which physical port the packet arrives."
+      },
+      {
+        "name": "physical-port",
+        "description": "Specifies address learning on the physical port within the EtherChannel. The device sends packets to the source using the same port in the EtherChannel from which it learned the source address. The other end of the channel uses the same port in the channel for a particular destination MAC or IP address."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The learn method must be configured the same at both ends of the link.  The device supports address learning only on aggregate ports even though the physical-port keyword is provided in the command-line interface (CLI).  The pagp learn-method and the pagp port-priority interface configuration commands have no effect on the device hardware, but they are required for PAgP interoperability with devices that only support address learning by physical ports.",
+    "sourcePage": 389,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "pagp port-priority",
+    "context": null,
+    "detail": "Select a port over which all Port Aggregation Protocol (PAgP) traffic through the EtherChannel is sent.",
+    "syntax": "pagp port-priority priority",
+    "noForm": "no pagp port-priority",
+    "params": [
+      {
+        "name": "priority",
+        "description": "Priority number. The range is from 0 to 255."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The physical port with the highest priority that is operational and has membership in the same EtherChannel is the one selected for PAgP transmission.  The device supports address learning only on aggregate ports even though the physical-port keyword is provided in the command-line interface (CLI).  The pagp learn-method and the pagp port-priority interface configuration commands have no effect on the device hardware, but they are required for PAgP interoperability with devices that only support address learning by physical ports, such as the Catalyst 1900 switch.",
+    "sourcePage": 391,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel",
+    "context": null,
+    "detail": "Convert the auto created EtherChannel into a manual channel and adding configuration on the EtherChannel.",
+    "syntax": "port-channel {channel-group-number persistent | persistent }",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "persistent",
+        "description": "Converts the auto created EtherChannel into a manual channel and allows you to add configuration on the EtherChannel."
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "You can use the show etherchannel summary privileged EXEC command to display the EtherChannel information.",
+    "sourcePage": 392,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel auto",
+    "context": null,
+    "detail": "Enable the auto-LAG feature on a switch globally.",
+    "syntax": "port-channel auto",
+    "noForm": "no port-channel auto",
+    "params": [],
+    "modes": ["Global configuration"],
+    "usageSummary": "You can use the show etherchannel auto privileged EXEC command to verify if the EtherChannel was created automatically.",
+    "sourcePage": 393,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel load-balance",
+    "context": null,
+    "detail": "Set the load-distribution method among the ports in the EtherChannel.",
+    "syntax": "port-channel load-balance {dst-ip | dst-mac | dst-mixed-ip-port | dst-port | extended | src-dst-ip | src-dst-mac | src-dst-mixed-ip-port | src-dst-port | src-ip | src-mac | src-mixed-ip-port | src-port}",
+    "noForm": "no port-channel load-balance",
+    "params": [
+      {
+        "name": "dst-ip",
+        "description": "Specifies load distribution based on the destination host IP address."
+      },
+      {
+        "name": "dst-mac",
+        "description": "Specifies load distribution based on the destination host MAC address. Packets to the same destination are sent on the same port, but packets to different destinations are sent on different ports in the channel."
+      },
+      {
+        "name": "dst-mixed-ip-port",
+        "description": "Specifies load distribution based on the destination IPv4 or IPv6 address and the TCP/UDP (Layer 4) port number."
+      },
+      {
+        "name": "dst-port",
+        "description": "Specifies load distribution based on the destination TCP/UDP (Layer 4) port number for both IPv4 and IPv6."
+      },
+      {
+        "name": "extended",
+        "description": "Sets extended load balance methods among the ports in the EtherChannel. See the port-channel load-balance extended command."
+      },
+      {
+        "name": "src-dst-ip",
+        "description": "Specifies load distribution based on the source and destination host IP address."
+      },
+      {
+        "name": "src-dst-mac",
+        "description": "Specifies load distribution based on the source and destination host MAC address."
+      },
+      {
+        "name": "src-dst-mixed-ip-port",
+        "description": "Specifies load distribution based on the source and destination host IP address and TCP/UDP (layer 4) port number."
+      },
+      {
+        "name": "src-dst-port",
+        "description": "Specifies load distribution based on the source and destination TCP/UDP (Layer 4) port number."
+      },
+      {
+        "name": "src-ip",
+        "description": "Specifies load distribution based on the source host IP address."
+      },
+      {
+        "name": "src-mac",
+        "description": "Specifies load distribution based on the source MAC address. Packets from different hosts use different ports in the channel, but packets from the same host use the same port."
+      },
+      {
+        "name": "src-mixed-ip-port",
+        "description": "Specifies load distribution based on the source host IP address and TCP/UDP (Layer 4) port number."
+      },
+      {
+        "name": "src-port",
+        "description": "Specifies load distribution based on the TCP/UDP (Layer 4) port number."
+      }
+    ],
+    "modes": [
+      "Global configuration",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 392 Layer 2/3 port-channel load-balance"
+    ],
+    "usageSummary": "You can verify your setting by entering the show running-config privileged EXEC command or the show etherchannel load-balance privileged EXEC command.",
+    "sourcePage": 394,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel load-balance extended",
+    "context": null,
+    "detail": "Set combinations of load-distribution methods among the ports in the EtherChannel.",
+    "syntax": "port-channel load-balance extended[{dst-ip | dst-mac | dst-port | ipv6-label | l3-proto | src-ip | src-mac | src-port}]",
+    "noForm": "no port-channel load-balance extended",
+    "params": [
+      {
+        "name": "dst-ip",
+        "description": "(Optional) Specifies load distribution based on the destination host IP address."
+      },
+      {
+        "name": "dst-mac",
+        "description": "(Optional) Specifies load distribution based on the destination host MAC address. Packets to the same destination are sent on the same port, but packets to different destinations are sent on different ports in the channel."
+      },
+      {
+        "name": "dst-port",
+        "description": "(Optional) Specifies load distribution based on the destination TCP/UDP (Layer 4) port number for both IPv4 and IPv6."
+      },
+      {
+        "name": "ipv6-label",
+        "description": "(Optional) Specifies load distribution based on the source MAC address and IPv6 flow label."
+      },
+      {
+        "name": "l3-proto",
+        "description": "(Optional) Specifies load distribution based on the source MAC address and Layer 3 protocols."
+      },
+      {
+        "name": "src-ip",
+        "description": "(Optional) Specifies load distribution based on the source host IP address."
+      },
+      {
+        "name": "src-mac",
+        "description": "(Optional) Specifies load distribution based on the source MAC address. Packets from different hosts use different ports in the channel, but packets from the same host use the same port."
+      },
+      {
+        "name": "src-port",
+        "description": "(Optional) Specifies load distribution based on the TCP/UDP (Layer 4) port number."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "For information about when to use these forwarding methods, see the Layer 2/3 Configuration Guide (Catalyst 3850 Switches) for this release.  You can verify your setting by entering the show running-config privileged EXEC command or the show etherchannel load-balance privileged EXEC command.",
+    "sourcePage": 396,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "port-channel min-links",
+    "context": null,
+    "detail": "Define the minimum number of LACP ports that must be bundled in the link-up state and bundled in the EtherChannel in order that a port channel becomes active.",
+    "syntax": "port-channel min-links min_links_number",
+    "noForm": "no port-channel min-links",
+    "params": [
+      {
+        "name": "min_links_number",
+        "description": "The minimum number of active LACP ports in the port channel. The range is 2 to 8. The default is 1."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "An LACP channel group can have up to 16 Ethernet ports of the same type.  Up to eight ports can be active, and up to eight ports can be in hot-standby mode.  When there are more than eight ports in an LACP channel group, the device on the controlling end of the link uses port priorities to determine which ports are bundled into the channel and which ports are put in hot-standby mode.",
+    "sourcePage": 397,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep admin vlan",
+    "context": null,
+    "detail": "Configure a Resilient Ethernet Protocol (REP) administrative VLAN for the REP to transmit hardware flood layer (HFL) messages.",
+    "syntax": "rep admin vlan vlan-id",
+    "noForm": "no rep admin vlan",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "48-bit static MAC address."
+      }
+    ],
+    "modes": ["Global configuration (config)"],
+    "usageSummary": "The range of the REP administrative VLAN is from 1 to 4094.  There can be only one administrative VLAN on a device and on a segment.  Verify your settings by entering the show interfaces rep detail command in privileged EXEC mode.",
+    "sourcePage": 398,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep block port",
+    "context": null,
+    "detail": "Configure Resilient Ethernet Protocol (REP) VLAN load balancing on a REP primary edge port.",
+    "syntax": "rep block port {id port-id | neighbor-offset | preferred} vlan {vlan-list | all}",
+    "noForm": "no rep block port {id port-id | neighbor-offset | preferred}",
+    "params": [
+      {
+        "name": "id port-id",
+        "description": "Specifies the VLAN blocking alternate port by entering the unique port ID, which is automatically generated when REP is enabled. The REP port ID is a 16-character hexadecimal value."
+      },
+      {
+        "name": "neighbor-offset",
+        "description": "VLAN blocking alternate port by entering the offset number of a neighbor. The range is from -256 to +256. A value of 0 is invalid."
+      },
+      {
+        "name": "preferred",
+        "description": "Selects the regular segment port previously identified as the preferred alternate port for VLAN load balancing."
+      },
+      {
+        "name": "vlan",
+        "description": "Identifies the VLANs to be blocked."
+      },
+      {
+        "name": "vlan-list",
+        "description": "VLAN ID or range of VLAN IDs to be displayed. Enter a VLAN ID from 1 to 4094, or a range or sequence of VLANs (such as 1-3, 22, and 41-44) to be blocked."
+      },
+      {
+        "name": "all",
+        "description": "Blocks all the VLANs."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "When you select an alternate port by entering an offset number, this number identifies the downstream neighbor port of an edge port.  The primary edge port has an offset number of 1; positive numbers above 1 identify downstream neighbors of the primary edge port.  Negative numbers identify the secondary edge port (offset number -1) and its downstream neighbors.",
+    "sourcePage": 399,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep lsl-age-timer",
+    "context": null,
+    "detail": "Configure the Resilient Ethernet Protocol (REP) link status layer (LSL) age-out timer value.",
+    "syntax": "rep lsl-age-timer milliseconds",
+    "noForm": "no rep lsl-age-timer milliseconds",
+    "params": [
+      {
+        "name": "milliseconds",
+        "description": "REP LSL age-out timer value, in milliseconds (ms). The range is from 120 to 10000 in multiples of 40."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "While configuring REP configurable timers, we recommend that you configure the REP LSL number of retries first and then configure the REP LSL age-out timer value.",
+    "sourcePage": 401,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep lsl-retries",
+    "context": null,
+    "detail": "Configure the REP link status layer (LSL) number of retries.",
+    "syntax": "rep lsl-retries number-of-retries",
+    "noForm": "no rep lsl-retries number-of-retries",
+    "params": [
+      {
+        "name": "number-of-retries",
+        "description": "Number of LSL retries. The range of retries is from 3 to 10."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "The rep lsl-retries command is used to configure the number of retries before the REP link is disabled.  While configuring REP configurable timers, we recommend that you configure the REP LSL number of retries first and then configure the REP LSL age-out timer value.  The following example shows how to configure REP LSL retries.",
+    "sourcePage": 402,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep preempt delay",
+    "context": null,
+    "detail": "Configure a waiting period after a segment port failure and recovery before Resilient Ethernet Protocol (REP) VLAN load balancing is triggered.",
+    "syntax": "rep preempt delay seconds",
+    "noForm": "no rep preempt delay",
+    "params": [
+      {
+        "name": "seconds",
+        "description": "Number of seconds to delay REP preemption. The range is from 15 to 300 seconds. The default is manual preemption without delay."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "Enter this command on the REP primary edge port.  Enter this command and configure a preempt time delay for VLAN load balancing to be automatically triggered after a link failure and recovery.  If VLAN load balancing is configured after a segment port failure and recovery, the REP primary edge port starts a delay timer before VLAN load balancing occurs.",
+    "sourcePage": 403,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep preempt segment",
+    "context": null,
+    "detail": "Manually start Resilient Ethernet Protocol (REP) VLAN load balancing on a segment.",
+    "syntax": "rep preempt segment segment-id",
+    "noForm": null,
+    "params": [
+      {
+        "name": "segment-id",
+        "description": "ID of the REP segment. The range is from 1 to 1024."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Enter this command on the segment, which has the primary edge port on the device.  Ensure that all the other segment configuratios are completed before setting preemption for VLAN load balancing.  When you enter the rep preempt segment segment-id command, a confirmation message appears before the command is executed because preemption for VLAN load balancing can disrupt the network.",
+    "sourcePage": 404,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep segment",
+    "context": null,
+    "detail": "Enable Resilient Ethernet Protocol (REP) on an interface and to assign a segment ID to the interface.",
+    "syntax": "rep segment segment-id [edge [no-neighbor] [primary]] [preferred]",
+    "noForm": "no rep segment",
+    "params": [
+      {
+        "name": "segment-id",
+        "description": "Segment for which REP is enabled. Assign a segment ID to the interface. The range is from 1 to 1024."
+      },
+      {
+        "name": "edge",
+        "description": "(Optional) Configures the port as an edge port. Each segment has only two edge ports."
+      },
+      {
+        "name": "no-neighbor",
+        "description": "(Optional) Specifies the segment edge as one with no external REP neighbor."
+      },
+      {
+        "name": "primary",
+        "description": "(Optional) Specifies that the port is the primary edge port where you can configure VLAN load balancing. A segment has only one primary edge port."
+      },
+      {
+        "name": "preferred",
+        "description": "(Optional) Specifies that the port is the preferred alternate port or the preferred port for VLAN load balancing. Note Configuring a port as a preferred port does not guarantee that it becomes the alternate port; it merely gives it a slight edge among equal contenders. The alternate port is usually a previously failed port."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "REP ports must be a Layer 2 IEEE 802. 1Q port or a 802. 1AD port.",
+    "sourcePage": 405,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "rep stcn",
+    "context": null,
+    "detail": "Configure a Resilient Ethernet Protocol (REP) edge port to send segment topology change notifications (STCNs) to another interface or to other segments.",
+    "syntax": "rep stcn {interface interface-id | segment segment-id-list}",
+    "noForm": "no rep stcn {interface | segment}",
+    "params": [
+      {
+        "name": "interface interface-id",
+        "description": "Specifies a physical interface or port channel to receive STCNs."
+      },
+      {
+        "name": "segment segment-id-list",
+        "description": "Specifies one REP segment or a list of REP segments to receive STCNs. The segment range is from 1 to 1024. You can also configure a sequence of segments, for example, 3 to 5, 77, 100."
+      }
+    ],
+    "modes": ["Interface configuration (config-if)"],
+    "usageSummary": "You can verify your settings by entering the show interfaces rep detail command in privileged EXEC mode.",
+    "sourcePage": 407,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show etherchannel",
+    "context": null,
+    "detail": "Display EtherChannel information for a channel.",
+    "syntax": "show etherchannel [{channel-group-number | {detail | port | port-channel | protocol | summary }}] | [{auto | detail | load-balance | port | port-channel | protocol | summary}]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "auto",
+        "description": "(Optional) Displays that Etherchannel is created automatically."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed EtherChannel information."
+      },
+      {
+        "name": "load-balance",
+        "description": "(Optional) Displays the load-balance or frame-distribution scheme among ports in the port channel."
+      },
+      {
+        "name": "port",
+        "description": "(Optional) Displays EtherChannel port information."
+      },
+      {
+        "name": "port-channel",
+        "description": "(Optional) Displays port-channel information."
+      },
+      {
+        "name": "protocol",
+        "description": "(Optional) Displays the protocol that is being used in the channel."
+      },
+      {
+        "name": "summary",
+        "description": "(Optional) Displays a one-line summary per channel group."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "If you do not specify a channel group number, all channel groups are displayed.  This is an example of output from the show etherchannel auto command: device# show etherchannel auto Flags: D - down P - bundled in port-channel I - stand-alone s - suspended H - Hot-standby (LACP only) R - Layer3 S - Layer2 U - in use f - failed to allocate aggregator M - not in use, minimum links not met u - unsuitable for bundling w - waiting to be aggregated d - default port A - formed by Auto LAG Number of channel-groups in use: 1 Number of aggregators: 1 Command Reference, Cisco IOS XE Gibraltar 16. 12.",
+    "sourcePage": 408,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show interfaces rep detail",
+    "context": null,
+    "detail": "Display detailed Resilient Ethernet Protocol (REP) configuration and status for all interfaces or a specified interface, including the administrative VLAN.",
+    "syntax": "show interfaces [interface-id] rep detail",
+    "noForm": null,
+    "params": [
+      {
+        "name": "interface-id",
+        "description": "(Optional) Physical interface used to display the port ID."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": "Enter this command on a segment edge port to send STCNs to one or more segments or to an interface.  You can verify your settings by entering the show interfaces rep detail command in privileged EXEC mode.",
+    "sourcePage": 411,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show lacp",
+    "context": null,
+    "detail": "Display Link Aggregation Control Protocol (LACP) channel-group information.",
+    "syntax": "show lacp [channel-group-number] {counters | internal | neighbor | sys-id}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "counters",
+        "description": "Displays traffic information."
+      },
+      {
+        "name": "internal",
+        "description": "Displays internal information."
+      },
+      {
+        "name": "neighbor",
+        "description": "Displays neighbor information."
+      },
+      {
+        "name": "sys-id",
+        "description": "Displays the system identifier that is being used by LACP. The system identifier consists of the LACP system priority and the device MAC address."
+      }
+    ],
+    "modes": ["User EXEC"],
+    "usageSummary": "You can enter any show lacp command to display the active channel-group information.  To display specific channel information, enter the show lacp command with a channel-group number.  If you do not specify a channel group, information for all channel groups appears.",
+    "sourcePage": 412,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show pagp",
+    "context": null,
+    "detail": "Display Port Aggregation Protocol (PAgP) channel-group information.",
+    "syntax": "show pagp [channel-group-number] {counters | dual-active | internal | neighbor}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "channel-group-number",
+        "description": "(Optional) Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "counters",
+        "description": "Displays traffic information."
+      },
+      {
+        "name": "dual-active",
+        "description": "Displays the dual-active status."
+      },
+      {
+        "name": "internal",
+        "description": "Displays internal information."
+      },
+      {
+        "name": "neighbor",
+        "description": "Displays neighbor information."
+      }
+    ],
+    "modes": ["User EXEC", "Privileged EXEC"],
+    "usageSummary": "You can enter any show pagp command to display the active channel-group information.  To display the nonactive information, enter the show pagp command with a channel-group number.",
+    "sourcePage": 416,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform software fed etherchannel",
+    "context": null,
+    "detail": "Display platform-dependent EtherChannel information.",
+    "syntax": "show platform software fed etherchannel [switch switch-number] channel-group-number {group-mask | load-balance mac src-mac dst-mac [ip src-ip dst-ip [port src-port dst-port]]}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "switch",
+        "description": "(Optional) Specifies the stack member. switch-number channel-group-number Channel group number. The range is 1 to 128."
+      },
+      {
+        "name": "group-mask",
+        "description": "Displays EtherChannel group mask."
+      },
+      {
+        "name": "load-balance",
+        "description": "Tests EtherChannel load-balance hash algorithm."
+      },
+      {
+        "name": "mac src-mac",
+        "description": "Specifies the source and destination MAC addresses. dst-mac"
+      },
+      {
+        "name": "ip src-ip dst-ip",
+        "description": "(Optional) Specifies the source and destination IP addresses."
+      },
+      {
+        "name": "port src-port",
+        "description": "(Optional) Specifies the source and destination layer port numbers. dst-port"
+      }
+    ],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with a technical support representative while troubleshooting a problem.  Do not use this command unless a technical support representative asks you to do so.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 418,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show platform pm",
+    "context": null,
+    "detail": "Display platform-dependent port manager information.",
+    "syntax": null,
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "Use this command only when you are working directly with your technical support representative while troubleshooting a problem.  Do not use this command unless your technical support representative asks you to do so.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 419,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show rep topology",
+    "context": null,
+    "detail": "Display Resilient Ethernet Protocol (REP) topology information for a segment or for all the segments, including the primary and secondary edge ports in the segment.",
+    "syntax": "show rep topology [segment segment-id] [archive] [detail]",
+    "noForm": null,
+    "params": [
+      {
+        "name": "segment segment-id",
+        "description": "(Optional) Specifies the segment for which to display the REP topology information. The segment-id range is from 1 to 1024."
+      },
+      {
+        "name": "archive",
+        "description": "(Optional) Displays the previous topology of the segment. This keyword is useful for troubleshooting a link failure."
+      },
+      {
+        "name": "detail",
+        "description": "(Optional) Displays detailed REP topology information."
+      }
+    ],
+    "modes": ["Privileged EXEC (#)"],
+    "usageSummary": null,
+    "sourcePage": 420,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "show udld",
+    "context": null,
+    "detail": "Display UniDirectional Link Detection (UDLD) administrative and operational status for all ports or the specified port.",
+    "syntax": "show udld [Auto-Template | Capwap | GigabitEthernet | GroupVI | InternalInterface | Loopback | Null | Port-channel | TenGigabitEthernet | Tunnel | Vlan] interface_number show udld neighbors",
+    "noForm": null,
+    "params": [
+      {
+        "name": "Auto-Template",
+        "description": "(Optional) Displays UDLD operational status of the auto-template interface. The range is from 1 to 999."
+      },
+      {
+        "name": "Capwap",
+        "description": "(Optional) Displays UDLD operational status of the CAPWAP interface. The range is from 0 to 2147483647."
+      },
+      {
+        "name": "GigabitEthernet",
+        "description": "(Optional) Displays UDLD operational status of the GigabitEthernet interface. The range is from 0 to 9."
+      },
+      {
+        "name": "GroupVI",
+        "description": "(Optional) Displays UDLD operational status of the group virtual interface. The range is from 1 to 255."
+      },
+      {
+        "name": "InternalInterface",
+        "description": "(Optional) Displays UDLD operational status of the internal interface. The range is from 0 to 9."
+      },
+      {
+        "name": "Loopback",
+        "description": "(Optional) Displays UDLD operational status of the loopback interface. The range is from 0 to 2147483647."
+      },
+      {
+        "name": "Null",
+        "description": "(Optional) Displays UDLD operational status of the null interface."
+      },
+      {
+        "name": "Port-channel",
+        "description": "(Optional) Displays UDLD operational status of the Ethernet channel interfaces. The range is from 1 to 128."
+      },
+      {
+        "name": "TenGigabitEthernet",
+        "description": "(Optional) Displays UDLD operational status of the Ten Gigabit Ethernet interface. The range is from 0 to 9."
+      },
+      {
+        "name": "Tunnel",
+        "description": "(Optional) Displays UDLD operational status of the tunnel interface. The range is from 0 to 2147483647."
+      },
+      {
+        "name": "Vlan",
+        "description": "(Optional) Displays UDLD operational status of the VLAN interface. The range is from 1 to 4095."
+      },
+      {
+        "name": "interface-id",
+        "description": "(Optional) ID of the interface and port number. Valid interfaces include physical ports, VLANs, and port channels."
+      },
+      {
+        "name": "neighbors",
+        "description": "(Optional) Displays neighbor information only."
+      }
+    ],
+    "modes": [
+      "User EXEC",
+      "Command Reference, Cisco IOS XE Gibraltar 16.12.x (Catalyst 3850 Switches) 420 Layer 2/3 show udld"
+    ],
+    "usageSummary": "If you do not enter an interface ID, administrative and operational UDLD status for all interfaces appear.  This is an example of output from the show udld interface-id command.  For this display, UDLD is enabled on both ends of the link, and UDLD detects that the link is bidirectional.",
+    "sourcePage": 422,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport",
+    "context": null,
+    "detail": "Put an interface that is in Layer 3 mode into Layer 2 mode for Layer 2 configuration.",
+    "syntax": "switchport",
+    "noForm": "no switchport",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "Use the no switchport command (without parameters) to set the interface to the routed-interface status and to erase all Layer 2 configurations.  You must use this command before assigning an IP address to a routed port.",
+    "sourcePage": 425,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport access vlan",
+    "context": null,
+    "detail": "Configure a port as a static-access port.",
+    "syntax": "switchport access vlan {vlan-id | name vlan_name}",
+    "noForm": "no switchport access vlan",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "VLAN ID of the access mode VLAN; the range is 1 to 4094."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The port must be in access mode before the switchport access vlan command can take effect.  If the switchport mode is set to access vlan vlan-id, the port operates as a member of the specified VLAN.  An access port can be assigned to only one VLAN.",
+    "sourcePage": 427,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport mode",
+    "context": null,
+    "detail": "Configure the VLAN membership mode of a port.",
+    "syntax": "switchport mode {access | dynamic | {auto | desirable} | trunk} noswitchport mode {access | dynamic | {auto | desirable} | trunk}",
+    "noForm": null,
+    "params": [
+      {
+        "name": "access",
+        "description": "Sets the port to access mode (either static-access or dynamic-access depending on the setting of the switchport access vlan interface configuration command). The port is set to access unconditionally and operates as a nontrunking, single VLAN interface that sends and receives nonencapsulated (non-tagged) frames. An access port can be assigned to only one VLAN."
+      },
+      {
+        "name": "dynamic auto",
+        "description": "Sets the port trunking mode dynamic parameter to auto to specify that the interface convert the link to a trunk link. This is the default switchport mode."
+      },
+      {
+        "name": "dynamic",
+        "description": "Sets the port trunking mode dynamic parameter to desirable to specify that the interface"
+      },
+      {
+        "name": "desirable",
+        "description": "actively attempt to convert the link to a trunk link."
+      },
+      {
+        "name": "trunk",
+        "description": "Sets the port to trunk unconditionally. The port is a trunking VLAN Layer 2 interface. The port sends and receives encapsulated (tagged) frames that identify the VLAN of origination. A trunk is a point-to-point link between two devices or between a device and a router."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "A configuration that uses the access,or trunk keywords takes effect only when you configure the port in the appropriate mode by using the switchport mode command.  The static-access and trunk configuration are saved, but only one configuration is active at a time.  When you enter access mode, the interface changes to permanent nontrunking mode and negotiates to convert the link into a nontrunk link even if the neighboring interface does not agree to the change.",
+    "sourcePage": 429,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport nonegotiate",
+    "context": null,
+    "detail": "Specify that Dynamic Trunking Protocol (DTP) negotiation packets are not sent on the Layer 2 interface.",
+    "syntax": "switchport nonegotiate",
+    "noForm": "no switchport nonegotiate",
+    "params": [],
+    "modes": ["Interface configuration"],
+    "usageSummary": "The no switchport nonegotiate command removes nonegotiate status.  This command is valid only when the interface switchport mode is access or trunk (configured by using the switchport mode access or the switchport mode trunk interface configuration command).  This command returns an error if you attempt to execute it in dynamic (auto or desirable) mode.",
+    "sourcePage": 431,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "switchport voice vlan",
+    "context": null,
+    "detail": "Configure voice VLAN on the port.",
+    "syntax": "switchport voice vlan {vlan-id | dot1p | none | untagged | name vlan_name}",
+    "noForm": "no switchport voice vlan",
+    "params": [
+      {
+        "name": "vlan-id",
+        "description": "The VLAN to be used for voice traffic. The range is 1 to 4094. By default, the IP phone forwards the voice traffic with an IEEE 802.1Q priority of 5."
+      },
+      {
+        "name": "dot1p",
+        "description": "Configures the telephone to use IEEE 802.1p priority tagging and uses VLAN 0 (the native VLAN). By default, the Cisco IP phone forwards the voice traffic with an IEEE 802.1p priority of 5."
+      },
+      {
+        "name": "none",
+        "description": "Does not instruct the IP telephone about the voice VLAN. The telephone uses the configuration from the telephone key pad."
+      },
+      {
+        "name": "untagged",
+        "description": "Configures the telephone to send untagged voice traffic. This is the default for the telephone."
+      },
+      {
+        "name": "name vlan_name",
+        "description": "(Optional) Specifies the VLAN name to be used for voice traffic. You can enter up to 128 characters."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "You should configure voice VLAN on Layer 2 access ports.  You must enable Cisco Discovery Protocol (CDP) on the switch port connected to the Cisco IP phone for the device to send configuration information to the phone.  CDP is enabled by default globally and on the interface.",
+    "sourcePage": 432,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "udld",
+    "context": null,
+    "detail": "Enable aggressive or normal mode in the UniDirectional Link Detection (UDLD) and to set the configurable message timer time.",
+    "syntax": "udld {aggressive | enable | message time message-timer-interval}",
+    "noForm": "no udld {aggressive | enable | message}",
+    "params": [
+      {
+        "name": "aggressive",
+        "description": "Enables UDLD in aggressive mode on all fiber-optic interfaces."
+      },
+      {
+        "name": "enable",
+        "description": "Enables UDLD in normal mode on all fiber-optic interfaces."
+      },
+      {
+        "name": "message time",
+        "description": "Configures the period of time between UDLD probe messages on ports"
+      },
+      {
+        "name": "message-timer-interval",
+        "description": "that are in the advertisement phase and are determined to be bidirectional. The range is 1 to 90 seconds. The default is 15 seconds."
+      }
+    ],
+    "modes": ["Global configuration"],
+    "usageSummary": "UDLD supports two modes of operation: normal (the default) and aggressive.  In normal mode, UDLD detects unidirectional links due to misconnected interfaces on fiber-optic connections.  In aggressive mode, UDLD also detects unidirectional links due to one-way traffic on fiber-optic and twisted-pair links and due to misconnected interfaces on fiber-optic links.",
+    "sourcePage": 435,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "udld port",
+    "context": null,
+    "detail": "Enable UniDirectional Link Detection (UDLD) on an individual interface or to prevent a fiber-optic interface from being enabled by the udld global configuration command.",
+    "syntax": "udld port [aggressive]",
+    "noForm": "no udld port [aggressive]",
+    "params": [
+      {
+        "name": "aggressive",
+        "description": "(Optional) Enables UDLD in aggressive mode on the specified interface."
+      }
+    ],
+    "modes": ["Interface configuration"],
+    "usageSummary": "A UDLD-capable port cannot detect a unidirectional link if it is connected to a UDLD-incapable port of another device.  UDLD supports two modes of operation: normal (the default) and aggressive.  In normal mode, UDLD detects unidirectional links due to misconnected interfaces on fiber-optic connections.",
+    "sourcePage": 437,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  },
+  {
+    "name": "udld reset",
+    "context": null,
+    "detail": "Reset all interfaces disabled by UniDirectional Link Detection (UDLD) and permit traffic to begin passing through them again (though other features, such as spanning tree, Port Aggregation Protocol (PAgP), and Dynamic Trunking Protocol (DTP) still have their normal effects, if enabled).",
+    "syntax": "udld reset",
+    "noForm": null,
+    "params": [],
+    "modes": ["Privileged EXEC"],
+    "usageSummary": "If the interface configuration is still enabled for UDLD, these ports begin to run UDLD again and are disabled for the same reason if the problem has not been corrected.  This example shows how to reset all interfaces disabled by UDLD: Device# udld reset 1 ports shutdown by UDLD were reset.  Command Reference, Cisco IOS XE Gibraltar 16.",
+    "sourcePage": 439,
+    "pack": "cat3850-16.12",
+    "platform": "Catalyst 3850 Switches",
+    "release": "16.12.x",
+    "source": "pdf"
+  }
+]
