@@ -1,6 +1,6 @@
 'use strict';
 
-const { test } = require('node:test');
+const { test, after } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
@@ -16,8 +16,20 @@ const { isNewer, parseRepo } = require('../client/version');
 
 const silentLog = { log() {}, error() {} };
 
+// Every scratch dir goes through mkTmp and is removed when this file's tests finish;
+// without it each run leaves dozens of dirs behind and fills a tmpfs /tmp's inodes.
+const tmpDirs = [];
+function mkTmp(prefix) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  tmpDirs.push(dir);
+  return dir;
+}
+after(() => {
+  for (const dir of tmpDirs) fs.rmSync(dir, { recursive: true, force: true });
+});
+
 function makeDataDir(files) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cisco-lsp-data-'));
+  const dir = mkTmp('cisco-lsp-data-');
   for (const [rel, content] of Object.entries(files)) {
     const abs = path.join(dir, rel);
     fs.mkdirSync(path.dirname(abs), { recursive: true });

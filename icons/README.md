@@ -6,11 +6,13 @@
 | `cisco-file-outline.svg` | Kept alternative, not shipped (excluded via `.vscodeignore`).                    |
 
 Both are the network-diagram **switch** symbol — a rounded square with two opposing
-arrows — in Material Teal 600 (`#00897b`) on Material Icon Theme's 32 px grid, so either
-file could go upstream to that theme unchanged. The arrows are Material Design's
-`swap_horiz` glyph (Apache 2.0). `cisco-file.svg` is the filled box with the arrows knocked
-out through a mask; the outline variant thins out at 16 px, which is why the filled one
-ships. Chosen by the owner on 2026-10-18 from five candidates shown at explorer size.
+arrows — in Material Teal 600 (`#00897b`) on Material Icon Theme's 32 px grid.
+`cisco-file.svg` is byte-for-byte the file submitted to that theme
+(material-extensions/vscode-material-icon-theme#3625): one even-odd path, the arrows cut
+out of the filled box, every vertex on a whole 16 px pixel (their "pixel-perfect" rule; they
+use no `<mask>`). The outline variant keeps Material Design's `swap_horiz` glyph (Apache
+2.0) and thins out at 16 px, which is why the filled one ships. Chosen by the owner on
+2026-10-18 from five candidates shown at explorer size.
 
 VS Code caches extension language icons inside the generated icon-theme CSS and only
 rebuilds that when the extension's version changes. After editing the SVG, switch the file

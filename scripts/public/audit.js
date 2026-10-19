@@ -26,7 +26,13 @@
 // Exits 1 with a report when anything is found, 2 on error.
 'use strict';
 
-const { execFileSync } = require('node:child_process');
+// A crash must not look like "findings" (exit 1): every unexpected error is exit 2.
+process.on('uncaughtException', (err) => {
+  console.error(`public-audit: internal error — ${err.stack || err}`);
+  process.exit(2);
+});
+
+const { execFileSync, spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -99,12 +105,23 @@ const PACK_EXEMPT = new Set(['SNMP community', 'IKE / pre-shared key', 'IOS pass
 // Personal data, derived at runtime so it is never written into this
 // (public) file: every author/committer email in the private history plus
 // the local git identity and OS user name.
+// `git config user.email`: exit 0 = an address, exit 1 = unset. Anything else (unreadable config,
+// git missing) is a fault that must not silently become "no address".
+function configuredEmail(res) {
+  if (res.status === 0) return res.stdout.trim();
+  if (res.status === 1) return '';
+  throw new Error(
+    `git config user.email failed: ${res.error || res.stderr || `exit ${res.status}`}`,
+  );
+}
 function personalRes() {
   const log = git('log', '--all', '--format=%ae%n%ce').toString('utf8');
+  // `git config` exits 1 when user.email is unset — that is "no address", not an error.
+  const configured = spawnSync('git', ['config', 'user.email'], { cwd: root, encoding: 'utf8' });
   const emails = new Set(
     log
       .split('\n')
-      .concat(execFileSync('git', ['config', 'user.email'], { cwd: root, encoding: 'utf8' }).trim())
+      .concat(configuredEmail(configured))
       .map((e) => e.trim().toLowerCase())
       .filter(
         (e) =>

@@ -2,7 +2,7 @@
   "name": "cisco-ios-lsp",
   "displayName": "Cisco IOS/IOS-XE IntelliSense",
   "description": "Context-aware completions, hover docs, and diagnostics for Cisco IOS/IOS-XE config files.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "publisher": "Aswertus",
   "license": "MIT",
   "icon": "images/icon.png",
@@ -257,6 +257,180 @@
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
         "editor.tabSize": 1
+      },
+      "editor.tokenColorCustomizations": {
+        "textMateRules": [
+          {
+            "name": "Cisco: command word (first on the line)",
+            "scope": [
+              "source.cisco keyword.control.command",
+              "source.cisco punctuation.config-param.first"
+            ],
+            "settings": {
+              "foreground": "#5FB3B3"
+            }
+          },
+          {
+            "name": "Cisco: option keyword (access, input, permit, deny, …)",
+            "scope": [
+              "source.cisco keyword.other"
+            ],
+            "settings": {
+              "foreground": "#C594C5"
+            }
+          },
+          {
+            "name": "Cisco: user-chosen name (VLAN, ACL, class-map, policy-map, VRF, …)",
+            "scope": [
+              "source.cisco entity.name.tag"
+            ],
+            "settings": {
+              "foreground": "#EB606B"
+            }
+          },
+          {
+            "name": "Cisco: interface, VLAN and VRF type",
+            "scope": [
+              "source.cisco entity.name.class"
+            ],
+            "settings": {
+              "foreground": "#ECC575"
+            }
+          },
+          {
+            "name": "Cisco: number",
+            "scope": [
+              "source.cisco constant.numeric"
+            ],
+            "settings": {
+              "foreground": "#F99157"
+            }
+          },
+          {
+            "name": "Cisco: IP and MAC address",
+            "scope": [
+              "source.cisco keyword.other.address"
+            ],
+            "settings": {
+              "foreground": "#F99157"
+            }
+          },
+          {
+            "name": "Cisco: description, remark, password",
+            "scope": [
+              "source.cisco string"
+            ],
+            "settings": {
+              "foreground": "#99C794"
+            }
+          },
+          {
+            "name": "Cisco: comment line",
+            "scope": [
+              "source.cisco comment"
+            ],
+            "settings": {
+              "foreground": "#7F7F7F",
+              "fontStyle": "italic"
+            }
+          },
+          {
+            "name": "Cisco: disabled line (no …, default …) and CLI prompt",
+            "scope": [
+              "source.cisco meta.function-call"
+            ],
+            "settings": {
+              "foreground": "#6699CC"
+            }
+          }
+        ],
+        "[*Light*]": {
+          "textMateRules": [
+            {
+              "name": "Cisco: command word (first on the line)",
+              "scope": [
+                "source.cisco keyword.control.command",
+                "source.cisco punctuation.config-param.first"
+              ],
+              "settings": {
+                "foreground": "#0F766E"
+              }
+            },
+            {
+              "name": "Cisco: option keyword (access, input, permit, deny, …)",
+              "scope": [
+                "source.cisco keyword.other"
+              ],
+              "settings": {
+                "foreground": "#8B3FA8"
+              }
+            },
+            {
+              "name": "Cisco: user-chosen name (VLAN, ACL, class-map, policy-map, VRF, …)",
+              "scope": [
+                "source.cisco entity.name.tag"
+              ],
+              "settings": {
+                "foreground": "#C1303A"
+              }
+            },
+            {
+              "name": "Cisco: interface, VLAN and VRF type",
+              "scope": [
+                "source.cisco entity.name.class"
+              ],
+              "settings": {
+                "foreground": "#946200"
+              }
+            },
+            {
+              "name": "Cisco: number",
+              "scope": [
+                "source.cisco constant.numeric"
+              ],
+              "settings": {
+                "foreground": "#C2410C"
+              }
+            },
+            {
+              "name": "Cisco: IP and MAC address",
+              "scope": [
+                "source.cisco keyword.other.address"
+              ],
+              "settings": {
+                "foreground": "#C2410C"
+              }
+            },
+            {
+              "name": "Cisco: description, remark, password",
+              "scope": [
+                "source.cisco string"
+              ],
+              "settings": {
+                "foreground": "#2F7D32"
+              }
+            },
+            {
+              "name": "Cisco: comment line",
+              "scope": [
+                "source.cisco comment"
+              ],
+              "settings": {
+                "foreground": "#8C8C8C",
+                "fontStyle": "italic"
+              }
+            },
+            {
+              "name": "Cisco: disabled line (no …, default …) and CLI prompt",
+              "scope": [
+                "source.cisco meta.function-call"
+              ],
+              "settings": {
+                "foreground": "#2E5FA8"
+              }
+            }
+          ]
+        }
       }
     },
     "colors": [

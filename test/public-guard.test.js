@@ -5,6 +5,7 @@
 // could. Every test builds throwaway git repos; nothing touches this checkout.
 
 const test = require('node:test');
+const { after } = require('node:test');
 const assert = require('node:assert/strict');
 const { execFileSync, spawnSync } = require('node:child_process');
 const fs = require('node:fs');
@@ -15,8 +16,20 @@ const ROOT = path.join(__dirname, '..');
 const IDENTITY = { name: 'Aswertus', email: '1096961+Aswertus@users.noreply.github.com' };
 const ZERO = '0'.repeat(40);
 
+// Every scratch dir goes through mkTmp and is removed when this file's tests finish;
+// without it each run leaves dozens of dirs behind and fills a tmpfs /tmp's inodes.
+const tmpDirs = [];
+function mkTmp(prefix) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), prefix));
+  tmpDirs.push(dir);
+  return dir;
+}
+after(() => {
+  for (const dir of tmpDirs) fs.rmSync(dir, { recursive: true, force: true });
+});
+
 function tmpRepo() {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'public-guard-'));
+  const dir = mkTmp('public-guard-');
   const git = (...args) => execFileSync('git', args, { cwd: dir, encoding: 'utf8' }).trim();
   git('init', '-q', '-b', 'main');
   git('config', 'user.name', 'Someone');
@@ -149,7 +162,7 @@ test('check.sh: a file that only ever existed in a merge commit is caught by the
 // private cisco-lsp-dev repo is guarded.
 function withRemote() {
   const r = tmpRepo();
-  const bare = fs.mkdtempSync(path.join(os.tmpdir(), 'public-guard-bare-'));
+  const bare = mkTmp('public-guard-bare-');
   execFileSync('git', ['init', '-q', '--bare', bare]);
   return { ...r, url: bare };
 }
@@ -322,7 +335,7 @@ test('tag-object.sh: an unreadable author/committer refuses instead of skipping 
     path.join(r.dir, 'scripts/public/tag-object.sh'),
   );
   // A git whose `log` prints nothing; every other subcommand is the real git.
-  const bin = fs.mkdtempSync(path.join(os.tmpdir(), 'public-guard-bin-'));
+  const bin = mkTmp('public-guard-bin-');
   const realGit = execFileSync('bash', ['-c', 'command -v git'], { encoding: 'utf8' }).trim();
   fs.writeFileSync(
     path.join(bin, 'git'),
@@ -527,6 +540,9 @@ test(
   () => {
     assert.equal(decision(hook(bash("printf 'exit 0' > .claude/hooks/public-guard.sh"))), 'ask');
     assert.equal(decision(hook(bash('chmod -x scripts/git-hooks/pre-push'))), 'ask');
+    // git's own file write (`--output=`) is a write too
+    const gitOut = ['git log -1', "--format='%x23!/bin/sh'", '--output=scripts/public/release.sh'];
+    assert.equal(decision(hook(bash(gitOut.join(' ')))), 'ask');
     const sneaky = `${ROOT}/./scripts/public/../public/check.sh`;
     assert.equal(decision(hook({ tool_name: 'Write', tool_input: { file_path: sneaky } })), 'ask');
   },
@@ -638,3 +654,75 @@ for (const [name, file, data] of [
     assert.match(out.stderr, /image metadata/);
   });
 }
+
+// ------------------------------------------------------------ hardening (2026-10-19)
+test('pre-push: PUBLICIGNORE in the environment cannot swap in a weaker pattern file', () => {
+  const r = withRemote();
+  const main = seedMain(r);
+  // `*.txt` is only on .publicignore (not the built-in NEVER list)
+  const dump = commitFiles(r, { ...CLEAN, 'show.txt': 'hostname x\n' }, { parent: main });
+  const empty = path.join(r.dir, 'empty-patterns');
+  fs.writeFileSync(empty, '# nothing\n');
+  const out = spawnSync('bash', ['scripts/git-hooks/pre-push', 'public', r.url], {
+    cwd: r.dir,
+    input: `x ${dump} refs/heads/release/v1.0.0 ${ZERO}\n`,
+    encoding: 'utf8',
+    env: { ...process.env, PUBLICIGNORE: empty },
+  });
+  refused(out, 'PUBLICIGNORE from the environment must be ignored');
+});
+
+test('audit: an unset user.email is no error, and a crash exits 2, never 1', () => {
+  const r = auditRepo();
+  r.git('config', '--unset', 'user.email');
+  const clean = commitFiles(r, CLEAN);
+  assert.equal(audit(r, clean).status, 0, audit(r, clean).stderr);
+  // an unreadable tree is an internal error, not a "finding"
+  assert.equal(audit(r, 'no-such-tree').status, 2);
+});
+
+// A fake `timeout` makes every preflight step fail fast: a command the hook treats as
+// public-facing ends in DENY, one it doesn't care about passes silently.
+function fakeTimeoutEnv() {
+  const bin = mkTmp('fake-timeout-');
+  fs.writeFileSync(path.join(bin, 'timeout'), '#!/bin/sh\nexit 1\n', { mode: 0o755 });
+  return { ...process.env, PATH: `${bin}:${process.env.PATH}` };
+}
+
+test('claude hook: every way of running release.sh is public-facing', { skip }, () => {
+  const env = fakeTimeoutEnv();
+  for (const c of [
+    'scripts/public/release.sh v1.0.0',
+    `bash ${ROOT}/scripts/public/release.sh v1.0.0 --tag`, // absolute path
+    'env A=1 scripts/public/release.sh v1.0.0',
+    'cat x; scripts/public/release.sh v1.0.0', // behind a read-only command
+    'cat scripts/public/release.sh | bash -s v1.0.0', // piped into a shell
+    'git show main:scripts/public/release.sh | sh -s v1.0.0',
+    'scripts/public/rel*.sh v1.0.0', // glob
+    // "read-only" commands that can execute (found in review)
+    'bash -n +n scripts/public/release.sh v1.0.0',
+    "sed -n '1e scripts/public/release.sh v1.0.0' README.md",
+    'rg --pre scripts/public/release.sh x README.md',
+    "git grep -O'scripts/public/release.sh v1.0.0' hello -- README.md",
+    "less +'!scripts/public/release.sh' README.md",
+  ]) {
+    assert.equal(decision(hook(bash(c), env)), 'deny', c);
+  }
+  for (const c of [
+    'cat scripts/public/release.sh',
+    'grep -n tag scripts/public/release.sh | head -3',
+    'bash -n scripts/public/release.sh',
+    'git diff main -- scripts/public/release.sh',
+  ]) {
+    assert.equal(decision(hook(bash(c), env)), 'pass', c);
+  }
+});
+
+test('claude hook: PUBLICIGNORE on a push is denied outright', { skip }, () => {
+  const push = ['git', 'push', 'public', 'x'].join(' ');
+  // fake timeout: a regression must fail fast as a wrong-reason deny, not recurse into npm test
+  const out = hook(bash(`PUBLICIGNORE=/tmp/weak ${push}`), fakeTimeoutEnv());
+  assert.equal(decision(out), 'deny');
+  // denied for the override itself, not because a preflight step happened to fail
+  assert.match(JSON.parse(out.stdout).hookSpecificOutput.permissionDecisionReason, /PUBLICIGNORE/);
+});

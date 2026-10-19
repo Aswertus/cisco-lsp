@@ -6,6 +6,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-10-20
+
+### Added
+
+- Default syntax colours for Cisco config files, so the command word, option keywords,
+  names you chose, interface types, numbers and addresses, descriptions and comments each get their own
+  colour on any theme — the palette of `Y-Ysss.cisco-config-highlight` together with the
+  Daybreak theme, without switching themes. Dark values are Daybreak's own; themes with
+  "Light" in their name get the same hues darkened. Your own
+  `editor.tokenColorCustomizations` take precedence.
+
+### Changed
+
+- Grammar: config keywords (`permit`, `deny`, `shutdown`, …) now keep their keyword label at
+  the start of a line instead of the generated command-root label, matching the upstream
+  grammar.
+- File icon: drawn as one path on whole pixels, so it looks crisper at explorer size. Same
+  shape as before.
+- README and store page link
+  [cisco-rdm-highlighting](https://github.com/Aswertus/cisco-rdm-highlighting), which brings
+  the same colours to Remote Desktop Manager SSH sessions.
+
 ## [0.7.0] - 2026-10-18
 
 ### Added
@@ -275,6 +297,7 @@ Initial release.
 - Automated releases: pushing a `vX.Y.Z` tag builds and publishes the `.vsix` via GitHub
   Actions.
 
+[0.8.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.8.0
 [0.7.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.7.0
 [0.6.2]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.2
 [0.6.1]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.1

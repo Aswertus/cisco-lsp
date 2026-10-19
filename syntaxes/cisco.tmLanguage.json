@@ -46,10 +46,10 @@
       "include": "#bgp"
     },
     {
-      "include": "#command_root"
+      "include": "#keyword"
     },
     {
-      "include": "#keyword"
+      "include": "#command_root"
     },
     {
       "include": "#param1"
