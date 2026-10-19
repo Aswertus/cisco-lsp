@@ -890,8 +890,12 @@ function updateGrammar() {
   };
 
   if (!grammar.patterns.some((p) => p.include === '#command_root')) {
+    // After #keyword: a word that is both a generated command root and a hand-written config
+    // keyword (`permit`, `deny`, `shutdown`, …) keeps the keyword label, as in the upstream
+    // grammar — the default token colours (package.json) rely on it. Before #param1, which
+    // labels any remaining first word.
     const keywordIdx = grammar.patterns.findIndex((p) => p.include === '#keyword');
-    const insertAt = keywordIdx === -1 ? grammar.patterns.length : keywordIdx;
+    const insertAt = keywordIdx === -1 ? grammar.patterns.length : keywordIdx + 1;
     grammar.patterns.splice(insertAt, 0, { include: '#command_root' });
   }
 

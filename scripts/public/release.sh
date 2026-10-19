@@ -80,7 +80,20 @@ fi
 
 [ -n "$have_main" ] || die "public main does not exist — first release needs --bootstrap"
 [ "$tree" != "$(git rev-parse refs/remotes/public/main^{tree})" ] || die "nothing to release: public main already has this tree"
-commit=$(git commit-tree "$tree" -p refs/remotes/public/main -m "release: $tag")
+# Credit contributors on the squashed commit: the authors of commits that
+# import-pr.sh cherry-picked (`-x` leaves "(cherry picked from commit" in the
+# message) since the previous release marker. Only those — never every author
+# in the private history — and never the release identity itself.
+prev=$(git describe --tags --match 'dev-v*' --abbrev=0 "$src" 2>/dev/null || true)
+picked=$(git rev-list ${prev:+"$prev.."}"$src" --grep='(cherry picked from commit' || true)
+trailers=""
+if [ -n "$picked" ]; then
+  # shellcheck disable=SC2086 # $picked is a list of commit ids
+  trailers=$(git log --no-walk --format='%an <%ae>' $picked | sort -u | grep -v -F "<$IDENTITY_EMAIL>" | sed 's/^/Co-authored-by: /' || true)
+fi
+message="release: $tag"
+[ -z "$trailers" ] || message="$message"$'\n\n'"$trailers"
+commit=$(git commit-tree "$tree" -p refs/remotes/public/main -m "$message")
 
 echo "release: changes going public in $tag:"
 git diff --stat refs/remotes/public/main "$commit"

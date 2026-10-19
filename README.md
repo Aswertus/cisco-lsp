@@ -127,6 +127,25 @@ sticky scroll follow the block your cursor is in:
 
 Use `cisco-ios-lsp.outline.symbolsList` to toggle individual categories.
 
+### Syntax colours
+
+Cisco config files get their own colour layering on any theme, without switching themes:
+the command word at the start of a line, option keywords (`access`, `input`, `permit`),
+names you chose (VLAN, ACL, class-map, VRF, …), interface and VLAN types, numbers,
+descriptions and comments each have their own colour. The palette is the one
+`Y-Ysss.cisco-config-highlight` shows together with the
+[Daybreak](https://github.com/Y-Ysss/vscode-daybreak-theme) theme: dark themes get
+Daybreak's values, themes with "Light" in their name get the same hues darkened. A light
+theme without "Light" in its name (rare) gets the dark set.
+
+The colours are defaults for `editor.tokenColorCustomizations`, scoped to `source.cisco`,
+so no other language is affected and your own settings take precedence. To change them, add
+your own `textMateRules` — note that a `textMateRules` list in your settings replaces the
+defaults as a whole, so start from the block in [package.json](package.json)
+(`contributes.configurationDefaults`) and adjust. Works in VS Code forks (Kiro, Cursor,
+VSCodium, …) as well: both the contribution point and the setting live in the shared
+Code OSS core.
+
 ### Coexisting with `Y-Ysss.cisco-config-highlight`
 
 Syntax highlighting and the outline are adapted from
@@ -189,6 +208,12 @@ you.
 passwords/hashes, SNMP communities and keys replaced. Security problems go through
 [private reporting](https://github.com/Aswertus/cisco-lsp/security/advisories/new) (see
 [SECURITY.md](SECURITY.md)).
+
+## Same colours in Remote Desktop Manager
+
+[cisco-rdm-highlighting](https://github.com/Aswertus/cisco-rdm-highlighting) colours Cisco configs
+and `show` output in Devolutions Remote Desktop Manager SSH sessions with this extension's palette,
+so a config looks the same in the editor and on the live switch.
 
 ## Contributing
 

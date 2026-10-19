@@ -120,6 +120,15 @@ characters (for example `X` and `N`).
 Format on save uses VS Code's own `editor.formatOnSave` setting and is on by default for
 Cisco config files.
 
+## Syntax colours on any theme
+
+Config files get their own colour layering without switching themes: the command word,
+option keywords (`access`, `input`, `permit`), the names you chose (VLANs, ACLs, class-maps,
+VRFs), interface types, numbers, descriptions and comments each have their own colour. The
+palette is the one `Y-Ysss.cisco-config-highlight` shows together with the Daybreak theme.
+Dark themes get Daybreak's values; themes with "Light" in their name get the same hues
+darkened. Your own `editor.tokenColorCustomizations` take precedence.
+
 ## Works alongside Cisco Config Highlight
 
 If you also have `Y-Ysss.cisco-config-highlight` installed, both work together: they share
@@ -142,6 +151,8 @@ only the few lines needed and replace hostnames, real IP addresses, passwords an
 - [Full command coverage](https://github.com/Aswertus/cisco-lsp/blob/main/COMMAND_COVERAGE.md)
 - [Changelog](https://github.com/Aswertus/cisco-lsp/blob/main/CHANGELOG.md)
 - [Source code](https://github.com/Aswertus/cisco-lsp) (MIT license)
+- [Same colours in Remote Desktop Manager](https://github.com/Aswertus/cisco-rdm-highlighting):
+  a syntax-highlighting profile for Devolutions RDM SSH sessions
 
 Cisco, IOS and Catalyst are trademarks of Cisco Systems, Inc. This extension is an
 independent project and is not affiliated with or endorsed by Cisco.

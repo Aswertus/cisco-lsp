@@ -37,6 +37,9 @@
     "xcvr",
     "xfrm",
     // LSP / VS Code extension tooling
+    "Devolutions",
+    "colour",
+    "colours",
     "languageclient",
     "languageserver",
     "vsix",

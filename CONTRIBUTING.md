@@ -108,6 +108,12 @@ the stores: a release candidate is built with `npm run package` at that version 
 as the `build/cisco-ios-lsp-X.Y.Z-rc.N.vsix` file, and the update check treats it as older
 than the final `X.Y.Z`. The tag version must match `version` in `package.json`.
 
+Pull requests on this repository are welcome, but `main` only ever receives release
+commits, so a PR is not merged here: the maintainer cherry-picks it into the development
+repository (you stay the author of that commit), it ships with the next release, and the
+release commit carries a `Co-authored-by:` line for you. The PR is then closed with a note
+naming that release.
+
 ## AI-assisted development
 
 This project was developed with the assistance of AI — currently Anthropic's Claude. AI
