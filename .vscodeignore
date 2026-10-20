@@ -2,6 +2,8 @@
 .git/**
 .github/**
 .claude/**
+# Local agent-tool scratch (self-ignored in git, but on disk when packaging locally).
+.superpowers/**
 .gitignore
 .editorconfig
 eslint.config.js
@@ -17,6 +19,9 @@ _testing/**
 _*/**
 images/icon.svg
 images/README.md
+# The store changelog is dist/CHANGELOG.md (scripts/store-changelog.js, via --changelog-path):
+# the repo file minus its empty [Unreleased] slot.
+CHANGELOG.md
 # Store-page/README screenshots are linked from GitHub, not shipped.
 media/**
 CONTRIBUTING.md
