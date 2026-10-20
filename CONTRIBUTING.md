@@ -64,6 +64,13 @@ self-contained. Its store page is [STORE.md](STORE.md), not this repository's RE
 (`vsce package --readme-path STORE.md`). Images on the store page are absolute links to
 `media/` on this repository's `main` branch.
 
+Store screenshots and GIFs are recorded from the demo workspace (the shot list lives next
+to it, outside the repo) into the gitignored `_dummy/`. Raw ScreenToGif recordings are then
+cut with `scripts/media/cut-gif.py` (Python + Pillow, see `--help`): it crops to the editor
+area, paints over ScreenToGif's ghost cursors, caps pauses, holds the final frame, and
+re-encodes without metadata (the public audit rejects GIF comments/XMP). Look at the
+contact sheet it can write (`--sheet`) before committing a GIF.
+
 Install a `.vsix` via **Extensions → ⋯ → Install from VSIX…** or
 `code --install-extension cisco-ios-lsp-<version>.vsix`.
 

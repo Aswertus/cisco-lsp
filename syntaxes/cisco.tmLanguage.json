@@ -423,8 +423,8 @@
     "vrf": {
       "patterns": [
         {
-          "comment": "((?<=vrf\\s)(?!.*forwarding)|(?<=vrf\\sforwarding\\s))\\S+",
-          "match": "(vrf)\\s((forwarding|definition|context|member)\\s)?(\\S+)",
+          "comment": "vrf / fvrf (front-door, VPN tunnels) / ivrf (inside) as whole words; ((?<=vrf\\s)(?!.*forwarding)|(?<=vrf\\sforwarding\\s))\\S+",
+          "match": "(?<![-\\w])([fi]?vrf)\\s((forwarding|definition|context|member)\\s)?(\\S+)",
           "captures": {
             "1": {
               "name": "entity.name.class.vrf.declaration.cisco"

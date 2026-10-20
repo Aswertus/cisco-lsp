@@ -6,6 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.1] - 2026-10-20
+
+### Fixed
+
+- Highlighting: `fvrf` (the front-door VRF of VPN tunnels and IKEv2 profiles) and `ivrf` are
+  coloured as one VRF keyword, followed by the VRF name. Before, only the letters `vrf` inside
+  `fvrf` were coloured, and `ivrf` not at all.
+- The Marketplace and Open VSX "Changes" tab no longer shows an empty "Unreleased" heading
+  above the latest version.
+
+### Changed
+
+- Store page and README: new screenshots and GIFs that show the 0.8.0 syntax colours.
+
 ## [0.8.0] - 2026-10-20
 
 ### Added
@@ -297,6 +311,7 @@ Initial release.
 - Automated releases: pushing a `vX.Y.Z` tag builds and publishes the `.vsix` via GitHub
   Actions.
 
+[0.8.1]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.8.1
 [0.8.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.8.0
 [0.7.0]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.7.0
 [0.6.2]: https://github.com/Aswertus/cisco-lsp/releases/tag/v0.6.2
